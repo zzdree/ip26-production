@@ -14,7 +14,7 @@
 ![License](https://img.shields.io/badge/LICENSE-PROPRIETARY_PRIVATE-purple?style=flat-square)
 
 <p align="center">
-  <b>Comprehensive Technical Architecture, Multi-Camera Broadcast Routing, Audio-Visual Signal Flows, and Master Inventory Management for Ibadah Perdana UKK UNNES 2026.</b>
+  <b>Arsitektur Teknis Komprehensif, Multi-Camera Broadcast Routing, Audio-Visual Signal Pipeline, Master Inventory & Equipment Loan Log untuk Ibadah Perdana UKK UNNES 2026.</b>
 </p>
 
 [**🚀 Buka Live Command Center & Web App »**](https://zzdree.github.io/ip26-production/)
@@ -26,11 +26,12 @@
 ## 📑 Daftar Isi
 - [📌 1. Event Overview & Metadata](#-1-event-overview--metadata)
 - [👥 2. Crew Structure & Person In Charge (PIC)](#-2-crew-structure--person-in-charge-pic)
-- [📡 3. Broadcast Camera Setup](#-3-broadcast-camera-setup)
+- [📡 3. Broadcast & Documentation Camera Setup](#-3-broadcast--documentation-camera-setup)
 - [🔄 4. System Architecture & Signal Routing](#-4-system-architecture--signal-routing)
   - [🎥 A. Video & Broadcast Signal Flow](#-a-video--broadcast-signal-flow)
   - [🖥️ B. Media Presentation & LED Mapping](#-b-media-presentation--led-mapping)
   - [🔊 C. Audio Master & Virtual Mixing Pipeline](#-c-audio-master--virtual-mixing-pipeline)
+  - [⏱️ D. Timekeeper Engine Flow](#-d-timekeeper-engine-flow)
 - [📦 5. Master Inventory & Equipment Loan Log](#-5-master-inventory--equipment-loan-log)
 - [📑 6. Rundown & Media Asset Checklist](#-6-rundown--media-asset-checklist)
 - [⚡ 7. SOP Operasional & Safety Guidelines](#-7-sop-operasional--safety-guidelines)
@@ -47,43 +48,52 @@
 | **Organizer** | Panitia Ibadah Perdana UKK UNNES 2026 |
 | **Technical & Media Lead** | Andreas & Media Production Team |
 | **Live Web App** | [https://zzdree.github.io/ip26-production/](https://zzdree.github.io/ip26-production/) |
-| **Primary System Stacks** | Cinetreak Cinelive V1, OBS Studio, Resolume Arena, ProPresenter 7, Yamaha QL5, Hollyland Pyro S & Pyro H |
+| **Primary System Stacks** | Cinetreak Cinelive V1, OBS Studio, Resolume Arena, ProPresenter 7, Yamaha QL5, NewBaxs CT80S, Hollyland Pyro S & Pyro H |
 
 ---
 
 ## 👥 2. Crew Structure & Person In Charge (PIC)
 
 ```
-┌────────────────────────────────────────────────────────────────────────┐
-│                        MASTER PRODUCTION CREW                          │
-├───────────────────┬───────────────────┬────────────────────────────────┤
-│ 🎥 BROADCAST      │ 📸 DOCUMENTATION  │ 💻 MEDIA & ENGINE              │
-├───────────────────┼───────────────────┼────────────────────────────────┤
-│ CAM 1: Alex       │ Photo: Nico       │ Switcher: Wilfred              │
-│ CAM 2: Kiel 1     │ Video: Joel       │ OBS Studio: Andreas            │
-│ CAM 3: Dewi       │ Mobile: Jennifer  │ Resolume: Andreas / Bayu       │
-│ CAM 4: Nathania   │                   │ ProPresenter 1: Rania          │
-│                   │                   │ ProPresenter 2: Filia          │
-│                   │                   │ Virtual Mixer: Jordan / Yosua  │
-│                   │                   │ Backup Station: Kiel 1         │
-└───────────────────┴───────────────────┴────────────────────────────────┘
+┌────────────────────────────────────────────────────────────────────────────────────────┐
+│                                 MASTER PRODUCTION CREW                                 │
+├───────────────────────┬───────────────────────────┬────────────────────────────────────┤
+│ 🎥 BROADCAST CAMERA   │ 📸 DOCUMENTATION CAMERA   │ 💻 MEDIA & ENGINE SYSTEM           │
+├───────────────────────┼───────────────────────────┼────────────────────────────────────┤
+│ CAM 1: Alex           │ CAM PHO: Nico             │ Video Switcher & TV: Wilfred       │
+│ CAM 2: Kiel 1         │ CAM VID: Joel             │ OBS Studio: Andreas                │
+│ CAM 3: Nia            │ CAM HP: Jennifer          │ Resolume Arena: Andreas            │
+│ CAM 4: Ferdy          │                           │ ProPresenter 1: Rania              │
+│                       │                           │ ProPresenter 2: Filia              │
+│                       │                           │ ProPresenter 3 & TV: Tim Acara     │
+│                       │                           │ Mixer 1 (FOH): Jordan / Yosua      │
+│                       │                           │ Mixer 2 (Submix): Andreas          │
+│                       │                           │ Virtual Mixer 1 & 2: Jordan / Yosua│
+│                       │                           │ Backup Station: Kiel 1             │
+└───────────────────────┴───────────────────────────┴────────────────────────────────────┘
 ```
 
 ---
 
-## 📡 3. Broadcast Camera Setup
+## 📡 3. Broadcast & Documentation Camera Setup
 
-| Camera ID | Operator | Unit / Body | Lens | Transmission & Link |
+### 🎥 Broadcast Camera System *(Terintegrasi dengan Engine System)*
+
+| Camera ID | Operator | Unit / Body | Lensa | Routing / Aksesoris / Transmisi |
 | :--- | :--- | :--- | :--- | :--- |
-| **CAM 1** | **Alex** | Sony ZV-E10 | 18–105mm F4 G | **Hollyland Pyro S Wireless (TX/RX)**, Stand Lighting Small, HDMI 1.5M, Tripod Big |
-| **CAM 2** | **Kiel 1** | Sony ZV-E10 | 18–105mm F4 G | **Hollyland Pyro H Wireless (TX/RX)**, Stand Lighting Small, HDMI 1.5M |
-| **CAM 3** | **Dewi** | Sony A6000 | 18–105mm F4 G | Tripod Big, Micro-HDMI to HDMI Converter, **HDMI Cable 10M** |
-| **CAM 4** | **Nathania** | Sony A6000 | 16–50mm Kit | Tripod Big, Micro-HDMI to HDMI Converter, **HDMI Cable 10M** |
+| **CAM 1** | **Alex** ✅ | Sony ZV-E10 *(Kiel 1)* | Lens 18–105mm *(OWL)* | Battery *(Kiel 1)*, Memory Card 64GB *(Kiel 1)*, Tripod Camera Big *(OWL)*, HDMI to Micro HDMI 30cm *(OWL)*, **Hollyland Pyro S TX/RX** *(OWL)*, Battery WIR *(OWL)*, Stand Lighting Small *(UKK)*, HDMI Cable 1.5M *(UKK)*, Switcher Cinetreak Cinelive V1 *(OWL)* |
+| **CAM 2** | **Kiel 1** ✅ | Sony ZV-E10 *(OWL)* | Lens 18–105mm *(OWL)* | Battery *(OWL)*, Memory Card 32GB *(OWL)*, HDMI to Micro HDMI 30cm *(OWL)*, **Hollyland Pyro H TX/RX** *(OWL)*, Stand Lighting Small *(UKK)*, HDMI Cable 1.5M *(UKK)*, Switcher Cinetreak Cinelive V1 *(OWL)* |
+| **CAM 3** | **Nia** ✅ | Sony A6000 *(OWL)* | Lens 18–105mm *(OWL)* | Battery *(OWL)*, Memory Card 32GB *(OWL)*, Tripod Camera Big *(GIA)*, Micro-HDMI to HDMI Converter *(OWL)*, **HDMI Cable 10M** *(GKJ)*, Switcher Cinetreak Cinelive V1 *(OWL)* |
+| **CAM 4** | **Ferdy** ✅ | Sony A6000 *(OWL)* | Lens 16–50mm *(Kiel 1)* | Battery *(OWL)*, Memory Card 32GB *(OWL)*, Tripod Camera Big *(UKK)*, Micro-HDMI to HDMI Converter *(OWL)*, **HDMI Cable 10M** *(UKK)*, Switcher Cinetreak Cinelive V1 *(OWL)* |
+| **BACKUP** | *Standby* | — | — | Micro HDMI to HDMI Converter X2 *(Panitia)* |
 
-### 📸 Documentation System *(Terpisah dari Broadcast)*
-* **Photo Lead:** Nico — *Sony A6400 + 50mm Prime (OWL)*
-* **Cinematic Video:** Joel — *Sony A6600 + Zeiss 24–70mm + DJI Ronin RS3 Gimbal*
-* **Mobile / Social Media:** Jennifer — *Apple iPhone 15*
+### 📸 Documentation Camera System *(Terpisah dari Broadcast & Engine System)*
+
+| Camera Role | Operator | Unit / Body | Lensa & Aksesoris Tambahan |
+| :--- | :--- | :--- | :--- |
+| **CAM PHO** | **Nico** ✅ | Sony A6400 *(OWL)* | Sony 50mm Prime *(OWL)*, Battery 2X *(OWL)*, Memory Card 32GB *(OWL)* |
+| **CAM VID** | **Joel** ✅ | Sony A6600 *(Joel)* | Zeiss 24–70mm *(Joel)*, Battery 2X *(Joel)*, Memory Card 64GB *(Joel)*, **DJI Ronin RS3 Gimbal** *(Joel)* |
+| **CAM HP** | **Jennifer** ✅ | Apple iPhone 15 *(Jennifer)* | Native High-Res Video / Social Media Story Ingest |
 
 ---
 
@@ -92,28 +102,28 @@
 ### 🎥 A. Video & Broadcast Signal Flow
 ```mermaid
 graph TD
-    subgraph Cameras["🎥 Live Cameras"]
-        CAM1["CAM 1 (Alex)<br/>Sony ZV-E10 + Pyro S (Wireless)"]
-        CAM2["CAM 2 (Kiel 1)<br/>Sony ZV-E10 + Pyro H (Wireless)"]
-        CAM3["CAM 3 (Dewi)<br/>Sony A6000 + HDMI 10M"]
-        CAM4["CAM 4 (Nathania)<br/>Sony A6000 + HDMI 10M"]
+    subgraph Cameras["🎥 Broadcast Live Cameras"]
+        CAM1["CAM 1 (Alex)<br/>Sony ZV-E10 + Pyro S (Wireless TX/RX)"]
+        CAM2["CAM 2 (Kiel 1)<br/>Sony ZV-E10 + Pyro H (Wireless TX/RX)"]
+        CAM3["CAM 3 (Nia)<br/>Sony A6000 + HDMI 10M (GKJ)"]
+        CAM4["CAM 4 (Ferdy)<br/>Sony A6000 + HDMI 10M (UKK)"]
     end
 
-    subgraph Control["🎛️ Video Switcher & Ingest"]
-        Switcher["Cinetreak Cinelive V1 Switcher"]
-        SplitterVideo["HDMI Splitter 4CH"]
+    subgraph SwitcherStation["🎛️ Video Switcher & Ingest Station"]
+        Switcher["Cinetreak Cinelive V1 Switcher (OWL)"]
+        SplitterVideo["HDMI Splitter 4CH (UKK/GKJ)"]
         TVMultiview["TV Multiview Monitor (Kezia)"]
-        LaptopOBS["Laptop Streaming (OBS Studio)"]
+        LaptopOBS["Laptop OBS Studio (Andreas)"]
     end
 
-    CAM1 --> Switcher
-    CAM2 --> Switcher
-    CAM3 --> Switcher
-    CAM4 --> Switcher
+    CAM1 -->|Wireless RF / HDMI 1.5M| Switcher
+    CAM2 -->|Wireless RF / HDMI 1.5M| Switcher
+    CAM3 -->|HDMI Cable 10M| Switcher
+    CAM4 -->|HDMI Cable 10M| Switcher
 
-    Switcher -->|Multiview HDMI| TVMultiview
-    Switcher -->|PGM / AUX| SplitterVideo
-    Switcher -->|USB-C UVC 1080p60| LaptopOBS
+    Switcher -->|HDMI 1M (GIA)| TVMultiview
+    Switcher -->|HDMI 1M (GIA) - PGM/AUX| SplitterVideo
+    Switcher -->|USB-A to USB-C Data Cable (Andreas)| LaptopOBS
 ```
 
 ### 🖥️ B. Media Presentation & LED Mapping
@@ -122,55 +132,74 @@ graph LR
     subgraph Presentation["💻 Presentation & Visual Engine"]
         PRO1["Laptop ProPresenter 1 (Rania)"]
         PRO2["Laptop ProPresenter 2 (Filia)"]
-        RES["Laptop Resolume Arena (Andreas/Bayu)"]
-        PRO3["Laptop ProPresenter 3 (Darrel - Timekeeper)"]
+        RES["Laptop Resolume Arena (Bayu / Andreas)"]
     end
 
-    subgraph Processing["⚙️ Processors & Distribution"]
-        SplitterPRO["HDMI Splitter 4CH"]
-        CaptureCard1["HDMI Capture 1"]
-        CaptureCard2["HDMI Capture 2"]
-        Nova["NovaStar / Video Processor"]
-        TVTK["TV Stage / Timekeeper (Darrel)"]
+    subgraph Processors["⚙️ Signal Processing & Routing"]
+        Splitter["HDMI Splitter 4CH (UKK/GKJ)"]
+        CapOWL1["HDMI Capture (OWL)"]
+        CapOWL2["HDMI Capture (OWL)"]
+        CapABON["HDMI Capture (ABON)"]
+        CapGKJ["HDMI Capture (GKJ)"]
+        Nova["NovaStar & Video Processor (UNNES)"]
     end
 
-    subgraph Outputs["📽️ Live Display Outputs"]
-        LED_Sides["LED Screen (Left / Right / Back)"]
-        LED_Center["LED Screen (Center Main Megascreen)"]
+    subgraph Screens["📽️ Stage Display Outputs"]
+        LED_Sides["LED Left, Right & Back (UNNES)"]
+        LED_Center["LED Center Main Screen (UNNES)"]
     end
 
-    PRO1 --> SplitterPRO
-    SplitterPRO --> CaptureCard1 --> LED_Sides
-    PRO2 --> CaptureCard2 --> RES
-    RES --> Nova --> LED_Center
-    PRO3 --> TVTK
+    Splitter -->|HDMI 1.5M (Andreas)| CapOWL1 --> PRO1
+    PRO1 -->|HDMI 20M (UNNES)| Nova --> LED_Sides
+
+    PRO2 -->|HDMI 1.5M (Andreas)| CapOWL2 --> RES
+
+    Splitter -->|HDMI 1.5M (Andreas)| CapABON --> RES
+    RES -->|HDMI 15M (GKJ)| CapGKJ --> Nova --> LED_Center
 ```
 
 ### 🔊 C. Audio Master & Virtual Mixing Pipeline
 ```mermaid
 graph TD
-    subgraph StageAudio["🎤 Stage Audio"]
-        Yamaha["Mixer Yamaha QL5 (UNNES)"]
+    subgraph FOHAudio["🎤 Main Audio & Ingest"]
+        QL5["Mixer Yamaha QL5 (UNNES - FOH)"]
+        RES_Audio["Laptop Resolume Arena (Bayu)"]
+        DAC["USB-C DAC Hanason AB17X / Oraimo OAA310 (Andreas)"]
     end
 
-    subgraph AudioSubmix["🎚️ Submix & Ingest"]
-        Baxs["Mixer NewBaxs CT80S (GIA)"]
-        DAC["USB-C DAC (Hanason AB17X / Oraimo OAA310)"]
+    subgraph SubmixOBS["🎚️ Submix & Live Stream Ingest"]
+        CT80S["Mixer NewBaxs CT80S (GIA)"]
+        OBS["Laptop OBS Studio (Andreas)"]
     end
 
-    subgraph MonitoringControl["📱 Network & Monitoring"]
-        WiFi["UNNES-ID Local Network"]
-        iPadVM["iPad Virtual Mixer 1 (Jennifer)"]
-        LaptopVM["Laptop Virtual Mixer 2 (Andreas)"]
-        OBS["Laptop OBS Studio (Stream Audio)"]
+    subgraph VirtualControl["📱 Remote Virtual Mixing"]
+        WiFi["Local WiFi Network (UNNES-ID)"]
+        iPadVM["iPad Virtual Mixer 1 (Jennifer / Jordan & Yosua)"]
+        LaptopVM["Laptop Virtual Mixer 2 (Andreas / Jordan & Yosua)"]
     end
 
-    Yamaha -->|XLR 10M + 3M| Baxs
-    Baxs -->|USB Audio| OBS
-    Yamaha -->|WiFi Control| iPadVM
-    Yamaha -->|WiFi Control| LaptopVM
-    ResolumeLaptop["Resolume Arena (Audio Out)"] --> DAC -->|Jack 3.5mm| Yamaha
+    RES_Audio --> DAC -->|Audio Cable 20M (UNNES)| QL5
+    QL5 -->|XLR 10M 2X + XLR 3M 2X (UKK)| CT80S
+    CT80S -->|USB-A to USB-C + Extender 2M (Andreas)| OBS
+
+    QL5 -.->|Network Protocol| WiFi
+    WiFi -.-> iPadVM
+    WiFi -.-> LaptopVM
 ```
+
+### ⏱️ D. Timekeeper Engine Flow *(Sistem Terpisah)*
+```mermaid
+graph LR
+    subgraph Timekeeper["⏱️ Timekeeper System"]
+        PRO3["Laptop ProPresenter 3 (Tim Acara)"]
+        TVTK["Television Monitor (Darrel)"]
+    end
+
+    PRO3 -->|HDMI to HDMI 1.5M (Lio)| TVTK
+```
+
+> [!NOTE]
+> **Catatan Splitter Cadangan:** Tersedia total 3 unit HDMI Splitter di lokasi (1 Unit 4CH GKJ, 1 Unit 4CH UKK, 1 Unit 2CH GIA) lengkap dengan power adaptor masing-masing, sehingga terdapat 2 unit HDMI Splitter sebagai backup operasional.
 
 ---
 
@@ -179,69 +208,100 @@ graph TD
 <details open>
 <summary><b>📦 Rincian Inventaris & Status Peminjaman (Berdasarkan ip26_pro1.txt & ip26_pro2.txt)</b></summary>
 
-### 🏢 1. Peminjaman OWL
+> **Legend Keterangan:**
+> - `✅` = Digunakan aktif dalam System / Wiring / Routing
+> - `⚠️` = Digunakan sebagian / parsial (contoh: 1/2 atau 2/4 unit)
+> - `☑️` = Standby / Cadangan (tidak terpasang di jalur aktif)
+
+### 🏢 1. Peminjaman dari OWL
 - [x] Sony A6000 (2 Unit) ✅
 - [x] Sony A6400 (1 Unit) ✅
 - [x] Sony ZV-E10 (1 Unit) ✅
 - [x] Lens 18–105mm F4 G (3 Unit) ✅
 - [x] Lens 50mm Prime (1 Unit) ✅
-- [x] Battery NP-FW50 (8 Unit) & Charger (1 Pack) ✅
+- [x] Battery (8 Unit) & Charger (1 Pack) ✅
 - [x] Memory Card 32GB (4 Unit) ✅
-- [x] Cinetreak Cinelive V1 Switcher + Power Adaptor MIX (1 Pack) ✅
-- [x] Hollyland Pyro H Wireless Kit + Power Adaptor WIR (1 Pack) ✅
-- [x] Hollyland Pyro S Wireless Kit + Power Adaptor WIR (1 Pack) ✅
+- [x] Cinetreak Cinelive V1 (1 Pack) + Power Adaptor MIX (1 Unit) ✅
+- [x] Hollyland Pyro H Transmitter & Receiver (1 Pack) ✅
+- [x] Hollyland Pyro S Transmitter & Receiver (1 Pack) ✅
+- [x] Battery WIR (4 Unit) ✅
 - [x] Tripod Camera Big (1 Unit) ✅
 - [x] HDMI to Micro HDMI Converter (2 Unit) ✅
 - [x] HDMI to Micro HDMI Cable 30CM (2 Unit) ✅
-- [x] HDMI Capture Card (2 Unit) ✅
+- [x] HDMI Capture (2 Unit) ✅
 
-### 🏢 2. Peminjaman UKK UNNES
-- [x] XLR Female to Male Cable 10M (3 Unit) ✅
-- [ ] Stand Lighting Small (4 Unit) ⚠️ *(Periksa kestabilan)*
-- [x] Tripod Camera Big (1 Unit) ✅
-- [x] HDMI Cable 10M (1 Unit) ✅
-- [ ] HDMI Cable 1.5M (4 Unit) ⚠️ *(Periksa insulasi)*
-- [x] HDMI Splitter 4CH (1 Unit) & Power Adaptor SPL (1 Pack) ✅
-- [x] HDMI to Mini HDMI Cable 2.5M (1 Unit) ☑️
-- [x] HDMI Cable 15M (1 Unit) ☑️
-- [x] VGA to VGA Cables (1.5M & 2.5M) & VGA-to-HDMI Converters (2 Unit) ☑️
-- [x] Power Cable XPIN & Terminal Cable XCH Master Box ✅
+### 🏢 2. Peminjaman dari ABON
+- [ ] HDMI Capture (2 Unit) ⚠️ *(1 Unit terpakai untuk Resolume Ingest / 1 Standby)*
 
-### ⛪ 3. Peminjaman GIA Deliksari
-- [x] Mixer NewBaxs CT80S 8-Channel (1 Unit) ✅
+### 👤 3. Peminjaman dari Andreas (Master Engine Toolkit)
+- [x] USB C DAC Hanason AB17X (1 Unit) ✅
+- [x] USB C DAC Oraimo OAA310 (1 Unit) ✅
+- [x] USB A to USB C Data Cable (1 Unit) ✅
+- [x] USB A to USB C Charge Cable (1 Unit) ✅
+- [x] USB A to USB A Extender 2M (1 Unit) ✅
+- [x] HDMI to HDMI Cable 1,5M (3 Unit) ✅
+- [x] Terminal Cable XCH (X Unit) ✅
+- [ ] Power Cable 3PIN (3 Unit) ⚠️
+- [ ] Power Cable 2PIN (1 Unit) ⚠️
+- [ ] Terminal Cable 4CH (3 Unit) ⚠️
+- [ ] Terminal Cable 3CH (2 Unit) ⚠️
+- [ ] Terminal Cable 2CH (1 Unit) ⚠️
+- [ ] Terminal T (8 Unit) ⚠️
+- [x] Fan Cooler (1 Unit) ☑️
+- [x] Mouse Pad & Mouse Ext (1 Unit) ☑️
+- [x] Keyboard Ext (1 Unit) ☑️
+- [x] Powerbank (1 Unit) ☑️
+- [x] Power Adaptor USB A (9 Unit), USB A x C (1 Unit), USB C (1 Unit) ☑️
+- [x] USB A to USB B Data Cable (1 Unit) & USB A to Micro B (2 Unit) ☑️
+- [x] USB C to USB C Charge Cable (1 Unit) ☑️
+- [x] USB A to USB A Extender 30CM (2 Unit) ☑️
+- [x] USB A to USB C Male Converter (4 Unit) & Female Converter (2 Unit) ☑️
+- [x] USB A to Mini USB Cable (1 Unit) ☑️
+- [x] USB A Splitter 3CH (1 Unit) & USB A Splitter 4CH (1 Unit) ☑️
+- [x] In-Ear Monitors: QKZ Hi7T (1 Pack) & KZ EDX Pro (1 Pack) ☑️
+- [x] Storage: SSD Vgen 128GB, Toshiba HDD 1TB, Flashdrives (8GB, 16GB, 32GB, 64GB) ☑️
+- [x] HDMI to Mini HDMI Converter (1 Unit) & Mini HDMI to Mini HDMI 1.5M (1 Unit) ☑️
+- [x] VGA to HDMI Converter (3 Unit) & VGA to VGA Cable 1.5M (1 Unit) ☑️
+- [x] Toolbox Packs: Addon Box, Jack Box, Screw Box, Ties Box, Tool Box (2 Pack), Cable, Tape ☑️
+
+### ⛪ 4. Peminjaman dari GIA Deliksari
+- [x] Mixer NewBaxs CT80S (1 Unit) ✅
 - [x] XLR Female to Male Cable 3M (2 Unit) ✅
-- [x] USB-A to USB-C Data Cable (1 Unit) ✅
+- [x] USB A to USB C Data Cable (1 Unit) ✅
 - [x] Tripod Camera Big (1 Unit) ✅
 - [x] HDMI to HDMI Cable 1M (2 Unit) ✅
-- [x] HDMI Splitter 2CH Powered & Adaptor SPL (1 Pack) ☑️
+- [x] HDMI Splitter 2CH (1 Unit) & Power Adaptor SPL (1 Pack) ☑️ *(Backup Splitter)*
 
-### ⛪ 4. Peminjaman GKJ Ngaliyan
-- [x] Stand Lighting Small (1 Unit) ✅
-- [x] HDMI Cable 15M (1 Unit) & HDMI Cable 10M (1 Unit) ✅
-- [x] HDMI Video Capture Card (1 Unit) ✅
-- [x] HDMI Cable 5M & HDMI Cable 1.5M ☑️
-- [x] HDMI Splitter 4CH & Power Adaptor SPL ☑️
+### ⛪ 5. Peminjaman dari GKJ Ngaliyan
+- [x] HDMI Cable 15M (1 Unit) ✅
+- [x] HDMI Cable 10M (1 Unit) ✅
+- [x] HDMI Capture (1 Unit) ✅
+- [x] Stand Lighting Small (1 Unit) ☑️
+- [x] HDMI Cable 5M (1 Unit) & HDMI Cable 1.5M (1 Unit) ☑️
+- [x] HDMI Splitter 4CH (1 Unit) & Power Adaptor SPL (1 Pack) ☑️ *(Backup Splitter)*
 
-### 👤 5. Peminjaman Andreas (Master Toolkit)
-- [x] USB-C DAC Hanason AB17X & Oraimo OAA310 24-bit (2 Unit) ✅
-- [x] USB-A to USB-C Data & Charge Cables (2 Unit) ✅
-- [x] HDMI to HDMI Cable 1.5M (3 Unit) ✅
-- [x] Fan Cooler, Precision Mouse Pad, Ext Keyboard & Mouse ☑️
-- [x] In-Ear Monitors (QKZ Hi7T, KZ EDX Pro) ☑️
-- [x] Fastdrive SSD Vgen 128GB, Toshiba HDD 1TB, Flashdrives Pack (8GB-64GB) ☑️
-- [x] Power Adaptor Multiport (USB-A, USB-C PD 65W) ☑️
-- [x] Terminal Cables (2CH, 3CH, 4CH, XCH) & Terminal T (8 Unit) ⚠️
-- [x] Heavy Duty Tool Box, Jack Box, Screw Box, Cable Ties & Gaffer Tape ☑️
+### 🏢 6. Peminjaman dari UKK UNNES
+- [x] XLR Female to Male Cable 10M (3 Unit) ✅
+- [ ] Stand Lighting Small (4 Unit) ⚠️ *(2/4 Unit Terpakai untuk CAM 1 & CAM 2)*
+- [x] Tripod Camera Big (1 Unit) ✅
+- [x] HDMI Cable 10M (1 Unit) ✅
+- [ ] HDMI Cable 1,5M (4 Unit) ⚠️ *(2/4 Unit Terpakai)*
+- [x] HDMI Splitter 4CH (1 Unit) & Power Adaptor SPL (1 Pack) ✅ *(Active Main Splitter)*
+- [x] Terminal Cable XCH (X Unit) ✅
+- [x] HDMI to Mini HDMI Cable 2,5M (1 Unit) ☑️
+- [x] HDMI Cable 15M (1 Unit) ☑️
+- [x] VGA to VGA Cable 1,5M & 2,5M (2 Unit) ☑️
+- [x] VGA to HDMI Converter (2 Unit) ☑️
+- [x] Power Cable XPIN (X Unit) ☑️
 
-### 👥 6. Peminjaman Tim & Personal
-- **ABON:** HDMI Capture Cards USB 3.0 (2 Unit) ✅
-- **Joel:** Sony A6600 + Zeiss 24–70mm + Battery (2 Unit) + Memory 64GB + Charger + DJI Ronin RS3 Gimbal ✅
-- **Kiel:** Sony ZV-E10 + Kit 16–50mm + Manual 50mm + Battery (2 Unit) + Charger + Memory 64GB/128GB ✅
-- **Darrel:** Television Monitor 32 Inch (1 Unit) + Power Adaptor TV + Memory Card 8GB ✅
-- **Kezia:** Television Monitor (1 Unit) + Power Adaptor TV & HDMI Cable ✅
-- **Jennifer:** Apple iPhone 15 Pro (1 Unit) ✅
-- **Lio:** HDMI Cable 1.5M High Speed (1 Unit) ✅
-- **Panitia:** Terminal Cable Heavy Duty XCH & HDMI to Micro HDMI Converters (2 Unit) ✅
+### 👥 7. Peminjaman Personal & Tim
+- **Lio:** HDMI Cable 1.5M (1 Unit) ✅
+- **Darrel:** Television (1 Unit) ✅ + Power Adaptor TV (1 Pack) ✅ + Memory Card 8GB (1 Unit) ☑️
+- **Kiel:** Sony ZV-E10 (1 Unit) ✅ + Lens Kit 16–50mm (1 Unit) ✅ + Battery (2 Unit) ✅ + Charger (1 Pack) ✅ + Memory Card 64GB (1 Unit) ✅ + Lens Manual 50mm (1 Unit) ☑️ + Memory Card 128GB (1 Unit) ☑️ + Laptop Backup Station ✅
+- **Joel:** Sony A6600 (1 Unit) ✅ + Lens Zeiss 24–70mm (1 Unit) ✅ + Battery (2 Unit) ✅ + Charger (1 Pack) ✅ + Memory Card 64GB (1 Unit) ✅ + Gimbal DJI Ronin RS3 (1 Unit) ✅
+- **Kezia:** Television Multiview (1 Unit) ✅ + Power Adaptor TV (1 Pack) ✅
+- **Jennifer:** HP iPhone 15 (1 Unit) ✅
+- **Panitia:** HDMI to Micro HDMI Converter (2 Unit) ✅ + Terminal Cable XCH (X Unit) ✅
 
 </details>
 
@@ -249,21 +309,39 @@ graph TD
 
 ## 📑 6. Rundown & Media Asset Checklist
 
-| Phase | Media Element | Output Destination | PIC | Status |
+```
+┌────────────────────────────────────────────────────────────────────────────────────────┐
+│                              MEDIA ASSET & RUNDOWN PHASES                              │
+├─────────────────────────┬───────────────────────────────┬──────────────────────────────┤
+│ ⏳ PRE-IBADAH           │ 🎬 MAIN IBADAH (MAIN EVENT)   │ 📦 POST-IBADAH               │
+├─────────────────────────┼───────────────────────────────┼──────────────────────────────┤
+│ • Playlist Rohani       │ • Video Opening               │ • Usung-Usung                │
+│ • Loop Profile UKK      │ • Video Sambutan Bu Grace     │ • Demobilisasi Perlengkapan  │
+│ • After Movie IP25/IN25 │ • Background Tema & Lagu      │ • Inventory Final Check      │
+│                         │ • Lirik Lagu & Video Gen      │                              │
+│                         │ • PPT, Ayat, & Quote          │                              │
+│                         │ • Persembahan QRIS            │                              │
+│                         │ • UKK News & Pokok Doa        │                              │
+└─────────────────────────┴───────────────────────────────┴──────────────────────────────┘
+```
+
+| Sesi / Phase | Elemen Media & Konten | Output Target | Penanggung Jawab (PIC) | Status |
 | :--- | :--- | :--- | :--- | :---: |
-| **Pre-Ibadah** *(Open Gate)* | Playlist (Lagu Rohani) | Sound System (Yamaha QL5) | Sound / DAC | ✅ Ready |
-| | Loop Video (Profile UKK, After Movie IP25, IN25) | LED Tengah (Resolume Arena) | Bayu & Andreas | ✅ Ready |
-| **Main Event** *(Ibadah)* | Video Opening | LED Tengah (Resolume Arena) | Andreas & Wilfred | ✅ Ready |
-| | Video Sambutan Bu Grave | LED Tengah Kanan Kiri | Rania & Andreas | ✅ Ready |
-| | Background Tema | LED Tengah | Bayu | ✅ Ready |
-| | Background Lagu | Sound System (Yamaha QL5) | Sound Engineer | ✅ Ready |
-| | Lirik Lagu | LED Tengah Kanan Kiri (ProPresenter) | Rania & Filia | ✅ Ready |
+| **Pre-Ibadah** *(Open Gate)* | Playlist (Lagu Rohani) | Sound System *(Mixer Yamaha QL5)* | Sound Engineer & Andreas | ✅ Ready |
+| | Loop Video *(Profile UKK, After Movie IP25, After Movie IN25)* | LED Tengah *(Resolume Arena)* | Andreas & Bayu | ✅ Ready |
+| **Main Event** *(Ibadah)* | Video Opening | LED Tengah *(Resolume Arena)* | Andreas | ✅ Ready |
+| | Video Sambutan Bu Grace | LED Tengah Kanan Kiri | Rania & Filia | ✅ Ready |
+| | Background Tema | LED Tengah | Andreas | ✅ Ready |
+| | Background Lagu | Sound System *(Mixer Yamaha QL5)* | Sound Engineer | ✅ Ready |
+| | Lirik Lagu | LED Tengah Kanan Kiri *(ProPresenter 1 & 2)* | Rania & Filia | ✅ Ready |
 | | Video Generation | LED Tengah Kanan Kiri | Andreas | ✅ Ready |
-| | PPT Pembicara | LED Tengah Kanan Kiri (ProPresenter 1) | Rania | ✅ Ready |
-| | Ayat Pembicara & Quotes | LED Tengah Kanan Kiri (ProPresenter 1 & 2) | Filia & Rania | ✅ Ready |
+| | PPT Pembicara | LED Tengah Kanan Kiri *(ProPresenter 1)* | Rania | ✅ Ready |
+| | Ayat Pembicara | LED Tengah Kanan Kiri *(ProPresenter 1 & 2)* | Filia & Rania | ✅ Ready |
+| | Quote Pembicara | LED Tengah Kanan Kiri *(ProPresenter 1 & 2)* | Filia & Rania | ✅ Ready |
 | | Persembahan (QRIS) | LED Tengah Kanan Kiri + OBS Stream | Rania & Andreas | ✅ Ready |
-| | UKK News & Pokok Doa | LED Tengah Kanan Kiri | Rania & Filia | ✅ Ready |
-| **Post-Ibadah** *(Close Gate)* | **Usung-Usung & Demobilization** | All Crew & Inventory Teams | Seluruh Kru | ⏳ Standby |
+| | UKK News | LED Tengah Kanan Kiri | Filia & Rania | ✅ Ready |
+| | Pokok Doa | LED Tengah Kanan Kiri | Filia & Rania | ✅ Ready |
+| **Post-Ibadah** *(Close Gate)* | **Usung-Usung & Teardown** | All Storage & Returned to Owners | Seluruh Kru Produksi | ⏳ Standby |
 
 ---
 
@@ -275,8 +353,11 @@ graph TD
 2. **Signal & Wireless Frequency Sync:**
    - Sambungkan transmitter Hollyland Pyro S (CAM 1) dan Pyro H (CAM 2) pada line-of-sight yang bebas hambatan menuju receiver station di samping FOH/Panggung.
    - Lakukan scanning frekuensi RF sebelum acara dimulai guna menghindari bentrokan channel dengan hotspot WiFi auditorium.
-3. **Usung-Usung & Teardown:**
-   - Setiap PIC bertanggung jawab penuh atas pengecekan fisik dan pengembalian unit pinjaman sesuai daftar inventaris di Section 5.
+3. **Audio Gain Staging & Routing:**
+   - Pastikan audio output dari Resolume Arena dialirkan melalui USB-C DAC dengan level nominal menuju channel stereo di Yamaha QL5.
+   - Submix dari Yamaha QL5 menuju NewBaxs CT80S diatur pada unity gain sebelum dikirim via USB Audio ke OBS Studio.
+4. **Usung-Usung & Teardown:**
+   - Setiap PIC bertanggung jawab penuh atas pengecekan fisik, penggulungan kabel dengan metode over-under, dan pengembalian unit pinjaman sesuai daftar inventaris di Section 5.
 
 ---
 
