@@ -2,19 +2,41 @@
 
 <div align="center">
 
-![Event Year](https://img.shields.io/badge/EVENT_YEAR-2026-blue?style=for-the-badge)
-![Venue](https://img.shields.io/badge/VENUE-Auditorium_UNNES-red?style=for-the-badge)
-![Production](https://img.shields.io/badge/PRODUCTION-UKK_UNNES_2026-green?style=for-the-badge)
-![Status](https://img.shields.io/badge/STATUS-OPERATIONAL_READY_%E2%9C%85-brightgreen?style=for-the-badge)
-![License](https://img.shields.io/badge/LICENSE-PROPRIETARY_PRIVATE-purple?style=for-the-badge)
+[![Live Web Preview](https://img.shields.io/badge/🌐_LIVE_WEB_PREVIEW-ONLINE-00d2ff?style=for-the-badge&logo=google-chrome&logoColor=white)](https://zzdree.github.io/ip26-production/)
+[![GitHub Repository](https://img.shields.io/badge/GitHub-Repository-181717?style=for-the-badge&logo=github)](https://github.com/zzdree/ip26-production)
+
+<br/>
+
+![Event Year](https://img.shields.io/badge/EVENT_YEAR-2026-blue?style=flat-square)
+![Venue](https://img.shields.io/badge/VENUE-Auditorium_UNNES-red?style=flat-square)
+![Production](https://img.shields.io/badge/PRODUCTION-UKK_UNNES_2026-green?style=flat-square)
+![Status](https://img.shields.io/badge/STATUS-OPERATIONAL_READY_%E2%9C%85-brightgreen?style=flat-square)
+![License](https://img.shields.io/badge/LICENSE-PROPRIETARY_PRIVATE-purple?style=flat-square)
 
 <p align="center">
   <b>Comprehensive Technical Architecture, Multi-Camera Broadcast Routing, Audio-Visual Signal Flows, and Master Inventory Management for Ibadah Perdana UKK UNNES 2026.</b>
 </p>
 
+[**🚀 Buka Live Dashboard / Web Preview »**](https://zzdree.github.io/ip26-production/)
+
 ---
 
 </div>
+
+## 📑 Daftar Isi
+- [📌 1. Event Overview & Metadata](#-1-event-overview--metadata)
+- [👥 2. Crew Structure & Person In Charge (PIC)](#-2-crew-structure--person-in-charge-pic)
+- [📡 3. Broadcast Camera Setup](#-3-broadcast-camera-setup)
+- [🔄 4. System Architecture & Signal Routing](#-4-system-architecture--signal-routing)
+  - [🎥 A. Video & Broadcast Signal Flow](#-a-video--broadcast-signal-flow)
+  - [🖥️ B. Media Presentation & LED Mapping](#-b-media-presentation--led-mapping)
+  - [🔊 C. Audio Master & Virtual Mixing Pipeline](#-c-audio-master--virtual-mixing-pipeline)
+- [📦 5. Master Inventory & Equipment Loan Log](#-5-master-inventory--equipment-loan-log)
+- [📑 6. Rundown & Media Asset Checklist](#-6-rundown--media-asset-checklist)
+- [⚡ 7. SOP Operasional & Safety Guidelines](#-7-sop-operasional--safety-guidelines)
+- [⚖️ 8. License & Proprietary Notice](#-8-license--proprietary-notice)
+
+---
 
 ## 📌 1. Event Overview & Metadata
 
@@ -24,6 +46,7 @@
 | **Venue** | Gedung Auditorium Universitas Negeri Semarang (UNNES) |
 | **Organizer** | Panitia Ibadah Perdana UKK UNNES 2026 |
 | **Technical & Media Lead** | Andreas & Production Team |
+| **Live Web App** | [https://zzdree.github.io/ip26-production/](https://zzdree.github.io/ip26-production/) |
 | **Primary System Stacks** | Cinetreak Cinelive V1, OBS Studio, Resolume Arena, ProPresenter 7, Yamaha QL5 |
 
 ---
@@ -93,7 +116,7 @@ graph TD
     Switcher -->|USB-C UVC Capture| LaptopOBS
 ```
 
-### 🖥️ B. Media Presentation, Resolume & Output Routing
+### 🖥️ B. Media Presentation & LED Mapping
 ```mermaid
 graph LR
     subgraph Presentation["💻 Presentation & Visual Engine"]
@@ -151,7 +174,7 @@ graph TD
 
 ---
 
-## 📋 5. Master Inventory & Equipment Loan Log
+## 📦 5. Master Inventory & Equipment Loan Log
 
 <details open>
 <summary><b>📦 Klik untuk melihat daftar peminjaman per instansi/personel</b></summary>
