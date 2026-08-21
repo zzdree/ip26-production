@@ -1122,6 +1122,13 @@ def generate_index_html():
             <div class="meta-item"><span class="meta-icon">📡</span> Cinetreak Cinelive V1 (1080p50)</div>
             <div class="meta-item"><span class="meta-icon">👥</span> 18 Core Broadcast & Media Personnel</div>
           </div>
+          <!-- Quick Action Command Bar -->
+          <div class="hero-actions-bar" style="display:flex; flex-wrap:wrap; justify-content:center; gap:0.5rem; margin-top:1.15rem; width:100%;">
+            <button class="btn btn-primary btn-sm" id="btn-open-tally-modal-hero">🚨 Virtual Tally Light</button>
+            <button class="btn btn-secondary btn-sm" id="btn-open-briefing-hero">📖 Master Briefing Deck</button>
+            <button class="btn btn-secondary btn-sm" id="btn-open-sync-hero">☁️ Realtime Cloud Sync</button>
+            <button class="btn btn-secondary btn-sm" id="btn-open-handover-hero">📄 Berita Acara Pinjam</button>
+          </div>
         </div>
         <div class="telemetry-grid">
           <div class="telemetry-card">
@@ -1131,7 +1138,7 @@ def generate_index_html():
           </div>
           <div class="telemetry-card">
             <span class="telemetry-label">Inventory Log</span>
-            <span class="telemetry-val" id="telemetry-inv-count">110+ Units</span>
+            <span class="telemetry-val" id="telemetry-inv-count">121 Units</span>
             <span class="telemetry-sub" id="telemetry-inv-progress">0% Checked</span>
           </div>
           <div class="telemetry-card">
@@ -1560,7 +1567,7 @@ def generate_index_html():
       <div class="section-head">
         <div class="section-title-wrap">
           <span class="section-badge">Logistics & Equipment Registry</span>
-          <h2 class="section-heading">Master Equipment Inventory Log (110+ Units)</h2>
+          <h2 class="section-heading">Master Equipment Inventory Log (121 Units)</h2>
         </div>
         <div class="section-actions">
           <button class="btn btn-secondary btn-sm" id="btn-open-sync-modal">☁️ Cloud & QR Sync</button>
@@ -1584,14 +1591,21 @@ def generate_index_html():
       </div>
 
       <div class="inventory-toolbar">
-        <input type="text" id="inventory-search" class="search-input" placeholder="🔍 Cari nama alat, brand, tipe, atau pemilik..." />
+        <div style="display:flex; gap:0.5rem; width:100%; max-width:640px; justify-content:center; align-items:center; flex-wrap:wrap;">
+          <input type="text" id="inventory-search" class="search-input" placeholder="🔍 Cari nama alat, spesifikasi, atau pemilik..." style="flex:1; min-width:220px;" />
+          <button class="btn btn-secondary btn-sm" id="btn-reset-inv-filter" style="white-space:nowrap; min-height:42px;">🔄 Reset Filter</button>
+        </div>
+
+        <div style="display:flex; align-items:center; justify-content:center; width:100%; margin-top:0.25rem;">
+          <span id="inventory-count-badge" class="badge-sev info" style="font-size:0.75rem; padding:0.25rem 0.75rem;">Menampilkan 121 dari 121 Unit Alat</span>
+        </div>
         
         <!-- Status Filter Bar -->
         <div class="filter-pills-wrap" id="inventory-status-pills">
-          <button class="filter-pill active" data-status-filter="all">Semua Status</button>
-          <button class="filter-pill" data-status-filter="ready">✅ Siap / Standby</button>
-          <button class="filter-pill" data-status-filter="extra">☑️ Cadangan / Tambahan</button>
-          <button class="filter-pill" data-status-filter="check">⚠️ Perlu Perhatian</button>
+          <button class="filter-pill active" data-status-filter="all">Semua Status (121)</button>
+          <button class="filter-pill" data-status-filter="ready">✅ Siap / Standby (82)</button>
+          <button class="filter-pill" data-status-filter="extra">☑️ Cadangan / Tambahan (28)</button>
+          <button class="filter-pill" data-status-filter="check">⚠️ Perlu Perhatian (11)</button>
         </div>
 
         <!-- Provider Filter Bar -->
@@ -1670,8 +1684,9 @@ def generate_index_html():
       <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap:1rem; width:100%;">
         <!-- Test Generator Card -->
         <div class="card">
-          <h3 style="font-size:0.95rem; font-weight:700; color:var(--text-pure); margin-bottom:0.75rem; text-align:center;">🛠️ Signal Generator</h3>
+          <h3 style="font-size:0.95rem; font-weight:700; color:var(--text-pure); margin-bottom:0.75rem; text-align:center;">🛠️ Signal Generator & Tools</h3>
           <div style="display:flex; flex-direction:column; gap:0.6rem;">
+            <button class="btn btn-secondary" id="btn-open-briefing-tools">📖 Buka Master Briefing Deck (8 Slides)</button>
             <button class="btn btn-secondary" id="btn-open-color-bars">📺 Buka EBU Color Bars 75%</button>
             <button class="btn btn-secondary" id="btn-toggle-tone">🔊 1kHz Audio Calibration Tone (-18dBFS)</button>
             <button class="btn btn-secondary" id="btn-open-grid-test">🏁 Grid Alignment & Crosshatch</button>
@@ -1903,8 +1918,8 @@ def generate_index_html():
         <select id="tally-camera-select" class="search-input" style="font-size:0.82rem; padding:0.35rem 0.65rem;">
           <option value="1">CAM 1 - Alex (Sony ZV-E10 Wireless)</option>
           <option value="2">CAM 2 - Kiel 1 (Sony ZV-E10 Handheld)</option>
-          <option value="3">CAM 3 - Dewi (Sony A6000 Left)</option>
-          <option value="4">CAM 4 - Nathania (Sony A6000 Right)</option>
+          <option value="3">CAM 3 - Dewi / Nia (Sony A6000 Left)</option>
+          <option value="4">CAM 4 - Ferdy (Sony A6000 Right)</option>
         </select>
       </div>
 
@@ -2031,6 +2046,144 @@ def generate_index_html():
       { id: 'mat-13', phase: 'event', phaseLabel: 'Ibadah', name: 'UKK News & Pengumuman', output: 'LED Tengah Kanan Kiri (ProPresenter 1)', format: 'Video / Slide Pengumuman', pic: 'Rania & Filia' },
       { id: 'mat-14', phase: 'event', phaseLabel: 'Ibadah', name: 'Pokok Doa Syafaat', output: 'LED Tengah Kanan Kiri (ProPresenter 1 & 2)', format: 'Slide Pokok Doa', pic: 'Rania & Filia' },
       { id: 'mat-15', phase: 'post', phaseLabel: 'Post-Ibadah', name: 'Usung-Usung & Demobilization', output: 'Seluruh Titik Panggung & Meja Master', format: 'Pengecekan Fisik & Serah Terima Inventaris', pic: 'Seluruh Kru & Panitia' }
+    ];
+
+    const BRIEFING_SLIDES_DATA = [
+      {
+        tag: 'SLIDE 1 • EXECUTIVE BLUEPRINT',
+        title: 'Ibadah Perdana UKK UNNES 2026',
+        subtitle: 'Auditorium Universitas Negeri Semarang • 2026',
+        content: `
+          <p style="font-size:0.92rem; line-height:1.6; color:var(--text-secondary);">
+            Standar operasional produksi Ibadah Perdana UKK UNNES 2026 mencakup integrasi penuh 4 Kamera Broadcast 1080p50, transmisi nirkabel Hollyland Pyro, FOH Dante Yamaha QL5, visual panggung Tri-Screen (Resolume Arena & ProPresenter), serta Live Streaming YouTube full HD.
+          </p>
+          <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(130px, 1fr)); gap:0.5rem; margin-top:0.85rem;">
+            <div style="background:var(--bg-surface-raised); padding:0.65rem; border-radius:6px; text-align:center; border:1px solid var(--border-subtle);">
+              <div style="font-size:1.15rem; font-weight:800; color:var(--accent-cyan);">4 CAMS</div>
+              <div style="font-size:0.7rem; color:var(--text-muted);">Broadcast System</div>
+            </div>
+            <div style="background:var(--bg-surface-raised); padding:0.65rem; border-radius:6px; text-align:center; border:1px solid var(--border-subtle);">
+              <div style="font-size:1.15rem; font-weight:800; color:var(--accent-emerald);">3 DOCS</div>
+              <div style="font-size:0.7rem; color:var(--text-muted);">Shots System</div>
+            </div>
+            <div style="background:var(--bg-surface-raised); padding:0.65rem; border-radius:6px; text-align:center; border:1px solid var(--border-subtle);">
+              <div style="font-size:1.15rem; font-weight:800; color:var(--accent-amber);">18 CREW</div>
+              <div style="font-size:0.7rem; color:var(--text-muted);">Human Resources</div>
+            </div>
+            <div style="background:var(--bg-surface-raised); padding:0.65rem; border-radius:6px; text-align:center; border:1px solid var(--border-subtle);">
+              <div style="font-size:1.15rem; font-weight:800; color:var(--accent-red);">121 UNITS</div>
+              <div style="font-size:0.7rem; color:var(--text-muted);">Master Inventory</div>
+            </div>
+          </div>
+        `
+      },
+      {
+        tag: 'SLIDE 2 • BROADCAST SYSTEM',
+        title: 'Broadcast Cameras & Wireless Rig',
+        subtitle: 'Cinetreak Cinelive V1 Switcher (1080p50)',
+        content: `
+          <ul style="font-size:0.85rem; line-height:1.6; color:var(--text-secondary); padding-left:1.2rem;">
+            <li><strong style="color:#fff;">CAM 1 (Alex):</strong> Sony ZV-E10 + Lens 18-105mm F4 + Hollyland Pyro S (Center Static).</li>
+            <li><strong style="color:#fff;">CAM 2 (Kiel 1):</strong> Sony ZV-E10 + Lens 18-105mm F4 + Hollyland Pyro H (Stage Handheld Mobile).</li>
+            <li><strong style="color:#fff;">CAM 3 (Dewi / Nia):</strong> Sony A6000 + Lens 18-105mm F4 + 10M HDMI GKJ (Left Wing Wide).</li>
+            <li><strong style="color:#fff;">CAM 4 (Ferdy):</strong> Sony A6000 + Lens 16-50mm + 10M HDMI UKK (Right Wing Wide).</li>
+            <li><strong style="color:#fff;">Switcher (Wilfred):</strong> Cinetreak Cinelive V1 + Multiview TV Kezia.</li>
+          </ul>
+        `
+      },
+      {
+        tag: 'SLIDE 3 • SHOTS SYSTEM',
+        title: 'Dokumentasi & Social Media Hub',
+        subtitle: 'Terpisah Dari Broadcast System',
+        content: `
+          <ul style="font-size:0.85rem; line-height:1.6; color:var(--text-secondary); padding-left:1.2rem;">
+            <li><strong style="color:#fff;">CAM PHO (Nico):</strong> Sony A6400 + 50mm F1.8 Prime (OWL) — Fokus foto panggung, jemaat, dan serah terima.</li>
+            <li><strong style="color:#fff;">CAM VID (Joel):</strong> Sony A6600 + Zeiss 24-70mm + DJI Ronin RS3 Gimbal (Joel) — Cinematic video reel & aftermovie.</li>
+            <li><strong style="color:#fff;">CAM HP (Jennifer):</strong> Apple iPhone 15 Pro — Live Instagram, Instagram Story, dan Reels kilat.</li>
+          </ul>
+        `
+      },
+      {
+        tag: 'SLIDE 4 • ENGINE SYSTEM',
+        title: '12 Master Routing Signal Chains',
+        subtitle: 'Power, Video Matrix, Audio, and LED Tri-Screen',
+        content: `
+          <p style="font-size:0.85rem; color:var(--text-secondary); line-height:1.5;">
+            Sistem routing menghubungkan 12 mata rantai sinyal teknis: dari distribusi listrik terpusat, transmisi HDMI Switcher ke Splitter 4CH UKK, ingest OBS Studio Master, audio Yamaha QL5 ke submixer CT80S, hingga visual output ke NovaStar Video Processor & LED Tri-Screen.
+          </p>
+        `
+      },
+      {
+        tag: 'SLIDE 5 • AUDIO ARCHITECTURE',
+        title: 'FOH Yamaha QL5 & Submixer CT80S',
+        subtitle: 'Dante Audio Network & Isolated USB-C DAC',
+        content: `
+          <ul style="font-size:0.85rem; line-height:1.6; color:var(--text-secondary); padding-left:1.2rem;">
+            <li><strong style="color:#fff;">Main FOH:</strong> Yamaha QL5 (UNNES) mengelola seluruh mic vokal, instrumen band, dan BGM.</li>
+            <li><strong style="color:#fff;">Live Stream Audio:</strong> Yamaha QL5 ➔ 2x XLR 10M UKK + 2x XLR 3M GIA ➔ Submixer CT80S GIA ➔ USB-C OBS Studio.</li>
+            <li><strong style="color:#fff;">Resolume Audio Out:</strong> USB-C DAC Hanason AB17X terisolasi ke Yamaha QL5 (mencegah ground loop hum 50Hz).</li>
+            <li><strong style="color:#fff;">Virtual Mixers:</strong> iPad (Jordan) & Laptop (Yosua) terhubung via UNNES-ID WiFi.</li>
+          </ul>
+        `
+      },
+      {
+        tag: 'SLIDE 6 • STAGE VISUALS',
+        title: 'Resolume Arena & ProPresenter 1-2',
+        subtitle: 'LED Center Stage & Left-Right-Back Displays',
+        content: `
+          <ul style="font-size:0.85rem; line-height:1.6; color:var(--text-secondary); padding-left:1.2rem;">
+            <li><strong style="color:#fff;">LED Center Main:</strong> Resolume Arena (Bayu & Andreas) via HDMI 15M GKJ & NovaStar Controller.</li>
+            <li><strong style="color:#fff;">LED Left Right Back:</strong> ProPresenter 1 (Rania) via Splitter HDMI 4CH UKK (Lirik & PPT).</li>
+            <li><strong style="color:#fff;">ProPresenter 2 (Filia):</strong> Motion Graphics, Video Generation, Quotes & Ayat Alkitab.</li>
+            <li><strong style="color:#fff;">ProPresenter 3 (Darrel):</strong> TV Stage Display (Time Keeper & Prompter Pembicara).</li>
+          </ul>
+        `
+      },
+      {
+        tag: 'SLIDE 7 • HUMAN RESOURCES',
+        title: 'Struktur 18 Pelayan & PIC Posisi',
+        subtitle: 'Koordinasi Terintegrasi Melalui Intercom & Command App',
+        content: `
+          <div style="font-size:0.8rem; line-height:1.5; color:var(--text-secondary); display:grid; grid-template-columns:1fr 1fr; gap:0.5rem;">
+            <div style="background:var(--bg-surface-raised); padding:0.6rem; border-radius:6px;">
+              <strong style="color:var(--accent-cyan);">BROADCAST MAN (7):</strong><br>
+              • Wilfred (Switcher)<br>
+              • Alex (CAM 1)<br>
+              • Kiel 1 (CAM 2 & Backup)<br>
+              • Dewi / Nia (CAM 3)<br>
+              • Ferdy (CAM 4)<br>
+              • Kezia (Multiview Tech)<br>
+              • Lio (Rigging Tech)
+            </div>
+            <div style="background:var(--bg-surface-raised); padding:0.6rem; border-radius:6px;">
+              <strong style="color:var(--accent-emerald);">SHOTS & MEDIA (11):</strong><br>
+              • Nico (Photo Lead)<br>
+              • Joel (Cinema Video)<br>
+              • Jennifer (Social Reel)<br>
+              • Andreas (OBS Master)<br>
+              • Bayu (Resolume Visual)<br>
+              • Rania (ProPresenter 1)<br>
+              • Filia (ProPresenter 2)<br>
+              • Jordan & Yosua (Audio)<br>
+              • Darrel (Stage Prompter)<br>
+              • Nathania (Rigging Support)
+            </div>
+          </div>
+        `
+      },
+      {
+        tag: 'SLIDE 8 • EMERGENCY PROTOCOLS',
+        title: 'SOP Kontingensi & Fail-Safe',
+        subtitle: 'Standar Penanganan Masalah Lapangan',
+        content: `
+          <ul style="font-size:0.85rem; line-height:1.6; color:var(--text-secondary); padding-left:1.2rem;">
+            <li><strong style="color:#f87171;">Blackout / HDMI Drop:</strong> Switcher langsung CUT ke kamera cadangan (CAM 2/CAM 4), audio jalan terus tanpa panik.</li>
+            <li><strong style="color:#f59e0b;">Ground Loop Hum:</strong> Gunakan DAC Hanason/Oraimo terisolasi, pisahkan fasa daya mixer analog dari switcher.</li>
+            <li><strong style="color:#60a5fa;">Thermal Sony:</strong> Set <em>Auto Power OFF Temp: HIGH</em> dan buka layar LCD pada seluruh bodi Sony.</li>
+            <li><strong style="color:#34d399;">Pencatatan Insiden:</strong> Seluruh kendala langsung dicatat di Incident Logger Command App.</li>
+          </ul>
+        `
+      }
     ];
 
     const MASTER_INVENTORY = [
@@ -2228,13 +2381,16 @@ def generate_index_html():
       init() {
         this.renderCameras();
         this.renderCrew();
+        this.initCrewControls();
         this.renderInventory();
         this.initInventoryControls();
         this.renderRundown();
         this.renderIncidents();
+        this.initIncidentLogger();
         this.renderMobileRoutes();
         this.renderEngineRoutes();
         this.renderMateri();
+        this.initMateriControls();
         this.initNavigation();
         this.initSchematicSimulator();
         this.initSwitcherSimulator();
@@ -2253,6 +2409,21 @@ def generate_index_html():
         const desktopLinks = document.querySelectorAll('#desktop-nav .nav-link');
         const dockBtns = document.querySelectorAll('#bottom-dock .dock-btn[data-dock-target]');
         
+        // Smooth scrolling for links and dock buttons
+        document.querySelectorAll('#bottom-dock .dock-btn, #desktop-nav .nav-link').forEach(link => {
+          link.addEventListener('click', (e) => {
+            const href = link.getAttribute('href');
+            if (href && href.startsWith('#')) {
+              const target = document.querySelector(href);
+              if (target) {
+                e.preventDefault();
+                target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                history.pushState(null, null, href);
+              }
+            }
+          });
+        });
+
         // ScrollSpy via IntersectionObserver
         const observer = new IntersectionObserver((entries) => {
           entries.forEach(entry => {
@@ -2266,7 +2437,7 @@ def generate_index_html():
               });
             }
           });
-        }, { threshold: 0.2, rootMargin: "-20% 0px -60% 0px" });
+        }, { threshold: 0.2, rootMargin: "-15% 0px -60% 0px" });
 
         sections.forEach(s => observer.observe(s));
       }
@@ -2315,7 +2486,7 @@ def generate_index_html():
         }
       }
 
-      // 2. CREW (SEMUA PELAYAN 17 PERSONEL)
+      // 2. CREW (SEMUA PELAYAN 18 PERSONEL)
       renderCrew(filter = 'all') {
         const grid = document.getElementById('crew-cards-grid');
         if (!grid) return;
@@ -2345,12 +2516,14 @@ def generate_index_html():
             </div>
           `;
         }).join('');
+      }
 
+      initCrewControls() {
         document.querySelectorAll('#crew-filter-pills .filter-pill').forEach(btn => {
-          btn.addEventListener('click', (e) => {
+          btn.addEventListener('click', () => {
             document.querySelectorAll('#crew-filter-pills .filter-pill').forEach(b => b.classList.remove('active'));
-            e.target.classList.add('active');
-            this.renderCrew(e.target.dataset.crewFilter);
+            btn.classList.add('active');
+            this.renderCrew(btn.dataset.crewFilter || 'all');
           });
         });
       }
@@ -2393,12 +2566,14 @@ def generate_index_html():
             </div>
           </div>
         `).join('');
+      }
 
+      initMateriControls() {
         document.querySelectorAll('#materi-filter-pills .filter-pill').forEach(btn => {
-          btn.addEventListener('click', (e) => {
+          btn.addEventListener('click', () => {
             document.querySelectorAll('#materi-filter-pills .filter-pill').forEach(b => b.classList.remove('active'));
-            e.target.classList.add('active');
-            this.renderMateri(e.target.dataset.materiFilter);
+            btn.classList.add('active');
+            this.renderMateri(btn.dataset.materiFilter || 'all');
           });
         });
       }
@@ -2407,19 +2582,19 @@ def generate_index_html():
       initSchematicSimulator() {
         const layerBtns = document.querySelectorAll('.sim-tab-btn');
         layerBtns.forEach(btn => {
-          btn.addEventListener('click', (e) => {
+          btn.addEventListener('click', () => {
             layerBtns.forEach(b => b.classList.remove('active'));
-            e.target.classList.add('active');
-            this.setSimLayer(e.target.dataset.simLayer);
+            btn.classList.add('active');
+            this.setSimLayer(btn.dataset.simLayer || 'all');
           });
         });
 
         const cutBtns = document.querySelectorAll('.sim-cut-btn');
         cutBtns.forEach(btn => {
-          btn.addEventListener('click', (e) => {
+          btn.addEventListener('click', () => {
             cutBtns.forEach(b => b.classList.remove('pgm-active'));
-            e.target.classList.add('pgm-active');
-            const cutVal = e.target.dataset.cut;
+            btn.classList.add('pgm-active');
+            const cutVal = btn.dataset.cut;
             this.setSimCut(cutVal);
           });
         });
@@ -2464,9 +2639,10 @@ def generate_index_html():
         const toggleRouteBtn = document.getElementById('btn-toggle-route-view');
         const routeContainer = document.getElementById('mobile-routing-cards-container');
         toggleRouteBtn?.addEventListener('click', () => {
-          const isHidden = routeContainer.style.display === 'none';
-          routeContainer.style.display = isHidden ? 'block' : 'none';
-          toggleRouteBtn.textContent = isHidden ? '📐 Tampilkan Diagram Grafis' : '📋 Toggle Kartu Rute Mobile';
+          if (!routeContainer) return;
+          const isCurrentlyHidden = window.getComputedStyle(routeContainer).display === 'none' || routeContainer.style.display === 'none';
+          routeContainer.style.display = isCurrentlyHidden ? 'block' : 'none';
+          toggleRouteBtn.textContent = isCurrentlyHidden ? '📐 Tampilkan Diagram Grafis' : '📋 Toggle Kartu Rute Mobile';
         });
       }
 
@@ -2546,13 +2722,13 @@ def generate_index_html():
           pyros: { title: '📡 Hollyland Pyro S TX/RX (5GHz)', text: 'Transmisi video wireless jarak jauh latency < 60ms. RX terpasang di Stand Light UKK dengan output HDMI 1.5M ke Switcher Ch 1. Adaptor daya: WIR OWL.' },
           cam2: { title: '🎥 CAM 2 — Sony ZV-E10 Mobile (Kiel 1)', text: 'Format: 1080p 50fps. Mode: Handheld mobile di sekitar panggung/Worship Leader. Terhubung ke Pyro H TX. Baterai: 2x FW50. PIC: Kiel.' },
           pyroh: { title: '📡 Hollyland Pyro H TX/RX (5GHz)', text: 'Transmisi video wireless handheld. RX terhubung ke Switcher Ch 2 via HDMI 1.5M. PIC: Kiel.' },
-          cam3: { title: '🎥 CAM 3 — Sony A6000 Left Wing (Dewi)', text: 'Format: 1080p 50fps. Kabel: Micro HDMI Converter + HDMI 10M GKJ langsung ke Switcher Ch 3. Tripod Big UKK. PIC: Dewi.' },
-          cam4: { title: '🎥 CAM 4 — Sony A6000 Right Wing (Nathania)', text: 'Format: 1080p 50fps. Lensa 16-50mm. Kabel: Micro HDMI Converter + HDMI 10M GKJ ke Switcher Ch 4. Tripod GIA. PIC: Nathania.' },
+          cam3: { title: '🎥 CAM 3 — Sony A6000 Left Wing (Dewi / Nia)', text: 'Format: 1080p 50fps. Kabel: Micro HDMI Converter + HDMI 10M GKJ langsung ke Switcher Ch 3. Tripod Big UKK. PIC: Dewi / Nia.' },
+          cam4: { title: '🎥 CAM 4 — Sony A6000 Right Wing (Ferdy)', text: 'Format: 1080p 50fps. Lensa 16-50mm. Kabel: Micro HDMI Converter + HDMI 10M UKK ke Switcher Ch 4. Tripod GIA. PIC: Ferdy.' },
           switcher: { title: '🎛️ Cinetreak Cinelive V1 Switcher (Wilfred)', text: '4x HDMI Input (1080p50). Output: 1x HDMI Multiview (TV Kezia), 1x HDMI PGM (Splitter 4CH), 1x USB-C UVC Video (OBS Studio Andreas).' },
           splitter: { title: '⚡ HDMI Splitter 4-Channel (UKK)', text: 'Mendistribusikan sinyal PGM switcher ke ProPresenter 1 (Lyrics), ProPresenter 2, dan Resolume Arena secara simultan tanpa jeda.' },
           obs: { title: '💻 OBS Studio Live Streaming (Andreas)', text: 'Laptop Media Master. Menerima video PGM via USB Capture dan audio master stereo dari NewBaxs CT80S Submixer. Output stream YouTube 1080p.' },
           pro1: { title: '💻 ProPresenter 1 — Lyrics & LED LRB (Rania)', text: 'Menerima PGM Splitter via HDMI Capture. Mengirim lirik dan kamera feed ke Video Processor UNNES → LED Kiri, Kanan, dan Belakang.' },
-          resolume: { title: '💻 Resolume Arena — LED Center Stage (Andreas)', text: 'Mengolah video background, bumper, dan live feed ke NovaStar Processor → LED Center Panggung. Mengirim BGM ke Yamaha QL5 via USB-C DAC.' },
+          resolume: { title: '💻 Resolume Arena — LED Center Stage (Bayu & Andreas)', text: 'Mengolah video background, bumper, dan live feed ke NovaStar Processor → LED Center Panggung. Mengirim BGM ke Yamaha QL5 via USB-C DAC.' },
           ql5: { title: '🎛️ Yamaha QL5 FOH Mixer (UNNES)', text: 'Mixer audio utama 32-channel. Mengirim stereo aux out via 2x XLR 10M ke NewBaxs CT80S. Terhubung via Wi-Fi UNNES-ID ke iPad VM1 & Laptop VM2.' }
         };
 
@@ -2579,7 +2755,7 @@ def generate_index_html():
           document.getElementById('wire-pyros-sw')?.classList.add('fault');
           alertBox.innerHTML = `
             <strong>🚨 SOP GANGGUAN PYRO S CAM 1:</strong><br>
-            1. Switcher Operator langsung <strong>CUT ke CAM 2 (Kiel)</strong> atau CAM 3 (Dewi).<br>
+            1. Switcher Operator langsung <strong>CUT ke CAM 2 (Kiel)</strong> atau CAM 3 (Dewi/Nia).<br>
             2. Intercom Alex: Ganti baterai NPF Pyro S TX atau reboot RX.<br>
             3. Pastikan antena RX di stand lighting tidak terhalang kerumunan jemaat.
           `;
@@ -2612,8 +2788,8 @@ def generate_index_html():
       // 4. SWITCHER SIMULATOR
       initSwitcherSimulator() {
         document.querySelectorAll('[data-pgm]').forEach(btn => {
-          btn.addEventListener('click', (e) => {
-            this.pgmChannel = parseInt(e.target.dataset.pgm);
+          btn.addEventListener('click', () => {
+            this.pgmChannel = parseInt(btn.dataset.pgm);
             this.updateSwitcherUI();
             this.setSimCut(this.pgmChannel);
             this.triggerTallyPulse();
@@ -2621,8 +2797,8 @@ def generate_index_html():
         });
 
         document.querySelectorAll('[data-pvw]').forEach(btn => {
-          btn.addEventListener('click', (e) => {
-            this.pvwChannel = parseInt(e.target.dataset.pvw);
+          btn.addEventListener('click', () => {
+            this.pvwChannel = parseInt(btn.dataset.pvw);
             this.updateSwitcherUI();
             this.updateTallyScreen();
           });
@@ -2689,14 +2865,43 @@ def generate_index_html():
       // 5. MASTER INVENTORY & REAL-TIME SYNC
       renderInventory() {
         const grid = document.getElementById('inventory-items-grid');
+        const countBadge = document.getElementById('inventory-count-badge');
         if (!grid) return;
 
         let items = MASTER_INVENTORY;
-        if (this.invProvFilter !== 'all') items = items.filter(i => i.provider === this.invProvFilter);
-        if (this.invStatusFilter !== 'all') items = items.filter(i => (i.status || 'ready') === this.invStatusFilter);
-        if (this.invSearchQuery.trim()) {
+        if (this.invProvFilter && this.invProvFilter !== 'all') {
+          items = items.filter(i => i.provider === this.invProvFilter);
+        }
+        if (this.invStatusFilter && this.invStatusFilter !== 'all') {
+          items = items.filter(i => (i.status || 'ready') === this.invStatusFilter);
+        }
+        if (this.invSearchQuery && this.invSearchQuery.trim()) {
           const q = this.invSearchQuery.toLowerCase();
-          items = items.filter(i => i.name.toLowerCase().includes(q) || i.provider.toLowerCase().includes(q) || (i.note && i.note.toLowerCase().includes(q)));
+          items = items.filter(i => 
+            (i.name && i.name.toLowerCase().includes(q)) || 
+            (i.provider && i.provider.toLowerCase().includes(q)) || 
+            (i.category && i.category.toLowerCase().includes(q)) ||
+            (i.note && i.note.toLowerCase().includes(q))
+          );
+        }
+
+        if (countBadge) {
+          countBadge.textContent = `Menampilkan ${items.length} dari ${MASTER_INVENTORY.length} Unit Alat`;
+        }
+
+        if (items.length === 0) {
+          grid.innerHTML = `
+            <div style="grid-column: 1 / -1; text-align:center; padding:2rem; background:var(--bg-surface); border:1px dashed var(--border-subtle); border-radius:var(--radius-sm);">
+              <div style="font-size:1.5rem; margin-bottom:0.5rem;">🔍</div>
+              <div style="font-weight:700; color:var(--text-pure);">Tidak ada barang yang cocok dengan filter</div>
+              <p style="font-size:0.78rem; color:var(--text-secondary); margin-top:0.25rem;">Coba reset filter atau ubah kata kunci pencarian.</p>
+              <button class="btn btn-primary btn-sm" id="btn-empty-reset" style="margin-top:0.75rem;">🔄 Tampilkan Semua Barang</button>
+            </div>
+          `;
+          document.getElementById('btn-empty-reset')?.addEventListener('click', () => {
+            this.resetInventoryFilters();
+          });
+          return;
         }
 
         grid.innerHTML = items.map(item => {
@@ -2732,19 +2937,19 @@ def generate_index_html():
 
       initInventoryControls() {
         document.querySelectorAll('#inventory-filter-pills .filter-pill').forEach(btn => {
-          btn.addEventListener('click', (e) => {
+          btn.addEventListener('click', () => {
             document.querySelectorAll('#inventory-filter-pills .filter-pill').forEach(b => b.classList.remove('active'));
-            e.target.classList.add('active');
-            this.invProvFilter = e.target.dataset.prov;
+            btn.classList.add('active');
+            this.invProvFilter = btn.dataset.prov || 'all';
             this.renderInventory();
           });
         });
 
         document.querySelectorAll('#inventory-status-pills .filter-pill').forEach(btn => {
-          btn.addEventListener('click', (e) => {
+          btn.addEventListener('click', () => {
             document.querySelectorAll('#inventory-status-pills .filter-pill').forEach(b => b.classList.remove('active'));
-            e.target.classList.add('active');
-            this.invStatusFilter = e.target.dataset.statusFilter;
+            btn.classList.add('active');
+            this.invStatusFilter = btn.dataset.statusFilter || 'all';
             this.renderInventory();
           });
         });
@@ -2756,6 +2961,25 @@ def generate_index_html():
             this.renderInventory();
           });
         }
+
+        document.getElementById('btn-reset-inv-filter')?.addEventListener('click', () => {
+          this.resetInventoryFilters();
+        });
+      }
+
+      resetInventoryFilters() {
+        this.invProvFilter = 'all';
+        this.invStatusFilter = 'all';
+        this.invSearchQuery = '';
+        const sInput = document.getElementById('inventory-search');
+        if (sInput) sInput.value = '';
+        document.querySelectorAll('#inventory-filter-pills .filter-pill').forEach(b => {
+          b.classList.toggle('active', b.dataset.prov === 'all');
+        });
+        document.querySelectorAll('#inventory-status-pills .filter-pill').forEach(b => {
+          b.classList.toggle('active', b.dataset.statusFilter === 'all');
+        });
+        this.renderInventory();
       }
 
       toggleInventoryItem(id, fromSync = false, author = null) {
@@ -2816,6 +3040,7 @@ def generate_index_html():
       initCloudSync() {
         const modal = document.getElementById('sync-modal');
         const openBtn = document.getElementById('btn-open-sync-modal');
+        const openHeroBtn = document.getElementById('btn-open-sync-hero');
         const headerPill = document.getElementById('header-sync-pill');
         const quickBtn = document.getElementById('btn-quick-sync-connect');
         const closeBtn = document.getElementById('btn-close-sync');
@@ -2824,6 +3049,7 @@ def generate_index_html():
         const closeModal = () => modal?.classList.remove('active');
 
         openBtn?.addEventListener('click', openModal);
+        openHeroBtn?.addEventListener('click', openModal);
         headerPill?.addEventListener('click', openModal);
         quickBtn?.addEventListener('click', () => this.connectMqtt());
         closeBtn?.addEventListener('click', closeModal);
@@ -3044,7 +3270,9 @@ def generate_index_html():
             <td style="font-family:var(--font-mono); color:var(--text-secondary);">${inc.by}</td>
           </tr>
         `).join('');
+      }
 
+      initIncidentLogger() {
         document.getElementById('btn-add-incident')?.addEventListener('click', () => {
           const input = document.getElementById('incident-input');
           const sevSelect = document.getElementById('incident-sev');
@@ -3078,8 +3306,9 @@ def generate_index_html():
         let audioCtx = null;
         let osc = null;
         let isTonePlaying = false;
+        const toneBtn = document.getElementById('btn-toggle-tone');
 
-        document.getElementById('btn-toggle-tone')?.addEventListener('click', (e) => {
+        toneBtn?.addEventListener('click', () => {
           if (!isTonePlaying) {
             audioCtx = new (window.AudioContext || window.webkitAudioContext)();
             osc = audioCtx.createOscillator();
@@ -3091,12 +3320,12 @@ def generate_index_html():
             gain.connect(audioCtx.destination);
             osc.start();
             isTonePlaying = true;
-            e.target.textContent = '⏹ Stop 1kHz Audio Tone';
+            if (toneBtn) toneBtn.textContent = '⏹ Stop 1kHz Audio Tone';
           } else {
             osc?.stop();
             audioCtx?.close();
             isTonePlaying = false;
-            e.target.textContent = '🔊 1kHz Audio Calibration Tone (-18dBFS)';
+            if (toneBtn) toneBtn.textContent = '🔊 1kHz Audio Calibration Tone (-18dBFS)';
           }
         });
 
@@ -3145,29 +3374,84 @@ def generate_index_html():
         });
       }
 
-      // 11. BRIEFING DECK
+      // 11. BRIEFING DECK (8 SLIDES)
       initBriefingDeck() {
         const modal = document.getElementById('briefing-modal');
         const closeBtn = document.getElementById('btn-close-briefing');
-        if (closeBtn && modal) {
-          closeBtn.addEventListener('click', () => modal.classList.remove('active'));
-        }
+        const prevBtn = document.getElementById('btn-slide-prev');
+        const nextBtn = document.getElementById('btn-slide-next');
+        const indicator = document.getElementById('briefing-slide-indicator');
+        const bar = document.getElementById('briefing-progress-bar');
+        const wrapper = document.getElementById('briefing-slides-wrapper');
+
+        const renderSlide = (idx) => {
+          if (!wrapper || !indicator || !bar) return;
+          this.currentSlide = Math.max(0, Math.min(idx, BRIEFING_SLIDES_DATA.length - 1));
+          const slide = BRIEFING_SLIDES_DATA[this.currentSlide];
+          
+          indicator.textContent = `Slide ${this.currentSlide + 1} of ${BRIEFING_SLIDES_DATA.length}`;
+          bar.style.width = `${((this.currentSlide + 1) / BRIEFING_SLIDES_DATA.length) * 100}%`;
+          
+          wrapper.innerHTML = `
+            <div class="briefing-slide active" style="display:flex; flex-direction:column; gap:0.5rem;">
+              <span style="font-size:0.75rem; font-weight:800; color:var(--accent-cyan); font-family:var(--font-mono);">${slide.tag}</span>
+              <h2 style="font-size:1.5rem; font-weight:800; color:#fff; margin:0;">${slide.title}</h2>
+              <div style="font-size:0.82rem; color:var(--accent-emerald); font-weight:600; margin-bottom:0.5rem;">${slide.subtitle}</div>
+              ${slide.content}
+            </div>
+          `;
+
+          if (prevBtn) prevBtn.disabled = this.currentSlide === 0;
+          if (nextBtn) nextBtn.textContent = this.currentSlide === BRIEFING_SLIDES_DATA.length - 1 ? 'Selesai ❯' : 'Next ❯';
+        };
+
+        const openBriefing = () => {
+          modal?.classList.add('active');
+          renderSlide(this.currentSlide);
+        };
+
+        const closeBriefing = () => modal?.classList.remove('active');
+
+        document.getElementById('btn-open-briefing-hero')?.addEventListener('click', openBriefing);
+        document.getElementById('btn-open-briefing-tools')?.addEventListener('click', openBriefing);
+        closeBtn?.addEventListener('click', closeBriefing);
+
+        prevBtn?.addEventListener('click', () => {
+          if (this.currentSlide > 0) renderSlide(this.currentSlide - 1);
+        });
+
+        nextBtn?.addEventListener('click', () => {
+          if (this.currentSlide < BRIEFING_SLIDES_DATA.length - 1) {
+            renderSlide(this.currentSlide + 1);
+          } else {
+            closeBriefing();
+          }
+        });
+
+        document.addEventListener('keydown', (e) => {
+          if (!modal?.classList.contains('active')) return;
+          if (e.key === 'ArrowRight') nextBtn?.click();
+          if (e.key === 'ArrowLeft') prevBtn?.click();
+          if (e.key === 'Escape') closeBriefing();
+        });
       }
 
       // 12. TALLY LIGHT BOX
       initTallyBox() {
         const modal = document.getElementById('tally-modal');
         const openBtn = document.getElementById('btn-open-tally-modal');
+        const openHeroBtn = document.getElementById('btn-open-tally-modal-hero');
         const closeBtn = document.getElementById('btn-close-tally');
         const select = document.getElementById('tally-camera-select');
         const soundBtn = document.getElementById('btn-tally-toggle-sound');
 
-        if (openBtn && modal) {
-          openBtn.addEventListener('click', () => {
-            modal.classList.add('active');
-            this.updateTallyScreen();
-          });
-        }
+        const openTally = () => {
+          modal?.classList.add('active');
+          this.updateTallyScreen();
+        };
+
+        openBtn?.addEventListener('click', openTally);
+        openHeroBtn?.addEventListener('click', openTally);
 
         if (closeBtn && modal) {
           closeBtn.addEventListener('click', () => modal.classList.remove('active'));
@@ -3224,6 +3508,7 @@ def generate_index_html():
       initHandoverForm() {
         const modal = document.getElementById('handover-modal');
         const openBtn = document.getElementById('btn-open-handover-modal');
+        const openHeroBtn = document.getElementById('btn-open-handover-hero');
         const closeBtn = document.getElementById('btn-close-handover');
         const provSelect = document.getElementById('handover-provider-select');
         const tbody = document.getElementById('handover-items-tbody');
@@ -3252,12 +3537,13 @@ def generate_index_html():
           `).join('');
         };
 
-        if (openBtn && modal) {
-          openBtn.addEventListener('click', () => {
-            modal.classList.add('active');
-            renderHandover();
-          });
-        }
+        const openHandover = () => {
+          modal?.classList.add('active');
+          renderHandover();
+        };
+
+        openBtn?.addEventListener('click', openHandover);
+        openHeroBtn?.addEventListener('click', openHandover);
 
         if (closeBtn && modal) {
           closeBtn.addEventListener('click', () => modal.classList.remove('active'));
