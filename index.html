@@ -3,527 +3,486 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>IP26 Command Center | Ibadah Perdana UKK UNNES 2026</title>
-  <meta name="description" content="Obsidian Command Center: Live multi-cam broadcast routing, interactive signal flow, audio schematics & real-time inventory management for Ibadah Perdana UKK UNNES 2026.">
+  <title>IP26 OB-CONSOLE | Ibadah Perdana UKK UNNES 2026</title>
+  <meta name="description" content="Industrial Production & Broadcast Master Console for Ibadah Perdana UKK UNNES 2026: Multi-Cam ATEM Matrix, Yamaha QL5 Audio Desk, Patchbay Routing, and Master Run-Sheet.">
   
   <!-- Open Graph Meta -->
-  <meta property="og:title" content="IP26 Command Center | Ibadah Perdana UKK UNNES 2026">
-  <meta property="og:description" content="Technical blueprint, multi-cam routing, audio schematics & live crew checklist for Ibadah Perdana UKK UNNES 2026.">
+  <meta property="og:title" content="IP26 Broadcast Console | Ibadah Perdana UKK UNNES 2026">
+  <meta property="og:description" content="Live OB-Van broadcast console, signal patchbay, Yamaha audio desk & master inventory depot.">
   <meta property="og:url" content="https://zzdree.github.io/ip26-production/">
   <meta property="og:type" content="website">
-  <meta name="theme-color" content="#080b12">
+  <meta name="theme-color" content="#07090e">
 
-  <!-- Google Fonts: Inter & JetBrains Mono -->
+  <!-- Google Fonts: Space Grotesk, IBM Plex Mono & Plus Jakarta Sans -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
 
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
-  <!-- Top Telemetry Tally Bar -->
-  <header class="telemetry-bar">
-    <div class="tally-group">
-      <div class="tally-badge">
-        <div class="tally-dot"></div>
-        <span>ON-AIR SYSTEM READY</span>
+  <!-- Top Hardware Telemetry Bar -->
+  <div class="hardware-bar">
+    <div class="hw-group">
+      <div class="hw-tag">
+        <div class="tally-lamp"></div>
+        <span style="color: #ffffff; font-weight: 700;">ON-AIR SYSTEM ACTIVE</span>
       </div>
-      <div class="telemetry-item">
-        <span>PGM FEED:</span> <b id="current-pgm-text" style="color: var(--brand-orange);">CAM 1</b>
+      <div class="hw-tag">
+        <span>PGM BUS:</span> <b id="current-pgm-text" style="color: var(--tally-pgm);">CAM 1</b>
+      </div>
+      <div class="hw-tag">
+        <span>AUDIO LINK:</span> <b style="color: var(--signal-amber);">YAMAHA QL5 + DUAL XLR</b>
       </div>
     </div>
-    <div class="telemetry-item">
-      <span>TIME:</span> <b id="live-clock">--:--:-- WIB</b>
+    <div class="hw-group">
+      <div class="hw-tag">
+        <span>VENUE:</span> <b>AUDITORIUM UNNES</b>
+      </div>
+      <div class="hw-tag">
+        <span>MASTER CLOCK:</span> <b id="live-clock" style="color: var(--signal-cyan);">--:--:-- WIB</b>
+      </div>
+    </div>
+  </div>
+
+  <!-- OB Console Header -->
+  <header class="console-header">
+    <div class="console-container">
+      <div class="console-header-inner">
+        <div class="header-brand-box">
+          <div class="chassis-logo-badge">IP26 · OB-VAN</div>
+          <div class="header-title-block">
+            <h1>IBADAH PERDANA UKK UNNES 2026</h1>
+            <p>BROADCAST CONTROL SYSTEM & TECHNICAL RUN-SHEET · LEAD: ANDREAS</p>
+          </div>
+        </div>
+
+        <div class="header-actions">
+          <a href="https://wa.me/?text=Halo%20Kru%20IP26!%20Buka%20Broadcast%20Console%20%26%20Run-Sheet%20Ibadah%20Perdana%20UKK%20UNNES%202026:%20https://zzdree.github.io/ip26-production/" target="_blank" rel="noopener noreferrer" class="btn-hardware btn-wa">
+            📲 WhatsApp Crew Dispatch
+          </a>
+          <a href="https://github.com/zzdree/ip26-production" target="_blank" rel="noopener noreferrer" class="btn-hardware">
+            📦 GitHub Repository
+          </a>
+        </div>
+      </div>
     </div>
   </header>
 
-  <!-- Hero Command Center Section -->
-  <section class="command-hero">
-    <div class="container">
-      <div class="hero-tag-row">
-        <span class="meta-chip venue">📍 Auditorium UNNES</span>
-        <span class="meta-chip">🗓️ Ibadah Perdana 2026</span>
-        <span class="meta-chip status">⚡ Cinetreak V1 + QL5</span>
-        <span class="meta-chip">🔒 Private Blueprint</span>
-        <a href="https://wa.me/?text=Halo%20Kru%20IP26!%20Berikut%20link%20technical%20blueprint%20%26%20inventory%20Ibadah%20Perdana%20UKK%20UNNES%202026:%20https://zzdree.github.io/ip26-production/" target="_blank" rel="noopener noreferrer" class="share-wa-btn">
-          📲 Share to WhatsApp Crew
-        </a>
-      </div>
-
-      <h1 class="hero-main-title">
-        IBADAH PERDANA <span>UKK UNNES 2026</span>
-      </h1>
-      <p class="hero-description">
-        Portal panduan operasional teknis, alur distribusi sinyal kamera multi-cam, mixing audio FOH, mapping output visual LED panggung, dan checklist logistik perlengkapan inventaris.
-      </p>
-
-      <!-- Telemetry Metrics Row -->
-      <div class="metrics-row">
-        <div class="metric-box active-cams">
-          <div class="metric-title">Broadcast Cameras</div>
-          <div class="metric-number" style="color: var(--tally-live);">4 Units</div>
-          <div class="metric-sub">Sony ZV-E10 & A6000 + Pyro H</div>
-        </div>
-        <div class="metric-box active-outputs">
-          <div class="metric-title">Display Outputs</div>
-          <div class="metric-number" style="color: var(--accent-cyan);">7 Feeds</div>
-          <div class="metric-sub">LED Center, Sides, TVs & Multiview</div>
-        </div>
-        <div class="metric-box active-audio">
-          <div class="metric-title">Audio Pipeline</div>
-          <div class="metric-number" style="color: var(--brand-orange);">2 Mixers</div>
-          <div class="metric-sub">Yamaha QL5 FOH + NewBaxs CT80S</div>
-        </div>
-        <div class="metric-box active-crew">
-          <div class="metric-title">Production Crew</div>
-          <div class="metric-number" style="color: var(--tally-pvw);">14 PIC</div>
-          <div class="metric-sub">Broadcast, Media, Engine & Docs</div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Sticky Glass Navigation Bar -->
-  <div class="glass-nav-bar">
-    <div class="container">
-      <nav class="tab-scroll-container" aria-label="Command Center Navigation">
-        <button class="nav-tab-btn active" data-tab="overview">🎛️ Command Overview</button>
-        <button class="nav-tab-btn" data-tab="multiview">📺 Virtual Multiview</button>
-        <button class="nav-tab-btn" data-tab="routing">🔄 Signal Routing</button>
-        <button class="nav-tab-btn" data-tab="audio">🔊 Audio Master Desk</button>
-        <button class="nav-tab-btn" data-tab="crew">👥 Crew & Assignments</button>
-        <button class="nav-tab-btn" data-tab="inventory">📦 Master Inventory</button>
-        <button class="nav-tab-btn" data-tab="rundown">📑 Rundown & Cues</button>
-        <button class="nav-tab-btn" data-tab="sop">⚡ Safety & SOP</button>
+  <!-- Sticky Hardware Navigation Deck -->
+  <div class="console-nav-bar">
+    <div class="console-container">
+      <nav class="nav-deck" aria-label="Console Navigation Deck">
+        <button class="deck-tab-btn active" data-tab="multiview">📺 Vision Switcher</button>
+        <button class="deck-tab-btn" data-tab="patchbay">🔄 Patchbay Routing</button>
+        <button class="deck-tab-btn" data-tab="audio">🔊 Yamaha QL5 Audio</button>
+        <button class="deck-tab-btn" data-tab="rundown">📑 Master Run-Sheet</button>
+        <button class="deck-tab-btn" data-tab="crew">👥 Crew Dispatch</button>
+        <button class="deck-tab-btn" data-tab="inventory">📦 Equipment Depot</button>
+        <button class="deck-tab-btn" data-tab="sop">⚡ Electrical SOP</button>
       </nav>
     </div>
   </div>
 
-  <!-- Main Container -->
-  <main class="container">
+  <!-- Main Console Body -->
+  <main class="console-container">
 
-    <!-- PANEL 1: OVERVIEW -->
-    <section id="panel-overview" class="tab-panel active">
-      <div class="section-head">
-        <div>
-          <h2 class="section-head-title">🎛️ Arsitektur Sistem Produksi Master</h2>
-          <p class="section-head-desc">Integrasi menyeluruh antara video broadcast, visual multimedia, FOH audio, dan dokumentasi.</p>
-        </div>
+    <!-- PANEL 1: VISION SWITCHER & MULTIVIEW -->
+    <section id="panel-multiview" class="deck-panel active">
+      <div class="panel-header-strip">
+        <h2 class="panel-title">📺 Cinetreak Cinelive V1 — Multiview & Switcher Deck</h2>
+        <span class="panel-badge">1080p 60FPS · 4-CH SDI/HDMI BUS</span>
       </div>
 
-      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 1.5rem; margin-bottom: 2.5rem;">
-        <div class="metric-box" style="border-top: 3px solid var(--tally-live);">
-          <h3 style="color: var(--tally-live); font-size: 1.1rem; margin-bottom: 0.75rem;">🎥 1. Video Switcher & Multi-Cam</h3>
-          <ul style="padding-left: 1.25rem; color: var(--text-secondary); font-size: 0.88rem;">
-            <li><b>Main Switcher:</b> Cinetreak Cinelive V1 (4CH HDMI Ingest).</li>
-            <li><b>CAM 1 & 2:</b> Sony ZV-E10 kabel HDMI 30M & Hollyland Pyro H Wireless.</li>
-            <li><b>CAM 3 & 4:</b> Sony A6000 panggung sayap kiri & kanan.</li>
-            <li><b>Live Stream Feed:</b> UVC USB-C ke Laptop OBS Studio (RTMP Feed).</li>
-          </ul>
+      <div class="switcher-console-unit">
+        <!-- Multiview Monitor Grid Frame -->
+        <div class="multiview-monitor-frame">
+          
+          <!-- Master Screens (PGM & PVW) -->
+          <div class="mv-big-screens">
+            <!-- PGM Master Screen -->
+            <div class="screen-box pgm-master" id="screen-pgm-master">
+              <div class="screen-raster-lines"></div>
+              <div class="screen-crosshair"></div>
+              <div class="screen-label-bar">
+                <span class="screen-tally-flag">● PGM (ON AIR)</span>
+                <span style="font-family: var(--font-mono); font-size: 0.65rem; color: #ff8597;">LIVE STREAM REC</span>
+              </div>
+              <div style="text-align: center; z-index: 2;">
+                <div style="font-family: var(--font-mono); font-size: 1.5rem; font-weight: 800; color: #ffffff;" id="pgm-master-source">CAM 1</div>
+                <div style="font-family: var(--font-mono); font-size: 0.7rem; color: var(--text-muted);">PROGRAM BUS FEED</div>
+              </div>
+              <div class="screen-footer-meta">
+                <span>OUT: USB-C UVC -> OBS</span>
+                <span>1920x1080 @ 59.94</span>
+              </div>
+            </div>
+
+            <!-- PVW Master Screen -->
+            <div class="screen-box pvw-master">
+              <div class="screen-raster-lines"></div>
+              <div class="screen-crosshair"></div>
+              <div class="screen-label-bar">
+                <span class="screen-tally-flag">PVW (PREVIEW)</span>
+                <span style="font-family: var(--font-mono); font-size: 0.65rem; color: #79f7b7;">NEXT CUE</span>
+              </div>
+              <div style="text-align: center; z-index: 2;">
+                <div style="font-family: var(--font-mono); font-size: 1.5rem; font-weight: 800; color: #ffffff;" id="pvw-master-source">CAM 2</div>
+                <div style="font-family: var(--font-mono); font-size: 0.7rem; color: var(--text-muted);">PREVIEW BUS FEED</div>
+              </div>
+              <div class="screen-footer-meta">
+                <span>STANDBY TRANSITION</span>
+                <span>READY</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Camera Quad Ingest Cells -->
+          <div class="mv-cam-quad">
+            <!-- CAM 1 -->
+            <div class="cam-feed-cell active-pgm" data-cam="1">
+              <div class="screen-raster-lines"></div>
+              <div class="cam-feed-top">
+                <span style="font-weight: 700; color: #ffffff;">01 · CAM 1</span>
+                <span class="feed-tally-pill" style="font-weight: 700; color: var(--tally-pgm);">● PGM</span>
+              </div>
+              <div style="text-align: center; font-family: var(--font-mono); font-size: 0.75rem; color: var(--text-muted);">
+                ALEX (ZV-E10)
+              </div>
+              <div class="cam-feed-bottom">
+                <span>HDMI 30M</span>
+                <span>18-105mm G</span>
+              </div>
+            </div>
+
+            <!-- CAM 2 -->
+            <div class="cam-feed-cell active-pvw" data-cam="2">
+              <div class="screen-raster-lines"></div>
+              <div class="cam-feed-top">
+                <span style="font-weight: 700; color: #ffffff;">02 · CAM 2</span>
+                <span class="feed-tally-pill" style="font-weight: 700; color: var(--tally-pvw);">PVW</span>
+              </div>
+              <div style="text-align: center; font-family: var(--font-mono); font-size: 0.75rem; color: var(--text-muted);">
+                KIEL 1 (ZV-E10)
+              </div>
+              <div class="cam-feed-bottom">
+                <span>PYRO H 5.8G</span>
+                <span>STAGE ROAM</span>
+              </div>
+            </div>
+
+            <!-- CAM 3 -->
+            <div class="cam-feed-cell" data-cam="3">
+              <div class="screen-raster-lines"></div>
+              <div class="cam-feed-top">
+                <span style="font-weight: 700; color: #ffffff;">03 · CAM 3</span>
+                <span class="feed-tally-pill" style="font-weight: 700; color: var(--text-dim);">STBY</span>
+              </div>
+              <div style="text-align: center; font-family: var(--font-mono); font-size: 0.75rem; color: var(--text-muted);">
+                DEWI (A6000)
+              </div>
+              <div class="cam-feed-bottom">
+                <span>HDMI 10M</span>
+                <span>LEFT WING</span>
+              </div>
+            </div>
+
+            <!-- CAM 4 -->
+            <div class="cam-feed-cell" data-cam="4">
+              <div class="screen-raster-lines"></div>
+              <div class="cam-feed-top">
+                <span style="font-weight: 700; color: #ffffff;">04 · CAM 4</span>
+                <span class="feed-tally-pill" style="font-weight: 700; color: var(--text-dim);">STBY</span>
+              </div>
+              <div style="text-align: center; font-family: var(--font-mono); font-size: 0.75rem; color: var(--text-muted);">
+                NATHANIA (A6000)
+              </div>
+              <div class="cam-feed-bottom">
+                <span>HDMI 10M</span>
+                <span>RIGHT WING</span>
+              </div>
+            </div>
+          </div>
+
         </div>
 
-        <div class="metric-box" style="border-top: 3px solid var(--accent-cyan);">
-          <h3 style="color: var(--accent-cyan); font-size: 1.1rem; margin-bottom: 0.75rem;">💻 2. Visual & Media Presentation</h3>
-          <ul style="padding-left: 1.25rem; color: var(--text-secondary); font-size: 0.88rem;">
-            <li><b>Resolume Arena:</b> Looping video UKK, background motion & Nova processor.</li>
-            <li><b>ProPresenter 1:</b> Teks lirik pujian & ayat ke LED samping & belakang.</li>
-            <li><b>ProPresenter 2:</b> Slide khotbah pembicara dikirim ke Resolume via Capture Card.</li>
-            <li><b>ProPresenter 3:</b> Timer panggung ke TV monitor Timekeeper.</li>
-          </ul>
-        </div>
+        <!-- Physical Push Button Switcher Surface -->
+        <div class="physical-switcher-panel">
+          <div style="display: flex; flex-direction: column; gap: 0.5rem;">
+            <!-- PGM Row -->
+            <div class="switcher-bus-row">
+              <span class="bus-label pgm-text">PGM</span>
+              <button class="hw-push-btn active-pgm-btn" data-pgm-btn="1">CAM 1</button>
+              <button class="hw-push-btn" data-pgm-btn="2">CAM 2</button>
+              <button class="hw-push-btn" data-pgm-btn="3">CAM 3</button>
+              <button class="hw-push-btn" data-pgm-btn="4">CAM 4</button>
+            </div>
+            <!-- PVW Row -->
+            <div class="switcher-bus-row">
+              <span class="bus-label pvw-text">PVW</span>
+              <button class="hw-push-btn" data-pvw-btn="1">CAM 1</button>
+              <button class="hw-push-btn active-pvw-btn" data-pvw-btn="2">CAM 2</button>
+              <button class="hw-push-btn" data-pvw-btn="3">CAM 3</button>
+              <button class="hw-push-btn" data-pvw-btn="4">CAM 4</button>
+            </div>
+          </div>
 
-        <div class="metric-box" style="border-top: 3px solid var(--brand-orange);">
-          <h3 style="color: var(--brand-orange); font-size: 1.1rem; margin-bottom: 0.75rem;">🔊 3. Audio & Network Distribution</h3>
-          <ul style="padding-left: 1.25rem; color: var(--text-secondary); font-size: 0.88rem;">
-            <li><b>FOH Console:</b> Yamaha QL5 Auditorium UNNES via XLR ke NewBaxs CT80S.</li>
-            <li><b>Virtual Mixer:</b> Kontrol wireless iPad & Laptop via WiFi UNNES-ID.</li>
-            <li><b>Audio Ingest:</b> Resolume laptop via Hi-Fi DAC USB-C (Hanason / Oraimo) ke Jack 3.5mm.</li>
-          </ul>
+          <!-- Transition Engine Controls -->
+          <div class="transition-deck-controls">
+            <button class="btn-cut" id="btn-switcher-cut">⚡ CUT</button>
+            <button class="btn-auto" id="btn-switcher-auto">MIX AUTO (0.5s)</button>
+          </div>
         </div>
       </div>
     </section>
 
-    <!-- PANEL 2: VIRTUAL MULTIVIEW -->
-    <section id="panel-multiview" class="tab-panel">
-      <div class="section-head">
-        <div>
-          <h2 class="section-head-title">📺 Virtual Multiview & Switcher Simulator</h2>
-          <p class="section-head-desc">Klik kamera di bawah untuk simulasi switching PGM (Program On-Air) dan PVW (Preview).</p>
-        </div>
+    <!-- PANEL 2: PATCHBAY & SIGNAL MATRIX -->
+    <section id="panel-patchbay" class="deck-panel">
+      <div class="panel-header-strip">
+        <h2 class="panel-title">🔄 Technical Signal Patchbay Matrix</h2>
+        <span class="panel-badge">HARDWARE INGEST & DISTRIBUTION ROUTING</span>
       </div>
 
-      <div class="multiview-wrapper">
-        <div class="multiview-header">
-          <div class="multiview-title">
-            <span style="color: var(--tally-live);">●</span> CINETREAK CINELIVE V1 — MULTIVIEW MONITOR (4-CH)
-          </div>
-          <div style="color: var(--text-secondary);">
-            RESOLUTION: <b>1080p 60FPS</b> | COLOR: <b>RGB 4:4:4</b>
-          </div>
-        </div>
-
-        <div class="multiview-grid">
-          <!-- CAM 1 -->
-          <div class="multiview-cam pgm-active" data-cam="1">
-            <div class="cam-header-tags">
-              <span class="cam-tally-pill">● PGM ON AIR</span>
-              <span class="cam-spec-badge">HDMI 30M · 18-105mm G</span>
-            </div>
-            <div class="cam-center-visual">
-              <div class="cam-center-icon">🎥</div>
-              <div style="font-family: var(--font-mono); font-size: 0.85rem; font-weight: 700; color: #ffffff;">CAM 1 — CENTER WIDE</div>
-            </div>
-            <div class="cam-footer-info">
-              <span class="cam-op-name">OP: Alex</span>
-              <span class="cam-gear-desc">Sony ZV-E10</span>
-            </div>
-          </div>
-
-          <!-- CAM 2 -->
-          <div class="multiview-cam pvw-active" data-cam="2">
-            <div class="cam-header-tags">
-              <span class="cam-tally-pill">PVW PREVIEW</span>
-              <span class="cam-spec-badge">PYRO H WIRELESS · 5.8GHz</span>
-            </div>
-            <div class="cam-center-visual">
-              <div class="cam-center-icon">📡</div>
-              <div style="font-family: var(--font-mono); font-size: 0.85rem; font-weight: 700; color: #ffffff;">CAM 2 — STAGE ROAMING</div>
-            </div>
-            <div class="cam-footer-info">
-              <span class="cam-op-name">OP: Kiel 1</span>
-              <span class="cam-gear-desc">Sony ZV-E10</span>
-            </div>
-          </div>
-
-          <!-- CAM 3 -->
-          <div class="multiview-cam" data-cam="3">
-            <div class="cam-header-tags">
-              <span class="cam-tally-pill">STANDBY</span>
-              <span class="cam-spec-badge">HDMI 10M · 18-105mm G</span>
-            </div>
-            <div class="cam-center-visual">
-              <div class="cam-center-icon">🎥</div>
-              <div style="font-family: var(--font-mono); font-size: 0.85rem; font-weight: 700; color: #ffffff;">CAM 3 — LEFT WING</div>
-            </div>
-            <div class="cam-footer-info">
-              <span class="cam-op-name">OP: Dewi</span>
-              <span class="cam-gear-desc">Sony A6000</span>
-            </div>
-          </div>
-
-          <!-- CAM 4 -->
-          <div class="multiview-cam" data-cam="4">
-            <div class="cam-header-tags">
-              <span class="cam-tally-pill">STANDBY</span>
-              <span class="cam-spec-badge">HDMI 10M · 16-50mm Kit</span>
-            </div>
-            <div class="cam-center-visual">
-              <div class="cam-center-icon">🎥</div>
-              <div style="font-family: var(--font-mono); font-size: 0.85rem; font-weight: 700; color: #ffffff;">CAM 4 — RIGHT WING</div>
-            </div>
-            <div class="cam-footer-info">
-              <span class="cam-op-name">OP: Nathania</span>
-              <span class="cam-gear-desc">Sony A6000</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- PANEL 3: SIGNAL ROUTING -->
-    <section id="panel-routing" class="tab-panel">
-      <div class="section-head">
-        <div>
-          <h2 class="section-head-title">🔄 Detail Rute Distribusi Sinyal</h2>
-          <p class="section-head-desc">Alur transmisi hardware dari kamera, converter, video processor, hingga ke proyektor & LED.</p>
-        </div>
-      </div>
-
-      <div class="routes-masonry" id="routes-masonry">
+      <div class="patchbay-grid" id="patchbay-container">
         <!-- Injected via JavaScript -->
       </div>
     </section>
 
-    <!-- PANEL 4: AUDIO MASTER DESK -->
-    <section id="panel-audio" class="tab-panel">
-      <div class="section-head">
-        <div>
-          <h2 class="section-head-title">🔊 Audio Master Desk & Virtual Mixing</h2>
-          <p class="section-head-desc">Diagram mixing audio panggung, telemetry level sinyal, dan jaringan kontrol remote.</p>
-        </div>
+    <!-- PANEL 3: YAMAHA QL5 AUDIO DESK -->
+    <section id="panel-audio" class="deck-panel">
+      <div class="panel-header-strip">
+        <h2 class="panel-title">🔊 Yamaha QL5 & Submixer Audio Console</h2>
+        <span class="panel-badge">DANTE / ANALOG BALANCED XLR INTERFACE</span>
       </div>
 
-      <div class="audio-console-card">
-        <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--outline-subtle); padding-bottom: 0.75rem; margin-bottom: 1rem;">
-          <h3 style="font-size: 1.1rem; color: #ffffff;">🎚️ Live Output Telemetry Meters (Simulated)</h3>
-          <span class="meta-chip status">Network: UNNES-ID (Active)</span>
+      <div class="audio-desk-chassis">
+        <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--border-dim); padding-bottom: 0.5rem;">
+          <span style="font-family: var(--font-mono); font-size: 0.8rem; color: #ffffff;">FOH MASTER & LIVE STREAM INGEST CHANNELS</span>
+          <span style="font-family: var(--font-mono); font-size: 0.72rem; color: var(--signal-amber);">D/A DAC: HANASON AB17X (32-BIT 384kHz)</span>
         </div>
 
-        <div class="vu-meters-grid">
-          <!-- Meter 1 -->
-          <div class="vu-channel-box">
-            <div class="vu-channel-title">CH 1: FOH MASTER L/R</div>
-            <div class="vu-channel-sub">Yamaha QL5 Auditorium Console</div>
-            <div class="vu-bar-track">
-              <div class="vu-segment active-green"></div>
-              <div class="vu-segment active-green"></div>
-              <div class="vu-segment active-green"></div>
-              <div class="vu-segment active-green"></div>
-              <div class="vu-segment active-yellow"></div>
-              <div class="vu-segment active-yellow"></div>
-              <div class="vu-segment"></div>
-              <div class="vu-segment"></div>
+        <div class="channel-strip-bank">
+          <!-- Strip 1 -->
+          <div class="channel-strip">
+            <div class="channel-strip-head">
+              <div class="ch-number">CH 01</div>
+              <div class="ch-name">PREACHER MIC</div>
+            </div>
+            <div class="vu-meter-column">
+              <div class="vu-segment-bar">
+                <div class="vu-cell"></div><div class="vu-cell"></div><div class="vu-cell"></div>
+                <div class="vu-cell"></div><div class="vu-cell"></div><div class="vu-cell"></div>
+                <div class="vu-cell"></div><div class="vu-cell"></div>
+              </div>
+            </div>
+            <div class="fader-slider-wrap">
+              <input type="range" class="fader-range" min="0" max="100" value="82" />
+            </div>
+            <div class="strip-mute-solo">
+              <button class="btn-mute">MUTE</button>
+              <button class="btn-solo">SOLO</button>
             </div>
           </div>
 
-          <!-- Meter 2 -->
-          <div class="vu-channel-box">
-            <div class="vu-channel-title">CH 2: SUBMIX BROADCAST</div>
-            <div class="vu-channel-sub">NewBaxs CT80S USB Stream Ingest</div>
-            <div class="vu-bar-track">
-              <div class="vu-segment active-green"></div>
-              <div class="vu-segment active-green"></div>
-              <div class="vu-segment active-green"></div>
-              <div class="vu-segment active-yellow"></div>
-              <div class="vu-segment active-yellow"></div>
-              <div class="vu-segment"></div>
-              <div class="vu-segment"></div>
-              <div class="vu-segment"></div>
+          <!-- Strip 2 -->
+          <div class="channel-strip">
+            <div class="channel-strip-head">
+              <div class="ch-number">CH 02</div>
+              <div class="ch-name">WORSHIP BAND</div>
+            </div>
+            <div class="vu-meter-column">
+              <div class="vu-segment-bar">
+                <div class="vu-cell"></div><div class="vu-cell"></div><div class="vu-cell"></div>
+                <div class="vu-cell"></div><div class="vu-cell"></div><div class="vu-cell"></div>
+                <div class="vu-cell"></div><div class="vu-cell"></div>
+              </div>
+            </div>
+            <div class="fader-slider-wrap">
+              <input type="range" class="fader-range" min="0" max="100" value="78" />
+            </div>
+            <div class="strip-mute-solo">
+              <button class="btn-mute">MUTE</button>
+              <button class="btn-solo">SOLO</button>
             </div>
           </div>
 
-          <!-- Meter 3 -->
-          <div class="vu-channel-box">
-            <div class="vu-channel-title">CH 3: MULTIMEDIA RES/PRO</div>
-            <div class="vu-channel-sub">USB-C DAC Hi-Fi (Hanason/Oraimo)</div>
-            <div class="vu-bar-track">
-              <div class="vu-segment active-green"></div>
-              <div class="vu-segment active-green"></div>
-              <div class="vu-segment active-green"></div>
-              <div class="vu-segment active-green"></div>
-              <div class="vu-segment active-yellow"></div>
-              <div class="vu-segment"></div>
-              <div class="vu-segment"></div>
-              <div class="vu-segment"></div>
+          <!-- Strip 3 -->
+          <div class="channel-strip">
+            <div class="channel-strip-head">
+              <div class="ch-number">CH 03</div>
+              <div class="ch-name">RESOLUME / BGM</div>
+            </div>
+            <div class="vu-meter-column">
+              <div class="vu-segment-bar">
+                <div class="vu-cell"></div><div class="vu-cell"></div><div class="vu-cell"></div>
+                <div class="vu-cell"></div><div class="vu-cell"></div><div class="vu-cell"></div>
+                <div class="vu-cell"></div><div class="vu-cell"></div>
+              </div>
+            </div>
+            <div class="fader-slider-wrap">
+              <input type="range" class="fader-range" min="0" max="100" value="65" />
+            </div>
+            <div class="strip-mute-solo">
+              <button class="btn-mute">MUTE</button>
+              <button class="btn-solo">SOLO</button>
             </div>
           </div>
 
-          <!-- Meter 4 -->
-          <div class="vu-channel-box">
-            <div class="vu-channel-title">CH 4: IEM MONITORING</div>
-            <div class="vu-channel-sub">QKZ Hi7T / KZ EDX Pro Station</div>
-            <div class="vu-bar-track">
-              <div class="vu-segment active-green"></div>
-              <div class="vu-segment active-green"></div>
-              <div class="vu-segment active-green"></div>
-              <div class="vu-segment active-yellow"></div>
-              <div class="vu-segment"></div>
-              <div class="vu-segment"></div>
-              <div class="vu-segment"></div>
-              <div class="vu-segment"></div>
+          <!-- Strip 4 -->
+          <div class="channel-strip">
+            <div class="channel-strip-head">
+              <div class="ch-number">CH 04</div>
+              <div class="ch-name">SUBMIX OBS USB</div>
+            </div>
+            <div class="vu-meter-column">
+              <div class="vu-segment-bar">
+                <div class="vu-cell"></div><div class="vu-cell"></div><div class="vu-cell"></div>
+                <div class="vu-cell"></div><div class="vu-cell"></div><div class="vu-cell"></div>
+                <div class="vu-cell"></div><div class="vu-cell"></div>
+              </div>
+            </div>
+            <div class="fader-slider-wrap">
+              <input type="range" class="fader-range" min="0" max="100" value="85" />
+            </div>
+            <div class="strip-mute-solo">
+              <button class="btn-mute">MUTE</button>
+              <button class="btn-solo">SOLO</button>
             </div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- PANEL 5: CREW ROSTER -->
-    <section id="panel-crew" class="tab-panel">
-      <div class="section-head">
-        <div>
-          <h2 class="section-head-title">👥 Personel Kru & Penugasan Alat</h2>
-          <p class="section-head-desc">Daftar PIC divisi serta unit gear yang dioperasikan selama acara berlangsung.</p>
-        </div>
+    <!-- PANEL 4: MASTER RUN-SHEET -->
+    <section id="panel-rundown" class="deck-panel">
+      <div class="panel-header-strip">
+        <h2 class="panel-title">📑 Production Master Run-Sheet & Cues</h2>
+        <span class="panel-badge">LIVE EVENT TIME-BASED DIRECTING</span>
       </div>
 
-      <div class="filter-pills-bar">
-        <button class="filter-pill active" data-crew-filter="all">Semua Kru (14)</button>
-        <button class="filter-pill" data-crew-filter="broadcast">🎥 Broadcast</button>
-        <button class="filter-pill" data-crew-filter="engine">🎛️ Switcher & Stream</button>
-        <button class="filter-pill" data-crew-filter="media">💻 Media & LED</button>
-        <button class="filter-pill" data-crew-filter="audio">🔊 Audio Master</button>
-        <button class="filter-pill" data-crew-filter="doc">📸 Dokumentasi</button>
-      </div>
-
-      <div class="crew-cards-grid" id="crew-cards-container">
-        <!-- Injected via JavaScript -->
-      </div>
-    </section>
-
-    <!-- PANEL 6: MASTER INVENTORY -->
-    <section id="panel-inventory" class="tab-panel">
-      <div class="section-head">
-        <div>
-          <h2 class="section-head-title">📦 Master Inventaris & Checklist Peminjaman</h2>
-          <p class="section-head-desc">Pemeriksaan fisik perlengkapan. Checklist tersimpan otomatis di browser masing-masing kru.</p>
-        </div>
-        <button id="print-checklist-btn" class="share-wa-btn" style="background: rgba(249, 115, 22, 0.15); border-color: rgba(249, 115, 22, 0.4); color: var(--brand-orange); cursor: pointer;">
-          🖨️ Cetak / Simpan PDF
-        </button>
-      </div>
-
-      <div class="inventory-top-controls">
-        <div class="search-field-wrapper">
-          <input type="text" id="inventory-search" class="command-search-input" placeholder="🔍 Cari item, kabel, baterai, atau kamera..." />
-        </div>
-
-        <div class="progress-widget">
-          <div class="progress-track">
-            <div class="progress-bar-value" id="progress-bar-fill"></div>
-          </div>
-          <span id="progress-count-text" style="font-family: var(--font-mono); font-weight: 700; color: var(--tally-pvw); font-size: 0.85rem;">0 / 0 Siap</span>
-          <button id="reset-inventory-btn" class="filter-pill" style="color: #fca5a5; border-color: rgba(239, 68, 68, 0.4);">Reset</button>
-        </div>
-      </div>
-
-      <div class="filter-pills-bar">
-        <button class="filter-pill active" data-cat-filter="all">Semua Kategori</button>
-        <button class="filter-pill" data-cat-filter="OWL">OWL Studio</button>
-        <button class="filter-pill" data-cat-filter="UKK">UKK UNNES</button>
-        <button class="filter-pill" data-cat-filter="GIA">GIA Deliksari</button>
-        <button class="filter-pill" data-cat-filter="GKJ">GKJ Ngaliyan</button>
-        <button class="filter-pill" data-cat-filter="Andreas">Andreas Toolkit</button>
-        <button class="filter-pill" data-cat-filter="Team">Peminjaman Kru</button>
-      </div>
-
-      <div class="table-glass-container">
-        <table class="inventory-data-table">
+      <div class="rundown-table-wrapper">
+        <table class="rundown-table">
           <thead>
             <tr>
-              <th style="text-align: center;">Status</th>
-              <th>Nama Perlengkapan</th>
-              <th>Jumlah</th>
-              <th>Asal Pinjaman</th>
-              <th>Kategori</th>
+              <th>SEQ</th>
+              <th>OFFSET</th>
+              <th>SEGMENT TITLE</th>
+              <th>MEDIA CUE ASSET</th>
+              <th>TARGET DISPLAY</th>
+              <th>AUDIO SOURCE</th>
+              <th>PIC</th>
             </tr>
           </thead>
-          <tbody id="inventory-table-body">
+          <tbody id="rundown-tbody">
             <!-- Injected via JavaScript -->
           </tbody>
         </table>
       </div>
     </section>
 
-    <!-- PANEL 7: RUNDOWN & CUES -->
-    <section id="panel-rundown" class="tab-panel">
-      <div class="section-head">
-        <div>
-          <h2 class="section-head-title">📑 Rundown & Media Asset Cue Sheet</h2>
-          <p class="section-head-desc">Urutan pemutaran konten multimedia, slide khotbah, dan routing visual layar auditorium.</p>
-        </div>
+    <!-- PANEL 5: CREW DISPATCH -->
+    <section id="panel-crew" class="deck-panel">
+      <div class="panel-header-strip">
+        <h2 class="panel-title">👥 Production Crew Dispatch Matrix</h2>
+        <span class="panel-badge">14 OPERATIONAL PIC</span>
       </div>
 
-      <div class="cue-timeline-list">
-        <div class="cue-card-row">
-          <div>
-            <div class="cue-step-badge">1. PRE-IBADAH (OPEN GATE)</div>
-            <div class="cue-step-name">Background Music & Video Profile Looping</div>
-            <div class="cue-output-tags">
-              <span class="out-pill">🔊 Playlist Lagu Rohani (Main Sound)</span>
-              <span class="out-pill">🖥️ Video Profile UKK & Aftermovie (LED Center)</span>
-            </div>
-          </div>
-          <span class="meta-chip">PIC: Andreas & Audio</span>
-        </div>
+      <div class="crew-filter-deck">
+        <button class="crew-filter-chip active" data-crew-filter="all">ALL CREW (14)</button>
+        <button class="crew-filter-chip" data-crew-filter="broadcast">🎥 BROADCAST</button>
+        <button class="crew-filter-chip" data-crew-filter="engine">🎛️ VISION & STREAM</button>
+        <button class="crew-filter-chip" data-crew-filter="media">💻 MULTIMEDIA & LED</button>
+        <button class="crew-filter-chip" data-crew-filter="audio">🔊 AUDIO FOH</button>
+        <button class="crew-filter-chip" data-crew-filter="doc">📸 DOCUMENTATION</button>
+      </div>
 
-        <div class="cue-card-row on-air-cue">
-          <div>
-            <div class="cue-step-badge">2. OPENING EVENT</div>
-            <div class="cue-step-name">Opening Countdown & Video Sambutan Bu Grave</div>
-            <div class="cue-output-tags">
-              <span class="out-pill">🖥️ Video Opening (LED Center)</span>
-              <span class="out-pill">🖥️ Sambutan (LED Center + Left + Right)</span>
-            </div>
-          </div>
-          <span class="meta-chip" style="background: rgba(239, 68, 68, 0.2); color: #fca5a5;">PIC: Filia & Rania</span>
-        </div>
-
-        <div class="cue-card-row">
-          <div>
-            <div class="cue-step-badge">3. PRAISE & WORSHIP</div>
-            <div class="cue-step-name">Lirik Lagu Pujian & Background Motion Theme</div>
-            <div class="cue-output-tags">
-              <span class="out-pill">🖥️ Background Motion (Resolume / LED Center)</span>
-              <span class="out-pill">🖥️ Lirik Lagu ProPresenter 1 (LED Tengah + Kiri + Kanan)</span>
-            </div>
-          </div>
-          <span class="meta-chip">PIC: Rania & Andreas</span>
-        </div>
-
-        <div class="cue-card-row">
-          <div>
-            <div class="cue-step-badge">4. SERMON & AYAT FIRMAN</div>
-            <div class="cue-step-name">PPT Khotbah, Ayat Alkitab & Quote Pembicara</div>
-            <div class="cue-output-tags">
-              <span class="out-pill">🖥️ Slide PPT Khotbah (LED All)</span>
-              <span class="out-pill">🖥️ Ayat Pembicara (ProPresenter 2)</span>
-              <span class="out-pill">📺 Stage Timer (TV Darrel)</span>
-            </div>
-          </div>
-          <span class="meta-chip">PIC: Filia & Darrel</span>
-        </div>
-
-        <div class="cue-card-row">
-          <div>
-            <div class="cue-step-badge">5. PERSEMBAHAN & WARTA UKK</div>
-            <div class="cue-step-name">Barcode QRIS Persembahan, UKK News & Pokok Doa</div>
-            <div class="cue-output-tags">
-              <span class="out-pill">🖥️ QRIS Persembahan (LED All)</span>
-              <span class="out-pill">🖥️ UKK News & Pokok Doa (LED All)</span>
-            </div>
-          </div>
-          <span class="meta-chip">PIC: Rania & Filia</span>
-        </div>
-
-        <div class="cue-card-row">
-          <div>
-            <div class="cue-step-badge">6. POST-IBADAH (CLOSE GATE)</div>
-            <div class="cue-step-name">Outro & SOP Usung-Usung (Teardown & Packing)</div>
-            <div class="cue-output-tags">
-              <span class="out-pill">📦 Pengecekan Total Inventaris sesuai Section Master</span>
-              <span class="out-pill">🔌 Safety Unplug Kabel Daya & Video</span>
-            </div>
-          </div>
-          <span class="meta-chip">PIC: Seluruh Kru Produksi</span>
-        </div>
+      <div class="crew-grid-deck" id="crew-deck-container">
+        <!-- Injected via JavaScript -->
       </div>
     </section>
 
-    <!-- PANEL 8: SAFETY & SOP -->
-    <section id="panel-sop" class="tab-panel">
-      <div class="section-head">
-        <div>
-          <h2 class="section-head-title">⚡ Standar Operasional & Keamanan (SOP)</h2>
-          <p class="section-head-desc">Panduan teknis pencegahan gangguan listrik, perlindungan kabel sinyal, dan alur teardown.</p>
+    <!-- PANEL 6: EQUIPMENT DEPOT -->
+    <section id="panel-inventory" class="deck-panel">
+      <div class="panel-header-strip">
+        <h2 class="panel-title">📦 Equipment Depot & Packing Manifest</h2>
+        <button id="btn-print-depot" class="btn-hardware" style="border-color: var(--signal-cyan); color: var(--signal-cyan);">
+          🖨️ PRINT PACKING SLIP
+        </button>
+      </div>
+
+      <div class="depot-controls-row">
+        <input type="text" id="depot-search-field" class="depot-search-field" placeholder="🔍 Filter equipment by code, name, lens, or owner..." />
+        
+        <div class="depot-progress-indicator">
+          <div class="depot-bar-bg">
+            <div class="depot-bar-fill" id="depot-bar-fill"></div>
+          </div>
+          <span id="depot-progress-text" style="font-weight: 700; color: var(--tally-pvw);">0 / 0 (0%) SIAP</span>
+          <button id="btn-reset-depot" class="btn-hardware" style="padding: 0.2rem 0.5rem; font-size: 0.7rem; color: #ff8597;">RESET</button>
         </div>
       </div>
 
-      <div class="sop-grid">
-        <div class="sop-panel-card power">
-          <h3 class="sop-title" style="color: var(--accent-amber);">🔌 1. Distribusi Kelistrikan & Power</h3>
-          <ul class="sop-list">
-            <li>Gunakan Terminal Kabel Heavy Duty berkapasitas arus stabil.</li>
-            <li>Dilarang menumpuk adaptor switcher / splitter pada terminal T tanpa fiksasi yang kuat.</li>
-            <li>Pastikan seluruh laptop operator (OBS, Resolume, ProPresenter) selalu terhubung ke adaptor daya utama.</li>
+      <div class="crew-filter-deck">
+        <button class="crew-filter-chip active" data-cat-filter="all">ALL SOURCES</button>
+        <button class="crew-filter-chip" data-cat-filter="OWL">OWL STUDIO</button>
+        <button class="crew-filter-chip" data-cat-filter="UKK">UKK UNNES</button>
+        <button class="crew-filter-chip" data-cat-filter="GIA">GIA DELIKSARI</button>
+        <button class="crew-filter-chip" data-cat-filter="GKJ">GKJ NGALIYAN</button>
+        <button class="crew-filter-chip" data-cat-filter="Andreas">ANDREAS BOX</button>
+        <button class="crew-filter-chip" data-cat-filter="Team">CREW UNITS</button>
+      </div>
+
+      <div class="rundown-table-wrapper">
+        <table class="inventory-hardware-table">
+          <thead>
+            <tr>
+              <th style="text-align: center; width: 44px;">CHK</th>
+              <th>EQUIPMENT SPECIFICATION</th>
+              <th>QTY</th>
+              <th>SOURCE</th>
+              <th>CLASS</th>
+            </tr>
+          </thead>
+          <tbody id="inventory-tbody">
+            <!-- Injected via JavaScript -->
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- PANEL 7: ELECTRICAL & CABLE SOP -->
+    <section id="panel-sop" class="deck-panel">
+      <div class="panel-header-strip">
+        <h2 class="panel-title">⚡ Standard Operating Procedure & Safety Matrix</h2>
+        <span class="panel-badge">FIELD RIGGING PROTOCOLS</span>
+      </div>
+
+      <div class="patchbay-grid">
+        <div class="patch-strip-card audio-patch">
+          <h3 style="font-family: var(--font-display); font-size: 1.05rem; color: var(--signal-amber); margin-bottom: 0.5rem;">🔌 1. AC Power Distribution & Load Balancing</h3>
+          <ul style="padding-left: 1.25rem; font-size: 0.82rem; font-family: var(--font-mono); color: #cbd5e1; display: flex; flex-direction: column; gap: 0.4rem;">
+            <li>All main switcher power supplies and distribution splitters must be routed to isolated AC phases.</li>
+            <li>No heavy chaining of ungrounded 2-pin adapters on primary mixer strips.</li>
+            <li>Operator workstations (OBS, Resolume, ProPresenter) must run on dedicated grounded surge protection strips.</li>
           </ul>
         </div>
 
-        <div class="sop-panel-card signal">
-          <h3 class="sop-title" style="color: var(--accent-cyan);">🎥 2. Kabel Sinyal HDMI & Wireless</h3>
-          <ul class="sop-list">
-            <li>Beri kelonggaran (slack) pada kabel HDMI panjang (20M/30M) di dekat tripod kamera agar tidak tertarik saat panning.</li>
-            <li>Fiksasi converter Micro-HDMI menggunakan kabel ties/selotip agar port kamera Sony tidak tertekan.</li>
-            <li>Transmitter Hollyland Pyro H wajib memiliki garis pandang bebas (Line-of-Sight) ke receiver station.</li>
+        <div class="patch-strip-card video-patch">
+          <h3 style="font-family: var(--font-display); font-size: 1.05rem; color: var(--signal-cyan); margin-bottom: 0.5rem;">🎥 2. High-Speed Video Links & RF Hollyland</h3>
+          <ul style="padding-left: 1.25rem; font-size: 0.82rem; font-family: var(--font-mono); color: #cbd5e1; display: flex; flex-direction: column; gap: 0.4rem;">
+            <li>Relieve mechanical tension on camera Micro-HDMI ports using 30cm strain relief breakout cables.</li>
+            <li>Hollyland Pyro H 5.8GHz TX antenna must maintain clean line-of-sight elevation over the audience.</li>
+            <li>Long-distance HDMI runs (20M/30M) must be taped flat along auditorium floor perimeters.</li>
           </ul>
         </div>
 
-        <div class="sop-panel-card teardown">
-          <h3 class="sop-title" style="color: var(--tally-pvw);">📦 3. Prosedur Usung-Usung (Teardown)</h3>
-          <ul class="sop-list">
-            <li>Matikan unit switcher dan mixer sebelum mencabut kabel video dan kabel audio balanced.</li>
-            <li>Gulung kabel secara rapi menggunakan teknik Over-Under (hindari kabel terpelintir).</li>
-            <li>Gunakan tab Master Inventory di portal web ini untuk mencentang setiap alat saat dikemas ke box/tas asal.</li>
+        <div class="patch-strip-card media-patch">
+          <h3 style="font-family: var(--font-display); font-size: 1.05rem; color: var(--signal-purple); margin-bottom: 0.5rem;">📦 3. Strike & Teardown Protocol (Usung-Usung)</h3>
+          <ul style="padding-left: 1.25rem; font-size: 0.82rem; font-family: var(--font-mono); color: #cbd5e1; display: flex; flex-direction: column; gap: 0.4rem;">
+            <li>Power off video processors and audio submixers before disengaging balanced lines.</li>
+            <li>Roll all HDMI and XLR lines using the Over-Under technique to protect copper cores.</li>
+            <li>Verify physical return of all loan gear against the Equipment Depot tab before exiting the venue.</li>
           </ul>
         </div>
       </div>
@@ -532,14 +491,14 @@
   </main>
 
   <!-- Footer -->
-  <footer class="command-footer">
-    <div class="container">
-      <p><b>Ibadah Perdana UKK UNNES 2026 — Production & Broadcast Command Center</b></p>
-      <p style="margin-top: 0.35rem;">
-        Repository: <a href="https://github.com/zzdree/ip26-production" target="_blank" rel="noopener noreferrer">github.com/zzdree/ip26-production</a>
+  <footer class="console-footer-bar">
+    <div class="console-container">
+      <p><b>IBADAH PERDANA UKK UNNES 2026 — PRODUCTION COMMAND CONSOLE</b></p>
+      <p style="margin-top: 0.25rem;">
+        TECHNICAL REPO: <a href="https://github.com/zzdree/ip26-production" target="_blank" rel="noopener noreferrer">github.com/zzdree/ip26-production</a>
       </p>
-      <p style="margin-top: 0.5rem; font-size: 0.75rem; color: var(--text-muted);">
-        Design System: Obsidian Command Center & Airwave Telemetry · © 2026 UKK UNNES Production Team & Andreas. All Rights Reserved.
+      <p style="margin-top: 0.4rem; color: var(--text-dim);">
+        PROPRIETARY PRODUCTION BLUEPRINT · ALL RIGHTS RESERVED © 2026 UKK UNNES & ANDREAS
       </p>
     </div>
   </footer>
