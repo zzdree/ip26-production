@@ -2,22 +2,23 @@
 <html lang="id">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes" />
   <title>Ibadah Perdana UKK UNNES 2026 — Production & Broadcast Command</title>
   <meta name="description" content="Master Command Deck, Signal Routing Matrix, Live Switcher Simulator, Master Inventory Log & Crew Briefing App untuk Ibadah Perdana UKK UNNES 2026." />
-  <meta name="theme-color" content="#121316" />
+  <meta name="theme-color" content="#111216" />
   <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220%200%20100%20100%22><text y=%22.9em%22 font-size=%2290%22>🎬</text></svg>">
   
   <!-- Premium Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
   <style>
     /* ==========================================================================
-       IP26 PRODUCTION & BROADCAST BLUEPRINT — TRUE GREY DARK MODE UI SYSTEM
-       Design Direction: True Charcoal Slate Grey & Tactile Neumorphic-Glass Elevation
-       Inspiration Reference: Easeout 25 Dark Mode UI (Alexander Plyuto, DStudio, Quan Ha)
+       IP26 PRODUCTION & BROADCAST BLUEPRINT — RESPONSIVE TRUE GREY DARK MODE
+       Design Direction: True Charcoal Slate Grey & Tactile Glass Elevation
+       Reference: Easeout 25 Dark Mode UI (Alexander Plyuto, DStudio, Quan Ha)
+       Fully Adaptive: Mobile (320px - 768px), Tablet (768px - 1024px), Desktop (1024px+)
        ========================================================================== */
     :root {
       /* Sophisticated True Neutral Grey / Zinc Dark Mode Hierarchy */
@@ -26,9 +27,9 @@
       --bg-surface: #1a1c22;
       --bg-surface-raised: #21232b;
       --bg-surface-elevated: #2a2c37;
-      --bg-glass: rgba(22, 24, 30, 0.88);
-      --bg-glass-card: rgba(27, 29, 37, 0.75);
-      --bg-glass-hover: rgba(36, 39, 49, 0.9);
+      --bg-glass: rgba(22, 24, 30, 0.9);
+      --bg-glass-card: rgba(27, 29, 37, 0.8);
+      --bg-glass-hover: rgba(36, 39, 49, 0.95);
 
       /* High-Contrast Precise Accent Signals */
       --accent-white: #ffffff;
@@ -52,7 +53,7 @@
       /* Precision Borders & Tactile Inset Lines */
       --border-subtle: rgba(255, 255, 255, 0.08);
       --border-medium: rgba(255, 255, 255, 0.14);
-      --border-strong: rgba(255, 255, 255, 0.22);
+      --border-strong: rgba(255, 255, 255, 0.24);
 
       --radius-xs: 6px;
       --radius-sm: 10px;
@@ -84,6 +85,7 @@
       font-size: 15px;
       scroll-behavior: smooth;
       color-scheme: dark;
+      -webkit-text-size-adjust: 100%;
     }
 
     body {
@@ -105,7 +107,7 @@
     }
 
     /* Custom Scrollbar */
-    ::-webkit-scrollbar { width: 7px; height: 7px; }
+    ::-webkit-scrollbar { width: 6px; height: 6px; }
     ::-webkit-scrollbar-track { background: var(--bg-base); }
     ::-webkit-scrollbar-thumb { background: var(--bg-surface-elevated); border-radius: 9999px; border: 2px solid var(--bg-base); }
     ::-webkit-scrollbar-thumb:hover { background: var(--text-muted); }
@@ -143,52 +145,67 @@
     .brand-cluster {
       display: flex;
       align-items: center;
-      gap: 1rem;
+      gap: 0.85rem;
       text-decoration: none;
+      min-width: 0;
     }
 
     .brand-logo-pill {
       display: flex;
       align-items: center;
       justify-content: center;
-      width: 44px;
-      height: 44px;
+      width: 42px;
+      height: 42px;
       border-radius: var(--radius-sm);
       background: linear-gradient(135deg, #2a2c37, #15161b);
       border: 1px solid var(--border-medium);
       color: var(--accent-white);
       font-family: var(--font-mono);
       font-weight: 800;
-      font-size: 1.15rem;
+      font-size: 1.1rem;
+      flex-shrink: 0;
       box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4), var(--shadow-inset-top);
     }
 
+    .brand-title-group {
+      display: flex;
+      flex-direction: column;
+      min-width: 0;
+    }
+
     .brand-title-group h1 {
-      font-size: 1.05rem;
+      font-size: 1rem;
       font-weight: 700;
       display: flex;
       align-items: center;
-      gap: 0.6rem;
+      gap: 0.5rem;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
 
     .brand-title-group p {
-      font-size: 0.75rem;
+      font-size: 0.72rem;
       color: var(--text-secondary);
       font-weight: 500;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
 
     .live-status-pill {
       display: inline-flex;
       align-items: center;
-      gap: 0.45rem;
+      gap: 0.4rem;
       font-family: var(--font-mono);
-      font-size: 0.68rem;
+      font-size: 0.65rem;
       font-weight: 700;
       background: rgba(239, 68, 68, 0.12);
       color: var(--accent-red);
-      padding: 0.2rem 0.6rem;
+      padding: 0.18rem 0.55rem;
       border-radius: 9999px;
       border: 1px solid rgba(239, 68, 68, 0.35);
+      flex-shrink: 0;
     }
 
     .pulsing-lamp {
@@ -208,9 +225,9 @@
     .header-nav {
       display: flex;
       align-items: center;
-      gap: 0.35rem;
+      gap: 0.25rem;
       background: rgba(18, 19, 24, 0.75);
-      padding: 0.3rem 0.45rem;
+      padding: 0.25rem 0.4rem;
       border-radius: var(--radius-md);
       border: 1px solid var(--border-subtle);
     }
@@ -218,11 +235,12 @@
     .nav-link {
       color: var(--text-secondary);
       text-decoration: none;
-      font-size: 0.84rem;
+      font-size: 0.82rem;
       font-weight: 600;
-      padding: 0.45rem 0.9rem;
+      padding: 0.4rem 0.8rem;
       border-radius: var(--radius-sm);
       transition: var(--transition-smooth);
+      white-space: nowrap;
     }
 
     .nav-link:hover {
@@ -241,16 +259,17 @@
     .header-actions {
       display: flex;
       align-items: center;
-      gap: 0.85rem;
+      gap: 0.75rem;
+      flex-shrink: 0;
     }
 
     .telemetry-clock {
       font-family: var(--font-mono);
-      font-size: 0.92rem;
+      font-size: 0.88rem;
       font-weight: 700;
       background: var(--bg-surface);
       border: 1px solid var(--border-medium);
-      padding: 0.45rem 0.85rem;
+      padding: 0.4rem 0.8rem;
       border-radius: var(--radius-sm);
       color: var(--accent-white);
       letter-spacing: 0.05em;
@@ -263,16 +282,18 @@
       align-items: center;
       justify-content: center;
       gap: 0.5rem;
-      padding: 0.65rem 1.35rem;
+      padding: 0.65rem 1.25rem;
       border-radius: var(--radius-sm);
       font-family: var(--font-body);
-      font-size: 0.88rem;
+      font-size: 0.86rem;
       font-weight: 600;
       cursor: pointer;
       border: 1px solid transparent;
       transition: var(--transition-smooth);
       text-decoration: none;
       user-select: none;
+      min-height: 42px;
+      touch-action: manipulation;
     }
 
     .btn-lux-primary {
@@ -285,7 +306,7 @@
     .btn-lux-primary:hover {
       background: linear-gradient(135deg, #3a3d4c, #22242e);
       border-color: #ffffff;
-      transform: translateY(-2px);
+      transform: translateY(-1px);
     }
 
     .btn-lux-red {
@@ -295,7 +316,7 @@
       box-shadow: 0 4px 15px rgba(239, 68, 68, 0.35);
     }
     .btn-lux-red:hover {
-      transform: translateY(-2px);
+      transform: translateY(-1px);
       box-shadow: 0 8px 25px rgba(239, 68, 68, 0.5);
     }
 
@@ -313,9 +334,10 @@
     }
 
     .btn-lux-sm {
-      padding: 0.38rem 0.85rem;
+      padding: 0.35rem 0.75rem;
       font-size: 0.78rem;
       border-radius: var(--radius-xs);
+      min-height: 34px;
     }
 
     /* Layout Container */
@@ -331,7 +353,7 @@
     }
 
     .section-block {
-      scroll-margin-top: calc(var(--header-height) + 2rem);
+      scroll-margin-top: calc(var(--header-height) + 1.5rem);
     }
 
     .section-head {
@@ -359,16 +381,17 @@
     }
 
     .section-title {
-      font-size: 1.85rem;
+      font-size: clamp(1.4rem, 2.5vw, 1.85rem);
       font-weight: 700;
       color: var(--text-pure);
     }
 
     .section-sub {
-      font-size: 0.92rem;
+      font-size: 0.9rem;
       color: var(--text-secondary);
       max-width: 780px;
       margin-top: 0.25rem;
+      line-height: 1.55;
     }
 
     /* Badge Pills */
@@ -377,14 +400,15 @@
       align-items: center;
       gap: 0.4rem;
       font-family: var(--font-mono);
-      font-size: 0.72rem;
+      font-size: 0.7rem;
       font-weight: 600;
-      padding: 0.3rem 0.8rem;
+      padding: 0.28rem 0.75rem;
       border-radius: 9999px;
       background: var(--bg-surface-raised);
       border: 1px solid var(--border-medium);
       color: var(--text-secondary);
       box-shadow: var(--shadow-inset-top);
+      white-space: nowrap;
     }
 
     .glow-badge.white { border-color: rgba(255, 255, 255, 0.3); color: #ffffff; background: rgba(255, 255, 255, 0.08); }
@@ -401,7 +425,7 @@
       background: linear-gradient(135deg, #1d1f27, #131418);
       border: 1px solid var(--border-medium);
       border-radius: var(--radius-xl);
-      padding: 3.5rem;
+      padding: clamp(1.75rem, 4vw, 3.5rem);
       position: relative;
       overflow: hidden;
       box-shadow: var(--shadow-deep), var(--shadow-inset-top);
@@ -417,20 +441,21 @@
     .hero-inner-grid {
       display: grid;
       grid-template-columns: 1.35fr 1fr;
-      gap: 3rem;
+      gap: 2.5rem;
       align-items: center;
     }
 
     .hero-title-main {
-      font-size: 2.75rem;
+      font-size: clamp(1.85rem, 3.5vw, 2.75rem);
       font-weight: 800;
       letter-spacing: -0.04em;
       margin-bottom: 1.15rem;
       color: #ffffff;
+      line-height: 1.15;
     }
 
     .hero-lead-text {
-      font-size: 1.05rem;
+      font-size: clamp(0.92rem, 1.4vw, 1.05rem);
       color: var(--text-secondary);
       line-height: 1.7;
       margin-bottom: 2rem;
@@ -439,17 +464,17 @@
     .hero-buttons-row {
       display: flex;
       flex-wrap: wrap;
-      gap: 0.85rem;
+      gap: 0.75rem;
     }
 
     .telemetry-card-cluster {
       background: var(--bg-surface);
       border: 1px solid var(--border-medium);
       border-radius: var(--radius-lg);
-      padding: 2rem;
+      padding: clamp(1.25rem, 2.5vw, 2rem);
       display: flex;
       flex-direction: column;
-      gap: 1.25rem;
+      gap: 1rem;
       box-shadow: var(--shadow-card), var(--shadow-inset-top);
     }
 
@@ -469,29 +494,30 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 0.4rem 0;
+      padding: 0.35rem 0;
+      gap: 0.75rem;
     }
 
-    .telemetry-key { font-size: 0.88rem; color: var(--text-secondary); }
-    .telemetry-val { font-family: var(--font-mono); font-weight: 700; font-size: 0.95rem; color: #ffffff; }
+    .telemetry-key { font-size: 0.85rem; color: var(--text-secondary); }
+    .telemetry-val { font-family: var(--font-mono); font-weight: 700; font-size: 0.9rem; color: #ffffff; text-align: right; }
 
     /* ==========================================================================
        METRIC KPI CARDS
        ========================================================================== */
     .kpi-deck {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-      gap: 1.5rem;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1.25rem;
     }
 
     .kpi-unit {
       background: var(--bg-glass-card);
       border: 1px solid var(--border-medium);
       border-radius: var(--radius-md);
-      padding: 1.5rem;
+      padding: 1.35rem;
       display: flex;
       align-items: center;
-      gap: 1.25rem;
+      gap: 1.15rem;
       transition: var(--transition-smooth);
       box-shadow: var(--shadow-card), var(--shadow-inset-top);
       backdrop-filter: blur(12px);
@@ -499,18 +525,18 @@
 
     .kpi-unit:hover {
       border-color: var(--border-strong);
-      transform: translateY(-3px);
+      transform: translateY(-2px);
       background: var(--bg-glass-hover);
     }
 
     .kpi-symbol-box {
-      width: 54px;
-      height: 54px;
+      width: 50px;
+      height: 50px;
       border-radius: var(--radius-sm);
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 1.6rem;
+      font-size: 1.5rem;
       background: var(--bg-surface);
       border: 1px solid var(--border-medium);
       flex-shrink: 0;
@@ -519,28 +545,28 @@
 
     .kpi-figure {
       font-family: var(--font-display);
-      font-size: 1.9rem;
+      font-size: 1.8rem;
       font-weight: 800;
       line-height: 1.1;
       color: var(--text-pure);
     }
 
-    .kpi-desc { font-size: 0.82rem; color: var(--text-secondary); margin-top: 0.2rem; }
+    .kpi-desc { font-size: 0.8rem; color: var(--text-secondary); margin-top: 0.2rem; }
 
     /* ==========================================================================
        CAMERA RIGGING & CREW CARDS
        ========================================================================== */
     .crew-deck-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(310px, 1fr));
-      gap: 1.5rem;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 1.25rem;
     }
 
     .glass-card {
       background: var(--bg-glass-card);
       border: 1px solid var(--border-medium);
       border-radius: var(--radius-md);
-      padding: 1.5rem;
+      padding: 1.35rem;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
@@ -551,7 +577,7 @@
 
     .glass-card:hover {
       border-color: var(--border-strong);
-      transform: translateY(-3px);
+      transform: translateY(-2px);
       background: var(--bg-glass-hover);
     }
 
@@ -559,51 +585,56 @@
       display: flex;
       align-items: flex-start;
       justify-content: space-between;
-      margin-bottom: 0.85rem;
+      gap: 0.5rem;
+      margin-bottom: 0.75rem;
     }
 
-    .card-main-title { font-size: 1.15rem; font-weight: 700; color: var(--text-pure); }
-    .card-subtitle-role { font-size: 0.88rem; color: var(--text-primary); font-weight: 600; margin-bottom: 0.6rem; }
+    .card-main-title { font-size: 1.1rem; font-weight: 700; color: var(--text-pure); line-height: 1.25; }
+    .card-subtitle-role { font-size: 0.85rem; color: var(--text-primary); font-weight: 600; margin-bottom: 0.5rem; }
     
     .card-tech-chip {
       font-family: var(--font-mono);
-      font-size: 0.78rem;
+      font-size: 0.76rem;
       color: var(--text-secondary);
       background: var(--bg-surface);
-      padding: 0.5rem 0.75rem;
+      padding: 0.45rem 0.7rem;
       border-radius: var(--radius-xs);
-      margin-bottom: 0.85rem;
+      margin-bottom: 0.75rem;
       border: 1px solid var(--border-subtle);
-      line-height: 1.4;
+      line-height: 1.45;
+      word-break: break-word;
     }
 
-    .card-body-text { font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 1.25rem; flex: 1; line-height: 1.55; }
+    .card-body-text { font-size: 0.84rem; color: var(--text-secondary); margin-bottom: 1.15rem; flex: 1; line-height: 1.55; }
     
     .card-bottom-row {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding-top: 0.85rem;
+      padding-top: 0.75rem;
       border-top: 1px solid var(--border-subtle);
       font-family: var(--font-mono);
-      font-size: 0.75rem;
+      font-size: 0.74rem;
       color: var(--text-muted);
+      gap: 0.5rem;
     }
 
     /* Filter Chips */
-    .chip-filter-row { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+    .chip-filter-row { display: flex; flex-wrap: wrap; gap: 0.45rem; }
     
     .filter-pill {
-      padding: 0.45rem 1rem;
+      padding: 0.4rem 0.85rem;
       border-radius: 9999px;
       background: var(--bg-surface);
       border: 1px solid var(--border-medium);
-      font-size: 0.82rem;
+      font-size: 0.8rem;
       font-weight: 600;
       color: var(--text-secondary);
       cursor: pointer;
       transition: var(--transition-smooth);
       box-shadow: var(--shadow-inset-top);
+      touch-action: manipulation;
+      min-height: 34px;
     }
 
     .filter-pill:hover {
@@ -637,24 +668,26 @@
     .pipeline-container:hover { border-color: var(--border-strong); }
 
     .pipeline-top-bar {
-      padding: 1.1rem 1.6rem;
+      padding: 1rem 1.4rem;
       display: flex;
       align-items: center;
       justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 0.75rem;
       cursor: pointer;
       user-select: none;
       background: var(--bg-surface);
     }
 
-    .pipeline-title-cluster { display: flex; align-items: center; gap: 0.85rem; }
-    .pipeline-name { font-size: 1.02rem; font-weight: 700; color: var(--text-pure); }
+    .pipeline-title-cluster { display: flex; align-items: center; gap: 0.75rem; flex-wrap: wrap; }
+    .pipeline-name { font-size: 0.98rem; font-weight: 700; color: var(--text-pure); }
 
     .pipeline-chain-flow {
       display: flex;
       align-items: center;
       flex-wrap: wrap;
-      gap: 0.6rem;
-      padding: 1.35rem 1.6rem;
+      gap: 0.5rem;
+      padding: 1.25rem 1.4rem;
       background: var(--bg-midnight);
       border-top: 1px solid var(--border-subtle);
     }
@@ -662,22 +695,23 @@
     .pipeline-node {
       background: var(--bg-surface);
       border: 1px solid var(--border-medium);
-      padding: 0.45rem 0.9rem;
+      padding: 0.4rem 0.8rem;
       border-radius: var(--radius-xs);
       font-family: var(--font-mono);
-      font-size: 0.8rem;
+      font-size: 0.78rem;
       color: var(--text-primary);
       display: inline-flex;
       align-items: center;
-      gap: 0.45rem;
+      gap: 0.4rem;
       box-shadow: var(--shadow-inset-top);
+      word-break: break-word;
     }
 
-    .pipeline-arrow { color: var(--text-secondary); font-weight: 800; }
+    .pipeline-arrow { color: var(--text-secondary); font-weight: 800; font-size: 0.85rem; }
     
     .pipeline-desc-box {
-      padding: 0.9rem 1.6rem 1.35rem;
-      font-size: 0.88rem;
+      padding: 0.85rem 1.4rem 1.25rem;
+      font-size: 0.86rem;
       color: var(--text-secondary);
       background: var(--bg-midnight);
       border-top: 1px dashed var(--border-subtle);
@@ -690,11 +724,11 @@
     .switcher-master-deck {
       display: grid;
       grid-template-columns: 2.1fr 1fr;
-      gap: 2rem;
+      gap: 1.75rem;
       background: var(--bg-midnight);
       border: 1px solid var(--border-medium);
       border-radius: var(--radius-xl);
-      padding: 2rem;
+      padding: clamp(1.25rem, 3vw, 2rem);
       box-shadow: var(--shadow-deep), var(--shadow-inset-top);
       position: relative;
     }
@@ -704,11 +738,11 @@
     .multiview-quad-grid {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
-      gap: 0.85rem;
+      gap: 0.75rem;
       aspect-ratio: 16/9;
       background: #000000;
       border-radius: var(--radius-sm);
-      padding: 0.85rem;
+      padding: 0.75rem;
       border: 1px solid var(--border-medium);
       box-shadow: inset 0 0 30px rgba(0, 0, 0, 0.9);
     }
@@ -737,21 +771,22 @@
 
     .slot-id-badge {
       position: absolute;
-      top: 8px; left: 8px;
+      top: 6px; left: 6px;
       font-family: var(--font-mono);
-      font-size: 0.72rem; font-weight: 700;
+      font-size: clamp(0.6rem, 1.2vw, 0.72rem); font-weight: 700;
       background: rgba(18, 19, 24, 0.9);
-      padding: 0.2rem 0.55rem;
+      padding: 0.15rem 0.45rem;
       border-radius: 4px;
       border: 1px solid rgba(255, 255, 255, 0.15);
       color: #ffffff;
       z-index: 5;
+      white-space: nowrap;
     }
 
     .slot-tally-lamp {
       position: absolute;
-      top: 8px; right: 8px;
-      width: 12px; height: 12px;
+      top: 6px; right: 6px;
+      width: 10px; height: 10px;
       border-radius: 50%;
       background: #27272a;
       z-index: 5;
@@ -764,7 +799,7 @@
     .master-screens-row {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 1.25rem;
+      gap: 1rem;
     }
 
     .screen-housing {
@@ -784,10 +819,10 @@
 
     .screen-header-tag {
       position: absolute;
-      top: 10px; left: 10px;
+      top: 8px; left: 8px;
       font-family: var(--font-mono);
-      font-size: 0.75rem; font-weight: 800;
-      padding: 0.25rem 0.7rem; border-radius: 4px;
+      font-size: clamp(0.65rem, 1.2vw, 0.75rem); font-weight: 800;
+      padding: 0.2rem 0.6rem; border-radius: 4px;
       z-index: 5;
     }
     .screen-header-tag.red { background: var(--accent-red); color: #fff; box-shadow: 0 0 8px var(--accent-red); }
@@ -796,9 +831,9 @@
     .control-console-deck {
       display: flex;
       flex-direction: column;
-      gap: 1.5rem;
+      gap: 1.35rem;
       background: var(--bg-surface);
-      padding: 1.5rem;
+      padding: clamp(1rem, 2.5vw, 1.5rem);
       border-radius: var(--radius-lg);
       border: 1px solid var(--border-medium);
       box-shadow: var(--shadow-inset-top);
@@ -806,7 +841,7 @@
 
     .bus-title-label {
       font-family: var(--font-mono);
-      font-size: 0.74rem; font-weight: 800;
+      font-size: 0.72rem; font-weight: 800;
       text-transform: uppercase; letter-spacing: 0.08em;
       margin-bottom: 0.5rem;
     }
@@ -814,20 +849,21 @@
     .bus-grid-buttons {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
-      gap: 0.6rem;
+      gap: 0.5rem;
     }
 
     .btn-tactile-bus {
-      height: 52px;
+      height: 48px;
       background: var(--bg-surface-raised);
       border: 2px solid var(--border-medium);
       border-radius: var(--radius-sm);
       color: var(--text-primary);
       font-family: var(--font-mono);
-      font-size: 0.9rem; font-weight: 800;
+      font-size: 0.85rem; font-weight: 800;
       cursor: pointer;
       transition: var(--transition-smooth);
       box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4), var(--shadow-inset-top);
+      touch-action: manipulation;
     }
 
     .btn-tactile-bus:hover { border-color: var(--text-primary); }
@@ -849,16 +885,17 @@
     .transition-split {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 0.85rem;
+      gap: 0.75rem;
     }
 
     .btn-cut-action {
       background: var(--bg-surface-elevated); color: #ffffff;
-      font-family: var(--font-mono); font-weight: 800; font-size: 0.95rem;
-      height: 52px; border-radius: var(--radius-sm);
+      font-family: var(--font-mono); font-weight: 800; font-size: 0.9rem;
+      height: 48px; border-radius: var(--radius-sm);
       border: 1px solid var(--border-medium); cursor: pointer;
       transition: var(--transition-smooth);
       box-shadow: var(--shadow-inset-top);
+      touch-action: manipulation;
     }
     .btn-cut-action:active { background: var(--accent-red); transform: scale(0.97); }
 
@@ -866,25 +903,26 @@
       background: linear-gradient(135deg, #3f4252, #21232d);
       color: #ffffff;
       border: 1px solid var(--border-strong);
-      font-family: var(--font-mono); font-weight: 800; font-size: 0.95rem;
-      height: 52px; border-radius: var(--radius-sm);
+      font-family: var(--font-mono); font-weight: 800; font-size: 0.9rem;
+      height: 48px; border-radius: var(--radius-sm);
       cursor: pointer;
       box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4), var(--shadow-inset-top);
       transition: var(--transition-smooth);
+      touch-action: manipulation;
     }
     .btn-auto-action:hover { border-color: #ffffff; }
     .btn-auto-action:active { transform: scale(0.97); }
 
     .audio-vu-meter-rack {
-      display: flex; gap: 1.25rem;
-      background: var(--bg-midnight); padding: 1.25rem;
+      display: flex; gap: 1rem;
+      background: var(--bg-midnight); padding: 1rem;
       border-radius: var(--radius-md); border: 1px solid var(--border-subtle);
     }
 
-    .vu-column { flex: 1; display: flex; flex-direction: column; align-items: center; gap: 0.6rem; }
+    .vu-column { flex: 1; display: flex; flex-direction: column; align-items: center; gap: 0.5rem; }
     
     .vu-bar-housing {
-      width: 18px; height: 130px;
+      width: 16px; height: 110px;
       background: #090a0e; border-radius: 4px;
       border: 1px solid var(--border-subtle);
       display: flex; flex-direction: column-reverse;
@@ -898,7 +936,7 @@
       transition: height 0.08s ease;
     }
 
-    .vu-channel-text { font-family: var(--font-mono); font-size: 0.72rem; color: var(--text-muted); font-weight: 600; }
+    .vu-channel-text { font-family: var(--font-mono); font-size: 0.68rem; color: var(--text-muted); font-weight: 600; }
 
     /* ==========================================================================
        MASTER INVENTORY & DATA TABLE
@@ -907,7 +945,7 @@
       background: var(--bg-glass-card);
       border: 1px solid var(--border-medium);
       border-radius: var(--radius-lg);
-      padding: 2rem;
+      padding: clamp(1.25rem, 3vw, 2rem);
       box-shadow: var(--shadow-card), var(--shadow-inset-top);
       backdrop-filter: blur(16px);
     }
@@ -915,20 +953,20 @@
     .inventory-toolbar-cluster {
       display: flex; flex-wrap: wrap;
       align-items: center; justify-content: space-between;
-      gap: 1.25rem; margin-bottom: 1.5rem;
+      gap: 1rem; margin-bottom: 1.25rem;
     }
 
-    .search-bar-wrap { position: relative; flex: 1; min-width: 280px; }
+    .search-bar-wrap { position: relative; flex: 1; min-width: 240px; }
     
     .glass-input {
       width: 100%;
       background: var(--bg-surface);
       border: 1px solid var(--border-medium);
       border-radius: var(--radius-sm);
-      padding: 0.7rem 1.25rem 0.7rem 2.6rem;
+      padding: 0.65rem 1.15rem 0.65rem 2.5rem;
       color: var(--text-pure);
       font-family: var(--font-body);
-      font-size: 0.9rem; outline: none;
+      font-size: 0.88rem; outline: none;
       transition: var(--transition-smooth);
       box-shadow: var(--shadow-inset-top);
     }
@@ -939,29 +977,30 @@
     }
 
     .search-icon-pos {
-      position: absolute; left: 0.95rem; top: 50%;
+      position: absolute; left: 0.85rem; top: 50%;
       transform: translateY(-50%); color: var(--text-muted);
     }
 
     .table-scroll-wrapper {
       width: 100%; overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
       border: 1px solid var(--border-medium);
       border-radius: var(--radius-md);
       background: var(--bg-midnight);
     }
 
-    .modern-dark-table { width: 100%; border-collapse: collapse; font-size: 0.9rem; text-align: left; }
+    .modern-dark-table { width: 100%; border-collapse: collapse; font-size: 0.86rem; text-align: left; min-width: 650px; }
     
     .modern-dark-table th {
       background: var(--bg-surface);
       color: var(--text-secondary);
-      font-family: var(--font-mono); font-size: 0.75rem;
+      font-family: var(--font-mono); font-size: 0.72rem;
       text-transform: uppercase; letter-spacing: 0.08em;
-      padding: 1rem 1.35rem; border-bottom: 1px solid var(--border-medium);
+      padding: 0.85rem 1.15rem; border-bottom: 1px solid var(--border-medium);
     }
 
     .modern-dark-table td {
-      padding: 1rem 1.35rem;
+      padding: 0.85rem 1.15rem;
       border-bottom: 1px solid var(--border-subtle);
       color: var(--text-primary);
     }
@@ -975,6 +1014,7 @@
       position: relative; display: inline-block; vertical-align: middle;
       transition: var(--transition-smooth);
       box-shadow: var(--shadow-inset-top);
+      touch-action: manipulation;
     }
 
     .custom-check-box:checked {
@@ -994,7 +1034,7 @@
       background: var(--bg-surface);
       border: 1px solid var(--border-medium);
       border-radius: var(--radius-lg);
-      padding: 1.75rem 2rem;
+      padding: clamp(1.25rem, 3vw, 2rem);
       margin-bottom: 2rem;
       box-shadow: var(--shadow-card), var(--shadow-inset-top);
       display: flex;
@@ -1006,23 +1046,23 @@
 
     .time-digits-giant {
       font-family: var(--font-mono);
-      font-size: 3.8rem;
+      font-size: clamp(2.5rem, 6vw, 3.8rem);
       font-weight: 800;
       color: #ffffff;
       line-height: 1;
     }
 
     .phase-subhead {
-      display: flex; align-items: center; gap: 0.85rem;
-      margin-bottom: 1.25rem; padding-bottom: 0.6rem; border-bottom: 1px solid var(--border-subtle);
+      display: flex; align-items: center; gap: 0.75rem;
+      margin-bottom: 1.15rem; padding-bottom: 0.5rem; border-bottom: 1px solid var(--border-subtle);
     }
 
-    .phase-headline { font-size: 1.3rem; color: #ffffff; }
+    .phase-headline { font-size: 1.2rem; color: #ffffff; }
 
     /* ==========================================================================
        CALIBRATION TOOLS & UTILITIES
        ========================================================================== */
-    .tools-split-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; }
+    .tools-split-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 1.75rem; }
     
     .pattern-canvas-frame {
       width: 100%; aspect-ratio: 16/9;
@@ -1042,14 +1082,15 @@
     .deck-modal.active { display: flex; }
     
     .deck-top-nav {
-      height: 68px; background: rgba(18, 19, 25, 0.95);
+      height: 64px; background: rgba(18, 19, 25, 0.95);
       backdrop-filter: blur(16px); border-bottom: 1px solid var(--border-subtle);
-      display: flex; align-items: center; justify-content: space-between; padding: 0 2.5rem;
+      display: flex; align-items: center; justify-content: space-between; padding: 0 clamp(1rem, 3vw, 2.5rem);
+      gap: 1rem;
     }
 
     .deck-slide-stage {
       flex: 1; display: flex; align-items: center; justify-content: center;
-      padding: 3rem 4rem; position: relative; overflow-y: auto;
+      padding: clamp(1.5rem, 4vw, 3rem) clamp(1rem, 4vw, 4rem); position: relative; overflow-y: auto;
     }
 
     .deck-slide-unit { display: none; width: 100%; max-width: 1200px; animation: deckFade 0.35s ease; }
@@ -1061,9 +1102,10 @@
     }
 
     .deck-bottom-nav {
-      height: 68px; background: rgba(18, 19, 25, 0.95);
+      height: 64px; background: rgba(18, 19, 25, 0.95);
       border-top: 1px solid var(--border-subtle);
-      display: flex; align-items: center; justify-content: space-between; padding: 0 2.5rem;
+      display: flex; align-items: center; justify-content: space-between; padding: 0 clamp(1rem, 3vw, 2.5rem);
+      gap: 1rem; flex-wrap: wrap;
     }
 
     /* ==========================================================================
@@ -1071,24 +1113,28 @@
        ========================================================================== */
     .mobile-floating-dock {
       display: none; position: fixed; bottom: 0; left: 0; right: 0; z-index: 1000;
-      background: rgba(18, 19, 25, 0.92); backdrop-filter: blur(20px);
+      background: rgba(18, 19, 25, 0.94); backdrop-filter: blur(20px);
       -webkit-backdrop-filter: blur(20px); border-top: 1px solid var(--border-medium);
-      padding: 0.6rem 0.85rem; justify-content: space-around;
-      box-shadow: 0 -10px 25px rgba(0, 0, 0, 0.6);
+      padding: 0.5rem 0.5rem calc(0.5rem + env(safe-area-inset-bottom));
+      justify-content: space-around;
+      box-shadow: 0 -10px 25px rgba(0, 0, 0, 0.7);
     }
 
     .dock-btn {
-      display: flex; flex-direction: column; align-items: center; gap: 0.25rem;
+      display: flex; flex-direction: column; align-items: center; gap: 0.2rem;
       color: var(--text-secondary); text-decoration: none;
-      font-size: 0.7rem; font-weight: 600;
+      font-size: 0.68rem; font-weight: 600;
       transition: var(--transition-smooth);
+      padding: 0.3rem 0.5rem;
+      border-radius: var(--radius-xs);
+      touch-action: manipulation;
     }
 
-    .dock-btn.active { color: #ffffff; }
-    .dock-symbol { font-size: 1.25rem; }
+    .dock-btn.active { color: #ffffff; background: rgba(255, 255, 255, 0.06); }
+    .dock-symbol { font-size: 1.15rem; }
 
     /* ==========================================================================
-       RESPONSIVE BREAKPOINTS
+       RESPONSIVE BREAKPOINTS (DESKTOP & MOBILE COHESION)
        ========================================================================== */
     @media (max-width: 1024px) {
       .hero-inner-grid { grid-template-columns: 1fr; gap: 2rem; }
@@ -1098,13 +1144,30 @@
     }
 
     @media (max-width: 768px) {
-      .master-layout { padding: 1.5rem 1.25rem 6rem; gap: 3rem; }
-      .hero-banner { padding: 2rem 1.5rem; }
-      .hero-title-main { font-size: 2rem; }
-      .command-header { padding: 0 1.25rem; }
+      .master-layout { padding: 1.25rem 1rem 5.5rem; gap: 2.75rem; }
+      .hero-banner { border-radius: var(--radius-lg); }
+      .command-header { padding: 0 1rem; }
       .telemetry-clock { display: none; }
       .mobile-floating-dock { display: flex; }
-      .time-digits-giant { font-size: 2.8rem; }
+      .kpi-deck { grid-template-columns: repeat(2, 1fr); gap: 0.85rem; }
+      .kpi-unit { padding: 1rem; }
+      .kpi-figure { font-size: 1.45rem; }
+      .kpi-symbol-box { width: 42px; height: 42px; font-size: 1.25rem; }
+      .crew-deck-grid { grid-template-columns: 1fr; }
+      .master-screens-row { grid-template-columns: 1fr; }
+      .deck-bottom-nav { height: auto; padding: 0.75rem 1rem; }
+      .deck-bottom-nav > div:last-child { display: none; }
+      .pipeline-top-bar { padding: 0.85rem 1rem; }
+      .pipeline-chain-flow { padding: 1rem; }
+      .pipeline-desc-box { padding: 0.75rem 1rem 1rem; }
+    }
+
+    @media (max-width: 480px) {
+      .kpi-deck { grid-template-columns: 1fr; }
+      .bus-grid-buttons { grid-template-columns: repeat(2, 1fr); }
+      .btn-tactile-bus { height: 44px; }
+      .btn-lux { width: 100%; }
+      .hero-buttons-row { width: 100%; flex-direction: column; }
     }
   </style>
 </head>
@@ -1125,7 +1188,7 @@
       </div>
     </a>
 
-    <!-- Adaptive Navigation Bar -->
+    <!-- Adaptive Navigation Bar (Desktop) -->
     <nav class="header-nav">
       <a href="#overview" class="nav-link active">Overview</a>
       <a href="#cameras" class="nav-link">Kamera</a>
@@ -1141,7 +1204,7 @@
     <div class="header-actions">
       <div class="telemetry-clock" id="live-event-clock">00:00:00</div>
       <button class="btn-lux btn-lux-primary btn-lux-sm" id="btn-open-presentation">
-        📽️ Mode Presentasi
+        📽️ Presentasi
       </button>
       <a href="https://github.com/zzdree/ip26-production" target="_blank" rel="noopener" class="btn-lux btn-lux-ghost btn-lux-sm" title="GitHub Repository">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
@@ -1157,7 +1220,7 @@
       <div class="hero-banner">
         <div class="hero-inner-grid">
           <div>
-            <div style="display:flex; flex-wrap:wrap; gap:0.5rem; margin-bottom:1.25rem;">
+            <div style="display:flex; flex-wrap:wrap; gap:0.45rem; margin-bottom:1.15rem;">
               <span class="glow-badge white">UKK UNNES 2026</span>
               <span class="glow-badge emerald">STATUS: OPERATIONAL READY</span>
               <span class="glow-badge amber">VENUE: AUDITORIUM UNNES</span>
@@ -1229,7 +1292,7 @@
         <div class="kpi-unit">
           <div class="kpi-symbol-box">📦</div>
           <div>
-            <div class="kpi-figure" id="kpi-inv-total">90+ Item</div>
+            <div class="kpi-figure" id="kpi-inv-total">93 Item</div>
             <div class="kpi-desc">Inventaris Log Terdata</div>
           </div>
         </div>
@@ -1270,7 +1333,7 @@
               <span class="glow-badge white">ALEX</span>
             </div>
             <div class="card-subtitle-role">Sony ZV-E10 + Lens 18-105mm F4 G OSS</div>
-            <div class="card-tech-chip">Hollyland Pyro S Wireless (TX/RX) • Stand Lighting • HDMI 1.5M • Tripod Big</div>
+            <div class="card-tech-chip">Hollyland Pyro S Wireless (TX/RX) • Stand Lighting Small • HDMI 1.5M • Tripod Big</div>
             <div class="card-body-text">Main Long-shot & Stage Master framing. Sinyal dikirim via transmisi nirkabel Hollyland Pyro S ke Input 1 Switcher Cinetreak V1.</div>
           </div>
           <div class="card-bottom-row">
@@ -1286,7 +1349,7 @@
               <span class="glow-badge amber">KIEL 1</span>
             </div>
             <div class="card-subtitle-role">Sony ZV-E10 + Lens 18-105mm F4 G OSS</div>
-            <div class="card-tech-chip">Hollyland Pyro H Wireless Kit (TX/RX) • Stand Lighting • HDMI 1.5M</div>
+            <div class="card-tech-chip">Hollyland Pyro H Wireless Kit (TX/RX) • Stand Lighting Small • HDMI 1.5M</div>
             <div class="card-body-text">Wireless roving camera untuk close-up WL, Singer, dan interaksi jemaat dengan transmisi 5.8GHz ultra-low latency.</div>
           </div>
           <div class="card-bottom-row">
@@ -1366,7 +1429,7 @@
           <p class="section-sub">Daftar kontak intercom, perangkat yang dipegang, dan rincian SOP setiap kru.</p>
         </div>
         <div class="chip-filter-row">
-          <button class="filter-pill crew-filter-btn active" data-division="all">Semua Kru</button>
+          <button class="filter-pill crew-filter-btn active" data-division="all">Semua Kru (15)</button>
           <button class="filter-pill crew-filter-btn" data-division="broadcast">Broadcast</button>
           <button class="filter-pill crew-filter-btn" data-division="docs">Dokumentasi</button>
           <button class="filter-pill crew-filter-btn" data-division="engine">Engine & OBS</button>
@@ -1514,13 +1577,13 @@
         <div>
           <span class="section-tag">06 • Equipment Loan & Storage</span>
           <h2 class="section-title">Master Inventory & Checklist Alat</h2>
-          <p class="section-sub">Log inventaris lintas pemilik (OWL, GIA, GKJ, UKK, Andreas, Kiel, Lio, Joel, Kezia, Jennifer, Darrel, Panitia) dengan auto-save di browser.</p>
+          <p class="section-sub">Log inventaris lintas 12 pemilik (OWL, ABON, Andreas, GIA, GKJ, UKK, Lio, Darrel, Kiel, Joel, Kezia, Jennifer, Panitia) dengan auto-save di browser.</p>
         </div>
-        <div style="display:flex; gap:0.6rem; flex-wrap:wrap;">
+        <div style="display:flex; gap:0.5rem; flex-wrap:wrap;">
           <button class="btn-lux btn-lux-ghost btn-lux-sm" id="btn-check-all-inv">✅ Check All</button>
           <button class="btn-lux btn-lux-ghost btn-lux-sm" id="btn-reset-check-inv">🔄 Reset</button>
           <button class="btn-lux btn-lux-ghost btn-lux-sm" id="btn-export-inv-json">💾 Export JSON</button>
-          <button class="btn-lux btn-lux-ghost btn-lux-sm" id="btn-print-inv">🖨️ Cetak Manifest</button>
+          <button class="btn-lux btn-lux-ghost btn-lux-sm" id="btn-print-inv">🖨️ Cetak</button>
         </div>
       </div>
 
@@ -1564,9 +1627,9 @@
             <span class="search-icon-pos">🔍</span>
             <input type="text" id="inventory-search-input" class="glass-input" placeholder="Cari nama alat, pemilik, kabel, adaptor..." />
           </div>
-          <div style="display:flex; gap:0.85rem; flex-wrap:wrap;">
-            <select id="category-filter-select" class="glass-input" style="width:auto; padding-left:1.25rem; cursor:pointer;"></select>
-            <select id="status-filter-select" class="glass-input" style="width:auto; padding-left:1.25rem; cursor:pointer;">
+          <div style="display:flex; gap:0.65rem; flex-wrap:wrap;">
+            <select id="category-filter-select" class="glass-input" style="width:auto; padding-left:1.15rem; cursor:pointer;"></select>
+            <select id="status-filter-select" class="glass-input" style="width:auto; padding-left:1.15rem; cursor:pointer;">
               <option value="all">Semua Status</option>
               <option value="Verified">Verified ✅</option>
               <option value="Checked">Checked ☑️</option>
@@ -1616,7 +1679,7 @@
             Target Khotbah: 40–45 Menit • Peringatan visual kuning saat waktu tersisa 5 menit.
           </div>
         </div>
-        <div style="display:flex; gap:0.6rem; align-items:center;">
+        <div style="display:flex; gap:0.5rem; align-items:center; flex-wrap:wrap;">
           <button class="btn-lux btn-lux-primary" id="btn-sw-start">▶️ Start</button>
           <button class="btn-lux btn-lux-ghost" id="btn-sw-pause">⏸️ Pause</button>
           <button class="btn-lux btn-lux-ghost" id="btn-sw-reset">🔄 Reset</button>
@@ -1683,7 +1746,7 @@
       </div>
 
       <!-- Field Notes -->
-      <div class="inventory-master-panel" style="margin-top:2rem;">
+      <div class="inventory-master-panel" style="margin-top:1.75rem;">
         <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:1rem;">
           <h3 style="font-size:1.15rem; font-weight:700;">📝 Catatan Lapangan & Log Kru (Auto-Saved)</h3>
           <button class="btn-lux btn-lux-ghost btn-lux-sm" id="btn-clear-notes">🗑️ Clear</button>
@@ -1738,12 +1801,12 @@
   <!-- FULLSCREEN CREW PRESENTATION DECK MODAL -->
   <div class="deck-modal" id="presentation-modal">
     <div class="deck-top-nav">
-      <div style="display:flex; align-items:center; gap:0.85rem;">
-        <span class="brand-logo-pill" style="width:36px; height:36px; font-size:1rem;">IP26</span>
-        <span style="font-weight:800; font-size:1.05rem; letter-spacing:-0.02em;">CREW MASTER BRIEFING & PITCH DECK</span>
+      <div style="display:flex; align-items:center; gap:0.75rem;">
+        <span class="brand-logo-pill" style="width:34px; height:34px; font-size:0.95rem;">IP26</span>
+        <span style="font-weight:800; font-size:clamp(0.85rem, 2vw, 1.05rem); letter-spacing:-0.02em;">CREW MASTER BRIEFING & PITCH DECK</span>
       </div>
-      <div style="display:flex; align-items:center; gap:1.25rem;">
-        <span id="pres-slide-indicator" style="font-family:var(--font-mono); font-size:0.85rem; color:var(--text-secondary);">Slide 1 of 8</span>
+      <div style="display:flex; align-items:center; gap:1rem;">
+        <span id="pres-slide-indicator" style="font-family:var(--font-mono); font-size:0.8rem; color:var(--text-secondary);">Slide 1 of 8</span>
         <button class="btn-lux btn-lux-ghost btn-lux-sm" id="btn-close-presentation">✕ Keluar (Esc)</button>
       </div>
     </div>
@@ -1754,31 +1817,31 @@
       <!-- Slide 1: Title -->
       <div class="deck-slide-unit active">
         <span class="glow-badge white">OFFICIAL TECHNICAL BRIEFING</span>
-        <h1 style="font-size:3.2rem; margin:1.25rem 0 0.75rem; line-height:1.15; font-weight:800;">
+        <h1 style="font-size:clamp(1.8rem, 4vw, 3.2rem); margin:1.25rem 0 0.75rem; line-height:1.15; font-weight:800;">
           Ibadah Perdana UKK UNNES 2026
         </h1>
-        <h3 style="color:var(--text-primary); font-weight:500; margin-bottom:2rem; font-size:1.35rem;">
+        <h3 style="color:var(--text-primary); font-weight:500; margin-bottom:2rem; font-size:clamp(1rem, 2vw, 1.35rem);">
           Production, Multi-Camera Broadcast & Media Engineering Architecture
         </h3>
-        <div style="display:grid; grid-template-columns:repeat(3, 1fr); gap:1.5rem; margin-top:2rem;">
+        <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(200px, 1fr)); gap:1.25rem; margin-top:2rem;">
           <div class="kpi-unit">
             <div class="kpi-symbol-box">📍</div>
             <div>
-              <div class="kpi-figure" style="font-size:1.25rem;">Auditorium UNNES</div>
+              <div class="kpi-figure" style="font-size:1.15rem;">Auditorium UNNES</div>
               <div class="kpi-desc">Master Venue</div>
             </div>
           </div>
           <div class="kpi-unit">
             <div class="kpi-symbol-box" style="color:var(--accent-amber);">🎥</div>
             <div>
-              <div class="kpi-figure" style="font-size:1.25rem;">Dual Wireless</div>
+              <div class="kpi-figure" style="font-size:1.15rem;">Dual Wireless</div>
               <div class="kpi-desc">Pyro S + Pyro H</div>
             </div>
           </div>
           <div class="kpi-unit">
             <div class="kpi-symbol-box" style="color:var(--accent-emerald);">🖥️</div>
             <div>
-              <div class="kpi-figure" style="font-size:1.25rem;">Megascreen LED</div>
+              <div class="kpi-figure" style="font-size:1.15rem;">Megascreen LED</div>
               <div class="kpi-desc">Center + Wing Sayap</div>
             </div>
           </div>
@@ -1788,11 +1851,11 @@
       <!-- Slide 2: Crew Hierarchy -->
       <div class="deck-slide-unit">
         <span class="glow-badge amber">STRUKTUR ORGANISASI</span>
-        <h2 style="font-size:2.4rem; margin:0.75rem 0 1.5rem;">Master Production Crew & PIC</h2>
+        <h2 style="font-size:clamp(1.5rem, 3.5vw, 2.4rem); margin:0.75rem 0 1.5rem;">Master Production Crew & PIC</h2>
         <div class="crew-deck-grid">
           <div class="glass-card">
             <div class="card-top-row"><span class="card-main-title">🎥 BROADCAST TEAM</span></div>
-            <div class="card-body-text" style="font-size:0.92rem; line-height:1.7;">
+            <div class="card-body-text" style="font-size:0.9rem; line-height:1.7;">
               • CAM 1: <strong>Alex</strong> (ZV-E10 Wireless Pyro S)<br/>
               • CAM 2: <strong>Kiel 1</strong> (ZV-E10 Wireless Pyro H)<br/>
               • CAM 3: <strong>Dewi</strong> (A6000 Wing Left HDMI 10M)<br/>
@@ -1801,7 +1864,7 @@
           </div>
           <div class="glass-card">
             <div class="card-top-row"><span class="card-main-title">📸 DOCUMENTATION</span></div>
-            <div class="card-body-text" style="font-size:0.92rem; line-height:1.7;">
+            <div class="card-body-text" style="font-size:0.9rem; line-height:1.7;">
               • Photo Lead: <strong>Nico</strong> (A6400 + 50mm)<br/>
               • Cinematic Video: <strong>Joel</strong> (A6600 + RS3 Gimbal)<br/>
               • Social Media: <strong>Jennifer</strong> (iPhone 15 Pro)
@@ -1809,7 +1872,7 @@
           </div>
           <div class="glass-card">
             <div class="card-top-row"><span class="card-main-title">💻 ENGINE & MEDIA</span></div>
-            <div class="card-body-text" style="font-size:0.92rem; line-height:1.7;">
+            <div class="card-body-text" style="font-size:0.9rem; line-height:1.7;">
               • Switcher: <strong>Wilfred</strong> (Cinetreak V1 + TV Kezia)<br/>
               • OBS & Lead Eng: <strong>Andreas</strong><br/>
               • ProPresenter 1: <strong>Rania</strong> (LED Sayap)<br/>
@@ -1823,18 +1886,18 @@
       <!-- Slide 3: Camera Strategy -->
       <div class="deck-slide-unit">
         <span class="glow-badge white">CAMERA PLACEMENT</span>
-        <h2 style="font-size:2.4rem; margin:0.75rem 0 1.5rem;">Broadcast Camera Setup & Angles</h2>
-        <div style="display:grid; grid-template-columns:1fr 1fr; gap:1.75rem;">
+        <h2 style="font-size:clamp(1.5rem, 3.5vw, 2.4rem); margin:0.75rem 0 1.5rem;">Broadcast Camera Setup & Angles</h2>
+        <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(280px, 1fr)); gap:1.5rem;">
           <div class="glass-card">
             <div class="card-main-title" style="color:#ffffff; margin-bottom:0.75rem;">CAM 1 (Alex) & CAM 2 (Kiel 1) — Dual Wireless</div>
-            <p style="font-size:0.95rem; color:var(--text-secondary); line-height:1.7;">
+            <p style="font-size:0.92rem; color:var(--text-secondary); line-height:1.7;">
               • <strong>CAM 1 (Pyro S):</strong> Berdiri di FOH Center. Memegang Master Stage Shot, Altar & Speaker Framing secara nirkabel.<br/><br/>
               • <strong>CAM 2 (Pyro H):</strong> Roving Kamera Wireless nirkabel. Menangkap ekspresi jemaat, close-up WL & Singer secara dinamis di panggung.
             </p>
           </div>
           <div class="glass-card">
             <div class="card-main-title" style="color:var(--text-secondary); margin-bottom:0.75rem;">CAM 3 (Dewi) & CAM 4 (Nathania) — Tethered HDMI</div>
-            <p style="font-size:0.95rem; color:var(--text-secondary); line-height:1.7;">
+            <p style="font-size:0.92rem; color:var(--text-secondary); line-height:1.7;">
               • <strong>CAM 3 (Wing Left):</strong> Cross-angle shot ke arah pembicara dan keyboardist panggung. Jalur HDMI 10M.<br/><br/>
               • <strong>CAM 4 (Wing Right):</strong> Cross-angle shot ke arah worship leader dan drum/gitar panggung. Jalur HDMI 10M.
             </p>
@@ -1845,9 +1908,9 @@
       <!-- Slide 4: Video Routing -->
       <div class="deck-slide-unit">
         <span class="glow-badge red">VIDEO PIPELINE</span>
-        <h2 style="font-size:2.4rem; margin:0.75rem 0 1.5rem;">Cinetreak V1 Switcher & OBS Livestream</h2>
-        <div class="glass-card" style="padding:2rem;">
-          <p style="font-size:1rem; color:var(--text-primary); line-height:1.9;">
+        <h2 style="font-size:clamp(1.5rem, 3.5vw, 2.4rem); margin:0.75rem 0 1.5rem;">Cinetreak V1 Switcher & OBS Livestream</h2>
+        <div class="glass-card" style="padding:1.75rem;">
+          <p style="font-size:0.95rem; color:var(--text-primary); line-height:1.85;">
             1. <strong>Input 1-4:</strong> 4 Sinyal Kamera Masuk ke Switcher Cinetreak Cinelive V1 (Input 1: Pyro S, Input 2: Pyro H, Input 3-4: HDMI 10M).<br/>
             2. <strong>HDMI Multi-view Out:</strong> Masuk ke TV Monitor (Kezia) untuk monitoring 4 kamera + audio bar.<br/>
             3. <strong>USB-C UVC Out:</strong> Terhubung langsung via kabel Data USB 3.0 ke Laptop OBS Studio (Andreas).<br/>
@@ -1859,17 +1922,17 @@
       <!-- Slide 5: LED Stage Mapping -->
       <div class="deck-slide-unit">
         <span class="glow-badge amber">STAGE VISUAL ENGINE</span>
-        <h2 style="font-size:2.4rem; margin:0.75rem 0 1.5rem;">Stage LED Mapping & Media Presentation</h2>
-        <div style="display:grid; grid-template-columns:1fr 1fr; gap:1.75rem;">
+        <h2 style="font-size:clamp(1.5rem, 3.5vw, 2.4rem); margin:0.75rem 0 1.5rem;">Stage LED Mapping & Media Presentation</h2>
+        <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(280px, 1fr)); gap:1.5rem;">
           <div class="glass-card">
             <div class="card-main-title" style="color:var(--accent-amber); margin-bottom:0.75rem;">LED Megascreen Center (Resolume Arena)</div>
-            <p style="font-size:0.92rem; color:var(--text-secondary); line-height:1.7;">
+            <p style="font-size:0.9rem; color:var(--text-secondary); line-height:1.7;">
               Dikelola oleh Andreas & Bayu. Menampilkan Video Loop Pre-Ibadah, Opening Video, Motion Background Tema, dan live camera mix via HDMI 15M ke NovaStar Processor.
             </p>
           </div>
           <div class="glass-card">
             <div class="card-main-title" style="color:#ffffff; margin-bottom:0.75rem;">LED Sayap Kanan-Kiri (ProPresenter 1 & 2)</div>
-            <p style="font-size:0.92rem; color:var(--text-secondary); line-height:1.7;">
+            <p style="font-size:0.9rem; color:var(--text-secondary); line-height:1.7;">
               Dikelola oleh Rania & Filia. Menampilkan Lirik Lagu, Slide Firman Alkitab, PPT Pembicara, dan QRIS Persembahan langsung ke Video Processor Auditorium UNNES.
             </p>
           </div>
@@ -1879,9 +1942,9 @@
       <!-- Slide 6: Audio Chain -->
       <div class="deck-slide-unit">
         <span class="glow-badge emerald">AUDIO PIPELINE</span>
-        <h2 style="font-size:2.4rem; margin:0.75rem 0 1.5rem;">Dual Mixer Master Audio Routing</h2>
-        <div class="glass-card" style="padding:2rem;">
-          <p style="font-size:1rem; color:var(--text-primary); line-height:1.9;">
+        <h2 style="font-size:clamp(1.5rem, 3.5vw, 2.4rem); margin:0.75rem 0 1.5rem;">Dual Mixer Master Audio Routing</h2>
+        <div class="glass-card" style="padding:1.75rem;">
+          <p style="font-size:0.95rem; color:var(--text-primary); line-height:1.85;">
             • <strong>FOH Main Console:</strong> Yamaha QL5 (UNNES) mengelola seluruh 32 mic & instrumen panggung.<br/>
             • <strong>Broadcast Matrix Send:</strong> Yamaha QL5 ➔ XLR 10M (UKK) ➔ XLR 3M (GIA) ➔ <strong>NewBaxs CT80S Sub-Mixer</strong>.<br/>
             • <strong>Digital Audio Interface:</strong> NewBaxs CT80S terhubung via kabel USB Audio ke OBS Studio.<br/>
@@ -1893,18 +1956,18 @@
       <!-- Slide 7: Rundown Cues -->
       <div class="deck-slide-unit">
         <span class="glow-badge white">RUNDOWN & CUES</span>
-        <h2 style="font-size:2.4rem; margin:0.75rem 0 1.5rem;">Media Checklist & Timing Cues</h2>
-        <div style="display:grid; grid-template-columns:repeat(3, 1fr); gap:1.5rem;">
+        <h2 style="font-size:clamp(1.5rem, 3.5vw, 2.4rem); margin:0.75rem 0 1.5rem;">Media Checklist & Timing Cues</h2>
+        <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(240px, 1fr)); gap:1.25rem;">
           <div class="glass-card">
             <div class="card-main-title" style="color:#ffffff; margin-bottom:0.75rem;">1. Pre-Ibadah</div>
-            <p style="font-size:0.88rem; color:var(--text-secondary); line-height:1.6;">
+            <p style="font-size:0.86rem; color:var(--text-secondary); line-height:1.6;">
               • Open Gate Playlist Audio<br/>
               • Loop Video Profile UKK & Aftermovie IP25/IN25 di LED Center.
             </p>
           </div>
           <div class="glass-card">
             <div class="card-main-title" style="color:var(--accent-amber); margin-bottom:0.75rem;">2. Sesi Ibadah</div>
-            <p style="font-size:0.88rem; color:var(--text-secondary); line-height:1.6;">
+            <p style="font-size:0.86rem; color:var(--text-secondary); line-height:1.6;">
               • Opening Countdown Video<br/>
               • Sambutan Bu Grave<br/>
               • Lirik Lagu WL<br/>
@@ -1914,7 +1977,7 @@
           </div>
           <div class="glass-card">
             <div class="card-main-title" style="color:var(--accent-emerald); margin-bottom:0.75rem;">3. Post-Ibadah</div>
-            <p style="font-size:0.88rem; color:var(--text-secondary); line-height:1.6;">
+            <p style="font-size:0.86rem; color:var(--text-secondary); line-height:1.6;">
               • Usung-usung alat<br/>
               • Verifikasi checklist pengembalian (OWL, GIA, GKJ, UKK, Pribadi).
             </p>
@@ -1925,9 +1988,9 @@
       <!-- Slide 8: Safety & Contingency -->
       <div class="deck-slide-unit">
         <span class="glow-badge red">SOP & FAIL-SAFE</span>
-        <h2 style="font-size:2.4rem; margin:0.75rem 0 1.5rem;">Prosedur Darurat & Keamanan Elektrikal</h2>
-        <div class="glass-card" style="padding:2rem;">
-          <p style="font-size:1rem; color:var(--text-primary); line-height:1.9;">
+        <h2 style="font-size:clamp(1.5rem, 3.5vw, 2.4rem); margin:0.75rem 0 1.5rem;">Prosedur Darurat & Keamanan Elektrikal</h2>
+        <div class="glass-card" style="padding:1.75rem;">
+          <p style="font-size:0.95rem; color:var(--text-primary); line-height:1.85;">
             ⚠️ <strong>Jika Hollyland Pyro S/H Dropout:</strong> Operator kamera segera mendekati tiang lighting stand receiver RX untuk re-locking sinyal.<br/>
             ⚠️ <strong>Jika Kabel HDMI CAM 3/4 Terputus:</strong> Switcher segera beralih (CUT) ke CAM 1/2 Wireless atau Standby Graphic di OBS.<br/>
             ⚠️ <strong>Jika Resolume / ProPresenter Crash:</strong> Switcher alihkan ke Direct Hardware Pass-through.<br/>
@@ -1941,13 +2004,13 @@
     <!-- Presentation Footer Navigation -->
     <div class="deck-bottom-nav">
       <div style="display:flex; align-items:center; gap:0.6rem;">
-        <button class="btn-lux btn-lux-ghost btn-lux-sm" id="btn-pres-prev">◀ Previous Slide</button>
-        <button class="btn-lux btn-lux-primary btn-lux-sm" id="btn-pres-next">Next Slide ▶</button>
+        <button class="btn-lux btn-lux-ghost btn-lux-sm" id="btn-pres-prev">◀ Previous</button>
+        <button class="btn-lux btn-lux-primary btn-lux-sm" id="btn-pres-next">Next ▶</button>
       </div>
-      <div style="width:320px; background:rgba(255, 255, 255, 0.08); height:6px; border-radius:9999px; overflow:hidden;">
+      <div style="width:240px; background:rgba(255, 255, 255, 0.08); height:6px; border-radius:9999px; overflow:hidden;">
         <div id="pres-progress-bar" style="height:100%; width:12.5%; background:#ffffff; box-shadow:0 0 10px rgba(255, 255, 255, 0.5); transition:width 0.25s ease;"></div>
       </div>
-      <div style="font-size:0.8rem; color:var(--text-muted); font-family:var(--font-mono);">
+      <div style="font-size:0.78rem; color:var(--text-muted); font-family:var(--font-mono);">
         Gunakan tombol panah ◄ ► atau Spacebar
       </div>
     </div>
@@ -2330,9 +2393,9 @@
                 <span class="glow-badge ${p.category === 'video' ? 'white' : p.category === 'audio' ? 'purple' : p.category === 'power' ? 'emerald' : 'amber'}">${p.category.toUpperCase()}</span>
                 <span class="pipeline-name">${p.title}</span>
               </div>
-              <div style="display:flex; align-items:center; gap:0.75rem;">
+              <div style="display:flex; align-items:center; gap:0.65rem;">
                 <span class="glow-badge white">${p.tag}</span>
-                <span style="color:var(--accent-emerald); font-size:0.85rem; font-weight:800;">${p.status}</span>
+                <span style="color:var(--accent-emerald); font-size:0.82rem; font-weight:800;">${p.status}</span>
               </div>
             </div>
             <div class="pipeline-chain-flow">
@@ -2521,7 +2584,7 @@
 
         const providers = ['all', ...Array.from(new Set(MASTER_INVENTORY.map(i => i.provider))).sort()];
         if (provSelect) {
-          provSelect.innerHTML = providers.map(p => `<button class="filter-pill ${p === 'all' ? 'active' : ''}" data-p="${p}">${p === 'all' ? 'Semua Pemilik' : p}</button>`).join('');
+          provSelect.innerHTML = providers.map(p => `<button class="filter-pill ${p === 'all' ? 'active' : ''}" data-p="${p}">${p === 'all' ? 'Semua Pemilik (12)' : p}</button>`).join('');
           provSelect.querySelectorAll('[data-p]').forEach(b => {
             b.addEventListener('click', () => {
               provSelect.querySelectorAll('.filter-pill').forEach(c => c.classList.remove('active'));
@@ -2599,7 +2662,7 @@
         tbody.innerHTML = filtered.map((item, idx) => `
           <tr>
             <td style="text-align:center;"><input type="checkbox" class="custom-check-box inv-cb" data-id="${item.id}" ${this.checkedInv[item.id] ? 'checked' : ''} /></td>
-            <td style="font-family:var(--font-mono); font-size:0.78rem; color:var(--text-muted);">${idx + 1}</td>
+            <td style="font-family:var(--font-mono); font-size:0.75rem; color:var(--text-muted);">${idx + 1}</td>
             <td><div style="font-weight:600; color:var(--text-pure);">${item.name}</div><div style="font-size:0.75rem; color:var(--text-muted);">${item.note || '-'}</div></td>
             <td style="font-family:var(--font-mono); font-weight:700; color:#ffffff;">${item.qty}</td>
             <td><span class="glow-badge white">${item.provider}</span></td>
@@ -2657,11 +2720,11 @@
                       <span class="glow-badge white">${item.type}</span>
                       <input type="checkbox" class="custom-check-box media-cb" data-id="${item.id}" ${this.checkedMedia[item.id] ? 'checked' : ''} />
                     </div>
-                    <div class="card-main-title" style="font-size:1.05rem; margin-bottom:0.4rem;">${item.title}</div>
-                    <div style="font-family:var(--font-mono); font-size:0.78rem; color:var(--text-secondary); margin-bottom:0.5rem;">🎯 Destinasi: ${item.dest}</div>
+                    <div class="card-main-title" style="font-size:1.02rem; margin-bottom:0.35rem;">${item.title}</div>
+                    <div style="font-family:var(--font-mono); font-size:0.78rem; color:var(--text-secondary); margin-bottom:0.45rem;">🎯 Destinasi: ${item.dest}</div>
                     <div style="font-size:0.8rem; color:var(--text-muted); margin-bottom:0.75rem;">👤 PIC: <strong style="color:var(--text-primary);">${item.pic}</strong></div>
                   </div>
-                  <div style="font-size:0.82rem; color:var(--text-secondary); background:var(--bg-midnight); padding:0.6rem 0.85rem; border-radius:var(--radius-xs); border-left:3px solid var(--border-strong);">
+                  <div style="font-size:0.82rem; color:var(--text-secondary); background:var(--bg-midnight); padding:0.55rem 0.8rem; border-radius:var(--radius-xs); border-left:3px solid var(--border-strong);">
                     💡 ${item.notes}
                   </div>
                 </div>
@@ -2816,16 +2879,16 @@
         if (!container) return;
         container.innerHTML = SOP_AND_CONTINGENCIES.map((sop, idx) => `
           <div class="glass-card" style="margin-bottom:1.5rem; background:var(--bg-surface);">
-            <div class="card-top-row" style="margin-bottom:1.25rem;">
-              <div style="display:flex; align-items:center; gap:0.75rem;">
+            <div class="card-top-row" style="margin-bottom:1.15rem;">
+              <div style="display:flex; align-items:center; gap:0.65rem; flex-wrap:wrap;">
                 <span class="glow-badge ${idx === 2 ? 'red' : 'white'}">SOP PROTOCOL 0${idx + 1}</span>
-                <span style="font-size:1.1rem; font-weight:700; color:var(--text-pure);">${sop.title}</span>
+                <span style="font-size:1.05rem; font-weight:700; color:var(--text-pure);">${sop.title}</span>
               </div>
             </div>
-            <ul style="list-style:none; display:flex; flex-direction:column; gap:0.85rem;">
+            <ul style="list-style:none; display:flex; flex-direction:column; gap:0.75rem;">
               ${sop.steps.map((step, sIdx) => `
-                <li style="display:flex; align-items:flex-start; gap:0.85rem; font-size:0.92rem; color:var(--text-secondary); line-height:1.6;">
-                  <span style="font-family:var(--font-mono); color:#ffffff; font-weight:800;">[0${sIdx + 1}]</span>
+                <li style="display:flex; align-items:flex-start; gap:0.75rem; font-size:0.88rem; color:var(--text-secondary); line-height:1.6;">
+                  <span style="font-family:var(--font-mono); color:#ffffff; font-weight:800; flex-shrink:0;">[0${sIdx + 1}]</span>
                   <span>${step}</span>
                 </li>
               `).join('')}
