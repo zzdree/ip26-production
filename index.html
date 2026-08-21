@@ -9,41 +9,67 @@
   <meta property="og:description" content="Live technical blueprint, multi-cam routing, audio schematics & crew checklist for Ibadah Perdana UKK UNNES 2026.">
   <meta property="og:url" content="https://zzdree.github.io/ip26-production/">
   <meta property="og:type" content="website">
-  <meta name="theme-color" content="#0a0d14">
+  <meta name="theme-color" content="#09090b">
   
-  <!-- Google Fonts -->
+  <!-- Google Fonts: Inter & JetBrains Mono -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;600;700;800&display=swap" rel="stylesheet">
   
   <style>
+    /* ==========================================================================
+       IP26 PRODUCTION BLUEPRINT — PURE DARK GREY DESIGN SYSTEM
+       Theme: Charcoal / Neutral Zinc (Zero Blue/Purple Tints)
+       ========================================================================== */
+
     :root {
-      --bg-primary: #0a0d14;
-      --bg-secondary: #121824;
-      --bg-card: #182030;
-      --bg-card-hover: #1e283c;
-      --border-color: #263248;
-      --border-active: #3b82f6;
+      /* Dark Grey & Neutral Zinc Surfaces */
+      --bg-base: #09090b;
+      --bg-surface: #121215;
+      --bg-card: #18181b;
+      --bg-card-hover: #222226;
+      --bg-card-sub: #141417;
       
-      --text-primary: #f1f5f9;
-      --text-secondary: #94a3b8;
-      --text-muted: #64748b;
+      /* Borders & Dividers */
+      --border-subtle: #242429;
+      --border-card: #2e2e34;
+      --border-hover: #3f3f46;
+      --border-active: #52525b;
       
-      --color-live: #ef4444;
-      --color-accent: #06b6d4;
-      --color-success: #10b981;
-      --color-warning: #f59e0b;
-      --color-purple: #8b5cf6;
+      /* Typography Colors */
+      --text-main: #fafafa;
+      --text-heading: #ffffff;
+      --text-muted: #a1a1aa;
+      --text-dim: #71717a;
       
+      /* Status & Indicator Accents (Neutral & Crisp) */
+      --accent-primary: #e4e4e7;
+      --accent-white: #ffffff;
+      --status-live: #f43f5e;
+      --status-live-bg: rgba(244, 63, 94, 0.12);
+      --status-live-border: rgba(244, 63, 94, 0.35);
+      
+      --status-ready: #10b981;
+      --status-ready-bg: rgba(16, 185, 129, 0.12);
+      --status-ready-border: rgba(16, 185, 129, 0.35);
+      
+      --status-warning: #f59e0b;
+      --status-warning-bg: rgba(245, 158, 11, 0.12);
+      --status-warning-border: rgba(245, 158, 11, 0.35);
+      
+      --status-info: #a1a1aa;
+      --status-info-bg: rgba(255, 255, 255, 0.06);
+      --status-info-border: rgba(255, 255, 255, 0.12);
+
+      /* Fonts */
       --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
       --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
       
-      --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.4);
-      --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.5), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-      --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.6), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+      /* Radii & Shadows */
       --radius-sm: 6px;
       --radius-md: 10px;
-      --radius-lg: 16px;
+      --radius-lg: 14px;
+      --shadow-card: 0 4px 12px rgba(0, 0, 0, 0.5);
     }
 
     * {
@@ -53,81 +79,92 @@
     }
 
     body {
-      background-color: var(--bg-primary);
-      color: var(--text-primary);
+      background-color: var(--bg-base);
+      color: var(--text-main);
       font-family: var(--font-sans);
       line-height: 1.6;
       -webkit-font-smoothing: antialiased;
       min-height: 100vh;
     }
 
-    /* Container */
+    /* Base Container */
     .container {
       max-width: 1280px;
       margin: 0 auto;
       padding: 0 1.5rem;
     }
 
-    /* Header & Live Tally Bar */
-    .top-tally-bar {
+    /* Header Telemetry Bar */
+    .top-telemetry-bar {
       background: #000000;
-      border-bottom: 1px solid var(--border-color);
-      padding: 0.5rem 1.5rem;
+      border-bottom: 1px solid var(--border-subtle);
+      padding: 0.55rem 1.5rem;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      font-size: 0.825rem;
+      font-size: 0.8rem;
       font-family: var(--font-mono);
     }
 
-    .tally-indicator {
+    .telemetry-left, .telemetry-right {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .tally-badge {
       display: inline-flex;
       align-items: center;
-      gap: 0.5rem;
-      background: rgba(239, 68, 68, 0.15);
-      color: #fca5a5;
+      gap: 0.45rem;
+      background: var(--status-live-bg);
+      color: #fda4af;
       padding: 0.25rem 0.65rem;
       border-radius: 999px;
-      border: 1px solid rgba(239, 68, 68, 0.4);
+      border: 1px solid var(--status-live-border);
       font-weight: 700;
       text-transform: uppercase;
-      letter-spacing: 0.05em;
+      letter-spacing: 0.04em;
+      font-size: 0.75rem;
     }
 
-    .pulse-dot {
-      width: 8px;
-      height: 8px;
-      background-color: var(--color-live);
+    .pulse-lamp {
+      width: 7px;
+      height: 7px;
+      background-color: var(--status-live);
       border-radius: 50%;
-      box-shadow: 0 0 8px var(--color-live);
-      animation: pulse 1.8s infinite;
+      box-shadow: 0 0 8px var(--status-live);
+      animation: pulse-glow 1.8s infinite ease-in-out;
     }
 
-    @keyframes pulse {
-      0% { transform: scale(0.95); opacity: 0.8; }
-      50% { transform: scale(1.3); opacity: 1; box-shadow: 0 0 12px var(--color-live); }
-      100% { transform: scale(0.95); opacity: 0.8; }
+    @keyframes pulse-glow {
+      0% { transform: scale(0.9); opacity: 0.8; }
+      50% { transform: scale(1.25); opacity: 1; box-shadow: 0 0 12px var(--status-live); }
+      100% { transform: scale(0.9); opacity: 0.8; }
     }
 
-    .clock-display {
-      color: var(--text-secondary);
+    .telemetry-tag {
+      color: var(--text-muted);
+    }
+    .telemetry-tag b {
+      color: var(--text-main);
     }
 
     /* Hero Section */
     .hero {
-      padding: 3rem 0 2rem;
-      border-bottom: 1px solid var(--border-color);
-      background: radial-gradient(circle at 50% 0%, rgba(6, 182, 212, 0.08) 0%, transparent 70%);
+      padding: 2.75rem 0 2rem;
+      border-bottom: 1px solid var(--border-subtle);
+      background: linear-gradient(180deg, #121215 0%, #09090b 100%);
     }
 
-    .hero-badges {
+    .hero-badges-row {
       display: flex;
       flex-wrap: wrap;
+      align-items: center;
       gap: 0.5rem;
-      margin-bottom: 1rem;
+      margin-bottom: 1.25rem;
     }
 
-    .badge {
+    .meta-chip {
       display: inline-flex;
       align-items: center;
       gap: 0.35rem;
@@ -137,94 +174,126 @@
       font-weight: 600;
       font-family: var(--font-mono);
       background: var(--bg-card);
-      border: 1px solid var(--border-color);
-      color: var(--text-secondary);
+      border: 1px solid var(--border-card);
+      color: var(--text-muted);
     }
 
-    .badge.venue {
-      border-color: rgba(239, 68, 68, 0.4);
-      color: #fca5a5;
+    .meta-chip.venue {
+      border-color: var(--status-live-border);
+      color: #fda4af;
+      background: var(--status-live-bg);
     }
 
-    .badge.status {
-      border-color: rgba(16, 185, 129, 0.4);
+    .meta-chip.ready {
+      border-color: var(--status-ready-border);
       color: #6ee7b7;
+      background: var(--status-ready-bg);
     }
 
-    .badge.license {
-      border-color: rgba(139, 92, 246, 0.4);
-      color: #c4b5fd;
+    .meta-chip.private {
+      border-color: rgba(255, 255, 255, 0.2);
+      color: #e4e4e7;
     }
 
-    .hero-title {
-      font-size: 2.25rem;
-      font-weight: 800;
-      letter-spacing: -0.025em;
-      margin-bottom: 0.75rem;
+    .wa-share-link {
+      margin-left: auto;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      background: rgba(16, 185, 129, 0.15);
+      border: 1px solid rgba(16, 185, 129, 0.4);
+      color: #6ee7b7;
+      padding: 0.35rem 0.85rem;
+      border-radius: var(--radius-sm);
+      font-size: 0.75rem;
+      font-weight: 700;
+      font-family: var(--font-mono);
+      text-decoration: none;
+      transition: all 0.2s ease;
+    }
+
+    .wa-share-link:hover {
+      background: rgba(16, 185, 129, 0.25);
+      border-color: #10b981;
       color: #ffffff;
     }
 
-    .hero-subtitle {
-      font-size: 1.1rem;
-      color: var(--text-secondary);
-      max-width: 800px;
-      margin-bottom: 2rem;
+    .hero-main-title {
+      font-size: 2.35rem;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      line-height: 1.15;
+      margin-bottom: 0.75rem;
+      color: var(--text-heading);
     }
 
-    /* Metric Stats Grid */
-    .stats-grid {
+    .hero-main-title span {
+      color: var(--text-muted);
+      font-weight: 400;
+    }
+
+    .hero-description {
+      font-size: 1.05rem;
+      color: var(--text-muted);
+      max-width: 860px;
+      margin-bottom: 2rem;
+      line-height: 1.6;
+    }
+
+    /* Metrics Overview Bar */
+    .metrics-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
       gap: 1rem;
     }
 
-    .stat-card {
+    .metric-card {
       background: var(--bg-card);
-      border: 1px solid var(--border-color);
+      border: 1px solid var(--border-card);
       border-radius: var(--radius-md);
       padding: 1.25rem;
-      transition: transform 0.2s ease, border-color 0.2s ease;
+      transition: border-color 0.2s ease, transform 0.2s ease;
     }
 
-    .stat-card:hover {
+    .metric-card:hover {
+      border-color: var(--border-hover);
       transform: translateY(-2px);
-      border-color: var(--color-accent);
     }
 
-    .stat-label {
-      font-size: 0.8rem;
-      color: var(--text-muted);
+    .metric-label {
+      font-size: 0.75rem;
+      color: var(--text-dim);
       text-transform: uppercase;
-      letter-spacing: 0.05em;
-      font-weight: 600;
-      margin-bottom: 0.25rem;
+      letter-spacing: 0.06em;
+      font-weight: 700;
+      margin-bottom: 0.35rem;
     }
 
-    .stat-value {
-      font-size: 1.75rem;
+    .metric-val {
+      font-size: 1.85rem;
       font-weight: 800;
-      color: #ffffff;
+      color: var(--text-heading);
       font-family: var(--font-mono);
     }
 
-    .stat-desc {
+    .metric-note {
       font-size: 0.75rem;
-      color: var(--text-secondary);
+      color: var(--text-muted);
       margin-top: 0.25rem;
     }
 
-    /* Navigation Tabs */
-    .nav-tabs-wrapper {
+    /* Sticky Navigation Deck */
+    .nav-deck-wrapper {
       position: sticky;
       top: 0;
       z-index: 50;
-      background: rgba(10, 13, 20, 0.92);
+      background: rgba(18, 18, 21, 0.94);
       backdrop-filter: blur(12px);
-      border-bottom: 1px solid var(--border-color);
+      border-bottom: 1px solid var(--border-card);
       margin-bottom: 2rem;
     }
 
-    .nav-tabs {
+    .nav-deck {
       display: flex;
       gap: 0.5rem;
       overflow-x: auto;
@@ -232,86 +301,146 @@
       scrollbar-width: none;
     }
 
-    .nav-tabs::-webkit-scrollbar {
+    .nav-deck::-webkit-scrollbar {
       display: none;
     }
 
-    .tab-btn {
+    .nav-btn {
       display: inline-flex;
       align-items: center;
       gap: 0.5rem;
       background: transparent;
       border: 1px solid transparent;
-      color: var(--text-secondary);
-      padding: 0.6rem 1.1rem;
+      color: var(--text-muted);
+      padding: 0.6rem 1.15rem;
       border-radius: var(--radius-md);
-      font-size: 0.9rem;
+      font-size: 0.88rem;
       font-weight: 600;
       cursor: pointer;
       white-space: nowrap;
-      transition: all 0.2s ease;
+      transition: all 0.15s ease;
     }
 
-    .tab-btn:hover {
-      color: var(--text-primary);
+    .nav-btn:hover {
+      color: var(--text-heading);
       background: var(--bg-card);
+      border-color: var(--border-card);
     }
 
-    .tab-btn.active {
+    .nav-btn.active {
       background: var(--bg-card);
-      color: var(--color-accent);
-      border-color: rgba(6, 182, 212, 0.4);
-      box-shadow: var(--shadow-sm);
+      color: #ffffff;
+      border-color: var(--border-hover);
+      box-shadow: var(--shadow-card);
+      font-weight: 700;
     }
 
-    /* Content Sections */
-    .tab-content {
+    /* Tab Panel Structure */
+    .tab-pane {
       display: none;
-      animation: fadeIn 0.25s ease forwards;
+      animation: fadeIn 0.2s ease forwards;
     }
 
-    .tab-content.active {
+    .tab-pane.active {
       display: block;
     }
 
     @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(6px); }
+      from { opacity: 0; transform: translateY(4px); }
       to { opacity: 1; transform: translateY(0); }
     }
 
-    .section-header {
-      margin-bottom: 1.5rem;
+    .section-head {
+      margin-bottom: 1.75rem;
     }
 
     .section-title {
       font-size: 1.5rem;
       font-weight: 700;
-      color: #ffffff;
+      color: var(--text-heading);
       display: flex;
       align-items: center;
-      gap: 0.5rem;
+      gap: 0.6rem;
     }
 
     .section-desc {
-      color: var(--text-secondary);
+      color: var(--text-muted);
       font-size: 0.9rem;
-      margin-top: 0.25rem;
+      margin-top: 0.35rem;
     }
 
-    /* Routing Cards & Visual Diagrams */
+    /* Overview Subsystems Grid */
+    .overview-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+      gap: 1.5rem;
+      margin-bottom: 2.5rem;
+    }
+
+    .subsystem-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-card);
+      border-radius: var(--radius-md);
+      padding: 1.5rem;
+      box-shadow: var(--shadow-card);
+    }
+
+    .subsystem-head {
+      display: flex;
+      align-items: center;
+      gap: 0.65rem;
+      margin-bottom: 1rem;
+      padding-bottom: 0.75rem;
+      border-bottom: 1px solid var(--border-subtle);
+    }
+
+    .subsystem-head h3 {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--text-heading);
+    }
+
+    .spec-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.65rem;
+      font-size: 0.88rem;
+      color: var(--text-muted);
+    }
+
+    .spec-list li {
+      position: relative;
+      padding-left: 1.25rem;
+      line-height: 1.5;
+    }
+
+    .spec-list li::before {
+      content: "•";
+      position: absolute;
+      left: 0;
+      color: var(--text-dim);
+      font-weight: bold;
+    }
+
+    .spec-list li b {
+      color: var(--text-main);
+    }
+
+    /* Signal Routing Cards */
     .routing-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
       gap: 1.25rem;
-      margin-bottom: 2rem;
+      margin-bottom: 2.5rem;
     }
 
     .route-card {
       background: var(--bg-card);
-      border: 1px solid var(--border-color);
+      border: 1px solid var(--border-card);
       border-radius: var(--radius-md);
-      padding: 1.25rem;
-      box-shadow: var(--shadow-md);
+      padding: 1.35rem;
+      box-shadow: var(--shadow-card);
       position: relative;
       overflow: hidden;
     }
@@ -323,14 +452,15 @@
       left: 0;
       width: 4px;
       height: 100%;
-      background: var(--color-accent);
+      background: var(--border-active);
     }
 
-    .route-card.live-cam::before { background: var(--color-live); }
-    .route-card.audio-route::before { background: var(--color-warning); }
-    .route-card.media-route::before { background: var(--color-purple); }
+    .route-card.cam-route::before { background: var(--status-live); }
+    .route-card.audio-route::before { background: var(--status-warning); }
+    .route-card.media-route::before { background: var(--status-ready); }
+    .route-card.power-route::before { background: #e4e4e7; }
 
-    .route-header {
+    .route-top {
       display: flex;
       justify-content: space-between;
       align-items: flex-start;
@@ -340,50 +470,54 @@
     .route-title {
       font-size: 1.05rem;
       font-weight: 700;
-      color: #ffffff;
+      color: var(--text-heading);
     }
 
-    .operator-tag {
+    .pic-badge {
       font-size: 0.75rem;
       font-family: var(--font-mono);
-      padding: 0.2rem 0.5rem;
+      padding: 0.2rem 0.55rem;
       border-radius: 4px;
       background: rgba(255, 255, 255, 0.08);
-      color: #e2e8f0;
+      color: var(--text-main);
       font-weight: 600;
     }
 
-    .signal-chain {
+    .signal-flow {
       display: flex;
       flex-direction: column;
-      gap: 0.5rem;
+      gap: 0.45rem;
       margin-top: 1rem;
     }
 
-    .chain-node {
+    .flow-step {
       display: flex;
       align-items: center;
-      gap: 0.6rem;
+      gap: 0.65rem;
       font-size: 0.85rem;
-      background: rgba(0, 0, 0, 0.25);
-      padding: 0.5rem 0.75rem;
+      background: var(--bg-card-sub);
+      padding: 0.55rem 0.85rem;
       border-radius: var(--radius-sm);
-      border: 1px solid rgba(255, 255, 255, 0.04);
+      border: 1px solid var(--border-subtle);
+      color: var(--text-main);
     }
 
-    .chain-icon {
-      font-size: 1rem;
+    .step-num {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      color: var(--text-dim);
+      font-weight: 700;
     }
 
-    .chain-arrow {
+    .flow-arrow {
       text-align: center;
-      color: var(--text-muted);
-      font-size: 0.8rem;
-      line-height: 0.5;
+      color: var(--text-dim);
+      font-size: 0.75rem;
+      line-height: 0.4;
     }
 
-    /* Crew Roster Grid */
-    .filter-bar {
+    /* Crew Roster & Filtering */
+    .filter-row {
       display: flex;
       flex-wrap: wrap;
       gap: 0.5rem;
@@ -391,85 +525,98 @@
     }
 
     .filter-btn {
-      padding: 0.4rem 0.85rem;
-      font-size: 0.8rem;
+      padding: 0.45rem 0.95rem;
+      font-size: 0.825rem;
       border-radius: var(--radius-sm);
       background: var(--bg-card);
-      color: var(--text-secondary);
-      border: 1px solid var(--border-color);
+      color: var(--text-muted);
+      border: 1px solid var(--border-card);
       cursor: pointer;
       transition: all 0.15s ease;
+      font-weight: 500;
     }
 
-    .filter-btn:hover, .filter-btn.active {
-      background: var(--color-accent);
+    .filter-btn:hover {
+      background: var(--bg-card-hover);
+      color: var(--text-heading);
+      border-color: var(--border-hover);
+    }
+
+    .filter-btn.active {
+      background: #ffffff;
       color: #000000;
       font-weight: 700;
-      border-color: var(--color-accent);
+      border-color: #ffffff;
     }
 
     .crew-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
       gap: 1rem;
     }
 
     .crew-card {
       background: var(--bg-card);
-      border: 1px solid var(--border-color);
+      border: 1px solid var(--border-card);
       border-radius: var(--radius-md);
-      padding: 1.15rem;
-      transition: transform 0.2s ease;
+      padding: 1.25rem;
+      transition: transform 0.2s ease, border-color 0.2s ease;
     }
 
     .crew-card:hover {
       transform: translateY(-2px);
-      border-color: rgba(255, 255, 255, 0.2);
+      border-color: var(--border-hover);
     }
 
-    .crew-top {
+    .crew-profile {
       display: flex;
       align-items: center;
-      gap: 0.75rem;
-      margin-bottom: 0.75rem;
+      gap: 0.85rem;
+      margin-bottom: 0.85rem;
     }
 
     .crew-avatar {
-      width: 42px;
-      height: 42px;
+      width: 44px;
+      height: 44px;
       border-radius: 50%;
-      background: var(--bg-secondary);
-      border: 2px solid var(--color-accent);
+      background: var(--bg-surface);
+      border: 1px solid var(--border-active);
       display: flex;
       align-items: center;
       justify-content: center;
       font-weight: 700;
       font-size: 1rem;
-      color: var(--color-accent);
+      color: #ffffff;
+      font-family: var(--font-mono);
     }
 
     .crew-name {
       font-weight: 700;
       font-size: 1rem;
-      color: #ffffff;
+      color: var(--text-heading);
     }
 
     .crew-role {
       font-size: 0.8rem;
-      color: var(--text-secondary);
+      color: var(--text-muted);
     }
 
-    .crew-gear-badge {
-      font-size: 0.75rem;
-      background: rgba(0, 0, 0, 0.3);
-      padding: 0.4rem 0.6rem;
-      border-radius: 4px;
-      color: #cbd5e1;
-      border-left: 2px solid var(--color-success);
+    .crew-gear-box {
+      font-size: 0.78rem;
+      background: var(--bg-card-sub);
+      padding: 0.55rem 0.75rem;
+      border-radius: var(--radius-sm);
+      color: var(--text-muted);
+      border-left: 2px solid var(--border-active);
+      line-height: 1.4;
     }
 
-    /* Inventory Checklist Table */
-    .inventory-controls {
+    .crew-gear-box b {
+      color: var(--text-main);
+    }
+
+    /* Master Inventory Table */
+    .inventory-deck {
       display: flex;
       flex-wrap: wrap;
       gap: 1rem;
@@ -478,24 +625,25 @@
       margin-bottom: 1.25rem;
     }
 
-    .search-input {
+    .search-box {
       background: var(--bg-card);
-      border: 1px solid var(--border-color);
+      border: 1px solid var(--border-card);
       color: #ffffff;
-      padding: 0.6rem 1rem;
+      padding: 0.65rem 1rem;
       border-radius: var(--radius-md);
       font-size: 0.9rem;
-      min-width: 260px;
+      min-width: 280px;
+      transition: border-color 0.2s ease;
     }
 
-    .search-input:focus {
+    .search-box:focus {
       outline: none;
-      border-color: var(--color-accent);
+      border-color: var(--border-active);
     }
 
-    .inventory-progress-box {
+    .inventory-progress-badge {
       background: var(--bg-card);
-      border: 1px solid var(--border-color);
+      border: 1px solid var(--border-card);
       padding: 0.6rem 1rem;
       border-radius: var(--radius-md);
       display: flex;
@@ -504,83 +652,90 @@
       font-size: 0.85rem;
     }
 
-    .progress-bar-bg {
-      width: 140px;
+    .progress-track {
+      width: 150px;
       height: 8px;
-      background: rgba(255, 255, 255, 0.1);
+      background: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
       border-radius: 999px;
       overflow: hidden;
     }
 
-    .progress-bar-fill {
+    .progress-fill {
       height: 100%;
       width: 0%;
-      background: var(--color-success);
+      background: var(--status-ready);
       transition: width 0.3s ease;
     }
 
-    .inventory-table-wrapper {
+    .inventory-table-container {
       background: var(--bg-card);
-      border: 1px solid var(--border-color);
+      border: 1px solid var(--border-card);
       border-radius: var(--radius-md);
       overflow-x: auto;
     }
 
-    .inventory-table {
+    .inv-table {
       width: 100%;
       border-collapse: collapse;
       text-align: left;
       font-size: 0.875rem;
     }
 
-    .inventory-table th {
-      background: rgba(0, 0, 0, 0.35);
-      padding: 0.85rem 1rem;
-      font-size: 0.8rem;
+    .inv-table th {
+      background: var(--bg-surface);
+      padding: 0.85rem 1.15rem;
+      font-size: 0.78rem;
       text-transform: uppercase;
-      color: var(--text-muted);
+      color: var(--text-dim);
       letter-spacing: 0.05em;
-      border-bottom: 1px solid var(--border-color);
+      border-bottom: 1px solid var(--border-card);
+      font-weight: 700;
     }
 
-    .inventory-table td {
-      padding: 0.75rem 1rem;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    .inv-table td {
+      padding: 0.8rem 1.15rem;
+      border-bottom: 1px solid var(--border-subtle);
       vertical-align: middle;
     }
 
-    .inventory-table tr:hover {
-      background: rgba(255, 255, 255, 0.02);
+    .inv-table tr:hover {
+      background: var(--bg-card-hover);
     }
 
-    .item-check {
+    .item-check-input {
       cursor: pointer;
-      accent-color: var(--color-success);
+      accent-color: var(--status-ready);
       width: 18px;
       height: 18px;
     }
 
-    .source-badge {
+    .source-tag {
       font-size: 0.75rem;
-      padding: 0.2rem 0.5rem;
+      padding: 0.2rem 0.55rem;
       border-radius: 4px;
       background: rgba(255, 255, 255, 0.06);
       font-family: var(--font-mono);
-      color: var(--text-secondary);
+      color: var(--text-muted);
     }
 
-    /* Rundown Cues List */
-    .rundown-timeline {
+    .source-tag.highlight {
+      color: var(--text-heading);
+      background: rgba(255, 255, 255, 0.1);
+    }
+
+    /* Rundown Cue Sheet */
+    .rundown-list {
       display: flex;
       flex-direction: column;
       gap: 1rem;
     }
 
-    .rundown-card {
+    .cue-card {
       background: var(--bg-card);
-      border: 1px solid var(--border-color);
+      border: 1px solid var(--border-card);
       border-radius: var(--radius-md);
-      padding: 1.15rem;
+      padding: 1.25rem;
       display: flex;
       flex-wrap: wrap;
       justify-content: space-between;
@@ -588,55 +743,90 @@
       gap: 1rem;
     }
 
-    .rundown-card.active-cue {
-      border-color: var(--color-live);
-      background: rgba(239, 68, 68, 0.05);
+    .cue-card.highlight-cue {
+      border-color: var(--border-hover);
+      background: var(--bg-card-hover);
     }
 
-    .cue-phase {
+    .cue-phase-tag {
       font-size: 0.75rem;
       font-family: var(--font-mono);
       font-weight: 700;
       text-transform: uppercase;
-      color: var(--color-accent);
+      color: var(--text-dim);
       margin-bottom: 0.25rem;
     }
 
-    .cue-title {
+    .cue-headline {
       font-size: 1.1rem;
       font-weight: 700;
-      color: #ffffff;
+      color: var(--text-heading);
     }
 
-    .cue-targets {
+    .cue-destinations {
       display: flex;
       flex-wrap: wrap;
       gap: 0.4rem;
-      margin-top: 0.4rem;
+      margin-top: 0.45rem;
     }
 
-    .target-pill {
+    .cue-pill {
       font-size: 0.75rem;
-      padding: 0.2rem 0.5rem;
+      padding: 0.2rem 0.6rem;
       border-radius: 999px;
-      background: rgba(0, 0, 0, 0.35);
-      border: 1px solid var(--border-color);
-      color: #cbd5e1;
+      background: var(--bg-surface);
+      border: 1px solid var(--border-card);
+      color: var(--text-muted);
+    }
+
+    /* SOP & Safety Sections */
+    .sop-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .sop-box {
+      background: var(--bg-card);
+      border: 1px solid var(--border-card);
+      border-radius: var(--radius-md);
+      padding: 1.5rem;
+      border-left: 4px solid var(--border-active);
+    }
+
+    .sop-box.power-sop { border-left-color: var(--status-warning); }
+    .sop-box.signal-sop { border-left-color: var(--status-info); }
+    .sop-box.teardown-sop { border-left-color: var(--status-ready); }
+
+    .sop-box h3 {
+      font-size: 1.1rem;
+      font-weight: 700;
+      margin-bottom: 0.75rem;
+      color: var(--text-heading);
+    }
+
+    .sop-box ul {
+      padding-left: 1.25rem;
+      color: var(--text-muted);
+      font-size: 0.88rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
     }
 
     /* Footer */
     footer {
       margin-top: 4rem;
       padding: 2.5rem 0;
-      border-top: 1px solid var(--border-color);
-      background: #05080f;
+      border-top: 1px solid var(--border-subtle);
+      background: #000000;
       text-align: center;
-      color: var(--text-muted);
+      color: var(--text-dim);
       font-size: 0.85rem;
     }
 
     footer a {
-      color: var(--color-accent);
+      color: var(--text-main);
       text-decoration: none;
     }
 
@@ -644,156 +834,203 @@
       text-decoration: underline;
     }
 
-    /* Responsive */
+    /* Responsive Adaptations */
     @media (max-width: 768px) {
-      .hero-title {
-        font-size: 1.65rem;
+      .hero-main-title {
+        font-size: 1.75rem;
       }
-      .stats-grid {
+      .metrics-grid {
         grid-template-columns: repeat(2, 1fr);
       }
-      .inventory-controls {
+      .inventory-deck {
         flex-direction: column;
         align-items: stretch;
       }
-      .search-input {
+      .search-box {
         width: 100%;
+      }
+      .top-telemetry-bar {
+        flex-direction: column;
+        gap: 0.4rem;
+        align-items: flex-start;
+      }
+      .wa-share-link {
+        margin-left: 0;
+        width: 100%;
+        justify-content: center;
       }
     }
   </style>
 </head>
 <body>
 
-  <!-- Top Tally & Status Bar -->
-  <header class="top-tally-bar">
-    <div class="tally-indicator">
-      <div class="pulse-dot"></div>
-      <span>LIVE PRODUCTION READY</span>
+  <!-- Top Telemetry Bar -->
+  <header class="top-telemetry-bar">
+    <div class="telemetry-left">
+      <div class="tally-badge">
+        <div class="pulse-lamp"></div>
+        <span>ON-AIR SYSTEM READY</span>
+      </div>
+      <div class="telemetry-tag">
+        VENUE: <b>AUDITORIUM UNNES</b>
+      </div>
     </div>
-    <div class="clock-display" id="live-clock">--:--:-- WIB</div>
+    <div class="telemetry-right">
+      <div class="telemetry-tag">
+        MASTER CLOCK: <b id="live-clock">--:--:-- WIB</b>
+      </div>
+    </div>
   </header>
 
   <!-- Hero Section -->
   <section class="hero">
     <div class="container">
-      <div class="hero-badges">
-        <span class="badge venue">📍 Auditorium UNNES</span>
-        <span class="badge">🗓️ Event 2026</span>
-        <span class="badge status">✅ Multi-Cam 4CH + Switcher</span>
-        <span class="badge license">🔒 Private Blueprint</span>
-        <a href="https://wa.me/?text=Halo%20Kru%20IP26!%20Berikut%20link%20technical%20blueprint%20%26%20inventory%20Ibadah%20Perdana%20UKK%20UNNES%202026:%20https://zzdree.github.io/ip26-production/" target="_blank" rel="noopener noreferrer" class="badge" style="background: rgba(16, 185, 129, 0.15); border-color: rgba(16, 185, 129, 0.4); color: #6ee7b7; text-decoration: none; cursor: pointer;">
-          📲 Bagikan ke WA Kru
+      <div class="hero-badges-row">
+        <span class="meta-chip venue">📍 Auditorium UNNES</span>
+        <span class="meta-chip">🗓️ Ibadah Perdana 2026</span>
+        <span class="meta-chip ready">✅ Multi-Cam 4CH + Switcher</span>
+        <span class="meta-chip private">🔒 Private Blueprint</span>
+        <a href="https://wa.me/?text=Halo%20Kru%20IP26!%20Berikut%20link%20technical%20blueprint%20%26%20inventory%20Ibadah%20Perdana%20UKK%20UNNES%202026:%20https://zzdree.github.io/ip26-production/" target="_blank" rel="noopener noreferrer" class="wa-share-link">
+          📲 Share to WhatsApp Crew
         </a>
       </div>
-      <h1 class="hero-title">IBADAH PERDANA UKK UNNES 2026</h1>
-      <p class="hero-subtitle">
-        Portal panduan operasional teknis, alur distribusi sinyal kamera, mixing audio, output visual LED, dan checklist logistik inventaris untuk seluruh kru produksi.
+      
+      <h1 class="hero-main-title">
+        IBADAH PERDANA <span>UKK UNNES 2026</span>
+      </h1>
+      <p class="hero-description">
+        Portal panduan operasional teknis, alur distribusi sinyal multi-kamera, mixing audio FOH, mapping output visual LED auditorium, dan master checklist logistik inventaris untuk seluruh kru produksi.
       </p>
 
-      <!-- Stats Grid -->
-      <div class="stats-grid">
-        <div class="stat-card">
-          <div class="stat-label">Broadcast Cams</div>
-          <div class="stat-value" style="color: #ef4444;">4 Units</div>
-          <div class="stat-desc">Sony ZV-E10 & A6000 + Pyro H</div>
+      <!-- Metrics Overview Bar -->
+      <div class="metrics-grid">
+        <div class="metric-card">
+          <div class="metric-label">Broadcast Cameras</div>
+          <div class="metric-val" style="color: var(--status-live);">4 Units</div>
+          <div class="metric-note">Sony ZV-E10 & A6000 + Pyro H</div>
         </div>
-        <div class="stat-card">
-          <div class="stat-label">Display Outputs</div>
-          <div class="stat-value" style="color: #06b6d4;">7 Feeds</div>
-          <div class="stat-desc">LED Center, Sides, TVs & Multiview</div>
+        <div class="metric-card">
+          <div class="metric-label">Display Feeds</div>
+          <div class="metric-val">7 Outputs</div>
+          <div class="metric-note">LED Center, Sides, TVs & Multiview</div>
         </div>
-        <div class="stat-card">
-          <div class="stat-label">Master Mixers</div>
-          <div class="stat-value" style="color: #f59e0b;">2 Units</div>
-          <div class="stat-desc">Yamaha QL5 FOH + NewBaxs CT80S</div>
+        <div class="metric-card">
+          <div class="metric-label">Audio Mixers</div>
+          <div class="metric-val" style="color: var(--status-warning);">2 Units</div>
+          <div class="metric-note">Yamaha QL5 FOH + NewBaxs CT80S</div>
         </div>
-        <div class="stat-card">
-          <div class="stat-label">Production Crew</div>
-          <div class="stat-value" style="color: #10b981;">14 PIC</div>
-          <div class="stat-desc">Broadcast, Media, Engine & Docs</div>
+        <div class="metric-card">
+          <div class="metric-label">Production Crew</div>
+          <div class="metric-val" style="color: var(--status-ready);">14 PIC</div>
+          <div class="metric-note">Broadcast, Media, Engine & Docs</div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Navigation Tabs -->
-  <div class="nav-tabs-wrapper">
+  <!-- Sticky Navigation Deck -->
+  <div class="nav-deck-wrapper">
     <div class="container">
-      <nav class="nav-tabs" aria-label="Main Navigation">
-        <button class="tab-btn active" data-tab="overview">📊 Overview & Flow</button>
-        <button class="tab-btn" data-tab="routing">🔄 Signal Routing</button>
-        <button class="tab-btn" data-tab="crew">👥 Crew & Roster</button>
-        <button class="tab-btn" data-tab="inventory">📦 Master Inventory</button>
-        <button class="tab-btn" data-tab="rundown">📑 Rundown & Cues</button>
-        <button class="tab-btn" data-tab="sop">⚡ SOP & Safety</button>
+      <nav class="nav-deck" aria-label="Command Center Navigation">
+        <button class="nav-btn active" data-tab="overview">📊 Arsitektur Sistem</button>
+        <button class="nav-btn" data-tab="routing">🔄 Signal & Power Routing</button>
+        <button class="nav-btn" data-tab="crew">👥 Personel Kru & Gear</button>
+        <button class="nav-btn" data-tab="inventory">📦 Master Inventaris & Log</button>
+        <button class="nav-btn" data-tab="rundown">📑 Rundown & Cues</button>
+        <button class="nav-btn" data-tab="sop">⚡ SOP & Safety</button>
       </nav>
     </div>
   </div>
 
-  <!-- Main Content Container -->
+  <!-- Main Application Content -->
   <main class="container">
 
-    <!-- TAB 1: OVERVIEW -->
-    <section id="tab-overview" class="tab-content active">
-      <div class="section-header">
-        <h2 class="section-title">📊 Arsitektur Sistem Produksi</h2>
-        <p class="section-desc">Ringkasan konfigurasi integrasi teknis broadcast, visual multimedia, audio, dan dokumentasi.</p>
+    <!-- PANEL 1: OVERVIEW -->
+    <section id="tab-overview" class="tab-pane active">
+      <div class="section-head">
+        <h2 class="section-title">📊 Arsitektur Sistem Produksi Master</h2>
+        <p class="section-desc">Ringkasan integrasi menyeluruh antara video broadcast, visual multimedia, audio mixing, dan dokumentasi.</p>
       </div>
 
-      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; margin-bottom: 2rem;">
-        <div class="stat-card">
-          <h3 style="color: #ef4444; font-size: 1.15rem; margin-bottom: 0.75rem;">🎥 1. Broadcast Video Subsystem</h3>
-          <ul style="padding-left: 1.25rem; color: var(--text-secondary); font-size: 0.9rem;">
-            <li><b>Switcher Utama:</b> Cinetreak Cinelive V1 (4 Input HDMI).</li>
-            <li><b>CAM 1 & 2:</b> Sony ZV-E10 (18-105mm F4 G) kabel panjang & Hollyland Pyro H Wireless.</li>
-            <li><b>CAM 3 & 4:</b> Sony A6000 sudut kiri & kanan panggung.</li>
-            <li><b>Streaming Output:</b> USB-C UVC capture langsung ke laptop OBS Studio.</li>
+      <div class="overview-grid">
+        <!-- Broadcast Subsystem -->
+        <div class="subsystem-card" style="border-top: 3px solid var(--status-live);">
+          <div class="subsystem-head">
+            <h3>🎥 1. Broadcast Video Subsystem</h3>
+          </div>
+          <ul class="spec-list">
+            <li><b>Main Switcher:</b> Cinetreak Cinelive V1 (4CH HDMI Ingest).</li>
+            <li><b>CAM 1 (Alex):</b> Sony ZV-E10 + 18-105mm F4 + HDMI 30M + Big Tripod.</li>
+            <li><b>CAM 2 (Kiel 1):</b> Sony ZV-E10 + 18-105mm F4 + Hollyland Pyro H (Wireless 5.8GHz).</li>
+            <li><b>CAM 3 (Dewi):</b> Sony A6000 + 18-105mm F4 + HDMI 10M (Sayap Kiri).</li>
+            <li><b>CAM 4 (Nathania):</b> Sony A6000 + 16-50mm + HDMI 10M (Sayap Kanan).</li>
+            <li><b>Live Stream Output:</b> UVC USB-C ke Laptop OBS Studio (RTMP Feed).</li>
           </ul>
         </div>
 
-        <div class="stat-card">
-          <h3 style="color: #8b5cf6; font-size: 1.15rem; margin-bottom: 0.75rem;">💻 2. Visual & Media Presentation</h3>
-          <ul style="padding-left: 1.25rem; color: var(--text-secondary); font-size: 0.9rem;">
-            <li><b>Resolume Arena:</b> Mapping utama latar belakang LED Tengah & looping video.</li>
-            <li><b>ProPresenter 1:</b> Teks lirik lagu, ayat, dan quote ke LED Kanan-Kiri & Belakang.</li>
-            <li><b>ProPresenter 2:</b> Materi khotbah & presentasi pembicara dialirkan ke Resolume via HDMI Capture.</li>
-            <li><b>ProPresenter 3:</b> Stage display timekeeper ke TV monitor panggung.</li>
+        <!-- Media & LED Subsystem -->
+        <div class="subsystem-card" style="border-top: 3px solid var(--border-hover);">
+          <div class="subsystem-head">
+            <h3>💻 2. Visual & Media Presentation</h3>
+          </div>
+          <ul class="spec-list">
+            <li><b>Resolume Arena (Andreas):</b> Background motion tema & master visual canvas ke LED Tengah.</li>
+            <li><b>ProPresenter 1 (Rania):</b> Lirik lagu pujian & ayat ke LED Samping (Kiri, Kanan & Belakang).</li>
+            <li><b>ProPresenter 2 (Filia):</b> Slide materi khotbah pembicara dialirkan via HDMI Capture ke Resolume.</li>
+            <li><b>ProPresenter 3 (Darrel):</b> Stage display timer timekeeper ke TV monitor panggung (Terpisah).</li>
           </ul>
         </div>
 
-        <div class="stat-card">
-          <h3 style="color: #f59e0b; font-size: 1.15rem; margin-bottom: 0.75rem;">🔊 3. Audio & Networking</h3>
-          <ul style="padding-left: 1.25rem; color: var(--text-secondary); font-size: 0.9rem;">
-            <li><b>Main FOH Mixer:</b> Yamaha QL5 Auditorium UNNES via XLR ke submixer NewBaxs CT80S.</li>
-            <li><b>Virtual Mixer:</b> Kontrol wireless mixing jarak jauh via iPad & Laptop terhubung ke WiFi UNNES-ID.</li>
-            <li><b>Audio Ingest:</b> Resolume laptop via Hi-Fi DAC USB-C (Hanason / Oraimo) ke Jack 3.5mm FOH.</li>
+        <!-- Audio & Network Subsystem -->
+        <div class="subsystem-card" style="border-top: 3px solid var(--status-warning);">
+          <div class="subsystem-head">
+            <h3>🔊 3. Audio & Networking FOH</h3>
+          </div>
+          <ul class="spec-list">
+            <li><b>Main FOH Mixer:</b> Yamaha QL5 Auditorium UNNES via Dual XLR ke Submixer.</li>
+            <li><b>Submixer OBS:</b> NewBaxs CT80S (GIA) via USB-C ke Laptop OBS Studio.</li>
+            <li><b>Virtual Mixer:</b> Kontrol wireless mixing jarak jauh via iPad & Laptop terhubung ke WiFi UNNES-ID (Jordan & Yosua).</li>
+            <li><b>Resolume Audio Ingest:</b> USB-C DAC Hi-Res (Hanason AB17X / Oraimo) ke Jack 3.5mm FOH.</li>
+          </ul>
+        </div>
+
+        <!-- Documentation Subsystem -->
+        <div class="subsystem-card" style="border-top: 3px solid var(--status-ready);">
+          <div class="subsystem-head">
+            <h3>📸 4. Dokumentasi & Creative Shots</h3>
+          </div>
+          <ul class="spec-list">
+            <li><b>Lead Photo (Nico):</b> Sony A6400 + 50mm Prime (OWL) + 32GB SD Card.</li>
+            <li><b>Cinematic Video (Joel):</b> Sony A6600 + Zeiss 24-70mm + DJI Ronin RS3 Gimbal.</li>
+            <li><b>Social Media (Jennifer):</b> iPhone 15 Mobile Rig untuk Reels & Story langsung.</li>
+            <li><b>Backup Station (Kiel 1):</b> Laptop sekunder standby & spare accessories.</li>
           </ul>
         </div>
       </div>
     </section>
 
-    <!-- TAB 2: SIGNAL ROUTING -->
-    <section id="tab-routing" class="tab-content">
-      <div class="section-header">
-        <h2 class="section-title">🔄 Detail Rute Distribusi Sinyal</h2>
-        <p class="section-desc">Daftar konektivitas kabel, adapter, capture card, dan perangkat dari sumber hingga output.</p>
+    <!-- PANEL 2: SIGNAL ROUTING -->
+    <section id="tab-routing" class="tab-pane">
+      <div class="section-head">
+        <h2 class="section-title">🔄 Detail Rute Distribusi Sinyal & Kelistrikan</h2>
+        <p class="section-desc">Pemetaan alur kabel, adapter, wireless link, dan capture card dari sumber input hingga output display.</p>
       </div>
 
       <div class="routing-grid" id="routes-container">
-        <!-- Injected via JavaScript -->
+        <!-- Injected via JS -->
       </div>
     </section>
 
-    <!-- TAB 3: CREW ROSTER -->
-    <section id="tab-crew" class="tab-content">
-      <div class="section-header">
+    <!-- PANEL 3: CREW ROSTER -->
+    <section id="tab-crew" class="tab-pane">
+      <div class="section-head">
         <h2 class="section-title">👥 Personel Kru & Penugasan Alat</h2>
         <p class="section-desc">Daftar penanggung jawab divisi serta alat yang dioperasikan selama acara berlangsung.</p>
       </div>
 
-      <div class="filter-bar">
-        <button class="filter-btn active" data-crew-filter="all">Semua Kru</button>
-        <button class="filter-btn" data-crew-filter="broadcast">🎥 Broadcast</button>
+      <div class="filter-row">
+        <button class="filter-btn active" data-crew-filter="all">Semua Kru (14)</button>
+        <button class="filter-btn" data-crew-filter="broadcast">🎥 Broadcast CAM</button>
         <button class="filter-btn" data-crew-filter="engine">🎛️ Switcher & Stream</button>
         <button class="filter-btn" data-crew-filter="media">💻 Media & LED</button>
         <button class="filter-btn" data-crew-filter="audio">🔊 Audio Master</button>
@@ -801,178 +1038,100 @@
       </div>
 
       <div class="crew-grid" id="crew-container">
-        <!-- Injected via JavaScript -->
+        <!-- Injected via JS -->
       </div>
     </section>
 
-    <!-- TAB 4: MASTER INVENTORY -->
-    <section id="tab-inventory" class="tab-content">
-      <div class="section-header">
-        <h2 class="section-title">📦 Master Inventaris & Checklist Peminjaman</h2>
-        <p class="section-desc">Pemeriksaan fisik perlengkapan. Checklist tersimpan otomatis di perangkat masing-masing.</p>
+    <!-- PANEL 4: MASTER INVENTORY -->
+    <section id="tab-inventory" class="tab-pane">
+      <div class="section-head">
+        <h2 class="section-title">📦 Master Inventaris & Log Peminjaman Alat</h2>
+        <p class="section-desc">Pemeriksaan fisik 80+ perlengkapan. Checklist tersimpan otomatis di browser masing-masing.</p>
       </div>
 
-      <div class="inventory-controls">
-        <input type="text" id="inventory-search" class="search-input" placeholder="🔍 Cari item, kabel, atau kamera..." />
+      <div class="inventory-deck">
+        <input type="text" id="inventory-search" class="search-box" placeholder="🔍 Cari nama alat, kabel, adaptor, kamera..." />
         
-        <div class="inventory-progress-box">
-          <div class="progress-bar-bg">
-            <div class="progress-bar-fill" id="progress-bar-fill"></div>
+        <div class="inventory-progress-badge">
+          <div class="progress-track">
+            <div class="progress-fill" id="progress-bar-fill"></div>
           </div>
-          <span id="progress-count-text" style="font-family: var(--font-mono); font-weight: 700; color: var(--color-success);">0 / 0 Siap</span>
-          <button id="reset-checklist-btn" class="filter-btn" style="color: #fca5a5; border-color: rgba(239, 68, 68, 0.4);">Reset</button>
+          <span id="progress-count-text" style="font-family: var(--font-mono); font-weight: 700; color: var(--status-ready);">0 / 0 Siap</span>
+          <button id="reset-checklist-btn" class="filter-btn" style="color: #fda4af; border-color: rgba(244, 63, 94, 0.4);">Reset</button>
         </div>
       </div>
 
-      <div class="filter-bar">
+      <div class="filter-row">
         <button class="filter-btn active" data-cat-filter="all">Semua Kategori</button>
-        <button class="filter-btn" data-cat-filter="OWL">OWL Studio</button>
-        <button class="filter-btn" data-cat-filter="UKK">UKK UNNES</button>
-        <button class="filter-btn" data-cat-filter="GIA">GIA Deliksari</button>
-        <button class="filter-btn" data-cat-filter="GKJ">GKJ Ngaliyan</button>
-        <button class="filter-btn" data-cat-filter="Andreas">Andreas Toolkit</button>
-        <button class="filter-btn" data-cat-filter="Team">Peminjaman Kru</button>
+        <button class="filter-btn" data-cat-filter="OWL">OWL Studio (18)</button>
+        <button class="filter-btn" data-cat-filter="UKK">UKK UNNES (12)</button>
+        <button class="filter-btn" data-cat-filter="GIA">GIA Deliksari (6)</button>
+        <button class="filter-btn" data-cat-filter="GKJ">GKJ Ngaliyan (6)</button>
+        <button class="filter-btn" data-cat-filter="Andreas">Andreas Toolkit (25)</button>
+        <button class="filter-btn" data-cat-filter="Team">Peminjaman Kru (11)</button>
       </div>
 
-      <div class="inventory-table-wrapper">
-        <table class="inventory-table">
+      <div class="inventory-table-container">
+        <table class="inv-table">
           <thead>
             <tr>
-              <th style="text-align: center;">Status</th>
-              <th>Nama Perlengkapan</th>
+              <th style="text-align: center; width: 44px;">Check</th>
+              <th>Nama Perlengkapan & Keterangan</th>
               <th>Jumlah</th>
-              <th>Asal Peminjaman</th>
-              <th>Kategori</th>
+              <th>Asal Unit</th>
+              <th>Tipe Kategori</th>
             </tr>
           </thead>
           <tbody id="inventory-tbody">
-            <!-- Injected via JavaScript -->
+            <!-- Injected via JS -->
           </tbody>
         </table>
       </div>
     </section>
 
-    <!-- TAB 5: RUNDOWN & CUES -->
-    <section id="tab-rundown" class="tab-content">
-      <div class="section-header">
+    <!-- PANEL 5: RUNDOWN & CUES -->
+    <section id="tab-rundown" class="tab-pane">
+      <div class="section-head">
         <h2 class="section-title">📑 Rundown & Media Asset Cue Sheet</h2>
         <p class="section-desc">Urutan pemutaran konten multimedia, slide khotbah, dan routing visual layar auditorium.</p>
       </div>
 
-      <div class="rundown-timeline">
-        <!-- Pre-Ibadah -->
-        <div class="rundown-card">
-          <div>
-            <div class="cue-phase">1. PRE-IBADAH (OPEN GATE)</div>
-            <div class="cue-title">Background Music & Video Profile Looping</div>
-            <div class="cue-targets">
-              <span class="target-pill">🔊 Playlist Lagu Rohani (Sound System)</span>
-              <span class="target-pill">🖥️ Loop Video UKK Profile (LED Center)</span>
-              <span class="target-pill">🖥️ After Movie IP25 & IN25 (LED Center)</span>
-            </div>
-          </div>
-          <div class="operator-tag">PIC: Andreas & Audio Crew</div>
-        </div>
-
-        <!-- Opening -->
-        <div class="rundown-card active-cue">
-          <div>
-            <div class="cue-phase" style="color: var(--color-live);">2. OPENING EVENT</div>
-            <div class="cue-title">Opening Countdown & Video Sambutan Bu Grave</div>
-            <div class="cue-targets">
-              <span class="target-pill">🖥️ Video Opening (LED Center)</span>
-              <span class="target-pill">🖥️ Video Sambutan (LED Center + Left + Right)</span>
-            </div>
-          </div>
-          <div class="operator-tag" style="background: rgba(239, 68, 68, 0.2); color: #fca5a5;">PIC: Filia & Rania</div>
-        </div>
-
-        <!-- Praise & Worship -->
-        <div class="rundown-card">
-          <div>
-            <div class="cue-phase">3. PRAISE & WORSHIP</div>
-            <div class="cue-title">Lirik Lagu Pujian & Background Motion Theme</div>
-            <div class="cue-targets">
-              <span class="target-pill">🖥️ Background Tema (Resolume / LED Center)</span>
-              <span class="target-pill">🖥️ Lirik Lagu ProPresenter 1 (LED Tengah + Kiri + Kanan)</span>
-            </div>
-          </div>
-          <div class="operator-tag">PIC: Rania (Pro1) & Andreas (Res)</div>
-        </div>
-
-        <!-- Sermon / Firman -->
-        <div class="rundown-card">
-          <div>
-            <div class="cue-phase">4. SERMON & AYAT FIRMAN</div>
-            <div class="cue-title">PPT Khotbah, Ayat Alkitab & Quote Pembicara</div>
-            <div class="cue-targets">
-              <span class="target-pill">🖥️ Slide PPT Khotbah (LED Center + Kanan Kiri)</span>
-              <span class="target-pill">🖥️ Ayat Pembicara & Video Generation (ProPresenter 2)</span>
-              <span class="target-pill">📺 Timekeeper Timer (TV Darrel)</span>
-            </div>
-          </div>
-          <div class="operator-tag">PIC: Filia (Pro2) & Darrel (Timer)</div>
-        </div>
-
-        <!-- Persembahan & Warta -->
-        <div class="rundown-card">
-          <div>
-            <div class="cue-phase">5. PERSEMBAHAN & WARTA UKK</div>
-            <div class="cue-title">Barcode QRIS Persembahan, UKK News & Pokok Doa</div>
-            <div class="cue-targets">
-              <span class="target-pill">🖥️ Tampilan QRIS Persembahan (LED All)</span>
-              <span class="target-pill">🖥️ UKK News & Pokok Doa (LED All)</span>
-            </div>
-          </div>
-          <div class="operator-tag">PIC: Rania & Filia</div>
-        </div>
-
-        <!-- Close Gate -->
-        <div class="rundown-card">
-          <div>
-            <div class="cue-phase">6. POST-IBADAH (CLOSE GATE)</div>
-            <div class="cue-title">Outro & SOP Usung-Usung (Teardown & Packing)</div>
-            <div class="cue-targets">
-              <span class="target-pill">📦 Pengecekan Total Inventaris sesuai Section Master</span>
-              <span class="target-pill">🔌 Safety Unplug Kabel Daya & Video</span>
-            </div>
-          </div>
-          <div class="operator-tag">PIC: Seluruh Kru Produksi</div>
-        </div>
+      <div class="rundown-list" id="rundown-container">
+        <!-- Injected via JS -->
       </div>
     </section>
 
-    <!-- TAB 6: SOP & SAFETY -->
-    <section id="tab-sop" class="tab-content">
-      <div class="section-header">
+    <!-- PANEL 6: SOP & SAFETY -->
+    <section id="tab-sop" class="tab-pane">
+      <div class="section-head">
         <h2 class="section-title">⚡ Standar Operasional & Keamanan (SOP)</h2>
-        <p class="section-desc">Instruksi keselamatan kelistrikan, penanganan kabel sinyal, dan alur teardown perlengkapan.</p>
+        <p class="section-desc">Instruksi keselamatan kelistrikan, penanganan kabel sinyal HDMI, dan alur usung-usung.</p>
       </div>
 
-      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 1.5rem;">
-        <div class="stat-card" style="border-left: 4px solid var(--color-warning);">
-          <h3 style="color: #f59e0b; margin-bottom: 0.5rem;">🔌 1. Distribusi Kelistrikan & Power</h3>
-          <ul style="padding-left: 1.25rem; color: var(--text-secondary); font-size: 0.875rem;">
+      <div class="sop-grid">
+        <div class="sop-box power-sop">
+          <h3>🔌 1. Distribusi Kelistrikan & Power</h3>
+          <ul>
             <li>Gunakan Terminal Kabel Heavy Duty berkapasitas daya stabil.</li>
             <li>Dilarang menumpuk adaptor switcher / splitter pada terminal T tanpa penguncian yang aman.</li>
             <li>Pastikan laptop operator (OBS, Resolume, ProPresenter) selalu terhubung ke charger asli.</li>
           </ul>
         </div>
 
-        <div class="stat-card" style="border-left: 4px solid var(--color-accent);">
-          <h3 style="color: var(--color-accent); margin-bottom: 0.5rem;">🎥 2. Kabel Sinyal HDMI & Converter</h3>
-          <ul style="padding-left: 1.25rem; color: var(--text-secondary); font-size: 0.875rem;">
+        <div class="sop-box signal-sop">
+          <h3>🎥 2. Kabel Sinyal HDMI & Converter</h3>
+          <ul>
             <li>Hindari menarik kabel HDMI panjang (20M/30M) dengan tegangan berlebih. Beri kelonggaran di area tripod kamera.</li>
-            <li>Pastikan converter Micro-HDMI terfiksasi dengan selotip/klip agar port kamera Sony tidak tertekan.</li>
+            <li>Pastikan converter Micro-HDMI terfiksasi dengan selotip/klip agar port kamera Sony tidak tertekan beban kabel.</li>
             <li>Hollyland Pyro H harus diletakkan pada posisi bebas halangan fisik (Line-of-Sight).</li>
           </ul>
         </div>
 
-        <div class="stat-card" style="border-left: 4px solid var(--color-success);">
-          <h3 style="color: var(--color-success); margin-bottom: 0.5rem;">📦 3. Prosedur Usung-Usung (Teardown)</h3>
-          <ul style="padding-left: 1.25rem; color: var(--text-secondary); font-size: 0.875rem;">
+        <div class="sop-box teardown-sop">
+          <h3>📦 3. Prosedur Usung-Usung (Teardown)</h3>
+          <ul>
             <li>Matikan switcher dan mixer sebelum mencabut kabel video dan audio.</li>
-            <li>Kelompokkan kabel dan perlengkapan berdasarkan label pemilik (OWL, UKK, GIA, GKJ, Andreas).</li>
+            <li>Kelompokkan kabel dan perlengkapan berdasarkan label pemilik (OWL, UKK, GIA, GKJ, Andreas, Tim).</li>
             <li>Gunakan tab Master Inventory di web ini untuk centang setiap alat saat dimasukkan ke box/tas.</li>
           </ul>
         </div>
@@ -988,158 +1147,275 @@
       <p style="margin-top: 0.25rem;">
         Repository: <a href="https://github.com/zzdree/ip26-production" target="_blank" rel="noopener noreferrer">github.com/zzdree/ip26-production</a>
       </p>
-      <p style="margin-top: 0.5rem; font-size: 0.75rem; color: var(--text-muted);">
+      <p style="margin-top: 0.5rem; font-size: 0.75rem; color: var(--text-dim);">
         © 2026 UKK UNNES Production Team & Andreas. All Rights Reserved. (Proprietary Blueprint)
       </p>
     </div>
   </footer>
 
+  <!-- Master Application Script -->
   <script>
-    // IP26 Production Web Blueprint Application Logic
-    const inventoryData = [
-      // OWL
-      { id: 'owl-1', name: 'Sony A6000', qty: '2 Unit', category: 'OWL', type: 'Camera' },
-      { id: 'owl-2', name: 'Sony A6400', qty: '1 Unit', category: 'OWL', type: 'Camera' },
-      { id: 'owl-3', name: 'Sony ZV-E10', qty: '1 Unit', category: 'OWL', type: 'Camera' },
-      { id: 'owl-4', name: 'Sony Lens 18-105mm F4 G', qty: '3 Unit', category: 'OWL', type: 'Lens' },
-      { id: 'owl-5', name: 'Sony Lens 50mm Prime', qty: '1 Unit', category: 'OWL', type: 'Lens' },
-      { id: 'owl-6', name: 'Battery NP-FW50 / NP-FZ100', qty: '8 Unit', category: 'OWL', type: 'Power' },
-      { id: 'owl-7', name: 'Battery Charger Station', qty: '1 Pack', category: 'OWL', type: 'Power' },
-      { id: 'owl-8', name: 'Memory Card 32GB High Speed', qty: '4 Unit', category: 'OWL', type: 'Storage' },
-      { id: 'owl-9', name: 'Cinetreak Cinelive V1 Switcher + Power', qty: '1 Pack', category: 'OWL', type: 'Switcher' },
-      { id: 'owl-10', name: 'Hollyland Pyro H Wireless Kit + Power', qty: '1 Pack', category: 'OWL', type: 'Wireless' },
-      { id: 'owl-11', name: 'Tripod Camera Big Heavy Duty', qty: '1 Unit', category: 'OWL', type: 'Rig' },
-      { id: 'owl-12', name: 'HDMI to Micro HDMI Converter', qty: '2 Unit', category: 'OWL', type: 'Cable' },
-      { id: 'owl-13', name: 'HDMI to Micro HDMI Cable 30CM', qty: '1 Unit', category: 'OWL', type: 'Cable' },
-      { id: 'owl-14', name: 'HDMI Cable 30M High Speed', qty: '1 Unit', category: 'OWL', type: 'Cable' },
-      { id: 'owl-15', name: 'HDMI Cable 20M High Speed', qty: '1 Unit', category: 'OWL', type: 'Cable' },
-      { id: 'owl-16', name: 'HDMI Video Capture Card', qty: '2 Unit', category: 'OWL', type: 'Ingest' },
+    const masterInventory = [
+      // 🏢 1. OWL STUDIO
+      { id: 'owl-1', name: 'Sony A6000', qty: '2 Unit', category: 'OWL', type: 'Camera Body', notes: 'Kamera Broadcast CAM 3 & 4' },
+      { id: 'owl-2', name: 'Sony A6400', qty: '1 Unit', category: 'OWL', type: 'Camera Body', notes: 'Dokumentasi Foto Nico' },
+      { id: 'owl-3', name: 'Sony ZV-E10', qty: '1 Unit', category: 'OWL', type: 'Camera Body', notes: 'Kamera Broadcast CAM 1 (Alex)' },
+      { id: 'owl-4', name: 'Sony Lens 18-105mm F4 G OSS', qty: '3 Unit', category: 'OWL', type: 'Lens', notes: 'Lensa CAM 1, 2, dan 3' },
+      { id: 'owl-5', name: 'Sony Lens 50mm Prime', qty: '1 Unit', category: 'OWL', type: 'Lens', notes: 'Lensa Foto Nico' },
+      { id: 'owl-6', name: 'Battery NP-FW50 / NP-FZ100', qty: '8 Unit', category: 'OWL', type: 'Power', notes: 'Baterai Kamera Sony' },
+      { id: 'owl-7', name: 'Battery Charger Station', qty: '1 Pack', category: 'OWL', type: 'Power', notes: 'Charging Dock' },
+      { id: 'owl-8', name: 'Memory Card 32GB High Speed', qty: '4 Unit', category: 'OWL', type: 'Storage', notes: 'SD Card CAM 2, 3, 4 & Nico' },
+      { id: 'owl-9', name: 'Cinetreak Cinelive V1 Switcher + Power', qty: '1 Pack', category: 'OWL', type: 'Switcher', notes: 'Switcher Utama 4 Input HDMI' },
+      { id: 'owl-10', name: 'Power Adaptor MIX Cinetreak', qty: '1 Unit', category: 'OWL', type: 'Power', notes: 'Power Switcher' },
+      { id: 'owl-11', name: 'Hollyland Pyro H Wireless Kit (TX/RX)', qty: '1 Pack', category: 'OWL', type: 'Wireless', notes: 'Transmitter CAM 2 Roaming' },
+      { id: 'owl-12', name: 'Power Adaptor WIR Hollyland', qty: '1 Unit', category: 'OWL', type: 'Power', notes: 'Power Wireless Receiver' },
+      { id: 'owl-13', name: 'Tripod Camera Big Heavy Duty', qty: '1 Unit', category: 'OWL', type: 'Rig', notes: 'Tripod CAM 1' },
+      { id: 'owl-14', name: 'HDMI to Micro HDMI Converter', qty: '2 Unit', category: 'OWL', type: 'Adapter', notes: 'Konektor Kamera Sony' },
+      { id: 'owl-15', name: 'HDMI to Micro HDMI Cable 30CM', qty: '1 Unit', category: 'OWL', type: 'Cable', notes: 'Kabel Rig CAM 2 Pyro H' },
+      { id: 'owl-16', name: 'HDMI Cable 30M High Speed', qty: '1 Unit', category: 'OWL', type: 'Cable', notes: 'Kabel Panjang CAM 1' },
+      { id: 'owl-17', name: 'HDMI Cable 20M High Speed', qty: '1 Unit', category: 'OWL', type: 'Cable', notes: 'Kabel Panjang CAM 1 Backup' },
+      { id: 'owl-18', name: 'HDMI Video Capture Card', qty: '2 Unit', category: 'OWL', type: 'Capture', notes: 'Ingest Resolume / OBS' },
 
-      // UKK
-      { id: 'ukk-1', name: 'XLR Female to Male Cable 10M', qty: '3 Unit', category: 'UKK', type: 'Audio' },
-      { id: 'ukk-2', name: 'Stand Lighting Small', qty: '4 Unit', category: 'UKK', type: 'Rig' },
-      { id: 'ukk-3', name: 'Tripod Camera Big', qty: '1 Unit', category: 'UKK', type: 'Rig' },
-      { id: 'ukk-4', name: 'HDMI to Mini HDMI Cable 2.5M', qty: '1 Unit', category: 'UKK', type: 'Cable' },
-      { id: 'ukk-5', name: 'HDMI Cable 15M / 10M / 1.5M', qty: '6 Unit', category: 'UKK', type: 'Cable' },
-      { id: 'ukk-6', name: 'HDMI Splitter 4CH + Adaptor', qty: '1 Pack', category: 'UKK', type: 'Splitter' },
-      { id: 'ukk-7', name: 'VGA to VGA Cables & Converters', qty: '3 Unit', category: 'UKK', type: 'Cable' },
-      { id: 'ukk-8', name: 'Terminal Cable XCH (Heavy Duty)', qty: 'Multi', category: 'UKK', type: 'Power' },
+      // 🏢 2. UKK UNNES
+      { id: 'ukk-1', name: 'XLR Female to Male Cable 10M', qty: '3 Unit', category: 'UKK', type: 'Audio Cable', notes: 'Jalur FOH QL5 ke Submixer' },
+      { id: 'ukk-2', name: 'Stand Lighting Small', qty: '4 Unit', category: 'UKK', type: 'Rig', notes: 'Stand Wireless & Lighting' },
+      { id: 'ukk-3', name: 'Tripod Camera Big', qty: '1 Unit', category: 'UKK', type: 'Rig', notes: 'Tripod CAM 4' },
+      { id: 'ukk-4', name: 'HDMI to Mini HDMI Cable 2.5M', qty: '1 Unit', category: 'UKK', type: 'Cable', notes: 'Kabel Converter' },
+      { id: 'ukk-5', name: 'HDMI Cable 15M', qty: '1 Unit', category: 'UKK', type: 'Cable', notes: 'Distribusi Video' },
+      { id: 'ukk-6', name: 'HDMI Cable 10M', qty: '1 Unit', category: 'UKK', type: 'Cable', notes: 'Distribusi CAM 3' },
+      { id: 'ukk-7', name: 'HDMI Cable 1.5M', qty: '4 Unit', category: 'UKK', type: 'Cable', notes: 'Patch Switcher & Capture' },
+      { id: 'ukk-8', name: 'HDMI Splitter 4CH + Adaptor SPL', qty: '1 Pack', category: 'UKK', type: 'Distribution', notes: 'Splitter Output Video' },
+      { id: 'ukk-9', name: 'VGA to VGA Cable 1.5M & 2.5M', qty: '2 Unit', category: 'UKK', type: 'Cable', notes: 'Display Backup' },
+      { id: 'ukk-10', name: 'VGA to HDMI Converter', qty: '2 Unit', category: 'UKK', type: 'Adapter', notes: 'Converter Display' },
+      { id: 'ukk-11', name: 'Power Cable XPIN', qty: 'Multi', category: 'UKK', type: 'Power', notes: 'Kabel Power Distribusi' },
+      { id: 'ukk-12', name: 'Terminal Cable XCH (Heavy Duty)', qty: 'Multi', category: 'UKK', type: 'Power', notes: 'Terminal Listrik Panggung' },
 
-      // GIA Deliksari
-      { id: 'gia-1', name: 'Mixer NewBaxs CT80S', qty: '1 Unit', category: 'GIA', type: 'Audio' },
-      { id: 'gia-2', name: 'XLR Female to Male Cable 3M', qty: '2 Unit', category: 'GIA', type: 'Audio' },
-      { id: 'gia-3', name: 'USB-A to USB-C Data Cable', qty: '1 Unit', category: 'GIA', type: 'Cable' },
-      { id: 'gia-4', name: 'Tripod Camera Big', qty: '1 Unit', category: 'GIA', type: 'Rig' },
-      { id: 'gia-5', name: 'HDMI to HDMI Cable 1M', qty: '2 Unit', category: 'GIA', type: 'Cable' },
+      // ⛪ 3. GIA DELIKSARI
+      { id: 'gia-1', name: 'Mixer NewBaxs CT80S Submixer', qty: '1 Unit', category: 'GIA', type: 'Audio Mixer', notes: 'Submixer Audio OBS Studio' },
+      { id: 'gia-2', name: 'XLR Female to Male Cable 3M', qty: '2 Unit', category: 'GIA', type: 'Audio Cable', notes: 'Patch Submixer Audio' },
+      { id: 'gia-3', name: 'USB-A to USB-C Data Cable', qty: '1 Unit', category: 'GIA', type: 'Cable', notes: 'Data Ingest Mixer ke Laptop' },
+      { id: 'gia-4', name: 'Tripod Camera Big', qty: '1 Unit', category: 'GIA', type: 'Rig', notes: 'Tripod CAM 3' },
+      { id: 'gia-5', name: 'HDMI Splitter 2CH + Adaptor', qty: '1 Pack', category: 'GIA', type: 'Distribution', notes: 'Splitter Display' },
+      { id: 'gia-6', name: 'HDMI to HDMI Cable 1M', qty: '2 Unit', category: 'GIA', type: 'Cable', notes: 'Patch Kabel Display' },
 
-      // GKJ Ngaliyan
-      { id: 'gkj-1', name: 'Stand Lighting Small', qty: '1 Unit', category: 'GKJ', type: 'Rig' },
-      { id: 'gkj-2', name: 'HDMI Cable 15M & 10M', qty: '2 Unit', category: 'GKJ', type: 'Cable' },
-      { id: 'gkj-3', name: 'HDMI Video Capture Card', qty: '1 Unit', category: 'GKJ', type: 'Ingest' },
-      { id: 'gkj-4', name: 'HDMI Splitter 4CH + Adaptor', qty: '1 Pack', category: 'GKJ', type: 'Splitter' },
+      // ⛪ 4. GKJ NGALIYAN
+      { id: 'gkj-1', name: 'Stand Lighting Small', qty: '1 Unit', category: 'GKJ', type: 'Rig', notes: 'Stand Receiver Wireless' },
+      { id: 'gkj-2', name: 'HDMI Cable 15M', qty: '1 Unit', category: 'GKJ', type: 'Cable', notes: 'Jalur Resolume ke Nova LED' },
+      { id: 'gkj-3', name: 'HDMI Cable 10M', qty: '1 Unit', category: 'GKJ', type: 'Cable', notes: 'Jalur CAM 4' },
+      { id: 'gkj-4', name: 'HDMI Cable 5M & 1.5M', qty: '2 Unit', category: 'GKJ', type: 'Cable', notes: 'Patch Kabel Video' },
+      { id: 'gkj-5', name: 'HDMI Video Capture Card', qty: '1 Unit', category: 'GKJ', type: 'Capture', notes: 'Ingest Capture Card' },
+      { id: 'gkj-6', name: 'HDMI Splitter 4CH + Adaptor SPL', qty: '1 Pack', category: 'GKJ', type: 'Distribution', notes: 'Splitter Resolume LED Center' },
 
-      // Andreas Master Box
-      { id: 'and-1', name: 'USB-C DAC Hanason AB17X', qty: '1 Unit', category: 'Andreas', type: 'Audio' },
-      { id: 'and-2', name: 'USB-C DAC Oraimo OAA310', qty: '1 Unit', category: 'Andreas', type: 'Audio' },
-      { id: 'and-3', name: 'In-Ear Monitor QKZ Hi7T & KZ EDX Pro', qty: '2 Pack', category: 'Andreas', type: 'Monitoring' },
-      { id: 'and-4', name: 'Fastdrive SSD Vgen 128GB + HDD 1TB', qty: '2 Pack', category: 'Andreas', type: 'Storage' },
-      { id: 'and-5', name: 'Flashdrives Pack (8GB, 16GB, 32GB, 64GB)', qty: '4 Unit', category: 'Andreas', type: 'Storage' },
-      { id: 'and-6', name: 'Terminal Cables (2CH, 3CH, 4CH, XCH)', qty: '6 Unit', category: 'Andreas', type: 'Power' },
-      { id: 'and-7', name: 'Terminal T Multi-Plug', qty: '8 Unit', category: 'Andreas', type: 'Power' },
-      { id: 'and-8', name: 'Master Tool Box, Screws, Ties & Tapes', qty: '4 Pack', category: 'Andreas', type: 'Toolkit' },
+      // 👤 5. ANDREAS MASTER TOOLKIT
+      { id: 'and-1', name: 'USB-C DAC Hanason AB17X (Hi-Res)', qty: '1 Unit', category: 'Andreas', type: 'Audio DAC', notes: 'Audio Ingest Resolume ke FOH' },
+      { id: 'and-2', name: 'USB-C DAC Oraimo OAA310', qty: '1 Unit', category: 'Andreas', type: 'Audio DAC', notes: 'Audio Ingest Backup DAC' },
+      { id: 'and-3', name: 'In-Ear Monitor QKZ Hi7T', qty: '1 Pack', category: 'Andreas', type: 'Monitoring', notes: 'Monitoring Audio Kru' },
+      { id: 'and-4', name: 'In-Ear Monitor KZ EDX Pro', qty: '1 Pack', category: 'Andreas', type: 'Monitoring', notes: 'Monitoring Audio Kru' },
+      { id: 'and-5', name: 'Fastdrive V-Gen SSD 128GB', qty: '1 Pack', category: 'Andreas', type: 'Storage', notes: 'Aset Multimedia Cepat' },
+      { id: 'and-6', name: 'Fastdrive Toshiba HDD 1TB', qty: '1 Pack', category: 'Andreas', type: 'Storage', notes: 'Master Backup Video' },
+      { id: 'and-7', name: 'Flashdrive Pack (8GB, 16GB, 32GB, 64GB)', qty: '4 Unit', category: 'Andreas', type: 'Storage', notes: 'Distribusi File Presenter' },
+      { id: 'and-8', name: 'Fan Cooler Laptop', qty: '1 Unit', category: 'Andreas', type: 'Accessory', notes: 'Pendingin Laptop Streaming' },
+      { id: 'and-9', name: 'Mouse Pad + Keyboard Ext + Mouse Ext', qty: '3 Unit', category: 'Andreas', type: 'Accessory', notes: 'Station Switcher OBS' },
+      { id: 'and-10', name: 'Powerbank High Capacity', qty: '1 Unit', category: 'Andreas', type: 'Power', notes: 'Power Darurat' },
+      { id: 'and-11', name: 'Power Adaptor USB-A Pack', qty: '9 Unit', category: 'Andreas', type: 'Power', notes: 'Charger Adaptor Aksesoris' },
+      { id: 'and-12', name: 'Power Adaptor USB-A x C & USB-C', qty: '2 Unit', category: 'Andreas', type: 'Power', notes: 'Fast Charging Adaptor' },
+      { id: 'and-13', name: 'USB-A to USB-B / Micro-B Data Cables', qty: '3 Unit', category: 'Andreas', type: 'Cable', notes: 'Kabel Data Periferal' },
+      { id: 'and-14', name: 'USB-A to USB-C Data & Charge Cables', qty: '2 Unit', category: 'Andreas', type: 'Cable', notes: 'Kabel Data Switcher OBS' },
+      { id: 'and-15', name: 'USB-C to USB-C Charge Cable', qty: '1 Unit', category: 'Andreas', type: 'Cable', notes: 'Kabel Power USB-C' },
+      { id: 'and-16', name: 'USB-A Extender (30CM & 2M)', qty: '3 Unit', category: 'Andreas', type: 'Cable', notes: 'Perpanjangan USB' },
+      { id: 'and-17', name: 'USB-A to USB-C Male & Female Converters', qty: '6 Unit', category: 'Andreas', type: 'Adapter', notes: 'OTG & Adaptor USB' },
+      { id: 'and-18', name: 'USB-A Splitter Hub (3CH & 4CH)', qty: '2 Unit', category: 'Andreas', type: 'Hub', notes: 'Hub Periferal Kontrol' },
+      { id: 'and-19', name: 'HDMI to Mini HDMI Converter & Cable 1.5M', qty: '2 Unit', category: 'Andreas', type: 'Cable', notes: 'Patch Display' },
+      { id: 'and-20', name: 'HDMI to HDMI Cable 1.5M', qty: '3 Unit', category: 'Andreas', type: 'Cable', notes: 'Koneksi ProPresenter & Switcher' },
+      { id: 'and-21', name: 'VGA to HDMI Converter & VGA Cable 1.5M', qty: '4 Unit', category: 'Andreas', type: 'Adapter', notes: 'Converter Layar Cadangan' },
+      { id: 'and-22', name: 'Power Cable 3PIN & 2PIN', qty: '4 Unit', category: 'Andreas', type: 'Power', notes: 'Kabel Power Mixer / Display' },
+      { id: 'and-23', name: 'Terminal Cables (4CH, 3CH, 2CH, XCH)', qty: '7 Unit', category: 'Andreas', type: 'Power', notes: 'Terminal Distribusi FOH' },
+      { id: 'and-24', name: 'Terminal T Multi-Plug', qty: '8 Unit', category: 'Andreas', type: 'Power', notes: 'Cabang Steker Terminal' },
+      { id: 'and-25', name: 'Master Tool Box, Screws, Ties & Tapes', qty: '7 Pack', category: 'Andreas', type: 'Toolkit', notes: 'Perlengkapan Rigging & Fiksasi' },
 
-      // Individual & Team Loans
-      { id: 'ind-1', name: 'HDMI Capture Card (ABON)', qty: '2 Unit', category: 'Team', type: 'Ingest' },
-      { id: 'ind-2', name: 'Sony A6600 + Zeiss 24-70mm + RS3 (Joel)', qty: '1 Rig', category: 'Team', type: 'Camera' },
-      { id: 'ind-3', name: 'Sony ZV-E10 + Kit 16-50mm (Kiel)', qty: '1 Unit', category: 'Team', type: 'Camera' },
-      { id: 'ind-4', name: 'Television Multiview Monitor (Darrel)', qty: '1 Unit', category: 'Team', type: 'Display' },
-      { id: 'ind-5', name: 'Television Multiview Monitor (Kezia)', qty: '1 Unit', category: 'Team', type: 'Display' },
-      { id: 'ind-6', name: 'Television Multiview Monitor (Jennifer)', qty: '1 Unit', category: 'Team', type: 'Display' },
-      { id: 'ind-7', name: 'iPhone 15 Mobile Documentation (Jennifer)', qty: '1 Unit', category: 'Team', type: 'Mobile' }
+      // 👥 6. TEAM & INDIVIDUAL LOANS
+      { id: 'ind-1', name: 'HDMI Capture Card (ABON)', qty: '2 Unit', category: 'Team', type: 'Capture', notes: 'Capture Card Pinjaman ABON' },
+      { id: 'ind-2', name: 'Sony A6600 + Zeiss 24-70mm (Joel)', qty: '1 Rig', category: 'Team', type: 'Camera Rig', notes: 'Kamera Sinematik Video' },
+      { id: 'ind-3', name: 'Gimbal DJI Ronin RS3 (Joel)', qty: '1 Unit', category: 'Team', type: 'Stabilizer', notes: 'Gimbal Stabilizer Video Joel' },
+      { id: 'ind-4', name: 'Sony ZV-E10 + Kit 16-50mm + Manual 50mm (Kiel)', qty: '1 Pack', category: 'Team', type: 'Camera Rig', notes: 'Kamera Standby / Backup' },
+      { id: 'ind-5', name: 'Television Multiview Monitor (Darrel)', qty: '1 Unit', category: 'Team', type: 'Display', notes: 'Stage Display Timekeeper' },
+      { id: 'ind-6', name: 'Television Multiview Monitor (Kezia)', qty: '1 Unit', category: 'Team', type: 'Display', notes: 'Monitor Multiview Switcher' },
+      { id: 'ind-7', name: 'Television Multiview Monitor (Jennifer)', qty: '1 Unit', category: 'Team', type: 'Display', notes: 'Monitor Multiview Switcher' },
+      { id: 'ind-8', name: 'iPhone 15 Mobile Documentation (Jennifer)', qty: '1 Unit', category: 'Team', type: 'Mobile', notes: 'Dokumentasi Reels & Medsos' },
+      { id: 'ind-9', name: 'HDMI Cable 1.5M (Lio)', qty: '1 Unit', category: 'Team', type: 'Cable', notes: 'Patch Video' },
+      { id: 'ind-10', name: 'HDMI to Micro HDMI Converter (Panitia)', qty: '2 Unit', category: 'Team', type: 'Adapter', notes: 'Converter Kamera Tambahan' },
+      { id: 'ind-11', name: 'Terminal Cable XCH (Panitia)', qty: 'Multi', category: 'Team', type: 'Power', notes: 'Distribusi Kelistrikan Panitia' }
     ];
 
-    const crewMembers = [
-      { name: 'Alex', role: 'CAM 1 Operator (Main Broadcast)', division: 'broadcast', gear: 'Sony ZV-E10 + 18-105mm + HDMI 30M + Big Tripod' },
-      { name: 'Kiel 1', role: 'CAM 2 Operator (Wireless Live)', division: 'broadcast', gear: 'Sony ZV-E10 + 18-105mm + Hollyland Pyro H TX/RX' },
-      { name: 'Dewi', role: 'CAM 3 Operator (Side Broadcast)', division: 'broadcast', gear: 'Sony A6000 + 18-105mm + HDMI 10M + Big Tripod' },
-      { name: 'Nathania', role: 'CAM 4 Operator (Wide Broadcast)', division: 'broadcast', gear: 'Sony A6000 + 16-50mm + HDMI 10M + Big Tripod' },
-      { name: 'Wilfred', role: 'Video Switcher Master', division: 'engine', gear: 'Cinetreak Cinelive V1 + Multiview Monitor' },
-      { name: 'Andreas', role: 'OBS Stream & Resolume Arena', division: 'engine', gear: 'OBS Laptop + Resolume Arena + Master DAC' },
-      { name: 'Rania', role: 'ProPresenter 1 (Lyrics / LED Sides)', division: 'media', gear: 'Laptop ProPresenter 1 + HDMI Splitter 4CH' },
-      { name: 'Filia', role: 'ProPresenter 2 (Sermon / Center LED)', division: 'media', gear: 'Laptop ProPresenter 2 + Capture Card to Resolume' },
-      { name: 'Darrel', role: 'Timekeeper Master', division: 'media', gear: 'Laptop ProPresenter 3 + Stage TV Monitor' },
-      { name: 'Jordan / Yosua', role: 'Virtual Mixer Operator', division: 'audio', gear: 'iPad / Laptop VM + UNNES-ID Network Control' },
-      { name: 'Nico', role: 'Lead Photographer', division: 'doc', gear: 'Sony A6400 + 50mm Prime (OWL)' },
-      { name: 'Joel', role: 'Cinematic Videographer', division: 'doc', gear: 'Sony A6600 + Zeiss 24-70mm + DJI RS3 Gimbal' },
-      { name: 'Jennifer', role: 'Social Media & Mobile Reels', division: 'doc', gear: 'iPhone 15 Mobile Rig' },
-      { name: 'Kiel (Backup)', role: 'Technical Standby & Redundancy', division: 'engine', gear: 'Secondary Backup Station Laptop' }
+    const crewDirectory = [
+      { name: 'Alex', role: 'CAM 1 Operator (Main Broadcast)', division: 'broadcast', gear: 'Sony ZV-E10 + 18-105mm + HDMI 30M + Big Tripod + Splitter 4CH' },
+      { name: 'Kiel 1', role: 'CAM 2 Operator (Wireless Live Roaming)', division: 'broadcast', gear: 'Sony ZV-E10 + 18-105mm + Hollyland Pyro H TX/RX + Small Lighting Stand' },
+      { name: 'Dewi', role: 'CAM 3 Operator (Left Wing Stage)', division: 'broadcast', gear: 'Sony A6000 + 18-105mm + HDMI 10M + Big Tripod' },
+      { name: 'Nathania', role: 'CAM 4 Operator (Right Wing Stage)', division: 'broadcast', gear: 'Sony A6000 + 16-50mm + HDMI 10M + Big Tripod' },
+      { name: 'Wilfred', role: 'Video Switcher Master', division: 'engine', gear: 'Cinetreak Cinelive V1 + Television Multiview Monitor' },
+      { name: 'Andreas', role: 'OBS Stream & Resolume Master', division: 'engine', gear: 'Laptop OBS Studio + Laptop Resolume Arena + Master DAC Ingest' },
+      { name: 'Rania', role: 'ProPresenter 1 (Lyrics & LED Sides)', division: 'media', gear: 'Laptop ProPresenter 1 + HDMI Splitter 4CH + HDMI Capture Card' },
+      { name: 'Filia', role: 'ProPresenter 2 (Sermon / Center Ingest)', division: 'media', gear: 'Laptop ProPresenter 2 + HDMI 1.5M + HDMI Capture to Resolume' },
+      { name: 'Darrel', role: 'Timekeeper Master (Stage Timer)', division: 'media', gear: 'Laptop ProPresenter 3 + HDMI 1M + Television Stage Monitor' },
+      { name: 'Jordan / Yosua', role: 'Virtual Audio Mixer Operator', division: 'audio', gear: 'iPad / Laptop Virtual Mixer + WiFi UNNES-ID Network Control' },
+      { name: 'Nico', role: 'Lead Photographer', division: 'doc', gear: 'Sony A6400 + 50mm Prime (OWL) + 32GB SD Card' },
+      { name: 'Joel', role: 'Cinematic Videographer', division: 'doc', gear: 'Sony A6600 + Zeiss 24-70mm + DJI Ronin RS3 Gimbal' },
+      { name: 'Jennifer', role: 'Social Media & Mobile Reels', division: 'doc', gear: 'iPhone 15 Mobile Rig + Live Posting Station' },
+      { name: 'Kiel (Backup)', role: 'Technical Standby & Redundancy', division: 'engine', gear: 'Secondary Backup Station Laptop + Spare Accessories' }
     ];
 
-    const broadcastRoutes = [
+    const masterSignalRoutes = [
       {
-        id: 'cam1',
-        title: 'CAM 1 — Main Stage Wide/Medium',
-        operator: 'Alex',
-        type: 'live-cam',
-        nodes: ['Sony ZV-E10 + 18-105mm', 'Micro-HDMI Conv', 'HDMI 20M/30M', 'HDMI Splitter 4CH', 'Cinetreak V1 (CH 1)']
+        id: 'route-cam1',
+        title: 'CAM 1 — Main Broadcast Stage (Alex)',
+        pic: 'Alex',
+        type: 'cam-route',
+        steps: ['Sony ZV-E10 + 18-105mm F4', 'Micro-HDMI to HDMI Converter', 'HDMI Cable 20M / 30M', 'HDMI Splitter 4CH', 'Cinetreak Cinelive V1 (Input 1)']
       },
       {
-        id: 'cam2',
-        title: 'CAM 2 — Wireless Roaming Stage',
-        operator: 'Kiel 1',
-        type: 'live-cam',
-        nodes: ['Sony ZV-E10 + 18-105mm', 'Hollyland Pyro H TX', 'Wireless 5GHz Link', 'Pyro H RX + HDMI 1.5M', 'Cinetreak V1 (CH 2)']
+        id: 'route-cam2',
+        title: 'CAM 2 — Wireless Roaming Stage (Kiel 1)',
+        pic: 'Kiel 1',
+        type: 'cam-route',
+        steps: ['Sony ZV-E10 + 18-105mm F4', 'Micro-HDMI Cable 30CM', 'Hollyland Pyro H Transmitter (TX)', 'Wireless 5.8GHz Transmission', 'Pyro H Receiver (RX) + HDMI 1.5M', 'Cinetreak Cinelive V1 (Input 2)']
       },
       {
-        id: 'cam3',
-        title: 'CAM 3 — Left Wing Angle',
-        operator: 'Dewi',
-        type: 'live-cam',
-        nodes: ['Sony A6000 + 18-105mm', 'Micro-HDMI Conv', 'HDMI 10M Cable', 'Cinetreak V1 (CH 3)']
+        id: 'route-cam3',
+        title: 'CAM 3 — Left Wing Angle (Dewi)',
+        pic: 'Dewi',
+        type: 'cam-route',
+        steps: ['Sony A6000 + 18-105mm F4', 'Micro-HDMI to HDMI Converter', 'HDMI Cable 10M High Speed', 'Cinetreak Cinelive V1 (Input 3)']
       },
       {
-        id: 'cam4',
-        title: 'CAM 4 — Right Wing Angle',
-        operator: 'Nathania',
-        type: 'live-cam',
-        nodes: ['Sony A6000 + 16-50mm', 'Micro-HDMI Conv', 'HDMI 10M Cable', 'Cinetreak V1 (CH 4)']
+        id: 'route-cam4',
+        title: 'CAM 4 — Right Wing Angle (Nathania)',
+        pic: 'Nathania',
+        type: 'cam-route',
+        steps: ['Sony A6000 + 16-50mm Kit', 'Micro-HDMI to HDMI Converter', 'HDMI Cable 10M High Speed', 'Cinetreak Cinelive V1 (Input 4)']
       },
       {
-        id: 'switcher-obs',
-        title: 'Switcher to Live OBS Stream',
-        operator: 'Andreas & Wilfred',
+        id: 'route-switcher-tv',
+        title: 'Switcher Multiview to Television Monitor',
+        pic: 'Wilfred',
         type: 'media-route',
-        nodes: ['Cinetreak Cinelive V1', 'USB-C UVC Data Out', 'Laptop OBS Studio', 'YouTube / Live Feed']
+        steps: ['Cinetreak Cinelive V1 (Multiview Out)', 'HDMI to HDMI Cable 1M', 'Television Monitor (Kezia / Jennifer)']
       },
       {
-        id: 'audio-master',
-        title: 'Main Audio & Submix Flow',
-        operator: 'UNNES & Andreas',
+        id: 'route-switcher-obs',
+        title: 'Switcher Program Ingest to OBS Live Stream',
+        pic: 'Andreas & Wilfred',
+        type: 'media-route',
+        steps: ['Cinetreak Cinelive V1 (USB-C Video Out)', 'USB-A to USB-C High Speed Cable', 'Laptop OBS Studio (UVC Video Ingest)', 'RTMP Live Broadcast Output']
+      },
+      {
+        id: 'route-foh-audio',
+        title: 'Main Audio FOH & OBS Streaming Pipeline',
+        pic: 'UNNES FOH & Andreas',
         type: 'audio-route',
-        nodes: ['Yamaha QL5 FOH Mixer', 'XLR Female-Male 10M + 3M', 'NewBaxs CT80S Submixer', 'USB Out to OBS Laptop']
+        steps: ['Mixer Yamaha QL5 (Auditorium UNNES)', 'Dual XLR Female to Male 10M + 3M', 'Mixer NewBaxs CT80S Submixer (GIA)', 'USB Data Out', 'Laptop OBS Studio (Streaming Audio Ingest)']
       },
       {
-        id: 'resolume-led',
-        title: 'Resolume Arena to Center LED',
-        operator: 'Andreas',
-        type: 'media-route',
-        nodes: ['Resolume Arena Laptop', 'HDMI 15M + Capture Card', 'Nova Video Processor', 'LED Screen Center Main']
+        id: 'route-vm-audio',
+        title: 'Virtual Wireless Audio Mixing Network',
+        pic: 'Jordan & Yosua',
+        type: 'audio-route',
+        steps: ['Mixer Yamaha QL5 (FOH)', 'Auditorium Local WiFi (UNNES-ID)', 'iPad Virtual Mixer 1 (Jennifer) & Laptop Virtual Mixer 2 (Andreas)']
       },
       {
-        id: 'propresenter-sides',
-        title: 'ProPresenter 1 to Left/Right LED',
-        operator: 'Rania',
+        id: 'route-resolume-dac',
+        title: 'Resolume Background Audio Ingest to FOH',
+        pic: 'Andreas',
+        type: 'audio-route',
+        steps: ['Laptop Resolume Arena', 'USB-C DAC Hi-Res (Hanason AB17X / Oraimo)', 'Jack 3.5mm Aux Line UNNES', 'Mixer Yamaha QL5 Main FOH']
+      },
+      {
+        id: 'route-pro1-sides',
+        title: 'ProPresenter 1 to LED Left, Right & Back',
+        pic: 'Rania',
         type: 'media-route',
-        nodes: ['ProPresenter 1 Laptop', 'HDMI Splitter 4CH', 'HDMI Capture Card', 'LED Left, Right & Back']
+        steps: ['Laptop ProPresenter 1 (Lyrics / Verse)', 'HDMI to HDMI Cable 1.5M', 'HDMI Splitter 4CH (UKK)', 'HDMI Video Capture Card', 'Nova Video Processor', 'LED Screen (Left, Right & Back)']
+      },
+      {
+        id: 'route-pro2-resolume',
+        title: 'ProPresenter 2 Sermon to Resolume Arena Ingest',
+        pic: 'Filia & Andreas',
+        type: 'media-route',
+        steps: ['Laptop ProPresenter 2 (Sermon PPT / Quotes)', 'HDMI to HDMI Cable 1.5M', 'HDMI Video Capture Card', 'Laptop Resolume Arena (Live Ingest Layer)']
+      },
+      {
+        id: 'route-resolume-center',
+        title: 'Resolume Arena to Main Center LED Screen',
+        pic: 'Andreas',
+        type: 'media-route',
+        steps: ['Laptop Resolume Arena (Master Visual Canvas)', 'HDMI Cable 15M High Speed (GKJ)', 'HDMI Video Capture / Interface', 'NovaStar Video Processor', 'LED Screen Center Main']
+      },
+      {
+        id: 'route-pro3-timekeeper',
+        title: 'ProPresenter 3 to Stage TV Timekeeper (Separate)',
+        pic: 'Darrel',
+        type: 'media-route',
+        steps: ['Laptop ProPresenter 3 (Timekeeper Timer)', 'HDMI to HDMI Cable 1M', 'Stage Television Monitor (Darrel)']
+      },
+      {
+        id: 'route-power-dist',
+        title: 'Master Electrical Power Distribution',
+        pic: 'Andreas, UKK & Panitia',
+        type: 'power-route',
+        steps: ['Gedung Auditorium Main AC Wall Outlets', 'Heavy Duty Terminal Cable XCH (UKK x Andreas x Panitia)', 'Sub-terminal FOH & Broadcast Deck', 'Stabilized Adapters for Switcher, Mixers & Laptops']
       }
     ];
 
-    // State
+    const masterRundownCues = [
+      {
+        phase: '1. PRE-IBADAH (OPEN GATE)',
+        title: 'Background Music & Loop Video Profil UKK',
+        destinations: ['🔊 Playlist Lagu Rohani (Sound System Main)', '🖥️ Loop Video UKK Profile (LED Center)', '🖥️ After Movie IP25 & IN25 (LED Center)'],
+        pic: 'Andreas & Tim Audio'
+      },
+      {
+        phase: '2. OPENING EVENT',
+        title: 'Video Opening Countdown & Sambutan Bu Grave',
+        destinations: ['🖥️ Video Opening (LED Center)', '🖥️ Video Sambutan Bu Grave (LED Center + Left + Right)'],
+        pic: 'Filia & Rania'
+      },
+      {
+        phase: '3. PRAISE & WORSHIP',
+        title: 'Background Tema Motion & Lirik Lagu Pujian',
+        destinations: ['🖥️ Background Tema (Resolume / LED Center)', '🔊 Background Lagu (Sound System)', '🖥️ Lirik Lagu ProPresenter 1 (LED Tengah + Kiri + Kanan)'],
+        pic: 'Rania (Pro1) & Andreas (Resolume)'
+      },
+      {
+        phase: '4. PRAISE INTERLUDE',
+        title: 'Video Generation Clip & Video Transisi',
+        destinations: ['🖥️ Video Generation Clip (LED Center + Left + Right)', '🔊 Sound System Audio FX'],
+        pic: 'Filia & Tim Media'
+      },
+      {
+        phase: '5. SERMON & AYAT FIRMAN',
+        title: 'Slide PPT Khotbah, Ayat Alkitab & Quote Pembicara',
+        destinations: ['🖥️ Slide PPT Khotbah (LED Center + Left + Right)', '🖥️ Ayat Pembicara & Quotes (ProPresenter 2)', '📺 Stage Timer Timekeeper (TV Darrel)'],
+        pic: 'Filia (Pro2) & Darrel (Timer)'
+      },
+      {
+        phase: '6. PERSEMBAHAN & WARTA',
+        title: 'Barcode QRIS Persembahan, UKK News & Pokok Doa',
+        destinations: ['🖥️ Tampilan Barcode QRIS Persembahan (LED All)', '🖥️ Slide UKK News & Info Kegiatan (LED All)', '🖥️ Pokok Doa Jemaat (LED All)'],
+        pic: 'Rania & Filia'
+      },
+      {
+        phase: '7. POST-IBADAH (CLOSE GATE)',
+        title: 'Outro Music & Prosedur Usung-Usung (Teardown)',
+        destinations: ['📦 Pengecekan Fisik 80+ Item sesuai Checklist Master', '🔌 SOP Safety Unplug Listrik & Kabel Video', '🚚 Pengelompokan Unit Pinjaman ke Box Pemilik'],
+        pic: 'Seluruh Kru Produksi'
+      }
+    ];
+
+    // Application State
     let activeTab = 'overview';
     let activeCategoryFilter = 'all';
     let activeCrewFilter = 'all';
     let searchQuery = '';
-    let checkedItems = JSON.parse(localStorage.getItem('ip26_checked_items') || '{}');
+    let checkedItems = JSON.parse(localStorage.getItem('ip26_checked_items_v3') || '{}');
 
     // DOM Ready
     document.addEventListener('DOMContentLoaded', () => {
@@ -1148,11 +1424,12 @@
       renderRoutes();
       renderCrew();
       renderInventory();
+      renderRundown();
       updateProgress();
       setupEventListeners();
     });
 
-    // Setup Live Clock
+    // Live WIB Master Clock
     function setupClock() {
       const clockEl = document.getElementById('live-clock');
       function update() {
@@ -1165,16 +1442,16 @@
       setInterval(update, 1000);
     }
 
-    // Setup Tabs
+    // Tab Switching
     function setupTabs() {
-      const tabs = document.querySelectorAll('.tab-btn');
+      const tabs = document.querySelectorAll('.nav-btn');
       tabs.forEach(tab => {
         tab.addEventListener('click', () => {
           tabs.forEach(t => t.classList.remove('active'));
           tab.classList.add('active');
           
           const target = tab.getAttribute('data-tab');
-          document.querySelectorAll('.tab-content').forEach(content => {
+          document.querySelectorAll('.tab-pane').forEach(content => {
             content.classList.remove('active');
           });
           const activeContent = document.getElementById(`tab-${target}`);
@@ -1183,40 +1460,28 @@
       });
     }
 
-    // Render Routes
+    // Render Signal Routing Cards
     function renderRoutes() {
       const container = document.getElementById('routes-container');
       if (!container) return;
 
-      container.innerHTML = broadcastRoutes.map(route => `
+      container.innerHTML = masterSignalRoutes.map(route => `
         <div class="route-card ${route.type}">
-          <div class="route-header">
+          <div class="route-top">
             <h4 class="route-title">${route.title}</h4>
-            <span class="operator-tag">PIC: ${route.operator}</span>
+            <span class="pic-badge">PIC: ${route.pic}</span>
           </div>
-          <div class="signal-chain">
-            ${route.nodes.map((node, idx) => `
-              <div class="chain-node">
-                <span class="chain-icon">${getIconForNode(node)}</span>
-                <span>${node}</span>
+          <div class="signal-flow">
+            ${route.steps.map((step, idx) => `
+              <div class="flow-step">
+                <span class="step-num">#${idx + 1}</span>
+                <span>${step}</span>
               </div>
-              ${idx < route.nodes.length - 1 ? '<div class="chain-arrow">▼</div>' : ''}
+              ${idx < route.steps.length - 1 ? '<div class="flow-arrow">▼</div>' : ''}
             `).join('')}
           </div>
         </div>
       `).join('');
-    }
-
-    function getIconForNode(name) {
-      const lower = name.toLowerCase();
-      if (lower.includes('sony') || lower.includes('cam')) return '📷';
-      if (lower.includes('wireless') || lower.includes('pyro')) return '📡';
-      if (lower.includes('cinetreak') || lower.includes('switcher')) return '🎛️';
-      if (lower.includes('splitter')) return '🔀';
-      if (lower.includes('mixer') || lower.includes('yamaha') || lower.includes('xlr')) return '🔊';
-      if (lower.includes('led') || lower.includes('tv') || lower.includes('monitor')) return '🖥️';
-      if (lower.includes('laptop') || lower.includes('obs') || lower.includes('resolume') || lower.includes('propresenter')) return '💻';
-      return '🔌';
     }
 
     // Render Crew Grid
@@ -1225,76 +1490,99 @@
       if (!container) return;
 
       const filtered = activeCrewFilter === 'all' 
-        ? crewMembers 
-        : crewMembers.filter(c => c.division === activeCrewFilter);
+        ? crewDirectory 
+        : crewDirectory.filter(c => c.division === activeCrewFilter);
 
       container.innerHTML = filtered.map(crew => {
         const initials = crew.name.substring(0, 2).toUpperCase();
         return `
           <div class="crew-card">
-            <div class="crew-top">
+            <div class="crew-profile">
               <div class="crew-avatar">${initials}</div>
               <div>
                 <div class="crew-name">${crew.name}</div>
                 <div class="crew-role">${crew.role}</div>
               </div>
             </div>
-            <div class="crew-gear-badge">
-              <b>Gear:</b> ${crew.gear}
+            <div class="crew-gear-box">
+              <b>Gear Pegangan:</b><br/>${crew.gear}
             </div>
           </div>
         `;
       }).join('');
     }
 
-    // Render Inventory Table
+    // Render Master Inventory Table
     function renderInventory() {
       const tbody = document.getElementById('inventory-tbody');
       if (!tbody) return;
 
-      const filtered = inventoryData.filter(item => {
+      const filtered = masterInventory.filter(item => {
         const matchesCategory = activeCategoryFilter === 'all' || item.category === activeCategoryFilter;
         const matchesSearch = item.name.toLowerCase().includes(searchQuery.toLowerCase()) || 
                               item.type.toLowerCase().includes(searchQuery.toLowerCase()) ||
-                              item.category.toLowerCase().includes(searchQuery.toLowerCase());
+                              item.category.toLowerCase().includes(searchQuery.toLowerCase()) ||
+                              (item.notes && item.notes.toLowerCase().includes(searchQuery.toLowerCase()));
         return matchesCategory && matchesSearch;
       });
 
       if (filtered.length === 0) {
-        tbody.innerHTML = `<tr><td colspan="5" style="text-align:center; padding: 2rem; color: var(--text-muted);">Tidak ada item yang sesuai pencarian.</td></tr>`;
+        tbody.innerHTML = `<tr><td colspan="5" style="text-align:center; padding: 2.5rem; color: var(--text-dim);">Tidak ada item yang sesuai dengan filter atau pencarian.</td></tr>`;
         return;
       }
 
       tbody.innerHTML = filtered.map(item => {
         const isChecked = !!checkedItems[item.id];
         return `
-          <tr style="${isChecked ? 'opacity: 0.6; text-decoration: line-through;' : ''}">
-            <td style="width: 40px; text-align: center;">
-              <input type="checkbox" class="item-check" data-id="${item.id}" ${isChecked ? 'checked' : ''} />
+          <tr style="${isChecked ? 'opacity: 0.55; text-decoration: line-through;' : ''}">
+            <td style="width: 44px; text-align: center;">
+              <input type="checkbox" class="item-check-input" data-id="${item.id}" ${isChecked ? 'checked' : ''} />
             </td>
-            <td><b>${item.name}</b></td>
-            <td><span class="source-badge">${item.qty}</span></td>
-            <td><span class="source-badge">${item.category}</span></td>
-            <td><span class="source-badge" style="color: var(--color-accent);">${item.type}</span></td>
+            <td>
+              <div style="font-weight: 700; color: var(--text-heading);">${item.name}</div>
+              <div style="font-size: 0.75rem; color: var(--text-dim); margin-top: 2px;">${item.notes || ''}</div>
+            </td>
+            <td><span class="source-tag highlight">${item.qty}</span></td>
+            <td><span class="source-tag">${item.category}</span></td>
+            <td><span class="source-tag" style="color: var(--text-heading);">${item.type}</span></td>
           </tr>
         `;
       }).join('');
 
-      // Checkbox events
-      tbody.querySelectorAll('.item-check').forEach(cb => {
+      // Checkbox Event Listeners
+      tbody.querySelectorAll('.item-check-input').forEach(cb => {
         cb.addEventListener('change', (e) => {
           const id = e.target.getAttribute('data-id');
           checkedItems[id] = e.target.checked;
-          localStorage.setItem('ip26_checked_items', JSON.stringify(checkedItems));
+          localStorage.setItem('ip26_checked_items_v3', JSON.stringify(checkedItems));
           renderInventory();
           updateProgress();
         });
       });
     }
 
-    // Update Progress
+    // Render Master Rundown Cues
+    function renderRundown() {
+      const container = document.getElementById('rundown-container');
+      if (!container) return;
+
+      container.innerHTML = masterRundownCues.map((cue, idx) => `
+        <div class="cue-card ${idx === 1 ? 'highlight-cue' : ''}">
+          <div>
+            <div class="cue-phase-tag">${cue.phase}</div>
+            <div class="cue-headline">${cue.title}</div>
+            <div class="cue-destinations">
+              ${cue.destinations.map(d => `<span class="cue-pill">${d}</span>`).join('')}
+            </div>
+          </div>
+          <div class="pic-badge">PIC: ${cue.pic}</div>
+        </div>
+      `).join('');
+    }
+
+    // Progress Bar Calculation
     function updateProgress() {
-      const total = inventoryData.length;
+      const total = masterInventory.length;
       const checkedCount = Object.keys(checkedItems).filter(k => checkedItems[k]).length;
       const pct = Math.round((checkedCount / total) * 100);
 
@@ -1305,7 +1593,7 @@
       if (countEl) countEl.textContent = `${checkedCount} / ${total} (${pct}%) Siap`;
     }
 
-    // Setup Event Listeners
+    // Setup Interactive Filter & Reset Buttons
     function setupEventListeners() {
       document.querySelectorAll('[data-cat-filter]').forEach(btn => {
         btn.addEventListener('click', () => {
@@ -1338,7 +1626,7 @@
         resetBtn.addEventListener('click', () => {
           if (confirm('Apakah Anda yakin ingin me-reset semua checklist perlengkapan?')) {
             checkedItems = {};
-            localStorage.removeItem('ip26_checked_items');
+            localStorage.removeItem('ip26_checked_items_v3');
             renderInventory();
             updateProgress();
           }
