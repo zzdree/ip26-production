@@ -19,7 +19,7 @@ def generate_index_html():
 <html lang="id">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes, viewport-fit=cover" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
   <title>Ibadah Perdana UKK UNNES 2026 — Production & Broadcast Command</title>
   <meta name="description" content="Master Command Deck, Signal Routing Simulator, Realtime Cloud Inventory Sync, Live Switcher Simulator & Crew Briefing untuk Ibadah Perdana UKK UNNES 2026." />
   <meta name="theme-color" content="#111216" />
@@ -29,7 +29,7 @@ def generate_index_html():
   
   <!-- Google Fonts: Space Grotesk, Plus Jakarta Sans, JetBrains Mono -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://fonts.gstatic.com">
   <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
   <!-- External CDNs for Realtime Cloud Sync & QR Tools (With Offline Fallback) -->
@@ -108,6 +108,9 @@ def generate_index_html():
       color-scheme: dark;
       -webkit-text-size-adjust: 100%;
       scroll-padding-top: calc(var(--header-height) + 1rem);
+      width: 100%;
+      max-width: 100%;
+      overflow-x: hidden;
     }
 
     body {
@@ -116,6 +119,8 @@ def generate_index_html():
       color: var(--text-primary);
       line-height: 1.6;
       min-height: 100vh;
+      width: 100%;
+      max-width: 100%;
       overflow-x: hidden;
       position: relative;
       padding-bottom: 2rem;
@@ -282,11 +287,22 @@ def generate_index_html():
     /* Layout Containers */
     .app-container {
       max-width: 1440px;
+      width: 100%;
+      min-width: 0;
       margin: 0 auto;
       padding: 1.25rem;
       display: flex;
       flex-direction: column;
       gap: 2rem;
+      box-sizing: border-box;
+      overflow-x: hidden;
+    }
+    
+    section, .card, .hero-banner, .switcher-deck-card, .timer-container, .cheat-sheet-box {
+      width: 100%;
+      max-width: 100%;
+      min-width: 0;
+      box-sizing: border-box;
     }
     
     /* Section Headers - Centered & Symmetrical Hierarchy for Desktop & Mobile */
@@ -419,9 +435,8 @@ def generate_index_html():
       flex-direction: column;
       gap: 0.25rem;
       transition: var(--transition-smooth);
-    }
-      gap: 0.2rem;
-      transition: var(--transition-smooth);
+      min-width: 0;
+      box-sizing: border-box;
     }
     .telemetry-card:hover { border-color: var(--border-strong); transform: translateY(-2px); }
     .telemetry-label { font-size: 0.66rem; font-weight: 700; text-transform: uppercase; color: var(--text-muted); font-family: var(--font-mono); }
@@ -594,10 +609,16 @@ def generate_index_html():
       border: 1px solid var(--border-medium);
       border-radius: 0 0 var(--radius-md) var(--radius-md);
       overflow-x: auto;
+      overflow-y: hidden;
       -webkit-overflow-scrolling: touch;
       position: relative;
       padding: 0.75rem;
       box-shadow: inset 0 0 40px rgba(0, 0, 0, 0.8);
+      width: 100%;
+      max-width: 100%;
+      min-width: 0;
+      contain: layout paint;
+      box-sizing: border-box;
     }
     .schematic-touch-nav {
       display: none; /* Shown on mobile */
@@ -813,7 +834,15 @@ def generate_index_html():
     .timer-btn-preset:hover { color: var(--text-pure); background: var(--bg-surface-elevated); }
 
     /* Incident Logger */
-    .incident-table-wrap { overflow-x: auto; margin-top: 0.75rem; -webkit-overflow-scrolling: touch; }
+    .incident-table-wrap {
+      overflow-x: auto;
+      margin-top: 0.75rem;
+      -webkit-overflow-scrolling: touch;
+      width: 100%;
+      max-width: 100%;
+      min-width: 0;
+      box-sizing: border-box;
+    }
     .incident-table { width: 100%; border-collapse: collapse; font-size: 0.8rem; min-width: 460px; }
     .incident-table th, .incident-table td { padding: 0.5rem 0.65rem; border-bottom: 1px solid var(--border-subtle); text-align: left; }
     .incident-table th { color: var(--text-muted); font-family: var(--font-mono); font-size: 0.72rem; }
@@ -1551,7 +1580,7 @@ def generate_index_html():
         </div>
       </div>
 
-      <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap:1rem;">
+      <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap:1rem; width:100%;">
         <!-- Stage Timer Card -->
         <div class="timer-container">
           <div style="font-size:0.75rem; font-weight:800; font-family:var(--font-mono); color:var(--text-muted);">MASTER STAGE COUNTDOWN</div>
@@ -1573,7 +1602,7 @@ def generate_index_html():
 
         <!-- Rundown Items List -->
         <div class="card" style="padding:1rem;">
-          <h3 style="font-size:0.95rem; font-weight:700; color:var(--text-pure); margin-bottom:0.5rem;">📋 Media & Rundown Checklist</h3>
+          <h3 style="font-size:0.95rem; font-weight:700; color:var(--text-pure); margin-bottom:0.5rem; text-align:center;">📋 Media & Rundown Checklist</h3>
           <div style="display:flex; flex-direction:column; gap:0.4rem; max-height:360px; overflow-y:auto;" id="rundown-items-list">
             <!-- Rendered dynamically -->
           </div>
@@ -1590,10 +1619,10 @@ def generate_index_html():
         </div>
       </div>
 
-      <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap:1rem;">
+      <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap:1rem; width:100%;">
         <!-- Test Generator Card -->
         <div class="card">
-          <h3 style="font-size:0.95rem; font-weight:700; color:var(--text-pure); margin-bottom:0.75rem;">🛠️ Signal Generator</h3>
+          <h3 style="font-size:0.95rem; font-weight:700; color:var(--text-pure); margin-bottom:0.75rem; text-align:center;">🛠️ Signal Generator</h3>
           <div style="display:flex; flex-direction:column; gap:0.6rem;">
             <button class="btn btn-secondary" id="btn-open-color-bars">📺 Buka EBU Color Bars 75%</button>
             <button class="btn btn-secondary" id="btn-toggle-tone">🔊 1kHz Audio Calibration Tone (-18dBFS)</button>
@@ -1644,7 +1673,7 @@ def generate_index_html():
         </div>
       </div>
 
-      <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap:0.85rem;">
+      <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap:0.85rem; width:100%;">
         <div class="card">
           <h3 style="font-size:0.95rem; font-weight:700; color:#ef4444; margin-bottom:0.5rem;">🚨 SOP Darurat: Blackout / HDMI Drop</h3>
           <p style="font-size:0.78rem; color:var(--text-secondary); line-height:1.5;">
