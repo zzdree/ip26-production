@@ -861,7 +861,7 @@
     .drawer-nav-item:hover, .drawer-nav-item:active { background: var(--bg-surface-elevated); color: var(--text-pure); border-color: var(--accent-cyan); }
 
     /* ==========================================================================
-       RESPONSIVE BREAKPOINTS (Desktop vs Mobile Rules)
+       RESPONSIVE BREAKPOINTS (Desktop vs Mobile Rules & Universal Device Support)
        ========================================================================== */
     @media (max-width: 960px) {
       body {
@@ -882,9 +882,16 @@
       .mobile-only { display: none !important; }
     }
 
+    /* Universal Mobile Form Optimization (Prevents iOS Safari auto-zoom on input tap) */
+    @media (max-width: 768px) {
+      input, select, textarea, .search-input, .filter-select, .form-control {
+        font-size: 16px !important; /* iOS Safari ignores zoom when font-size >= 16px */
+      }
+    }
+
     @media (max-width: 640px) {
       :root { --header-height: 60px; }
-      .app-container { padding: 0.75rem; gap: 1.25rem; }
+      .app-container { padding: 0.75rem max(0.75rem, var(--safe-area-right)) 0.75rem max(0.75rem, var(--safe-area-left)); gap: 1.25rem; }
       .brand-title { font-size: 0.92rem; }
       .brand-subtitle { display: none; } /* Clean header on small screens */
       .switcher-screens { grid-template-columns: repeat(2, 1fr); }
@@ -895,6 +902,35 @@
       .inventory-grid { grid-template-columns: 1fr; }
       .search-input { min-width: 100%; }
       .inventory-toolbar { flex-direction: column; align-items: stretch; }
+    }
+
+    /* Ultra-Compact & Budget Screens (< 380px: iPhone SE, Galaxy A0x, Z Fold Cover Screen) */
+    @media (max-width: 380px) {
+      :root { --header-height: 56px; --dock-height: 56px; }
+      .app-container { padding: 0.5rem max(0.5rem, var(--safe-area-right)) 0.5rem max(0.5rem, var(--safe-area-left)); gap: 1rem; }
+      .brand-title { font-size: 0.82rem; }
+      .brand-logo-pill { width: 32px; height: 32px; font-size: 1rem; }
+      #header-sync-label { display: none; } /* Show only indicator status dot on tiny header */
+      #header-sync-pill { padding: 0.25rem 0.45rem; }
+      #btn-open-tally-modal { padding: 0.25rem 0.5rem; font-size: 0.72rem; }
+      .floating-dock { width: calc(100% - 0.75rem); padding: 0.3rem 0.15rem; bottom: max(0.35rem, var(--safe-area-bottom)); }
+      .dock-btn { padding: 0.25rem 0.05rem; }
+      .dock-label { font-size: 0.55rem; letter-spacing: -0.03em; }
+      .dock-icon { font-size: 1.05rem; }
+      .telemetry-grid { grid-template-columns: 1fr; }
+      .sim-cut-grid { gap: 0.2rem; }
+      .sim-cut-btn { font-size: 0.68rem; padding: 0.35rem 0.15rem; min-height: 34px; }
+      .timer-digits { font-size: 2.75rem; }
+      .modal-dialog { padding: 1rem; }
+    }
+
+    /* Mobile Landscape Orientation (Under 500px height) */
+    @media (max-height: 500px) and (orientation: landscape) {
+      :root { --header-height: 48px; --dock-height: 50px; }
+      .app-container { padding: 0.5rem max(1.25rem, var(--safe-area-right)) 0.5rem max(1.25rem, var(--safe-area-left)); }
+      .floating-dock { height: 48px; padding: 0.2rem 0.5rem; bottom: max(0.25rem, var(--safe-area-bottom)); }
+      .dock-icon { font-size: 1rem; }
+      .dock-label { font-size: 0.52rem; }
     }
 
     @media print {
