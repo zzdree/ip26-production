@@ -336,17 +336,9 @@ function setupClock() {
   setInterval(update, 1000);
 }
 
-// Sidebar Navigation & Tab Switching
+// Navigation & Tab Switching
 function setupSidebarAndTabs() {
-  const navBtns = document.querySelectorAll('.nav-link-btn');
-  const sidebar = document.getElementById('app-sidebar');
-  const menuToggle = document.getElementById('menu-toggle-btn');
-
-  if (menuToggle && sidebar) {
-    menuToggle.addEventListener('click', () => {
-      sidebar.classList.toggle('open');
-    });
-  }
+  const navBtns = document.querySelectorAll('.nav-btn, .nav-link-btn');
 
   navBtns.forEach(btn => {
     btn.addEventListener('click', () => {
@@ -361,21 +353,6 @@ function setupSidebarAndTabs() {
       });
       const activeContent = document.getElementById(`tab-${target}`);
       if (activeContent) activeContent.classList.add('active');
-
-      // Update Header Breadcrumbs
-      if (paneTitles[target]) {
-        const tagEl = document.getElementById('current-pane-tag');
-        const titleEl = document.getElementById('current-pane-title');
-        if (tagEl) tagEl.textContent = paneTitles[target].tag;
-        if (titleEl) titleEl.textContent = paneTitles[target].title;
-      }
-
-      // Close mobile sidebar on select
-      if (window.innerWidth <= 1024 && sidebar) {
-        sidebar.classList.remove('open');
-      }
-
-      window.scrollTo({ top: 0, behavior: 'smooth' });
     });
   });
 }
