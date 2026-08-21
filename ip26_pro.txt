@@ -1,0 +1,371 @@
+*IBADAH PERDANA 2026*
+
+Event : Ibadah Perdana UKK UNNES 2026
+Venue : Gedung Auditorium Universitas Negeri Semarang
+Production : Panitia Ibadah Perdana 2026
+
+*Broadcast System*
+
+- CAM 1 - Sony ZVE10 + Lens 18-105MM + Battery + Memory Card 64GB + Tripod Camera Big + HDMI to Micro HDMI Converter + HDMI Cable 20M + HDMI Splitter 4CH + Power Adaptor SPL + Terminal Cable XCH + HDMI Cable 30M + Cinetreak Cinelive V1 + Power Adaptor MIX (Alex) ✅
+
+- CAM 2 - Sony ZV-E10 + Lens 18-105MM + Battery + Memory Card 32GB + HDMI to Micro HDMI Cable 30CM + Hollyland Pyro H Transmitter + Hollyland Pyro H Receiver + Stand Lighting Small + HDMI Cable 1,5M + Cinetreak Cinelive V1 + Power Adaptor MIX (Kiel 1) ✅
+
+- CAM 3 - Sony A6000 + Lens 18-105MM + Battery + Memory Card 32GB + Tripod Camera Big + Micro HDMI to HDMI Converter + HDMI Cable 10M + Cinetreak Cinelive V1 + Power Adaptor MIX (Dewi) ✅
+
+- CAM 4 - Sony A6000 + Lens 16-50MM + Battery + Memory Card 32GB + Tripod Camera Big + Micro HDMI to HDMI Converter + HDMI Cable 10M + Cinetreak Cinelive V1 + Power Adaptor MIX (Nathania) ✅
+
+*Broadcast System - MAN*
+- CAM 1 (Alex)
+- CAM 2 (Kiel 1)
+- CAM 3 (Dewi)
+- CAM 4 (Nathania)
+
+*Broadcast System - OWL*
+- Sony A6000 (2 Unit) ✅
+- Sony ZV-E10 ✅
+- Lens 18-105MM (3 Unit) ✅
+- Battery (6 Unit) ✅
+- Memory Card 32GB (3 Unit) ✅
+- Cinetreak Cinelive V1 (1 Pack) ✅
+- Power Adaptor MIX (1 Unit) ✅
+- Hollyland Pyro H (1 Pack) ✅
+- Power Adaptor WIR (1 Unit) ✅
+- Tripod Camera Big (1 Unit) ✅
+- HDMI to Micro HDMI Converter (2 Unit) ✅
+- HDMI to Micro HDMI Cable 30CM (1 Unit) ✅
+- HDMI Cable 30M (1 Unit) ✅
+- HDMI Cable 20M (1 Unit) ✅
+
+*Broadcast System - GIA*
+- Tripod Camera Big (1 Unit) ✅
+
+*Broadcast System - GKJ*
+- Stand Lighting Small (1 Unit) ✅
+- HDMI Cable 10M (1 Unit) ✅
+- HDMI Spitter 4CH (1 Unit) ✅
+- Power Adaptor SPL (1 Unit) ✅
+
+*Broadcast System - UKK*
+- Tripod Camera Big (1 Unit) ✅
+- HDMI Cable 10M (1 Unit) ✅
+- Terminal Cable XCH (1 Unit) ✅
+
+*Broadcast System - Kiel*
+- Sony ZVE10 (1 Unit) ✅
+- Sony Kit 16-50MM (1 Unit) ✅
+- Battery (2 Unit) ✅
+- Memory Card 64GB (1 Unit) ✅
+
+*Broadcast System - Lio*
+- HDMI Cable 1,5M (1 Unit) ✅
+
+*Broadcast System - Panitia*
+- HDMI to Micro HDMI Converter (2 Unit) ✅
+
+*Shots System*
+TERPISAH DARI BOROADCAST SYSTEM
+
+- PHO Sony A6400 + Sony 50MM + Battery + Memory Card 32GB (Nico) ✅
+
+- VID Sony A6600 + Zeiss 24-70MM  + Battery + Memory Card 64GB + Gimbal DJI Ronin RS3 (Joel) ✅
+
+- HP Iphone 15 (Jennifer) ✅
+
+*Shots System - MAN*
+- CAM PHO (Nico)
+- CAM VID (Joel)
+- CAM HP (Jennifer)
+
+*Shots System - OWL*
+- Sony A6400 (1 Unit) ✅
+- Lens 50MM (1 Unit) ✅
+- Battery (2 Unit) ✅
+- Memory Card 32GB (1 Unit) ✅
+
+*Shots System - Joel*
+- Sony A6600 (1 Unit) ✅
+- Lens 24-70MM (1 Unit) ✅
+- Battery (2 Unit) ✅
+- Charger (1 Pack) ✅
+- Memory Card 64GB (1 Unit) ✅
+- Gimbal DJI Ronin RS3 (1 Unit) ✅
+
+*Shots System - Jennifer*
+- HP Iphone 15 (1 Unit) ✅
+
+*Engine System*
+
+! Electrical Routing (Andreas x UKK x Panitia) ✅
+- Terminal Cable XCH + Terminal Cable XCH + Terminal Cable XCH
+
+! Switcher + Television - (OWL x Kezia/Jennifer) ✅
+- Terminal Cable XCH + Cinetreak Cinelive V1 + Power Adaptor MIX + HDMI to HDMI Cable 1M + Television (Kezia/Jennifer) + Power Adaptor TV
+
+! Switcher + Splitter (OWL x UKK) ✅
+- Terminal Cable XCH + Cinetreak Cinelive V1 + Power Adaptor MIX + HDMI Splitter 4CH + Power Adaptor SPL
+
+! Switcher + OBS - (OWL x Andreas x OBS) ✅
+- Terminal Cable XCH + Cinetreak Cinelive V1 + Power Adaptor MIX + - USB A to USB C Data Cable + Laptop (OBS Studio) + Power Adaptor LTP
+
+! Mixer 1 + XLR Cable + Mixer 2 + OBS (UNNES x UKK x x Andreas x GIA x OBS) ✅
+- Mixer Yamaha QL5 + XLR Female to Male Cable 10M 2X + XLR Female to Male Cable 3M 2X + Mixer NewBaxs CT80S + USB A to USB C Data Cable + Laptop Laptop (OBS Studio) + Power Adaptor LTP
+
+! Splitter + PRO1 + LED Left Right Back (UKK x Andreas x OWL x PRO1 x UNNES) ✅
+- HDMI Splitter 4CH + Power Adaptor SPL + HDMI to HDMI Cable 1,5M + HDMI Capture + Laptop (Pro Presenter 1) + Power Adaptor LTP + HDMI UNNES + Video Processor + LED Left Right Back
+
+! PRO2 + Res - (PRO2 x Andreas x OWL x RES) ✅
+- Laptop (Pro Presenter 2) + Power Adaptor LTP + HDMI to HDMI Cable 1,5M + HDMI Capture + Laptop (Resolume Arena) + Power Adaptor LTP
+
+! Splitter + RES + LED Center (Andreas x GKJ x RES x GKJ x ABON x UNNES) ✅
+- HDMI Splitter 4CH + Power Adaptor SPL - HDMI to HDMI Cable 1,5M + HDMI Capture + Laptop (Resolume Arena) + Power Adaptor LTP + HDMI Cable 15M + HDMI Capture + Nova + Video Processor + LED Center
+
+! RES + DAC + Mixer 1 (RES x Andreas x UNNES) ✅
+- Laptop (Resolume Arena) + Power Adaptor LTP + USB C DAC Hanason AB17X/USB C DAC Oraimo OAA310 + Jack 3.5 UNNES + Mixer Yamaha QL5
+
+! Mixer 1 + VM1 (UNNES x Jennifer) ✅
+- Mixer Yamaha QL5 + WiFi UNNES-ID + iPad (Virtual Mixer 2)
+
+! Mixer 1 + VM2 (UNNES x Andreas) ✅
+- Mixer Yamaha QL5 + WiFi UNNES-ID + Laptop (Virtual Mixer 2) + Power Adaptor LTP
+
+! PRO3 + Television (PRO3 x Darrel) ✅ TIME KEEPER - TERPISAH DARI BOROADCAST SYSTEM
+- Terminal Cable XCH + Laptop (Pro Presenter 3) + Power Adaptor LTP + HDMI to HDMI Cable 1M + Television (Darrel) + Power Adaptor TV
+
+*Engine System - OWL*
+- Cinetreak Cinelive V1 (1 Pack) ✅
+- Power Adaptor MIX (1 Unit) ✅
+- HDMI Capture (2 Unit) ✅
+
+*Peminjaman ABON*
+- HDMI Capture (2 Unit) ✅
+
+*Engine System - Andreas*
+- Terminal Cable XCH ✅
+- USB A to USB C Data Cable (1 Unit) ✅
+- HDMI to HDMI Cable 1,5M (3 Unit) ✅
+- USB C DAC Hanason AB17X (1 Unit) ✅
+- USB C DAC Oraimo OAA310 (1 Unit) ✅
+
+*Engine System - GIA*
+- Mixer NewBaxs CT80S ✅
+- XLR Female to Male Cable 3M (2 Unit) ✅
+- USB A to USB C Data Cable (1 Unit) ✅
+- HDMI to HDMI Cable 1M (2 Unit) ✅
+
+*Engine System - GKJ*
+- HDMI Cable 15M (1 Unit) ✅
+- HDMI Capture (1 Unit) ✅
+
+*Engine System - UKK*
+- XLR Female to Male Cable 10M (2 Unit) ✅
+- HDMI Splitter 4CH (1 Unit) ✅
+- Power Adaptor SPL (1 Pack) ✅
+- Terminal Cable XCH ✅
+
+*Peminjaman Darrel*
+- Television (1 Unit) ✅
+- Power Adaptor TV (1 Pack) ✅
+
+*Engine System - Kezia*
+- Television (1 Unit) ✅
+- Power Adaptor TV (1 Pack) ✅
+
+*Engine System - Jennifer*
+- Television (1 Unit) ✅
+- Power Adaptor TV (1 Pack) ✅
+
+*Engine System - Panitia*
+- Terminal Cable XCH ✅
+
+*Media System*
+- Virtual Mixer 1 - iPad (Jennifer) ✅
+- Virtual Mixer 2 - Laptop + Power Adaptor LTP (Andreas) ✅
+- Resolume Arena - Laptop + Power Adaptor LTP (Bayu) ✅
+- Pro Presenter 1 - Laptop + Power Adaptor LTP () ✅
+- Pro Presenter 2 - Laptop + Power Adaptor LTP () ✅
+- Pro Presenter 3 + Television - Laptop X + Power Adaptor LTP + Television + Power Adaptor TV ( x Darrel)
+- Switcher + Television - Cinetreak Cinelive V1 + Power Adaptor MIX + Television + Power Adaptor TV (OWL x Kezia/Jennifer) ✅
+- OBS Studio - Laptop X + Power Adaptor LTP () ✅
+- Backup - Laptop + Power Adaptor LTP (Kiel 1)
+
+*Media System - MAN*
+- Virtual Mixer 1 (Jordan/Yosua)
+- Virtual Mixer 2 (Jordan/Yosua)
+- Resolume Arena (Andreas)
+- Pro Presenter 1 (Rania)
+- Pro Presenter 2 (Filia)
+- Pro Presenter 3 + Television ()
+- Switcher + Television (Wilfred)
+- OBS Studio (Andreas)
+- Mixer 2 (Andreas)
+- Backup (Kiel 1)
+
+*Peminjaman OWL*
+- Sony A6000 (2 Unit) ✅
+- Sony A6400 (1 Unit) ✅
+- Sony ZV-E10 ✅
+- Lens 18-105MM (3 Unit) ✅
+- Lens 50MM (1 Unit) ✅
+- Battery (8 Unit) ✅
+- Charger (1 Pack) ✅
+- Memory Card 32GB (4 Unit) ✅
+- Cinetreak Cinelive V1 (1 Pack) ✅
+- Power Adaptor MIX (1 Unit) ✅
+- Hollyland Pyro H (1 Pack) ✅
+- Power Adaptor WIR (1 Unit) ✅
+- Tripod Camera Big (1 Unit) ✅
+- HDMI to Micro HDMI Converter (2 Unit) ✅
+- HDMI to Micro HDMI Cable 30CM (1 Unit) ✅
+- HDMI Cable 30M (1 Unit) ✅
+- HDMI Cable 20M (1 Unit) ✅
+- HDMI Capture (2 Unit) ✅
+
+*Peminjaman ABON*
+- HDMI Capture (2 Unit) ✅
+
+*Peminjaman Andreas*
+- Fan Cooler (1 Unit) ☑️
+- Mouse Pad (1 Unit) ☑️
+- Keyboard Ext (1 Unit) ☑️
+- Mouse Ext (1 Unit) ☑️
+- Powerbank (1 Unit) ☑️
+- Power Adaptor USB A (9 Unit) ☑️
+- Power Adaptor USB A x C (1 Unit) ☑️
+- Power Adaptor USB C (1 Unit) ☑️
+- USB A to USB B Data Cable (1 Unit) ☑️
+- USB A to USB Micro B Data Cable (2 Unit) ☑️
+- USB A to USB C Data Cable (1 Unit) ✅
+- USB A to USB C Charge Cable (1 Unit) ✅
+- USB C to USB C Charge Cable (1 Unit) ☑️
+- USB A to USB A Extender 30CM (2 Unit) ☑️
+- USB A to USB A Extender 2M (1 Unit) ☑️
+- USB A to USB C Male Converter (4 Unit) ☑️
+- USB A to USB C Female Converter (2 Unit) ☑️
+- USB A to Mini USB Cable (1 Unit) ☑️
+- USB A Splitter 3CH (1 Unit) ☑️
+- USB A Splitter 4CH (1 Unit) ☑️
+- USB C DAC Hanason AB17X (1 Unit) ✅
+- USB C DAC Oraimo OAA310 (1 Unit) ✅
+- In Ear Monitor QKZ Hi7T (1 Pack) ☑️
+- In Ear Monitor KZ EDX Pro (1 Pack) ☑️
+- Fastdrive Vgen SSD 128GB (1 Pack) ☑️
+- Fastdrive Toshiba HDD 1TB (1 Pack) ☑️
+- Flashdrive Toshiba 8GB (1 Unit) ☑️
+- Flashdrive Sandisk 16GB (1 Unit) ☑️
+- Flashdrive Toshiba 32GB (1 Unit) ☑️
+- Flashdrive Toshiba 64GB (1 Unit) ☑️
+- HDMI to Mini HDMI Converter (1 Unit) ☑️
+- Mini HDMI to Mini HDMI Cable 1,5M (1 Unit) ☑️
+- HDMI to HDMI Cable 1,5M (3 Unit) ✅
+- VGA to HDMI Converter (3 Unit) ☑️
+- VGA to VGA Cable 1,5M (1 Unit) ☑️
+- Power Cable 3PIN (3 Unit) ⚠️
+- Power Cable 2PIN (1 Unit) ⚠️
+- Terminal Cable 4CH (3 Unit) ⚠️
+- Terminal Cable 3CH (2 Unit) ⚠️
+- Terminal Cable 2CH (1 Unit) ⚠️
+- Terminal Cable XCH (X Unit) ✅
+- Terminal T (8 Unit) ⚠️
+- Addon Box (1 Pack) ☑️
+- Jack Box (1 Pack) ☑️
+- Screw Box (1 Pack) ☑️
+- Ties Box (1 Pack) ☑️
+- Tool Box (2 Pack) ☑️
+- Cable (1 Pack) ☑️
+- Tape (1 Pack) ☑️
+
+*Peminjaman GIA Deliksari*
+- Mixer NewBaxs CT80S ✅
+- XLR Female to Male Cable 3M (2 Unit) ✅
+- USB A to USB C Data Cable (1 Unit) ✅
+- Tripod Camera Big (1 Unit) ✅
+- HDMI Splitter 2CH (1 Unit) ☑️
+- Power Adaptor SPL (1 Pack) ☑️
+- HDMI to HDMI Cable 1M (2 Unit) ✅
+
+*Peminjaman GKJ Ngaliyan*
+- Stand Lighting Small (1 Unit) ✅
+- HDMI Cable 15M (1 Unit) ✅
+- HDMI Cable 10M (1 Unit) ✅
+- HDMI Cable 5M (1 Unit) ☑️
+- HDMI Cable 1,5M (1 Unit) ☑️
+- HDMI Capture (1 Unit) ✅
+- HDMI Splitter 4CH (1 Unit) ✅
+- Power Adaptor SPL (1 Pack) ✅
+
+*Peminjaman UKK*
+- XLR Female to Male Cable 10M (3 Unit) ✅
+- Stand Lighting Small (4 Unit) ☑️
+- Tripod Camera Big (1 Unit) ✅
+- HDMI to Mini HDMI Cable 2,5M (1 Unit) ☑️
+- HDMI Cable 15M (1 Unit) ☑️
+- HDMI Cable 10M (1 Unit) ✅
+- HDMI Cable 1,5M (4 Unit) ☑️
+- HDMI Splitter 4CH (1 Unit) ✅
+- Power Adaptor SPL (1 Pack) ✅
+- VGA to VGA Cable 1,5M (1 Unit) ☑️
+- VGA to VGA Cable 2,5M (1 Unit) ☑️
+- VGA to HDMI Converter (2 Unit) ☑️
+- Power Cable XPIN (X Unit) ☑️
+- Terminal Cable XCH (X Unit) ✅
+
+*Peminjaman Lio*
+- HDMI Cable 1,5M (1 Unit) ✅
+
+*Peminjaman Darrel*
+- Television (1 Unit) ✅
+- Power Adaptor TV (1 Pack) ✅
+- Memory Card 8GB (1 Unit) ☑️
+
+*Peminjaman Kiel*
+- Sony ZVE10 (1 Unit) ✅
+- Sony Kit 16-50MM (1 Unit) ✅
+- Sony Manual 50MM (1 Unit) ☑️
+- Battery (2 Unit) ✅
+- Charger (1 Pack) ✅
+- Memory Card 64GB (1 Unit) ✅
+- Memory Card 128GB (1 Unit) ☑️
+
+*Peminjaman Joel*
+- Sony A6600 (1 Unit) ✅
+- Lens 24-70MM (1 Unit) ✅
+- Battery (2 Unit) ✅
+- Charger (1 Pack) ✅
+- Memory Card 64GB (1 Unit) ✅
+- Gimbal DJI Ronin RS3 (1 Unit) ✅
+
+*Peminjaman Kezia*
+- Television (1 Unit) ✅
+- Power Adaptor TV (1 Pack) ✅
+
+*Peminjaman Jennifer*
+- HP Iphone 15 (1 Unit) ✅
+- Television (1 Unit) ✅
+- Power Adaptor TV (1 Pack) ✅
+
+*Peminjaman Panitia*
+- HDMI to Micro HDMI Converter (2 Unit) ✅
+- Terminal Cable XCH (X Unit) ✅
+
+*List Materi*
+
+Pre Ibadah (Open Gate)
+- Playlist (Lagu Rohani) (Sound System)
+- Loop Video (Profile UKK, After Movie IP25, After Movie IN25) (LED Tengah)
+
+Ibadah (Event)
+- Video Opening (LED Tengah)
+- Video Sambutan Bu Grave (LED Tengah Kanan Kiri)
+- Background Tema (LED Tengah)
+- Background Lagu (Sound System)
+- Lirik Lagu (LED Tengah Kanan Kiri)
+- Video Generation (LED Tengah Kanan Kiri)
+- PPT Pembicara (LED Tengah Kanan Kiri)
+- Ayat Pembicara (LED Tengah Kanan Kiri)
+- Quote Pembicara (LED Tengah Kanan Kiri)
+- Persembahan (QRIS)
+- UKK News (LED Tengah Kanan Kiri)
+- Pokok Doa (LED Tengah Kanan Kiri)
+
+Post Ibadah (Close Gate)
+- Usung-Usung
