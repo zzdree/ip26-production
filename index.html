@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Ibadah Perdana UKK UNNES 2026 — Production & Broadcast Command</title>
   <meta name="description" content="Master Command Deck, Signal Routing Matrix, Live Switcher Simulator, Master Inventory Log & Crew Briefing App untuk Ibadah Perdana UKK UNNES 2026." />
-  <meta name="theme-color" content="#050811" />
+  <meta name="theme-color" content="#121316" />
   <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220%200%20100%20100%22><text y=%22.9em%22 font-size=%2290%22>🎬</text></svg>">
   
   <!-- Premium Google Fonts -->
@@ -15,46 +15,44 @@
 
   <style>
     /* ==========================================================================
-       IP26 PRODUCTION & BROADCAST BLUEPRINT — PREMIUM DARK MODE UI SYSTEM
-       Design Direction: Deep Midnight Cyber-Industrial & Glassmorphic Command UI
-       Reference: Dribbble / Easeout Dark Mode Excellence (Plyuto, DStudio, Quan Ha)
+       IP26 PRODUCTION & BROADCAST BLUEPRINT — TRUE GREY DARK MODE UI SYSTEM
+       Design Direction: True Charcoal Slate Grey & Tactile Neumorphic-Glass Elevation
+       Inspiration Reference: Easeout 25 Dark Mode UI (Alexander Plyuto, DStudio, Quan Ha)
        ========================================================================== */
     :root {
-      /* Deep Dark Mode Color Palette */
-      --bg-base: #040711;
-      --bg-midnight: #080d1a;
-      --bg-surface: #0e1626;
-      --bg-surface-raised: #141f36;
-      --bg-surface-elevated: #1b2a47;
-      --bg-glass: rgba(14, 22, 38, 0.75);
-      --bg-glass-card: rgba(20, 31, 54, 0.65);
-      --bg-glass-hover: rgba(27, 42, 71, 0.85);
+      /* Sophisticated True Neutral Grey / Zinc Dark Mode Hierarchy */
+      --bg-base: #111216;
+      --bg-midnight: #15161b;
+      --bg-surface: #1a1c22;
+      --bg-surface-raised: #21232b;
+      --bg-surface-elevated: #2a2c37;
+      --bg-glass: rgba(22, 24, 30, 0.88);
+      --bg-glass-card: rgba(27, 29, 37, 0.75);
+      --bg-glass-hover: rgba(36, 39, 49, 0.9);
 
-      /* Luminescent Neon Accents */
-      --neon-cyan: #00f2fe;
-      --neon-cyan-glow: rgba(0, 242, 254, 0.35);
-      --neon-blue: #3877ff;
-      --neon-purple: #9d4edd;
-      --neon-purple-glow: rgba(157, 78, 221, 0.35);
-      --neon-amber: #ff9e00;
-      --neon-amber-glow: rgba(255, 158, 0, 0.35);
-      --neon-emerald: #05f19c;
-      --neon-emerald-glow: rgba(5, 241, 156, 0.35);
-      --neon-red: #ff3366;
-      --neon-red-glow: rgba(255, 51, 102, 0.45);
+      /* High-Contrast Precise Accent Signals */
+      --accent-white: #ffffff;
+      --accent-cyan: #06b6d4;
+      --accent-cyan-glow: rgba(6, 182, 212, 0.25);
+      --accent-emerald: #10b981;
+      --accent-emerald-glow: rgba(16, 185, 129, 0.25);
+      --accent-amber: #f59e0b;
+      --accent-amber-glow: rgba(245, 158, 11, 0.25);
+      --accent-red: #ef4444;
+      --accent-red-glow: rgba(239, 68, 68, 0.35);
+      --accent-purple: #a855f7;
 
       /* Typography Grayscale */
       --text-pure: #ffffff;
-      --text-primary: #f1f5f9;
-      --text-secondary: #94a3b8;
-      --text-muted: #64748b;
-      --text-dark: #334155;
+      --text-primary: #f3f4f6;
+      --text-secondary: #a1a1aa;
+      --text-muted: #71717a;
+      --text-dark: #3f3f46;
 
-      /* Precision Borders & Radii */
-      --border-subtle: rgba(255, 255, 255, 0.06);
-      --border-light: rgba(255, 255, 255, 0.12);
-      --border-accent: rgba(0, 242, 254, 0.4);
-      --border-glow: 0 0 15px rgba(0, 242, 254, 0.2);
+      /* Precision Borders & Tactile Inset Lines */
+      --border-subtle: rgba(255, 255, 255, 0.08);
+      --border-medium: rgba(255, 255, 255, 0.14);
+      --border-strong: rgba(255, 255, 255, 0.22);
 
       --radius-xs: 6px;
       --radius-sm: 10px;
@@ -63,19 +61,17 @@
       --radius-xl: 32px;
 
       /* Typography */
-      --font-display: 'Space Grotesk', -apple-system, sans-serif;
-      --font-body: 'Plus Jakarta Sans', -apple-system, sans-serif;
+      --font-display: 'Space Grotesk', -apple-system, BlinkMacSystemFont, sans-serif;
+      --font-body: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
       --font-mono: 'JetBrains Mono', monospace;
 
-      /* Tactical Shadows */
-      --shadow-soft: 0 10px 30px -10px rgba(0, 0, 0, 0.5);
-      --shadow-deep: 0 20px 50px -10px rgba(0, 0, 0, 0.8);
-      --shadow-glow-cyan: 0 8px 32px -4px rgba(0, 242, 254, 0.3);
-      --shadow-glow-red: 0 8px 32px -4px rgba(255, 51, 102, 0.35);
-      --shadow-glow-green: 0 8px 32px -4px rgba(5, 241, 156, 0.3);
+      /* Charcoal Depth Shadows */
+      --shadow-inset-top: inset 0 1px 0 rgba(255, 255, 255, 0.1);
+      --shadow-card: 0 10px 30px -8px rgba(0, 0, 0, 0.6);
+      --shadow-deep: 0 20px 50px -10px rgba(0, 0, 0, 0.85);
 
       --header-height: 72px;
-      --transition-smooth: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+      --transition-smooth: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
     }
 
     *, *::before, *::after {
@@ -98,22 +94,21 @@
       min-height: 100vh;
       overflow-x: hidden;
       position: relative;
-      /* Ambient Multi-Layer Mesh Background */
+      /* Refined Neutral Charcoal Backdrop with Geometric Dot-Grid */
       background-image: 
-        radial-gradient(ellipse 60% 40% at 10% 10%, rgba(0, 242, 254, 0.07) 0%, transparent 60%),
-        radial-gradient(ellipse 50% 50% at 90% 25%, rgba(157, 78, 221, 0.08) 0%, transparent 65%),
-        radial-gradient(ellipse 60% 40% at 50% 85%, rgba(255, 158, 0, 0.05) 0%, transparent 60%),
-        radial-gradient(ellipse 40% 30% at 30% 60%, rgba(5, 241, 156, 0.04) 0%, transparent 50%),
-        linear-gradient(rgba(255, 255, 255, 0.015) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255, 255, 255, 0.015) 1px, transparent 1px);
-      background-size: 100% 100%, 100% 100%, 100% 100%, 100% 100%, 40px 40px, 40px 40px;
+        radial-gradient(circle at 10% 10%, rgba(255, 255, 255, 0.03) 0%, transparent 45%),
+        radial-gradient(circle at 90% 30%, rgba(255, 255, 255, 0.02) 0%, transparent 45%),
+        radial-gradient(circle at 50% 85%, rgba(255, 255, 255, 0.02) 0%, transparent 45%),
+        linear-gradient(rgba(255, 255, 255, 0.025) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.025) 1px, transparent 1px);
+      background-size: 100% 100%, 100% 100%, 100% 100%, 36px 36px, 36px 36px;
     }
 
     /* Custom Scrollbar */
     ::-webkit-scrollbar { width: 7px; height: 7px; }
     ::-webkit-scrollbar-track { background: var(--bg-base); }
-    ::-webkit-scrollbar-thumb { background: var(--bg-surface-raised); border-radius: 9999px; border: 2px solid var(--bg-base); }
-    ::-webkit-scrollbar-thumb:hover { background: var(--neon-cyan); }
+    ::-webkit-scrollbar-thumb { background: var(--bg-surface-elevated); border-radius: 9999px; border: 2px solid var(--bg-base); }
+    ::-webkit-scrollbar-thumb:hover { background: var(--text-muted); }
 
     /* Typography */
     h1, h2, h3, h4, h5, h6 {
@@ -126,18 +121,8 @@
 
     .mono { font-family: var(--font-mono); }
 
-    /* Ambient Lighting Circles */
-    .glow-orb {
-      position: absolute;
-      border-radius: 50%;
-      filter: blur(80px);
-      pointer-events: none;
-      z-index: 0;
-      opacity: 0.5;
-    }
-
     /* ==========================================================================
-       HEADER & NAVIGATION HUD
+       COMMAND HEADER & NAVIGATION HUD
        ========================================================================== */
     .command-header {
       position: sticky;
@@ -169,21 +154,13 @@
       width: 44px;
       height: 44px;
       border-radius: var(--radius-sm);
-      background: linear-gradient(135deg, #00f2fe, #3877ff);
-      color: #030712;
+      background: linear-gradient(135deg, #2a2c37, #15161b);
+      border: 1px solid var(--border-medium);
+      color: var(--accent-white);
       font-family: var(--font-mono);
       font-weight: 800;
       font-size: 1.15rem;
-      box-shadow: 0 0 25px rgba(0, 242, 254, 0.4);
-      position: relative;
-      overflow: hidden;
-    }
-
-    .brand-logo-pill::after {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(rgba(255,255,255,0.4), transparent);
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4), var(--shadow-inset-top);
     }
 
     .brand-title-group h1 {
@@ -207,25 +184,24 @@
       font-family: var(--font-mono);
       font-size: 0.68rem;
       font-weight: 700;
-      background: rgba(255, 51, 102, 0.12);
-      color: var(--neon-red);
+      background: rgba(239, 68, 68, 0.12);
+      color: var(--accent-red);
       padding: 0.2rem 0.6rem;
       border-radius: 9999px;
-      border: 1px solid rgba(255, 51, 102, 0.35);
-      box-shadow: 0 0 12px rgba(255, 51, 102, 0.2);
+      border: 1px solid rgba(239, 68, 68, 0.35);
     }
 
     .pulsing-lamp {
       width: 6px;
       height: 6px;
       border-radius: 50%;
-      background: var(--neon-red);
-      animation: pulseGlow 1.4s infinite;
+      background: var(--accent-red);
+      animation: pulseGlow 1.5s infinite;
     }
 
     @keyframes pulseGlow {
-      0% { transform: scale(0.9); opacity: 0.7; box-shadow: 0 0 0 0 rgba(255, 51, 102, 0.7); }
-      70% { transform: scale(1.15); opacity: 1; box-shadow: 0 0 0 8px rgba(255, 51, 102, 0); }
+      0% { transform: scale(0.9); opacity: 0.7; box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.7); }
+      70% { transform: scale(1.15); opacity: 1; box-shadow: 0 0 0 7px rgba(239, 68, 68, 0); }
       100% { transform: scale(0.9); opacity: 0.7; }
     }
 
@@ -233,8 +209,8 @@
       display: flex;
       align-items: center;
       gap: 0.35rem;
-      background: rgba(8, 13, 26, 0.6);
-      padding: 0.3rem 0.4rem;
+      background: rgba(18, 19, 24, 0.75);
+      padding: 0.3rem 0.45rem;
       border-radius: var(--radius-md);
       border: 1px solid var(--border-subtle);
     }
@@ -251,14 +227,15 @@
 
     .nav-link:hover {
       color: var(--text-pure);
-      background: rgba(255, 255, 255, 0.05);
+      background: rgba(255, 255, 255, 0.06);
     }
 
     .nav-link.active {
-      color: #030712;
-      background: linear-gradient(135deg, var(--neon-cyan), #3877ff);
+      color: #ffffff;
+      background: var(--bg-surface-elevated);
+      border: 1px solid var(--border-medium);
       font-weight: 700;
-      box-shadow: 0 2px 14px rgba(0, 242, 254, 0.35);
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
     }
 
     .header-actions {
@@ -272,10 +249,10 @@
       font-size: 0.92rem;
       font-weight: 700;
       background: var(--bg-surface);
-      border: 1px solid var(--border-light);
+      border: 1px solid var(--border-medium);
       padding: 0.45rem 0.85rem;
       border-radius: var(--radius-sm);
-      color: var(--neon-cyan);
+      color: var(--accent-white);
       letter-spacing: 0.05em;
       box-shadow: inset 0 2px 6px rgba(0, 0, 0, 0.4);
     }
@@ -299,38 +276,40 @@
     }
 
     .btn-lux-primary {
-      background: linear-gradient(135deg, var(--neon-cyan), #3877ff);
-      color: #040813;
+      background: linear-gradient(135deg, #2f323e, #1a1c24);
+      color: #ffffff;
+      border: 1px solid var(--border-strong);
       font-weight: 700;
-      box-shadow: var(--shadow-glow-cyan);
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4), var(--shadow-inset-top);
     }
     .btn-lux-primary:hover {
+      background: linear-gradient(135deg, #3a3d4c, #22242e);
+      border-color: #ffffff;
       transform: translateY(-2px);
-      box-shadow: 0 10px 30px rgba(0, 242, 254, 0.5);
     }
 
     .btn-lux-red {
-      background: linear-gradient(135deg, var(--neon-red), #b91c1c);
+      background: linear-gradient(135deg, var(--accent-red), #b91c1c);
       color: #ffffff;
       font-weight: 700;
-      box-shadow: var(--shadow-glow-red);
+      box-shadow: 0 4px 15px rgba(239, 68, 68, 0.35);
     }
     .btn-lux-red:hover {
       transform: translateY(-2px);
-      box-shadow: 0 10px 30px rgba(255, 51, 102, 0.5);
+      box-shadow: 0 8px 25px rgba(239, 68, 68, 0.5);
     }
 
     .btn-lux-ghost {
       background: var(--bg-glass-card);
       backdrop-filter: blur(12px);
       color: var(--text-primary);
-      border: 1px solid var(--border-light);
+      border: 1px solid var(--border-medium);
+      box-shadow: var(--shadow-inset-top);
     }
     .btn-lux-ghost:hover {
       background: var(--bg-surface-elevated);
-      border-color: var(--neon-cyan);
-      color: var(--neon-cyan);
-      box-shadow: 0 0 15px rgba(0, 242, 254, 0.2);
+      border-color: var(--text-secondary);
+      color: #ffffff;
     }
 
     .btn-lux-sm {
@@ -375,7 +354,7 @@
       font-weight: 700;
       text-transform: uppercase;
       letter-spacing: 0.1em;
-      color: var(--neon-cyan);
+      color: var(--text-secondary);
       margin-bottom: 0.4rem;
     }
 
@@ -402,37 +381,37 @@
       font-weight: 600;
       padding: 0.3rem 0.8rem;
       border-radius: 9999px;
-      background: rgba(14, 22, 38, 0.8);
-      border: 1px solid var(--border-light);
-      backdrop-filter: blur(8px);
+      background: var(--bg-surface-raised);
+      border: 1px solid var(--border-medium);
       color: var(--text-secondary);
+      box-shadow: var(--shadow-inset-top);
     }
 
-    .glow-badge.cyan { border-color: rgba(0, 242, 254, 0.4); color: var(--neon-cyan); background: rgba(0, 242, 254, 0.08); }
-    .glow-badge.emerald { border-color: rgba(5, 241, 156, 0.4); color: var(--neon-emerald); background: rgba(5, 241, 156, 0.08); }
-    .glow-badge.amber { border-color: rgba(255, 158, 0, 0.4); color: var(--neon-amber); background: rgba(255, 158, 0, 0.08); }
-    .glow-badge.purple { border-color: rgba(157, 78, 221, 0.4); color: var(--neon-purple); background: rgba(157, 78, 221, 0.08); }
-    .glow-badge.red { border-color: rgba(255, 51, 102, 0.4); color: var(--neon-red); background: rgba(255, 51, 102, 0.08); }
+    .glow-badge.white { border-color: rgba(255, 255, 255, 0.3); color: #ffffff; background: rgba(255, 255, 255, 0.08); }
+    .glow-badge.cyan { border-color: rgba(6, 182, 212, 0.4); color: var(--accent-cyan); background: rgba(6, 182, 212, 0.08); }
+    .glow-badge.emerald { border-color: rgba(16, 185, 129, 0.4); color: var(--accent-emerald); background: rgba(16, 185, 129, 0.08); }
+    .glow-badge.amber { border-color: rgba(245, 158, 11, 0.4); color: var(--accent-amber); background: rgba(245, 158, 11, 0.08); }
+    .glow-badge.purple { border-color: rgba(168, 85, 247, 0.4); color: var(--accent-purple); background: rgba(168, 85, 247, 0.08); }
+    .glow-badge.red { border-color: rgba(239, 68, 68, 0.4); color: var(--accent-red); background: rgba(239, 68, 68, 0.08); }
 
     /* ==========================================================================
        HERO COMMAND BANNER
        ========================================================================== */
     .hero-banner {
-      background: linear-gradient(135deg, rgba(20, 31, 54, 0.75), rgba(8, 13, 26, 0.95));
-      border: 1px solid var(--border-light);
+      background: linear-gradient(135deg, #1d1f27, #131418);
+      border: 1px solid var(--border-medium);
       border-radius: var(--radius-xl);
       padding: 3.5rem;
       position: relative;
       overflow: hidden;
-      box-shadow: var(--shadow-deep);
-      backdrop-filter: blur(20px);
+      box-shadow: var(--shadow-deep), var(--shadow-inset-top);
     }
 
     .hero-banner::before {
       content: '';
       position: absolute;
-      top: 0; left: 0; right: 0; height: 3px;
-      background: linear-gradient(90deg, var(--neon-cyan), var(--neon-purple), var(--neon-amber), var(--neon-emerald));
+      top: 0; left: 0; right: 0; height: 2px;
+      background: linear-gradient(90deg, var(--border-subtle), rgba(255, 255, 255, 0.4), var(--border-subtle));
     }
 
     .hero-inner-grid {
@@ -447,9 +426,7 @@
       font-weight: 800;
       letter-spacing: -0.04em;
       margin-bottom: 1.15rem;
-      background: linear-gradient(135deg, #ffffff 40%, #94a3b8 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
+      color: #ffffff;
     }
 
     .hero-lead-text {
@@ -466,15 +443,14 @@
     }
 
     .telemetry-card-cluster {
-      background: rgba(14, 22, 38, 0.85);
-      border: 1px solid var(--border-light);
+      background: var(--bg-surface);
+      border: 1px solid var(--border-medium);
       border-radius: var(--radius-lg);
       padding: 2rem;
       display: flex;
       flex-direction: column;
       gap: 1.25rem;
-      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1), var(--shadow-soft);
-      backdrop-filter: blur(16px);
+      box-shadow: var(--shadow-card), var(--shadow-inset-top);
     }
 
     .telemetry-header-bar {
@@ -483,7 +459,7 @@
       justify-content: space-between;
       font-family: var(--font-mono);
       font-size: 0.75rem;
-      color: var(--neon-cyan);
+      color: var(--text-primary);
       font-weight: 700;
       padding-bottom: 0.75rem;
       border-bottom: 1px solid var(--border-subtle);
@@ -497,7 +473,7 @@
     }
 
     .telemetry-key { font-size: 0.88rem; color: var(--text-secondary); }
-    .telemetry-val { font-family: var(--font-mono); font-weight: 700; font-size: 0.95rem; }
+    .telemetry-val { font-family: var(--font-mono); font-weight: 700; font-size: 0.95rem; color: #ffffff; }
 
     /* ==========================================================================
        METRIC KPI CARDS
@@ -510,21 +486,20 @@
 
     .kpi-unit {
       background: var(--bg-glass-card);
-      border: 1px solid var(--border-subtle);
+      border: 1px solid var(--border-medium);
       border-radius: var(--radius-md);
       padding: 1.5rem;
       display: flex;
       align-items: center;
       gap: 1.25rem;
       transition: var(--transition-smooth);
-      box-shadow: var(--shadow-soft);
+      box-shadow: var(--shadow-card), var(--shadow-inset-top);
       backdrop-filter: blur(12px);
     }
 
     .kpi-unit:hover {
-      border-color: var(--border-accent);
+      border-color: var(--border-strong);
       transform: translateY(-3px);
-      box-shadow: var(--shadow-glow-cyan);
       background: var(--bg-glass-hover);
     }
 
@@ -536,9 +511,10 @@
       align-items: center;
       justify-content: center;
       font-size: 1.6rem;
-      background: rgba(8, 13, 26, 0.8);
-      border: 1px solid var(--border-light);
+      background: var(--bg-surface);
+      border: 1px solid var(--border-medium);
       flex-shrink: 0;
+      box-shadow: var(--shadow-inset-top);
     }
 
     .kpi-figure {
@@ -562,7 +538,7 @@
 
     .glass-card {
       background: var(--bg-glass-card);
-      border: 1px solid var(--border-subtle);
+      border: 1px solid var(--border-medium);
       border-radius: var(--radius-md);
       padding: 1.5rem;
       display: flex;
@@ -570,13 +546,12 @@
       justify-content: space-between;
       transition: var(--transition-smooth);
       backdrop-filter: blur(12px);
-      box-shadow: var(--shadow-soft);
+      box-shadow: var(--shadow-card), var(--shadow-inset-top);
     }
 
     .glass-card:hover {
-      border-color: var(--neon-cyan);
+      border-color: var(--border-strong);
       transform: translateY(-3px);
-      box-shadow: 0 12px 35px -5px rgba(0, 242, 254, 0.2);
       background: var(--bg-glass-hover);
     }
 
@@ -588,13 +563,13 @@
     }
 
     .card-main-title { font-size: 1.15rem; font-weight: 700; color: var(--text-pure); }
-    .card-subtitle-role { font-size: 0.88rem; color: var(--neon-cyan); font-weight: 600; margin-bottom: 0.6rem; }
+    .card-subtitle-role { font-size: 0.88rem; color: var(--text-primary); font-weight: 600; margin-bottom: 0.6rem; }
     
     .card-tech-chip {
       font-family: var(--font-mono);
       font-size: 0.78rem;
       color: var(--text-secondary);
-      background: rgba(8, 13, 26, 0.7);
+      background: var(--bg-surface);
       padding: 0.5rem 0.75rem;
       border-radius: var(--radius-xs);
       margin-bottom: 0.85rem;
@@ -621,28 +596,28 @@
     .filter-pill {
       padding: 0.45rem 1rem;
       border-radius: 9999px;
-      background: rgba(14, 22, 38, 0.7);
-      border: 1px solid var(--border-light);
+      background: var(--bg-surface);
+      border: 1px solid var(--border-medium);
       font-size: 0.82rem;
       font-weight: 600;
       color: var(--text-secondary);
       cursor: pointer;
       transition: var(--transition-smooth);
-      backdrop-filter: blur(8px);
+      box-shadow: var(--shadow-inset-top);
     }
 
     .filter-pill:hover {
-      border-color: var(--neon-cyan);
+      border-color: var(--text-primary);
       color: var(--text-pure);
       background: var(--bg-surface-raised);
     }
 
     .filter-pill.active {
-      background: linear-gradient(135deg, var(--neon-cyan), #3877ff);
-      border-color: transparent;
-      color: #030712;
+      background: var(--bg-surface-elevated);
+      border-color: var(--border-strong);
+      color: #ffffff;
       font-weight: 700;
-      box-shadow: 0 4px 15px rgba(0, 242, 254, 0.35);
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4), var(--shadow-inset-top);
     }
 
     /* ==========================================================================
@@ -650,15 +625,16 @@
        ========================================================================== */
     .pipeline-container {
       background: var(--bg-glass-card);
-      border: 1px solid var(--border-subtle);
+      border: 1px solid var(--border-medium);
       border-radius: var(--radius-md);
       margin-bottom: 1.15rem;
       overflow: hidden;
       transition: var(--transition-smooth);
+      box-shadow: var(--shadow-card), var(--shadow-inset-top);
       backdrop-filter: blur(12px);
     }
 
-    .pipeline-container:hover { border-color: var(--border-light); }
+    .pipeline-container:hover { border-color: var(--border-strong); }
 
     .pipeline-top-bar {
       padding: 1.1rem 1.6rem;
@@ -667,7 +643,7 @@
       justify-content: space-between;
       cursor: pointer;
       user-select: none;
-      background: rgba(20, 31, 54, 0.4);
+      background: var(--bg-surface);
     }
 
     .pipeline-title-cluster { display: flex; align-items: center; gap: 0.85rem; }
@@ -679,13 +655,13 @@
       flex-wrap: wrap;
       gap: 0.6rem;
       padding: 1.35rem 1.6rem;
-      background: rgba(8, 13, 26, 0.85);
+      background: var(--bg-midnight);
       border-top: 1px solid var(--border-subtle);
     }
 
     .pipeline-node {
       background: var(--bg-surface);
-      border: 1px solid var(--border-light);
+      border: 1px solid var(--border-medium);
       padding: 0.45rem 0.9rem;
       border-radius: var(--radius-xs);
       font-family: var(--font-mono);
@@ -694,16 +670,16 @@
       display: inline-flex;
       align-items: center;
       gap: 0.45rem;
-      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08);
+      box-shadow: var(--shadow-inset-top);
     }
 
-    .pipeline-arrow { color: var(--neon-cyan); font-weight: 800; }
+    .pipeline-arrow { color: var(--text-secondary); font-weight: 800; }
     
     .pipeline-desc-box {
       padding: 0.9rem 1.6rem 1.35rem;
       font-size: 0.88rem;
       color: var(--text-secondary);
-      background: rgba(8, 13, 26, 0.85);
+      background: var(--bg-midnight);
       border-top: 1px dashed var(--border-subtle);
       line-height: 1.6;
     }
@@ -715,11 +691,11 @@
       display: grid;
       grid-template-columns: 2.1fr 1fr;
       gap: 2rem;
-      background: #03060f;
-      border: 2px solid var(--border-light);
+      background: var(--bg-midnight);
+      border: 1px solid var(--border-medium);
       border-radius: var(--radius-xl);
       padding: 2rem;
-      box-shadow: 0 25px 60px rgba(0, 0, 0, 0.9);
+      box-shadow: var(--shadow-deep), var(--shadow-inset-top);
       position: relative;
     }
 
@@ -733,13 +709,13 @@
       background: #000000;
       border-radius: var(--radius-sm);
       padding: 0.85rem;
-      border: 1px solid var(--border-light);
+      border: 1px solid var(--border-medium);
       box-shadow: inset 0 0 30px rgba(0, 0, 0, 0.9);
     }
 
     .camera-slot {
-      background: #060a14;
-      border: 2px solid #1e293b;
+      background: #090a0d;
+      border: 2px solid #27272a;
       border-radius: 6px;
       position: relative;
       overflow: hidden;
@@ -750,13 +726,13 @@
     }
 
     .camera-slot.active-pgm {
-      border-color: var(--neon-red);
-      box-shadow: 0 0 25px var(--neon-red-glow);
+      border-color: var(--accent-red);
+      box-shadow: 0 0 20px var(--accent-red-glow);
     }
 
     .camera-slot.active-pvw {
-      border-color: var(--neon-emerald);
-      box-shadow: 0 0 25px var(--neon-emerald-glow);
+      border-color: var(--accent-emerald);
+      box-shadow: 0 0 20px var(--accent-emerald-glow);
     }
 
     .slot-id-badge {
@@ -764,7 +740,7 @@
       top: 8px; left: 8px;
       font-family: var(--font-mono);
       font-size: 0.72rem; font-weight: 700;
-      background: rgba(0, 0, 0, 0.85);
+      background: rgba(18, 19, 24, 0.9);
       padding: 0.2rem 0.55rem;
       border-radius: 4px;
       border: 1px solid rgba(255, 255, 255, 0.15);
@@ -777,13 +753,13 @@
       top: 8px; right: 8px;
       width: 12px; height: 12px;
       border-radius: 50%;
-      background: #1e293b;
+      background: #27272a;
       z-index: 5;
       transition: var(--transition-smooth);
     }
 
-    .slot-tally-lamp.pgm { background: var(--neon-red); box-shadow: 0 0 12px var(--neon-red); }
-    .slot-tally-lamp.pvw { background: var(--neon-emerald); box-shadow: 0 0 12px var(--neon-emerald); }
+    .slot-tally-lamp.pgm { background: var(--accent-red); box-shadow: 0 0 10px var(--accent-red); }
+    .slot-tally-lamp.pvw { background: var(--accent-emerald); box-shadow: 0 0 10px var(--accent-emerald); }
 
     .master-screens-row {
       display: grid;
@@ -793,7 +769,7 @@
 
     .screen-housing {
       background: #000000;
-      border: 2px solid var(--border-light);
+      border: 2px solid var(--border-medium);
       border-radius: var(--radius-sm);
       aspect-ratio: 16/9;
       position: relative;
@@ -803,8 +779,8 @@
       justify-content: center;
     }
 
-    .screen-housing.pgm-live { border-color: var(--neon-red); box-shadow: 0 0 30px var(--neon-red-glow); }
-    .screen-housing.pvw-live { border-color: var(--neon-emerald); box-shadow: 0 0 30px var(--neon-emerald-glow); }
+    .screen-housing.pgm-live { border-color: var(--accent-red); box-shadow: 0 0 25px var(--accent-red-glow); }
+    .screen-housing.pvw-live { border-color: var(--accent-emerald); box-shadow: 0 0 25px var(--accent-emerald-glow); }
 
     .screen-header-tag {
       position: absolute;
@@ -814,8 +790,8 @@
       padding: 0.25rem 0.7rem; border-radius: 4px;
       z-index: 5;
     }
-    .screen-header-tag.red { background: var(--neon-red); color: #fff; box-shadow: 0 0 10px var(--neon-red); }
-    .screen-header-tag.green { background: var(--neon-emerald); color: #040813; box-shadow: 0 0 10px var(--neon-emerald); }
+    .screen-header-tag.red { background: var(--accent-red); color: #fff; box-shadow: 0 0 8px var(--accent-red); }
+    .screen-header-tag.green { background: var(--accent-emerald); color: #ffffff; box-shadow: 0 0 8px var(--accent-emerald); }
 
     .control-console-deck {
       display: flex;
@@ -824,8 +800,8 @@
       background: var(--bg-surface);
       padding: 1.5rem;
       border-radius: var(--radius-lg);
-      border: 1px solid var(--border-light);
-      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1);
+      border: 1px solid var(--border-medium);
+      box-shadow: var(--shadow-inset-top);
     }
 
     .bus-title-label {
@@ -844,30 +820,30 @@
     .btn-tactile-bus {
       height: 52px;
       background: var(--bg-surface-raised);
-      border: 2px solid var(--border-light);
+      border: 2px solid var(--border-medium);
       border-radius: var(--radius-sm);
       color: var(--text-primary);
       font-family: var(--font-mono);
       font-size: 0.9rem; font-weight: 800;
       cursor: pointer;
       transition: var(--transition-smooth);
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4), var(--shadow-inset-top);
     }
 
-    .btn-tactile-bus:hover { border-color: var(--neon-cyan); }
+    .btn-tactile-bus:hover { border-color: var(--text-primary); }
     
     .btn-tactile-bus.pgm-selected {
-      background: var(--neon-red);
+      background: var(--accent-red);
       border-color: #ffffff;
       color: #ffffff;
-      box-shadow: 0 0 20px rgba(255, 51, 102, 0.7);
+      box-shadow: 0 0 20px rgba(239, 68, 68, 0.7);
     }
 
     .btn-tactile-bus.pvw-selected {
-      background: var(--neon-emerald);
+      background: var(--accent-emerald);
       border-color: #ffffff;
-      color: #030712;
-      box-shadow: 0 0 20px rgba(5, 241, 156, 0.7);
+      color: #ffffff;
+      box-shadow: 0 0 20px rgba(16, 185, 129, 0.7);
     }
 
     .transition-split {
@@ -877,28 +853,31 @@
     }
 
     .btn-cut-action {
-      background: #1e293b; color: #ffffff;
+      background: var(--bg-surface-elevated); color: #ffffff;
       font-family: var(--font-mono); font-weight: 800; font-size: 0.95rem;
       height: 52px; border-radius: var(--radius-sm);
-      border: 1px solid var(--border-light); cursor: pointer;
+      border: 1px solid var(--border-medium); cursor: pointer;
       transition: var(--transition-smooth);
+      box-shadow: var(--shadow-inset-top);
     }
-    .btn-cut-action:active { background: var(--neon-red); transform: scale(0.97); }
+    .btn-cut-action:active { background: var(--accent-red); transform: scale(0.97); }
 
     .btn-auto-action {
-      background: linear-gradient(135deg, var(--neon-cyan), #3877ff);
-      color: #030712;
+      background: linear-gradient(135deg, #3f4252, #21232d);
+      color: #ffffff;
+      border: 1px solid var(--border-strong);
       font-family: var(--font-mono); font-weight: 800; font-size: 0.95rem;
       height: 52px; border-radius: var(--radius-sm);
-      border: none; cursor: pointer;
-      box-shadow: 0 0 20px rgba(0, 242, 254, 0.4);
+      cursor: pointer;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4), var(--shadow-inset-top);
       transition: var(--transition-smooth);
     }
+    .btn-auto-action:hover { border-color: #ffffff; }
     .btn-auto-action:active { transform: scale(0.97); }
 
     .audio-vu-meter-rack {
       display: flex; gap: 1.25rem;
-      background: rgba(8, 13, 26, 0.8); padding: 1.25rem;
+      background: var(--bg-midnight); padding: 1.25rem;
       border-radius: var(--radius-md); border: 1px solid var(--border-subtle);
     }
 
@@ -906,7 +885,7 @@
     
     .vu-bar-housing {
       width: 18px; height: 130px;
-      background: #040711; border-radius: 4px;
+      background: #090a0e; border-radius: 4px;
       border: 1px solid var(--border-subtle);
       display: flex; flex-direction: column-reverse;
       padding: 2px; overflow: hidden;
@@ -914,7 +893,7 @@
 
     .vu-fill-meter {
       width: 100%;
-      background: linear-gradient(to top, #05f19c 0%, #05f19c 68%, #ff9e00 84%, #ff3366 100%);
+      background: linear-gradient(to top, #10b981 0%, #10b981 68%, #f59e0b 84%, #ef4444 100%);
       border-radius: 2px;
       transition: height 0.08s ease;
     }
@@ -926,10 +905,10 @@
        ========================================================================== */
     .inventory-master-panel {
       background: var(--bg-glass-card);
-      border: 1px solid var(--border-subtle);
+      border: 1px solid var(--border-medium);
       border-radius: var(--radius-lg);
       padding: 2rem;
-      box-shadow: var(--shadow-soft);
+      box-shadow: var(--shadow-card), var(--shadow-inset-top);
       backdrop-filter: blur(16px);
     }
 
@@ -943,19 +922,20 @@
     
     .glass-input {
       width: 100%;
-      background: rgba(8, 13, 26, 0.75);
-      border: 1px solid var(--border-light);
+      background: var(--bg-surface);
+      border: 1px solid var(--border-medium);
       border-radius: var(--radius-sm);
       padding: 0.7rem 1.25rem 0.7rem 2.6rem;
       color: var(--text-pure);
       font-family: var(--font-body);
       font-size: 0.9rem; outline: none;
       transition: var(--transition-smooth);
+      box-shadow: var(--shadow-inset-top);
     }
 
     .glass-input:focus {
-      border-color: var(--neon-cyan);
-      box-shadow: 0 0 15px rgba(0, 242, 254, 0.25);
+      border-color: var(--border-strong);
+      box-shadow: 0 0 15px rgba(255, 255, 255, 0.1);
     }
 
     .search-icon-pos {
@@ -965,9 +945,9 @@
 
     .table-scroll-wrapper {
       width: 100%; overflow-x: auto;
-      border: 1px solid var(--border-subtle);
+      border: 1px solid var(--border-medium);
       border-radius: var(--radius-md);
-      background: rgba(8, 13, 26, 0.6);
+      background: var(--bg-midnight);
     }
 
     .modern-dark-table { width: 100%; border-collapse: collapse; font-size: 0.9rem; text-align: left; }
@@ -977,7 +957,7 @@
       color: var(--text-secondary);
       font-family: var(--font-mono); font-size: 0.75rem;
       text-transform: uppercase; letter-spacing: 0.08em;
-      padding: 1rem 1.35rem; border-bottom: 1px solid var(--border-light);
+      padding: 1rem 1.35rem; border-bottom: 1px solid var(--border-medium);
     }
 
     .modern-dark-table td {
@@ -990,33 +970,33 @@
 
     .custom-check-box {
       appearance: none; width: 20px; height: 20px;
-      border: 2px solid var(--border-light); border-radius: 6px;
+      border: 2px solid var(--border-medium); border-radius: 6px;
       background: var(--bg-surface-raised); cursor: pointer;
       position: relative; display: inline-block; vertical-align: middle;
       transition: var(--transition-smooth);
+      box-shadow: var(--shadow-inset-top);
     }
 
     .custom-check-box:checked {
-      background: var(--neon-emerald);
-      border-color: var(--neon-emerald);
-      box-shadow: 0 0 10px var(--neon-emerald);
+      background: var(--accent-emerald);
+      border-color: var(--accent-emerald);
     }
 
     .custom-check-box:checked::after {
       content: '✓'; position: absolute; top: 50%; left: 50%;
-      transform: translate(-50%, -50%); color: #040813; font-weight: 900; font-size: 13px;
+      transform: translate(-50%, -50%); color: #ffffff; font-weight: 900; font-size: 13px;
     }
 
     /* ==========================================================================
        MEDIA RUNDOWN & TIMEKEEPER
        ========================================================================== */
     .timekeeper-glass-banner {
-      background: linear-gradient(135deg, rgba(8, 13, 26, 0.9), rgba(20, 31, 54, 0.8));
-      border: 1px solid var(--border-accent);
+      background: var(--bg-surface);
+      border: 1px solid var(--border-medium);
       border-radius: var(--radius-lg);
       padding: 1.75rem 2rem;
       margin-bottom: 2rem;
-      box-shadow: 0 0 30px rgba(0, 242, 254, 0.15);
+      box-shadow: var(--shadow-card), var(--shadow-inset-top);
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -1028,17 +1008,16 @@
       font-family: var(--font-mono);
       font-size: 3.8rem;
       font-weight: 800;
-      color: var(--neon-cyan);
+      color: #ffffff;
       line-height: 1;
-      text-shadow: 0 0 25px rgba(0, 242, 254, 0.4);
     }
 
     .phase-subhead {
       display: flex; align-items: center; gap: 0.85rem;
-      margin-bottom: 1.25rem; padding-bottom: 0.6rem; border-bottom: 1px solid var(--border-light);
+      margin-bottom: 1.25rem; padding-bottom: 0.6rem; border-bottom: 1px solid var(--border-subtle);
     }
 
-    .phase-headline { font-size: 1.3rem; color: var(--neon-cyan); }
+    .phase-headline { font-size: 1.3rem; color: #ffffff; }
 
     /* ==========================================================================
        CALIBRATION TOOLS & UTILITIES
@@ -1047,7 +1026,7 @@
     
     .pattern-canvas-frame {
       width: 100%; aspect-ratio: 16/9;
-      border: 1px solid var(--border-light); border-radius: var(--radius-sm);
+      border: 1px solid var(--border-medium); border-radius: var(--radius-sm);
       background: #000000; display: block;
       box-shadow: 0 10px 25px rgba(0, 0, 0, 0.6);
     }
@@ -1057,13 +1036,13 @@
        ========================================================================== */
     .deck-modal {
       display: none; position: fixed; inset: 0; z-index: 99999;
-      background: #02040a; color: #ffffff; flex-direction: column;
+      background: #0d0e12; color: #ffffff; flex-direction: column;
     }
 
     .deck-modal.active { display: flex; }
     
     .deck-top-nav {
-      height: 68px; background: rgba(8, 13, 26, 0.9);
+      height: 68px; background: rgba(18, 19, 25, 0.95);
       backdrop-filter: blur(16px); border-bottom: 1px solid var(--border-subtle);
       display: flex; align-items: center; justify-content: space-between; padding: 0 2.5rem;
     }
@@ -1082,7 +1061,7 @@
     }
 
     .deck-bottom-nav {
-      height: 68px; background: rgba(8, 13, 26, 0.9);
+      height: 68px; background: rgba(18, 19, 25, 0.95);
       border-top: 1px solid var(--border-subtle);
       display: flex; align-items: center; justify-content: space-between; padding: 0 2.5rem;
     }
@@ -1092,8 +1071,8 @@
        ========================================================================== */
     .mobile-floating-dock {
       display: none; position: fixed; bottom: 0; left: 0; right: 0; z-index: 1000;
-      background: rgba(8, 13, 26, 0.92); backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px); border-top: 1px solid var(--border-light);
+      background: rgba(18, 19, 25, 0.92); backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px); border-top: 1px solid var(--border-medium);
       padding: 0.6rem 0.85rem; justify-content: space-around;
       box-shadow: 0 -10px 25px rgba(0, 0, 0, 0.6);
     }
@@ -1105,7 +1084,7 @@
       transition: var(--transition-smooth);
     }
 
-    .dock-btn.active { color: var(--neon-cyan); }
+    .dock-btn.active { color: #ffffff; }
     .dock-symbol { font-size: 1.25rem; }
 
     /* ==========================================================================
@@ -1130,11 +1109,6 @@
   </style>
 </head>
 <body>
-
-  <!-- Background Ambient Glow Elements -->
-  <div class="glow-orb" style="top: 5%; left: 5%; width: 450px; height: 450px; background: rgba(0, 242, 254, 0.15);"></div>
-  <div class="glow-orb" style="top: 35%; right: 5%; width: 500px; height: 500px; background: rgba(157, 78, 221, 0.15);"></div>
-  <div class="glow-orb" style="top: 75%; left: 20%; width: 450px; height: 450px; background: rgba(255, 158, 0, 0.12);"></div>
 
   <!-- Top Sticky Command HUD -->
   <header class="command-header">
@@ -1184,7 +1158,7 @@
         <div class="hero-inner-grid">
           <div>
             <div style="display:flex; flex-wrap:wrap; gap:0.5rem; margin-bottom:1.25rem;">
-              <span class="glow-badge cyan">UKK UNNES 2026</span>
+              <span class="glow-badge white">UKK UNNES 2026</span>
               <span class="glow-badge emerald">STATUS: OPERATIONAL READY</span>
               <span class="glow-badge amber">VENUE: AUDITORIUM UNNES</span>
             </div>
@@ -1210,23 +1184,23 @@
           <div class="telemetry-card-cluster">
             <div class="telemetry-header-bar">
               <span>SYSTEM TELEMETRY SUMMARY</span>
-              <span style="color:var(--neon-emerald);">● ACTIVE</span>
+              <span style="color:var(--accent-emerald);">● ACTIVE</span>
             </div>
             <div class="telemetry-row">
               <span class="telemetry-key">Broadcast Switcher</span>
-              <span class="telemetry-val" style="color:var(--neon-cyan);">Cinetreak V1 (4CH)</span>
+              <span class="telemetry-val">Cinetreak V1 (4CH)</span>
             </div>
             <div class="telemetry-row">
               <span class="telemetry-key">Audio Pipeline</span>
-              <span class="telemetry-val" style="color:var(--neon-purple);">Yamaha QL5 + CT80S</span>
+              <span class="telemetry-val">Yamaha QL5 + CT80S</span>
             </div>
             <div class="telemetry-row">
               <span class="telemetry-key">Wireless Transmission</span>
-              <span class="telemetry-val" style="color:var(--neon-amber);">Pyro S & Pyro H (5.8GHz)</span>
+              <span class="telemetry-val" style="color:var(--accent-amber);">Pyro S & Pyro H (5.8GHz)</span>
             </div>
             <div class="telemetry-row">
               <span class="telemetry-key">Stage Timekeeper</span>
-              <span class="telemetry-val" style="color:var(--neon-emerald);">ProPresenter 3 TV</span>
+              <span class="telemetry-val" style="color:var(--accent-emerald);">ProPresenter 3 TV</span>
             </div>
           </div>
         </div>
@@ -1246,28 +1220,28 @@
 
       <div class="kpi-deck">
         <div class="kpi-unit">
-          <div class="kpi-symbol-box" style="color:var(--neon-cyan);">🎥</div>
+          <div class="kpi-symbol-box">🎥</div>
           <div>
             <div class="kpi-figure">4 CAM</div>
             <div class="kpi-desc">2 Wireless + 2 Tethered</div>
           </div>
         </div>
         <div class="kpi-unit">
-          <div class="kpi-symbol-box" style="color:var(--neon-emerald);">📦</div>
+          <div class="kpi-symbol-box">📦</div>
           <div>
             <div class="kpi-figure" id="kpi-inv-total">90+ Item</div>
             <div class="kpi-desc">Inventaris Log Terdata</div>
           </div>
         </div>
         <div class="kpi-unit">
-          <div class="kpi-symbol-box" style="color:var(--neon-amber);">⚡</div>
+          <div class="kpi-symbol-box">⚡</div>
           <div>
             <div class="kpi-figure">12 Line</div>
             <div class="kpi-desc">Jalur Sinyal Terintegrasi</div>
           </div>
         </div>
         <div class="kpi-unit">
-          <div class="kpi-symbol-box" style="color:var(--neon-purple);">👥</div>
+          <div class="kpi-symbol-box">👥</div>
           <div>
             <div class="kpi-figure">15 Kru</div>
             <div class="kpi-desc">Divisi Teknis & Dokumentasi</div>
@@ -1284,7 +1258,7 @@
           <h2 class="section-title">Konfigurasi Kamera & Lensa</h2>
           <p class="section-sub">Spesifikasi 4 kamera broadcast live stream (Dual Wireless) dan 3 unit kamera dokumentasi terpisah.</p>
         </div>
-        <span class="glow-badge cyan">Dual Wireless + Sony System</span>
+        <span class="glow-badge white">Dual Wireless + Sony System</span>
       </div>
 
       <!-- Broadcast 4-CAM Cards -->
@@ -1293,7 +1267,7 @@
           <div>
             <div class="card-top-row">
               <span class="card-main-title">CAM 1 — Center Long Shot</span>
-              <span class="glow-badge cyan">ALEX</span>
+              <span class="glow-badge white">ALEX</span>
             </div>
             <div class="card-subtitle-role">Sony ZV-E10 + Lens 18-105mm F4 G OSS</div>
             <div class="card-tech-chip">Hollyland Pyro S Wireless (TX/RX) • Stand Lighting • HDMI 1.5M • Tripod Big</div>
@@ -1301,7 +1275,7 @@
           </div>
           <div class="card-bottom-row">
             <span>FOH Center Deck</span>
-            <span style="color:var(--neon-cyan); font-weight:700;">5.8GHz Pyro S Wireless</span>
+            <span style="color:#ffffff; font-weight:700;">5.8GHz Pyro S Wireless</span>
           </div>
         </div>
 
@@ -1317,7 +1291,7 @@
           </div>
           <div class="card-bottom-row">
             <span>Altar Stage Front</span>
-            <span style="color:var(--neon-amber); font-weight:700;">5.8GHz Pyro H Wireless</span>
+            <span style="color:var(--accent-amber); font-weight:700;">5.8GHz Pyro H Wireless</span>
           </div>
         </div>
 
@@ -1325,7 +1299,7 @@
           <div>
             <div class="card-top-row">
               <span class="card-main-title">CAM 3 — Left Wing Angle</span>
-              <span class="glow-badge purple">DEWI</span>
+              <span class="glow-badge white">DEWI</span>
             </div>
             <div class="card-subtitle-role">Sony A6000 + Lens 18-105mm F4 G OSS</div>
             <div class="card-tech-chip">HDMI 10M Line • Micro-HDMI Converter • Tripod Big</div>
@@ -1333,7 +1307,7 @@
           </div>
           <div class="card-bottom-row">
             <span>Wing House Left</span>
-            <span style="color:var(--neon-emerald); font-weight:700;">1080p60 HDMI</span>
+            <span style="color:var(--accent-emerald); font-weight:700;">1080p60 HDMI</span>
           </div>
         </div>
 
@@ -1341,7 +1315,7 @@
           <div>
             <div class="card-top-row">
               <span class="card-main-title">CAM 4 — Right Wing Angle</span>
-              <span class="glow-badge emerald">NATHANIA</span>
+              <span class="glow-badge white">NATHANIA</span>
             </div>
             <div class="card-subtitle-role">Sony A6000 + Lens 16-50mm Kit OSS</div>
             <div class="card-tech-chip">HDMI 10M Line • Micro-HDMI Converter • Tripod Big</div>
@@ -1349,33 +1323,33 @@
           </div>
           <div class="card-bottom-row">
             <span>Wing House Right</span>
-            <span style="color:var(--neon-emerald); font-weight:700;">1080p60 HDMI</span>
+            <span style="color:var(--accent-emerald); font-weight:700;">1080p60 HDMI</span>
           </div>
         </div>
       </div>
 
       <!-- Documentation Dedicated Row -->
-      <div class="glass-card" style="background:rgba(20, 31, 54, 0.45);">
+      <div class="glass-card" style="background:var(--bg-surface);">
         <div class="card-top-row" style="margin-bottom:1.25rem;">
           <div>
             <h3 style="font-size:1.15rem; font-weight:700;">📸 Shots System (Dokumentasi Terpisah dari Broadcast)</h3>
             <p style="font-size:0.85rem; color:var(--text-secondary); margin-top:0.2rem;">Tim media kreatif untuk dokumentasi still photo, video sinematik aftermovie, dan publikasi sosial media.</p>
           </div>
-          <span class="glow-badge purple">Non-Streaming Units</span>
+          <span class="glow-badge white">Non-Streaming Units</span>
         </div>
         <div class="crew-deck-grid">
-          <div class="glass-card" style="background:rgba(8, 13, 26, 0.8);">
-            <div class="card-top-row"><span class="card-main-title">Nico — Lead Photographer</span><span class="glow-badge purple">PHOTO</span></div>
+          <div class="glass-card" style="background:var(--bg-midnight);">
+            <div class="card-top-row"><span class="card-main-title">Nico — Lead Photographer</span><span class="glow-badge white">PHOTO</span></div>
             <div class="card-tech-chip">Sony A6400 + Sony 50mm Prime (OWL)</div>
             <div class="card-body-text">Foto high-res panggung, candid jemaat, stage lighting atmosphere, dan foto kepengurusan.</div>
           </div>
-          <div class="glass-card" style="background:rgba(8, 13, 26, 0.8);">
-            <div class="card-top-row"><span class="card-main-title">Joel — Cinematic Video</span><span class="glow-badge purple">CINEMA</span></div>
+          <div class="glass-card" style="background:var(--bg-midnight);">
+            <div class="card-top-row"><span class="card-main-title">Joel — Cinematic Video</span><span class="glow-badge white">CINEMA</span></div>
             <div class="card-tech-chip">Sony A6600 + Zeiss 24-70mm + DJI Ronin RS3</div>
             <div class="card-body-text">Video aftermovie sinematik 4K S-Log, slow motion tracking, dan b-roll backstage.</div>
           </div>
-          <div class="glass-card" style="background:rgba(8, 13, 26, 0.8);">
-            <div class="card-top-row"><span class="card-main-title">Jennifer — Mobile Reels</span><span class="glow-badge purple">SOCIAL</span></div>
+          <div class="glass-card" style="background:var(--bg-midnight);">
+            <div class="card-top-row"><span class="card-main-title">Jennifer — Mobile Reels</span><span class="glow-badge white">SOCIAL</span></div>
             <div class="card-tech-chip">Apple iPhone 15 Pro 4K HDR</div>
             <div class="card-body-text">Konten instan Instagram Reels, Stories real-time, dan update publikasi media sosial UKK.</div>
           </div>
@@ -1479,7 +1453,7 @@
         <!-- Tactile Control Console Deck -->
         <div class="control-console-deck">
           <div>
-            <div class="bus-title-label" style="color:var(--neon-red);">PROGRAM BUS (ON AIR)</div>
+            <div class="bus-title-label" style="color:var(--accent-red);">PROGRAM BUS (ON AIR)</div>
             <div class="bus-grid-buttons">
               <button class="btn-tactile-bus pgm-selected" data-pgm-btn="1">CAM 1</button>
               <button class="btn-tactile-bus" data-pgm-btn="2">CAM 2</button>
@@ -1489,7 +1463,7 @@
           </div>
 
           <div>
-            <div class="bus-title-label" style="color:var(--neon-emerald);">PREVIEW BUS (NEXT CUE)</div>
+            <div class="bus-title-label" style="color:var(--accent-emerald);">PREVIEW BUS (NEXT CUE)</div>
             <div class="bus-grid-buttons">
               <button class="btn-tactile-bus" data-pvw-btn="1">CAM 1</button>
               <button class="btn-tactile-bus pvw-selected" data-pvw-btn="2">CAM 2</button>
@@ -1499,7 +1473,7 @@
           </div>
 
           <div>
-            <div class="bus-title-label" style="color:var(--neon-cyan);">TRANSITION & EFFECTS</div>
+            <div class="bus-title-label">TRANSITION & EFFECTS</div>
             <div class="transition-split">
               <button class="btn-cut-action" id="btn-switcher-cut">⚡ HARD CUT</button>
               <button class="btn-auto-action" id="btn-switcher-auto">✨ AUTO MIX</button>
@@ -1560,25 +1534,25 @@
           </div>
         </div>
         <div class="kpi-unit">
-          <div class="kpi-symbol-box" style="color:var(--neon-emerald);">✅</div>
+          <div class="kpi-symbol-box" style="color:var(--accent-emerald);">✅</div>
           <div>
-            <div class="kpi-figure" id="inv-stat-checked" style="color:var(--neon-emerald);">0</div>
+            <div class="kpi-figure" id="inv-stat-checked" style="color:var(--accent-emerald);">0</div>
             <div class="kpi-desc">Terverifikasi di Lokasi</div>
           </div>
         </div>
         <div class="kpi-unit">
-          <div class="kpi-symbol-box" style="color:var(--neon-amber);">⏳</div>
+          <div class="kpi-symbol-box" style="color:var(--accent-amber);">⏳</div>
           <div>
-            <div class="kpi-figure" id="inv-stat-remaining" style="color:var(--neon-amber);">0</div>
+            <div class="kpi-figure" id="inv-stat-remaining" style="color:var(--accent-amber);">0</div>
             <div class="kpi-desc">Belum Check-In / Standby</div>
           </div>
         </div>
         <div class="kpi-unit">
-          <div class="kpi-symbol-box" style="color:var(--neon-cyan);">📊</div>
+          <div class="kpi-symbol-box">📊</div>
           <div>
             <div class="kpi-figure" id="inv-stat-percent">0%</div>
-            <div style="width:100%; background:rgba(8, 13, 26, 0.9); height:6px; border-radius:9999px; margin-top:6px; overflow:hidden;">
-              <div id="inv-stat-progress-bar" style="height:100%; width:0%; background:var(--neon-emerald); transition:width 0.3s ease;"></div>
+            <div style="width:100%; background:var(--bg-midnight); height:6px; border-radius:9999px; margin-top:6px; overflow:hidden;">
+              <div id="inv-stat-progress-bar" style="height:100%; width:0%; background:var(--accent-emerald); transition:width 0.3s ease;"></div>
             </div>
           </div>
         </div>
@@ -1630,7 +1604,7 @@
           <h2 class="section-title">Rundown & Media Asset Checklist</h2>
           <p class="section-sub">Daftar putar video loop, sambutan, materi lirik, PPT firman, dan QRIS persembahan.</p>
         </div>
-        <span class="glow-badge purple">15 Cues</span>
+        <span class="glow-badge white">15 Cues</span>
       </div>
 
       <!-- Stage Timekeeper Stopwatch Widget -->
@@ -1699,7 +1673,7 @@
 
           <div style="margin-bottom:1.5rem;">
             <label style="font-size:0.85rem; color:var(--text-secondary); display:block; margin-bottom:0.5rem;">Volume Output Gain:</label>
-            <input type="range" id="tone-vol-slider" min="0" max="0.5" step="0.01" value="0.15" style="width:100%; accent-color:var(--neon-cyan);" />
+            <input type="range" id="tone-vol-slider" min="0" max="0.5" step="0.01" value="0.15" style="width:100%; accent-color:#ffffff;" />
           </div>
 
           <button class="btn-lux btn-lux-primary" id="btn-play-tone" style="width:100%; height:48px;">
@@ -1779,11 +1753,11 @@
       
       <!-- Slide 1: Title -->
       <div class="deck-slide-unit active">
-        <span class="glow-badge cyan">OFFICIAL TECHNICAL BRIEFING</span>
+        <span class="glow-badge white">OFFICIAL TECHNICAL BRIEFING</span>
         <h1 style="font-size:3.2rem; margin:1.25rem 0 0.75rem; line-height:1.15; font-weight:800;">
           Ibadah Perdana UKK UNNES 2026
         </h1>
-        <h3 style="color:var(--neon-cyan); font-weight:500; margin-bottom:2rem; font-size:1.35rem;">
+        <h3 style="color:var(--text-primary); font-weight:500; margin-bottom:2rem; font-size:1.35rem;">
           Production, Multi-Camera Broadcast & Media Engineering Architecture
         </h3>
         <div style="display:grid; grid-template-columns:repeat(3, 1fr); gap:1.5rem; margin-top:2rem;">
@@ -1795,14 +1769,14 @@
             </div>
           </div>
           <div class="kpi-unit">
-            <div class="kpi-symbol-box" style="color:var(--neon-amber);">🎥</div>
+            <div class="kpi-symbol-box" style="color:var(--accent-amber);">🎥</div>
             <div>
               <div class="kpi-figure" style="font-size:1.25rem;">Dual Wireless</div>
               <div class="kpi-desc">Pyro S + Pyro H</div>
             </div>
           </div>
           <div class="kpi-unit">
-            <div class="kpi-symbol-box" style="color:var(--neon-emerald);">🖥️</div>
+            <div class="kpi-symbol-box" style="color:var(--accent-emerald);">🖥️</div>
             <div>
               <div class="kpi-figure" style="font-size:1.25rem;">Megascreen LED</div>
               <div class="kpi-desc">Center + Wing Sayap</div>
@@ -1848,18 +1822,18 @@
 
       <!-- Slide 3: Camera Strategy -->
       <div class="deck-slide-unit">
-        <span class="glow-badge cyan">CAMERA PLACEMENT</span>
+        <span class="glow-badge white">CAMERA PLACEMENT</span>
         <h2 style="font-size:2.4rem; margin:0.75rem 0 1.5rem;">Broadcast Camera Setup & Angles</h2>
         <div style="display:grid; grid-template-columns:1fr 1fr; gap:1.75rem;">
           <div class="glass-card">
-            <div class="card-main-title" style="color:var(--neon-cyan); margin-bottom:0.75rem;">CAM 1 (Alex) & CAM 2 (Kiel 1) — Dual Wireless</div>
+            <div class="card-main-title" style="color:#ffffff; margin-bottom:0.75rem;">CAM 1 (Alex) & CAM 2 (Kiel 1) — Dual Wireless</div>
             <p style="font-size:0.95rem; color:var(--text-secondary); line-height:1.7;">
               • <strong>CAM 1 (Pyro S):</strong> Berdiri di FOH Center. Memegang Master Stage Shot, Altar & Speaker Framing secara nirkabel.<br/><br/>
               • <strong>CAM 2 (Pyro H):</strong> Roving Kamera Wireless nirkabel. Menangkap ekspresi jemaat, close-up WL & Singer secara dinamis di panggung.
             </p>
           </div>
           <div class="glass-card">
-            <div class="card-main-title" style="color:var(--neon-purple); margin-bottom:0.75rem;">CAM 3 (Dewi) & CAM 4 (Nathania) — Tethered HDMI</div>
+            <div class="card-main-title" style="color:var(--text-secondary); margin-bottom:0.75rem;">CAM 3 (Dewi) & CAM 4 (Nathania) — Tethered HDMI</div>
             <p style="font-size:0.95rem; color:var(--text-secondary); line-height:1.7;">
               • <strong>CAM 3 (Wing Left):</strong> Cross-angle shot ke arah pembicara dan keyboardist panggung. Jalur HDMI 10M.<br/><br/>
               • <strong>CAM 4 (Wing Right):</strong> Cross-angle shot ke arah worship leader dan drum/gitar panggung. Jalur HDMI 10M.
@@ -1888,13 +1862,13 @@
         <h2 style="font-size:2.4rem; margin:0.75rem 0 1.5rem;">Stage LED Mapping & Media Presentation</h2>
         <div style="display:grid; grid-template-columns:1fr 1fr; gap:1.75rem;">
           <div class="glass-card">
-            <div class="card-main-title" style="color:var(--neon-amber); margin-bottom:0.75rem;">LED Megascreen Center (Resolume Arena)</div>
+            <div class="card-main-title" style="color:var(--accent-amber); margin-bottom:0.75rem;">LED Megascreen Center (Resolume Arena)</div>
             <p style="font-size:0.92rem; color:var(--text-secondary); line-height:1.7;">
               Dikelola oleh Andreas & Bayu. Menampilkan Video Loop Pre-Ibadah, Opening Video, Motion Background Tema, dan live camera mix via HDMI 15M ke NovaStar Processor.
             </p>
           </div>
           <div class="glass-card">
-            <div class="card-main-title" style="color:var(--neon-cyan); margin-bottom:0.75rem;">LED Sayap Kanan-Kiri (ProPresenter 1 & 2)</div>
+            <div class="card-main-title" style="color:#ffffff; margin-bottom:0.75rem;">LED Sayap Kanan-Kiri (ProPresenter 1 & 2)</div>
             <p style="font-size:0.92rem; color:var(--text-secondary); line-height:1.7;">
               Dikelola oleh Rania & Filia. Menampilkan Lirik Lagu, Slide Firman Alkitab, PPT Pembicara, dan QRIS Persembahan langsung ke Video Processor Auditorium UNNES.
             </p>
@@ -1918,18 +1892,18 @@
 
       <!-- Slide 7: Rundown Cues -->
       <div class="deck-slide-unit">
-        <span class="glow-badge purple">RUNDOWN & CUES</span>
+        <span class="glow-badge white">RUNDOWN & CUES</span>
         <h2 style="font-size:2.4rem; margin:0.75rem 0 1.5rem;">Media Checklist & Timing Cues</h2>
         <div style="display:grid; grid-template-columns:repeat(3, 1fr); gap:1.5rem;">
           <div class="glass-card">
-            <div class="card-main-title" style="color:var(--neon-cyan); margin-bottom:0.75rem;">1. Pre-Ibadah</div>
+            <div class="card-main-title" style="color:#ffffff; margin-bottom:0.75rem;">1. Pre-Ibadah</div>
             <p style="font-size:0.88rem; color:var(--text-secondary); line-height:1.6;">
               • Open Gate Playlist Audio<br/>
               • Loop Video Profile UKK & Aftermovie IP25/IN25 di LED Center.
             </p>
           </div>
           <div class="glass-card">
-            <div class="card-main-title" style="color:var(--neon-amber); margin-bottom:0.75rem;">2. Sesi Ibadah</div>
+            <div class="card-main-title" style="color:var(--accent-amber); margin-bottom:0.75rem;">2. Sesi Ibadah</div>
             <p style="font-size:0.88rem; color:var(--text-secondary); line-height:1.6;">
               • Opening Countdown Video<br/>
               • Sambutan Bu Grave<br/>
@@ -1939,7 +1913,7 @@
             </p>
           </div>
           <div class="glass-card">
-            <div class="card-main-title" style="color:var(--neon-emerald); margin-bottom:0.75rem;">3. Post-Ibadah</div>
+            <div class="card-main-title" style="color:var(--accent-emerald); margin-bottom:0.75rem;">3. Post-Ibadah</div>
             <p style="font-size:0.88rem; color:var(--text-secondary); line-height:1.6;">
               • Usung-usung alat<br/>
               • Verifikasi checklist pengembalian (OWL, GIA, GKJ, UKK, Pribadi).
@@ -1971,7 +1945,7 @@
         <button class="btn-lux btn-lux-primary btn-lux-sm" id="btn-pres-next">Next Slide ▶</button>
       </div>
       <div style="width:320px; background:rgba(255, 255, 255, 0.08); height:6px; border-radius:9999px; overflow:hidden;">
-        <div id="pres-progress-bar" style="height:100%; width:12.5%; background:var(--neon-cyan); box-shadow:0 0 10px var(--neon-cyan); transition:width 0.25s ease;"></div>
+        <div id="pres-progress-bar" style="height:100%; width:12.5%; background:#ffffff; box-shadow:0 0 10px rgba(255, 255, 255, 0.5); transition:width 0.25s ease;"></div>
       </div>
       <div style="font-size:0.8rem; color:var(--text-muted); font-family:var(--font-mono);">
         Gunakan tombol panah ◄ ► atau Spacebar
@@ -2321,7 +2295,7 @@
             <div>
               <div class="card-top-row">
                 <span class="card-main-title">${c.name}</span>
-                <span class="glow-badge ${c.division === 'broadcast' ? 'cyan' : c.division === 'engine' ? 'red' : 'purple'}">${c.badge}</span>
+                <span class="glow-badge ${c.division === 'broadcast' ? 'white' : c.division === 'engine' ? 'red' : 'purple'}">${c.badge}</span>
               </div>
               <div class="card-subtitle-role">${c.role}</div>
               <div class="card-tech-chip">⚡ ${c.device}</div>
@@ -2329,7 +2303,7 @@
             </div>
             <div class="card-bottom-row">
               <span>📻 ${c.contact}</span>
-              <span style="color:var(--neon-emerald); font-weight:700;">ONLINE / READY</span>
+              <span style="color:var(--accent-emerald); font-weight:700;">ONLINE / READY</span>
             </div>
           </div>
         `).join('');
@@ -2353,17 +2327,17 @@
           <div class="pipeline-container">
             <div class="pipeline-top-bar">
               <div class="pipeline-title-cluster">
-                <span class="glow-badge ${p.category === 'video' ? 'cyan' : p.category === 'audio' ? 'purple' : p.category === 'power' ? 'emerald' : 'amber'}">${p.category.toUpperCase()}</span>
+                <span class="glow-badge ${p.category === 'video' ? 'white' : p.category === 'audio' ? 'purple' : p.category === 'power' ? 'emerald' : 'amber'}">${p.category.toUpperCase()}</span>
                 <span class="pipeline-name">${p.title}</span>
               </div>
               <div style="display:flex; align-items:center; gap:0.75rem;">
-                <span class="glow-badge cyan">${p.tag}</span>
-                <span style="color:var(--neon-emerald); font-size:0.85rem; font-weight:800;">${p.status}</span>
+                <span class="glow-badge white">${p.tag}</span>
+                <span style="color:var(--accent-emerald); font-size:0.85rem; font-weight:800;">${p.status}</span>
               </div>
             </div>
             <div class="pipeline-chain-flow">
               ${p.chain.map((n, i) => `
-                <span class="pipeline-node"><strong style="color:var(--neon-cyan);">${i+1}.</strong> ${n}</span>
+                <span class="pipeline-node"><strong>${i+1}.</strong> ${n}</span>
                 ${i < p.chain.length - 1 ? '<span class="pipeline-arrow">➔</span>' : ''}
               `).join('')}
             </div>
@@ -2492,9 +2466,9 @@
               const ctx = pgmCanvas.getContext('2d');
               const pw = pgmCanvas.width * 0.32, ph = pgmCanvas.height * 0.32;
               const px = pgmCanvas.width - pw - 12, py = 12;
-              ctx.fillStyle = '#000'; ctx.strokeStyle = '#ff9e00'; ctx.lineWidth = 2;
+              ctx.fillStyle = '#000'; ctx.strokeStyle = '#f59e0b'; ctx.lineWidth = 2;
               ctx.fillRect(px, py, pw, ph); ctx.strokeRect(px, py, pw, ph);
-              ctx.fillStyle = '#ff9e00'; ctx.font = 'bold 9px "JetBrains Mono", monospace';
+              ctx.fillStyle = '#f59e0b'; ctx.font = 'bold 9px "JetBrains Mono", monospace';
               ctx.fillText(`PiP: CAM ${this.pvwChannel}`, px + 6, py + 14);
             }
           }
@@ -2507,16 +2481,13 @@
         const ctx = canvas.getContext('2d');
         if (!ctx) return;
         const w = canvas.width, h = canvas.height;
-        ctx.fillStyle = '#050a14'; ctx.fillRect(0, 0, w, h);
-        ctx.strokeStyle = 'rgba(255, 255, 255, 0.05)'; ctx.lineWidth = 1;
+        ctx.fillStyle = '#101116'; ctx.fillRect(0, 0, w, h);
+        ctx.strokeStyle = 'rgba(255, 255, 255, 0.06)'; ctx.lineWidth = 1;
         for (let x = 0; x < w; x += 30) { ctx.beginPath(); ctx.moveTo(x, 0); ctx.lineTo(x, h); ctx.stroke(); }
         for (let y = 0; y < h; y += 30) { ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(w, y); ctx.stroke(); }
 
         const grad = ctx.createRadialGradient(w/2 + Math.sin(t + ch)*(w/4), h/2 + Math.cos(t*0.7 + ch)*20, 10, w/2, h/2, w/1.4);
-        if (ch === 1) grad.addColorStop(0, 'rgba(0, 242, 254, 0.35)');
-        else if (ch === 2) grad.addColorStop(0, 'rgba(255, 158, 0, 0.35)');
-        else if (ch === 3) grad.addColorStop(0, 'rgba(157, 78, 221, 0.35)');
-        else grad.addColorStop(0, 'rgba(5, 241, 156, 0.35)');
+        grad.addColorStop(0, 'rgba(255, 255, 255, 0.12)');
         grad.addColorStop(1, 'transparent');
         ctx.fillStyle = grad; ctx.fillRect(0, 0, w, h);
 
@@ -2630,10 +2601,10 @@
             <td style="text-align:center;"><input type="checkbox" class="custom-check-box inv-cb" data-id="${item.id}" ${this.checkedInv[item.id] ? 'checked' : ''} /></td>
             <td style="font-family:var(--font-mono); font-size:0.78rem; color:var(--text-muted);">${idx + 1}</td>
             <td><div style="font-weight:600; color:var(--text-pure);">${item.name}</div><div style="font-size:0.75rem; color:var(--text-muted);">${item.note || '-'}</div></td>
-            <td style="font-family:var(--font-mono); font-weight:700; color:var(--neon-cyan);">${item.qty}</td>
-            <td><span class="glow-badge amber">${item.provider}</span></td>
-            <td><span class="glow-badge cyan">${item.category.toUpperCase()}</span></td>
-            <td><span class="glow-badge ${item.status === 'Verified' ? 'emerald' : item.status === 'Warning' ? 'red' : 'cyan'}">${item.status}</span></td>
+            <td style="font-family:var(--font-mono); font-weight:700; color:#ffffff;">${item.qty}</td>
+            <td><span class="glow-badge white">${item.provider}</span></td>
+            <td><span class="glow-badge white">${item.category.toUpperCase()}</span></td>
+            <td><span class="glow-badge ${item.status === 'Verified' ? 'emerald' : item.status === 'Warning' ? 'red' : 'white'}">${item.status}</span></td>
           </tr>
         `).join('');
 
@@ -2675,22 +2646,22 @@
         container.innerHTML = MEDIA_ASSET_CHECKLIST.map((phase, pIdx) => `
           <div style="margin-bottom:2rem;">
             <div class="phase-subhead">
-              <span class="glow-badge cyan">FASE ${pIdx + 1}</span>
+              <span class="glow-badge white">FASE ${pIdx + 1}</span>
               <h3 class="phase-headline">${phase.phase}</h3>
             </div>
             <div class="crew-deck-grid">
               ${phase.items.map(item => `
-                <div class="glass-card" style="background:rgba(14, 22, 38, 0.55);">
+                <div class="glass-card" style="background:var(--bg-surface);">
                   <div>
                     <div class="card-top-row">
-                      <span class="glow-badge purple">${item.type}</span>
+                      <span class="glow-badge white">${item.type}</span>
                       <input type="checkbox" class="custom-check-box media-cb" data-id="${item.id}" ${this.checkedMedia[item.id] ? 'checked' : ''} />
                     </div>
                     <div class="card-main-title" style="font-size:1.05rem; margin-bottom:0.4rem;">${item.title}</div>
-                    <div style="font-family:var(--font-mono); font-size:0.78rem; color:var(--neon-amber); margin-bottom:0.5rem;">🎯 Destinasi: ${item.dest}</div>
+                    <div style="font-family:var(--font-mono); font-size:0.78rem; color:var(--text-secondary); margin-bottom:0.5rem;">🎯 Destinasi: ${item.dest}</div>
                     <div style="font-size:0.8rem; color:var(--text-muted); margin-bottom:0.75rem;">👤 PIC: <strong style="color:var(--text-primary);">${item.pic}</strong></div>
                   </div>
-                  <div style="font-size:0.82rem; color:var(--text-secondary); background:rgba(8, 13, 26, 0.7); padding:0.6rem 0.85rem; border-radius:var(--radius-xs); border-left:3px solid var(--neon-cyan);">
+                  <div style="font-size:0.82rem; color:var(--text-secondary); background:var(--bg-midnight); padding:0.6rem 0.85rem; border-radius:var(--radius-xs); border-left:3px solid var(--border-strong);">
                     💡 ${item.notes}
                   </div>
                 </div>
@@ -2800,12 +2771,12 @@
           ctx.fillStyle = '#fff'; ctx.font = 'bold 12px "JetBrains Mono", monospace'; ctx.textAlign = 'center';
           ctx.fillText('SMPTE COLOR BARS — 1080p60 TEST PATTERN', w / 2, h - 15);
         } else if (pattern === 'grid') {
-          ctx.fillStyle = '#040711'; ctx.fillRect(0, 0, w, h);
+          ctx.fillStyle = '#111216'; ctx.fillRect(0, 0, w, h);
           ctx.strokeStyle = 'rgba(255, 255, 255, 0.15)'; ctx.lineWidth = 1;
           for (let x = 0; x <= w; x += 40) { ctx.beginPath(); ctx.moveTo(x, 0); ctx.lineTo(x, h); ctx.stroke(); }
           for (let y = 0; y <= h; y += 40) { ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(w, y); ctx.stroke(); }
-          ctx.strokeStyle = '#05f19c'; ctx.lineWidth = 2; ctx.strokeRect(w * 0.05, h * 0.05, w * 0.9, h * 0.9);
-          ctx.strokeStyle = '#ff9e00'; ctx.lineWidth = 2; ctx.strokeRect(w * 0.1, h * 0.1, w * 0.8, h * 0.8);
+          ctx.strokeStyle = '#ffffff'; ctx.lineWidth = 2; ctx.strokeRect(w * 0.05, h * 0.05, w * 0.9, h * 0.9);
+          ctx.strokeStyle = '#71717a'; ctx.lineWidth = 2; ctx.strokeRect(w * 0.1, h * 0.1, w * 0.8, h * 0.8);
           ctx.fillStyle = '#fff'; ctx.font = 'bold 11px "JetBrains Mono", monospace'; ctx.textAlign = 'center';
           ctx.fillText('STAGE LED ALIGNMENT & SAFE AREA GRID (16:9)', w / 2, 25);
         } else if (pattern === 'white') {
@@ -2844,17 +2815,17 @@
         const container = document.getElementById('sop-container');
         if (!container) return;
         container.innerHTML = SOP_AND_CONTINGENCIES.map((sop, idx) => `
-          <div class="glass-card" style="margin-bottom:1.5rem; background:rgba(14, 22, 38, 0.65);">
+          <div class="glass-card" style="margin-bottom:1.5rem; background:var(--bg-surface);">
             <div class="card-top-row" style="margin-bottom:1.25rem;">
               <div style="display:flex; align-items:center; gap:0.75rem;">
-                <span class="glow-badge ${idx === 2 ? 'red' : 'cyan'}">SOP PROTOCOL 0${idx + 1}</span>
+                <span class="glow-badge ${idx === 2 ? 'red' : 'white'}">SOP PROTOCOL 0${idx + 1}</span>
                 <span style="font-size:1.1rem; font-weight:700; color:var(--text-pure);">${sop.title}</span>
               </div>
             </div>
             <ul style="list-style:none; display:flex; flex-direction:column; gap:0.85rem;">
               ${sop.steps.map((step, sIdx) => `
                 <li style="display:flex; align-items:flex-start; gap:0.85rem; font-size:0.92rem; color:var(--text-secondary); line-height:1.6;">
-                  <span style="font-family:var(--font-mono); color:var(--neon-cyan); font-weight:800;">[0${sIdx + 1}]</span>
+                  <span style="font-family:var(--font-mono); color:#ffffff; font-weight:800;">[0${sIdx + 1}]</span>
                   <span>${step}</span>
                 </li>
               `).join('')}
