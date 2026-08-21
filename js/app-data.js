@@ -1,6 +1,6 @@
 /**
  * IP26 Production & Broadcast Blueprint - Master Data Store
- * Source: ip26_pro1.txt, ip26_pro2.txt, ip26_route.txt, README.md
+ * Source: ip26_pro1.txt, ip26_pro2.txt, ip26_route.txt, README.md (Updated 2026-08-21)
  */
 
 export const EVENT_METADATA = {
@@ -20,7 +20,7 @@ export const EVENT_METADATA = {
     "ProPresenter 7",
     "Yamaha QL5",
     "NewBaxs CT80S",
-    "Hollyland Pyro H Wireless",
+    "Hollyland Pyro S & Pyro H Wireless",
     "NovaStar LED Processor"
   ]
 };
@@ -30,10 +30,10 @@ export const CREW_ROLES = [
     id: "cam-1",
     name: "Alex",
     division: "broadcast",
-    role: "CAM 1 Operator (Main Center)",
-    device: "Sony ZV-E10 + Lens 18-105mm F4 G",
+    role: "CAM 1 Operator (Main Center Wireless)",
+    device: "Sony ZV-E10 + Lens 18-105mm F4 G + Hollyland Pyro S",
     contact: "Intercom CH 1",
-    taskDescription: "Tethered Main Long-shot & Stage Master framing. Sinyal dikirim via HDMI 30M/20M splitter line.",
+    taskDescription: "Main Long-shot & Stage Master framing dengan transmisi nirkabel Hollyland Pyro S (TX/RX) ke Switcher Input 1.",
     badge: "CAM 1"
   },
   {
@@ -43,7 +43,7 @@ export const CREW_ROLES = [
     role: "CAM 2 Operator (Roving Wireless)",
     device: "Sony ZV-E10 + Lens 18-105mm F4 G + Hollyland Pyro H",
     contact: "Intercom CH 1",
-    taskDescription: "Wireless roving camera untuk close-up WL, Singer, & crowd immersion. Menggunakan Hollyland Pyro H TX.",
+    taskDescription: "Wireless roving camera untuk close-up WL, Singer, & crowd immersion. Menggunakan Hollyland Pyro H TX/RX.",
     badge: "CAM 2"
   },
   {
@@ -101,7 +101,7 @@ export const CREW_ROLES = [
     name: "Wilfred",
     division: "engine",
     role: "Video Switcher Operator",
-    device: "Cinetreak Cinelive V1 + TV Multiview",
+    device: "Cinetreak Cinelive V1 + TV Multiview (Kezia)",
     contact: "Intercom Master",
     taskDescription: "Mengontrol PGM & PVW bus 4 kamera, transisi cut/mix, PiP, serta sinkronisasi visual ke OBS & LED.",
     badge: "SWITCHER"
@@ -186,16 +186,15 @@ export const BROADCAST_CAMERAS = [
     lens: "18-105mm F4 G OSS",
     accessories: [
       "Tripod Camera Big",
-      "HDMI to Micro HDMI Converter",
-      "HDMI Cable 20M",
-      "HDMI Splitter 4CH",
-      "Power Adaptor SPL",
-      "Terminal Cable XCH",
-      "HDMI Cable 30M",
+      "HDMI to Micro HDMI Cable 30CM",
+      "Hollyland Pyro S Transmitter (TX)",
+      "Hollyland Pyro S Receiver (RX)",
+      "Stand Lighting Small",
+      "HDMI Cable 1.5M",
       "Cinetreak Cinelive V1 Input 1"
     ],
     status: "Verified ✅",
-    signalType: "1080p60 HDMI Long Run",
+    signalType: "5.8GHz Zero-Latency Wireless (Pyro S)",
     position: "FOH Center Deck"
   },
   {
@@ -212,7 +211,7 @@ export const BROADCAST_CAMERAS = [
       "Cinetreak Cinelive V1 Input 2"
     ],
     status: "Verified ✅",
-    signalType: "5.8GHz Zero-Latency Wireless",
+    signalType: "5.8GHz Zero-Latency Wireless (Pyro H)",
     position: "Roving Altar & Stage Front"
   },
   {
@@ -268,7 +267,7 @@ export const ROUTING_PIPELINES = [
     id: "route-sw-tv",
     title: "2. Switcher to TV Multiview",
     category: "video",
-    tag: "OWL x Kezia/Jennifer",
+    tag: "OWL x Kezia",
     status: "Verified ✅",
     summary: "Dedicated hardware multiview monitoring untuk Video Director & Switcher Operator.",
     chain: [
@@ -276,10 +275,10 @@ export const ROUTING_PIPELINES = [
       "Cinetreak Cinelive V1",
       "Power Adaptor MIX",
       "HDMI to HDMI Cable 1M",
-      "Television (Kezia/Jennifer)",
+      "Television (Kezia)",
       "Power Adaptor TV"
     ],
-    details: "Menampilkan 4 input kamera (CAM 1-4), Preview Bus, Program Bus, Audio VU Meters, dan Status Record/Stream."
+    details: "Menampilkan 4 input kamera (CAM 1-4), Preview Bus, Program Bus, Audio VU Meters, dan Status Record/Stream ke TV Kezia."
   },
   {
     id: "route-sw-spl",
@@ -467,13 +466,13 @@ export const MASTER_INVENTORY = [
   { id: "inv-owl-8", name: "Memory Card 32GB High Speed", qty: "4 Unit", provider: "OWL", status: "Verified", category: "storage", note: "Broadcast & Photo" },
   { id: "inv-owl-9", name: "Cinetreak Cinelive V1 Switcher", qty: "1 Pack", provider: "OWL", status: "Verified", category: "switcher", note: "Master Video Switcher" },
   { id: "inv-owl-10", name: "Power Adaptor MIX", qty: "1 Unit", provider: "OWL", status: "Verified", category: "power", note: "Cinetreak V1 Power" },
-  { id: "inv-owl-11", name: "Hollyland Pyro H Wireless Kit", qty: "1 Pack", provider: "OWL", status: "Verified", category: "wireless", note: "Transmitter TX + Receiver RX" },
-  { id: "inv-owl-12", name: "Power Adaptor WIR", qty: "1 Unit", provider: "OWL", status: "Verified", category: "power", note: "Hollyland RX Power" },
-  { id: "inv-owl-13", name: "Tripod Camera Big Heavy Duty", qty: "1 Unit", provider: "OWL", status: "Verified", category: "tripod", note: "CAM 1 Deck" },
-  { id: "inv-owl-14", name: "HDMI to Micro HDMI Converter", qty: "2 Unit", provider: "OWL", status: "Verified", category: "converter", note: "Sony Micro HDMI adapter" },
-  { id: "inv-owl-15", name: "HDMI to Micro HDMI Cable 30CM", qty: "1 Unit", provider: "OWL", status: "Verified", category: "cable", note: "Gimbal/Wireless link" },
-  { id: "inv-owl-16", name: "HDMI Cable 30M High Speed", qty: "1 Unit", provider: "OWL", status: "Verified", category: "cable", note: "CAM 1 Long Run" },
-  { id: "inv-owl-17", name: "HDMI Cable 20M High Speed", qty: "1 Unit", provider: "OWL", status: "Verified", category: "cable", note: "CAM 1 Splitter link" },
+  { id: "inv-owl-11", name: "Hollyland Pyro H Wireless Kit", qty: "1 Pack", provider: "OWL", status: "Verified", category: "wireless", note: "Transmitter TX + Receiver RX (CAM 2 Kiel)" },
+  { id: "inv-owl-12", name: "Power Adaptor WIR (Pyro H)", qty: "1 Unit", provider: "OWL", status: "Verified", category: "power", note: "Hollyland Pyro H RX Power" },
+  { id: "inv-owl-13", name: "Hollyland Pyro S Wireless Kit", qty: "1 Pack", provider: "OWL", status: "Verified", category: "wireless", note: "Transmitter TX + Receiver RX (CAM 1 Alex)" },
+  { id: "inv-owl-14", name: "Power Adaptor WIR (Pyro S)", qty: "1 Unit", provider: "OWL", status: "Verified", category: "power", note: "Hollyland Pyro S RX Power" },
+  { id: "inv-owl-15", name: "Tripod Camera Big Heavy Duty", qty: "1 Unit", provider: "OWL", status: "Verified", category: "tripod", note: "CAM 1 Deck" },
+  { id: "inv-owl-16", name: "HDMI to Micro HDMI Converter", qty: "2 Unit", provider: "OWL", status: "Verified", category: "converter", note: "Sony Micro HDMI adapter" },
+  { id: "inv-owl-17", name: "HDMI to Micro HDMI Cable 30CM", qty: "2 Unit", provider: "OWL", status: "Verified", category: "cable", note: "CAM 1 & CAM 2 Wireless link" },
   { id: "inv-owl-18", name: "HDMI Video Capture Card", qty: "2 Unit", provider: "OWL", status: "Verified", category: "capture", note: "Pro1 & Pro2 Capture" },
 
   // ABON
@@ -540,24 +539,24 @@ export const MASTER_INVENTORY = [
   { id: "inv-gia-7", name: "HDMI to HDMI Cable 1M", qty: "2 Unit", provider: "GIA Deliksari", status: "Verified", category: "cable", note: "Rack patching" },
 
   // GKJ Ngaliyan
-  { id: "inv-gkj-1", name: "Stand Lighting Small (Hollyland RX)", qty: "1 Unit", provider: "GKJ Ngaliyan", status: "Verified", category: "tripod", note: "Mounting wireless RX" },
+  { id: "inv-gkj-1", name: "Stand Lighting Small", qty: "1 Unit", provider: "GKJ Ngaliyan", status: "Verified", category: "tripod", note: "Mounting wireless RX" },
   { id: "inv-gkj-2", name: "HDMI Cable 15M High Speed", qty: "1 Unit", provider: "GKJ Ngaliyan", status: "Verified", category: "cable", note: "Resolume to NovaStar" },
   { id: "inv-gkj-3", name: "HDMI Cable 10M High Speed", qty: "1 Unit", provider: "GKJ Ngaliyan", status: "Verified", category: "cable", note: "CAM 3 Dewi Run" },
   { id: "inv-gkj-4", name: "HDMI Cable 5M High Speed", qty: "1 Unit", provider: "GKJ Ngaliyan", status: "Checked", category: "cable", note: "Stage aux run" },
   { id: "inv-gkj-5", name: "HDMI Cable 1.5M Patch", qty: "1 Unit", provider: "GKJ Ngaliyan", status: "Checked", category: "cable", note: "Table patch" },
   { id: "inv-gkj-6", name: "HDMI Video Capture Card USB", qty: "1 Unit", provider: "GKJ Ngaliyan", status: "Verified", category: "capture", note: "Spare capture" },
-  { id: "inv-gkj-7", name: "HDMI Splitter 4CH 4K", qty: "1 Unit", provider: "GKJ Ngaliyan", status: "Verified", category: "converter", note: "Primary PGM Splitter" },
-  { id: "inv-gkj-8", name: "Power Adaptor SPL 5V", qty: "1 Pack", provider: "GKJ Ngaliyan", status: "Verified", category: "power", note: "Splitter power" },
+  { id: "inv-gkj-7", name: "HDMI Splitter 4CH 4K", qty: "1 Unit", provider: "GKJ Ngaliyan", status: "Checked", category: "converter", note: "Secondary distribution" },
+  { id: "inv-gkj-8", name: "Power Adaptor SPL 5V", qty: "1 Pack", provider: "GKJ Ngaliyan", status: "Checked", category: "power", note: "Splitter power" },
 
   // UKK UNNES
   { id: "inv-ukk-1", name: "XLR Female to Male Cable 10M", qty: "3 Unit", provider: "UKK UNNES", status: "Verified", category: "audio", note: "QL5 to NewBaxs master run" },
-  { id: "inv-ukk-2", name: "Stand Lighting Small", qty: "4 Unit", provider: "UKK UNNES", status: "Checked", category: "tripod", note: "Stage perimeter" },
+  { id: "inv-ukk-2", name: "Stand Lighting Small", qty: "4 Unit", provider: "UKK UNNES", status: "Warning", category: "tripod", note: "Stage perimeter & RX stand" },
   { id: "inv-ukk-3", name: "Tripod Camera Big Pro", qty: "1 Unit", provider: "UKK UNNES", status: "Verified", category: "tripod", note: "CAM 4 Nathania" },
   { id: "inv-ukk-4", name: "HDMI to Mini HDMI Cable 2.5M", qty: "1 Unit", provider: "UKK UNNES", status: "Checked", category: "cable", note: "Backup camera run" },
   { id: "inv-ukk-5", name: "HDMI Cable 15M Braided", qty: "1 Unit", provider: "UKK UNNES", status: "Checked", category: "cable", note: "Spare long run" },
   { id: "inv-ukk-6", name: "HDMI Cable 10M High Speed", qty: "1 Unit", provider: "UKK UNNES", status: "Verified", category: "cable", note: "CAM 4 Nathania Run" },
-  { id: "inv-ukk-7", name: "HDMI Cable 1.5M Patch", qty: "4 Unit", provider: "UKK UNNES", status: "Checked", category: "cable", note: "Table patch cables" },
-  { id: "inv-ukk-8", name: "HDMI Splitter 4CH Active", qty: "1 Unit", provider: "UKK UNNES", status: "Verified", category: "converter", note: "Secondary distribution" },
+  { id: "inv-ukk-7", name: "HDMI Cable 1.5M Patch", qty: "4 Unit", provider: "UKK UNNES", status: "Warning", category: "cable", note: "Table patch & Wireless RX link" },
+  { id: "inv-ukk-8", name: "HDMI Splitter 4CH Active", qty: "1 Unit", provider: "UKK UNNES", status: "Verified", category: "converter", note: "Primary PGM Splitter" },
   { id: "inv-ukk-9", name: "Power Adaptor SPL", qty: "1 Pack", provider: "UKK UNNES", status: "Verified", category: "power", note: "Splitter power" },
   { id: "inv-ukk-10", name: "VGA to VGA Cable 1.5M", qty: "1 Unit", provider: "UKK UNNES", status: "Checked", category: "cable", note: "Backup display" },
   { id: "inv-ukk-11", name: "VGA to VGA Cable 2.5M", qty: "1 Unit", provider: "UKK UNNES", status: "Checked", category: "cable", note: "Backup display" },
@@ -566,7 +565,7 @@ export const MASTER_INVENTORY = [
   { id: "inv-ukk-14", name: "Terminal Cable XCH Master Box", qty: "X Unit", provider: "UKK UNNES", status: "Verified", category: "power", note: "Master distribution" },
 
   // Lio
-  { id: "inv-lio-1", name: "HDMI Cable 1.5M High Speed", qty: "1 Unit", provider: "Lio", status: "Verified", category: "cable", note: "CAM 2 Hollyland RX patch" },
+  { id: "inv-lio-1", name: "HDMI Cable 1.5M High Speed", qty: "1 Unit", provider: "Lio", status: "Verified", category: "cable", note: "Hollyland RX patch" },
 
   // Darrel
   { id: "inv-darrel-1", name: "Television Monitor 32 Inch", qty: "1 Unit", provider: "Darrel", status: "Verified", category: "display", note: "Stage Timekeeper Display" },
@@ -591,13 +590,11 @@ export const MASTER_INVENTORY = [
   { id: "inv-joel-6", name: "Gimbal 3-Axis DJI Ronin RS3", qty: "1 Unit", provider: "Joel", status: "Verified", category: "accessories", note: "Stabilized cinematic tracking" },
 
   // Kezia
-  { id: "inv-kezia-1", name: "Television Monitor 40 Inch", qty: "1 Unit", provider: "Kezia", status: "Verified", category: "display", note: "Master Video Switcher Multiview" },
+  { id: "inv-kezia-1", name: "Television Monitor", qty: "1 Unit", provider: "Kezia", status: "Verified", category: "display", note: "Master Video Switcher Multiview" },
   { id: "inv-kezia-2", name: "Power Adaptor TV & HDMI Cable", qty: "1 Pack", provider: "Kezia", status: "Verified", category: "power", note: "Multiview TV Station" },
 
   // Jennifer
-  { id: "inv-jen-1", name: "Apple iPhone 15 Pro Master", qty: "1 Unit", provider: "Jennifer", status: "Verified", category: "camera", note: "Social Media / Mobile 4K" },
-  { id: "inv-jen-2", name: "Television Monitor 32 Inch", qty: "1 Unit", provider: "Jennifer", status: "Verified", category: "display", note: "Secondary Engine Preview" },
-  { id: "inv-jen-3", name: "Power Adaptor TV & Stand", qty: "1 Pack", provider: "Jennifer", status: "Verified", category: "power", note: "Secondary TV station" },
+  { id: "inv-jen-1", name: "HP Iphone 15", qty: "1 Unit", provider: "Jennifer", status: "Verified", category: "camera", note: "Social Media / Mobile Reels" },
 
   // Panitia
   { id: "inv-panitia-1", name: "HDMI to Micro HDMI Converter", qty: "2 Unit", provider: "Panitia", status: "Verified", category: "converter", note: "Camera rig adapters" },
@@ -610,148 +607,148 @@ export const MEDIA_ASSET_CHECKLIST = [
     items: [
       {
         id: "mat-pre-1",
-        title: "Playlist Lagu Rohani Akustik / Praise & Worship",
-        dest: "FOH Sound System (Yamaha QL5)",
+        title: "Playlist (Lagu Rohani)",
+        dest: "Sound System (Yamaha QL5)",
         pic: "Sound / Resolume DAC",
-        type: "Audio Lossless / MP3 320kbps",
+        type: "Audio Playback",
         status: "Ready ✅",
         notes: "Dimulai saat pintu open gate dibuka sampai 10 menit sebelum countdown."
       },
       {
         id: "mat-pre-2",
-        title: "Loop Video (Profile UKK UNNES, After Movie IP25, After Movie IN25)",
+        title: "Loop Video (Profile UKK, After Movie IP25, After Movie IN25)",
         dest: "LED Tengah (Resolume Arena)",
         pic: "Bayu & Andreas",
-        type: "1080p MP4 H.264 / DXV3 Video Loop",
+        type: "1080p Video Loop",
         status: "Ready ✅",
         notes: "Diputar secara loop di LED Center dengan transisi fade halus."
       }
     ]
   },
   {
-    phase: "Ibadah (Event Running)",
+    phase: "Ibadah (Event)",
     items: [
       {
         id: "mat-evt-1",
-        title: "Video Opening & Countdown IP26",
-        dest: "LED Tengah (Resolume Arena) + FOH Audio",
+        title: "Video Opening",
+        dest: "LED Tengah (Resolume Arena)",
         pic: "Andreas & Wilfred",
-        type: "1080p MP4 + Master Stereo Audio",
+        type: "1080p MP4 Video",
         status: "Ready ✅",
         notes: "Memicu dimming lampu auditorium dan cue awal opening worship team."
       },
       {
         id: "mat-evt-2",
-        title: "Video Sambutan Bu Grave (Dosen Pembina UKK)",
-        dest: "LED Tengah, Kanan & Kiri (All LED Screens)",
+        title: "Video Sambutan Bu Grave",
+        dest: "LED Tengah Kanan Kiri",
         pic: "Rania (Pro1) & Andreas (Res)",
-        type: "1080p MP4 with Clear Dialogue Audio",
+        type: "1080p MP4 Video",
         status: "Ready ✅",
         notes: "Pastikan audio terkirim ke QL5 via USB DAC tanpa clipping."
       },
       {
         id: "mat-evt-3",
-        title: "Motion Background Tema Ibadah Perdana 2026",
-        dest: "LED Tengah (Resolume Arena)",
+        title: "Background Tema",
+        dest: "LED Tengah",
         pic: "Bayu",
-        type: "Seamless Motion Loop DXV3 / MP4",
+        type: "Motion Graphic Loop",
         status: "Ready ✅",
         notes: "Background visual dinamis selama sesi praise and worship."
       },
       {
         id: "mat-evt-4",
-        title: "Background Lagu & Ambient Pads",
-        dest: "FOH Sound System (Yamaha QL5)",
+        title: "Background Lagu",
+        dest: "Sound System",
         pic: "Sound Engineer",
-        type: "Lossless Audio",
+        type: "Ambient Audio",
         status: "Ready ✅",
         notes: "Underlay musik saat doa pembuka, perjamuan/penyerahan, & altar call."
       },
       {
         id: "mat-evt-5",
-        title: "Lirik Lagu Pujian & Penyembahan (Song Lyrics)",
-        dest: "LED Tengah, Kanan & Kiri (ProPresenter 1 & 2)",
+        title: "Lirik Lagu",
+        dest: "LED Tengah Kanan Kiri",
         pic: "Rania & Filia",
-        type: "ProPresenter 7 Project Package",
+        type: "ProPresenter 7 Project",
         status: "Ready ✅",
         notes: "Sinkronisasi pergantian lirik sesuai arahan Worship Leader (WL)."
       },
       {
         id: "mat-evt-6",
-        title: "Video Generation / Bumper Khotbah",
-        dest: "LED Tengah, Kanan & Kiri",
+        title: "Video Generation",
+        dest: "LED Tengah Kanan Kiri",
         pic: "Andreas",
-        type: "1080p Cinematic Teaser",
+        type: "1080p Bumper Video",
         status: "Ready ✅",
         notes: "Menjembatani transisi dari praise & worship ke sesi pemberitaan Firman."
       },
       {
         id: "mat-evt-7",
-        title: "Slide Presentasi / PPT Pembicara Khotbah",
-        dest: "LED Tengah, Kanan & Kiri (ProPresenter 1)",
+        title: "PPT Pembicara",
+        dest: "LED Tengah Kanan Kiri",
         pic: "Rania",
-        type: "PowerPoint / ProPresenter Slides 16:9",
+        type: "PowerPoint / ProPresenter Slides",
         status: "Ready ✅",
         notes: "Pastikan font ter-embed dan pointer slide berfungsi lancar."
       },
       {
         id: "mat-evt-8",
-        title: "Ayat Firman Alkitab Pembicara",
-        dest: "LED Tengah, Kanan & Kiri (ProPresenter 1 & 2)",
+        title: "Ayat Pembicara",
+        dest: "LED Tengah Kanan Kiri",
         pic: "Filia",
-        type: "TB1 / TB2 / NIV Scripture Overlays",
+        type: "Scripture Overlay",
         status: "Ready ✅",
         notes: "Siapkan quick Bible search di ProPresenter untuk ayat spontan."
       },
       {
         id: "mat-evt-9",
-        title: "Quote & Poin Utama Pembicara",
-        dest: "LED Tengah, Kanan & Kiri",
+        title: "Quote Pembicara",
+        dest: "LED Tengah Kanan Kiri",
         pic: "Rania & Filia",
-        type: "Lower-third & Full Screen Graphic Cards",
+        type: "Graphic Quotes",
         status: "Ready ✅",
         notes: "Tampilkan setiap pembicara menekankan poin-poin khotbah penting."
       },
       {
         id: "mat-evt-10",
-        title: "Barcode / QRIS Persembahan UKK UNNES",
-        dest: "LED Tengah, Kanan & Kiri + OBS Stream Overlay",
+        title: "Persembahan (QRIS)",
+        dest: "LED Tengah Kanan Kiri + OBS Stream",
         pic: "Rania & Andreas",
-        type: "High-contrast QRIS Graphic Card",
+        type: "QRIS Graphic Card",
         status: "Ready ✅",
-        notes: "Pastikan QRIS dapat di-scan dari jarak jauh auditorium & di layar HP penonton live stream."
+        notes: "Pastikan QRIS dapat di-scan dari jarak jauh auditorium & di layar live stream."
       },
       {
         id: "mat-evt-11",
-        title: "UKK News & Pengumuman Pelayanan",
-        dest: "LED Tengah, Kanan & Kiri",
+        title: "UKK News",
+        dest: "LED Tengah Kanan Kiri",
         pic: "Rania",
-        type: "Motion Graphic / Slide Announcement",
+        type: "Slide Announcement",
         status: "Ready ✅",
         notes: "Jadwal ibadah rutin, fellowship kampus, dan rekruitmen panitia."
       },
       {
         id: "mat-evt-12",
-        title: "Pokok Doa Syafaat Bersama",
-        dest: "LED Tengah, Kanan & Kiri",
+        title: "Pokok Doa",
+        dest: "LED Tengah Kanan Kiri",
         pic: "Filia",
-        type: "Typography Prayer Bullet Points",
+        type: "Prayer Bullet Points",
         status: "Ready ✅",
         notes: "Ditampilkan saat pendoa syafaat memimpin doa bersama."
       }
     ]
   },
   {
-    phase: "Post Ibadah (Close Gate & Demobilization)",
+    phase: "Post Ibadah (Close Gate)",
     items: [
       {
         id: "mat-post-1",
-        title: "Usung-Usung, Inventory Check & Demobilization",
-        dest: "Seluruh Divisi Produksi & Perlengkapan",
-        pic: "Seluruh Crew (Koordinator: Andreas & Kiel)",
-        type: "Demobilization Checklist & Equipment Packing",
+        title: "Usung-Usung",
+        dest: "Seluruh Tim Produksi & Logistik",
+        pic: "Seluruh Kru (Koordinator: Andreas & Kiel)",
+        type: "Demobilization Checklist",
         status: "Standby ⏳",
-        notes: "Check-out verifikasi alat per pemilik (OWL, GIA, GKJ, UKK, Pribadi). Jangan tinggalkan kabel atau baut."
+        notes: "Verifikasi pengembalian alat per pemilik (OWL, GIA, GKJ, UKK, Pribadi)."
       }
     ]
   }
@@ -760,11 +757,12 @@ export const MEDIA_ASSET_CHECKLIST = [
 export const SOP_AND_CONTINGENCIES = [
   {
     id: "sop-1",
-    title: "SOP 1: Pre-Event Checklist & Signal Synchronization (H-3 Jam)",
+    title: "SOP 1: Pre-Event Checklist & Wireless RF Sync (H-3 Jam)",
     steps: [
       "Nyalakan Master AC Power & periksa tegangan kabel terminal XCH (harus stabil 220V - 230V).",
-      "Koneksikan seluruh kabel video HDMI CAM 1-4 ke Switcher Cinetreak V1 sebelum menyalakan kamera.",
-      "Uji transmisi nirkabel Hollyland Pyro H CAM 2 (pastikan frekuensi 5.8GHz bebas interferensi WiFi auditorium).",
+      "Koneksikan receiver Hollyland Pyro S (CAM 1) dan Hollyland Pyro H (CAM 2) ke Switcher Cinetreak V1 sebelum menyalakan kamera.",
+      "Lakukan RF Frequency Scan pada kedua unit wireless Hollyland untuk menghindari bentrokan kanal dan interferensi WiFi auditorium.",
+      "Koneksikan kabel HDMI 10M CAM 3 & CAM 4 ke Switcher Input 3 & 4.",
       "Test loop gambar ProPresenter 1, ProPresenter 2, dan Resolume Arena ke Video Processor LED Center & Sayap.",
       "Lakukan Sound Check & Level Metering: Yamaha QL5 -> NewBaxs CT80S -> OBS Studio (Target Livestream: -14 LUFS, Peak -3dB)."
     ]
@@ -773,8 +771,8 @@ export const SOP_AND_CONTINGENCIES = [
     id: "sop-2",
     title: "SOP 2: Camera Operation Protocol",
     steps: [
-      "CAM 1 (Alex): Kunci exposure & white balance secara manual. Jangan panning terlalu cepat; fokus utama pada framing altar & speaker.",
-      "CAM 2 (Kiel 1): Wajib menggunakan strap kamera. Bergerak dinamis di sekitar panggung tanpa menghalangi pandangan jemaat.",
+      "CAM 1 (Alex): Berdiri di FOH Center Deck. Manfaatkan wireless Pyro S untuk kebebasan framing master stage & pembicara.",
+      "CAM 2 (Kiel 1): Wajib menggunakan strap kamera. Bergerak dinamis di sekitar panggung dengan Pyro H tanpa menghalangi pandangan jemaat.",
       "CAM 3 (Dewi) & CAM 4 (Nathania): Jaga komposisi framing cross-angle dan panning lambat saat perpindahan vokal.",
       "Semua operator kamera wajib mengenakan busana rapi berwarna gelap/hitam dan selalu memantau arahan Switcher di Intercom."
     ]
@@ -783,8 +781,8 @@ export const SOP_AND_CONTINGENCIES = [
     id: "sop-3",
     title: "SOP 3: Emergency Contingency Plan (Fail-Safe Procedures)",
     steps: [
-      "Jalur HDMI Kamera Terputus: Switcher operator langsung beralih (CUT) ke CAM 1 Master atau Graphic Standby di OBS.",
-      "Hollyland Pyro H Dropout: Operator CAM 2 segera merapat mendekati stage Lighting Stand RX untuk re-locking sinyal.",
+      "Wireless Pyro S / Pyro H Dropout: Operator kamera mendekat ke tiang lighting stand receiver RX untuk re-locking sinyal.",
+      "Jalur HDMI CAM 3/4 Terputus: Switcher operator langsung beralih (CUT) ke CAM 1/2 Wireless atau Graphic Standby di OBS.",
       "Resolume / ProPresenter Crash: Operator cadangan di Backup Station langsung beralih ke HDMI Splitter direct pass-through.",
       "Audio Clipping / Noise Grounding: Switcher OBS mengaktifkan Noise Gate & Compressor filter cadangan di OBS Audio Rack.",
       "Listrik Panggung Padam: Seluruh laptop berada dalam status baterai 100% dan UPS standby melindungi Cinetreak V1 & QL5."
