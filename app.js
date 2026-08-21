@@ -1,5 +1,5 @@
 // ==========================================================================
-// IP26 PRODUCTION BLUEPRINT — MASTER SYSTEM SCRIPT
+// IP26 PRODUCTION BLUEPRINT - MASTER SYSTEM SCRIPT
 // 100% Comprehensive Data Engine & Interactive Simulations
 // ==========================================================================
 
@@ -127,28 +127,28 @@ const crewDirectory = [
 const masterSignalRoutes = [
   {
     id: 'route-cam1',
-    title: 'CAM 1 — Main Broadcast Stage (Alex)',
+    title: 'CAM 1 : Main Broadcast Stage (Alex)',
     pic: 'Alex',
     type: 'cam-route',
     steps: ['Sony ZV-E10 + 18-105mm F4 G', 'Micro-HDMI to HDMI Converter', 'HDMI Cable 20M / 30M High Speed', 'HDMI Splitter 4CH (UKK)', 'Cinetreak Cinelive V1 (Input 1)']
   },
   {
     id: 'route-cam2',
-    title: 'CAM 2 — Wireless Roaming Stage (Kiel 1)',
+    title: 'CAM 2 : Wireless Roaming Stage (Kiel 1)',
     pic: 'Kiel 1',
     type: 'cam-route',
     steps: ['Sony ZV-E10 + 18-105mm F4 G', 'Micro-HDMI Cable 30CM', 'Hollyland Pyro H Transmitter (TX)', 'Wireless 5.8GHz Line-of-Sight Link', 'Pyro H Receiver (RX) + HDMI 1.5M', 'Cinetreak Cinelive V1 (Input 2)']
   },
   {
     id: 'route-cam3',
-    title: 'CAM 3 — Left Wing Angle (Dewi)',
+    title: 'CAM 3 : Left Wing Angle (Dewi)',
     pic: 'Dewi',
     type: 'cam-route',
     steps: ['Sony A6000 + 18-105mm F4 G', 'Micro-HDMI to HDMI Converter', 'HDMI Cable 10M High Speed (UKK/GKJ)', 'Cinetreak Cinelive V1 (Input 3)']
   },
   {
     id: 'route-cam4',
-    title: 'CAM 4 — Right Wing Angle (Nathania)',
+    title: 'CAM 4 : Right Wing Angle (Nathania)',
     pic: 'Nathania',
     type: 'cam-route',
     steps: ['Sony A6000 + 16-50mm Kit Lens', 'Micro-HDMI to HDMI Converter', 'HDMI Cable 10M High Speed (GKJ)', 'Cinetreak Cinelive V1 (Input 4)']
@@ -272,10 +272,10 @@ const masterRundownCues = [
 
 // Switcher Simulation State
 const cameraFeeds = {
-  'CAM 1': { name: 'CAM 1 — Main Stage Wide/Medium', pic: 'Alex', gear: 'Sony ZV-E10 + 18-105mm F4' },
-  'CAM 2': { name: 'CAM 2 — Wireless Roaming Stage', pic: 'Kiel 1', gear: 'Sony ZV-E10 + Pyro H Wireless' },
-  'CAM 3': { name: 'CAM 3 — Left Wing Angle', pic: 'Dewi', gear: 'Sony A6000 + 18-105mm F4' },
-  'CAM 4': { name: 'CAM 4 — Right Wing Angle', pic: 'Nathania', gear: 'Sony A6000 + 16-50mm Kit' }
+  'CAM 1': { name: 'CAM 1: Main Stage Wide/Medium', pic: 'Alex', gear: 'Sony ZV-E10 + 18-105mm F4' },
+  'CAM 2': { name: 'CAM 2: Wireless Roaming Stage', pic: 'Kiel 1', gear: 'Sony ZV-E10 + Pyro H Wireless' },
+  'CAM 3': { name: 'CAM 3: Left Wing Angle', pic: 'Dewi', gear: 'Sony A6000 + 18-105mm F4' },
+  'CAM 4': { name: 'CAM 4: Right Wing Angle', pic: 'Nathania', gear: 'Sony A6000 + 16-50mm Kit' }
 };
 
 const paneTitles = {
@@ -443,14 +443,14 @@ function updateSwitcherDisplays() {
 
   if (pgmTitle && cameraFeeds[currentPgm]) {
     pgmTitle.textContent = currentPgm;
-    if (pgmTitleBig) pgmTitleBig.textContent = `${currentPgm} — ON AIR`;
-    if (pgmInfo) pgmInfo.textContent = `${cameraFeeds[currentPgm].name} — PIC: ${cameraFeeds[currentPgm].pic}`;
+    if (pgmTitleBig) pgmTitleBig.textContent = `${currentPgm} : ON AIR`;
+    if (pgmInfo) pgmInfo.textContent = `${cameraFeeds[currentPgm].name} | PIC: ${cameraFeeds[currentPgm].pic}`;
   }
 
   if (pvwTitle && cameraFeeds[currentPvw]) {
     pvwTitle.textContent = currentPvw;
-    if (pvwTitleBig) pvwTitleBig.textContent = `${currentPvw} — PREVIEW`;
-    if (pvwInfo) pvwInfo.textContent = `${cameraFeeds[currentPvw].name} — PIC: ${cameraFeeds[currentPvw].pic}`;
+    if (pvwTitleBig) pvwTitleBig.textContent = `${currentPvw} : PREVIEW`;
+    if (pvwInfo) pvwInfo.textContent = `${cameraFeeds[currentPvw].name} | PIC: ${cameraFeeds[currentPvw].pic}`;
   }
 
   // Update Buttons
@@ -600,7 +600,14 @@ function renderInventory() {
 
   const filtered = masterInventory.filter(item => {
     const matchesCategory = activeCategoryFilter === 'all' || item.category === activeCategoryFilter;
-    const matchesStatus = activeStatusFilter === 'all' || item.status === activeStatusFilter;
+    let matchesStatus = activeStatusFilter === 'all';
+    if (activeStatusFilter === '[READY]' || activeStatusFilter === '✅') {
+      matchesStatus = item.status === '✅';
+    } else if (activeStatusFilter === '[CHECKED]' || activeStatusFilter === '☑️') {
+      matchesStatus = item.status === '☑️';
+    } else if (activeStatusFilter === '[WARN]' || activeStatusFilter === '⚠️') {
+      matchesStatus = item.status === '⚠️';
+    }
     const matchesSearch = item.name.toLowerCase().includes(searchQuery.toLowerCase()) || 
                           item.type.toLowerCase().includes(searchQuery.toLowerCase()) ||
                           item.category.toLowerCase().includes(searchQuery.toLowerCase()) ||
@@ -609,7 +616,32 @@ function renderInventory() {
   });
 
   if (filtered.length === 0) {
-    tbody.innerHTML = `<tr><td colspan="6" style="text-align:center; padding: 2.5rem; color: var(--text-dim);">Tidak ada item yang sesuai dengan filter atau pencarian.</td></tr>`;
+    tbody.innerHTML = `
+      <tr>
+        <td colspan="6" style="text-align:center; padding: 3rem 1.5rem; color: var(--text-secondary);">
+          <div style="font-size: 1rem; font-weight: 700; color: var(--text-high); margin-bottom: 0.35rem;">Tidak Ada Perlengkapan yang Cocok</div>
+          <div style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 1rem;">
+            Tidak ditemukan item yang cocok dengan kata kunci "${searchQuery || 'kategori/status terpilih'}".
+          </div>
+          <button id="empty-reset-btn" class="filter-btn" style="background: var(--bg-card-hover); color: var(--text-high); border-color: var(--border-hover);">
+            Reset Filter & Cari Ulang
+          </button>
+        </td>
+      </tr>
+    `;
+    const emptyResetBtn = document.getElementById('empty-reset-btn');
+    if (emptyResetBtn) {
+      emptyResetBtn.addEventListener('click', () => {
+        searchQuery = '';
+        activeCategoryFilter = 'all';
+        activeStatusFilter = 'all';
+        const searchInput = document.getElementById('inventory-search');
+        if (searchInput) searchInput.value = '';
+        document.querySelectorAll('[data-cat-filter]').forEach(b => b.classList.toggle('active', b.getAttribute('data-cat-filter') === 'all'));
+        document.querySelectorAll('[data-status-filter]').forEach(b => b.classList.toggle('active', b.getAttribute('data-status-filter') === 'all'));
+        renderInventory();
+      });
+    }
     return;
   }
 

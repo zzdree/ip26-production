@@ -1,5 +1,5 @@
 /* ==========================================================================
-   IP26 PRODUCTION MASTER SUITE — REFINED DARK UI DASHBOARD (uxdesign.cc)
+   IP26 PRODUCTION MASTER SUITE : REFINED DARK UI DASHBOARD (uxdesign.cc)
    ========================================================================== */
 
 :root {
@@ -66,6 +66,14 @@
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+}
+
+/* Accessibility Focus Indicator (R-32) */
+button:focus-visible,
+input:focus-visible,
+a:focus-visible {
+  outline: 2px solid var(--accent-media);
+  outline-offset: 2px;
 }
 
 html, body {
