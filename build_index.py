@@ -1,23 +1,14 @@
 # -*- coding: utf-8 -*-
 """
 IP26 Master Production & Broadcast Command Blueprint Generator
-Enhanced with:
-1. Ergonomic Mobile & Desktop Navigation:
-   - Sticky Glassmorphism Command Header with Section Tracking & Status Indicator
-   - Mobile Off-Canvas Navigation Drawer (Menu Modal) for Full Command Access
-   - Ergonomic Bottom Floating Dock with Iconography, Active State Tracking, and Thumb-Zone Optimization (Safe-Area Inset aware)
-2. Ultra-Responsive Layout Matrix:
-   - Dynamic 16:9 to 2x2 Switcher Multiview on Mobile Devices
-   - Horizontally Scrollable & Pinchable SVG Routing Schematic with Touch Hints
-   - Touch-First Inventory Grid with 48px Minimum Hit Targets
-   - Fluid Typography (clamp-based) for All Mobile Screen Sizes (360px - 1440px+)
-3. Full Feature Set:
-   - Real-Time Cloud MQTT & Offline QR Inventory Sync
-   - Interactive Signal Flow Simulator & Live Cut Practice
-   - Fullscreen Virtual Mobile Stage Tally Light Box Modal
-   - Master Stage Countdown Timer & Fullscreen Stage TV
-   - Official Berita Acara Peminjaman Alat (Handover Agreement)
-   - Real-Time Technical Incident Logger & EBU Calibration Tools
+Enhanced with strict, clean navigation separation:
+1. Desktop (>= 961px):
+   - Navigation is 100% ON TOP (Command Header with ScrollSpy active tracking)
+   - Bottom floating dock is HIDDEN on desktop for a clean, professional widescreen layout
+2. Mobile & Tablet (<= 960px):
+   - Top Header simplifies to compact Brand + Cloud Sync Pill + Tally Button + Hamburger Drawer [☰]
+   - Navigation is 100% ON BOTTOM (Ergonomic Floating Thumb Dock) for one-handed mobile control
+   - Mobile Off-Canvas Drawer Modal for accessing all 9 sections and actions
 """
 
 import os
@@ -92,7 +83,7 @@ def generate_index_html():
       --shadow-deep: 0 20px 50px -10px rgba(0, 0, 0, 0.85);
 
       --header-height: 68px;
-      --dock-height: 64px;
+      --dock-height: 60px;
       --safe-area-bottom: env(safe-area-inset-bottom, 0px);
       --transition-smooth: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
     }
@@ -105,7 +96,7 @@ def generate_index_html():
     body {
       font-family: var(--font-body); background-color: var(--bg-base); color: var(--text-primary);
       line-height: 1.6; min-height: 100vh; overflow-x: hidden; position: relative;
-      padding-bottom: calc(var(--dock-height) + var(--safe-area-bottom) + 2rem);
+      padding-bottom: 2rem;
       background-image:
         radial-gradient(circle at 10% 10%, rgba(255, 255, 255, 0.03) 0%, transparent 45%),
         radial-gradient(circle at 90% 30%, rgba(255, 255, 255, 0.02) 0%, transparent 45%),
@@ -124,7 +115,7 @@ def generate_index_html():
     .mono { font-family: var(--font-mono); }
 
     /* ==========================================================================
-       HEADER & NAVIGATION
+       HEADER & NAVIGATION (DESKTOP)
        ========================================================================== */
     .command-header {
       position: sticky; top: 0; z-index: 1000; height: var(--header-height);
@@ -132,7 +123,7 @@ def generate_index_html():
       border-bottom: 1px solid var(--border-subtle); display: flex; align-items: center; justify-content: space-between;
       padding: 0 1.25rem; transition: var(--transition-smooth);
     }
-    .brand-cluster { display: flex; align-items: center; gap: 0.75rem; text-decoration: none; min-width: 0; flex: 1; }
+    .brand-cluster { display: flex; align-items: center; gap: 0.75rem; text-decoration: none; min-width: 0; }
     .brand-logo-pill {
       display: flex; align-items: center; justify-content: center; width: 40px; height: 40px;
       border-radius: var(--radius-sm); background: linear-gradient(135deg, #27272a 0%, #18181b 100%);
@@ -142,6 +133,7 @@ def generate_index_html():
     .brand-title { font-size: 1.05rem; font-weight: 800; color: var(--text-pure); letter-spacing: -0.02em; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
     .brand-subtitle { font-size: 0.72rem; color: var(--text-muted); font-family: var(--font-mono); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 
+    /* Desktop Navigation Links */
     .header-nav { display: flex; align-items: center; gap: 0.25rem; }
     .nav-link {
       padding: 0.45rem 0.75rem; font-size: 0.82rem; font-weight: 600; color: var(--text-secondary);
@@ -252,7 +244,7 @@ def generate_index_html():
 
     /* Toast Notification for Incoming Sync */
     .toast-container {
-      position: fixed; bottom: calc(var(--dock-height) + var(--safe-area-bottom) + 1rem); right: 1.25rem; z-index: 2000;
+      position: fixed; bottom: 2rem; right: 1.25rem; z-index: 2000;
       display: flex; flex-direction: column; gap: 0.5rem; pointer-events: none; max-width: calc(100vw - 2.5rem);
     }
     .toast {
@@ -466,13 +458,14 @@ def generate_index_html():
     .tally-screen.standby { background: #181920; color: var(--text-muted); border: 2px dashed var(--border-medium); }
 
     /* ==========================================================================
-       ERGONOMIC BOTTOM FLOATING DOCK (MOBILE & DESKTOP)
+       ERGONOMIC BOTTOM FLOATING DOCK (SHOWN ON MOBILE ONLY <= 960px)
        ========================================================================== */
     .floating-dock {
+      display: none; /* Hidden on Desktop */
       position: fixed; bottom: calc(0.75rem + var(--safe-area-bottom)); left: 50%; transform: translateX(-50%); z-index: 999;
       background: var(--bg-glass); backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px);
       border: 1px solid var(--border-strong); border-radius: 9999px; padding: 0.35rem 0.5rem;
-      display: flex; align-items: center; gap: 0.2rem; box-shadow: var(--shadow-deep); max-width: calc(100vw - 1.5rem);
+      align-items: center; gap: 0.2rem; box-shadow: var(--shadow-deep); max-width: calc(100vw - 1.5rem);
     }
     .dock-btn {
       display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 0.15rem;
@@ -494,13 +487,23 @@ def generate_index_html():
     .drawer-nav-item:hover, .drawer-nav-item:active { background: var(--bg-surface-elevated); color: var(--text-pure); border-color: var(--accent-cyan); }
 
     /* ==========================================================================
-       RESPONSIVE BREAKPOINTS (Mobile-First Polish)
+       RESPONSIVE BREAKPOINTS (Desktop vs Mobile Rules)
        ========================================================================== */
     @media (max-width: 960px) {
+      body {
+        /* Extra padding bottom on mobile so content isn't covered by bottom dock */
+        padding-bottom: calc(var(--dock-height) + var(--safe-area-bottom) + 1.5rem);
+      }
       .hero-banner { grid-template-columns: 1fr; }
-      .header-nav { display: none; }
+      .header-nav { display: none; } /* Hide top links on mobile */
+      .floating-dock { display: flex; } /* Show bottom thumb dock on mobile */
       .sim-inspector-grid { grid-template-columns: 1fr; }
       .scroll-hint-pill { display: block; }
+      .toast-container { bottom: calc(var(--dock-height) + var(--safe-area-bottom) + 1rem); }
+    }
+
+    @media (min-width: 961px) {
+      #btn-open-drawer { display: none; } /* Hide mobile hamburger button on wide desktop */
     }
 
     @media (max-width: 768px) {
@@ -515,7 +518,7 @@ def generate_index_html():
     }
 
     @media print {
-      body { background: #fff !important; color: #000 !important; }
+      body { background: #fff !important; color: #000 !important; padding-bottom: 0 !important; }
       .command-header, .floating-dock, .btn, .no-print, .toast-container { display: none !important; }
       .modal-dialog { border: none !important; box-shadow: none !important; max-width: 100% !important; padding: 0 !important; }
     }
@@ -523,7 +526,7 @@ def generate_index_html():
 </head>
 <body>
 
-  <!-- MASTER COMMAND HEADER -->
+  <!-- MASTER COMMAND HEADER (TOP NAVIGATION ON DESKTOP) -->
   <header class="command-header">
     <a href="#" class="brand-cluster">
       <div class="brand-logo-pill">🎬</div>
@@ -533,7 +536,7 @@ def generate_index_html():
       </div>
     </a>
 
-    <!-- Desktop Navigation Links -->
+    <!-- Top Navigation Links: Visible on Desktop (>= 961px) -->
     <nav class="header-nav" id="desktop-nav">
       <a href="#overview" class="nav-link active">Overview</a>
       <a href="#cameras" class="nav-link">Cameras</a>
@@ -553,7 +556,7 @@ def generate_index_html():
         <span id="header-sync-label">LOCAL ONLY</span>
       </div>
       <button class="btn btn-primary btn-sm" id="btn-open-tally-modal" title="Buka Virtual Tally Layar Penuh">🚨 Tally</button>
-      <button class="btn btn-secondary btn-icon" id="btn-open-drawer" title="Menu Lengkap">☰</button>
+      <button class="btn btn-secondary btn-icon" id="btn-open-drawer" title="Menu Lengkap (Mobile)">☰</button>
     </div>
   </header>
 
@@ -1136,7 +1139,7 @@ def generate_index_html():
 
   </main>
 
-  <!-- ERGONOMIC BOTTOM FLOATING DOCK (TOUCH & THUMB FRIENDLY) -->
+  <!-- ERGONOMIC BOTTOM FLOATING DOCK (SHOWN ON MOBILE ONLY <= 960px) -->
   <nav class="floating-dock" id="bottom-dock">
     <a href="#overview" class="dock-btn active" data-dock-target="overview">
       <span class="dock-icon">⚡</span>
@@ -1567,7 +1570,7 @@ def generate_index_html():
               });
             }
           });
-        }, { threshold: 0.25, rootMargin: "-20% 0px -60% 0px" });
+        }, { threshold: 0.2, rootMargin: "-20% 0px -60% 0px" });
 
         sections.forEach(s => observer.observe(s));
 
@@ -2513,7 +2516,7 @@ def generate_index_html():
 """
     with open('index.html', 'w', encoding='utf-8') as f:
         f.write(html_code)
-    print("index.html regenerated with optimized responsive navigation and layout!")
+    print("index.html successfully updated with explicit Desktop Top Nav & Mobile Bottom Dock!")
 
 if __name__ == '__main__':
     generate_index_html()
