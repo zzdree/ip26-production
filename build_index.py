@@ -1,4 +1,26 @@
-<!DOCTYPE html>
+# -*- coding: utf-8 -*-
+"""
+IP26 Master Production & Broadcast Command Blueprint
+Generates index.html with all enhanced modules:
+1. Executive Telemetry & Intercom Matrix
+2. 4 Broadcast CAMs + 3 Documentation Units + Sony Clean HDMI Cheat Sheet
+3. 15-person Crew Directory with Division Filters
+4. Interactive SVG System Architecture Schematic & Signal Tracer
+5. 12-Line Signal Routing Matrix
+6. Cinetreak Cinelive V1 Switcher Simulator + Virtual Tally Integration
+7. 93+ Item Master Inventory Log + Official Equipment Handover Agreement (Berita Acara)
+8. Rundown Media Asset Checklist + Master Stage Timer & Countdown Controller
+9. Production Utilities: Display Test Patterns, Web Audio Tone Generator, Real-time Incident Logger
+10. SOP & Fail-Safe Contingency Protocols
+11. Fullscreen Crew Master Briefing Pitch Deck (8 Slides)
+12. Fullscreen Virtual Mobile Stage Tally Light Box Modal
+13. Mobile Floating Quick Navigation Dock
+"""
+
+import os
+
+def generate_html():
+    html_content = """<!DOCTYPE html>
 <html lang="id">
 <head>
   <meta charset="UTF-8" />
@@ -2638,7 +2660,7 @@
 
         if (exportBtn) {
           exportBtn.addEventListener('click', () => {
-            const dataStr = this.incidentLogs.map(l => `[${l.time}] [${l.severity}] ${l.text}`).join('\n');
+            const dataStr = this.incidentLogs.map(l => `[${l.time}] [${l.severity}] ${l.text}`).join('\\n');
             const blob = new Blob([dataStr], { type: 'text/plain' });
             const url = URL.createObjectURL(blob);
             const a = document.createElement('a'); a.href = url; a.download = `IP26_Incident_Log_${new Date().toISOString().slice(0,10)}.txt`; a.click();
@@ -2849,3 +2871,10 @@
   </script>
 </body>
 </html>
+"""
+    with open("index.html", "w", encoding="utf-8") as f:
+        f.write(html_content)
+    print("index.html generated successfully! Total size:", len(html_content), "bytes")
+
+if __name__ == '__main__':
+    generate_html()

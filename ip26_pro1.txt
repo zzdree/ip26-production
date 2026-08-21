@@ -174,15 +174,15 @@ TERPISAH DARI BOROADCAST SYSTEM
 - Terminal Cable XCH ✅
 
 *Media System*
-- Virtual Mixer 1 - iPad (Jennifer) ✅
-- Virtual Mixer 2 - Laptop + Power Adaptor LTP (Andreas) ✅
-- Resolume Arena - Laptop + Power Adaptor LTP (Bayu) ✅
+- Virtual Mixer 1 - iPad (Punya Jennifer) ✅
+- Virtual Mixer 2 - Laptop + Power Adaptor LTP (Punya Andreas) ✅
+- Resolume Arena - Laptop + Power Adaptor LTP (Punya Bayu) ✅
 - Pro Presenter 1 - Laptop + Power Adaptor LTP () ✅
 - Pro Presenter 2 - Laptop + Power Adaptor LTP () ✅
-- Pro Presenter 3 + Television - Laptop X + Power Adaptor LTP + Television + Power Adaptor TV ( x Darrel)
-- Switcher + Television - Cinetreak Cinelive V1 + Power Adaptor MIX + Television + Power Adaptor TV (OWL x Kezia) ✅
+- Pro Presenter 3 + Television - Laptop X + Power Adaptor LTP + Television + Power Adaptor TV (Punya  x Darrel)
+- Switcher + Television - Cinetreak Cinelive V1 + Power Adaptor MIX + Television + Power Adaptor TV (Punya OWL x Kezia) ✅
 - OBS Studio - Laptop X + Power Adaptor LTP () ✅
-- Backup - Laptop + Power Adaptor LTP (Kiel 1)
+- Backup - Laptop + Power Adaptor LTP (Punya Kiel 1)
 
 *Media System - MAN*
 - Virtual Mixer 1 (Jordan/Yosua)
