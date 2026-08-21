@@ -786,9 +786,54 @@
     .inv-header { display: flex; align-items: flex-start; justify-content: space-between; gap: 0.5rem; }
     .inv-name { font-size: 0.88rem; font-weight: 700; color: var(--text-pure); line-height: 1.3; }
     .inv-qty { font-size: 0.75rem; font-weight: 800; font-family: var(--font-mono); color: var(--accent-cyan); background: rgba(6, 182, 212, 0.12); padding: 0.15rem 0.45rem; border-radius: 4px; flex-shrink: 0; }
-    .inv-meta { display: flex; align-items: center; justify-content: space-between; font-size: 0.72rem; color: var(--text-muted); font-family: var(--font-mono); }
     .inv-sync-tag { font-size: 0.68rem; color: var(--accent-emerald); font-style: italic; }
+    .inv-status-pill {
+      font-size: 0.65rem;
+      font-weight: 700;
+      padding: 0.15rem 0.45rem;
+      border-radius: 4px;
+      font-family: var(--font-mono);
+      display: inline-flex;
+      align-items: center;
+      gap: 3px;
+    }
+    .inv-status-pill.ready { background: rgba(16, 185, 129, 0.15); color: #34d399; border: 1px solid rgba(16, 185, 129, 0.35); }
+    .inv-status-pill.extra { background: rgba(59, 130, 246, 0.15); color: #60a5fa; border: 1px solid rgba(59, 130, 246, 0.35); }
+    .inv-status-pill.check { background: rgba(245, 158, 11, 0.15); color: #fbbf24; border: 1px solid rgba(245, 158, 11, 0.35); }
 
+    .engine-route-card {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-sm);
+      padding: 0.85rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+      transition: var(--transition-smooth);
+    }
+    .engine-route-card:hover { border-color: var(--accent-cyan); background: var(--bg-surface-elevated); }
+    .engine-route-header { display: flex; align-items: center; justify-content: space-between; gap: 0.5rem; }
+    .engine-route-title { font-size: 0.85rem; font-weight: 800; color: var(--text-pure); }
+    .engine-route-owners { font-size: 0.72rem; font-weight: 700; color: var(--accent-cyan); font-family: var(--font-mono); }
+    .engine-route-chain { font-size: 0.74rem; color: var(--text-secondary); line-height: 1.45; word-break: break-word; }
+
+    .materi-card {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-sm);
+      padding: 0.85rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 0.45rem;
+      transition: var(--transition-smooth);
+    }
+    .materi-card:hover { border-color: var(--border-strong); }
+    .materi-card-header { display: flex; align-items: flex-start; justify-content: space-between; gap: 0.5rem; }
+    .materi-name { font-size: 0.86rem; font-weight: 700; color: var(--text-pure); line-height: 1.3; }
+    .materi-phase-pill { font-size: 0.65rem; font-weight: 700; font-family: var(--font-mono); padding: 0.15rem 0.45rem; border-radius: 4px; background: var(--bg-surface-elevated); color: var(--text-muted); }
+    .materi-dest { font-size: 0.74rem; color: var(--accent-amber); font-weight: 600; }
+    .materi-pic { font-size: 0.7rem; color: var(--accent-emerald); font-family: var(--font-mono); }
 
     /* Incident Logger */
     .incident-table-wrap {
@@ -1091,11 +1136,33 @@
       <div class="section-head">
         <div class="section-title-wrap">
           <span class="section-badge">Optical Acquisition Core</span>
-          <h2 class="section-heading">Broadcast & Documentation Rigs</h2>
+          <h2 class="section-heading">Broadcast & Shots Optical Systems</h2>
         </div>
       </div>
 
-      <div class="cameras-grid" id="cameras-cards-grid">
+      <!-- Broadcast System Header -->
+      <div style="margin-bottom:0.75rem; display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:0.5rem;">
+        <div>
+          <h3 style="font-size:0.95rem; font-weight:800; color:var(--text-pure); display:flex; align-items:center; gap:0.4rem;">📡 1. Broadcast System (4-Cam Live Switcher Feed)</h3>
+          <p style="font-size:0.75rem; color:var(--text-secondary);">4 Kamera Siaran Utama tersambung ke Switcher Cinetreak V1 (1080p50).</p>
+        </div>
+        <span class="badge-sev info">Peminjaman: OWL • UKK • GKJ • Kiel • GIA • Lio • Panitia</span>
+      </div>
+
+      <div class="cameras-grid" id="broadcast-cameras-grid">
+        <!-- Rendered dynamically by JavaScript -->
+      </div>
+
+      <!-- Shots System Header -->
+      <div style="margin:1.5rem 0 0.75rem 0; display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:0.5rem;">
+        <div>
+          <h3 style="font-size:0.95rem; font-weight:800; color:#c084fc; display:flex; align-items:center; gap:0.4rem;">📸 2. Shots System (Dokumentasi & Sosmed — Terpisah Dari Broadcast)</h3>
+          <p style="font-size:0.75rem; color:var(--text-secondary);">Fotografi, Cinematic Video Reel, dan Mobile Live Instagram.</p>
+        </div>
+        <span class="badge-sev" style="background:#581c87; color:#f3e8ff;">Peminjaman: OWL • Joel • Jennifer</span>
+      </div>
+
+      <div class="cameras-grid" id="shots-cameras-grid">
         <!-- Rendered dynamically by JavaScript -->
       </div>
 
@@ -1123,20 +1190,19 @@
       </div>
     </section>
 
-    <!-- 3. CREW DIRECTORY -->
+    <!-- 3. CREW DIRECTORY (SEMUA PELAYAN) -->
     <section id="crew">
       <div class="section-head">
         <div class="section-title-wrap">
           <span class="section-badge">Human Resources</span>
-          <h2 class="section-heading">Broadcast & Media Personnel</h2>
+          <h2 class="section-heading">Semua Pelayan Produksi (17 Personel)</h2>
         </div>
         <div class="section-actions">
           <div class="filter-pills-wrap" id="crew-filter-pills">
-            <button class="filter-pill active" data-crew-filter="all">Semua (17)</button>
-            <button class="filter-pill" data-crew-filter="broadcast">Broadcast</button>
-            <button class="filter-pill" data-crew-filter="media">Media & Visual</button>
-            <button class="filter-pill" data-crew-filter="audio">Audio</button>
-            <button class="filter-pill" data-crew-filter="docs">Dokumentasi</button>
+            <button class="filter-pill active" data-crew-filter="all">Semua Pelayan (17)</button>
+            <button class="filter-pill" data-crew-filter="broadcast">Broadcast MAN (7)</button>
+            <button class="filter-pill" data-crew-filter="shots">Shots MAN (3)</button>
+            <button class="filter-pill" data-crew-filter="media">Media & Engine MAN (7)</button>
           </div>
         </div>
       </div>
@@ -1362,6 +1428,20 @@
           </div>
         </div>
 
+        <!-- 12 Master Engine System Routing Chains -->
+        <div style="padding:1.15rem; background:var(--bg-surface-raised); border-top:1px solid var(--border-medium);">
+          <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:0.75rem; flex-wrap:wrap; gap:0.5rem;">
+            <div>
+              <h4 style="font-size:0.95rem; font-weight:800; color:var(--text-pure); display:flex; align-items:center; gap:0.4rem;">⚡ 12 Master Engine System Routing Chains</h4>
+              <p style="font-size:0.75rem; color:var(--text-secondary);">Kelistrikan, Switcher TV Multiview, Audio Balanced, OBS, Resolume, ProPresenter & Stage Display.</p>
+            </div>
+            <span class="badge-sev info">12 Sirkuit Terverifikasi ✅</span>
+          </div>
+          <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap:0.65rem;" id="engine-routes-grid">
+            <!-- Rendered by JS -->
+          </div>
+        </div>
+
         <!-- Node Inspector Details Box -->
         <div style="padding:1rem 1.15rem; background:var(--bg-surface); border-top:1px solid var(--border-subtle);">
           <div class="sim-inspector-grid">
@@ -1463,7 +1543,7 @@
       <div class="section-head">
         <div class="section-title-wrap">
           <span class="section-badge">Logistics & Equipment Registry</span>
-          <h2 class="section-heading">Master Equipment Inventory Log</h2>
+          <h2 class="section-heading">Master Equipment Inventory Log (110+ Units)</h2>
         </div>
         <div class="section-actions">
           <button class="btn btn-secondary btn-sm" id="btn-open-sync-modal">☁️ Cloud & QR Sync</button>
@@ -1488,8 +1568,18 @@
 
       <div class="inventory-toolbar">
         <input type="text" id="inventory-search" class="search-input" placeholder="🔍 Cari nama alat, brand, tipe, atau pemilik..." />
+        
+        <!-- Status Filter Bar -->
+        <div class="filter-pills-wrap" id="inventory-status-pills">
+          <button class="filter-pill active" data-status-filter="all">Semua Status</button>
+          <button class="filter-pill" data-status-filter="ready">✅ Siap / Standby</button>
+          <button class="filter-pill" data-status-filter="extra">☑️ Cadangan / Tambahan</button>
+          <button class="filter-pill" data-status-filter="check">⚠️ Perlu Perhatian</button>
+        </div>
+
+        <!-- Provider Filter Bar -->
         <div class="filter-pills-wrap" id="inventory-filter-pills">
-          <button class="filter-pill active" data-prov="all">Semua (110+)</button>
+          <button class="filter-pill active" data-prov="all">Semua Pemilik (13)</button>
           <button class="filter-pill" data-prov="OWL">OWL (18)</button>
           <button class="filter-pill" data-prov="Andreas">Andreas (51)</button>
           <button class="filter-pill" data-prov="UKK">UKK (14)</button>
@@ -1516,14 +1606,35 @@
       <div class="section-head">
         <div class="section-title-wrap">
           <span class="section-badge">Timeline & Media Cues</span>
-          <h2 class="section-heading">Master Production Rundown & Sequence Cues</h2>
+          <h2 class="section-heading">Master Production Rundown & List Materi</h2>
         </div>
         <div class="section-actions">
           <button class="btn btn-secondary btn-sm" onclick="window.print()">🖨️ Cetak Rundown</button>
         </div>
       </div>
 
+      <!-- Master List Materi & Asset Registry Card -->
+      <div class="card" style="padding:1.15rem; margin-bottom:1rem;">
+        <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:0.75rem; flex-wrap:wrap; gap:0.5rem;">
+          <div>
+            <h3 style="font-size:0.95rem; font-weight:800; color:var(--accent-cyan); display:flex; align-items:center; gap:0.4rem;">🎬 Master List Materi & Asset Registry</h3>
+            <p style="font-size:0.75rem; color:var(--text-secondary);">Daftar seluruh file materi visual, video loop, background tema, PPT, lirik, dan audio streaming.</p>
+          </div>
+          <div class="filter-pills-wrap" id="materi-filter-pills">
+            <button class="filter-pill active" data-materi-filter="all">Semua Materi (15)</button>
+            <button class="filter-pill" data-materi-filter="pre">Pre-Ibadah</button>
+            <button class="filter-pill" data-materi-filter="event">Ibadah (Event)</button>
+            <button class="filter-pill" data-materi-filter="post">Post-Ibadah</button>
+          </div>
+        </div>
+        <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap:0.65rem;" id="materi-items-grid">
+          <!-- Rendered dynamically -->
+        </div>
+      </div>
+
+      <!-- Master Timeline Execution Cues -->
       <div class="card" style="padding:1.25rem;">
+        <h3 style="font-size:0.95rem; font-weight:800; color:var(--text-pure); margin-bottom:0.75rem;">📋 Urutan Eksekusi Rundown & Instruksi Operator</h3>
         <div style="display:flex; flex-direction:column; gap:0.65rem;" id="rundown-items-list">
           <!-- Rendered dynamically -->
         </div>
@@ -1829,8 +1940,8 @@
     const BROADCAST_CAMERAS = [
       { id: 1, name: 'CAM 1', operator: 'Alex', model: 'Sony ZV-E10', lens: 'Sony 18-105mm F4 G', trans: 'Hollyland Pyro S TX/RX (5GHz)', cable: 'HDMI-Micro 30cm + HDMI 1.5M', mount: 'Tripod Big + Stand Light', storage: 'SD 64GB', position: 'Center Stage Static' },
       { id: 2, name: 'CAM 2', operator: 'Kiel 1', model: 'Sony ZV-E10', lens: 'Sony 18-105mm F4 G', trans: 'Hollyland Pyro H TX/RX (5GHz)', cable: 'HDMI-Micro 30cm + HDMI 1.5M', mount: 'Handheld Stage Mobile', storage: 'SD 32GB', position: 'Stage / WL Mobile' },
-      { id: 3, name: 'CAM 3', operator: 'Dewi', model: 'Sony A6000', lens: 'Sony 18-105mm F4 G', trans: 'Direct Wired HDMI', cable: 'Micro HDMI Converter + HDMI 10M', mount: 'Tripod Camera Big', storage: 'SD 32GB', position: 'Left Wing Wide' },
-      { id: 4, name: 'CAM 4', operator: 'Nathania', model: 'Sony A6000', lens: 'Sony Kit 16-50mm', trans: 'Direct Wired HDMI', cable: 'Micro HDMI Converter + HDMI 10M', mount: 'Tripod Camera Big', storage: 'SD 32GB', position: 'Right Wing Wide' }
+      { id: 3, name: 'CAM 3', operator: 'Dewi / Nia', model: 'Sony A6000', lens: 'Sony 18-105mm F4 G', trans: 'Direct Wired HDMI', cable: 'Micro HDMI Converter + HDMI 10M', mount: 'Tripod Camera Big', storage: 'SD 32GB', position: 'Left Wing Wide' },
+      { id: 4, name: 'CAM 4', operator: 'Ferdy / Nathania', model: 'Sony A6000', lens: 'Sony Kit 16-50mm', trans: 'Direct Wired HDMI', cable: 'Micro HDMI Converter + HDMI 10M', mount: 'Tripod Camera Big', storage: 'SD 32GB', position: 'Right Wing Wide' }
     ];
 
     const DOCS_CAMERAS = [
@@ -1843,8 +1954,9 @@
       { name: 'Wilfred', role: 'Switcher Operator', div: 'broadcast', note: 'Cinetreak Cinelive V1 Switcher + TV Multiview' },
       { name: 'Alex', role: 'Camera 1 Operator', div: 'broadcast', note: 'Sony ZV-E10 + Pyro S Wireless (Center Static)' },
       { name: 'Kiel 1', role: 'Camera 2 Operator', div: 'broadcast', note: 'Sony ZV-E10 + Pyro H Wireless (Stage Handheld)' },
-      { name: 'Dewi', role: 'Camera 3 Operator', div: 'broadcast', note: 'Sony A6000 + 10M HDMI GKJ (Left Wing Wide)' },
-      { name: 'Nathania', role: 'Camera 4 Operator', div: 'broadcast', note: 'Sony A6000 + 10M HDMI UKK (Right Wing Wide)' },
+      { name: 'Dewi / Nia', role: 'Camera 3 Operator', div: 'broadcast', note: 'Sony A6000 + 10M HDMI GKJ (Left Wing Wide)' },
+      { name: 'Ferdy', role: 'Camera 4 Operator', div: 'broadcast', note: 'Sony A6000 + 10M HDMI UKK (Right Wing Wide)' },
+      { name: 'Nathania', role: 'Camera Rigging / Support', div: 'broadcast', note: 'Camera Setup & Video Patching Support' },
       { name: 'Andreas', role: 'OBS Stream & Resolume Master', div: 'media', note: 'Live Stream YouTube, LED Center & Sound Lead' },
       { name: 'Bayu', role: 'Resolume Arena Operator', div: 'media', note: 'Visual Engine & LED Center Stage' },
       { name: 'Rania', role: 'ProPresenter 1 Operator', div: 'media', note: 'Lirik Lagu, PPT Pembicara & LED LRB' },
@@ -1864,163 +1976,193 @@
       { id: 'R2', from: 'Pyro S RX', to: 'Cinetreak Ch 1', cable: 'HDMI 1.5M', type: 'video', pgmOn: true },
       { id: 'R3', from: 'CAM 2 (Kiel)', to: 'Hollyland Pyro H TX', cable: 'HDMI-Micro 30cm', type: 'video', pgmOn: false },
       { id: 'R4', from: 'Pyro H RX', to: 'Cinetreak Ch 2', cable: 'HDMI 1.5M', type: 'video', pgmOn: false },
-      { id: 'R5', from: 'CAM 3 (Dewi)', to: 'Cinetreak Ch 3', cable: 'Micro HDMI Conv + 10M HDMI GKJ', type: 'video', pgmOn: false },
-      { id: 'R6', from: 'CAM 4 (Nathania)', to: 'Cinetreak Ch 4', cable: 'Micro HDMI Conv + 10M HDMI UKK', type: 'video', pgmOn: false },
+      { id: 'R5', from: 'CAM 3 (Dewi/Nia)', to: 'Cinetreak Ch 3', cable: 'Micro HDMI Conv + 10M HDMI GKJ', type: 'video', pgmOn: false },
+      { id: 'R6', from: 'CAM 4 (Ferdy)', to: 'Cinetreak Ch 4', cable: 'Micro HDMI Conv + 10M HDMI UKK', type: 'video', pgmOn: false },
       { id: 'R7', from: 'Cinetreak PGM Out', to: 'OBS Studio (Andreas)', cable: 'USB-C UVC 1080p50', type: 'video', pgmOn: true },
       { id: 'R8', from: 'Cinetreak PGM Out', to: 'Splitter HDMI 4CH UKK', cable: 'HDMI 1.5M', type: 'video', pgmOn: true },
       { id: 'R9', from: 'Splitter Out 1', to: 'ProPresenter 1 (Rania)', cable: 'HDMI Capture Card', type: 'video', pgmOn: true },
-      { id: 'R10', from: 'Splitter Out 2', to: 'Resolume Arena (Andreas)', cable: 'HDMI Capture Card', type: 'video', pgmOn: true },
-      { id: 'R11', from: 'Yamaha QL5 FOH', to: 'NewBaxs CT80S Submixer', cable: '2x XLR 10M UKK + 2x XLR 3M GIA', type: 'audio', pgmOn: true },
-      { id: 'R12', from: 'CT80S Submixer', to: 'OBS Studio (Andreas)', cable: 'USB-A to USB-C Audio Cable', type: 'audio', pgmOn: true }
+    ];
+
+    const ENGINE_SYSTEM_ROUTES = [
+      { id: 'ENG-1', title: '⚡ Electrical Routing Master', owners: 'Andreas x UKK x Panitia', chain: 'Terminal Cable XCH + Terminal Cable XCH + Terminal Cable XCH', type: 'power' },
+      { id: 'ENG-2', title: '🖥️ Switcher + Multiview TV', owners: 'OWL x Kezia', chain: 'Terminal Cable XCH + Cinetreak Cinelive V1 + Power Adaptor MIX + HDMI 1M + Television (Kezia) + Power Adaptor TV', type: 'video' },
+      { id: 'ENG-3', title: '🔀 Switcher + Splitter 4CH', owners: 'OWL x UKK', chain: 'Terminal Cable XCH + Cinetreak Cinelive V1 + Power Adaptor MIX + HDMI Splitter 4CH + Power Adaptor SPL', type: 'video' },
+      { id: 'ENG-4', title: '💻 Switcher + OBS Studio Master', owners: 'OWL x Andreas x OBS', chain: 'Terminal Cable XCH + Cinetreak Cinelive V1 + Power Adaptor MIX + USB-A to USB-C Data Cable + Laptop (OBS Studio) + Power Adaptor LTP', type: 'video' },
+      { id: 'ENG-5', title: '🔊 Mixer 1 + XLR Balanced + Mixer 2 + OBS', owners: 'UNNES x UKK x Andreas x GIA x OBS', chain: 'Mixer Yamaha QL5 + 2x XLR 10M (UKK) + 2x XLR 3M (GIA) + Mixer NewBaxs CT80S + USB-A to USB-C Data Cable + Laptop (OBS Studio) + Power Adaptor LTP', type: 'audio' },
+      { id: 'ENG-6', title: '📽️ Splitter + ProPresenter 1 + LED LRB', owners: 'UKK x Andreas x OWL x PRO1 x UNNES', chain: 'HDMI Splitter 4CH + Power Adaptor SPL + HDMI 1.5M + HDMI Capture + Laptop (ProPresenter 1) + Power Adaptor LTP + HDMI UNNES + Video Processor + LED Left Right Back', type: 'display' },
+      { id: 'ENG-7', title: '🎬 ProPresenter 2 + Resolume Arena', owners: 'PRO2 x Andreas x OWL x RES', chain: 'Laptop (ProPresenter 2) + Power Adaptor LTP + HDMI 1.5M + HDMI Capture + Laptop (Resolume Arena) + Power Adaptor LTP', type: 'media' },
+      { id: 'ENG-8', title: '🖥️ Splitter + Resolume + LED Center Main', owners: 'Andreas x GKJ x RES x GKJ x ABON x UNNES', chain: 'HDMI Splitter 4CH + Power Adaptor SPL + HDMI 1.5M + HDMI Capture + Laptop (Resolume Arena) + Power Adaptor LTP + HDMI Cable 15M + HDMI Capture + NovaStar + Video Processor + LED Center', type: 'display' },
+      { id: 'ENG-9', title: '🎵 Resolume + USB-C DAC + Mixer 1', owners: 'RES x Andreas x UNNES', chain: 'Laptop (Resolume Arena) + Power Adaptor LTP + USB-C DAC Hanason AB17X / Oraimo OAA310 + Jack 3.5mm UNNES + Mixer Yamaha QL5', type: 'audio' },
+      { id: 'ENG-10', title: '📱 Mixer 1 + Virtual Mixer 1 (iPad)', owners: 'UNNES x Jennifer', chain: 'Mixer Yamaha QL5 + WiFi UNNES-ID + iPad (Virtual Mixer 1 - Jordan / Yosua)', type: 'audio' },
+      { id: 'ENG-11', title: '💻 Mixer 1 + Virtual Mixer 2 (Laptop)', owners: 'UNNES x Andreas', chain: 'Mixer Yamaha QL5 + WiFi UNNES-ID + Laptop (Virtual Mixer 2 - Jordan / Yosua) + Power Adaptor LTP', type: 'audio' },
+      { id: 'ENG-12', title: '📺 ProPresenter 3 + TV Stage Display (Time Keeper)', owners: 'PRO3 x Darrel (Terpisah Dari Broadcast)', chain: 'Terminal Cable XCH + Laptop (ProPresenter 3) + Power Adaptor LTP + HDMI 1M + Television (Darrel) + Power Adaptor TV', type: 'display' }
+    ];
+
+    const LIST_MATERI_DATA = [
+      { id: 'mat-1', phase: 'pre', phaseLabel: 'Pre-Ibadah', name: 'Playlist Lagu Rohani (Spotify)', output: 'Sound System (Yamaha QL5)', format: 'Audio Stream BGM', pic: 'Andreas & Sound Team' },
+      { id: 'mat-2', phase: 'pre', phaseLabel: 'Pre-Ibadah', name: 'Loop Video (Profile UKK, After Movie IP25, After Movie IN25)', output: 'LED Center (Resolume Arena)', format: 'MP4 1080p Loop Video', pic: 'Bayu & Andreas' },
+      { id: 'mat-3', phase: 'event', phaseLabel: 'Ibadah', name: 'Video Opening / Countdown Teaser IP26', output: 'LED Center (Resolume Arena)', format: 'MP4 1080p50 Video Opening', pic: 'Andreas & Wilfred' },
+      { id: 'mat-4', phase: 'event', phaseLabel: 'Ibadah', name: 'Video Sambutan Bu Grave (Dosen Pembina)', output: 'LED Tengah Kanan Kiri (ProPresenter 1 & Resolume)', format: 'MP4 1080p Video Sambutan', pic: 'Rania & Andreas' },
+      { id: 'mat-5', phase: 'event', phaseLabel: 'Ibadah', name: 'Background Tema Ibadah Perdana 2026', output: 'LED Center (Resolume Arena)', format: 'Motion Loop / Still 1080p', pic: 'Bayu & Andreas' },
+      { id: 'mat-6', phase: 'event', phaseLabel: 'Ibadah', name: 'Background Lagu (BGM & Multitrack)', output: 'Sound System (Yamaha QL5)', format: 'Stereo Line In', pic: 'Sound Engineer' },
+      { id: 'mat-7', phase: 'event', phaseLabel: 'Ibadah', name: 'Lirik Lagu Praise & Worship (4 Lagu)', output: 'LED Tengah Kanan Kiri (ProPresenter 1)', format: 'ProPresenter Template', pic: 'Rania & Filia' },
+      { id: 'mat-8', phase: 'event', phaseLabel: 'Ibadah', name: 'Video Generation / Ice Breaking', output: 'LED Tengah Kanan Kiri (ProPresenter 2)', format: 'MP4 Video Asset', pic: 'Filia & Andreas' },
+      { id: 'mat-9', phase: 'event', phaseLabel: 'Ibadah', name: 'PPT Pembicara / Khotbah Utama', output: 'LED Tengah Kanan Kiri (ProPresenter 1)', format: 'PowerPoint Slide 16:9', pic: 'Rania' },
+      { id: 'mat-10', phase: 'event', phaseLabel: 'Ibadah', name: 'Ayat Pembicara (Alkitab)', output: 'LED Tengah Kanan Kiri (ProPresenter 1 & 2)', format: 'Bible Feed / Text Overlay', pic: 'Filia & Rania' },
+      { id: 'mat-11', phase: 'event', phaseLabel: 'Ibadah', name: 'Quote Pembicara', output: 'LED Tengah Kanan Kiri (ProPresenter 1 & 2)', format: 'Lower Third / Full Slide', pic: 'Filia & Rania' },
+      { id: 'mat-12', phase: 'event', phaseLabel: 'Ibadah', name: 'Persembahan (Slide QRIS Digital)', output: 'LED Tengah Kanan Kiri + OBS Stream', format: 'High-Res QRIS Graphic', pic: 'Rania & Andreas' },
+      { id: 'mat-13', phase: 'event', phaseLabel: 'Ibadah', name: 'UKK News & Pengumuman', output: 'LED Tengah Kanan Kiri (ProPresenter 1)', format: 'Video / Slide Pengumuman', pic: 'Rania & Filia' },
+      { id: 'mat-14', phase: 'event', phaseLabel: 'Ibadah', name: 'Pokok Doa Syafaat', output: 'LED Tengah Kanan Kiri (ProPresenter 1 & 2)', format: 'Slide Pokok Doa', pic: 'Rania & Filia' },
+      { id: 'mat-15', phase: 'post', phaseLabel: 'Post-Ibadah', name: 'Usung-Usung & Demobilization', output: 'Seluruh Titik Panggung & Meja Master', format: 'Pengecekan Fisik & Serah Terima Inventaris', pic: 'Seluruh Kru & Panitia' }
     ];
 
     const MASTER_INVENTORY = [
       // 1. PEMINJAMAN OWL (18 Items)
-      { id: 'owl-1', name: 'Sony A6000 (Body)', qty: '2 Unit', category: 'camera', provider: 'OWL', note: 'CAM 3 Dewi & CAM 4 Nathania' },
-      { id: 'owl-2', name: 'Sony A6400 (Body)', qty: '1 Unit', category: 'camera', provider: 'OWL', note: 'Dokumentasi Photo Nico' },
-      { id: 'owl-3', name: 'Sony ZV-E10 (Body)', qty: '1 Unit', category: 'camera', provider: 'OWL', note: 'CAM 1 Alex (Center Stage)' },
-      { id: 'owl-4', name: 'Lens Sony 18-105mm F4 G', qty: '3 Unit', category: 'lens', provider: 'OWL', note: 'CAM 1, CAM 2, CAM 3' },
-      { id: 'owl-5', name: 'Lens Sony 50mm F1.8 Prime', qty: '1 Unit', category: 'lens', provider: 'OWL', note: 'Dokumentasi Photo Nico' },
-      { id: 'owl-6', name: 'Battery NP-FW50', qty: '8 Unit', category: 'power', provider: 'OWL', note: 'Kamera Siaran & Dokumentasi' },
-      { id: 'owl-7', name: 'Battery Charger Hub Pack', qty: '1 Pack', category: 'power', provider: 'OWL', note: 'Stasiun Pengisian Daya' },
-      { id: 'owl-8', name: 'Memory Card SD 32GB High Speed', qty: '4 Unit', category: 'storage', provider: 'OWL', note: 'Kamera Siaran & Dokumentasi' },
-      { id: 'owl-9', name: 'Cinetreak Cinelive V1 Switcher', qty: '1 Pack', category: 'switcher', provider: 'OWL', note: 'Main Video Switcher 4-CH 1080p50' },
-      { id: 'owl-10', name: 'Power Adaptor Switcher MIX', qty: '1 Unit', category: 'power', provider: 'OWL', note: 'Adaptor Daya Cinetreak V1' },
-      { id: 'owl-11', name: 'Hollyland Pyro H Wireless TX/RX', qty: '1 Pack', category: 'wireless', provider: 'OWL', note: 'Transmisi Nirkabel CAM 2 Kiel' },
-      { id: 'owl-12', name: 'Power Adaptor Pyro H WIR', qty: '1 Unit', category: 'power', provider: 'OWL', note: 'Adaptor RX Pyro H' },
-      { id: 'owl-13', name: 'Hollyland Pyro S Wireless TX/RX', qty: '1 Pack', category: 'wireless', provider: 'OWL', note: 'Transmisi Nirkabel CAM 1 Alex' },
-      { id: 'owl-14', name: 'Power Adaptor Pyro S WIR', qty: '1 Unit', category: 'power', provider: 'OWL', note: 'Adaptor RX Pyro S' },
-      { id: 'owl-15', name: 'Tripod Camera Big Heavy Duty', qty: '1 Unit', category: 'tripod', provider: 'OWL', note: 'CAM 1 Alex' },
-      { id: 'owl-16', name: 'HDMI to Micro HDMI Converter', qty: '2 Unit', category: 'cable', provider: 'OWL', note: 'Converter Sony A6000 CAM 3 & 4' },
-      { id: 'owl-17', name: 'HDMI to Micro HDMI Cable 30cm', qty: '2 Unit', category: 'cable', provider: 'OWL', note: 'Transmitter Pyro Rig' },
-      { id: 'owl-18', name: 'HDMI Video Capture Card USB 3.0', qty: '2 Unit', category: 'capture', provider: 'OWL', note: 'Input ProPresenter 1 & Resolume' },
+      { id: 'owl-1', name: 'Sony A6000 (Body)', qty: '2 Unit', category: 'camera', provider: 'OWL', status: 'ready', note: 'CAM 3 Dewi/Nia & CAM 4 Ferdy' },
+      { id: 'owl-2', name: 'Sony A6400 (Body)', qty: '1 Unit', category: 'camera', provider: 'OWL', status: 'ready', note: 'Dokumentasi Photo Nico' },
+      { id: 'owl-3', name: 'Sony ZV-E10 (Body)', qty: '1 Unit', category: 'camera', provider: 'OWL', status: 'ready', note: 'CAM 1 Alex (Center Stage)' },
+      { id: 'owl-4', name: 'Lens Sony 18-105mm F4 G', qty: '3 Unit', category: 'lens', provider: 'OWL', status: 'ready', note: 'CAM 1, CAM 2, CAM 3' },
+      { id: 'owl-5', name: 'Lens Sony 50mm F1.8 Prime', qty: '1 Unit', category: 'lens', provider: 'OWL', status: 'ready', note: 'Dokumentasi Photo Nico' },
+      { id: 'owl-6', name: 'Battery NP-FW50', qty: '8 Unit', category: 'power', provider: 'OWL', status: 'ready', note: 'Kamera Siaran & Dokumentasi' },
+      { id: 'owl-7', name: 'Battery Charger Hub Pack', qty: '1 Pack', category: 'power', provider: 'OWL', status: 'ready', note: 'Stasiun Pengisian Daya' },
+      { id: 'owl-8', name: 'Memory Card SD 32GB High Speed', qty: '4 Unit', category: 'storage', provider: 'OWL', status: 'ready', note: 'Kamera Siaran & Dokumentasi' },
+      { id: 'owl-9', name: 'Cinetreak Cinelive V1 Switcher', qty: '1 Pack', category: 'switcher', provider: 'OWL', status: 'ready', note: 'Main Video Switcher 4-CH 1080p50' },
+      { id: 'owl-10', name: 'Power Adaptor Switcher MIX', qty: '1 Unit', category: 'power', provider: 'OWL', status: 'ready', note: 'Adaptor Daya Cinetreak V1' },
+      { id: 'owl-11', name: 'Hollyland Pyro H Wireless TX/RX', qty: '1 Pack', category: 'wireless', provider: 'OWL', status: 'ready', note: 'Transmisi Nirkabel CAM 2 Kiel' },
+      { id: 'owl-12', name: 'Power Adaptor Pyro H WIR', qty: '1 Unit', category: 'power', provider: 'OWL', status: 'ready', note: 'Adaptor RX Pyro H' },
+      { id: 'owl-13', name: 'Hollyland Pyro S Wireless TX/RX', qty: '1 Pack', category: 'wireless', provider: 'OWL', status: 'ready', note: 'Transmisi Nirkabel CAM 1 Alex' },
+      { id: 'owl-14', name: 'Power Adaptor Pyro S WIR', qty: '1 Unit', category: 'power', provider: 'OWL', status: 'ready', note: 'Adaptor RX Pyro S' },
+      { id: 'owl-15', name: 'Tripod Camera Big Heavy Duty', qty: '1 Unit', category: 'tripod', provider: 'OWL', status: 'ready', note: 'CAM 1 Alex' },
+      { id: 'owl-16', name: 'HDMI to Micro HDMI Converter', qty: '2 Unit', category: 'cable', provider: 'OWL', status: 'ready', note: 'Converter Sony A6000 CAM 3 & 4' },
+      { id: 'owl-17', name: 'HDMI to Micro HDMI Cable 30cm', qty: '2 Unit', category: 'cable', provider: 'OWL', status: 'ready', note: 'Transmitter Pyro Rig' },
+      { id: 'owl-18', name: 'HDMI Video Capture Card USB 3.0', qty: '2 Unit', category: 'capture', provider: 'OWL', status: 'ready', note: 'Input ProPresenter 1 & Resolume' },
 
       // 2. PEMINJAMAN ABON (2 Units)
-      { id: 'ab-1', name: 'HDMI Video Capture Card USB 3.0', qty: '2 Unit', category: 'capture', provider: 'ABON', note: 'Resolume Arena & ProPresenter 2' },
+      { id: 'ab-1', name: 'HDMI Video Capture Card USB 3.0', qty: '2 Unit', category: 'capture', provider: 'ABON', status: 'ready', note: 'Resolume Arena & ProPresenter 2' },
 
       // 3. PEMINJAMAN ANDREAS (Master Toolkit & Core Audio/Video - 51 Items)
-      { id: 'and-1', name: 'Laptop Media Master (OBS Studio & Resolume)', qty: '1 Unit', category: 'laptop', provider: 'Andreas', note: 'Engine Core Media Master' },
-      { id: 'and-2', name: 'Laptop Power Adaptor LTP Master', qty: '1 Unit', category: 'power', provider: 'Andreas', note: 'Power Supply Laptop Andreas' },
-      { id: 'and-3', name: 'Fan Cooler Laptop', qty: '1 Unit', category: 'tools', provider: 'Andreas', note: 'Pendingin Laptop Media Master' },
-      { id: 'and-4', name: 'Mouse Pad Precision', qty: '1 Unit', category: 'tools', provider: 'Andreas', note: 'Meja Master Operator' },
-      { id: 'and-5', name: 'Keyboard External', qty: '1 Unit', category: 'tools', provider: 'Andreas', note: 'Kontrol Pintasan Switcher/OBS' },
-      { id: 'and-6', name: 'Mouse External', qty: '1 Unit', category: 'tools', provider: 'Andreas', note: 'Navigasi Presisi Resolume' },
-      { id: 'and-7', name: 'Powerbank High Capacity', qty: '1 Unit', category: 'power', provider: 'Andreas', note: 'Cadangan Daya Intercom/HP' },
-      { id: 'and-8', name: 'Power Adaptor USB-A Multiport', qty: '9 Unit', category: 'power', provider: 'Andreas', note: 'Pengisian Daya Receiver & Rig' },
-      { id: 'and-9', name: 'Power Adaptor USB-A x USB-C Dual Port', qty: '1 Unit', category: 'power', provider: 'Andreas', note: 'Fast Charging Station' },
-      { id: 'and-10', name: 'Power Adaptor USB-C PD 65W', qty: '1 Unit', category: 'power', provider: 'Andreas', note: 'Daya DAC & Converter' },
-      { id: 'and-11', name: 'USB-A to USB-B Data Cable', qty: '1 Unit', category: 'cable', provider: 'Andreas', note: 'Interface Audio & Perangkat' },
-      { id: 'and-12', name: 'USB-A to USB Micro B Data Cable', qty: '2 Unit', category: 'cable', provider: 'Andreas', note: 'Koneksi Rig & Aksesoris' },
-      { id: 'and-13', name: 'USB-A to USB-C Data Cable High Speed', qty: '1 Unit', category: 'cable', provider: 'Andreas', note: 'Koneksi Cinetreak V1 ke OBS' },
-      { id: 'and-14', name: 'USB-A to USB-C Charge Cable', qty: '1 Unit', category: 'cable', provider: 'Andreas', note: 'Pengisian Daya Kamera/Gimbal' },
-      { id: 'and-15', name: 'USB-C to USB-C Charge & Data Cable', qty: '1 Unit', category: 'cable', provider: 'Andreas', note: 'Jalur Cepat iPad/Laptop' },
-      { id: 'and-16', name: 'USB-A to USB-A Extender 30CM', qty: '2 Unit', category: 'cable', provider: 'Andreas', note: 'Ekstensi Port USB Capture' },
-      { id: 'and-17', name: 'USB-A to USB-A Extender 2M', qty: '1 Unit', category: 'cable', provider: 'Andreas', note: 'Ekstensi Jarak Jauh USB' },
-      { id: 'and-18', name: 'USB-A to USB-C Male Converter', qty: '4 Unit', category: 'cable', provider: 'Andreas', note: 'Adapter Port Laptop' },
-      { id: 'and-19', name: 'USB-A to USB-C Female Converter', qty: '2 Unit', category: 'cable', provider: 'Andreas', note: 'Adapter Koneksi Kabel' },
-      { id: 'and-20', name: 'USB-A to Mini USB Cable', qty: '1 Unit', category: 'cable', provider: 'Andreas', note: 'Koneksi Perangkat Legacy' },
-      { id: 'and-21', name: 'USB-A Splitter Hub 3-Channel', qty: '1 Unit', category: 'tools', provider: 'Andreas', note: 'Hub Periferal Meja Master' },
-      { id: 'and-22', name: 'USB-A Splitter Hub 4-Channel Powered', qty: '1 Unit', category: 'tools', provider: 'Andreas', note: 'Hub Capture Card' },
-      { id: 'and-23', name: 'USB-C DAC Hi-Res Hanason AB17X', qty: '1 Unit', category: 'audio', provider: 'Andreas', note: 'Resolume Audio Out ke Yamaha QL5' },
-      { id: 'and-24', name: 'USB-C DAC Hi-Res Oraimo OAA310', qty: '1 Unit', category: 'audio', provider: 'Andreas', note: 'Audio Out Backup Terisolasi' },
-      { id: 'and-25', name: 'In-Ear Monitor QKZ Hi7T Dual Driver', qty: '1 Pack', category: 'audio', provider: 'Andreas', note: 'Monitoring Audio OBS / Streaming' },
-      { id: 'and-26', name: 'In-Ear Monitor KZ EDX Pro', qty: '1 Pack', category: 'audio', provider: 'Andreas', note: 'Monitoring Audio Switcher Wilfred' },
-      { id: 'and-27', name: 'Fastdrive Vgen SSD 128GB Portable', qty: '1 Pack', category: 'storage', provider: 'Andreas', note: 'Aset Video Bumper & Teaser' },
-      { id: 'and-28', name: 'Fastdrive Toshiba HDD 1TB External', qty: '1 Pack', category: 'storage', provider: 'Andreas', note: 'Master Backup Rekaman ISO' },
-      { id: 'and-29', name: 'Flashdrive Toshiba 8GB', qty: '1 Unit', category: 'storage', provider: 'Andreas', note: 'Transfer Lirik & Khotbah' },
-      { id: 'and-30', name: 'Flashdrive Sandisk 16GB Ultra', qty: '1 Unit', category: 'storage', provider: 'Andreas', note: 'Transfer Video Resolume' },
-      { id: 'and-31', name: 'Flashdrive Toshiba 32GB High Speed', qty: '1 Unit', category: 'storage', provider: 'Andreas', note: 'Transfer File Presentasi' },
-      { id: 'and-32', name: 'Flashdrive Toshiba 64GB High Speed', qty: '1 Unit', category: 'storage', provider: 'Andreas', note: 'Transfer Footage Dokumentasi' },
-      { id: 'and-33', name: 'HDMI to Mini HDMI Converter', qty: '1 Unit', category: 'cable', provider: 'Andreas', note: 'Converter Cadangan' },
-      { id: 'and-34', name: 'Mini HDMI to Mini HDMI Cable 1.5M', qty: '1 Unit', category: 'cable', provider: 'Andreas', note: 'Patching Monitor Kamera' },
-      { id: 'and-35', name: 'HDMI to HDMI Cable 1.5M High Speed', qty: '3 Unit', category: 'cable', provider: 'Andreas', note: 'Patching Engine Switcher ke Splitter' },
-      { id: 'and-36', name: 'VGA to HDMI Active Converter', qty: '3 Unit', category: 'cable', provider: 'Andreas', note: 'Cadangan Input Display UNNES' },
-      { id: 'and-37', name: 'VGA to VGA Cable 1.5M', qty: '1 Unit', category: 'cable', provider: 'Andreas', note: 'Cadangan Video Analog' },
-      { id: 'and-38', name: 'Power Cable 3-PIN Grounded Heavy Duty', qty: '3 Unit', category: 'power', provider: 'Andreas', note: 'Kabel Daya Utama Mixer & Display' },
-      { id: 'and-39', name: 'Power Cable 2-PIN', qty: '1 Unit', category: 'power', provider: 'Andreas', note: 'Kabel Daya TV Multiview' },
-      { id: 'and-40', name: 'Terminal Cable Stopkontak 4-Channel', qty: '3 Unit', category: 'power', provider: 'Andreas', note: 'Distribusi Meja Master' },
-      { id: 'and-41', name: 'Terminal Cable Stopkontak 3-Channel', qty: '2 Unit', category: 'power', provider: 'Andreas', note: 'Distribusi Panggung/Lighting' },
-      { id: 'and-42', name: 'Terminal Cable Stopkontak 2-Channel', qty: '1 Unit', category: 'power', provider: 'Andreas', note: 'Distribusi TV Stage' },
-      { id: 'and-43', name: 'Terminal Cable Master Box XCH', qty: '1 Unit', category: 'power', provider: 'Andreas', note: 'Distribusi Daya Utama Meja Produksi' },
-      { id: 'and-44', name: 'Terminal T Cabang 3 Arde Grounded', qty: '8 Unit', category: 'power', provider: 'Andreas', note: 'Percabangan Adaptor Ringkas' },
-      { id: 'and-45', name: 'Addon Hardware Storage Box', qty: '1 Pack', category: 'tools', provider: 'Andreas', note: 'Kotak Aksesoris Rigging' },
-      { id: 'and-46', name: 'Jack & Audio Adapter Box', qty: '1 Pack', category: 'tools', provider: 'Andreas', note: 'Konverter Audio 3.5mm, 6.5mm, RCA' },
-      { id: 'and-47', name: 'Precision Screw & Baut Kamera Box', qty: '1 Pack', category: 'tools', provider: 'Andreas', note: 'Baut 1/4 & 3/8 Inch Kamera/Tripod' },
-      { id: 'and-48', name: 'Cable Ties & Velcros Organizer Box', qty: '1 Pack', category: 'tools', provider: 'Andreas', note: 'Manajemen Kerapian Kabel' },
-      { id: 'and-49', name: 'Heavy Duty Technician Tool Box', qty: '2 Pack', category: 'tools', provider: 'Andreas', note: 'Tang, Obeng, Cutter, Multimeter' },
-      { id: 'and-50', name: 'Gaffer Tape & Isolasi Listrik Pack', qty: '1 Pack', category: 'tools', provider: 'Andreas', note: 'Safety Taping Kabel Lantai' },
-      { id: 'and-51', name: 'Spare Cables Assorted Pack', qty: '1 Pack', category: 'cable', provider: 'Andreas', note: 'Kabel Cadangan Tambahan' },
+      { id: 'and-1', name: 'Laptop Media Master (OBS Studio & Resolume)', qty: '1 Unit', category: 'laptop', provider: 'Andreas', status: 'ready', note: 'Engine Core Media Master' },
+      { id: 'and-2', name: 'Laptop Power Adaptor LTP Master', qty: '1 Unit', category: 'power', provider: 'Andreas', status: 'ready', note: 'Power Supply Laptop Andreas' },
+      { id: 'and-3', name: 'Fan Cooler Laptop', qty: '1 Unit', category: 'tools', provider: 'Andreas', status: 'extra', note: 'Pendingin Laptop Media Master' },
+      { id: 'and-4', name: 'Mouse Pad Precision', qty: '1 Unit', category: 'tools', provider: 'Andreas', status: 'extra', note: 'Meja Master Operator' },
+      { id: 'and-5', name: 'Keyboard External', qty: '1 Unit', category: 'tools', provider: 'Andreas', status: 'extra', note: 'Kontrol Pintasan Switcher/OBS' },
+      { id: 'and-6', name: 'Mouse External', qty: '1 Unit', category: 'tools', provider: 'Andreas', status: 'extra', note: 'Navigasi Presisi Resolume' },
+      { id: 'and-7', name: 'Powerbank High Capacity', qty: '1 Unit', category: 'power', provider: 'Andreas', status: 'extra', note: 'Cadangan Daya Intercom/HP' },
+      { id: 'and-8', name: 'Power Adaptor USB-A Multiport', qty: '9 Unit', category: 'power', provider: 'Andreas', status: 'extra', note: 'Pengisian Daya Receiver & Rig' },
+      { id: 'and-9', name: 'Power Adaptor USB-A x USB-C Dual Port', qty: '1 Unit', category: 'power', provider: 'Andreas', status: 'extra', note: 'Fast Charging Station' },
+      { id: 'and-10', name: 'Power Adaptor USB-C PD 65W', qty: '1 Unit', category: 'power', provider: 'Andreas', status: 'extra', note: 'Daya DAC & Converter' },
+      { id: 'and-11', name: 'USB-A to USB-B Data Cable', qty: '1 Unit', category: 'cable', provider: 'Andreas', status: 'extra', note: 'Interface Audio & Perangkat' },
+      { id: 'and-12', name: 'USB-A to USB Micro B Data Cable', qty: '2 Unit', category: 'cable', provider: 'Andreas', status: 'extra', note: 'Koneksi Rig & Aksesoris' },
+      { id: 'and-13', name: 'USB-A to USB-C Data Cable High Speed', qty: '1 Unit', category: 'cable', provider: 'Andreas', status: 'ready', note: 'Koneksi Cinetreak V1 ke OBS' },
+      { id: 'and-14', name: 'USB-A to USB-C Charge Cable', qty: '1 Unit', category: 'cable', provider: 'Andreas', status: 'ready', note: 'Pengisian Daya Kamera/Gimbal' },
+      { id: 'and-15', name: 'USB-C to USB-C Charge & Data Cable', qty: '1 Unit', category: 'cable', provider: 'Andreas', status: 'extra', note: 'Jalur Cepat iPad/Laptop' },
+      { id: 'and-16', name: 'USB-A to USB-A Extender 30CM', qty: '2 Unit', category: 'cable', provider: 'Andreas', status: 'extra', note: 'Ekstensi Port USB Capture' },
+      { id: 'and-17', name: 'USB-A to USB-A Extender 2M', qty: '1 Unit', category: 'cable', provider: 'Andreas', status: 'extra', note: 'Ekstensi Jarak Jauh USB' },
+      { id: 'and-18', name: 'USB-A to USB-C Male Converter', qty: '4 Unit', category: 'cable', provider: 'Andreas', status: 'extra', note: 'Adapter Port Laptop' },
+      { id: 'and-19', name: 'USB-A to USB-C Female Converter', qty: '2 Unit', category: 'cable', provider: 'Andreas', status: 'extra', note: 'Adapter Koneksi Kabel' },
+      { id: 'and-20', name: 'USB-A to Mini USB Cable', qty: '1 Unit', category: 'cable', provider: 'Andreas', status: 'extra', note: 'Koneksi Perangkat Legacy' },
+      { id: 'and-21', name: 'USB-A Splitter Hub 3-Channel', qty: '1 Unit', category: 'tools', provider: 'Andreas', status: 'extra', note: 'Hub Periferal Meja Master' },
+      { id: 'and-22', name: 'USB-A Splitter Hub 4-Channel Powered', qty: '1 Unit', category: 'tools', provider: 'Andreas', status: 'extra', note: 'Hub Capture Card' },
+      { id: 'and-23', name: 'USB-C DAC Hi-Res Hanason AB17X', qty: '1 Unit', category: 'audio', provider: 'Andreas', status: 'ready', note: 'Resolume Audio Out ke Yamaha QL5' },
+      { id: 'and-24', name: 'USB-C DAC Hi-Res Oraimo OAA310', qty: '1 Unit', category: 'audio', provider: 'Andreas', status: 'ready', note: 'Audio Out Backup Terisolasi' },
+      { id: 'and-25', name: 'In-Ear Monitor QKZ Hi7T Dual Driver', qty: '1 Pack', category: 'audio', provider: 'Andreas', status: 'extra', note: 'Monitoring Audio OBS / Streaming' },
+      { id: 'and-26', name: 'In-Ear Monitor KZ EDX Pro', qty: '1 Pack', category: 'audio', provider: 'Andreas', status: 'extra', note: 'Monitoring Audio Switcher Wilfred' },
+      { id: 'and-27', name: 'Fastdrive Vgen SSD 128GB Portable', qty: '1 Pack', category: 'storage', provider: 'Andreas', status: 'extra', note: 'Aset Video Bumper & Teaser' },
+      { id: 'and-28', name: 'Fastdrive Toshiba HDD 1TB External', qty: '1 Pack', category: 'storage', provider: 'Andreas', status: 'extra', note: 'Master Backup Rekaman ISO' },
+      { id: 'and-29', name: 'Flashdrive Toshiba 8GB', qty: '1 Unit', category: 'storage', provider: 'Andreas', status: 'extra', note: 'Transfer Lirik & Khotbah' },
+      { id: 'and-30', name: 'Flashdrive Sandisk 16GB Ultra', qty: '1 Unit', category: 'storage', provider: 'Andreas', status: 'extra', note: 'Transfer Video Resolume' },
+      { id: 'and-31', name: 'Flashdrive Toshiba 32GB High Speed', qty: '1 Unit', category: 'storage', provider: 'Andreas', status: 'extra', note: 'Transfer File Presentasi' },
+      { id: 'and-32', name: 'Flashdrive Toshiba 64GB High Speed', qty: '1 Unit', category: 'storage', provider: 'Andreas', status: 'extra', note: 'Transfer Footage Dokumentasi' },
+      { id: 'and-33', name: 'HDMI to Mini HDMI Converter', qty: '1 Unit', category: 'cable', provider: 'Andreas', status: 'extra', note: 'Converter Cadangan' },
+      { id: 'and-34', name: 'Mini HDMI to Mini HDMI Cable 1.5M', qty: '1 Unit', category: 'cable', provider: 'Andreas', status: 'extra', note: 'Patching Monitor Kamera' },
+      { id: 'and-35', name: 'HDMI to HDMI Cable 1.5M High Speed', qty: '3 Unit', category: 'cable', provider: 'Andreas', status: 'ready', note: 'Patching Engine Switcher ke Splitter' },
+      { id: 'and-36', name: 'VGA to HDMI Active Converter', qty: '3 Unit', category: 'cable', provider: 'Andreas', status: 'extra', note: 'Cadangan Input Display UNNES' },
+      { id: 'and-37', name: 'VGA to VGA Cable 1.5M', qty: '1 Unit', category: 'cable', provider: 'Andreas', status: 'extra', note: 'Cadangan Video Analog' },
+      { id: 'and-38', name: 'Power Cable 3-PIN Grounded Heavy Duty', qty: '3 Unit', category: 'power', provider: 'Andreas', status: 'check', note: 'Kabel Daya Utama Mixer & Display (⚠️ Cek Fisik)' },
+      { id: 'and-39', name: 'Power Cable 2-PIN', qty: '1 Unit', category: 'power', provider: 'Andreas', status: 'check', note: 'Kabel Daya TV Multiview (⚠️ Cek Fisik)' },
+      { id: 'and-40', name: 'Terminal Cable Stopkontak 4-Channel', qty: '3 Unit', category: 'power', provider: 'Andreas', status: 'check', note: 'Distribusi Meja Master (⚠️ Cek Fisik)' },
+      { id: 'and-41', name: 'Terminal Cable Stopkontak 3-Channel', qty: '2 Unit', category: 'power', provider: 'Andreas', status: 'check', note: 'Distribusi Panggung/Lighting (⚠️ Cek Fisik)' },
+      { id: 'and-42', name: 'Terminal Cable Stopkontak 2-Channel', qty: '1 Unit', category: 'power', provider: 'Andreas', status: 'check', note: 'Distribusi TV Stage (⚠️ Cek Fisik)' },
+      { id: 'and-43', name: 'Terminal Cable Master Box XCH', qty: '1 Unit', category: 'power', provider: 'Andreas', status: 'ready', note: 'Distribusi Daya Utama Meja Produksi' },
+      { id: 'and-44', name: 'Terminal T Cabang 3 Arde Grounded', qty: '8 Unit', category: 'power', provider: 'Andreas', status: 'check', note: 'Percabangan Adaptor Ringkas (⚠️ Cek Fisik)' },
+      { id: 'and-45', name: 'Addon Hardware Storage Box', qty: '1 Pack', category: 'tools', provider: 'Andreas', status: 'extra', note: 'Kotak Aksesoris Rigging' },
+      { id: 'and-46', name: 'Jack & Audio Adapter Box', qty: '1 Pack', category: 'tools', provider: 'Andreas', status: 'extra', note: 'Konverter Audio 3.5mm, 6.5mm, RCA' },
+      { id: 'and-47', name: 'Precision Screw & Baut Kamera Box', qty: '1 Pack', category: 'tools', provider: 'Andreas', status: 'extra', note: 'Baut 1/4 & 3/8 Inch Kamera/Tripod' },
+      { id: 'and-48', name: 'Cable Ties & Velcros Organizer Box', qty: '1 Pack', category: 'tools', provider: 'Andreas', status: 'extra', note: 'Manajemen Kerapian Kabel' },
+      { id: 'and-49', name: 'Heavy Duty Technician Tool Box', qty: '2 Pack', category: 'tools', provider: 'Andreas', status: 'extra', note: 'Tang, Obeng, Cutter, Multimeter' },
+      { id: 'and-50', name: 'Cable Pack Assorted', qty: '1 Pack', category: 'cable', provider: 'Andreas', status: 'extra', note: 'Kabel Cadangan Serbaguna' },
+      { id: 'and-51', name: 'Tape Isolasi & Gaffer Pack', qty: '1 Pack', category: 'tools', provider: 'Andreas', status: 'extra', note: 'Safety Taping Kabel Lantai' },
 
       // 4. PEMINJAMAN GIA DELIKSARI (7 Items)
-      { id: 'gia-1', name: 'Mixer NewBaxs CT80S 8-Channel Submixer', qty: '1 Unit', category: 'audio', provider: 'GIA', note: 'Audio Interface USB ke OBS Studio' },
-      { id: 'gia-2', name: 'XLR Female to Male Cable 3M Balanced', qty: '2 Unit', category: 'audio', provider: 'GIA', note: 'Patching Output Submixer CT80S' },
-      { id: 'gia-3', name: 'USB-A to USB-C Data Cable High Speed', qty: '1 Unit', category: 'cable', provider: 'GIA', note: 'Audio Ingest CT80S to Laptop OBS' },
-      { id: 'gia-4', name: 'Tripod Camera Big Heavy Duty', qty: '1 Unit', category: 'tripod', provider: 'GIA', note: 'CAM 4 Nathania (Right Wing)' },
-      { id: 'gia-5', name: 'HDMI Splitter 2-Channel Powered', qty: '1 Unit', category: 'switcher', provider: 'GIA', note: 'Distribusi Sinyal Cadangan' },
-      { id: 'gia-6', name: 'Power Adaptor Splitter SPL GIA', qty: '1 Pack', category: 'power', provider: 'GIA', note: 'Adaptor Daya Splitter 2CH' },
-      { id: 'gia-7', name: 'HDMI to HDMI Cable 1M High Speed', qty: '2 Unit', category: 'cable', provider: 'GIA', note: 'TV Multiview & Switcher Patching' },
+      { id: 'gia-1', name: 'Mixer NewBaxs CT80S 8-Channel Submixer', qty: '1 Unit', category: 'audio', provider: 'GIA', status: 'ready', note: 'Audio Interface USB ke OBS Studio' },
+      { id: 'gia-2', name: 'XLR Female to Male Cable 3M Balanced', qty: '2 Unit', category: 'audio', provider: 'GIA', status: 'ready', note: 'Patching Output Submixer CT80S' },
+      { id: 'gia-3', name: 'USB-A to USB-C Data Cable High Speed', qty: '1 Unit', category: 'cable', provider: 'GIA', status: 'ready', note: 'Audio Ingest CT80S to Laptop OBS' },
+      { id: 'gia-4', name: 'Tripod Camera Big Heavy Duty', qty: '1 Unit', category: 'tripod', provider: 'GIA', status: 'ready', note: 'CAM 4 Ferdy (Right Wing)' },
+      { id: 'gia-5', name: 'HDMI Splitter 2-Channel Powered', qty: '1 Unit', category: 'switcher', provider: 'GIA', status: 'extra', note: 'Distribusi Sinyal Cadangan' },
+      { id: 'gia-6', name: 'Power Adaptor Splitter SPL GIA', qty: '1 Pack', category: 'power', provider: 'GIA', status: 'extra', note: 'Adaptor Daya Splitter 2CH' },
+      { id: 'gia-7', name: 'HDMI to HDMI Cable 1M High Speed', qty: '2 Unit', category: 'cable', provider: 'GIA', status: 'ready', note: 'TV Multiview & Switcher Patching' },
 
       // 5. PEMINJAMAN GKJ NGALIYAN (8 Items)
-      { id: 'gkj-1', name: 'Stand Lighting Small', qty: '1 Unit', category: 'stand', provider: 'GKJ', note: 'Mounting Hollyland Pyro Receiver' },
-      { id: 'gkj-2', name: 'HDMI Cable 15M Heavy Duty High Speed', qty: '1 Unit', category: 'cable', provider: 'GKJ', note: 'Jalur Resolume ke NovaStar LED Center' },
-      { id: 'gkj-3', name: 'HDMI Cable 10M High Speed', qty: '1 Unit', category: 'cable', provider: 'GKJ', note: 'Jalur Langsung CAM 4 Nathania' },
-      { id: 'gkj-4', name: 'HDMI Cable 5M High Speed', qty: '1 Unit', category: 'cable', provider: 'GKJ', note: 'Jalur Cadangan Display FOH' },
-      { id: 'gkj-5', name: 'HDMI Cable 1.5M High Speed', qty: '1 Unit', category: 'cable', provider: 'GKJ', note: 'Patching Video Meja Master' },
-      { id: 'gkj-6', name: 'HDMI Video Capture Card USB 3.0', qty: '1 Unit', category: 'capture', provider: 'GKJ', note: 'Input Video Resolume Arena' },
-      { id: 'gkj-7', name: 'HDMI Splitter 4-Channel Powered', qty: '1 Unit', category: 'switcher', provider: 'GKJ', note: 'Distribusi Video Cadangan' },
-      { id: 'gkj-8', name: 'Power Adaptor Splitter SPL GKJ', qty: '1 Pack', category: 'power', provider: 'GKJ', note: 'Adaptor Splitter 4CH GKJ' },
+      { id: 'gkj-1', name: 'Stand Lighting Small', qty: '1 Unit', category: 'stand', provider: 'GKJ', status: 'ready', note: 'Mounting Hollyland Pyro Receiver' },
+      { id: 'gkj-2', name: 'HDMI Cable 15M Heavy Duty High Speed', qty: '1 Unit', category: 'cable', provider: 'GKJ', status: 'ready', note: 'Jalur Resolume ke NovaStar LED Center' },
+      { id: 'gkj-3', name: 'HDMI Cable 10M High Speed', qty: '1 Unit', category: 'cable', provider: 'GKJ', status: 'ready', note: 'Jalur Langsung CAM 4 Ferdy' },
+      { id: 'gkj-4', name: 'HDMI Cable 5M High Speed', qty: '1 Unit', category: 'cable', provider: 'GKJ', status: 'extra', note: 'Jalur Cadangan Display FOH' },
+      { id: 'gkj-5', name: 'HDMI Cable 1.5M High Speed', qty: '1 Unit', category: 'cable', provider: 'GKJ', status: 'extra', note: 'Patching Video Meja Master' },
+      { id: 'gkj-6', name: 'HDMI Video Capture Card USB 3.0', qty: '1 Unit', category: 'capture', provider: 'GKJ', status: 'ready', note: 'Input Video Resolume Arena' },
+      { id: 'gkj-7', name: 'HDMI Splitter 4-Channel Powered', qty: '1 Unit', category: 'switcher', provider: 'GKJ', status: 'extra', note: 'Distribusi Video Cadangan' },
+      { id: 'gkj-8', name: 'Power Adaptor Splitter SPL GKJ', qty: '1 Pack', category: 'power', provider: 'GKJ', status: 'extra', note: 'Adaptor Splitter 4CH GKJ' },
 
       // 6. PEMINJAMAN UKK UNNES (14 Items)
-      { id: 'ukk-1', name: 'XLR Female to Male Cable 10M Balanced', qty: '3 Unit', category: 'audio', provider: 'UKK', note: 'Jalur Utama Yamaha QL5 ke CT80S' },
-      { id: 'ukk-2', name: 'Stand Lighting Small', qty: '4 Unit', category: 'stand', provider: 'UKK', note: 'Mounting Wireless Receiver & Lampu' },
-      { id: 'ukk-3', name: 'Tripod Camera Big Heavy Duty', qty: '1 Unit', category: 'tripod', provider: 'UKK', note: 'CAM 3 Dewi (Left Wing)' },
-      { id: 'ukk-4', name: 'HDMI to Mini HDMI Cable 2.5M', qty: '1 Unit', category: 'cable', provider: 'UKK', note: 'Patching Prompter / Monitor' },
-      { id: 'ukk-5', name: 'HDMI Cable 15M High Speed', qty: '1 Unit', category: 'cable', provider: 'UKK', note: 'Cadangan Jalur Panjang LED' },
-      { id: 'ukk-6', name: 'HDMI Cable 10M High Speed', qty: '1 Unit', category: 'cable', provider: 'UKK', note: 'Jalur Langsung CAM 3 Dewi' },
-      { id: 'ukk-7', name: 'HDMI Cable 1.5M High Speed', qty: '4 Unit', category: 'cable', provider: 'UKK', note: 'Patching Splitter & Switcher' },
-      { id: 'ukk-8', name: 'HDMI Splitter 4-Channel Powered 1080p', qty: '1 Unit', category: 'switcher', provider: 'UKK', note: 'Distribusi Utama PGM Switcher' },
-      { id: 'ukk-9', name: 'Power Adaptor Splitter SPL UKK', qty: '1 Pack', category: 'power', provider: 'UKK', note: 'Adaptor Daya Splitter UKK' },
-      { id: 'ukk-10', name: 'VGA to VGA Cable 1.5M', qty: '1 Unit', category: 'cable', provider: 'UKK', note: 'Cadangan Monitor Analog' },
-      { id: 'ukk-11', name: 'VGA to VGA Cable 2.5M', qty: '1 Unit', category: 'cable', provider: 'UKK', note: 'Cadangan Video Analog' },
-      { id: 'ukk-12', name: 'VGA to HDMI Converter Active', qty: '2 Unit', category: 'cable', provider: 'UKK', note: 'Konverter Analog ke Digital' },
-      { id: 'ukk-13', name: 'Power Cable Heavy Duty XPIN', qty: '1 Unit', category: 'power', provider: 'UKK', note: 'Jalur Listrik Panggung' },
-      { id: 'ukk-14', name: 'Terminal Cable Master XCH', qty: '1 Unit', category: 'power', provider: 'UKK', note: 'Stopkontak Meja Panggung' },
+      { id: 'ukk-1', name: 'XLR Female to Male Cable 10M Balanced', qty: '3 Unit', category: 'audio', provider: 'UKK', status: 'ready', note: 'Jalur Utama Yamaha QL5 ke CT80S' },
+      { id: 'ukk-2', name: 'Stand Lighting Small', qty: '4 Unit', category: 'stand', provider: 'UKK', status: 'check', note: 'Mounting Wireless Receiver & Lampu (⚠️ Cek Fisik)' },
+      { id: 'ukk-3', name: 'Tripod Camera Big Heavy Duty', qty: '1 Unit', category: 'tripod', provider: 'UKK', status: 'ready', note: 'CAM 3 Dewi/Nia (Left Wing)' },
+      { id: 'ukk-4', name: 'HDMI to Mini HDMI Cable 2.5M', qty: '1 Unit', category: 'cable', provider: 'UKK', status: 'extra', note: 'Patching Prompter / Monitor' },
+      { id: 'ukk-5', name: 'HDMI Cable 15M High Speed', qty: '1 Unit', category: 'cable', provider: 'UKK', status: 'extra', note: 'Cadangan Jalur Panjang LED' },
+      { id: 'ukk-6', name: 'HDMI Cable 10M High Speed', qty: '1 Unit', category: 'cable', provider: 'UKK', status: 'ready', note: 'Jalur Langsung CAM 3 Dewi/Nia' },
+      { id: 'ukk-7', name: 'HDMI Cable 1.5M High Speed', qty: '4 Unit', category: 'cable', provider: 'UKK', status: 'check', note: 'Patching Splitter & Switcher (⚠️ Cek Fisik)' },
+      { id: 'ukk-8', name: 'HDMI Splitter 4-Channel Powered 1080p', qty: '1 Unit', category: 'switcher', provider: 'UKK', status: 'ready', note: 'Distribusi Utama PGM Switcher' },
+      { id: 'ukk-9', name: 'Power Adaptor Splitter SPL UKK', qty: '1 Pack', category: 'power', provider: 'UKK', status: 'ready', note: 'Adaptor Daya Splitter UKK' },
+      { id: 'ukk-10', name: 'VGA to VGA Cable 1.5M', qty: '1 Unit', category: 'cable', provider: 'UKK', status: 'extra', note: 'Cadangan Monitor Analog' },
+      { id: 'ukk-11', name: 'VGA to VGA Cable 2.5M', qty: '1 Unit', category: 'cable', provider: 'UKK', status: 'extra', note: 'Cadangan Video Analog' },
+      { id: 'ukk-12', name: 'VGA to HDMI Converter Active', qty: '2 Unit', category: 'cable', provider: 'UKK', status: 'extra', note: 'Konverter Analog ke Digital' },
+      { id: 'ukk-13', name: 'Power Cable Heavy Duty XPIN', qty: '1 Unit', category: 'power', provider: 'UKK', status: 'extra', note: 'Jalur Listrik Panggung' },
+      { id: 'ukk-14', name: 'Terminal Cable Master XCH', qty: '1 Unit', category: 'power', provider: 'UKK', status: 'ready', note: 'Stopkontak Meja Panggung' },
 
       // 7. PEMINJAMAN LIO (1 Unit)
-      { id: 'lio-1', name: 'HDMI Cable 1.5M High Speed', qty: '1 Unit', category: 'cable', provider: 'Lio', note: 'Patching Video Engine' },
+      { id: 'lio-1', name: 'HDMI Cable 1.5M High Speed', qty: '1 Unit', category: 'cable', provider: 'Lio', status: 'ready', note: 'Patching Video Engine' },
 
       // 8. PEMINJAMAN DARREL (3 Items)
-      { id: 'dar-1', name: 'Television Monitor 32 Inch Stage Display', qty: '1 Unit', category: 'display', provider: 'Darrel', note: 'Monitor Panggung / Prompter Darrel' },
-      { id: 'dar-2', name: 'Power Adaptor Television TV', qty: '1 Pack', category: 'power', provider: 'Darrel', note: 'Adaptor Daya TV Darrel' },
-      { id: 'dar-3', name: 'Memory Card SD 8GB', qty: '1 Unit', category: 'storage', provider: 'Darrel', note: 'Penyimpanan Media Pendukung' },
+      { id: 'dar-1', name: 'Television Monitor 32 Inch Stage Display', qty: '1 Unit', category: 'display', provider: 'Darrel', status: 'ready', note: 'Monitor Panggung / Prompter Darrel' },
+      { id: 'dar-2', name: 'Power Adaptor Television TV', qty: '1 Pack', category: 'power', provider: 'Darrel', status: 'ready', note: 'Adaptor Daya TV Darrel' },
+      { id: 'dar-3', name: 'Memory Card SD 8GB', qty: '1 Unit', category: 'storage', provider: 'Darrel', status: 'extra', note: 'Penyimpanan Media Pendukung' },
 
       // 9. PEMINJAMAN KIEL (7 Items)
-      { id: 'kiel-1', name: 'Sony ZV-E10 (Body)', qty: '1 Unit', category: 'camera', provider: 'Kiel', note: 'CAM 2 Kiel 1 (Stage Handheld)' },
-      { id: 'kiel-2', name: 'Sony Kit Lens 16-50mm F3.5-5.6 OSS', qty: '1 Unit', category: 'lens', provider: 'Kiel', note: 'CAM 4 Nathania (Right Wing)' },
-      { id: 'kiel-3', name: 'Sony Manual Focus 50mm Prime Lens', qty: '1 Unit', category: 'lens', provider: 'Kiel', note: 'Lensa Cadangan Artistic' },
-      { id: 'kiel-4', name: 'Sony Battery NP-FW50', qty: '2 Unit', category: 'power', provider: 'Kiel', note: 'Baterai CAM 2 Handheld' },
-      { id: 'kiel-5', name: 'Battery Charger Hub Pack', qty: '1 Pack', category: 'power', provider: 'Kiel', note: 'Pengisian Baterai Kiel' },
-      { id: 'kiel-6', name: 'Memory Card SD 64GB High Speed', qty: '1 Unit', category: 'storage', provider: 'Kiel', note: 'CAM 1 Alex (Center)' },
-      { id: 'kiel-7', name: 'Memory Card SD 128GB Extreme Pro', qty: '1 Unit', category: 'storage', provider: 'Kiel', note: 'Rekaman Internal Cadangan' },
+      { id: 'kiel-1', name: 'Sony ZV-E10 (Body)', qty: '1 Unit', category: 'camera', provider: 'Kiel', status: 'ready', note: 'CAM 2 Kiel 1 (Stage Handheld)' },
+      { id: 'kiel-2', name: 'Sony Kit Lens 16-50mm F3.5-5.6 OSS', qty: '1 Unit', category: 'lens', provider: 'Kiel', status: 'ready', note: 'CAM 4 Ferdy (Right Wing)' },
+      { id: 'kiel-3', name: 'Sony Manual Focus 50mm Prime Lens', qty: '1 Unit', category: 'lens', provider: 'Kiel', status: 'extra', note: 'Lensa Cadangan Artistic' },
+      { id: 'kiel-4', name: 'Sony Battery NP-FW50', qty: '2 Unit', category: 'power', provider: 'Kiel', status: 'ready', note: 'Baterai CAM 2 Handheld' },
+      { id: 'kiel-5', name: 'Battery Charger Hub Pack', qty: '1 Pack', category: 'power', provider: 'Kiel', status: 'ready', note: 'Pengisian Baterai Kiel' },
+      { id: 'kiel-6', name: 'Memory Card SD 64GB High Speed', qty: '1 Unit', category: 'storage', provider: 'Kiel', status: 'ready', note: 'CAM 1 Alex (Center)' },
+      { id: 'kiel-7', name: 'Memory Card SD 128GB Extreme Pro', qty: '1 Unit', category: 'storage', provider: 'Kiel', status: 'extra', note: 'Rekaman Internal Cadangan' },
 
       // 10. PEMINJAMAN JOEL (6 Items)
-      { id: 'joel-1', name: 'Sony A6600 (Body Flagship APS-C)', qty: '1 Unit', category: 'camera', provider: 'Joel', note: 'Dokumentasi Video Reel Joel' },
-      { id: 'joel-2', name: 'Zeiss Vario-Tessar 24-70mm F4 ZA OSS', qty: '1 Unit', category: 'lens', provider: 'Joel', note: 'Lensa Sinematik Joel' },
-      { id: 'joel-3', name: 'Sony Battery NP-FZ100 High Capacity', qty: '2 Unit', category: 'power', provider: 'Joel', note: 'Baterai Sony A6600 Joel' },
-      { id: 'joel-4', name: 'Battery Charger Hub Pack', qty: '1 Pack', category: 'power', provider: 'Joel', note: 'Pengisian Baterai Joel' },
-      { id: 'joel-5', name: 'Memory Card SD 64GB Extreme Pro', qty: '1 Unit', category: 'storage', provider: 'Joel', note: 'Rekaman 4K Video Reel Joel' },
-      { id: 'joel-6', name: 'DJI Ronin RS3 Gimbal Stabilizer', qty: '1 Unit', category: 'gimbal', provider: 'Joel', note: 'Gimbal Stabilizer Video Joel' },
+      { id: 'joel-1', name: 'Sony A6600 (Body Flagship APS-C)', qty: '1 Unit', category: 'camera', provider: 'Joel', status: 'ready', note: 'Dokumentasi Video Reel Joel' },
+      { id: 'joel-2', name: 'Zeiss Vario-Tessar 24-70mm F4 ZA OSS', qty: '1 Unit', category: 'lens', provider: 'Joel', status: 'ready', note: 'Lensa Sinematik Joel' },
+      { id: 'joel-3', name: 'Sony Battery NP-FZ100 High Capacity', qty: '2 Unit', category: 'power', provider: 'Joel', status: 'ready', note: 'Baterai Sony A6600 Joel' },
+      { id: 'joel-4', name: 'Battery Charger Hub Pack', qty: '1 Pack', category: 'power', provider: 'Joel', status: 'ready', note: 'Pengisian Baterai Joel' },
+      { id: 'joel-5', name: 'Memory Card SD 64GB Extreme Pro', qty: '1 Unit', category: 'storage', provider: 'Joel', status: 'ready', note: 'Rekaman 4K Video Reel Joel' },
+      { id: 'joel-6', name: 'DJI Ronin RS3 Gimbal Stabilizer', qty: '1 Unit', category: 'gimbal', provider: 'Joel', status: 'ready', note: 'Gimbal Stabilizer Video Joel' },
 
       // 11. PEMINJAMAN KEZIA (2 Items)
-      { id: 'kez-1', name: 'Television Monitor Multiview 32 Inch', qty: '1 Unit', category: 'display', provider: 'Kezia', note: 'Multiview Video Switcher Wilfred' },
-      { id: 'kez-2', name: 'Power Adaptor Television TV', qty: '1 Pack', category: 'power', provider: 'Kezia', note: 'Daya TV Kezia' },
+      { id: 'kez-1', name: 'Television Monitor Multiview 32 Inch', qty: '1 Unit', category: 'display', provider: 'Kezia', status: 'ready', note: 'Multiview Video Switcher Wilfred' },
+      { id: 'kez-2', name: 'Power Adaptor Television TV', qty: '1 Pack', category: 'power', provider: 'Kezia', status: 'ready', note: 'Daya TV Kezia' },
 
       // 12. PEMINJAMAN JENNIFER (1 Unit)
-      { id: 'jen-1', name: 'Apple iPhone 15 Pro', qty: '1 Unit', category: 'phone', provider: 'Jennifer', note: 'Social Media Reel & Live Instagram' },
+      { id: 'jen-1', name: 'Apple iPhone 15 Pro', qty: '1 Unit', category: 'phone', provider: 'Jennifer', status: 'ready', note: 'Social Media Reel & Live Instagram' },
 
       // 13. PEMINJAMAN PANITIA (2 Items)
-      { id: 'pan-1', name: 'HDMI to Micro HDMI Converter Active', qty: '2 Unit', category: 'cable', provider: 'Panitia', note: 'Cadangan Converter Kamera' },
-      { id: 'pan-2', name: 'Terminal Cable Master Box Heavy Duty XCH', qty: '1 Unit', category: 'power', provider: 'Panitia', note: 'Distribusi Listrik Panitia' }
+      { id: 'pan-1', name: 'HDMI to Micro HDMI Converter Active', qty: '2 Unit', category: 'cable', provider: 'Panitia', status: 'ready', note: 'Cadangan Converter Kamera' },
+      { id: 'pan-2', name: 'Terminal Cable Master Box Heavy Duty XCH', qty: '1 Unit', category: 'power', provider: 'Panitia', status: 'ready', note: 'Distribusi Listrik Panitia' }
     ];
 
     const RUNDOWN_CUES = [
@@ -2050,6 +2192,11 @@
         this.currentSlide = 0;
         this.activeSimLayer = 'all';
 
+        // Inventory Filter State
+        this.invProvFilter = 'all';
+        this.invStatusFilter = 'all';
+        this.invSearchQuery = '';
+
         // Cloud Sync State
         this.mqttClient = null;
         this.syncRoom = localStorage.getItem('ip26_sync_room') || 'IP26-INVENTORY';
@@ -2065,9 +2212,12 @@
         this.renderCameras();
         this.renderCrew();
         this.renderInventory();
+        this.initInventoryControls();
         this.renderRundown();
         this.renderIncidents();
         this.renderMobileRoutes();
+        this.renderEngineRoutes();
+        this.renderMateri();
         this.initNavigation();
         this.initSchematicSimulator();
         this.initSwitcherSimulator();
@@ -2104,68 +2254,134 @@
         sections.forEach(s => observer.observe(s));
       }
 
-      // 1. CAMERAS
+      // 1. CAMERAS (BROADCAST & SHOTS SYSTEM)
       renderCameras() {
-        const grid = document.getElementById('cameras-cards-grid');
-        if (!grid) return;
+        const bGrid = document.getElementById('broadcast-cameras-grid');
+        const sGrid = document.getElementById('shots-cameras-grid');
         
-        const bCards = BROADCAST_CAMERAS.map(c => `
-          <div class="cam-card">
-            <div class="cam-header">
-              <span class="cam-id-pill">${c.name}</span>
-              <span class="cam-role-badge">${c.position}</span>
+        if (bGrid) {
+          bGrid.innerHTML = BROADCAST_CAMERAS.map(c => `
+            <div class="cam-card">
+              <div class="cam-header">
+                <span class="cam-id-pill">${c.name}</span>
+                <span class="cam-role-badge">${c.position}</span>
+              </div>
+              <div class="cam-op-name">${c.operator}</div>
+              <table class="cam-specs-table">
+                <tr><td>Body / Rig</td><td>${c.model}</td></tr>
+                <tr><td>Optics</td><td>${c.lens}</td></tr>
+                <tr><td>Transmisi</td><td>${c.trans}</td></tr>
+                <tr><td>Kabel</td><td>${c.cable}</td></tr>
+                <tr><td>Mounting</td><td>${c.mount}</td></tr>
+                <tr><td>Storage</td><td>${c.storage}</td></tr>
+              </table>
             </div>
-            <div class="cam-op-name">${c.operator}</div>
-            <table class="cam-specs-table">
-              <tr><td>Body / Rig</td><td>${c.model}</td></tr>
-              <tr><td>Optics</td><td>${c.lens}</td></tr>
-              <tr><td>Transmisi</td><td>${c.trans}</td></tr>
-              <tr><td>Kabel</td><td>${c.cable}</td></tr>
-              <tr><td>Mounting</td><td>${c.mount}</td></tr>
-              <tr><td>Storage</td><td>${c.storage}</td></tr>
-            </table>
-          </div>
-        `).join('');
+          `).join('');
+        }
 
-        const dCards = DOCS_CAMERAS.map(d => `
-          <div class="cam-card" style="border-color:rgba(168, 85, 247, 0.3);">
-            <div class="cam-header">
-              <span class="cam-id-pill" style="background:#581c87; color:#f3e8ff;">${d.name}</span>
-              <span class="cam-role-badge" style="color:#c084fc;">${d.duty}</span>
+        if (sGrid) {
+          sGrid.innerHTML = DOCS_CAMERAS.map(d => `
+            <div class="cam-card" style="border-color:rgba(168, 85, 247, 0.35);">
+              <div class="cam-header">
+                <span class="cam-id-pill" style="background:#581c87; color:#f3e8ff;">${d.name}</span>
+                <span class="cam-role-badge" style="color:#c084fc;">${d.duty}</span>
+              </div>
+              <div class="cam-op-name">${d.operator} <span style="font-size:0.75rem; color:var(--text-muted); font-weight:400;">(${d.owner})</span></div>
+              <table class="cam-specs-table">
+                <tr><td>Perangkat</td><td>${d.model}</td></tr>
+                <tr><td>Lensa / Optik</td><td>${d.lens}</td></tr>
+                <tr><td>Rig / Support</td><td>${d.rig}</td></tr>
+                <tr><td>Tugas</td><td>${d.duty}</td></tr>
+              </table>
             </div>
-            <div class="cam-op-name">${d.operator} <span style="font-size:0.75rem; color:var(--text-muted); font-weight:400;">(${d.owner})</span></div>
-            <table class="cam-specs-table">
-              <tr><td>Perangkat</td><td>${d.model}</td></tr>
-              <tr><td>Lensa / Optik</td><td>${d.lens}</td></tr>
-              <tr><td>Rig / Support</td><td>${d.rig}</td></tr>
-            </table>
-          </div>
-        `).join('');
-
-        grid.innerHTML = bCards + dCards;
+          `).join('');
+        }
       }
 
-      // 2. CREW
+      // 2. CREW (SEMUA PELAYAN 17 PERSONEL)
       renderCrew(filter = 'all') {
         const grid = document.getElementById('crew-cards-grid');
         if (!grid) return;
-        const filtered = filter === 'all' ? CREW_ROSTER : CREW_ROSTER.filter(c => c.div === filter);
-        grid.innerHTML = filtered.map(c => `
-          <div class="card" style="padding:0.9rem; display:flex; align-items:center; justify-content:space-between; gap:0.5rem;">
-            <div>
-              <div style="font-size:1rem; font-weight:700; color:var(--text-pure);">${c.name}</div>
-              <div style="font-size:0.78rem; color:var(--accent-cyan); font-weight:600;">${c.role}</div>
-              <div style="font-size:0.72rem; color:var(--text-muted); font-family:var(--font-mono);">${c.note}</div>
+        
+        let filtered = CREW_ROSTER;
+        if (filter !== 'all') {
+          if (filter === 'broadcast') filtered = CREW_ROSTER.filter(c => c.div === 'broadcast');
+          else if (filter === 'shots') filtered = CREW_ROSTER.filter(c => c.div === 'docs');
+          else if (filter === 'media') filtered = CREW_ROSTER.filter(c => c.div === 'media' || c.div === 'audio');
+        }
+
+        grid.innerHTML = filtered.map(c => {
+          let badgeText = 'BROADCAST';
+          let badgeClass = 'info';
+          if (c.div === 'docs') { badgeText = 'SHOTS'; badgeClass = 'warn'; }
+          else if (c.div === 'media') { badgeText = 'MEDIA'; badgeClass = 'info'; }
+          else if (c.div === 'audio') { badgeText = 'AUDIO'; badgeClass = 'info'; }
+
+          return `
+            <div class="card" style="padding:0.9rem; display:flex; align-items:center; justify-content:space-between; gap:0.5rem;">
+              <div>
+                <div style="font-size:1rem; font-weight:700; color:var(--text-pure);">${c.name}</div>
+                <div style="font-size:0.78rem; color:var(--accent-cyan); font-weight:600;">${c.role}</div>
+                <div style="font-size:0.72rem; color:var(--text-muted); font-family:var(--font-mono);">${c.note}</div>
+              </div>
+              <span class="badge-sev ${badgeClass}">${badgeText}</span>
             </div>
-            <span class="badge-sev info">${c.div.toUpperCase()}</span>
-          </div>
-        `).join('');
+          `;
+        }).join('');
 
         document.querySelectorAll('#crew-filter-pills .filter-pill').forEach(btn => {
           btn.addEventListener('click', (e) => {
             document.querySelectorAll('#crew-filter-pills .filter-pill').forEach(b => b.classList.remove('active'));
             e.target.classList.add('active');
             this.renderCrew(e.target.dataset.crewFilter);
+          });
+        });
+      }
+
+      // 2B. 12 ENGINE SYSTEM ROUTING CHAINS
+      renderEngineRoutes() {
+        const grid = document.getElementById('engine-routes-grid');
+        if (!grid) return;
+        grid.innerHTML = ENGINE_SYSTEM_ROUTES.map((r, i) => `
+          <div class="engine-route-card">
+            <div class="engine-route-header">
+              <span class="engine-route-title">${r.title}</span>
+              <span class="engine-route-owners">${r.owners}</span>
+            </div>
+            <div class="engine-route-chain"><code>${r.chain}</code></div>
+          </div>
+        `).join('');
+      }
+
+      // 2C. MASTER LIST MATERI & ASSET REGISTRY
+      renderMateri(filter = 'all') {
+        const grid = document.getElementById('materi-items-grid');
+        if (!grid) return;
+        
+        let items = LIST_MATERI_DATA;
+        if (filter !== 'all') {
+          items = items.filter(m => m.phase === filter);
+        }
+
+        grid.innerHTML = items.map(m => `
+          <div class="materi-card">
+            <div class="materi-card-header">
+              <span class="materi-name">${m.name}</span>
+              <span class="materi-phase-pill">${m.phaseLabel}</span>
+            </div>
+            <div class="materi-dest">📽️ Output: <strong>${m.output}</strong></div>
+            <div style="display:flex; justify-content:space-between; align-items:center; font-size:0.72rem; color:var(--text-secondary); margin-top:2px;">
+              <span>Format: ${m.format}</span>
+              <span class="materi-pic">PIC: ${m.pic}</span>
+            </div>
+          </div>
+        `).join('');
+
+        document.querySelectorAll('#materi-filter-pills .filter-pill').forEach(btn => {
+          btn.addEventListener('click', (e) => {
+            document.querySelectorAll('#materi-filter-pills .filter-pill').forEach(b => b.classList.remove('active'));
+            e.target.classList.add('active');
+            this.renderMateri(e.target.dataset.materiFilter);
           });
         });
       }
@@ -2454,14 +2670,15 @@
       }
 
       // 5. MASTER INVENTORY & REAL-TIME SYNC
-      renderInventory(providerFilter = 'all', searchQuery = '') {
+      renderInventory() {
         const grid = document.getElementById('inventory-items-grid');
         if (!grid) return;
 
         let items = MASTER_INVENTORY;
-        if (providerFilter !== 'all') items = items.filter(i => i.provider === providerFilter);
-        if (searchQuery.trim()) {
-          const q = searchQuery.toLowerCase();
+        if (this.invProvFilter !== 'all') items = items.filter(i => i.provider === this.invProvFilter);
+        if (this.invStatusFilter !== 'all') items = items.filter(i => (i.status || 'ready') === this.invStatusFilter);
+        if (this.invSearchQuery.trim()) {
+          const q = this.invSearchQuery.toLowerCase();
           items = items.filter(i => i.name.toLowerCase().includes(q) || i.provider.toLowerCase().includes(q) || (i.note && i.note.toLowerCase().includes(q)));
         }
 
@@ -2469,6 +2686,8 @@
           const isChecked = !!this.inventoryState[item.id];
           const syncInfo = this.inventoryState[item.id];
           const checkedByText = syncInfo && syncInfo.by ? `✓ ${syncInfo.by} (${syncInfo.at || ''})` : '';
+          const st = item.status || 'ready';
+          const stLabel = st === 'ready' ? '✅ Siap' : (st === 'extra' ? '☑️ Cadangan' : '⚠️ Perhatian');
 
           return `
             <div class="inv-card ${isChecked ? 'checked' : ''}" data-item-id="${item.id}">
@@ -2478,10 +2697,10 @@
               </div>
               <div class="inv-meta">
                 <span>Pemilik: <strong>${item.provider}</strong></span>
-                <span>${item.category.toUpperCase()}</span>
+                <span class="inv-status-pill ${st}">${stLabel}</span>
               </div>
               ${checkedByText ? `<div class="inv-sync-tag">${checkedByText}</div>` : ''}
-              <div style="font-size:0.72rem; color:var(--text-secondary);">${item.note || ''}</div>
+              <div style="font-size:0.72rem; color:var(--text-secondary); margin-top:2px;">${item.note || ''}</div>
             </div>
           `;
         }).join('');
@@ -2492,22 +2711,32 @@
             this.toggleInventoryItem(id);
           });
         });
+      }
 
+      initInventoryControls() {
         document.querySelectorAll('#inventory-filter-pills .filter-pill').forEach(btn => {
           btn.addEventListener('click', (e) => {
             document.querySelectorAll('#inventory-filter-pills .filter-pill').forEach(b => b.classList.remove('active'));
             e.target.classList.add('active');
-            const searchVal = document.getElementById('inventory-search')?.value || '';
-            this.renderInventory(e.target.dataset.prov, searchVal);
+            this.invProvFilter = e.target.dataset.prov;
+            this.renderInventory();
+          });
+        });
+
+        document.querySelectorAll('#inventory-status-pills .filter-pill').forEach(btn => {
+          btn.addEventListener('click', (e) => {
+            document.querySelectorAll('#inventory-status-pills .filter-pill').forEach(b => b.classList.remove('active'));
+            e.target.classList.add('active');
+            this.invStatusFilter = e.target.dataset.statusFilter;
+            this.renderInventory();
           });
         });
 
         const sInput = document.getElementById('inventory-search');
         if (sInput) {
           sInput.addEventListener('input', (e) => {
-            const activePill = document.querySelector('#inventory-filter-pills .filter-pill.active');
-            const prov = activePill ? activePill.dataset.prov : 'all';
-            this.renderInventory(prov, e.target.value);
+            this.invSearchQuery = e.target.value;
+            this.renderInventory();
           });
         }
       }
@@ -2547,10 +2776,7 @@
           });
         }
 
-        const activePill = document.querySelector('#inventory-filter-pills .filter-pill.active');
-        const prov = activePill ? activePill.dataset.prov : 'all';
-        const searchVal = document.getElementById('inventory-search')?.value || '';
-        this.renderInventory(prov, searchVal);
+        this.renderInventory();
         this.updateInventoryProgress();
 
         if (fromSync) {
