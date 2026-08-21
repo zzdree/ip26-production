@@ -948,24 +948,6 @@ def generate_index_html():
       box-shadow: 0 0 12px rgba(255, 255, 255, 0.12);
     }
 
-    /* MOBILE NAVIGATION DRAWER MODAL */
-    .mobile-drawer-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 0.5rem; }
-    .drawer-nav-item {
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-      padding: 0.75rem;
-      border-radius: var(--radius-sm);
-      background: var(--bg-surface-raised);
-      border: 1px solid var(--border-subtle);
-      color: var(--text-primary);
-      text-decoration: none;
-      font-size: 0.82rem;
-      font-weight: 600;
-      transition: var(--transition-smooth);
-      min-height: 44px;
-    }
-    .drawer-nav-item:hover, .drawer-nav-item:active { background: var(--bg-surface-elevated); color: var(--text-pure); border-color: var(--accent-cyan); }
 
     /* ==========================================================================
        RESPONSIVE BREAKPOINTS (Desktop vs Mobile Rules & Universal Device Support)
@@ -1729,42 +1711,10 @@ def generate_index_html():
       <span class="dock-icon">⏱️</span>
       <span>Timer</span>
     </a>
-    <button class="dock-btn" id="dock-btn-menu" style="background:transparent; border:none; cursor:pointer;">
-      <span class="dock-icon">☰</span>
-      <span>Menu</span>
-    </button>
   </nav>
 
   <!-- TOAST CONTAINER FOR SYNC ALERTS -->
   <div class="toast-container" id="toast-container"></div>
-
-  <!-- MODAL: MOBILE OFF-CANVAS NAVIGATION DRAWER -->
-  <div class="modal-overlay" id="drawer-modal">
-    <div class="modal-dialog" style="max-width:480px;">
-      <div class="modal-head">
-        <h3 class="modal-title">📋 Navigation & Quick Actions</h3>
-        <button class="modal-close-btn" id="btn-close-drawer">&times;</button>
-      </div>
-      <div class="mobile-drawer-grid">
-        <a href="#overview" class="drawer-nav-item" data-drawer-nav="true"><span>⚡</span> Overview</a>
-        <a href="#cameras" class="drawer-nav-item" data-drawer-nav="true"><span>📷</span> Broadcast Cams</a>
-        <a href="#crew" class="drawer-nav-item" data-drawer-nav="true"><span>👥</span> Crew Roster</a>
-        <a href="#routing" class="drawer-nav-item" data-drawer-nav="true"><span>🔀</span> Routing Simulator</a>
-        <a href="#switcher" class="drawer-nav-item" data-drawer-nav="true"><span>🎛️</span> Switcher Deck</a>
-        <a href="#inventory" class="drawer-nav-item" data-drawer-nav="true"><span>📦</span> Master Inventory</a>
-        <a href="#rundown" class="drawer-nav-item" data-drawer-nav="true"><span>⏱️</span> Stage Countdown</a>
-        <a href="#tools" class="drawer-nav-item" data-drawer-nav="true"><span>🛠️</span> Utilities & Tone</a>
-        <a href="#sop" class="drawer-nav-item" data-drawer-nav="true"><span>🚨</span> SOP Protocols</a>
-      </div>
-
-      <div style="border-top:1px solid var(--border-subtle); padding-top:0.85rem; display:flex; flex-direction:column; gap:0.45rem;">
-        <button class="btn btn-primary" id="drawer-btn-tally">🚨 Buka Mobile Tally Light</button>
-        <button class="btn btn-secondary" id="drawer-btn-sync">☁️ Cloud & QR Inventory Sync</button>
-        <button class="btn btn-secondary" id="drawer-btn-handover">📄 Berita Acara Peminjaman Alat</button>
-        <button class="btn btn-secondary" id="drawer-btn-briefing">📊 Crew Briefing Pitch Deck</button>
-      </div>
-    </div>
-  </div>
 
   <!-- MODAL: CLOUD & QR INVENTORY SYNC -->
   <div class="modal-overlay" id="sync-modal">
@@ -2143,43 +2093,6 @@ def generate_index_html():
         }, { threshold: 0.2, rootMargin: "-20% 0px -60% 0px" });
 
         sections.forEach(s => observer.observe(s));
-
-        // Drawer Modal
-        const drawer = document.getElementById('drawer-modal');
-        const openDrawerBtn = document.getElementById('btn-open-drawer');
-        const dockMenuBtn = document.getElementById('dock-btn-menu');
-        const closeDrawerBtn = document.getElementById('btn-close-drawer');
-
-        const openDrawer = () => drawer?.classList.add('active');
-        const closeDrawer = () => drawer?.classList.remove('active');
-
-        openDrawerBtn?.addEventListener('click', openDrawer);
-        dockMenuBtn?.addEventListener('click', openDrawer);
-        closeDrawerBtn?.addEventListener('click', closeDrawer);
-
-        document.querySelectorAll('[data-drawer-nav="true"]').forEach(link => {
-          link.addEventListener('click', closeDrawer);
-        });
-
-        document.getElementById('drawer-btn-tally')?.addEventListener('click', () => {
-          closeDrawer();
-          document.getElementById('tally-modal')?.classList.add('active');
-        });
-
-        document.getElementById('drawer-btn-sync')?.addEventListener('click', () => {
-          closeDrawer();
-          document.getElementById('sync-modal')?.classList.add('active');
-        });
-
-        document.getElementById('drawer-btn-handover')?.addEventListener('click', () => {
-          closeDrawer();
-          document.getElementById('handover-modal')?.classList.add('active');
-        });
-
-        document.getElementById('drawer-btn-briefing')?.addEventListener('click', () => {
-          closeDrawer();
-          document.getElementById('briefing-modal')?.classList.add('active');
-        });
       }
 
       // 1. CAMERAS
