@@ -806,32 +806,6 @@ def generate_index_html():
     .inv-meta { display: flex; align-items: center; justify-content: space-between; font-size: 0.72rem; color: var(--text-muted); font-family: var(--font-mono); }
     .inv-sync-tag { font-size: 0.68rem; color: var(--accent-emerald); font-style: italic; }
 
-    /* Master Stage Timer */
-    .timer-container {
-      background: var(--bg-surface);
-      border: 1px solid var(--border-medium);
-      border-radius: var(--radius-md);
-      padding: 1.25rem;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 0.85rem;
-      text-align: center;
-    }
-    .timer-display {
-      font-size: clamp(3rem, 14vw, 4.8rem);
-      font-weight: 800;
-      font-family: var(--font-mono);
-      letter-spacing: -0.04em;
-      color: var(--text-pure);
-      line-height: 1;
-    }
-    .timer-display.warn { color: #f59e0b; }
-    .timer-display.overtime { color: #ef4444; animation: flash-red 1s infinite; }
-    @keyframes flash-red { 0%, 100% { opacity: 1; } 50% { opacity: 0.5; } }
-    .timer-presets { display: flex; gap: 0.35rem; flex-wrap: wrap; justify-content: center; }
-    .timer-btn-preset { padding: 0.4rem 0.65rem; font-size: 0.75rem; font-weight: 600; border-radius: var(--radius-xs); background: var(--bg-surface-raised); color: var(--text-secondary); border: 1px solid var(--border-subtle); cursor: pointer; min-height: 38px; }
-    .timer-btn-preset:hover { color: var(--text-pure); background: var(--bg-surface-elevated); }
 
     /* Incident Logger */
     .incident-table-wrap {
@@ -1557,37 +1531,17 @@ def generate_index_html():
     <section id="rundown">
       <div class="section-head">
         <div class="section-title-wrap">
-          <span class="section-badge">Timeline & Cues</span>
-          <h2 class="section-heading">Rundown & Stage Timer Controller</h2>
+          <span class="section-badge">Timeline & Media Cues</span>
+          <h2 class="section-heading">Master Production Rundown & Sequence Cues</h2>
+        </div>
+        <div class="section-actions">
+          <button class="btn btn-secondary btn-sm" onclick="window.print()">🖨️ Cetak Rundown</button>
         </div>
       </div>
 
-      <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap:1rem; width:100%;">
-        <!-- Stage Timer Card -->
-        <div class="timer-container">
-          <div style="font-size:0.75rem; font-weight:800; font-family:var(--font-mono); color:var(--text-muted);">MASTER STAGE COUNTDOWN</div>
-          <div class="timer-display" id="stage-timer-val">00:00</div>
-          <div class="timer-presets">
-            <button class="timer-btn-preset" data-min="15">Open Gate (15m)</button>
-            <button class="timer-btn-preset" data-min="30">Worship (30m)</button>
-            <button class="timer-btn-preset" data-min="45">Khotbah (45m)</button>
-            <button class="timer-btn-preset" data-min="10">Doa (10m)</button>
-            <button class="timer-btn-preset" data-min="0">Count-Up (0m)</button>
-          </div>
-          <div style="display:flex; gap:0.45rem; margin-top:0.25rem; flex-wrap:wrap; justify-content:center; width:100%;">
-            <button class="btn btn-primary btn-sm" id="btn-timer-start" style="flex:1;">▶ Start</button>
-            <button class="btn btn-secondary btn-sm" id="btn-timer-pause" style="flex:1;">⏸ Pause</button>
-            <button class="btn btn-secondary btn-sm" id="btn-timer-reset" style="flex:1;">↺ Reset</button>
-            <button class="btn btn-amber btn-sm" id="btn-timer-fullscreen" style="flex:1.2;">📺 Fullscreen</button>
-          </div>
-        </div>
-
-        <!-- Rundown Items List -->
-        <div class="card" style="padding:1rem;">
-          <h3 style="font-size:0.95rem; font-weight:700; color:var(--text-pure); margin-bottom:0.5rem; text-align:center;">📋 Media & Rundown Checklist</h3>
-          <div style="display:flex; flex-direction:column; gap:0.4rem; max-height:360px; overflow-y:auto;" id="rundown-items-list">
-            <!-- Rendered dynamically -->
-          </div>
+      <div class="card" style="padding:1.25rem;">
+        <div style="display:flex; flex-direction:column; gap:0.65rem;" id="rundown-items-list">
+          <!-- Rendered dynamically -->
         </div>
       </div>
     </section>
@@ -1708,8 +1662,8 @@ def generate_index_html():
       <span>Inv</span>
     </a>
     <a href="#rundown" class="dock-btn" data-dock-target="rundown">
-      <span class="dock-icon">⏱️</span>
-      <span>Timer</span>
+      <span class="dock-icon">📋</span>
+      <span>Rundown</span>
     </a>
   </nav>
 
@@ -2044,11 +1998,6 @@ def generate_index_html():
         // Inventory & Incident State
         this.inventoryState = JSON.parse(localStorage.getItem('ip26_inventory_checks') || '{}');
         this.incidents = JSON.parse(localStorage.getItem('ip26_incidents_log') || '[]');
-
-        // Stage Timer State
-        this.timerSeconds = 0;
-        this.timerInterval = null;
-        this.timerIsRunning = false;
       }
 
       init() {
@@ -2061,7 +2010,6 @@ def generate_index_html():
         this.initNavigation();
         this.initSchematicSimulator();
         this.initSwitcherSimulator();
-        this.initStageTimer();
         this.initCloudSync();
         this.initBriefingDeck();
         this.initTallyBox();
@@ -2402,6 +2350,15 @@ def generate_index_html():
           this.updateSwitcherUI();
           this.setSimCut(this.pgmChannel);
           this.triggerTallyPulse();
+        });
+
+        document.getElementById('btn-sw-ftb')?.addEventListener('click', (e) => {
+          const isFtb = e.target.classList.toggle('ftb-active');
+          document.querySelectorAll('.switcher-screen').forEach(scr => {
+            scr.style.opacity = isFtb ? '0.1' : '1';
+            scr.style.transition = 'opacity 0.4s ease';
+          });
+          e.target.textContent = isFtb ? '● FTB ON' : 'FTB';
         });
 
         document.addEventListener('keydown', (e) => {
@@ -2747,79 +2704,22 @@ def generate_index_html():
         const list = document.getElementById('rundown-items-list');
         if (!list) return;
         list.innerHTML = RUNDOWN_CUES.map((r, i) => `
-          <div style="background:var(--bg-surface-raised); border:1px solid var(--border-subtle); border-radius:6px; padding:0.65rem; display:flex; align-items:center; justify-content:space-between; gap:0.5rem;">
-            <div style="display:flex; align-items:center; gap:0.6rem;">
-              <span style="font-family:var(--font-mono); font-size:0.75rem; font-weight:800; color:var(--accent-cyan);">${r.time}</span>
+          <div style="background:var(--bg-surface-raised); border:1px solid var(--border-subtle); border-radius:8px; padding:0.85rem 1rem; display:flex; align-items:center; justify-content:space-between; gap:0.75rem; flex-wrap:wrap;">
+            <div style="display:flex; align-items:center; gap:0.85rem; min-width:240px; flex:2;">
+              <span style="font-family:var(--font-mono); font-size:0.8rem; font-weight:800; color:var(--accent-cyan); background:rgba(6,182,212,0.1); border:1px solid rgba(6,182,212,0.3); padding:0.25rem 0.6rem; border-radius:6px; flex-shrink:0;">${r.time}</span>
               <div>
-                <div style="font-size:0.85rem; font-weight:700; color:var(--text-pure);">${r.title}</div>
-                <div style="font-size:0.72rem; color:var(--text-secondary);">${r.media}</div>
+                <div style="font-size:0.92rem; font-weight:700; color:var(--text-pure); line-height:1.3;">${r.title}</div>
+                <div style="font-size:0.76rem; color:var(--text-secondary); margin-top:2px;">🎬 Media / Feed: <strong style="color:var(--text-primary);">${r.media}</strong></div>
               </div>
             </div>
-            <span style="font-size:0.7rem; color:var(--text-muted); font-family:var(--font-mono);">${r.pic}</span>
+            <div style="display:flex; align-items:center; gap:0.5rem; flex-shrink:0;">
+              <span style="font-size:0.72rem; color:var(--accent-emerald); font-weight:700; font-family:var(--font-mono); background:rgba(16,185,129,0.1); border:1px solid rgba(16,185,129,0.3); padding:0.2rem 0.55rem; border-radius:4px;">PIC: ${r.pic}</span>
+            </div>
           </div>
         `).join('');
       }
 
-      // 8. STAGE TIMER
-      initStageTimer() {
-        const valEl = document.getElementById('stage-timer-val');
-        const startBtn = document.getElementById('btn-timer-start');
-        const pauseBtn = document.getElementById('btn-timer-pause');
-        const resetBtn = document.getElementById('btn-timer-reset');
-        const fsBtn = document.getElementById('btn-timer-fullscreen');
-
-        const updateTimerView = () => {
-          if (!valEl) return;
-          const mins = Math.floor(Math.abs(this.timerSeconds) / 60);
-          const secs = Math.abs(this.timerSeconds) % 60;
-          const sign = this.timerSeconds < 0 ? '+ ' : '';
-          valEl.textContent = `${sign}${String(mins).padStart(2, '0')}:${String(secs).padStart(2, '0')}`;
-
-          valEl.classList.remove('warn', 'overtime');
-          if (this.timerSeconds < 0) {
-            valEl.classList.add('overtime');
-          } else if (this.timerSeconds <= 300 && this.timerSeconds > 0) {
-            valEl.classList.add('warn');
-          }
-        };
-
-        startBtn?.addEventListener('click', () => {
-          if (this.timerIsRunning) return;
-          this.timerIsRunning = true;
-          this.timerInterval = setInterval(() => {
-            this.timerSeconds--;
-            updateTimerView();
-          }, 1000);
-        });
-
-        pauseBtn?.addEventListener('click', () => {
-          this.timerIsRunning = false;
-          clearInterval(this.timerInterval);
-        });
-
-        resetBtn?.addEventListener('click', () => {
-          this.timerIsRunning = false;
-          clearInterval(this.timerInterval);
-          this.timerSeconds = 0;
-          updateTimerView();
-        });
-
-        document.querySelectorAll('.timer-btn-preset').forEach(btn => {
-          btn.addEventListener('click', (e) => {
-            this.timerIsRunning = false;
-            clearInterval(this.timerInterval);
-            const m = parseInt(e.target.dataset.min);
-            this.timerSeconds = m * 60;
-            updateTimerView();
-          });
-        });
-
-        fsBtn?.addEventListener('click', () => {
-          valEl?.requestFullscreen?.().catch(() => {});
-        });
-      }
-
-      // 9. INCIDENT LOGGER
+      // 8. INCIDENT LOGGER
       renderIncidents() {
         const tbody = document.getElementById('incident-list-tbody');
         if (!tbody) return;
@@ -2865,7 +2765,7 @@ def generate_index_html():
         });
       }
 
-      // 10. TONE & TEST GENERATOR
+      // 9. TONE & TEST GENERATOR
       initToneGenerator() {
         let audioCtx = null;
         let osc = null;
@@ -2904,6 +2804,35 @@ def generate_index_html():
               <div style="flex:1; background:#c00000;"></div>
               <div style="flex:1; background:#0000c0;"></div>
             </body>
+          `);
+        });
+
+        document.getElementById('btn-open-grid-test')?.addEventListener('click', () => {
+          const win = window.open('', '_blank');
+          win.document.write(`
+            <!DOCTYPE html>
+            <html>
+            <head><title>Grid & Crosshatch Alignment Test Pattern</title></head>
+            <body style="margin:0; background:#0a0a0f; display:flex; align-items:center; justify-content:center; height:100vh; overflow:hidden;">
+              <svg width="100%" height="100%" viewBox="0 0 1920 1080" xmlns="http://www.w3.org/2000/svg">
+                <rect width="1920" height="1080" fill="#090a10"/>
+                <defs>
+                  <pattern id="grid" width="120" height="120" patternUnits="userSpaceOnUse">
+                    <path d="M 120 0 L 0 0 0 120" fill="none" stroke="rgba(255,255,255,0.15)" stroke-width="1"/>
+                  </pattern>
+                </defs>
+                <rect width="1920" height="1080" fill="url(#grid)" />
+                <rect x="96" y="54" width="1728" height="972" fill="none" stroke="#06b6d4" stroke-width="2" stroke-dasharray="10,10"/>
+                <rect x="192" y="108" width="1536" height="864" fill="none" stroke="#10b981" stroke-width="2"/>
+                <line x1="960" y1="0" x2="960" y2="1080" stroke="#ef4444" stroke-width="2"/>
+                <line x1="0" y1="540" x2="1920" y2="540" stroke="#ef4444" stroke-width="2"/>
+                <circle cx="960" cy="540" r="180" fill="none" stroke="#f59e0b" stroke-width="3"/>
+                <circle cx="960" cy="540" r="360" fill="none" stroke="#f59e0b" stroke-width="2"/>
+                <text x="960" y="530" fill="#fff" font-family="sans-serif" font-size="24" font-weight="bold" text-anchor="middle">IP26 1080p50 ALIGNMENT GRID</text>
+                <text x="960" y="565" fill="#9ca3af" font-family="monospace" font-size="16" text-anchor="middle">Safe Action (90%) Cyan • Safe Title (80%) Green • Center Cross Red</text>
+              </svg>
+            </body>
+            </html>
           `);
         });
       }
