@@ -1,4 +1,11 @@
-*Peminjaman OWL*
+*DATA atau LIST dari Peminjaman atau Inventory atau Storage*
+
+x Centang Hijau merupakan barang yang dipakai di SYSTEM/WIRING/ROUTING
+x Tanda Seru merupakan barang yang dipakai namun belum semua di SYSTEM/WIRING/ROUTING
+x Centang Ungu merupakan barang yang tidak dipakai di SYSTEM/WIRING/ROUTING atau standby
+x Berikut sudah dikategorikan barang dipinjam dari siapa saja dan apa saja
+
+*Peminjaman dari OWL*
 - Sony A6000 (2 Unit) ✅
 - Sony A6400 (1 Unit) ✅
 - Sony ZV-E10 (1 Unit) ✅
@@ -10,18 +17,17 @@
 - Cinetreak Cinelive V1 (1 Pack) ✅
 - Power Adaptor MIX (1 Unit) ✅
 - Hollyland Pyro H (1 Pack) ✅
-- Power Adaptor WIR (1 Unit) ✅
 - Hollyland Pyro S (1 Pack) ✅
-- Power Adaptor WIR (1 Unit) ✅
+- Battery WIR (4 Unit) ✅
 - Tripod Camera Big (1 Unit) ✅
 - HDMI to Micro HDMI Converter (2 Unit) ✅
 - HDMI to Micro HDMI Cable 30CM (2 Unit) ✅
 - HDMI Capture (2 Unit) ✅
 
-*Peminjaman ABON*
-- HDMI Capture (2 Unit) ✅
+*Peminjaman dari ABON*
+- HDMI Capture (2 Unit) ⚠️ 1/2
 
-*Peminjaman Andreas*
+*Peminjaman dari Andreas*
 - Fan Cooler (1 Unit) ☑️
 - Mouse Pad (1 Unit) ☑️
 - Keyboard Ext (1 Unit) ☑️
@@ -36,7 +42,7 @@
 - USB A to USB C Charge Cable (1 Unit) ✅
 - USB C to USB C Charge Cable (1 Unit) ☑️
 - USB A to USB A Extender 30CM (2 Unit) ☑️
-- USB A to USB A Extender 2M (1 Unit) ☑️
+- USB A to USB A Extender 2M (1 Unit) ✅
 - USB A to USB C Male Converter (4 Unit) ☑️
 - USB A to USB C Female Converter (2 Unit) ☑️
 - USB A to Mini USB Cable (1 Unit) ☑️
@@ -72,7 +78,7 @@
 - Cable (1 Pack) ☑️
 - Tape (1 Pack) ☑️
 
-*Peminjaman GIA Deliksari*
+*Peminjaman dari GIA Deliksari*
 - Mixer NewBaxs CT80S ✅
 - XLR Female to Male Cable 3M (2 Unit) ✅
 - USB A to USB C Data Cable (1 Unit) ✅
@@ -81,8 +87,8 @@
 - Power Adaptor SPL (1 Pack) ☑️
 - HDMI to HDMI Cable 1M (2 Unit) ✅
 
-*Peminjaman GKJ Ngaliyan*
-- Stand Lighting Small (1 Unit) ✅
+*Peminjaman dari GKJ Ngaliyan*
+- Stand Lighting Small (1 Unit) ☑️
 - HDMI Cable 15M (1 Unit) ✅
 - HDMI Cable 10M (1 Unit) ✅
 - HDMI Cable 5M (1 Unit) ☑️
@@ -91,14 +97,14 @@
 - HDMI Splitter 4CH (1 Unit) ☑️
 - Power Adaptor SPL (1 Pack) ☑️
 
-*Peminjaman UKK*
+*Peminjaman dari UKK UNNES*
 - XLR Female to Male Cable 10M (3 Unit) ✅
-- Stand Lighting Small (4 Unit) ⚠️
+- Stand Lighting Small (4 Unit) ⚠️ 2/4
 - Tripod Camera Big (1 Unit) ✅
 - HDMI to Mini HDMI Cable 2,5M (1 Unit) ☑️
 - HDMI Cable 15M (1 Unit) ☑️
 - HDMI Cable 10M (1 Unit) ✅
-- HDMI Cable 1,5M (4 Unit) ⚠️
+- HDMI Cable 1,5M (4 Unit) ⚠️ 2/4
 - HDMI Splitter 4CH (1 Unit) ✅
 - Power Adaptor SPL (1 Pack) ✅
 - VGA to VGA Cable 1,5M (1 Unit) ☑️
@@ -107,15 +113,15 @@
 - Power Cable XPIN (X Unit) ☑️
 - Terminal Cable XCH (X Unit) ✅
 
-*Peminjaman Lio*
+*Peminjaman dari Lio*
 - HDMI Cable 1,5M (1 Unit) ✅
 
-*Peminjaman Darrel*
+*Peminjaman dari Darrel*
 - Television (1 Unit) ✅
 - Power Adaptor TV (1 Pack) ✅
 - Memory Card 8GB (1 Unit) ☑️
 
-*Peminjaman Kiel*
+*Peminjaman dari Kiel*
 - Sony ZVE10 (1 Unit) ✅
 - Sony Kit 16-50MM (1 Unit) ✅
 - Sony Manual 50MM (1 Unit) ☑️
@@ -124,7 +130,7 @@
 - Memory Card 64GB (1 Unit) ✅
 - Memory Card 128GB (1 Unit) ☑️
 
-*Peminjaman Joel*
+*Peminjaman dari Joel*
 - Sony A6600 (1 Unit) ✅
 - Lens 24-70MM (1 Unit) ✅
 - Battery (2 Unit) ✅
@@ -132,26 +138,28 @@
 - Memory Card 64GB (1 Unit) ✅
 - Gimbal DJI Ronin RS3 (1 Unit) ✅
 
-*Peminjaman Kezia*
+*Peminjaman dari Kezia*
 - Television (1 Unit) ✅
 - Power Adaptor TV (1 Pack) ✅
 
-*Peminjaman Jennifer*
+*Peminjaman dari Jennifer*
 - HP Iphone 15 (1 Unit) ✅
 
-*Peminjaman Panitia*
+*Peminjaman dari Panitia*
 - HDMI to Micro HDMI Converter (2 Unit) ✅
 - Terminal Cable XCH (X Unit) ✅
 
-*List Materi*
+*DATA atau LIST Materi pada saat event berlangsung*
 
-Pre Ibadah (Open Gate)
+x Dibagi menjadi 3 sesi, Pre, Main, dan Post
+
+*Pre Ibadah (Open Gate)*
 - Playlist (Lagu Rohani) (Sound System)
 - Loop Video (Profile UKK, After Movie IP25, After Movie IN25) (LED Tengah)
 
-Ibadah (Event)
+*Main Ibadah (Main Event)
 - Video Opening (LED Tengah)
-- Video Sambutan Bu Grave (LED Tengah Kanan Kiri)
+- Video Sambutan Bu Grace (LED Tengah Kanan Kiri)
 - Background Tema (LED Tengah)
 - Background Lagu (Sound System)
 - Lirik Lagu (LED Tengah Kanan Kiri)
@@ -159,7 +167,7 @@ Ibadah (Event)
 - PPT Pembicara (LED Tengah Kanan Kiri)
 - Ayat Pembicara (LED Tengah Kanan Kiri)
 - Quote Pembicara (LED Tengah Kanan Kiri)
-- Persembahan (QRIS)
+- Persembahan (QRIS) (LED Tengah Kanan Kiri)
 - UKK News (LED Tengah Kanan Kiri)
 - Pokok Doa (LED Tengah Kanan Kiri)
 

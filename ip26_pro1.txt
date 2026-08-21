@@ -4,194 +4,120 @@ Event : Ibadah Perdana UKK UNNES 2026
 Venue : Gedung Auditorium Universitas Negeri Semarang
 Production : Panitia Ibadah Perdana 2026
 
-*Broadcast System*
+*Broadcast Camera System*
 
-- CAM 1 - Sony ZVE10 + Lens 18-105MM + Battery + Memory Card 64GB + Tripod Camera Big + HDMI to Micro HDMI Cable 30CM + Hollyland Pyro S Transmitter + Hollyland Pyro S Receiver + Stand Lighting Small + HDMI Cable 1,5M + Cinetreak Cinelive V1 + Power Adaptor MIX (Alex) ✅
+x Jadi satu system dengan ENGINE SYSTEM
+x WIRING/ROUTING Dengan keterangan barang siapa dan operatornya
+x Centang Hijau merupakan terverifikasi
 
-- CAM 2 - Sony ZV-E10 + Lens 18-105MM + Battery + Memory Card 32GB + HDMI to Micro HDMI Cable 30CM + Hollyland Pyro H Transmitter + Hollyland Pyro H Receiver + Stand Lighting Small + HDMI Cable 1,5M + Cinetreak Cinelive V1 + Power Adaptor MIX (Kiel 1) ✅
+- CAM 1 - Sony ZVE10 (Kiel 1) + Lens 18-105MM (OWL) + Battery (Kiel 1) + Memory Card 64GB (Kiel 1) + Tripod Camera Big (OWL) + HDMI to Micro HDMI Cable 30CM (OWL) + Hollyland Pyro S Transmitter (OWL) + Battery WIR (OWL) + Hollyland Pyro S Receiver (OWL) + Battery WIR (OWL) + Stand Lighting Small (UKK) + HDMI Cable 1,5M (UKK) + Cinetreak Cinelive V1 (OWL) + Power Adaptor MIX (OWL) - (Alex) ✅
+- CAM 2 - Sony ZV-E10 (OWL) + Lens 18-105MM (OWL) + Battery (OWL) + Memory Card 32GB (OWL) + HDMI to Micro HDMI Cable 30CM (OWL) + Hollyland Pyro H Transmitter (OWL) + Hollyland Pyro H Receiver (OWL) + Stand Lighting Small (UKK) + HDMI Cable 1,5M (UKK) + Cinetreak Cinelive V1 (OWL) + Power Adaptor MIX (OWL) - (Kiel 1) ✅
+- CAM 3 - Sony A6000 (OWL) + Lens 18-105MM (OWL) + Battery (OWL) + Memory Card 32GB (OWL) + Tripod Camera Big (GIA) + Micro HDMI to HDMI Converter (OWL) + HDMI Cable 10M (GKJ) + Cinetreak Cinelive V1 (OWL) + Power Adaptor MIX (OWL) - (Nia) ✅
+- CAM 4 - Sony A6000 (OWL) + Lens 16-50MM (Kiel 1) + Battery (OWL) + Memory Card 32GB (OWL) + Tripod Camera Big (UKK) + Micro HDMI to HDMI Converter (OWL) + HDMI Cable 10M (UKK) + Cinetreak Cinelive V1 (OWL) + Power Adaptor MIX (OWL) - (Ferdy) ✅
+- BACKUP - Micro HDMI to HDMI Converter X2 (Panitia)
 
-- CAM 3 - Sony A6000 + Lens 18-105MM + Battery + Memory Card 32GB + Tripod Camera Big + Micro HDMI to HDMI Converter + HDMI Cable 10M + Cinetreak Cinelive V1 + Power Adaptor MIX (Dewi/Nia) ✅
-
-- CAM 4 - Sony A6000 + Lens 16-50MM + Battery + Memory Card 32GB + Tripod Camera Big + Micro HDMI to HDMI Converter + HDMI Cable 10M + Cinetreak Cinelive V1 + Power Adaptor MIX (Nathania) ✅
-
-*Broadcast System - MAN*
+*Broadcast Camera System - PIC*
 - CAM 1 (Alex)
 - CAM 2 (Kiel 1)
-- CAM 3 (Dewi/Nia)
+- CAM 3 (Nia)
 - CAM 4 (Ferdy)
 
-*Broadcast System - OWL*
-- Sony A6000 (2 Unit) ✅
-- Sony ZV-E10 ✅
-- Lens 18-105MM (3 Unit) ✅
-- Battery (6 Unit) ✅
-- Memory Card 32GB (3 Unit) ✅
-- Cinetreak Cinelive V1 (1 Pack) ✅
-- Power Adaptor MIX (1 Unit) ✅
-- Hollyland Pyro H (1 Pack) ✅
-- Power Adaptor WIR (1 Unit) ✅
-- Hollyland Pyro S (1 Pack) ✅
-- Power Adaptor WIR (1 Unit) ✅
-- Tripod Camera Big (1 Unit) ✅
-- HDMI to Micro HDMI Converter (2 Unit) ✅
-- HDMI to Micro HDMI Cable 30CM (2 Unit) ✅
+*Documentation Camera System*
 
-*Broadcast System - GIA*
-- Tripod Camera Big (1 Unit) ✅
+x Terpisah system dengan BROADCAST SYSTEM dan ENGINE SYSTEM
+x WIRING/ROUTING Dengan keterangan barang siapa dan operatornya
+x Centang Hijau merupakan terverifikasi
 
-*Broadcast System - GKJ*
-- Stand Lighting Small (1 Unit) ✅
-- HDMI Cable 10M (1 Unit) ✅
+- PHO Sony A6400 (OWL) + Sony 50MM (OWL) + Battery X2 (OWL)+ Memory Card 32GB (OWL) - (Nico) ✅
+- VID Sony A6600 (Joel) + Zeiss 24-70MM (Joel) + Battery X2 (Joel) + Memory Card 64GB (Joel) + Gimbal DJI Ronin RS3 (Joel) - (Joel) ✅
+- HP Iphone 15 (Jennifer) - (Jennifer) ✅
 
-*Broadcast System - UKK*
-- Stand Lighting Small (1 Unit) ✅
-- Tripod Camera Big (1 Unit) ✅
-- HDMI Cable 10M (1 Unit) ✅
-- HDMI Cable 1,5M (1 Unit) ✅
-- Terminal Cable XCH (1 Unit) ✅
-
-*Broadcast System - Kiel*
-- Sony ZVE10 (1 Unit) ✅
-- Sony Kit 16-50MM (1 Unit) ✅
-- Battery (2 Unit) ✅
-- Memory Card 64GB (1 Unit) ✅
-
-*Broadcast System - Lio*
-- HDMI Cable 1,5M (1 Unit) ✅
-
-*Broadcast System - Panitia*
-- HDMI to Micro HDMI Converter (2 Unit) ✅
-
-*Shots System*
-TERPISAH DARI BOROADCAST SYSTEM
-
-- PHO Sony A6400 + Sony 50MM + Battery + Memory Card 32GB (Nico) ✅
-
-- VID Sony A6600 + Zeiss 24-70MM  + Battery + Memory Card 64GB + Gimbal DJI Ronin RS3 (Joel) ✅
-
-- HP Iphone 15 (Jennifer) ✅
-
-*Shots System - MAN*
+*Documentation Camera System - PIC*
 - CAM PHO (Nico)
 - CAM VID (Joel)
 - CAM HP (Jennifer)
 
-*Shots System - OWL*
-- Sony A6400 (1 Unit) ✅
-- Lens 50MM (1 Unit) ✅
-- Battery (2 Unit) ✅
-- Memory Card 32GB (1 Unit) ✅
+*Engine System - Full*
 
-*Shots System - Joel*
-- Sony A6600 (1 Unit) ✅
-- Lens 24-70MM (1 Unit) ✅
-- Battery (2 Unit) ✅
-- Charger (1 Pack) ✅
-- Memory Card 64GB (1 Unit) ✅
-- Gimbal DJI Ronin RS3 (1 Unit) ✅
+x WIRING/ROUTING Dengan keterangan barang siapa dan operatornya
+x Centang Hijau merupakan terverifikasi
+x XCH adalah X Channel, misal Terminal 5CH, adalah Terminal 5 Channel
 
-*Shots System - Jennifer*
-- HP Iphone 15 (1 Unit) ✅
+! Electrical Routing ✅
+- Terminal Cable XCH (Andreas) + Terminal Cable XCH (UKK) + Terminal Cable XCH (Panitia)
 
-*Engine System*
+*Engine System - Broadcast*
 
-! Electrical Routing (Andreas x UKK x Panitia) ✅
-- Terminal Cable XCH + Terminal Cable XCH + Terminal Cable XCH
+! Switcher + Television ✅
+- Terminal Cable XCH (UKK) + Cinetreak Cinelive V1 (OWL) + Power Adaptor MIX (OWL) + HDMI to HDMI Cable 1M (GIA) + Television (Kezia) + Power Adaptor TV (Kezia)
 
-! Switcher + Television - (OWL x Kezia) ✅
-- Terminal Cable XCH + Cinetreak Cinelive V1 + Power Adaptor MIX + HDMI to HDMI Cable 1M + Television (Kezia) + Power Adaptor TV
+! Switcher + Splitter ✅
+- Terminal Cable XCH (UKK) + Cinetreak Cinelive V1 (OWL) + Power Adaptor MIX (OWL) + HDMI to HDMI Cable 1M (GIA) HDMI Splitter 4CH (UKK/GKJ) + Power Adaptor SPL (UKK/GKJ)
 
-! Switcher + Splitter (OWL x UKK) ✅
-- Terminal Cable XCH + Cinetreak Cinelive V1 + Power Adaptor MIX + HDMI Splitter 4CH + Power Adaptor SPL
+! Switcher + OBS ✅
+- Terminal Cable XCH (UKK) + Cinetreak Cinelive V1 (OWL) + Power Adaptor MIX (OWL) + USB A to USB C Data Cable (Andreas) + Laptop (OBS Studio) + Power Adaptor LTP (OBS Studio)
 
-! Switcher + OBS - (OWL x Andreas x OBS) ✅
-- Terminal Cable XCH + Cinetreak Cinelive V1 + Power Adaptor MIX + - USB A to USB C Data Cable + Laptop (OBS Studio) + Power Adaptor LTP
+! Splitter + PRO1 + LED Left Right Back ✅
+- HDMI Splitter 4CH (UKK/GKJ) + Power Adaptor SPL (UKK/GKJ) + HDMI to HDMI Cable 1,5M (Andreas) + HDMI Capture (OWL) + Laptop (Pro Presenter 1) + Power Adaptor LTP (Pro Presenter 1) + HDMI Cable 20M (UNNES) + Novastar (UNNES) + Video Processor (UNNES) + LED Left Right Back (UNNES)
 
-! Mixer 1 + XLR Cable + Mixer 2 + OBS (UNNES x UKK x x Andreas x GIA x OBS) ✅
-- Mixer Yamaha QL5 + XLR Female to Male Cable 10M 2X + XLR Female to Male Cable 3M 2X + Mixer NewBaxs CT80S + USB A to USB C Data Cable + Laptop Laptop (OBS Studio) + Power Adaptor LTP
-
-! Splitter + PRO1 + LED Left Right Back (UKK x Andreas x OWL x PRO1 x UNNES) ✅
-- HDMI Splitter 4CH + Power Adaptor SPL + HDMI to HDMI Cable 1,5M + HDMI Capture + Laptop (Pro Presenter 1) + Power Adaptor LTP + HDMI UNNES + Video Processor + LED Left Right Back
-
-! PRO2 + Res - (PRO2 x Andreas x OWL x RES) ✅
-- Laptop (Pro Presenter 2) + Power Adaptor LTP + HDMI to HDMI Cable 1,5M + HDMI Capture + Laptop (Resolume Arena) + Power Adaptor LTP
+! PRO2 + RES ✅
+- Laptop (Pro Presenter 2) + Power Adaptor LTP (Pro Presenter 2) + HDMI to HDMI Cable 1,5M (Andreas) + HDMI Capture (OWL) + Laptop (Resolume Arena) + Power Adaptor LTP (Resolume Arena)
 
 ! Splitter + RES + LED Center (Andreas x GKJ x RES x GKJ x ABON x UNNES) ✅
-- HDMI Splitter 4CH + Power Adaptor SPL - HDMI to HDMI Cable 1,5M + HDMI Capture + Laptop (Resolume Arena) + Power Adaptor LTP + HDMI Cable 15M + HDMI Capture + Nova + Video Processor + LED Center
+- HDMI Splitter 4CH (UKK/GKJ) + Power Adaptor SPL (UKK/GKJ) + HDMI to HDMI Cable 1,5M (Andreas) + HDMI Capture (ABON) + Laptop (Resolume Arena) + Power Adaptor LTP + HDMI Cable 15M (GKJ) + HDMI Capture (GKJ) + Novastar (UNNES) + Video Processor (UNNES) + LED Center (UNNES)
 
-! RES + DAC + Mixer 1 (RES x Andreas x UNNES) ✅
-- Laptop (Resolume Arena) + Power Adaptor LTP + USB C DAC Hanason AB17X/USB C DAC Oraimo OAA310 + Jack 3.5 UNNES + Mixer Yamaha QL5
+*Engine System - Audio*
 
-! Mixer 1 + VM1 (UNNES x Jennifer) ✅
-- Mixer Yamaha QL5 + WiFi UNNES-ID + iPad (Virtual Mixer 2)
+! Mixer 1 + XLR Cable + Mixer 2 + OBS ✅
+- Mixer Yamaha QL5 (UNNES) + XLR Female to Male Cable 10M 2X (UKK) + XLR Female to Male Cable 3M 2X (UKK) + Mixer NewBaxs CT80S (GIA) + USB A to USB A Extender 2M (Andreas) + USB A to USB C Data Cable (GIA) + Laptop (OBS Studio) + Power Adaptor LTP (OBS Studio)
 
-! Mixer 1 + VM2 (UNNES x Andreas) ✅
-- Mixer Yamaha QL5 + WiFi UNNES-ID + Laptop (Virtual Mixer 2) + Power Adaptor LTP
+! RES + DAC + Mixer 1 ✅
+- Laptop (Resolume Arena) + Power Adaptor LTP (Resolume Arena) + USB C DAC Hanason AB17X/USB C DAC Oraimo OAA310 (Andres) + Audio Cable 20M (UNNES) + Mixer Yamaha QL5 (UNNES)
 
-! PRO3 + Television (PRO3 x Darrel) ✅ TIME KEEPER - TERPISAH DARI BOROADCAST SYSTEM
-- Terminal Cable XCH + Laptop (Pro Presenter 3) + Power Adaptor LTP + HDMI to HDMI Cable 1M + Television (Darrel) + Power Adaptor TV
+! Mixer 1 + VM1 ✅
+- Mixer Yamaha QL5 (UNNES) + WiFi (UNNES-ID) + Laptop (Virtual Mixer 2) + Power Adaptor LTP (Virtual Mixer 2)
 
-*Engine System - OWL*
-- Cinetreak Cinelive V1 (1 Pack) ✅
-- Power Adaptor MIX (1 Unit) ✅
-- HDMI Capture (2 Unit) ✅
+! Mixer 1 + VM2 ✅
+- Mixer Yamaha QL5 (UNNES) + WiFi (UNNES-ID) + iPad (Virtual Mixer 2)
 
-*Peminjaman ABON*
-- HDMI Capture (2 Unit) ✅
+*Engine System - Time Keeper*
 
-*Engine System - Andreas*
-- Terminal Cable XCH ✅
-- USB A to USB C Data Cable (1 Unit) ✅
-- HDMI to HDMI Cable 1,5M (3 Unit) ✅
-- USB C DAC Hanason AB17X (1 Unit) ✅
-- USB C DAC Oraimo OAA310 (1 Unit) ✅
+x Terpisah system dengan BROADCAST SYSTEM dan ENGINE SYSTEM
 
-*Engine System - GIA*
-- Mixer NewBaxs CT80S ✅
-- XLR Female to Male Cable 3M (2 Unit) ✅
-- USB A to USB C Data Cable (1 Unit) ✅
-- HDMI to HDMI Cable 1M (2 Unit) ✅
+! PRO3 + Television ✅
+- Terminal Cable XCH (UKK) + Laptop (Pro Presenter 3) + Power Adaptor LTP (Pro Presenter 3) + HDMI to HDMI Cable 1.5M (Lio) + Television (Darrel) + Power Adaptor TV (Darrel)
 
-*Engine System - GKJ*
-- HDMI Cable 15M (1 Unit) ✅
-- HDMI Capture (1 Unit) ✅
+*Engine System - Catatan*
 
-*Engine System - UKK*
-- XLR Female to Male Cable 10M (2 Unit) ✅
-- HDMI Splitter 4CH (1 Unit) ✅
-- Power Adaptor SPL (1 Pack) ✅
-- Terminal Cable XCH ✅
+x Ada 3 HDMI Splitter, GKJ Punya 1 Unit HDMI Splitter 4CH, UKK punya 1 Unit HDMI Splitter 4CH, GIA punya 1 Unit HDMI Splitter 2CH, semua termasuk Power Adaptor SPL, masih ada 2 backup HDMI Splitter
 
-*Peminjaman Darrel*
-- Television (1 Unit) ✅
-- Power Adaptor TV (1 Pack) ✅
+*Media System Device*
 
-*Engine System - Kezia*
-- Television (1 Unit) ✅
-- Power Adaptor TV (1 Pack) ✅
+x Merupakan bagian dari BROADCAST SYSTEM dan ENGINE SYSTEM
+x WIRING/ROUTING Dengan keterangan barang siapa dan bukan operator
+x Centang Hijau merupakan terverifikasi
 
-*Engine System - Panitia*
-- Terminal Cable XCH ✅
+- Mixer 1 - Yamaha QL5 (UNNES)
+- Mixer 2 - NewBaxs CT80S (GIA)
+- Virtual Mixer 1 - iPad (Jennifer) ✅
+- Virtual Mixer 2 - Laptop + Power Adaptor LTP (Andreas) ✅
+- Resolume Arena - Laptop + Power Adaptor LTP (Bayu) ✅
+- Pro Presenter 1 - Laptop + Power Adaptor LTP (Belum Ada) ✅
+- Pro Presenter 2 - Laptop + Power Adaptor LTP (Belum Ada) ✅
+- Pro Presenter 3 + Television - Laptop X + Power Adaptor LTP (Belum Ada) + Television + Power Adaptor TV (Darrel)
+- Switcher + Television - Cinetreak Cinelive V1 + Power Adaptor MIX (OWL) + Television + Power Adaptor TV (Kezia) ✅
+- OBS Studio - Laptop X + Power Adaptor LTP (Belum Ada) ✅
+- Backup - Laptop + Power Adaptor LTP (Kiel 1)
 
-*Media System*
-- Virtual Mixer 1 - iPad (Punya Jennifer) ✅
-- Virtual Mixer 2 - Laptop + Power Adaptor LTP (Punya Andreas) ✅
-- Resolume Arena - Laptop + Power Adaptor LTP (Punya Bayu) ✅
-- Pro Presenter 1 - Laptop + Power Adaptor LTP () ✅
-- Pro Presenter 2 - Laptop + Power Adaptor LTP () ✅
-- Pro Presenter 3 + Television - Laptop X + Power Adaptor LTP + Television + Power Adaptor TV (Punya  x Darrel)
-- Switcher + Television - Cinetreak Cinelive V1 + Power Adaptor MIX + Television + Power Adaptor TV (Punya OWL x Kezia) ✅
-- OBS Studio - Laptop X + Power Adaptor LTP () ✅
-- Backup - Laptop + Power Adaptor LTP (Punya Kiel 1)
-
-*Media System - MAN*
+*Media System Device - Operator*
+- Mixer 1 (Jordan/Yosua)
+- Mixer 2 (Andreas)
 - Virtual Mixer 1 (Jordan/Yosua)
 - Virtual Mixer 2 (Jordan/Yosua)
 - Resolume Arena (Andreas)
 - Pro Presenter 1 (Rania)
 - Pro Presenter 2 (Filia)
-- Pro Presenter 3 + Television ()
+- Pro Presenter 3 + Television (Acara)
 - Switcher + Television (Wilfred)
 - OBS Studio (Andreas)
-- Mixer 2 (Andreas)
 - Backup (Kiel 1)
