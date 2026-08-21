@@ -975,6 +975,7 @@ def generate_index_html():
         /* Extra padding bottom on mobile so content isn't covered by bottom dock */
         padding-bottom: calc(var(--dock-height) + var(--safe-area-bottom) + 1.75rem);
       }
+      .desktop-only-btn { display: none !important; }
       .hero-banner {
         grid-template-columns: 1fr;
         text-align: center;
@@ -1006,7 +1007,7 @@ def generate_index_html():
     }
 
     @media (min-width: 961px) {
-      #btn-open-drawer { display: none; } /* Hide mobile hamburger button on wide desktop */
+      .desktop-only-btn { display: inline-flex !important; }
       .mobile-only { display: none !important; }
     }
 
@@ -1102,8 +1103,7 @@ def generate_index_html():
         <span class="status-dot"></span>
         <span id="header-sync-label">LOCAL ONLY</span>
       </div>
-      <button class="btn btn-primary btn-sm" id="btn-open-tally-modal" title="Buka Virtual Tally Layar Penuh">🚨 Tally</button>
-      <button class="btn btn-secondary btn-icon" id="btn-open-drawer" title="Menu Lengkap (Mobile)">☰</button>
+      <button class="btn btn-primary btn-sm desktop-only-btn" id="btn-open-tally-modal" title="Buka Virtual Tally Layar Penuh">🚨 Tally</button>
     </div>
   </header>
 
