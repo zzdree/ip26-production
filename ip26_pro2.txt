@@ -11,11 +11,11 @@
 - Power Adaptor MIX (1 Unit) ✅
 - Hollyland Pyro H (1 Pack) ✅
 - Power Adaptor WIR (1 Unit) ✅
+- Hollyland Pyro S (1 Pack) ✅
+- Power Adaptor WIR (1 Unit) ✅
 - Tripod Camera Big (1 Unit) ✅
 - HDMI to Micro HDMI Converter (2 Unit) ✅
-- HDMI to Micro HDMI Cable 30CM (1 Unit) ✅
-- HDMI Cable 30M (1 Unit) ✅
-- HDMI Cable 20M (1 Unit) ✅
+- HDMI to Micro HDMI Cable 30CM (2 Unit) ✅
 - HDMI Capture (2 Unit) ✅
 
 *Peminjaman ABON*
@@ -88,17 +88,17 @@
 - HDMI Cable 5M (1 Unit) ☑️
 - HDMI Cable 1,5M (1 Unit) ☑️
 - HDMI Capture (1 Unit) ✅
-- HDMI Splitter 4CH (1 Unit) ✅
-- Power Adaptor SPL (1 Pack) ✅
+- HDMI Splitter 4CH (1 Unit) ☑️
+- Power Adaptor SPL (1 Pack) ☑️
 
 *Peminjaman UKK*
 - XLR Female to Male Cable 10M (3 Unit) ✅
-- Stand Lighting Small (4 Unit) ☑️
+- Stand Lighting Small (4 Unit) ⚠️
 - Tripod Camera Big (1 Unit) ✅
 - HDMI to Mini HDMI Cable 2,5M (1 Unit) ☑️
 - HDMI Cable 15M (1 Unit) ☑️
 - HDMI Cable 10M (1 Unit) ✅
-- HDMI Cable 1,5M (4 Unit) ☑️
+- HDMI Cable 1,5M (4 Unit) ⚠️
 - HDMI Splitter 4CH (1 Unit) ✅
 - Power Adaptor SPL (1 Pack) ✅
 - VGA to VGA Cable 1,5M (1 Unit) ☑️
@@ -138,8 +138,6 @@
 
 *Peminjaman Jennifer*
 - HP Iphone 15 (1 Unit) ✅
-- Television (1 Unit) ✅
-- Power Adaptor TV (1 Pack) ✅
 
 *Peminjaman Panitia*
 - HDMI to Micro HDMI Converter (2 Unit) ✅

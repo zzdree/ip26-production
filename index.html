@@ -3,594 +3,665 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Ibadah Perdana UKK UNNES 2026 — Master Production & Broadcast Blueprint</title>
-  <meta name="description" content="Aplikasi Command Center, Signal Routing Matrix, Master Inventory Log, dan Simulasi Switcher Broadcast Ibadah Perdana UKK UNNES 2026." />
+  <title>Ibadah Perdana UKK UNNES 2026 — Master Production & Broadcast Command</title>
+  <meta name="description" content="Official Command Deck, Signal Routing Matrix, Live Switcher Simulator, Master Inventory Log & Crew Briefing App untuk Ibadah Perdana UKK UNNES 2026." />
   <meta name="theme-color" content="#06b6d4" />
   <link rel="manifest" href="manifest.json" />
   <link rel="stylesheet" href="css/style.css" />
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220%22%20width=%22100%22%20height=%22100%22><text y=%22.9em%22 font-size=%2290%22>🎬</text></svg>">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220%200%20100%20100%22><text y=%22.9em%22 font-size=%2290%22>🎬</text></svg>">
 </head>
 <body>
 
-  <!-- Top HUD Header -->
+  <!-- Top Sticky HUD Header -->
   <header class="hud-header">
-    <div class="hud-branding">
+    <a href="#hero" class="hud-branding">
       <div class="hud-logo">IP26</div>
       <div class="hud-title-group">
         <h1>
-          Ibadah Perdana UKK UNNES 2026
+          Ibadah Perdana UKK UNNES
           <span class="hud-live-tag">
-            <span class="hud-pulse-dot"></span> BROADCAST READY
+            <span class="hud-pulse-dot"></span> LIVE COMMAND
           </span>
         </h1>
-        <p>Gedung Auditorium UNNES • Master Production & Engineering Command Deck</p>
+        <p>Gedung Auditorium UNNES • Master Production & Engineering</p>
       </div>
-    </div>
+    </a>
+
+    <!-- Desktop Navigation Links (Smooth Scroll Anchor Links) -->
+    <nav class="hud-nav">
+      <a href="#overview" class="hud-nav-link active">Overview</a>
+      <a href="#cameras" class="hud-nav-link">Kamera</a>
+      <a href="#crew" class="hud-nav-link">Crew PIC</a>
+      <a href="#routing" class="hud-nav-link">Routing</a>
+      <a href="#switcher" class="hud-nav-link">Switcher</a>
+      <a href="#inventory" class="hud-nav-link">Inventaris</a>
+      <a href="#rundown" class="hud-nav-link">Rundown</a>
+      <a href="#tools" class="hud-nav-link">Tools</a>
+      <a href="#sop" class="hud-nav-link">SOP</a>
+    </nav>
 
     <div class="hud-actions">
       <div class="hud-clock" id="live-event-clock">00:00:00</div>
-      <button class="btn btn-primary" id="btn-open-presentation">
-        📽️ Mode Presentasi Crew
+      <button class="btn btn-primary btn-sm" id="btn-open-presentation">
+        📽️ Mode Presentasi
       </button>
-      <a href="https://github.com/zzdree/ip26-production" target="_blank" rel="noopener" class="btn btn-tactical" title="GitHub Repository">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
-        GitHub
+      <a href="https://github.com/zzdree/ip26-production" target="_blank" rel="noopener" class="btn btn-tactical btn-sm" title="GitHub Repository">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
       </a>
     </div>
   </header>
 
-  <div class="app-container">
-    
-    <!-- Navigation Sidebar -->
-    <aside class="app-sidebar">
-      <div class="nav-category">Main Command</div>
-      <a class="nav-link active" data-tab="overview">
-        <span>📊 Master Overview & Crew</span>
-      </a>
-      <a class="nav-link" data-tab="routing">
-        <span>📡 Signal Routing & Matrix</span>
-        <span class="badge">12 Lines</span>
-      </a>
-      <a class="nav-link" data-tab="switcher">
-        <span>🎛️ Live Switcher Simulator</span>
-        <span class="badge" style="background:var(--accent-red); color:#fff;">LIVE</span>
-      </a>
+  <!-- Continuous Single-Page Landing Wrapper -->
+  <div class="landing-wrapper">
 
-      <div class="nav-category">Logistik & Asset</div>
-      <a class="nav-link" data-tab="inventory">
-        <span>📦 Master Inventory & Pinjam</span>
-      </a>
-      <a class="nav-link" data-tab="rundown">
-        <span>📑 Rundown & Checklist Media</span>
-      </a>
-
-      <div class="nav-category">Engineering & SOP</div>
-      <a class="nav-link" data-tab="tools">
-        <span>🛠️ Test Pattern & Tone Gen</span>
-      </a>
-      <a class="nav-link" data-tab="sop">
-        <span>⚡ SOP & Fail-Safe Protocol</span>
-      </a>
-    </aside>
-
-    <!-- Main Content Body -->
-    <main class="app-main">
-
-      <!-- TAB 1: OVERVIEW & CREW -->
-      <section class="tab-pane active" id="tab-overview">
-        <div class="hero-banner">
-          <div class="hero-header-row">
-            <div>
-              <span class="pill-badge cyan">IBADAH PERDANA UKK UNNES 2026</span>
-              <h2 style="font-size: 1.9rem; margin-top: 0.5rem;">Master Production & Broadcast Blueprint</h2>
-              <p style="color: var(--text-secondary); max-width: 800px; margin-top: 0.5rem;">
-                Arsitektur teknis terpadu untuk broadcast 4-kamera multi-angle, routing audio FOH Yamaha QL5 & Sub-mix NewBaxs CT80S, serta integrasi visual LED Megascreen Resolume Arena & ProPresenter 7 di Gedung Auditorium UNNES.
-              </p>
+    <!-- 1. HERO SECTION -->
+    <section class="landing-section" id="hero">
+      <div class="hero-card">
+        <div class="hero-grid">
+          <div>
+            <div class="hero-badge-row">
+              <span class="pill-badge cyan">UKK UNNES 2026</span>
+              <span class="pill-badge green">STATUS: OPERATIONAL READY</span>
+              <span class="pill-badge amber">VENUE: AUDITORIUM UNNES</span>
             </div>
-            <div>
-              <button class="btn btn-tally-red" onclick="document.querySelector('[data-tab=\'switcher\']').click()">
-                ⚡ Buka Live Switcher Console
+            <h1 class="hero-title">
+              Production & Broadcast Command Blueprint
+            </h1>
+            <p class="hero-desc">
+              Pusat kendali operasional, arsitektur alur sinyal video 4-kamera, integrasi audio FOH Yamaha QL5 & Submix NewBaxs CT80S, visual stage mapping Resolume Arena & ProPresenter 7, serta master log inventaris peminjaman alat.
+            </p>
+            <div class="hero-cta-group">
+              <a href="#switcher" class="btn btn-tally-red">
+                ⚡ Uji Switcher & Multiview
+              </a>
+              <a href="#routing" class="btn btn-tactical">
+                📡 Cek Jalur Kabel & Routing
+              </a>
+              <button class="btn btn-primary" onclick="document.getElementById('btn-open-presentation').click()">
+                📽️ Slide Presentasi Kru
               </button>
             </div>
           </div>
 
-          <div class="hero-meta-badges">
-            <span class="pill-badge cyan">📍 Venue: Auditorium UNNES</span>
-            <span class="pill-badge green">🎙️ Audio: Yamaha QL5 + NewBaxs CT80S</span>
-            <span class="pill-badge amber">🎛️ Video: Cinetreak Cinelive V1 (4CH)</span>
-            <span class="pill-badge violet">🖥️ Media: Resolume Arena + ProPresenter 7</span>
-          </div>
-        </div>
-
-        <!-- KPI Metrics Grid -->
-        <div class="kpi-grid">
-          <div class="kpi-card">
-            <div class="kpi-icon">🎥</div>
-            <div>
-              <div class="kpi-value">4 CAM</div>
-              <div class="kpi-label">Broadcast Multi-Angle</div>
+          <div class="hero-status-widget">
+            <div style="font-family:var(--font-mono); font-size:0.75rem; color:var(--accent-cyan); font-weight:700; text-transform:uppercase;">
+              SYSTEM TELEMETRY SUMMARY
             </div>
-          </div>
-          <div class="kpi-card">
-            <div class="kpi-icon" style="color:var(--accent-green);">📦</div>
-            <div>
-              <div class="kpi-value" id="kpi-inv-total">90+ Item</div>
-              <div class="kpi-label">Master Inventory Terverifikasi</div>
+            <div class="widget-stat-row">
+              <span class="widget-stat-label">Broadcast Switcher</span>
+              <span class="widget-stat-val" style="color:var(--accent-cyan);">Cinetreak V1 (4CH)</span>
             </div>
-          </div>
-          <div class="kpi-card">
-            <div class="kpi-icon" style="color:var(--accent-amber);">⚡</div>
-            <div>
-              <div class="kpi-value">12 Pipeline</div>
-              <div class="kpi-label">Jalur Sinyal Terintegrasi</div>
+            <div class="widget-stat-row">
+              <span class="widget-stat-label">Audio Pipeline</span>
+              <span class="widget-stat-val" style="color:var(--accent-violet);">Yamaha QL5 + CT80S</span>
             </div>
-          </div>
-          <div class="kpi-card">
-            <div class="kpi-icon" style="color:var(--accent-violet);">👥</div>
-            <div>
-              <div class="kpi-value">15 PIC</div>
-              <div class="kpi-label">Production & Media Crew</div>
+            <div class="widget-stat-row">
+              <span class="widget-stat-label">Stage LED Mapping</span>
+              <span class="widget-stat-val" style="color:var(--accent-amber);">NovaStar + Resolume</span>
+            </div>
+            <div class="widget-stat-row" style="border-bottom:none; padding-bottom:0;">
+              <span class="widget-stat-label">Stage Timekeeper</span>
+              <span class="widget-stat-val" style="color:var(--accent-green);">ProPresenter 3 TV</span>
             </div>
           </div>
         </div>
+      </div>
+    </section>
 
-        <!-- Broadcast Cameras Spotlight -->
-        <div class="panel">
-          <div class="panel-header">
-            <div class="panel-title">
-              <span>📡 Broadcast Camera Units</span>
-            </div>
-            <span class="pill-badge green">4 Channels Active</span>
+    <!-- 2. EXECUTIVE OVERVIEW & KPI METRICS -->
+    <section class="landing-section" id="overview">
+      <div class="section-header">
+        <div class="section-title-group">
+          <span class="section-tag">01 • Executive Metrics</span>
+          <h2 class="section-title">Ringkasan Kapasitas Sistem</h2>
+        </div>
+        <span class="pill-badge green">Semua Modul Aktif</span>
+      </div>
+
+      <div class="kpi-grid">
+        <div class="kpi-card">
+          <div class="kpi-icon">🎥</div>
+          <div>
+            <div class="kpi-value">4 CAM</div>
+            <div class="kpi-label">Broadcast Multi-Angle</div>
           </div>
-          <div class="panel-body">
-            <div class="crew-grid">
-              <div class="crew-card">
-                <div class="crew-card-top">
-                  <span class="crew-name">CAM 1 — Center Long Shot</span>
-                  <span class="pill-badge cyan">ALEX</span>
-                </div>
-                <div class="crew-role">Sony ZV-E10 + Lens 18-105mm F4 G OSS</div>
-                <div class="crew-device">HDMI 30M/20M Splitter Line • Tripod Heavy Duty</div>
-                <div class="crew-task">Tethered Main Long-shot & Stage Master framing. Sinyal dikirim via HDMI splitter 4CH ke Cinetreak V1.</div>
-                <div class="crew-card-footer">
-                  <span>Posisi: FOH Center Deck</span>
-                  <span style="color:var(--accent-green);">1080p60 HDMI</span>
-                </div>
-              </div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-icon" style="color:var(--accent-green);">📦</div>
+          <div>
+            <div class="kpi-value" id="kpi-inv-total">90+ Item</div>
+            <div class="kpi-label">Inventaris Log Terdata</div>
+          </div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-icon" style="color:var(--accent-amber);">⚡</div>
+          <div>
+            <div class="kpi-value">12 Line</div>
+            <div class="kpi-label">Jalur Sinyal Terintegrasi</div>
+          </div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-icon" style="color:var(--accent-violet);">👥</div>
+          <div>
+            <div class="kpi-value">15 Kru</div>
+            <div class="kpi-label">Divisi Teknis & Dokumentasi</div>
+          </div>
+        </div>
+      </div>
+    </section>
 
-              <div class="crew-card">
-                <div class="crew-card-top">
-                  <span class="crew-name">CAM 2 — Roving Wireless</span>
-                  <span class="pill-badge amber">KIEL 1</span>
-                </div>
-                <div class="crew-role">Sony ZV-E10 + Lens 18-105mm F4 G OSS</div>
-                <div class="crew-device">Hollyland Pyro H Wireless Kit (TX/RX) • Stand Lighting</div>
-                <div class="crew-task">Wireless roving camera untuk close-up WL, Singer, dan interaksi jemaat dengan transmisi 5.8GHz ultra-low latency.</div>
-                <div class="crew-card-footer">
-                  <span>Posisi: Altar Stage Front</span>
-                  <span style="color:var(--accent-amber);">5.8GHz Wireless</span>
-                </div>
-              </div>
+    <!-- 3. BROADCAST & DOCUMENTATION CAMERAS -->
+    <section class="landing-section" id="cameras">
+      <div class="section-header">
+        <div class="section-title-group">
+          <span class="section-tag">02 • Camera Rigging</span>
+          <h2 class="section-title">Konfigurasi Kamera & Lensa</h2>
+          <p class="section-subtitle">Spesifikasi 4 kamera broadcast live stream dan 3 unit kamera dokumentasi terpisah.</p>
+        </div>
+        <span class="pill-badge cyan">Sony Ecosystem</span>
+      </div>
 
-              <div class="crew-card">
-                <div class="crew-card-top">
-                  <span class="crew-name">CAM 3 — Left Wing Angle</span>
-                  <span class="pill-badge violet">DEWI</span>
-                </div>
-                <div class="crew-role">Sony A6000 + Lens 18-105mm F4 G OSS</div>
-                <div class="crew-device">HDMI 10M Line • Micro-HDMI Converter • Tripod Big</div>
-                <div class="crew-task">Stage left medium & profile shot, speaker cross-angle framing langsung ke Cinetreak V1 Input 3.</div>
-                <div class="crew-card-footer">
-                  <span>Posisi: Wing House Left</span>
-                  <span style="color:var(--accent-green);">1080p60 HDMI</span>
-                </div>
-              </div>
-
-              <div class="crew-card">
-                <div class="crew-card-top">
-                  <span class="crew-name">CAM 4 — Right Wing Angle</span>
-                  <span class="pill-badge green">NATHANIA</span>
-                </div>
-                <div class="crew-role">Sony A6000 + Lens 16-50mm Kit OSS</div>
-                <div class="crew-device">HDMI 10M Line • Micro-HDMI Converter • Tripod Big</div>
-                <div class="crew-task">Stage right wide angle, coverage worship team & instrumen musik panggung ke Input 4 Switcher.</div>
-                <div class="crew-card-footer">
-                  <span>Posisi: Wing House Right</span>
-                  <span style="color:var(--accent-green);">1080p60 HDMI</span>
-                </div>
-              </div>
-            </div>
+      <!-- Broadcast 4-CAM Cards -->
+      <div class="crew-grid" style="margin-bottom:1.5rem;">
+        <div class="crew-card">
+          <div class="crew-card-top">
+            <span class="crew-name">CAM 1 — Center Long Shot</span>
+            <span class="pill-badge cyan">ALEX</span>
+          </div>
+          <div class="crew-role">Sony ZV-E10 + Lens 18-105mm F4 G OSS</div>
+          <div class="crew-device">HDMI 30M/20M Splitter Line • Tripod Heavy Duty</div>
+          <div class="crew-task">Tethered Main Long-shot & Stage Master framing. Sinyal dikirim via kabel HDMI splitter 4CH ke Cinetreak V1.</div>
+          <div class="crew-card-footer">
+            <span>FOH Center Deck</span>
+            <span style="color:var(--accent-green);">1080p60 HDMI</span>
           </div>
         </div>
 
-        <!-- Master Crew Directory -->
-        <div class="panel">
-          <div class="panel-header">
-            <div class="panel-title">
-              <span>👥 Master Crew Directory & Role Allocations</span>
-            </div>
-            <div class="filter-chips-row">
-              <button class="chip crew-filter-btn active" data-division="all">Semua Divisi</button>
-              <button class="chip crew-filter-btn" data-division="broadcast">Broadcast</button>
-              <button class="chip crew-filter-btn" data-division="docs">Dokumentasi</button>
-              <button class="chip crew-filter-btn" data-division="engine">Engine & OBS</button>
-              <button class="chip crew-filter-btn" data-division="media">Media LED</button>
-              <button class="chip crew-filter-btn" data-division="audio">Virtual Audio</button>
-            </div>
+        <div class="crew-card">
+          <div class="crew-card-top">
+            <span class="crew-name">CAM 2 — Roving Wireless</span>
+            <span class="pill-badge amber">KIEL 1</span>
           </div>
-          <div class="panel-body">
-            <div class="crew-grid" id="crew-directory-grid">
-              <!-- Rendered via JS -->
+          <div class="crew-role">Sony ZV-E10 + Lens 18-105mm F4 G OSS</div>
+          <div class="crew-device">Hollyland Pyro H Wireless Kit (TX/RX) • Stand Lighting</div>
+          <div class="crew-task">Wireless roving camera untuk close-up WL, Singer, dan interaksi jemaat dengan transmisi 5.8GHz ultra-low latency.</div>
+          <div class="crew-card-footer">
+            <span>Altar Stage Front</span>
+            <span style="color:var(--accent-amber);">5.8GHz Wireless</span>
+          </div>
+        </div>
+
+        <div class="crew-card">
+          <div class="crew-card-top">
+            <span class="crew-name">CAM 3 — Left Wing Angle</span>
+            <span class="pill-badge violet">DEWI</span>
+          </div>
+          <div class="crew-role">Sony A6000 + Lens 18-105mm F4 G OSS</div>
+          <div class="crew-device">HDMI 10M Line • Micro-HDMI Converter • Tripod Big</div>
+          <div class="crew-task">Stage left medium & profile shot, speaker cross-angle framing langsung ke Cinetreak V1 Input 3.</div>
+          <div class="crew-card-footer">
+            <span>Wing House Left</span>
+            <span style="color:var(--accent-green);">1080p60 HDMI</span>
+          </div>
+        </div>
+
+        <div class="crew-card">
+          <div class="crew-card-top">
+            <span class="crew-name">CAM 4 — Right Wing Angle</span>
+            <span class="pill-badge green">NATHANIA</span>
+          </div>
+          <div class="crew-role">Sony A6000 + Lens 16-50mm Kit OSS</div>
+          <div class="crew-device">HDMI 10M Line • Micro-HDMI Converter • Tripod Big</div>
+          <div class="crew-task">Stage right wide angle, coverage worship team & instrumen musik panggung ke Input 4 Switcher.</div>
+          <div class="crew-card-footer">
+            <span>Wing House Right</span>
+            <span style="color:var(--accent-green);">1080p60 HDMI</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Documentation Dedicated Row -->
+      <div class="panel" style="background:var(--bg-surface-raised);">
+        <div class="panel-header">
+          <div class="panel-title">
+            <span>📸 Shots System (Dokumentasi Terpisah dari Broadcast)</span>
+          </div>
+          <span class="pill-badge violet">Non-Streaming Units</span>
+        </div>
+        <div class="panel-body">
+          <div class="crew-grid">
+            <div class="crew-card">
+              <div class="crew-card-top"><span class="crew-name">Nico — Lead Photographer</span><span class="pill-badge violet">PHOTO</span></div>
+              <div class="crew-device">Sony A6400 + Sony 50mm Prime (OWL)</div>
+              <div class="crew-task">Foto high-res panggung, candid jemaat, stage lighting atmosphere, dan foto kepengurusan.</div>
+            </div>
+            <div class="crew-card">
+              <div class="crew-card-top"><span class="crew-name">Joel — Cinematic Video</span><span class="pill-badge violet">CINEMA</span></div>
+              <div class="crew-device">Sony A6600 + Zeiss 24-70mm + DJI Ronin RS3</div>
+              <div class="crew-task">Video aftermovie sinematik 4K S-Log, slow motion tracking, dan b-roll backstage.</div>
+            </div>
+            <div class="crew-card">
+              <div class="crew-card-top"><span class="crew-name">Jennifer — Mobile Reels</span><span class="pill-badge violet">SOCIAL</span></div>
+              <div class="crew-device">Apple iPhone 15 Pro 4K HDR</div>
+              <div class="crew-task">Konten instan Instagram Reels, Stories real-time, dan update publikasi media sosial UKK.</div>
             </div>
           </div>
         </div>
-      </section>
+      </div>
+    </section>
 
-      <!-- TAB 2: SIGNAL ROUTING & MATRIX -->
-      <section class="tab-pane" id="tab-routing">
-        <div class="panel">
-          <div class="panel-header">
-            <div class="panel-title">
-              <span>📡 System Architecture & Signal Routing Matrix</span>
-            </div>
-            <div class="filter-chips-row">
-              <button class="chip route-filter-btn active" data-filter="all">Semua Pipeline (12)</button>
-              <button class="chip route-filter-btn" data-filter="video">Video Broadcast</button>
-              <button class="chip route-filter-btn" data-filter="media">Media & LED</button>
-              <button class="chip route-filter-btn" data-filter="audio">Audio Master</button>
-              <button class="chip route-filter-btn" data-filter="power">Electrical</button>
-            </div>
-          </div>
-          <div class="panel-body">
-            <div id="pipeline-list-container">
-              <!-- Rendered via JS -->
-            </div>
-          </div>
+    <!-- 4. MASTER CREW DIRECTORY -->
+    <section class="landing-section" id="crew">
+      <div class="section-header">
+        <div class="section-title-group">
+          <span class="section-tag">03 • Personnel In Charge</span>
+          <h2 class="section-title">Struktur Tim & Pembagian Tugas</h2>
+          <p class="section-subtitle">Daftar kontak intercom, perangkat yang dipegang, dan rincian SOP setiap kru.</p>
         </div>
-      </section>
-
-      <!-- TAB 3: LIVE SWITCHER SIMULATOR -->
-      <section class="tab-pane" id="tab-switcher">
-        <div class="panel" style="background:#04070d; border-color:var(--border-medium);">
-          <div class="panel-header" style="background:#090e1a;">
-            <div class="panel-title">
-              <span class="hud-pulse-dot"></span>
-              <span>Cinetreak Cinelive V1 — Hardware Switcher & Multiview Simulator</span>
-            </div>
-            <div style="display:flex; align-items:center; gap:0.75rem;">
-              <span class="pill-badge red" id="pgm-channel-label">PGM: CAM 1</span>
-              <span class="pill-badge green" id="pvw-channel-label">PVW: CAM 2</span>
-            </div>
-          </div>
-          <div class="panel-body">
-            <div class="switcher-console">
-              
-              <!-- Left: Multiview Screen & PGM/PVW Master Mon -->
-              <div class="multiview-screen-container">
-                <div class="multiview-grid">
-                  <!-- CAM 1 -->
-                  <div class="multiview-slot active-pgm" id="mv-slot-1">
-                    <span class="slot-label">01 • CAM 1 (Alex)</span>
-                    <span class="slot-tally pgm" id="mv-tally-1"></span>
-                    <canvas id="canvas-cam-1" width="280" height="158" style="width:100%; height:100%; object-fit:cover;"></canvas>
-                  </div>
-                  <!-- CAM 2 -->
-                  <div class="multiview-slot active-pvw" id="mv-slot-2">
-                    <span class="slot-label">02 • CAM 2 (Pyro H Kiel)</span>
-                    <span class="slot-tally pvw" id="mv-tally-2"></span>
-                    <canvas id="canvas-cam-2" width="280" height="158" style="width:100%; height:100%; object-fit:cover;"></canvas>
-                  </div>
-                  <!-- CAM 3 -->
-                  <div class="multiview-slot" id="mv-slot-3">
-                    <span class="slot-label">03 • CAM 3 (Dewi)</span>
-                    <span class="slot-tally" id="mv-tally-3"></span>
-                    <canvas id="canvas-cam-3" width="280" height="158" style="width:100%; height:100%; object-fit:cover;"></canvas>
-                  </div>
-                  <!-- CAM 4 -->
-                  <div class="multiview-slot" id="mv-slot-4">
-                    <span class="slot-label">04 • CAM 4 (Nathania)</span>
-                    <span class="slot-tally" id="mv-tally-4"></span>
-                    <canvas id="canvas-cam-4" width="280" height="158" style="width:100%; height:100%; object-fit:cover;"></canvas>
-                  </div>
-                </div>
-
-                <!-- PVW & PGM Big Master Preview -->
-                <div class="multiview-preview-pgm-row">
-                  <div class="monitor-box pvw-master">
-                    <span class="monitor-tag green">PREVIEW (PVW)</span>
-                    <canvas id="canvas-pvw-master" width="380" height="214" style="width:100%; height:100%; object-fit:cover;"></canvas>
-                  </div>
-                  <div class="monitor-box pgm-master">
-                    <span class="monitor-tag red">LIVE PROGRAM (PGM)</span>
-                    <canvas id="canvas-pgm-master" width="380" height="214" style="width:100%; height:100%; object-fit:cover;"></canvas>
-                  </div>
-                </div>
-              </div>
-
-              <!-- Right: Switcher Tactile Control Deck -->
-              <div class="switcher-control-deck">
-                <div>
-                  <div class="bus-label" style="color:var(--accent-red);">PROGRAM BUS (ON AIR)</div>
-                  <div class="bus-buttons-row">
-                    <button class="btn-bus pgm-selected" data-pgm-btn="1">CAM 1</button>
-                    <button class="btn-bus" data-pgm-btn="2">CAM 2</button>
-                    <button class="btn-bus" data-pgm-btn="3">CAM 3</button>
-                    <button class="btn-bus" data-pgm-btn="4">CAM 4</button>
-                  </div>
-                </div>
-
-                <div>
-                  <div class="bus-label" style="color:var(--accent-green);">PREVIEW BUS (NEXT CUE)</div>
-                  <div class="bus-buttons-row">
-                    <button class="btn-bus" data-pvw-btn="1">CAM 1</button>
-                    <button class="btn-bus pvw-selected" data-pvw-btn="2">CAM 2</button>
-                    <button class="btn-bus" data-pvw-btn="3">CAM 3</button>
-                    <button class="btn-bus" data-pvw-btn="4">CAM 4</button>
-                  </div>
-                </div>
-
-                <div>
-                  <div class="bus-label">TRANSITION & EFFECTS</div>
-                  <div class="transition-controls">
-                    <button class="btn-cut" id="btn-switcher-cut">⚡ HARD CUT</button>
-                    <button class="btn-auto" id="btn-switcher-auto">✨ AUTO MIX</button>
-                  </div>
-                  <button class="btn btn-tactical" id="btn-switcher-pip" style="width:100%; margin-top:0.6rem;">
-                    🖼️ Toggle PiP (Picture-in-Picture)
-                  </button>
-                </div>
-
-                <!-- Audio VU Meters -->
-                <div>
-                  <div class="bus-label">AUDIO LEVEL METER SIMULATION</div>
-                  <div class="audio-vu-rack">
-                    <div class="vu-channel">
-                      <div class="vu-bar-track"><div class="vu-bar-fill" id="vu-ql5-l" style="height:70%;"></div></div>
-                      <span class="vu-label">QL5 L</span>
-                    </div>
-                    <div class="vu-channel">
-                      <div class="vu-bar-track"><div class="vu-bar-fill" id="vu-ql5-r" style="height:72%;"></div></div>
-                      <span class="vu-label">QL5 R</span>
-                    </div>
-                    <div class="vu-channel">
-                      <div class="vu-bar-track"><div class="vu-bar-fill" id="vu-obs-l" style="height:65%;"></div></div>
-                      <span class="vu-label">OBS L</span>
-                    </div>
-                    <div class="vu-channel">
-                      <div class="vu-bar-track"><div class="vu-bar-fill" id="vu-obs-r" style="height:68%;"></div></div>
-                      <span class="vu-label">OBS R</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-            </div>
-          </div>
+        <div class="filter-chips-row">
+          <button class="chip crew-filter-btn active" data-division="all">Semua Kru</button>
+          <button class="chip crew-filter-btn" data-division="broadcast">Broadcast</button>
+          <button class="chip crew-filter-btn" data-division="docs">Dokumentasi</button>
+          <button class="chip crew-filter-btn" data-division="engine">Engine & OBS</button>
+          <button class="chip crew-filter-btn" data-division="media">Media LED</button>
+          <button class="chip crew-filter-btn" data-division="audio">Virtual Audio</button>
         </div>
-      </section>
+      </div>
 
-      <!-- TAB 4: MASTER INVENTORY & PEMINJAMAN -->
-      <section class="tab-pane" id="tab-inventory">
-        <!-- Inventory KPI Bar -->
-        <div class="kpi-grid">
-          <div class="kpi-card">
-            <div class="kpi-icon">📦</div>
-            <div>
-              <div class="kpi-value" id="inv-stat-total">0</div>
-              <div class="kpi-label">Total Unit Alat Tercatat</div>
+      <div class="crew-grid" id="crew-directory-grid">
+        <!-- Rendered via JS -->
+      </div>
+    </section>
+
+    <!-- 5. SIGNAL ROUTING & MATRIX -->
+    <section class="landing-section" id="routing">
+      <div class="section-header">
+        <div class="section-title-group">
+          <span class="section-tag">04 • Signal Architecture</span>
+          <h2 class="section-title">Wiring & Signal Routing Matrix</h2>
+          <p class="section-subtitle">Alur kabel ujung-ke-ujung untuk video switcher, audio QL5, LED mapping, dan kelistrikan.</p>
+        </div>
+        <div class="filter-chips-row">
+          <button class="chip route-filter-btn active" data-filter="all">Semua Pipeline (12)</button>
+          <button class="chip route-filter-btn" data-filter="video">Video Broadcast</button>
+          <button class="chip route-filter-btn" data-filter="media">Media & LED</button>
+          <button class="chip route-filter-btn" data-filter="audio">Audio Master</button>
+          <button class="chip route-filter-btn" data-filter="power">Kelistrikan</button>
+        </div>
+      </div>
+
+      <div id="pipeline-list-container">
+        <!-- Rendered via JS -->
+      </div>
+    </section>
+
+    <!-- 6. LIVE SWITCHER SIMULATOR -->
+    <section class="landing-section" id="switcher">
+      <div class="section-header">
+        <div class="section-title-group">
+          <span class="section-tag">05 • Hardware Simulation</span>
+          <h2 class="section-title">Cinetreak Cinelive V1 Switcher Console</h2>
+          <p class="section-subtitle">Simulasi kontrol bus Program (PGM), Preview (PVW), transisi CUT/MIX, PiP, dan audio VU meter.</p>
+        </div>
+        <div style="display:flex; align-items:center; gap:0.75rem;">
+          <span class="pill-badge red" id="pgm-channel-label">PGM: CAM 1</span>
+          <span class="pill-badge green" id="pvw-channel-label">PVW: CAM 2</span>
+        </div>
+      </div>
+
+      <div class="switcher-console">
+        <!-- Multiview 4-slot & PGM/PVW Master Displays -->
+        <div class="multiview-screen-container">
+          <div class="multiview-grid">
+            <div class="multiview-slot active-pgm" id="mv-slot-1">
+              <span class="slot-label">01 • CAM 1 (Alex)</span>
+              <span class="slot-tally pgm" id="mv-tally-1"></span>
+              <canvas id="canvas-cam-1" width="280" height="158" style="width:100%; height:100%; object-fit:cover;"></canvas>
+            </div>
+            <div class="multiview-slot active-pvw" id="mv-slot-2">
+              <span class="slot-label">02 • CAM 2 (Pyro H Kiel)</span>
+              <span class="slot-tally pvw" id="mv-tally-2"></span>
+              <canvas id="canvas-cam-2" width="280" height="158" style="width:100%; height:100%; object-fit:cover;"></canvas>
+            </div>
+            <div class="multiview-slot" id="mv-slot-3">
+              <span class="slot-label">03 • CAM 3 (Dewi)</span>
+              <span class="slot-tally" id="mv-tally-3"></span>
+              <canvas id="canvas-cam-3" width="280" height="158" style="width:100%; height:100%; object-fit:cover;"></canvas>
+            </div>
+            <div class="multiview-slot" id="mv-slot-4">
+              <span class="slot-label">04 • CAM 4 (Nathania)</span>
+              <span class="slot-tally" id="mv-tally-4"></span>
+              <canvas id="canvas-cam-4" width="280" height="158" style="width:100%; height:100%; object-fit:cover;"></canvas>
             </div>
           </div>
-          <div class="kpi-card">
-            <div class="kpi-icon" style="color:var(--accent-green);">✅</div>
-            <div>
-              <div class="kpi-value" id="inv-stat-checked" style="color:var(--accent-green);">0</div>
-              <div class="kpi-label">Terverifikasi di Lokasi</div>
+
+          <div class="multiview-preview-pgm-row">
+            <div class="monitor-box pvw-master">
+              <span class="monitor-tag green">PREVIEW (PVW)</span>
+              <canvas id="canvas-pvw-master" width="380" height="214" style="width:100%; height:100%; object-fit:cover;"></canvas>
             </div>
-          </div>
-          <div class="kpi-card">
-            <div class="kpi-icon" style="color:var(--accent-amber);">⏳</div>
-            <div>
-              <div class="kpi-value" id="inv-stat-remaining" style="color:var(--accent-amber);">0</div>
-              <div class="kpi-label">Belum Check-In / Standby</div>
-            </div>
-          </div>
-          <div class="kpi-card">
-            <div class="kpi-icon" style="color:var(--accent-cyan);">📊</div>
-            <div>
-              <div class="kpi-value" id="inv-stat-percent">0%</div>
-              <div style="width:100%; background:var(--bg-surface-elevated); height:6px; border-radius:3px; margin-top:4px; overflow:hidden;">
-                <div id="inv-stat-progress-bar" style="height:100%; width:0%; background:var(--accent-green); transition:width 0.3s ease;"></div>
-              </div>
+            <div class="monitor-box pgm-master">
+              <span class="monitor-tag red">LIVE PROGRAM (PGM)</span>
+              <canvas id="canvas-pgm-master" width="380" height="214" style="width:100%; height:100%; object-fit:cover;"></canvas>
             </div>
           </div>
         </div>
 
-        <div class="panel">
-          <div class="panel-header">
-            <div class="panel-title">
-              <span>📋 Master Inventory Log & Equipment Loan Tracker</span>
-            </div>
-            <div style="display:flex; gap:0.5rem; flex-wrap:wrap;">
-              <button class="btn btn-tactical btn-sm" id="btn-check-all-inv">✅ Check All</button>
-              <button class="btn btn-tactical btn-sm" id="btn-reset-check-inv">🔄 Reset</button>
-              <button class="btn btn-tactical btn-sm" id="btn-export-inv-json">💾 Export JSON</button>
-              <button class="btn btn-tactical btn-sm" id="btn-print-inv">🖨️ Cetak Manifest</button>
-            </div>
-          </div>
-          <div class="panel-body">
-            
-            <!-- Toolbar Search & Filters -->
-            <div class="inventory-toolbar">
-              <div class="search-input-group">
-                <span class="search-icon">🔍</span>
-                <input type="text" id="inventory-search-input" class="search-input" placeholder="Cari nama alat, pemilik, kabel, adaptor..." />
-              </div>
-              <div style="display:flex; gap:0.75rem; flex-wrap:wrap;">
-                <select id="category-filter-select" class="search-input" style="width:auto; padding-left:1rem; cursor:pointer;">
-                  <!-- Injected via JS -->
-                </select>
-                <select id="status-filter-select" class="search-input" style="width:auto; padding-left:1rem; cursor:pointer;">
-                  <option value="all">Semua Status</option>
-                  <option value="Verified">Verified ✅</option>
-                  <option value="Checked">Checked ☑️</option>
-                  <option value="Warning">Warning ⚠️</option>
-                </select>
-              </div>
-            </div>
-
-            <!-- Provider Filter Chips -->
-            <div class="filter-chips-row" id="provider-filter-chips" style="margin-bottom: 1.25rem;">
-              <!-- Injected via JS -->
-            </div>
-
-            <!-- Table -->
-            <div class="table-responsive">
-              <table class="tactical-table">
-                <thead>
-                  <tr>
-                    <th style="width:45px; text-align:center;">Check</th>
-                    <th style="width:40px;">No</th>
-                    <th>Nama Perlengkapan & Keterangan</th>
-                    <th>Qty</th>
-                    <th>Pemilik / Provider</th>
-                    <th>Kategori</th>
-                    <th>Status</th>
-                  </tr>
-                </thead>
-                <tbody id="inventory-table-body">
-                  <!-- Injected via JS -->
-                </tbody>
-              </table>
-            </div>
-
-          </div>
-        </div>
-      </section>
-
-      <!-- TAB 5: RUNDOWN & ASSET CHECKLIST -->
-      <section class="tab-pane" id="tab-rundown">
-        <!-- Stage Timekeeper Stopwatch -->
-        <div class="panel" style="background:linear-gradient(135deg, #090e1a, #111a2e); border-color:var(--border-highlight);">
-          <div class="panel-header">
-            <div class="panel-title">
-              <span>⏱️ Stage Timekeeper & Event Cue Timer</span>
-            </div>
-            <div style="display:flex; gap:0.5rem;">
-              <button class="btn btn-primary btn-sm" id="btn-sw-start">▶️ Start</button>
-              <button class="btn btn-tactical btn-sm" id="btn-sw-pause">⏸️ Pause</button>
-              <button class="btn btn-tactical btn-sm" id="btn-sw-reset">🔄 Reset</button>
+        <!-- Tactile Control Deck -->
+        <div class="switcher-control-deck">
+          <div>
+            <div class="bus-label" style="color:var(--accent-red);">PROGRAM BUS (ON AIR)</div>
+            <div class="bus-buttons-row">
+              <button class="btn-bus pgm-selected" data-pgm-btn="1">CAM 1</button>
+              <button class="btn-bus" data-pgm-btn="2">CAM 2</button>
+              <button class="btn-bus" data-pgm-btn="3">CAM 3</button>
+              <button class="btn-bus" data-pgm-btn="4">CAM 4</button>
             </div>
           </div>
-          <div class="panel-body" style="display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:1rem;">
-            <div>
-              <div style="font-size:0.85rem; color:var(--text-secondary);">Stage Clock (ProPresenter 3 TV Display):</div>
-              <div id="stopwatch-display" style="font-family:var(--font-mono); font-size:3.2rem; font-weight:800; color:var(--accent-cyan); line-height:1;">
-                00:00
-              </div>
+
+          <div>
+            <div class="bus-label" style="color:var(--accent-green);">PREVIEW BUS (NEXT CUE)</div>
+            <div class="bus-buttons-row">
+              <button class="btn-bus" data-pvw-btn="1">CAM 1</button>
+              <button class="btn-bus pvw-selected" data-pvw-btn="2">CAM 2</button>
+              <button class="btn-bus" data-pvw-btn="3">CAM 3</button>
+              <button class="btn-bus" data-pvw-btn="4">CAM 4</button>
             </div>
-            <div style="max-width:550px; font-size:0.85rem; color:var(--text-secondary);">
-              <strong>Panduan Operator Waktu (Darrel):</strong> Countdown khotbah dimulai saat pembicara naik ke mimbar (standar 40-45 menit). Sinyal warning kuning diberikan saat sisa 5 menit.
+          </div>
+
+          <div>
+            <div class="bus-label">TRANSITION & EFFECTS</div>
+            <div class="transition-controls">
+              <button class="btn-cut" id="btn-switcher-cut">⚡ HARD CUT</button>
+              <button class="btn-auto" id="btn-switcher-auto">✨ AUTO MIX</button>
+            </div>
+            <button class="btn btn-tactical" id="btn-switcher-pip" style="width:100%; margin-top:0.6rem;">
+              🖼️ Toggle PiP (Picture-in-Picture)
+            </button>
+          </div>
+
+          <div>
+            <div class="bus-label">AUDIO LEVEL METER (DBFS)</div>
+            <div class="audio-vu-rack">
+              <div class="vu-channel">
+                <div class="vu-bar-track"><div class="vu-bar-fill" id="vu-ql5-l" style="height:70%;"></div></div>
+                <span class="vu-label">QL5 L</span>
+              </div>
+              <div class="vu-channel">
+                <div class="vu-bar-track"><div class="vu-bar-fill" id="vu-ql5-r" style="height:72%;"></div></div>
+                <span class="vu-label">QL5 R</span>
+              </div>
+              <div class="vu-channel">
+                <div class="vu-bar-track"><div class="vu-bar-fill" id="vu-obs-l" style="height:65%;"></div></div>
+                <span class="vu-label">OBS L</span>
+              </div>
+              <div class="vu-channel">
+                <div class="vu-bar-track"><div class="vu-bar-fill" id="vu-obs-r" style="height:68%;"></div></div>
+                <span class="vu-label">OBS R</span>
+              </div>
             </div>
           </div>
         </div>
+      </div>
+    </section>
 
-        <div class="panel">
-          <div class="panel-header">
-            <div class="panel-title">
-              <span>📑 List Materi & Media Asset Checklist</span>
-            </div>
-            <span class="pill-badge violet">15 Cue Items</span>
+    <!-- 7. MASTER INVENTORY & PEMINJAMAN -->
+    <section class="landing-section" id="inventory">
+      <div class="section-header">
+        <div class="section-title-group">
+          <span class="section-tag">06 • Equipment Loan & Storage</span>
+          <h2 class="section-title">Master Inventory & Checklist Alat</h2>
+          <p class="section-subtitle">Log inventaris lintas pemilik (OWL, GIA, GKJ, UKK, Andreas, Kiel, Lio, Joel, Kezia, Jennifer, Darrel, Panitia) dengan auto-save di browser.</p>
+        </div>
+        <div style="display:flex; gap:0.5rem; flex-wrap:wrap;">
+          <button class="btn btn-tactical btn-sm" id="btn-check-all-inv">✅ Check All</button>
+          <button class="btn btn-tactical btn-sm" id="btn-reset-check-inv">🔄 Reset</button>
+          <button class="btn btn-tactical btn-sm" id="btn-export-inv-json">💾 Export JSON</button>
+          <button class="btn btn-tactical btn-sm" id="btn-print-inv">🖨️ Cetak Manifest</button>
+        </div>
+      </div>
+
+      <!-- Inventory Metrics Bar -->
+      <div class="kpi-grid" style="margin-bottom:1.5rem;">
+        <div class="kpi-card">
+          <div class="kpi-icon">📦</div>
+          <div>
+            <div class="kpi-value" id="inv-stat-total">0</div>
+            <div class="kpi-label">Total Unit Perlengkapan</div>
           </div>
-          <div class="panel-body" id="media-rundown-container">
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-icon" style="color:var(--accent-green);">✅</div>
+          <div>
+            <div class="kpi-value" id="inv-stat-checked" style="color:var(--accent-green);">0</div>
+            <div class="kpi-label">Terverifikasi di Lokasi</div>
+          </div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-icon" style="color:var(--accent-amber);">⏳</div>
+          <div>
+            <div class="kpi-value" id="inv-stat-remaining" style="color:var(--accent-amber);">0</div>
+            <div class="kpi-label">Belum Check-In / Standby</div>
+          </div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-icon" style="color:var(--accent-cyan);">📊</div>
+          <div>
+            <div class="kpi-value" id="inv-stat-percent">0%</div>
+            <div style="width:100%; background:var(--bg-surface-elevated); height:6px; border-radius:3px; margin-top:4px; overflow:hidden;">
+              <div id="inv-stat-progress-bar" style="height:100%; width:0%; background:var(--accent-green); transition:width 0.3s ease;"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="panel">
+        <div class="panel-body">
+          <div class="inventory-toolbar">
+            <div class="search-input-group">
+              <span class="search-icon">🔍</span>
+              <input type="text" id="inventory-search-input" class="search-input" placeholder="Cari nama alat, pemilik, kabel, adaptor..." />
+            </div>
+            <div style="display:flex; gap:0.75rem; flex-wrap:wrap;">
+              <select id="category-filter-select" class="search-input" style="width:auto; padding-left:1rem; cursor:pointer;">
+                <!-- Injected via JS -->
+              </select>
+              <select id="status-filter-select" class="search-input" style="width:auto; padding-left:1rem; cursor:pointer;">
+                <option value="all">Semua Status</option>
+                <option value="Verified">Verified ✅</option>
+                <option value="Checked">Checked ☑️</option>
+                <option value="Warning">Warning ⚠️</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="filter-chips-row" id="provider-filter-chips" style="margin-bottom: 1.25rem;">
             <!-- Injected via JS -->
           </div>
-        </div>
-      </section>
 
-      <!-- TAB 6: PRODUCTION TOOLS -->
-      <section class="tab-pane" id="tab-tools">
-        <div class="tools-grid">
-          
-          <!-- Test Pattern Generator -->
-          <div class="panel">
-            <div class="panel-header">
-              <div class="panel-title">
-                <span>🎨 Stage LED & Display Calibration Pattern</span>
-              </div>
-              <button class="btn btn-tactical btn-sm" id="btn-pattern-fullscreen">⛶ Fullscreen</button>
-            </div>
-            <div class="panel-body">
-              <div class="filter-chips-row" style="margin-bottom:1rem;">
-                <button class="chip active" data-pattern="smpte">SMPTE Color Bars</button>
-                <button class="chip" data-pattern="grid">16:9 Safe Area Grid</button>
-                <button class="chip" data-pattern="white">Solid White (100%)</button>
-                <button class="chip" data-pattern="black">Solid Black (0%)</button>
-              </div>
-              <canvas id="test-pattern-canvas" width="640" height="360" class="test-pattern-canvas"></canvas>
-              <div style="margin-top:0.75rem; font-size:0.8rem; color:var(--text-muted);">
-                Gunakan mode Fullscreen untuk mengirimkan gambar kalibrasi langsung ke TV Multiview, ProPresenter 1, atau LED Processor NovaStar.
-              </div>
-            </div>
-          </div>
-
-          <!-- Web Audio Tone Generator -->
-          <div class="panel">
-            <div class="panel-header">
-              <div class="panel-title">
-                <span>🔊 Audio Calibration Tone Generator</span>
-              </div>
-              <span class="pill-badge green">Web Audio API</span>
-            </div>
-            <div class="panel-body">
-              <div style="margin-bottom:1.25rem;">
-                <label style="font-size:0.85rem; color:var(--text-secondary); display:block; margin-bottom:0.4rem;">Pilih Frekuensi Kalibrasi:</label>
-                <select id="tone-freq-select" class="search-input">
-                  <option value="1000">1 kHz Sine Wave (Standard EBU Broadcast Reference)</option>
-                  <option value="440">440 Hz Concert Pitch A4</option>
-                  <option value="100">100 Hz Subwoofer & Low-end Check</option>
-                  <option value="10000">10 kHz High Frequency Sparkle Check</option>
-                </select>
-              </div>
-
-              <div style="margin-bottom:1.5rem;">
-                <label style="font-size:0.85rem; color:var(--text-secondary); display:block; margin-bottom:0.4rem;">Volume Output Level:</label>
-                <input type="range" id="tone-vol-slider" min="0" max="0.5" step="0.01" value="0.15" style="width:100%; accent-color:var(--accent-cyan);" />
-              </div>
-
-              <button class="btn btn-primary" id="btn-play-tone" style="width:100%; height:46px;">
-                🔊 Nyalakan Test Tone
-              </button>
-
-              <div style="margin-top:1.25rem; font-size:0.8rem; color:var(--text-muted); background:var(--bg-surface-raised); padding:0.75rem; border-radius:var(--radius-sm);">
-                <strong>Target Kalibrasi:</strong> 1kHz @ -18 dBFS pada OBS Studio audio meter dan Yamaha QL5 digital input channel.
-              </div>
-            </div>
-          </div>
-
-        </div>
-
-        <!-- Field Notes -->
-        <div class="panel" style="margin-top:1.5rem;">
-          <div class="panel-header">
-            <div class="panel-title">
-              <span>📝 Catatan Lapangan & Live Log Crew</span>
-            </div>
-            <button class="btn btn-tactical btn-sm" id="btn-clear-notes">🗑️ Clear</button>
-          </div>
-          <div class="panel-body">
-            <textarea id="field-notes-textarea" class="search-input" rows="6" placeholder="Tulis catatan teknis, kendala kabel, feedback audio FOH, atau nomor kontak cadangan di sini (otomatis tersimpan secara lokal)..." style="resize:vertical; font-family:var(--font-mono);"></textarea>
+          <div class="table-responsive">
+            <table class="tactical-table">
+              <thead>
+                <tr>
+                  <th style="width:45px; text-align:center;">Check</th>
+                  <th style="width:40px;">No</th>
+                  <th>Nama Perlengkapan & Keterangan</th>
+                  <th>Qty</th>
+                  <th>Pemilik / Provider</th>
+                  <th>Kategori</th>
+                  <th>Status</th>
+                </tr>
+              </thead>
+              <tbody id="inventory-table-body">
+                <!-- Injected via JS -->
+              </tbody>
+            </table>
           </div>
         </div>
-      </section>
+      </div>
+    </section>
 
-      <!-- TAB 7: SOP & FAIL-SAFE CONTINGENCY -->
-      <section class="tab-pane" id="tab-sop">
-        <div id="sop-container">
+    <!-- 8. RUNDOWN & MEDIA ASSET CHECKLIST -->
+    <section class="landing-section" id="rundown">
+      <div class="section-header">
+        <div class="section-title-group">
+          <span class="section-tag">07 • Event Execution</span>
+          <h2 class="section-title">Rundown & Media Asset Checklist</h2>
+          <p class="section-subtitle">Daftar putar video loop, sambutan, materi lirik, PPT firman, dan QRIS persembahan.</p>
+        </div>
+        <span class="pill-badge violet">15 Cues</span>
+      </div>
+
+      <!-- Stage Timekeeper Stopwatch Widget -->
+      <div class="panel" style="background:linear-gradient(135deg, #090e1a, #111a2e); border-color:var(--border-highlight); margin-bottom:1.5rem;">
+        <div class="panel-header">
+          <div class="panel-title">
+            <span>⏱️ Stage Timekeeper & Event Stopwatch (Darrel)</span>
+          </div>
+          <div style="display:flex; gap:0.5rem;">
+            <button class="btn btn-primary btn-sm" id="btn-sw-start">▶️ Start</button>
+            <button class="btn btn-tactical btn-sm" id="btn-sw-pause">⏸️ Pause</button>
+            <button class="btn btn-tactical btn-sm" id="btn-sw-reset">🔄 Reset</button>
+          </div>
+        </div>
+        <div class="panel-body" style="display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:1rem;">
+          <div>
+            <div style="font-size:0.85rem; color:var(--text-secondary);">Stage Clock Display:</div>
+            <div id="stopwatch-display" style="font-family:var(--font-mono); font-size:3.2rem; font-weight:800; color:var(--accent-cyan); line-height:1;">
+              00:00
+            </div>
+          </div>
+          <div style="max-width:550px; font-size:0.85rem; color:var(--text-secondary);">
+            <strong>Panduan Timekeeper:</strong> Waktu khotbah standar dialokasikan 40–45 menit. Berikan peringatan visual kuning saat waktu tersisa 5 menit.
+          </div>
+        </div>
+      </div>
+
+      <div class="panel">
+        <div class="panel-body" id="media-rundown-container">
           <!-- Injected via JS -->
         </div>
-      </section>
+      </div>
+    </section>
 
-    </main>
+    <!-- 9. PRODUCTION CALIBRATION TOOLS -->
+    <section class="landing-section" id="tools">
+      <div class="section-header">
+        <div class="section-title-group">
+          <span class="section-tag">08 • Engineering Utilities</span>
+          <h2 class="section-title">Alat Kalibrasi Layar & Audio Panggung</h2>
+          <p class="section-subtitle">SMPTE Test pattern, safe area 16:9 grid, generator gelombang sinus 1 kHz, dan catatan lapangan.</p>
+        </div>
+      </div>
+
+      <div class="tools-grid">
+        <!-- Display Pattern -->
+        <div class="panel">
+          <div class="panel-header">
+            <div class="panel-title">
+              <span>🎨 Display & LED Test Pattern</span>
+            </div>
+            <button class="btn btn-tactical btn-sm" id="btn-pattern-fullscreen">⛶ Fullscreen</button>
+          </div>
+          <div class="panel-body">
+            <div class="filter-chips-row" style="margin-bottom:1rem;">
+              <button class="chip active" data-pattern="smpte">SMPTE Color Bars</button>
+              <button class="chip" data-pattern="grid">16:9 Safe Area Grid</button>
+              <button class="chip" data-pattern="white">Solid White (100%)</button>
+              <button class="chip" data-pattern="black">Solid Black (0%)</button>
+            </div>
+            <canvas id="test-pattern-canvas" width="640" height="360" class="test-pattern-canvas"></canvas>
+          </div>
+        </div>
+
+        <!-- Audio Tone Gen -->
+        <div class="panel">
+          <div class="panel-header">
+            <div class="panel-title">
+              <span>🔊 Web Audio 1 kHz Tone Generator</span>
+            </div>
+            <span class="pill-badge green">Web Audio API</span>
+          </div>
+          <div class="panel-body">
+            <div style="margin-bottom:1.25rem;">
+              <label style="font-size:0.85rem; color:var(--text-secondary); display:block; margin-bottom:0.4rem;">Pilih Frekuensi Kalibrasi:</label>
+              <select id="tone-freq-select" class="search-input">
+                <option value="1000">1 kHz Sine Wave (Standard EBU Reference -18dBFS)</option>
+                <option value="440">440 Hz Concert Pitch A4</option>
+                <option value="100">100 Hz Subwoofer & Bass Check</option>
+                <option value="10000">10 kHz High Freq Check</option>
+              </select>
+            </div>
+
+            <div style="margin-bottom:1.5rem;">
+              <label style="font-size:0.85rem; color:var(--text-secondary); display:block; margin-bottom:0.4rem;">Volume Output Gain:</label>
+              <input type="range" id="tone-vol-slider" min="0" max="0.5" step="0.01" value="0.15" style="width:100%; accent-color:var(--accent-cyan);" />
+            </div>
+
+            <button class="btn btn-primary" id="btn-play-tone" style="width:100%; height:46px;">
+              🔊 Nyalakan Test Tone
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Field Notes -->
+      <div class="panel" style="margin-top:1.5rem;">
+        <div class="panel-header">
+          <div class="panel-title">
+            <span>📝 Catatan Lapangan & Log Kru (Auto-Saved)</span>
+          </div>
+          <button class="btn btn-tactical btn-sm" id="btn-clear-notes">🗑️ Clear</button>
+        </div>
+        <div class="panel-body">
+          <textarea id="field-notes-textarea" class="search-input" rows="5" placeholder="Tulis catatan kendala teknis, feedback audio, atau nomor kontak cadangan di sini (otomatis tersimpan di HP/browser)..." style="resize:vertical; font-family:var(--font-mono);"></textarea>
+        </div>
+      </div>
+    </section>
+
+    <!-- 10. SOP & FAIL-SAFE CONTINGENCY -->
+    <section class="landing-section" id="sop">
+      <div class="section-header">
+        <div class="section-title-group">
+          <span class="section-tag">09 • Safety & Fail-Safe</span>
+          <h2 class="section-title">Standar Operasional & Prosedur Darurat</h2>
+          <p class="section-subtitle">Protokol pra-acara H-3 jam, pedoman operator kamera, dan tindakan penanganan kegagalan teknis.</p>
+        </div>
+      </div>
+
+      <div id="sop-container">
+        <!-- Injected via JS -->
+      </div>
+    </section>
+
+  </div>
+
+  <!-- Mobile Bottom Quick Navigation Dock -->
+  <div class="mobile-bottom-dock">
+    <a href="#hero" class="dock-item">
+      <span class="dock-icon">🏠</span>
+      <span>Home</span>
+    </a>
+    <a href="#cameras" class="dock-item">
+      <span class="dock-icon">🎥</span>
+      <span>Kamera</span>
+    </a>
+    <a href="#routing" class="dock-item">
+      <span class="dock-icon">📡</span>
+      <span>Routing</span>
+    </a>
+    <a href="#switcher" class="dock-item">
+      <span class="dock-icon">🎛️</span>
+      <span>Switcher</span>
+    </a>
+    <a href="#inventory" class="dock-item">
+      <span class="dock-icon">📦</span>
+      <span>Alat</span>
+    </a>
+    <a href="#rundown" class="dock-item">
+      <span class="dock-icon">📑</span>
+      <span>Materi</span>
+    </a>
   </div>
 
   <!-- FULLSCREEN CREW PRESENTATION DECK MODAL -->
@@ -612,13 +683,13 @@
       <!-- Slide 1: Title -->
       <div class="pres-slide active">
         <span class="pill-badge cyan">OFFICIAL TECHNICAL BRIEFING</span>
-        <h1 style="font-size:3rem; margin:1rem 0 0.5rem; line-height:1.15;">
+        <h1 style="font-size:2.8rem; margin:1rem 0 0.5rem; line-height:1.15;">
           Ibadah Perdana UKK UNNES 2026
         </h1>
         <h3 style="color:var(--accent-cyan); font-weight:500; margin-bottom:1.5rem;">
           Production, Multi-Camera Broadcast & Media Engineering Architecture
         </h3>
-        <div style="display:grid; grid-template-columns:repeat(3, 1fr); gap:1.5rem; margin-top:2rem;">
+        <div style="display:grid; grid-template-columns:repeat(3, 1fr); gap:1.25rem; margin-top:1.5rem;">
           <div class="kpi-card">
             <div class="kpi-icon">📍</div>
             <div>

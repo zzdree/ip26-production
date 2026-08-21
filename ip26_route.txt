@@ -1,5 +1,5 @@
 Broadcast Camera Routing
-- CAM 1 - Sony ZVE10 + Lens 18-105MM + Battery + Memory Card 64GB + Tripod Camera Big + HDMI to Micro HDMI Converter + HDMI Cable 20M + HDMI Splitter 4CH + Power Adaptor SPL + Terminal Cable XCH + HDMI Cable 30M + Cinetreak Cinelive V1 + Power Adaptor MIX (Alex) ✅
+- CAM 1 - Sony ZVE10 + Lens 18-105MM + Battery + Memory Card 64GB + Tripod Camera Big + HDMI to Micro HDMI Cable 30CM + Hollyland Pyro S Transmitter + Hollyland Pyro S Receiver + Stand Lighting Small + HDMI Cable 1,5M + Cinetreak Cinelive V1 + Power Adaptor MIX (Alex) ✅
 - CAM 2 - Sony ZV-E10 + Lens 18-105MM + Battery + Memory Card 32GB + HDMI to Micro HDMI Cable 30CM + Hollyland Pyro H Transmitter + Hollyland Pyro H Receiver + Stand Lighting Small + HDMI Cable 1,5M + Cinetreak Cinelive V1 + Power Adaptor MIX (Kiel 1) ✅
 - CAM 3 - Sony A6000 + Lens 18-105MM + Battery + Memory Card 32GB + Tripod Camera Big + Micro HDMI to HDMI Converter + HDMI Cable 10M + Cinetreak Cinelive V1 + Power Adaptor MIX (Dewi) ✅
 - CAM 4 - Sony A6000 + Lens 16-50MM + Battery + Memory Card 32GB + Tripod Camera Big + Micro HDMI to HDMI Converter + HDMI Cable 10M + Cinetreak Cinelive V1 + Power Adaptor MIX (Nathania) ✅
@@ -13,8 +13,8 @@ TERPISAH DARI BOROADCAST SYSTEM
 Broadcast System Routing
 ! Electrical Routing (Andreas x UKK x Panitia) ✅
 - Terminal Cable XCH + Terminal Cable XCH + Terminal Cable XCH
-! Switcher + Television - (OWL x Kezia/Jennifer) ✅
-- Terminal Cable XCH + Cinetreak Cinelive V1 + Power Adaptor MIX + HDMI to HDMI Cable 1M + Television (Kezia/Jennifer) + Power Adaptor TV
+! Switcher + Television - (OWL x Kezia) ✅
+- Terminal Cable XCH + Cinetreak Cinelive V1 + Power Adaptor MIX + HDMI to HDMI Cable 1M + Television (Kezia) + Power Adaptor TV
 ! Switcher + Splitter (OWL x UKK) ✅
 - Terminal Cable XCH + Cinetreak Cinelive V1 + Power Adaptor MIX + HDMI Splitter 4CH + Power Adaptor SPL
 ! Switcher + OBS - (OWL x Andreas x OBS) ✅

@@ -1,5 +1,6 @@
 /**
- * IP26 Production - Master Application Controller & Router
+ * IP26 Production - Master Application Controller & ScrollSpy Router
+ * Seamless Single-Page Landing Experience
  */
 
 import { EVENT_METADATA, CREW_ROLES, MASTER_INVENTORY, ROUTING_PIPELINES, MEDIA_ASSET_CHECKLIST, SOP_AND_CONTINGENCIES } from './app-data.js';
@@ -11,7 +12,6 @@ import { ProductionTools } from './production-tools.js';
 
 class AppController {
   constructor() {
-    this.currentTab = 'overview';
     this.simulator = new RoutingSimulator();
     this.inventory = new InventoryManager();
     this.mediaRundown = new MediaRundownHub();
@@ -20,7 +20,7 @@ class AppController {
   }
 
   init() {
-    this.initNavigation();
+    this.initScrollSpy();
     this.initSopSection();
     
     // Subsystem initializations
@@ -30,38 +30,48 @@ class AppController {
     this.presentation.init();
     this.tools.init();
 
-    // Register PWA Service Worker if available
+    // Register PWA Service Worker
     if ('serviceWorker' in navigator) {
       navigator.serviceWorker.register('./sw.js').catch(err => {
-        console.log('SW registration skipped or error:', err);
+        console.log('SW registration skipped:', err);
       });
     }
 
-    console.log('🎬 IP26 Production Blueprint Command Center Initialized.');
+    console.log('🎬 IP26 Seamless Landing Page Initialized.');
   }
 
-  initNavigation() {
-    const navLinks = document.querySelectorAll('.nav-link[data-tab]');
-    const tabPanes = document.querySelectorAll('.tab-pane');
+  initScrollSpy() {
+    const sections = document.querySelectorAll('.landing-section');
+    const navLinks = document.querySelectorAll('.hud-nav-link');
+    const dockItems = document.querySelectorAll('.dock-item');
 
-    navLinks.forEach(link => {
-      link.addEventListener('click', (e) => {
-        e.preventDefault();
-        const targetTab = link.dataset.tab;
+    const observerOptions = {
+      root: null,
+      rootMargin: '-20% 0px -70% 0px',
+      threshold: 0
+    };
 
-        // Update nav active states
-        navLinks.forEach(nl => nl.classList.remove('active'));
-        link.classList.add('active');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const id = entry.target.getAttribute('id');
 
-        // Update tab panes
-        tabPanes.forEach(tp => {
-          tp.classList.toggle('active', tp.id === `tab-${targetTab}`);
-        });
+          // Highlight desktop nav links
+          navLinks.forEach(link => {
+            const href = link.getAttribute('href');
+            link.classList.toggle('active', href === `#${id}`);
+          });
 
-        this.currentTab = targetTab;
-        window.scrollTo({ top: 0, behavior: 'smooth' });
+          // Highlight mobile dock items
+          dockItems.forEach(item => {
+            const href = item.getAttribute('href');
+            item.classList.toggle('active', href === `#${id}`);
+          });
+        }
       });
-    });
+    }, observerOptions);
+
+    sections.forEach(section => observer.observe(section));
   }
 
   initSopSection() {

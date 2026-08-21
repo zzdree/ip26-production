@@ -6,7 +6,7 @@ Production : Panitia Ibadah Perdana 2026
 
 *Broadcast System*
 
-- CAM 1 - Sony ZVE10 + Lens 18-105MM + Battery + Memory Card 64GB + Tripod Camera Big + HDMI to Micro HDMI Converter + HDMI Cable 20M + HDMI Splitter 4CH + Power Adaptor SPL + Terminal Cable XCH + HDMI Cable 30M + Cinetreak Cinelive V1 + Power Adaptor MIX (Alex) ✅
+- CAM 1 - Sony ZVE10 + Lens 18-105MM + Battery + Memory Card 64GB + Tripod Camera Big + HDMI to Micro HDMI Cable 30CM + Hollyland Pyro S Transmitter + Hollyland Pyro S Receiver + Stand Lighting Small + HDMI Cable 1,5M + Cinetreak Cinelive V1 + Power Adaptor MIX (Alex) ✅
 
 - CAM 2 - Sony ZV-E10 + Lens 18-105MM + Battery + Memory Card 32GB + HDMI to Micro HDMI Cable 30CM + Hollyland Pyro H Transmitter + Hollyland Pyro H Receiver + Stand Lighting Small + HDMI Cable 1,5M + Cinetreak Cinelive V1 + Power Adaptor MIX (Kiel 1) ✅
 
@@ -30,11 +30,11 @@ Production : Panitia Ibadah Perdana 2026
 - Power Adaptor MIX (1 Unit) ✅
 - Hollyland Pyro H (1 Pack) ✅
 - Power Adaptor WIR (1 Unit) ✅
+- Hollyland Pyro S (1 Pack) ✅
+- Power Adaptor WIR (1 Unit) ✅
 - Tripod Camera Big (1 Unit) ✅
 - HDMI to Micro HDMI Converter (2 Unit) ✅
-- HDMI to Micro HDMI Cable 30CM (1 Unit) ✅
-- HDMI Cable 30M (1 Unit) ✅
-- HDMI Cable 20M (1 Unit) ✅
+- HDMI to Micro HDMI Cable 30CM (2 Unit) ✅
 
 *Broadcast System - GIA*
 - Tripod Camera Big (1 Unit) ✅
@@ -42,12 +42,12 @@ Production : Panitia Ibadah Perdana 2026
 *Broadcast System - GKJ*
 - Stand Lighting Small (1 Unit) ✅
 - HDMI Cable 10M (1 Unit) ✅
-- HDMI Spitter 4CH (1 Unit) ✅
-- Power Adaptor SPL (1 Unit) ✅
 
 *Broadcast System - UKK*
+- Stand Lighting Small (1 Unit) ✅
 - Tripod Camera Big (1 Unit) ✅
 - HDMI Cable 10M (1 Unit) ✅
+- HDMI Cable 1,5M (1 Unit) ✅
 - Terminal Cable XCH (1 Unit) ✅
 
 *Broadcast System - Kiel*
@@ -98,8 +98,8 @@ TERPISAH DARI BOROADCAST SYSTEM
 ! Electrical Routing (Andreas x UKK x Panitia) ✅
 - Terminal Cable XCH + Terminal Cable XCH + Terminal Cable XCH
 
-! Switcher + Television - (OWL x Kezia/Jennifer) ✅
-- Terminal Cable XCH + Cinetreak Cinelive V1 + Power Adaptor MIX + HDMI to HDMI Cable 1M + Television (Kezia/Jennifer) + Power Adaptor TV
+! Switcher + Television - (OWL x Kezia) ✅
+- Terminal Cable XCH + Cinetreak Cinelive V1 + Power Adaptor MIX + HDMI to HDMI Cable 1M + Television (Kezia) + Power Adaptor TV
 
 ! Switcher + Splitter (OWL x UKK) ✅
 - Terminal Cable XCH + Cinetreak Cinelive V1 + Power Adaptor MIX + HDMI Splitter 4CH + Power Adaptor SPL
@@ -170,10 +170,6 @@ TERPISAH DARI BOROADCAST SYSTEM
 - Television (1 Unit) ✅
 - Power Adaptor TV (1 Pack) ✅
 
-*Engine System - Jennifer*
-- Television (1 Unit) ✅
-- Power Adaptor TV (1 Pack) ✅
-
 *Engine System - Panitia*
 - Terminal Cable XCH ✅
 
@@ -184,7 +180,7 @@ TERPISAH DARI BOROADCAST SYSTEM
 - Pro Presenter 1 - Laptop + Power Adaptor LTP () ✅
 - Pro Presenter 2 - Laptop + Power Adaptor LTP () ✅
 - Pro Presenter 3 + Television - Laptop X + Power Adaptor LTP + Television + Power Adaptor TV ( x Darrel)
-- Switcher + Television - Cinetreak Cinelive V1 + Power Adaptor MIX + Television + Power Adaptor TV (OWL x Kezia/Jennifer) ✅
+- Switcher + Television - Cinetreak Cinelive V1 + Power Adaptor MIX + Television + Power Adaptor TV (OWL x Kezia) ✅
 - OBS Studio - Laptop X + Power Adaptor LTP () ✅
 - Backup - Laptop + Power Adaptor LTP (Kiel 1)
 
