@@ -1,14 +1,15 @@
 # -*- coding: utf-8 -*-
 """
 IP26 Master Production & Broadcast Command Blueprint Generator
-Enhanced with strict, clean navigation separation:
+Optimized for Desktop and Mobile (Tested for Samsung Galaxy S24 FE, One UI, and modern viewports):
 1. Desktop (>= 961px):
    - Navigation is 100% ON TOP (Command Header with ScrollSpy active tracking)
-   - Bottom floating dock is HIDDEN on desktop for a clean, professional widescreen layout
+   - Bottom floating dock is HIDDEN on desktop for a clean widescreen layout
 2. Mobile & Tablet (<= 960px):
    - Top Header simplifies to compact Brand + Cloud Sync Pill + Tally Button + Hamburger Drawer [☰]
    - Navigation is 100% ON BOTTOM (Ergonomic Floating Thumb Dock) for one-handed mobile control
-   - Mobile Off-Canvas Drawer Modal for accessing all 9 sections and actions
+   - Dual-Mode Routing Simulator: Interactive Touch SVG + Mobile Rute Cepat Card List
+   - Big Touch Targets (>= 44px), Safe Area Inset support (punch-hole & gesture bar), Haptic Vibration
 """
 
 import os
@@ -22,6 +23,8 @@ def generate_index_html():
   <title>Ibadah Perdana UKK UNNES 2026 — Production & Broadcast Command</title>
   <meta name="description" content="Master Command Deck, Signal Routing Simulator, Realtime Cloud Inventory Sync, Live Switcher Simulator & Crew Briefing untuk Ibadah Perdana UKK UNNES 2026." />
   <meta name="theme-color" content="#111216" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
   <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220%200%20100%20100%22><text y=%22.9em%22 font-size=%2290%22>🎬</text></svg>">
   
   <!-- Google Fonts: Space Grotesk, Plus Jakarta Sans, JetBrains Mono -->
@@ -35,17 +38,17 @@ def generate_index_html():
 
   <style>
     /* ==========================================================================
-       IP26 PRODUCTION & BROADCAST BLUEPRINT — INDUSTRIAL TACTILE DARK THEME
+       IP26 PRODUCTION & BROADCAST BLUEPRINT — INDUSTRIAL DARK THEME & S24 FE MOBILE
        ========================================================================== */
     :root {
-      --bg-base: #111216;
-      --bg-midnight: #15161b;
-      --bg-surface: #1a1c22;
-      --bg-surface-raised: #21232b;
-      --bg-surface-elevated: #2a2c37;
-      --bg-glass: rgba(20, 22, 28, 0.94);
-      --bg-glass-card: rgba(26, 28, 36, 0.88);
-      --bg-glass-hover: rgba(36, 39, 49, 0.95);
+      --bg-base: #0f1014;
+      --bg-midnight: #13141a;
+      --bg-surface: #181a21;
+      --bg-surface-raised: #1f212a;
+      --bg-surface-elevated: #282a36;
+      --bg-glass: rgba(18, 20, 26, 0.94);
+      --bg-glass-card: rgba(24, 26, 34, 0.88);
+      --bg-glass-hover: rgba(34, 37, 48, 0.95);
 
       --accent-white: #ffffff;
       --accent-cyan: #06b6d4;
@@ -82,21 +85,42 @@ def generate_index_html():
       --shadow-card: 0 10px 30px -8px rgba(0, 0, 0, 0.6);
       --shadow-deep: 0 20px 50px -10px rgba(0, 0, 0, 0.85);
 
-      --header-height: 68px;
-      --dock-height: 60px;
+      --header-height: 64px;
+      --dock-height: 62px;
+      --safe-area-top: env(safe-area-inset-top, 0px);
       --safe-area-bottom: env(safe-area-inset-bottom, 0px);
-      --transition-smooth: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+      --safe-area-left: env(safe-area-inset-left, 0px);
+      --safe-area-right: env(safe-area-inset-right, 0px);
+      --transition-smooth: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
     }
 
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-tap-highlight-color: transparent;
+      touch-action: manipulation;
+    }
+
     html {
-      font-size: 15px; scroll-behavior: smooth; color-scheme: dark; -webkit-text-size-adjust: 100%;
+      font-size: 15px;
+      scroll-behavior: smooth;
+      color-scheme: dark;
+      -webkit-text-size-adjust: 100%;
       scroll-padding-top: calc(var(--header-height) + 1rem);
     }
+
     body {
-      font-family: var(--font-body); background-color: var(--bg-base); color: var(--text-primary);
-      line-height: 1.6; min-height: 100vh; overflow-x: hidden; position: relative;
+      font-family: var(--font-body);
+      background-color: var(--bg-base);
+      color: var(--text-primary);
+      line-height: 1.6;
+      min-height: 100vh;
+      overflow-x: hidden;
+      position: relative;
       padding-bottom: 2rem;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
       background-image:
         radial-gradient(circle at 10% 10%, rgba(255, 255, 255, 0.03) 0%, transparent 45%),
         radial-gradient(circle at 90% 30%, rgba(255, 255, 255, 0.02) 0%, transparent 45%),
@@ -111,61 +135,137 @@ def generate_index_html():
     ::-webkit-scrollbar-thumb { background: var(--bg-surface-elevated); border-radius: 9999px; border: 2px solid var(--bg-base); }
     ::-webkit-scrollbar-thumb:hover { background: var(--text-muted); }
 
-    h1, h2, h3, h4, h5, h6 { font-family: var(--font-display); font-weight: 700; letter-spacing: -0.03em; color: var(--text-pure); line-height: 1.2; }
+    h1, h2, h3, h4, h5, h6 {
+      font-family: var(--font-display);
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      color: var(--text-pure);
+      line-height: 1.2;
+    }
     .mono { font-family: var(--font-mono); }
 
     /* ==========================================================================
-       HEADER & NAVIGATION (DESKTOP)
+       COMMAND HEADER (TOP NAVIGATION ON DESKTOP)
        ========================================================================== */
     .command-header {
-      position: sticky; top: 0; z-index: 1000; height: var(--header-height);
-      background: var(--bg-glass); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
-      border-bottom: 1px solid var(--border-subtle); display: flex; align-items: center; justify-content: space-between;
-      padding: 0 1.25rem; transition: var(--transition-smooth);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      height: var(--header-height);
+      background: var(--bg-glass);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border-subtle);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: max(0.5rem, var(--safe-area-top)) max(1rem, var(--safe-area-right)) 0.5rem max(1rem, var(--safe-area-left));
+      transition: var(--transition-smooth);
     }
-    .brand-cluster { display: flex; align-items: center; gap: 0.75rem; text-decoration: none; min-width: 0; }
+    .brand-cluster {
+      display: flex;
+      align-items: center;
+      gap: 0.65rem;
+      text-decoration: none;
+      min-width: 0;
+    }
     .brand-logo-pill {
-      display: flex; align-items: center; justify-content: center; width: 40px; height: 40px;
-      border-radius: var(--radius-sm); background: linear-gradient(135deg, #27272a 0%, #18181b 100%);
-      border: 1px solid var(--border-medium); font-size: 1.2rem; flex-shrink: 0; box-shadow: var(--shadow-inset-top);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 38px;
+      height: 38px;
+      border-radius: var(--radius-sm);
+      background: linear-gradient(135deg, #27272a 0%, #18181b 100%);
+      border: 1px solid var(--border-medium);
+      font-size: 1.15rem;
+      flex-shrink: 0;
+      box-shadow: var(--shadow-inset-top);
     }
-    .brand-text-block { display: flex; flex-direction: column; min-width: 0; }
-    .brand-title { font-size: 1.05rem; font-weight: 800; color: var(--text-pure); letter-spacing: -0.02em; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-    .brand-subtitle { font-size: 0.72rem; color: var(--text-muted); font-family: var(--font-mono); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .brand-text-block {
+      display: flex;
+      flex-direction: column;
+      min-width: 0;
+    }
+    .brand-title {
+      font-size: 1rem;
+      font-weight: 800;
+      color: var(--text-pure);
+      letter-spacing: -0.02em;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .brand-subtitle {
+      font-size: 0.7rem;
+      color: var(--text-muted);
+      font-family: var(--font-mono);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
 
     /* Desktop Navigation Links */
     .header-nav { display: flex; align-items: center; gap: 0.25rem; }
     .nav-link {
-      padding: 0.45rem 0.75rem; font-size: 0.82rem; font-weight: 600; color: var(--text-secondary);
-      text-decoration: none; border-radius: var(--radius-xs); transition: var(--transition-smooth);
-      border: 1px solid transparent; white-space: nowrap;
+      padding: 0.45rem 0.75rem;
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: var(--text-secondary);
+      text-decoration: none;
+      border-radius: var(--radius-xs);
+      transition: var(--transition-smooth);
+      border: 1px solid transparent;
+      white-space: nowrap;
     }
     .nav-link:hover { color: var(--text-pure); background: var(--bg-surface-raised); border-color: var(--border-subtle); }
     .nav-link.active { color: var(--text-pure); background: var(--bg-surface-elevated); border-color: var(--border-medium); }
 
-    .header-actions { display: flex; align-items: center; gap: 0.5rem; }
+    .header-actions { display: flex; align-items: center; gap: 0.45rem; flex-shrink: 0; }
     
     .status-pill {
-      display: inline-flex; align-items: center; gap: 0.45rem; padding: 0.35rem 0.65rem;
-      border-radius: 9999px; font-size: 0.72rem; font-weight: 700; font-family: var(--font-mono);
-      background: rgba(16, 185, 129, 0.12); color: var(--accent-emerald); border: 1px solid rgba(16, 185, 129, 0.3);
-      cursor: pointer; transition: var(--transition-smooth); white-space: nowrap;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.35rem 0.6rem;
+      border-radius: 9999px;
+      font-size: 0.7rem;
+      font-weight: 700;
+      font-family: var(--font-mono);
+      background: rgba(16, 185, 129, 0.12);
+      color: var(--accent-emerald);
+      border: 1px solid rgba(16, 185, 129, 0.3);
+      cursor: pointer;
+      transition: var(--transition-smooth);
+      white-space: nowrap;
+      min-height: 34px;
     }
-    .status-pill:hover { transform: scale(1.03); background: rgba(16, 185, 129, 0.2); }
+    .status-pill:hover { transform: scale(1.02); background: rgba(16, 185, 129, 0.2); }
     .status-pill.offline { background: rgba(245, 158, 11, 0.12); color: var(--accent-amber); border-color: rgba(245, 158, 11, 0.3); }
     .status-pill.disconnected { background: rgba(239, 68, 68, 0.12); color: var(--accent-red); border-color: rgba(239, 68, 68, 0.3); }
     
     .status-dot { width: 7px; height: 7px; border-radius: 50%; background: currentColor; animation: pulse-dot 2s infinite; }
     @keyframes pulse-dot { 0%, 100% { opacity: 1; transform: scale(1); } 50% { opacity: 0.4; transform: scale(0.8); } }
 
+    /* Button System with Mobile Minimum Touch Targets */
     .btn {
-      display: inline-flex; align-items: center; justify-content: center; gap: 0.45rem;
-      padding: 0.5rem 0.9rem; border-radius: var(--radius-sm); font-size: 0.82rem; font-weight: 600;
-      cursor: pointer; transition: var(--transition-smooth); border: 1px solid transparent; text-decoration: none;
-      font-family: inherit; user-select: none; -webkit-tap-highlight-color: transparent;
-      min-height: 38px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.45rem;
+      padding: 0.5rem 0.9rem;
+      border-radius: var(--radius-sm);
+      font-size: 0.82rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: var(--transition-smooth);
+      border: 1px solid transparent;
+      text-decoration: none;
+      font-family: inherit;
+      user-select: none;
+      min-height: 40px;
     }
-    .btn:active { transform: scale(0.97); }
+    .btn:active { transform: scale(0.96); }
     .btn-primary { background: var(--text-pure); color: var(--bg-base); border-color: var(--text-pure); }
     .btn-primary:hover { background: #e5e7eb; transform: translateY(-1px); box-shadow: 0 4px 12px rgba(255, 255, 255, 0.2); }
     .btn-secondary { background: var(--bg-surface-raised); color: var(--text-primary); border-color: var(--border-medium); }
@@ -176,150 +276,295 @@ def generate_index_html():
     .btn-emerald:hover { background: rgba(16, 185, 129, 0.25); }
     .btn-red { background: rgba(239, 68, 68, 0.15); color: #f87171; border-color: rgba(239, 68, 68, 0.3); }
     .btn-red:hover { background: rgba(239, 68, 68, 0.25); }
-    .btn-sm { padding: 0.35rem 0.65rem; font-size: 0.75rem; min-height: 32px; border-radius: var(--radius-xs); }
-    .btn-icon { width: 38px; height: 38px; padding: 0; border-radius: var(--radius-sm); font-size: 1.1rem; }
+    .btn-sm { padding: 0.35rem 0.65rem; font-size: 0.75rem; min-height: 36px; border-radius: var(--radius-xs); }
+    .btn-icon { width: 40px; height: 40px; padding: 0; border-radius: var(--radius-sm); font-size: 1.15rem; }
 
     /* Layout Containers */
-    .app-container { max-width: 1440px; margin: 0 auto; padding: 1.25rem; display: flex; flex-direction: column; gap: 2rem; }
+    .app-container {
+      max-width: 1440px;
+      margin: 0 auto;
+      padding: 1.25rem;
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+    }
     
     /* Section Headers */
     .section-head {
-      display: flex; align-items: flex-end; justify-content: space-between; flex-wrap: wrap; gap: 1rem;
-      padding-bottom: 0.75rem; border-bottom: 1px solid var(--border-subtle); margin-bottom: 1.25rem;
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      padding-bottom: 0.75rem;
+      border-bottom: 1px solid var(--border-subtle);
+      margin-bottom: 1.25rem;
     }
-    .section-title-wrap { display: flex; flex-direction: column; gap: 0.25rem; }
+    .section-title-wrap { display: flex; flex-direction: column; gap: 0.25rem; min-width: 0; }
     .section-badge {
-      display: inline-flex; align-items: center; gap: 0.35rem; font-size: 0.7rem; font-weight: 700;
-      text-transform: uppercase; letter-spacing: 0.08em; color: var(--text-muted); font-family: var(--font-mono);
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      font-size: 0.7rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--text-muted);
+      font-family: var(--font-mono);
     }
-    .section-heading { font-size: clamp(1.25rem, 3vw, 1.6rem); font-weight: 700; color: var(--text-pure); }
+    .section-heading { font-size: clamp(1.2rem, 3vw, 1.6rem); font-weight: 700; color: var(--text-pure); }
     .section-actions { display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap; }
 
     /* Cards */
     .card {
-      background: var(--bg-glass-card); border: 1px solid var(--border-subtle); border-radius: var(--radius-md);
-      padding: 1.25rem; box-shadow: var(--shadow-card); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
-      position: relative; overflow: hidden; transition: var(--transition-smooth);
+      background: var(--bg-glass-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      padding: 1.25rem;
+      box-shadow: var(--shadow-card);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      position: relative;
+      overflow: hidden;
+      transition: var(--transition-smooth);
     }
     .card:hover { border-color: var(--border-medium); }
 
     /* Hero / Status Banner */
     .hero-banner {
-      display: grid; grid-template-columns: 1.5fr 1fr; gap: 1.25rem;
+      display: grid;
+      grid-template-columns: 1.5fr 1fr;
+      gap: 1.25rem;
       background: linear-gradient(145deg, #181920 0%, #121318 100%);
-      border: 1px solid var(--border-medium); border-radius: var(--radius-lg); padding: clamp(1.25rem, 3vw, 1.75rem);
+      border: 1px solid var(--border-medium);
+      border-radius: var(--radius-lg);
+      padding: clamp(1.15rem, 3vw, 1.75rem);
       box-shadow: var(--shadow-deep);
     }
-    .hero-content { display: flex; flex-direction: column; justify-content: center; gap: 0.75rem; }
+    .hero-content { display: flex; flex-direction: column; justify-content: center; gap: 0.65rem; }
     .hero-tag {
-      display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.25rem 0.65rem; border-radius: 9999px;
-      font-size: 0.72rem; font-weight: 700; font-family: var(--font-mono); background: rgba(255, 255, 255, 0.08);
-      color: var(--text-secondary); width: fit-content;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      padding: 0.25rem 0.65rem;
+      border-radius: 9999px;
+      font-size: 0.7rem;
+      font-weight: 700;
+      font-family: var(--font-mono);
+      background: rgba(255, 255, 255, 0.08);
+      color: var(--text-secondary);
+      width: fit-content;
     }
-    .hero-title { font-size: clamp(1.5rem, 4vw, 2.2rem); font-weight: 800; letter-spacing: -0.04em; color: var(--text-pure); }
-    .hero-meta { display: flex; flex-wrap: wrap; gap: 1rem; margin-top: 0.25rem; }
-    .meta-item { display: flex; align-items: center; gap: 0.4rem; font-size: 0.82rem; color: var(--text-secondary); }
-    .meta-icon { color: var(--text-muted); font-size: 0.95rem; }
+    .hero-title { font-size: clamp(1.4rem, 4vw, 2.2rem); font-weight: 800; letter-spacing: -0.04em; color: var(--text-pure); }
+    .hero-meta { display: flex; flex-wrap: wrap; gap: 0.75rem; margin-top: 0.25rem; }
+    .meta-item { display: flex; align-items: center; gap: 0.35rem; font-size: 0.8rem; color: var(--text-secondary); }
+    .meta-icon { color: var(--text-muted); font-size: 0.9rem; }
 
-    .telemetry-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 0.75rem; }
+    .telemetry-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 0.65rem; }
     .telemetry-card {
-      background: var(--bg-surface); border: 1px solid var(--border-subtle); border-radius: var(--radius-sm);
-      padding: 0.85rem; display: flex; flex-direction: column; gap: 0.25rem; transition: var(--transition-smooth);
+      background: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-sm);
+      padding: 0.75rem 0.85rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.2rem;
+      transition: var(--transition-smooth);
     }
     .telemetry-card:hover { border-color: var(--border-strong); transform: translateY(-2px); }
-    .telemetry-label { font-size: 0.68rem; font-weight: 700; text-transform: uppercase; color: var(--text-muted); font-family: var(--font-mono); }
-    .telemetry-val { font-size: clamp(1.1rem, 2.5vw, 1.35rem); font-weight: 800; color: var(--text-pure); font-family: var(--font-display); }
-    .telemetry-sub { font-size: 0.72rem; color: var(--text-secondary); }
+    .telemetry-label { font-size: 0.66rem; font-weight: 700; text-transform: uppercase; color: var(--text-muted); font-family: var(--font-mono); }
+    .telemetry-val { font-size: clamp(1.05rem, 2.5vw, 1.35rem); font-weight: 800; color: var(--text-pure); font-family: var(--font-display); }
+    .telemetry-sub { font-size: 0.7rem; color: var(--text-secondary); }
 
-    /* Interactive Live Sync Bar in Inventory */
+    /* Interactive Live Sync Ribbon in Inventory */
     .sync-ribbon {
-      display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 0.75rem;
-      padding: 0.85rem 1.25rem; background: linear-gradient(90deg, rgba(16, 185, 129, 0.08) 0%, rgba(6, 182, 212, 0.05) 100%);
-      border: 1px solid rgba(16, 185, 129, 0.25); border-radius: var(--radius-sm); margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      padding: 0.85rem 1.15rem;
+      background: linear-gradient(90deg, rgba(16, 185, 129, 0.08) 0%, rgba(6, 182, 212, 0.05) 100%);
+      border: 1px solid rgba(16, 185, 129, 0.25);
+      border-radius: var(--radius-sm);
+      margin-bottom: 1rem;
     }
     .sync-info { display: flex; align-items: center; gap: 0.75rem; min-width: 0; }
     .sync-title { font-size: 0.85rem; font-weight: 700; color: var(--text-pure); }
-    .sync-sub { font-size: 0.75rem; color: var(--text-secondary); font-family: var(--font-mono); }
-    .sync-actions { display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap; }
+    .sync-sub { font-size: 0.72rem; color: var(--text-secondary); font-family: var(--font-mono); }
+    .sync-actions { display: flex; align-items: center; gap: 0.45rem; flex-wrap: wrap; }
 
-    /* Toast Notification for Incoming Sync */
+    /* Toast Notification */
     .toast-container {
-      position: fixed; bottom: 2rem; right: 1.25rem; z-index: 2000;
-      display: flex; flex-direction: column; gap: 0.5rem; pointer-events: none; max-width: calc(100vw - 2.5rem);
+      position: fixed;
+      bottom: 2rem;
+      right: 1.25rem;
+      z-index: 2000;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      pointer-events: none;
+      max-width: calc(100vw - 2.5rem);
     }
     .toast {
-      background: var(--bg-surface-elevated); border: 1px solid var(--border-strong);
-      padding: 0.75rem 1rem; border-radius: var(--radius-sm); font-size: 0.82rem; color: var(--text-pure);
-      box-shadow: var(--shadow-deep); display: flex; align-items: center; gap: 0.6rem;
-      animation: slide-in-toast 0.25s cubic-bezier(0.16, 1, 0.3, 1); pointer-events: auto;
+      background: var(--bg-surface-elevated);
+      border: 1px solid var(--border-strong);
+      padding: 0.75rem 1rem;
+      border-radius: var(--radius-sm);
+      font-size: 0.82rem;
+      color: var(--text-pure);
+      box-shadow: var(--shadow-deep);
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      animation: slide-in-toast 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+      pointer-events: auto;
     }
     @keyframes slide-in-toast { from { transform: translateY(100%); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
 
     /* Camera Section */
-    .cameras-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1rem; }
+    .cameras-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 0.85rem; }
     .cam-card {
-      background: var(--bg-surface); border: 1px solid var(--border-subtle); border-radius: var(--radius-md);
-      padding: 1.15rem; display: flex; flex-direction: column; gap: 0.75rem; position: relative;
+      background: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      padding: 1rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.65rem;
+      position: relative;
     }
     .cam-header { display: flex; align-items: center; justify-content: space-between; gap: 0.5rem; }
     .cam-id-pill {
-      font-size: 0.75rem; font-weight: 800; font-family: var(--font-mono); padding: 0.2rem 0.6rem;
-      border-radius: var(--radius-xs); background: var(--bg-surface-elevated); color: var(--text-pure);
+      font-size: 0.75rem;
+      font-weight: 800;
+      font-family: var(--font-mono);
+      padding: 0.2rem 0.6rem;
+      border-radius: var(--radius-xs);
+      background: var(--bg-surface-elevated);
+      color: var(--text-pure);
       border: 1px solid var(--border-medium);
     }
-    .cam-role-badge { font-size: 0.75rem; color: var(--accent-cyan); font-weight: 600; }
-    .cam-op-name { font-size: 1.1rem; font-weight: 700; color: var(--text-pure); }
-    .cam-specs-table { width: 100%; border-collapse: collapse; font-size: 0.78rem; margin: 0.25rem 0; }
+    .cam-role-badge { font-size: 0.72rem; color: var(--accent-cyan); font-weight: 600; }
+    .cam-op-name { font-size: 1.05rem; font-weight: 700; color: var(--text-pure); }
+    .cam-specs-table { width: 100%; border-collapse: collapse; font-size: 0.76rem; margin: 0.2rem 0; }
     .cam-specs-table td { padding: 0.3rem 0; border-bottom: 1px solid var(--border-subtle); }
-    .cam-specs-table td:first-child { color: var(--text-muted); font-family: var(--font-mono); width: 36%; }
+    .cam-specs-table td:first-child { color: var(--text-muted); font-family: var(--font-mono); width: 34%; }
     .cam-specs-table td:last-child { color: var(--text-primary); font-weight: 500; }
 
     /* Clean HDMI Sony Cheat Sheet */
     .cheat-sheet-box {
-      background: rgba(6, 182, 212, 0.05); border: 1px solid rgba(6, 182, 212, 0.2);
-      border-radius: var(--radius-md); padding: 1.25rem; margin-top: 1rem;
+      background: rgba(6, 182, 212, 0.05);
+      border: 1px solid rgba(6, 182, 212, 0.2);
+      border-radius: var(--radius-md);
+      padding: 1.15rem;
+      margin-top: 1rem;
     }
-    .cheat-sheet-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 0.85rem; margin-top: 0.75rem; }
+    .cheat-sheet-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 0.75rem; margin-top: 0.75rem; }
     .cheat-item { background: var(--bg-surface); padding: 0.75rem; border-radius: var(--radius-xs); border: 1px solid var(--border-subtle); }
-    .cheat-item-title { font-size: 0.75rem; font-weight: 700; color: var(--accent-cyan); font-family: var(--font-mono); margin-bottom: 0.2rem; }
-    .cheat-item-desc { font-size: 0.78rem; color: var(--text-primary); }
+    .cheat-item-title { font-size: 0.72rem; font-weight: 700; color: var(--accent-cyan); font-family: var(--font-mono); margin-bottom: 0.2rem; }
+    .cheat-item-desc { font-size: 0.76rem; color: var(--text-primary); }
 
     /* WIRING & SIGNAL ROUTING SIMULATOR */
     .sim-control-bar {
-      display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 0.75rem;
-      padding: 0.85rem 1rem; background: var(--bg-surface-raised); border: 1px solid var(--border-medium);
-      border-radius: var(--radius-md) var(--radius-md) 0 0; border-bottom: none;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 0.65rem;
+      padding: 0.75rem 1rem;
+      background: var(--bg-surface-raised);
+      border: 1px solid var(--border-medium);
+      border-radius: var(--radius-md) var(--radius-md) 0 0;
+      border-bottom: none;
     }
-    .sim-tabs { display: flex; gap: 0.35rem; flex-wrap: wrap; }
+    .sim-tabs-track {
+      display: flex;
+      gap: 0.35rem;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+      max-width: 100%;
+      padding-bottom: 2px;
+    }
+    .sim-tabs-track::-webkit-scrollbar { display: none; }
     .sim-tab-btn {
-      padding: 0.4rem 0.65rem; font-size: 0.75rem; font-weight: 600; border-radius: var(--radius-xs);
-      background: var(--bg-surface); color: var(--text-secondary); border: 1px solid var(--border-subtle);
-      cursor: pointer; transition: var(--transition-smooth); min-height: 34px;
+      padding: 0.35rem 0.65rem;
+      font-size: 0.72rem;
+      font-weight: 600;
+      border-radius: var(--radius-xs);
+      background: var(--bg-surface);
+      color: var(--text-secondary);
+      border: 1px solid var(--border-subtle);
+      cursor: pointer;
+      transition: var(--transition-smooth);
+      white-space: nowrap;
+      min-height: 36px;
     }
     .sim-tab-btn:hover { color: var(--text-pure); background: var(--bg-surface-elevated); }
     .sim-tab-btn.active { background: var(--text-pure); color: var(--bg-base); border-color: var(--text-pure); }
 
-    .sim-cut-deck { display: flex; align-items: center; gap: 0.35rem; flex-wrap: wrap; }
+    .sim-cut-deck { display: flex; align-items: center; gap: 0.35rem; flex-wrap: wrap; width: 100%; }
+    .sim-cut-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 0.35rem;
+      width: 100%;
+    }
     .sim-cut-btn {
-      padding: 0.35rem 0.6rem; font-size: 0.75rem; font-weight: 700; font-family: var(--font-mono);
-      border-radius: var(--radius-xs); background: var(--bg-surface); color: var(--text-secondary);
-      border: 1px solid var(--border-subtle); cursor: pointer; transition: var(--transition-smooth); min-height: 34px;
+      padding: 0.4rem 0.5rem;
+      font-size: 0.75rem;
+      font-weight: 800;
+      font-family: var(--font-mono);
+      border-radius: var(--radius-xs);
+      background: var(--bg-surface);
+      color: var(--text-secondary);
+      border: 1px solid var(--border-subtle);
+      cursor: pointer;
+      transition: var(--transition-smooth);
+      min-height: 38px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
     .sim-cut-btn:hover { border-color: var(--accent-red); color: var(--text-pure); }
-    .sim-cut-btn.pgm-active { background: var(--accent-red); color: #ffffff; border-color: var(--accent-red); box-shadow: 0 0 12px var(--accent-red-glow); }
+    .sim-cut-btn.pgm-active { background: var(--accent-red); color: #ffffff; border-color: var(--accent-red); box-shadow: 0 0 14px var(--accent-red-glow); }
 
+    /* SVG Schematic Wrapper & Mobile Touch Controls */
     .schematic-canvas-wrap {
-      background: #0d0e12; border: 1px solid var(--border-medium); border-radius: 0 0 var(--radius-md) var(--radius-md);
-      overflow-x: auto; -webkit-overflow-scrolling: touch; position: relative; padding: 0.75rem;
+      background: #0b0c10;
+      border: 1px solid var(--border-medium);
+      border-radius: 0 0 var(--radius-md) var(--radius-md);
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      position: relative;
+      padding: 0.75rem;
       box-shadow: inset 0 0 40px rgba(0, 0, 0, 0.8);
     }
-    .scroll-hint-pill {
-      position: absolute; top: 10px; right: 10px; z-index: 10;
-      background: rgba(0, 0, 0, 0.75); border: 1px solid var(--border-subtle); border-radius: 9999px;
-      padding: 0.2rem 0.6rem; font-size: 0.7rem; font-family: var(--font-mono); color: var(--accent-cyan);
-      pointer-events: none; display: none;
+    .schematic-touch-nav {
+      display: none; /* Shown on mobile */
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.5rem;
+      padding: 0.5rem;
+      background: rgba(0, 0, 0, 0.6);
+      border-top: 1px solid var(--border-subtle);
     }
-    .schematic-svg { width: 100%; min-width: 1050px; height: 560px; display: block; }
+    .scroll-hint-pill {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      z-index: 10;
+      background: rgba(0, 0, 0, 0.85);
+      border: 1px solid var(--accent-cyan);
+      border-radius: 9999px;
+      padding: 0.25rem 0.65rem;
+      font-size: 0.7rem;
+      font-family: var(--font-mono);
+      color: var(--accent-cyan);
+      pointer-events: none;
+    }
+    .schematic-svg { width: 100%; min-width: 1050px; height: 540px; display: block; }
     
     /* SVG Node Styling */
     .svg-node { cursor: pointer; transition: var(--transition-smooth); }
@@ -335,20 +580,55 @@ def generate_index_html():
     /* Node Inspector Panel */
     .sim-inspector-grid { display: grid; grid-template-columns: 1.2fr 1fr; gap: 1rem; margin-top: 1rem; }
     .fault-sim-box {
-      background: var(--bg-surface); border: 1px solid var(--border-subtle); border-radius: var(--radius-sm);
-      padding: 1rem; display: flex; flex-direction: column; gap: 0.5rem;
+      background: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-sm);
+      padding: 0.85rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    /* Mobile Routing Cards View */
+    .mobile-routes-list { display: flex; flex-direction: column; gap: 0.5rem; margin-top: 0.75rem; }
+    .route-mobile-card {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-xs);
+      padding: 0.75rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.5rem;
+    }
+    .route-mobile-card.active-wire {
+      border-color: var(--accent-red);
+      background: rgba(239, 68, 68, 0.06);
     }
 
     /* Switcher Simulator Hardware Deck */
     .switcher-deck-card {
-      background: linear-gradient(180deg, #1f2129 0%, #15161c 100%);
-      border: 1px solid var(--border-strong); border-radius: var(--radius-md); padding: clamp(1rem, 3vw, 1.5rem);
-      display: flex; flex-direction: column; gap: 1.25rem; box-shadow: var(--shadow-deep);
+      background: linear-gradient(180deg, #1d1f27 0%, #13141a 100%);
+      border: 1px solid var(--border-strong);
+      border-radius: var(--radius-md);
+      padding: clamp(0.85rem, 3vw, 1.5rem);
+      display: flex;
+      flex-direction: column;
+      gap: 1.15rem;
+      box-shadow: var(--shadow-deep);
     }
-    .switcher-screens { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0.75rem; }
+    .switcher-screens { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0.65rem; }
     .switcher-screen {
-      aspect-ratio: 16/9; background: #000; border-radius: var(--radius-xs); border: 2px solid var(--border-subtle);
-      position: relative; overflow: hidden; display: flex; flex-direction: column; justify-content: space-between; padding: 0.5rem;
+      aspect-ratio: 16/9;
+      background: #000;
+      border-radius: var(--radius-xs);
+      border: 2px solid var(--border-subtle);
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 0.45rem;
     }
     .switcher-screen.pgm { border-color: var(--accent-red); box-shadow: 0 0 15px var(--accent-red-glow); }
     .switcher-screen.pvw { border-color: var(--accent-emerald); box-shadow: 0 0 15px var(--accent-emerald-glow); }
@@ -356,53 +636,88 @@ def generate_index_html():
     .screen-tag { font-size: 0.65rem; font-weight: 800; font-family: var(--font-mono); padding: 0.15rem 0.4rem; border-radius: 3px; background: rgba(0, 0, 0, 0.75); }
     .screen-tag.red { color: #f87171; }
     .screen-tag.green { color: #34d399; }
-    .screen-video-mock { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; opacity: 0.4; font-size: 1.75rem; }
-    .screen-label { font-size: 0.72rem; font-weight: 700; z-index: 2; text-shadow: 0 1px 3px rgba(0,0,0,0.9); }
+    .screen-video-mock { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; opacity: 0.35; font-size: 1.6rem; }
+    .screen-label { font-size: 0.7rem; font-weight: 700; z-index: 2; text-shadow: 0 1px 3px rgba(0,0,0,0.9); }
 
-    .switcher-controls-row { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem; }
-    .bus-group { display: flex; align-items: center; gap: 0.5rem; }
-    .bus-label { font-size: 0.75rem; font-weight: 800; font-family: var(--font-mono); color: var(--text-muted); width: 42px; }
+    .switcher-controls-row { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 0.85rem; }
+    .bus-group { display: flex; align-items: center; gap: 0.4rem; }
+    .bus-label { font-size: 0.75rem; font-weight: 800; font-family: var(--font-mono); color: var(--text-muted); width: 38px; }
     .bus-btn {
-      width: 46px; height: 46px; border-radius: var(--radius-xs); background: var(--bg-surface-raised);
-      border: 2px solid var(--border-medium); color: var(--text-pure); font-weight: 800; font-family: var(--font-mono);
-      cursor: pointer; transition: var(--transition-smooth); font-size: 0.95rem; -webkit-tap-highlight-color: transparent;
+      width: 48px;
+      height: 48px;
+      border-radius: var(--radius-xs);
+      background: var(--bg-surface-raised);
+      border: 2px solid var(--border-medium);
+      color: var(--text-pure);
+      font-weight: 800;
+      font-family: var(--font-mono);
+      cursor: pointer;
+      transition: var(--transition-smooth);
+      font-size: 1.05rem;
     }
     .bus-btn:hover { background: var(--bg-surface-elevated); border-color: var(--border-strong); }
     .bus-btn.active-pgm { background: var(--accent-red); border-color: #fca5a5; color: #fff; box-shadow: 0 0 15px var(--accent-red-glow); }
     .bus-btn.active-pvw { background: var(--accent-emerald); border-color: #6ee7b7; color: #fff; box-shadow: 0 0 15px var(--accent-emerald-glow); }
 
     /* Inventory Section & Handover */
-    .inventory-toolbar { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 0.75rem; margin-bottom: 1rem; }
+    .inventory-toolbar { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 0.65rem; margin-bottom: 1rem; }
     .search-input {
-      background: var(--bg-surface); border: 1px solid var(--border-medium); border-radius: var(--radius-sm);
-      padding: 0.55rem 0.85rem; color: var(--text-pure); font-size: 0.85rem; font-family: inherit; min-width: 220px;
-      min-height: 40px;
+      background: var(--bg-surface);
+      border: 1px solid var(--border-medium);
+      border-radius: var(--radius-sm);
+      padding: 0.6rem 0.85rem;
+      color: var(--text-pure);
+      font-size: 0.85rem;
+      font-family: inherit;
+      min-width: 220px;
+      min-height: 42px;
     }
     .search-input:focus { outline: none; border-color: var(--accent-cyan); }
     
     .filter-pills-wrap {
-      display: flex; overflow-x: auto; -webkit-overflow-scrolling: touch; scrollbar-width: none;
-      gap: 0.35rem; padding-bottom: 0.25rem; max-width: 100%;
+      display: flex;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+      gap: 0.35rem;
+      padding-bottom: 0.25rem;
+      max-width: 100%;
     }
     .filter-pills-wrap::-webkit-scrollbar { display: none; }
     .filter-pill {
-      padding: 0.4rem 0.75rem; border-radius: var(--radius-xs); font-size: 0.75rem; font-weight: 600;
-      background: var(--bg-surface); color: var(--text-secondary); border: 1px solid var(--border-subtle);
-      cursor: pointer; transition: var(--transition-smooth); white-space: nowrap; min-height: 34px;
+      padding: 0.4rem 0.75rem;
+      border-radius: var(--radius-xs);
+      font-size: 0.75rem;
+      font-weight: 600;
+      background: var(--bg-surface);
+      color: var(--text-secondary);
+      border: 1px solid var(--border-subtle);
+      cursor: pointer;
+      transition: var(--transition-smooth);
+      white-space: nowrap;
+      min-height: 38px;
     }
     .filter-pill:hover { color: var(--text-pure); background: var(--bg-surface-elevated); }
     .filter-pill.active { background: var(--text-pure); color: var(--bg-base); border-color: var(--text-pure); }
 
-    .inventory-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 0.85rem; }
+    .inventory-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 0.75rem; }
     .inv-card {
-      background: var(--bg-surface); border: 1px solid var(--border-subtle); border-radius: var(--radius-sm);
-      padding: 0.85rem; display: flex; flex-direction: column; justify-content: space-between; gap: 0.5rem;
-      transition: var(--transition-smooth); cursor: pointer; user-select: none; min-height: 96px;
-      -webkit-tap-highlight-color: transparent;
+      background: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-sm);
+      padding: 0.85rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 0.5rem;
+      transition: var(--transition-smooth);
+      cursor: pointer;
+      user-select: none;
+      min-height: 94px;
     }
     .inv-card:hover { border-color: var(--border-strong); }
-    .inv-card:active { transform: scale(0.98); }
-    .inv-card.checked { background: rgba(16, 185, 129, 0.05); border-color: rgba(16, 185, 129, 0.35); }
+    .inv-card:active { transform: scale(0.97); }
+    .inv-card.checked { background: rgba(16, 185, 129, 0.07); border-color: rgba(16, 185, 129, 0.45); }
     .inv-header { display: flex; align-items: flex-start; justify-content: space-between; gap: 0.5rem; }
     .inv-name { font-size: 0.88rem; font-weight: 700; color: var(--text-pure); line-height: 1.3; }
     .inv-qty { font-size: 0.75rem; font-weight: 800; font-family: var(--font-mono); color: var(--accent-cyan); background: rgba(6, 182, 212, 0.12); padding: 0.15rem 0.45rem; border-radius: 4px; flex-shrink: 0; }
@@ -411,21 +726,35 @@ def generate_index_html():
 
     /* Master Stage Timer */
     .timer-container {
-      background: var(--bg-surface); border: 1px solid var(--border-medium); border-radius: var(--radius-md);
-      padding: 1.5rem; display: flex; flex-direction: column; align-items: center; gap: 1rem; text-align: center;
+      background: var(--bg-surface);
+      border: 1px solid var(--border-medium);
+      border-radius: var(--radius-md);
+      padding: 1.25rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.85rem;
+      text-align: center;
     }
-    .timer-display { font-size: clamp(3rem, 10vw, 4.8rem); font-weight: 800; font-family: var(--font-mono); letter-spacing: -0.04em; color: var(--text-pure); line-height: 1; }
+    .timer-display {
+      font-size: clamp(3rem, 14vw, 4.8rem);
+      font-weight: 800;
+      font-family: var(--font-mono);
+      letter-spacing: -0.04em;
+      color: var(--text-pure);
+      line-height: 1;
+    }
     .timer-display.warn { color: #f59e0b; }
     .timer-display.overtime { color: #ef4444; animation: flash-red 1s infinite; }
     @keyframes flash-red { 0%, 100% { opacity: 1; } 50% { opacity: 0.5; } }
-    .timer-presets { display: flex; gap: 0.4rem; flex-wrap: wrap; justify-content: center; }
-    .timer-btn-preset { padding: 0.4rem 0.75rem; font-size: 0.75rem; font-weight: 600; border-radius: var(--radius-xs); background: var(--bg-surface-raised); color: var(--text-secondary); border: 1px solid var(--border-subtle); cursor: pointer; min-height: 34px; }
+    .timer-presets { display: flex; gap: 0.35rem; flex-wrap: wrap; justify-content: center; }
+    .timer-btn-preset { padding: 0.4rem 0.65rem; font-size: 0.75rem; font-weight: 600; border-radius: var(--radius-xs); background: var(--bg-surface-raised); color: var(--text-secondary); border: 1px solid var(--border-subtle); cursor: pointer; min-height: 38px; }
     .timer-btn-preset:hover { color: var(--text-pure); background: var(--bg-surface-elevated); }
 
     /* Incident Logger */
     .incident-table-wrap { overflow-x: auto; margin-top: 0.75rem; -webkit-overflow-scrolling: touch; }
-    .incident-table { width: 100%; border-collapse: collapse; font-size: 0.8rem; min-width: 480px; }
-    .incident-table th, .incident-table td { padding: 0.5rem 0.75rem; border-bottom: 1px solid var(--border-subtle); text-align: left; }
+    .incident-table { width: 100%; border-collapse: collapse; font-size: 0.8rem; min-width: 460px; }
+    .incident-table th, .incident-table td { padding: 0.5rem 0.65rem; border-bottom: 1px solid var(--border-subtle); text-align: left; }
     .incident-table th { color: var(--text-muted); font-family: var(--font-mono); font-size: 0.72rem; }
     .badge-sev { padding: 0.15rem 0.45rem; border-radius: 4px; font-size: 0.68rem; font-weight: 800; font-family: var(--font-mono); }
     .badge-sev.info { background: rgba(6, 182, 212, 0.15); color: var(--accent-cyan); }
@@ -434,24 +763,49 @@ def generate_index_html():
 
     /* Modals */
     .modal-overlay {
-      position: fixed; inset: 0; z-index: 2500; background: rgba(0, 0, 0, 0.85); backdrop-filter: blur(12px);
-      display: none; align-items: center; justify-content: center; padding: 1rem;
+      position: fixed;
+      inset: 0;
+      z-index: 2500;
+      background: rgba(0, 0, 0, 0.85);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: max(1rem, var(--safe-area-top)) max(1rem, var(--safe-area-right)) max(1rem, var(--safe-area-bottom)) max(1rem, var(--safe-area-left));
     }
     .modal-overlay.active { display: flex; }
     .modal-dialog {
-      background: var(--bg-surface); border: 1px solid var(--border-strong); border-radius: var(--radius-lg);
-      max-width: 800px; width: 100%; max-height: 90vh; overflow-y: auto; padding: clamp(1.25rem, 3vw, 1.75rem); display: flex; flex-direction: column; gap: 1.25rem;
+      background: var(--bg-surface);
+      border: 1px solid var(--border-strong);
+      border-radius: var(--radius-lg);
+      max-width: 800px;
+      width: 100%;
+      max-height: 90vh;
+      overflow-y: auto;
+      padding: clamp(1.15rem, 3vw, 1.75rem);
+      display: flex;
+      flex-direction: column;
+      gap: 1.15rem;
       box-shadow: var(--shadow-deep);
     }
     .modal-head { display: flex; align-items: center; justify-content: space-between; }
-    .modal-title { font-size: 1.25rem; font-weight: 800; color: var(--text-pure); }
-    .modal-close-btn { background: transparent; border: none; font-size: 1.6rem; color: var(--text-muted); cursor: pointer; padding: 0.25rem; line-height: 1; }
+    .modal-title { font-size: 1.15rem; font-weight: 800; color: var(--text-pure); }
+    .modal-close-btn { background: transparent; border: none; font-size: 1.6rem; color: var(--text-muted); cursor: pointer; padding: 0.25rem; line-height: 1; min-height: 36px; min-width: 36px; }
     .modal-close-btn:hover { color: var(--text-pure); }
 
     /* Virtual Mobile Stage Tally Light Box Modal */
     .tally-screen {
-      flex: 1; min-height: 280px; border-radius: var(--radius-md); display: flex; flex-direction: column;
-      align-items: center; justify-content: center; gap: 0.75rem; text-align: center; transition: var(--transition-smooth);
+      flex: 1;
+      min-height: 260px;
+      border-radius: var(--radius-md);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 0.65rem;
+      text-align: center;
+      transition: var(--transition-smooth);
     }
     .tally-screen.pgm { background: #dc2626; color: #ffffff; box-shadow: inset 0 0 60px rgba(0, 0, 0, 0.4), 0 0 40px rgba(220, 38, 38, 0.6); }
     .tally-screen.pvw { background: #059669; color: #ffffff; box-shadow: inset 0 0 60px rgba(0, 0, 0, 0.4), 0 0 40px rgba(5, 150, 105, 0.6); }
@@ -462,27 +816,64 @@ def generate_index_html():
        ========================================================================== */
     .floating-dock {
       display: none; /* Hidden on Desktop */
-      position: fixed; bottom: calc(0.75rem + var(--safe-area-bottom)); left: 50%; transform: translateX(-50%); z-index: 999;
-      background: var(--bg-glass); backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px);
-      border: 1px solid var(--border-strong); border-radius: 9999px; padding: 0.35rem 0.5rem;
-      align-items: center; gap: 0.2rem; box-shadow: var(--shadow-deep); max-width: calc(100vw - 1.5rem);
+      position: fixed;
+      bottom: calc(0.65rem + var(--safe-area-bottom));
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 999;
+      background: var(--bg-glass);
+      backdrop-filter: blur(28px);
+      -webkit-backdrop-filter: blur(28px);
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      border-radius: 9999px;
+      padding: 0.3rem 0.35rem;
+      align-items: center;
+      justify-content: space-between;
+      box-shadow: 0 12px 36px rgba(0, 0, 0, 0.75), 0 0 1px rgba(255, 255, 255, 0.2);
+      width: calc(100% - 1.25rem);
+      max-width: 440px;
     }
     .dock-btn {
-      display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 0.15rem;
-      padding: 0.4rem 0.65rem; border-radius: 9999px; font-size: 0.7rem; font-weight: 700;
-      color: var(--text-secondary); text-decoration: none; border: 1px solid transparent; transition: var(--transition-smooth);
-      min-width: 52px; -webkit-tap-highlight-color: transparent;
+      flex: 1 1 0;
+      min-width: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 0.35rem 0.1rem;
+      border-radius: 9999px;
+      font-size: 0.62rem;
+      font-weight: 700;
+      color: var(--text-secondary);
+      text-decoration: none;
+      border: 1px solid transparent;
+      transition: var(--transition-smooth);
     }
-    .dock-icon { font-size: 1rem; line-height: 1; }
-    .dock-btn:hover { color: var(--text-pure); background: var(--bg-surface-raised); }
-    .dock-btn.active { color: var(--text-pure); background: var(--bg-surface-elevated); border-color: var(--border-medium); }
+    .dock-icon { font-size: 1.15rem; line-height: 1; margin-bottom: 2px; }
+    .dock-btn:active { transform: scale(0.92); background: var(--bg-surface-elevated); }
+    .dock-btn.active {
+      color: #ffffff;
+      background: rgba(255, 255, 255, 0.14);
+      border-color: rgba(255, 255, 255, 0.25);
+      box-shadow: 0 0 12px rgba(255, 255, 255, 0.12);
+    }
 
     /* MOBILE NAVIGATION DRAWER MODAL */
-    .mobile-drawer-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 0.6rem; }
+    .mobile-drawer-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 0.5rem; }
     .drawer-nav-item {
-      display: flex; align-items: center; gap: 0.6rem; padding: 0.85rem; border-radius: var(--radius-sm);
-      background: var(--bg-surface-raised); border: 1px solid var(--border-subtle); color: var(--text-primary);
-      text-decoration: none; font-size: 0.85rem; font-weight: 600; transition: var(--transition-smooth);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.75rem;
+      border-radius: var(--radius-sm);
+      background: var(--bg-surface-raised);
+      border: 1px solid var(--border-subtle);
+      color: var(--text-primary);
+      text-decoration: none;
+      font-size: 0.82rem;
+      font-weight: 600;
+      transition: var(--transition-smooth);
+      min-height: 44px;
     }
     .drawer-nav-item:hover, .drawer-nav-item:active { background: var(--bg-surface-elevated); color: var(--text-pure); border-color: var(--accent-cyan); }
 
@@ -492,34 +883,40 @@ def generate_index_html():
     @media (max-width: 960px) {
       body {
         /* Extra padding bottom on mobile so content isn't covered by bottom dock */
-        padding-bottom: calc(var(--dock-height) + var(--safe-area-bottom) + 1.5rem);
+        padding-bottom: calc(var(--dock-height) + var(--safe-area-bottom) + 1.75rem);
       }
       .hero-banner { grid-template-columns: 1fr; }
       .header-nav { display: none; } /* Hide top links on mobile */
       .floating-dock { display: flex; } /* Show bottom thumb dock on mobile */
       .sim-inspector-grid { grid-template-columns: 1fr; }
       .scroll-hint-pill { display: block; }
+      .schematic-touch-nav { display: flex; }
       .toast-container { bottom: calc(var(--dock-height) + var(--safe-area-bottom) + 1rem); }
     }
 
     @media (min-width: 961px) {
       #btn-open-drawer { display: none; } /* Hide mobile hamburger button on wide desktop */
+      .mobile-only { display: none !important; }
     }
 
-    @media (max-width: 768px) {
+    @media (max-width: 640px) {
       :root { --header-height: 60px; }
-      .app-container { padding: 0.85rem; gap: 1.5rem; }
+      .app-container { padding: 0.75rem; gap: 1.25rem; }
+      .brand-title { font-size: 0.92rem; }
+      .brand-subtitle { display: none; } /* Clean header on small screens */
       .switcher-screens { grid-template-columns: repeat(2, 1fr); }
       .switcher-controls-row { flex-direction: column; align-items: stretch; }
       .bus-group { justify-content: space-between; width: 100%; }
-      .bus-btn { flex: 1; height: 44px; }
+      .bus-btn { flex: 1; height: 46px; }
       .telemetry-grid { grid-template-columns: 1fr 1fr; gap: 0.5rem; }
       .inventory-grid { grid-template-columns: 1fr; }
+      .search-input { min-width: 100%; }
+      .inventory-toolbar { flex-direction: column; align-items: stretch; }
     }
 
     @media print {
       body { background: #fff !important; color: #000 !important; padding-bottom: 0 !important; }
-      .command-header, .floating-dock, .btn, .no-print, .toast-container { display: none !important; }
+      .command-header, .floating-dock, .btn, .no-print, .toast-container, .schematic-touch-nav { display: none !important; }
       .modal-dialog { border: none !important; box-shadow: none !important; max-width: 100% !important; padding: 0 !important; }
     }
   </style>
@@ -531,8 +928,8 @@ def generate_index_html():
     <a href="#" class="brand-cluster">
       <div class="brand-logo-pill">🎬</div>
       <div class="brand-text-block">
-        <span class="brand-title">IP26 COMMAND DECK</span>
-        <span class="brand-subtitle">IBADAH PERDANA UKK UNNES 2026</span>
+        <span class="brand-title">IP26 COMMAND</span>
+        <span class="brand-subtitle">UKK UNNES 2026</span>
       </div>
     </a>
 
@@ -619,15 +1016,15 @@ def generate_index_html():
         <div class="cheat-sheet-grid">
           <div class="cheat-item">
             <div class="cheat-item-title">CLEAN HDMI OUTPUT</div>
-            <div class="cheat-item-desc">Menu $\rightarrow$ Setup $\rightarrow$ HDMI Settings $\rightarrow$ <strong>HDMI Info Display: OFF</strong> (Wajib agar OSD kamera tidak bocor ke switcher).</div>
+            <div class="cheat-item-desc">Menu → Setup → HDMI Settings → <strong>HDMI Info Display: OFF</strong> (Wajib agar OSD kamera tidak bocor ke switcher).</div>
           </div>
           <div class="cheat-item">
             <div class="cheat-item-title">SHUTTER 180° RULE</div>
-            <div class="cheat-item-desc">Format 1080p 50fps $\rightarrow$ Shutter Speed kunci di <strong>1/100s</strong>. Jangan gunakan Auto Shutter agar tidak flicker dengan lampu stage.</div>
+            <div class="cheat-item-desc">Format 1080p 50fps → Shutter Speed kunci di <strong>1/100s</strong>. Jangan gunakan Auto Shutter agar tidak flicker dengan lampu stage.</div>
           </div>
           <div class="cheat-item">
             <div class="cheat-item-title">THERMAL MANAGEMENT</div>
-            <div class="cheat-item-desc">Setup $\rightarrow$ <strong>Auto Power OFF Temp: HIGH</strong> + Buka layar LCD agar sirkulasi udara sensor optimal selama 3 jam ibadah.</div>
+            <div class="cheat-item-desc">Setup → <strong>Auto Power OFF Temp: HIGH</strong> + Buka layar LCD agar sirkulasi udara sensor optimal selama 3 jam ibadah.</div>
           </div>
           <div class="cheat-item">
             <div class="cheat-item-title">KELVIN WHITE BALANCE</div>
@@ -667,14 +1064,15 @@ def generate_index_html():
           <h2 class="section-heading">Wiring Schematic & Flow Simulator</h2>
         </div>
         <div class="section-actions">
-          <button class="btn btn-secondary btn-sm" id="btn-reset-sim">↺ Reset Flow</button>
+          <button class="btn btn-secondary btn-sm" id="btn-toggle-route-view">📋 Toggle Kartu Rute Mobile</button>
+          <button class="btn btn-secondary btn-sm" id="btn-reset-sim">↺ Reset</button>
         </div>
       </div>
 
       <div class="card" style="padding:0; overflow:hidden;">
         <!-- Control bar for simulator -->
         <div class="sim-control-bar">
-          <div class="sim-tabs">
+          <div class="sim-tabs-track">
             <button class="sim-tab-btn active" data-sim-layer="all">⚡ Semua Sinyal</button>
             <button class="sim-tab-btn" data-sim-layer="video">🟡 Video (HDMI/UVC)</button>
             <button class="sim-tab-btn" data-sim-layer="audio">🔵 Audio (XLR/DAC)</button>
@@ -683,19 +1081,20 @@ def generate_index_html():
           </div>
 
           <div class="sim-cut-deck">
-            <span style="font-size:0.72rem; font-weight:700; color:var(--text-muted); font-family:var(--font-mono); margin-right:0.25rem;">SIMULASI CUT:</span>
-            <button class="sim-cut-btn pgm-active" data-cut="1">CAM 1</button>
-            <button class="sim-cut-btn" data-cut="2">CAM 2</button>
-            <button class="sim-cut-btn" data-cut="3">CAM 3</button>
-            <button class="sim-cut-btn" data-cut="4">CAM 4</button>
-            <button class="sim-cut-btn" data-cut="bars">BARS</button>
+            <div class="sim-cut-grid">
+              <button class="sim-cut-btn pgm-active" data-cut="1">CAM 1</button>
+              <button class="sim-cut-btn" data-cut="2">CAM 2</button>
+              <button class="sim-cut-btn" data-cut="3">CAM 3</button>
+              <button class="sim-cut-btn" data-cut="4">CAM 4</button>
+              <button class="sim-cut-btn" data-cut="bars">BARS</button>
+            </div>
           </div>
         </div>
 
         <!-- SVG Topo Canvas -->
-        <div class="schematic-canvas-wrap">
+        <div class="schematic-canvas-wrap" id="schematic-canvas-wrap">
           <span class="scroll-hint-pill">👈 Geser Diagram 👉</span>
-          <svg class="schematic-svg" id="topo-svg" viewBox="0 0 1100 560">
+          <svg class="schematic-svg" id="topo-svg" viewBox="0 0 1100 540">
             <defs>
               <linearGradient id="grad-cam" x1="0%" y1="0%" x2="100%" y2="100%">
                 <stop offset="0%" stop-color="#2a2c38" /><stop offset="100%" stop-color="#181920" />
@@ -859,12 +1258,27 @@ def generate_index_html():
           </svg>
         </div>
 
+        <!-- Mobile Touch Scroll Toolbar -->
+        <div class="schematic-touch-nav">
+          <button class="btn btn-secondary btn-sm" id="btn-scroll-left">👈 Geser Kiri</button>
+          <button class="btn btn-secondary btn-sm" id="btn-scroll-center">🎯 Tengah</button>
+          <button class="btn btn-secondary btn-sm" id="btn-scroll-right">Geser Kanan 👉</button>
+        </div>
+
+        <!-- Mobile Compact Routing Cards (Toggleable) -->
+        <div id="mobile-routing-cards-container" style="display:none; padding:1rem; background:var(--bg-surface-raised);">
+          <h4 style="font-size:0.85rem; font-weight:700; color:var(--accent-cyan); margin-bottom:0.5rem;">📋 Daftar Rute Pengkabelan Lengkap (Mobile Quick Reference):</h4>
+          <div class="mobile-routes-list" id="mobile-routes-list-target">
+            <!-- Rendered by JS -->
+          </div>
+        </div>
+
         <!-- Node Inspector Details Box -->
-        <div style="padding:1rem 1.25rem; background:var(--bg-surface); border-top:1px solid var(--border-subtle);">
+        <div style="padding:1rem 1.15rem; background:var(--bg-surface); border-top:1px solid var(--border-subtle);">
           <div class="sim-inspector-grid">
             <div id="inspector-spec-box">
               <h4 style="font-size:0.85rem; font-weight:700; color:var(--text-pure); margin-bottom:0.25rem;" id="inspector-node-title">📌 Live Node Inspector</h4>
-              <p style="font-size:0.78rem; color:var(--text-secondary);" id="inspector-node-desc">Klik salah satu kotak perangkat di atas untuk melihat spesifikasi port, rute kabel, format sinyal, dan PIC penanggung jawab.</p>
+              <p style="font-size:0.76rem; color:var(--text-secondary);" id="inspector-node-desc">Klik salah satu kotak perangkat di atas untuk melihat spesifikasi port, rute kabel, format sinyal, dan PIC penanggung jawab.</p>
             </div>
             <div class="fault-sim-box">
               <div style="display:flex; align-items:center; justify-content:space-between;">
@@ -903,7 +1317,7 @@ def generate_index_html():
               <span style="font-size:0.7rem;">🔴 LIVE</span>
             </div>
             <div class="screen-video-mock">🎥</div>
-            <div class="screen-label">CAM 1 - Alex (Stage Center)</div>
+            <div class="screen-label">CAM 1 - Alex (Center)</div>
           </div>
           <div class="switcher-screen pvw" id="sw-scr-2">
             <div class="switcher-screen-header">
@@ -911,21 +1325,21 @@ def generate_index_html():
               <span style="font-size:0.7rem;">🟢 PREVIEW</span>
             </div>
             <div class="screen-video-mock">🎥</div>
-            <div class="screen-label">CAM 2 - Kiel (Handheld)</div>
+            <div class="screen-label">CAM 2 - Kiel (Stage)</div>
           </div>
           <div class="switcher-screen" id="sw-scr-3">
             <div class="switcher-screen-header">
               <span class="screen-tag">CH 3</span>
             </div>
             <div class="screen-video-mock">🎥</div>
-            <div class="screen-label">CAM 3 - Dewi (Left Wide)</div>
+            <div class="screen-label">CAM 3 - Dewi (Left)</div>
           </div>
           <div class="switcher-screen" id="sw-scr-4">
             <div class="switcher-screen-header">
               <span class="screen-tag">CH 4</span>
             </div>
             <div class="screen-video-mock">🎥</div>
-            <div class="screen-label">CAM 4 - Nathania (Right Wide)</div>
+            <div class="screen-label">CAM 4 - Nathania (Right)</div>
           </div>
         </div>
 
@@ -946,10 +1360,10 @@ def generate_index_html():
             <button class="bus-btn" data-pvw="4">4</button>
           </div>
 
-          <div style="display:flex; gap:0.5rem; flex-wrap:wrap;">
-            <button class="btn btn-primary" id="btn-sw-cut" style="flex:1;">⚡ CUT (Space)</button>
-            <button class="btn btn-secondary" id="btn-sw-auto">AUTO (Mix)</button>
-            <button class="btn btn-amber" id="btn-sw-ftb">FTB (Black)</button>
+          <div style="display:flex; gap:0.4rem; flex-wrap:wrap; width:100%;">
+            <button class="btn btn-primary" id="btn-sw-cut" style="flex:1.5;">⚡ CUT (Space)</button>
+            <button class="btn btn-secondary" id="btn-sw-auto" style="flex:1;">AUTO (Mix)</button>
+            <button class="btn btn-amber" id="btn-sw-ftb" style="flex:1;">FTB</button>
           </div>
         </div>
       </div>
@@ -1016,7 +1430,7 @@ def generate_index_html():
         </div>
       </div>
 
-      <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap:1.25rem;">
+      <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap:1rem;">
         <!-- Stage Timer Card -->
         <div class="timer-container">
           <div style="font-size:0.75rem; font-weight:800; font-family:var(--font-mono); color:var(--text-muted);">MASTER STAGE COUNTDOWN</div>
@@ -1028,11 +1442,11 @@ def generate_index_html():
             <button class="timer-btn-preset" data-min="10">Doa (10m)</button>
             <button class="timer-btn-preset" data-min="0">Count-Up (0m)</button>
           </div>
-          <div style="display:flex; gap:0.45rem; margin-top:0.25rem; flex-wrap:wrap; justify-content:center;">
-            <button class="btn btn-primary btn-sm" id="btn-timer-start">▶ Start</button>
-            <button class="btn btn-secondary btn-sm" id="btn-timer-pause">⏸ Pause</button>
-            <button class="btn btn-secondary btn-sm" id="btn-timer-reset">↺ Reset</button>
-            <button class="btn btn-amber btn-sm" id="btn-timer-fullscreen">📺 Fullscreen TV</button>
+          <div style="display:flex; gap:0.45rem; margin-top:0.25rem; flex-wrap:wrap; justify-content:center; width:100%;">
+            <button class="btn btn-primary btn-sm" id="btn-timer-start" style="flex:1;">▶ Start</button>
+            <button class="btn btn-secondary btn-sm" id="btn-timer-pause" style="flex:1;">⏸ Pause</button>
+            <button class="btn btn-secondary btn-sm" id="btn-timer-reset" style="flex:1;">↺ Reset</button>
+            <button class="btn btn-amber btn-sm" id="btn-timer-fullscreen" style="flex:1.2;">📺 Fullscreen</button>
           </div>
         </div>
 
@@ -1055,7 +1469,7 @@ def generate_index_html():
         </div>
       </div>
 
-      <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap:1.25rem;">
+      <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap:1rem;">
         <!-- Test Generator Card -->
         <div class="card">
           <h3 style="font-size:0.95rem; font-weight:700; color:var(--text-pure); margin-bottom:0.75rem;">🛠️ Signal Generator</h3>
@@ -1073,12 +1487,12 @@ def generate_index_html():
             <button class="btn btn-secondary btn-sm" id="btn-export-incidents">Ekspor Log</button>
           </div>
           <div style="display:flex; gap:0.4rem; margin-bottom:0.5rem; flex-wrap:wrap;">
-            <select id="incident-sev" class="search-input" style="min-width:90px; font-size:0.75rem; padding:0.35rem 0.5rem; min-height:36px;">
+            <select id="incident-sev" class="search-input" style="min-width:90px; font-size:0.75rem; padding:0.35rem 0.5rem; min-height:38px;">
               <option value="info">INFO</option>
               <option value="warn">WARNING</option>
               <option value="critical">CRITICAL</option>
             </select>
-            <input type="text" id="incident-input" class="search-input" placeholder="Tulis kejadian / troubleshooting..." style="flex:1; font-size:0.78rem; min-width:180px; min-height:36px;" />
+            <input type="text" id="incident-input" class="search-input" placeholder="Tulis kejadian / troubleshooting..." style="flex:1; font-size:0.78rem; min-width:160px; min-height:38px;" />
             <button class="btn btn-primary btn-sm" id="btn-add-incident">+ Catat</button>
           </div>
           <div class="incident-table-wrap" style="max-height:220px; overflow-y:auto;">
@@ -1109,10 +1523,10 @@ def generate_index_html():
         </div>
       </div>
 
-      <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap:1rem;">
+      <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap:0.85rem;">
         <div class="card">
           <h3 style="font-size:0.95rem; font-weight:700; color:#ef4444; margin-bottom:0.5rem;">🚨 SOP Darurat: Blackout / HDMI Drop</h3>
-          <p style="font-size:0.8rem; color:var(--text-secondary); line-height:1.5;">
+          <p style="font-size:0.78rem; color:var(--text-secondary); line-height:1.5;">
             1. Switcher Operator langsung CUT ke Kamera Cadangan (CAM 2 Handheld / CAM 4).<br>
             2. Audio FOH tetap jalan tanpa interupsi.<br>
             3. OBS Studio tahan banner static standby jika seluruh feed HDMI terputus.<br>
@@ -1121,7 +1535,7 @@ def generate_index_html():
         </div>
         <div class="card">
           <h3 style="font-size:0.95rem; font-weight:700; color:#f59e0b; margin-bottom:0.5rem;">⚡ SOP Distribusi Daya Listrik</h3>
-          <p style="font-size:0.8rem; color:var(--text-secondary); line-height:1.5;">
+          <p style="font-size:0.78rem; color:var(--text-secondary); line-height:1.5;">
             1. Pisahkan jalur colokan AC Mixer Audio dari jalur Switcher/Lampu.<br>
             2. Gunakan Terminal Cable XCH bertingkat dengan grounding yang terverifikasi.<br>
             3. Seluruh laptop media (Resolume, OBS, ProPresenter) wajib dalam kondisi tercolok charger full charge.
@@ -1129,7 +1543,7 @@ def generate_index_html():
         </div>
         <div class="card">
           <h3 style="font-size:0.95rem; font-weight:700; color:#10b981; margin-bottom:0.5rem;">🎛️ SOP Audio Ground Loop & Hum</h3>
-          <p style="font-size:0.8rem; color:var(--text-secondary); line-height:1.5;">
+          <p style="font-size:0.78rem; color:var(--text-secondary); line-height:1.5;">
             1. Gunakan USB-C DAC Hanason/Oraimo terisolasi dari Resolume ke Yamaha QL5.<br>
             2. Jangan colok charger laptop ke fasa listrik yang sama dengan pre-amp analog jika terdengar dengung 50Hz.
           </p>
@@ -1193,7 +1607,7 @@ def generate_index_html():
         <a href="#sop" class="drawer-nav-item" data-drawer-nav="true"><span>🚨</span> SOP Protocols</a>
       </div>
 
-      <div style="border-top:1px solid var(--border-subtle); padding-top:1rem; display:flex; flex-direction:column; gap:0.5rem;">
+      <div style="border-top:1px solid var(--border-subtle); padding-top:0.85rem; display:flex; flex-direction:column; gap:0.45rem;">
         <button class="btn btn-primary" id="drawer-btn-tally">🚨 Buka Mobile Tally Light</button>
         <button class="btn btn-secondary" id="drawer-btn-sync">☁️ Cloud & QR Inventory Sync</button>
         <button class="btn btn-secondary" id="drawer-btn-handover">📄 Berita Acara Peminjaman Alat</button>
@@ -1319,7 +1733,7 @@ def generate_index_html():
       </div>
 
       <div style="display:flex; align-items:center; justify-content:space-between; gap:0.5rem;">
-        <span style="font-size:0.78rem; font-weight:700; color:var(--text-muted); font-family:var(--font-mono);">PILIH KAMERA ANDA:</span>
+        <span style="font-size:0.78rem; font-weight:700; color:var(--text-muted); font-family:var(--font-mono);">PILIH KAMERA:</span>
         <select id="tally-camera-select" class="search-input" style="font-size:0.82rem; padding:0.35rem 0.65rem;">
           <option value="1">CAM 1 - Alex (Sony ZV-E10 Wireless)</option>
           <option value="2">CAM 2 - Kiel 1 (Sony ZV-E10 Handheld)</option>
@@ -1355,16 +1769,6 @@ def generate_index_html():
           <h2 style="font-size:1.8rem; font-weight:800; color:#fff; margin:0.4rem 0 1rem 0;">Ibadah Perdana UKK UNNES 2026</h2>
           <p style="font-size:0.95rem; color:var(--text-secondary); line-height:1.6;">
             Selamat datang seluruh tim Broadcast, Sound, Media, dan Dokumentasi. Standar produksi tahun ini menggunakan arsitektur 4 kamera broadcast 1080p50, transmisi nirkabel Hollyland Pyro, FOH Dante Yamaha QL5, dan visual panggung multi-screen Resolume Arena.
-          </p>
-        </div>
-        <div class="briefing-slide" data-slide="1" style="display:none;">
-          <span style="font-size:0.8rem; font-weight:700; color:var(--accent-cyan); font-family:var(--font-mono);">OPTICAL RIGS</span>
-          <h2 style="font-size:1.8rem; font-weight:800; color:#fff; margin:0.4rem 0 1rem 0;">4 Broadcast Cameras + 3 Docs</h2>
-          <p style="font-size:0.95rem; color:var(--text-secondary); line-height:1.6;">
-            • CAM 1 (Alex): Center Stage Static (Pyro S Wireless).<br>
-            • CAM 2 (Kiel): Handheld Stage / Worship Leader (Pyro H Wireless).<br>
-            • CAM 3 (Dewi): Left Wing Wide (10M HDMI).<br>
-            • CAM 4 (Nathania): Right Wing Wide (10M HDMI).
           </p>
         </div>
       </div>
@@ -1413,6 +1817,21 @@ def generate_index_html():
       { name: 'Jennifer', role: 'Social Media / HP', div: 'docs', note: 'iPhone 15' },
       { name: 'Kezia', role: 'Multiview Tech', div: 'broadcast', note: 'TV Monitor Kezia' },
       { name: 'Darrel', role: 'Stage Prompter / Timer', div: 'media', note: 'TV Panggung Darrel' }
+    ];
+
+    const WIRING_ROUTES_DATA = [
+      { id: 'R1', from: 'CAM 1 (Alex)', to: 'Hollyland Pyro S TX', cable: 'HDMI-Micro 30cm', type: 'video', pgmOn: true },
+      { id: 'R2', from: 'Pyro S RX', to: 'Cinetreak Ch 1', cable: 'HDMI 1.5M', type: 'video', pgmOn: true },
+      { id: 'R3', from: 'CAM 2 (Kiel)', to: 'Hollyland Pyro H TX', cable: 'HDMI-Micro 30cm', type: 'video', pgmOn: false },
+      { id: 'R4', from: 'Pyro H RX', to: 'Cinetreak Ch 2', cable: 'HDMI 1.5M', type: 'video', pgmOn: false },
+      { id: 'R5', from: 'CAM 3 (Dewi)', to: 'Cinetreak Ch 3', cable: 'Micro HDMI Conv + 10M HDMI', type: 'video', pgmOn: false },
+      { id: 'R6', from: 'CAM 4 (Nathania)', to: 'Cinetreak Ch 4', cable: 'Micro HDMI Conv + 10M HDMI', type: 'video', pgmOn: false },
+      { id: 'R7', from: 'Cinetreak PGM Out', to: 'OBS Studio (Andreas)', cable: 'USB-C UVC 1080p50', type: 'video', pgmOn: true },
+      { id: 'R8', from: 'Cinetreak PGM Out', to: 'Splitter HDMI 4CH', cable: 'HDMI 1.5M', type: 'video', pgmOn: true },
+      { id: 'R9', from: 'Splitter Out 1', to: 'ProPresenter 1 (Rania)', cable: 'HDMI Capture Card', type: 'video', pgmOn: true },
+      { id: 'R10', from: 'Splitter Out 2', to: 'Resolume Arena (Andreas)', cable: 'HDMI Capture Card', type: 'video', pgmOn: true },
+      { id: 'R11', from: 'Yamaha QL5 FOH', to: 'NewBaxs CT80S Submixer', cable: '2x XLR 10M Balanced', type: 'audio', pgmOn: true },
+      { id: 'R12', from: 'CT80S Submixer', to: 'OBS Studio', cable: 'USB-A to USB-C Audio', type: 'audio', pgmOn: true }
     ];
 
     const MASTER_INVENTORY = [
@@ -1538,6 +1957,7 @@ def generate_index_html():
         this.renderInventory();
         this.renderRundown();
         this.renderIncidents();
+        this.renderMobileRoutes();
         this.initNavigation();
         this.initSchematicSimulator();
         this.initSwitcherSimulator();
@@ -1722,6 +2142,41 @@ def generate_index_html():
             this.applyFaultScenario('none');
           });
         }
+
+        // Mobile Touch Scroll Buttons
+        const canvasWrap = document.getElementById('schematic-canvas-wrap');
+        document.getElementById('btn-scroll-left')?.addEventListener('click', () => {
+          canvasWrap?.scrollTo({ left: 0, behavior: 'smooth' });
+        });
+        document.getElementById('btn-scroll-center')?.addEventListener('click', () => {
+          if (canvasWrap) canvasWrap.scrollTo({ left: 350, behavior: 'smooth' });
+        });
+        document.getElementById('btn-scroll-right')?.addEventListener('click', () => {
+          if (canvasWrap) canvasWrap.scrollTo({ left: canvasWrap.scrollWidth, behavior: 'smooth' });
+        });
+
+        // Mobile Route Card Toggle
+        const toggleRouteBtn = document.getElementById('btn-toggle-route-view');
+        const routeContainer = document.getElementById('mobile-routing-cards-container');
+        toggleRouteBtn?.addEventListener('click', () => {
+          const isHidden = routeContainer.style.display === 'none';
+          routeContainer.style.display = isHidden ? 'block' : 'none';
+          toggleRouteBtn.textContent = isHidden ? '📐 Tampilkan Diagram Grafis' : '📋 Toggle Kartu Rute Mobile';
+        });
+      }
+
+      renderMobileRoutes() {
+        const target = document.getElementById('mobile-routes-list-target');
+        if (!target) return;
+        target.innerHTML = WIRING_ROUTES_DATA.map(r => `
+          <div class="route-mobile-card ${r.pgmOn ? 'active-wire' : ''}">
+            <div>
+              <div style="font-size:0.82rem; font-weight:700; color:var(--text-pure);">${r.from} ➔ ${r.to}</div>
+              <div style="font-size:0.72rem; color:var(--text-muted); font-family:var(--font-mono);">${r.cable}</div>
+            </div>
+            <span class="badge-sev ${r.type === 'video' ? 'info' : 'warn'}">${r.type.toUpperCase()}</span>
+          </div>
+        `).join('');
       }
 
       setSimLayer(layer) {
@@ -1791,8 +2246,8 @@ def generate_index_html():
           switcher: { title: '🎛️ Cinetreak Cinelive V1 Switcher (Wilfred)', text: '4x HDMI Input (1080p50). Output: 1x HDMI Multiview (TV Kezia), 1x HDMI PGM (Splitter 4CH), 1x USB-C UVC Video (OBS Studio Andreas).' },
           splitter: { title: '⚡ HDMI Splitter 4-Channel (UKK)', text: 'Mendistribusikan sinyal PGM switcher ke ProPresenter 1 (Lyrics), ProPresenter 2, dan Resolume Arena secara simultan tanpa jeda.' },
           obs: { title: '💻 OBS Studio Live Streaming (Andreas)', text: 'Laptop Media Master. Menerima video PGM via USB Capture dan audio master stereo dari NewBaxs CT80S Submixer. Output stream YouTube 1080p.' },
-          pro1: { title: '💻 ProPresenter 1 — Lyrics & LED LRB (Rania)', text: 'Menerima PGM Splitter via HDMI Capture. Mengirim lirik dan kamera feed ke Video Processor UNNES $\rightarrow$ LED Kiri, Kanan, dan Belakang.' },
-          resolume: { title: '💻 Resolume Arena — LED Center Stage (Andreas)', text: 'Mengolah video background, bumper, dan live feed ke NovaStar Processor $\rightarrow$ LED Center Panggung. Mengirim BGM ke Yamaha QL5 via USB-C DAC.' },
+          pro1: { title: '💻 ProPresenter 1 — Lyrics & LED LRB (Rania)', text: 'Menerima PGM Splitter via HDMI Capture. Mengirim lirik dan kamera feed ke Video Processor UNNES → LED Kiri, Kanan, dan Belakang.' },
+          resolume: { title: '💻 Resolume Arena — LED Center Stage (Andreas)', text: 'Mengolah video background, bumper, dan live feed ke NovaStar Processor → LED Center Panggung. Mengirim BGM ke Yamaha QL5 via USB-C DAC.' },
           ql5: { title: '🎛️ Yamaha QL5 FOH Mixer (UNNES)', text: 'Mixer audio utama 32-channel. Mengirim stereo aux out via 2x XLR 10M ke NewBaxs CT80S. Terhubung via Wi-Fi UNNES-ID ke iPad VM1 & Laptop VM2.' }
         };
 
@@ -1989,8 +2444,14 @@ def generate_index_html():
             by: author || this.syncUser,
             at: timeStr
           };
+          if ('vibrate' in navigator) {
+            try { navigator.vibrate(40); } catch (e) {}
+          }
         } else {
           delete this.inventoryState[id];
+          if ('vibrate' in navigator) {
+            try { navigator.vibrate([20, 20]); } catch (e) {}
+          }
         }
 
         localStorage.setItem('ip26_inventory_checks', JSON.stringify(this.inventoryState));
@@ -2012,7 +2473,7 @@ def generate_index_html():
         this.updateInventoryProgress();
 
         if (fromSync) {
-          this.showToast(`🔔 ${author || 'Kru lain'} ${nowChecked ? 'mencentang' : 'membatalkan centang'}: ${item.name}`);
+          this.showToast(`🔔 ${author || 'Kru lain'} ${nowChecked ? 'mencentang' : 'membatalkan'}: ${item.name}`);
         }
       }
 
@@ -2228,10 +2689,10 @@ def generate_index_html():
               <span style="font-family:var(--font-mono); font-size:0.75rem; font-weight:800; color:var(--accent-cyan);">${r.time}</span>
               <div>
                 <div style="font-size:0.85rem; font-weight:700; color:var(--text-pure);">${r.title}</div>
-                <div style="font-size:0.75rem; color:var(--text-secondary);">${r.media}</div>
+                <div style="font-size:0.72rem; color:var(--text-secondary);">${r.media}</div>
               </div>
             </div>
-            <span style="font-size:0.72rem; color:var(--text-muted); font-family:var(--font-mono);">${r.pic}</span>
+            <span style="font-size:0.7rem; color:var(--text-muted); font-family:var(--font-mono);">${r.pic}</span>
           </div>
         `).join('');
       }
@@ -2516,7 +2977,7 @@ def generate_index_html():
 """
     with open('index.html', 'w', encoding='utf-8') as f:
         f.write(html_code)
-    print("index.html successfully updated with explicit Desktop Top Nav & Mobile Bottom Dock!")
+    print("index.html successfully updated and optimized for Samsung S24 FE mobile!")
 
 if __name__ == '__main__':
     generate_index_html()
