@@ -9,1153 +9,58 @@
   <meta property="og:description" content="Complete broadcast blueprint, switcher simulator, audio schematics, and master inventory tracker.">
   <meta property="og:url" content="https://zzdree.github.io/ip26-production/">
   <meta property="og:type" content="website">
-  <meta name="theme-color" content="#09090b">
+  <meta name="theme-color" content="#0e0e11">
   
   <!-- Google Fonts: Inter & JetBrains Mono -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
   
   <style>
-    /* Pure Dark Grey Design System */
+    /* Inline Design System Backup (Ensures 100% Zero-Glitch Render on Local & Online Pages) */
     :root {
-      --bg-base: #09090b;
-      --bg-surface: #121215;
-      --bg-card: #18181b;
-      --bg-card-hover: #222226;
-      --bg-card-sub: #141417;
-      --bg-input: #101013;
-      
-      --border-subtle: #242429;
-      --border-card: #2e2e34;
-      --border-hover: #3f3f46;
-      --border-active: #52525b;
-      
-      --text-main: #fafafa;
-      --text-heading: #ffffff;
-      --text-muted: #a1a1aa;
-      --text-dim: #71717a;
-      
-      --status-live: #f43f5e;
-      --status-live-bg: rgba(244, 63, 94, 0.12);
-      --status-live-border: rgba(244, 63, 94, 0.35);
-      
-      --status-pvw: #10b981;
-      --status-pvw-bg: rgba(16, 185, 129, 0.12);
-      --status-pvw-border: rgba(16, 185, 129, 0.35);
-      
-      --status-warning: #f59e0b;
-      --status-warning-bg: rgba(245, 158, 11, 0.12);
-      --status-warning-border: rgba(245, 158, 11, 0.35);
-      
-      --status-info: #e4e4e7;
-      
+      --bg-app: #0e0e11;
+      --bg-surface-1: #16161b;
+      --bg-surface-2: #1e1e26;
+      --bg-surface-3: #282833;
+      --bg-surface-4: #333342;
+      --bg-screen-well: #070709;
+      --border-subtle: rgba(255, 255, 255, 0.07);
+      --border-card: rgba(255, 255, 255, 0.12);
+      --border-hover: rgba(255, 255, 255, 0.22);
+      --border-focus: rgba(255, 255, 255, 0.38);
+      --text-high: #ffffff;
+      --text-primary: #f4f4f5;
+      --text-secondary: #a1a1aa;
+      --text-muted: #71717a;
+      --text-disabled: #52525b;
+      --accent-live: #f43f5e;
+      --accent-live-bg: rgba(244, 63, 94, 0.12);
+      --accent-live-border: rgba(244, 63, 94, 0.38);
+      --accent-live-text: #fda4af;
+      --accent-pvw: #10b981;
+      --accent-pvw-bg: rgba(16, 185, 129, 0.12);
+      --accent-pvw-border: rgba(16, 185, 129, 0.38);
+      --accent-pvw-text: #6ee7b7;
+      --accent-warn: #f59e0b;
+      --accent-warn-bg: rgba(245, 158, 11, 0.12);
+      --accent-warn-border: rgba(245, 158, 11, 0.38);
+      --accent-warn-text: #fde68a;
+      --accent-media: #38bdf8;
+      --accent-media-bg: rgba(56, 189, 248, 0.12);
+      --accent-media-border: rgba(56, 189, 248, 0.38);
+      --accent-media-text: #bae6fd;
       --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-      --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
-      
-      --radius-sm: 6px;
-      --radius-md: 10px;
-      --radius-lg: 14px;
-      --shadow-card: 0 4px 14px rgba(0, 0, 0, 0.55);
-    }
-
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
-    body {
-      background-color: var(--bg-base);
-      color: var(--text-main);
-      font-family: var(--font-sans);
-      line-height: 1.6;
-      -webkit-font-smoothing: antialiased;
-      min-height: 100vh;
-    }
-
-    .container {
-      max-width: 1320px;
-      margin: 0 auto;
-      padding: 0 1.5rem;
-    }
-
-    /* Top Telemetry Bar */
-    .top-telemetry-bar {
-      background: #000000;
-      border-bottom: 1px solid var(--border-subtle);
-      padding: 0.55rem 1.5rem;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      font-size: 0.8rem;
-      font-family: var(--font-mono);
-    }
-
-    .telemetry-left, .telemetry-right {
-      display: flex;
-      align-items: center;
-      gap: 1.25rem;
-    }
-
-    .tally-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.45rem;
-      background: var(--status-live-bg);
-      color: #fda4af;
-      padding: 0.25rem 0.65rem;
-      border-radius: 999px;
-      border: 1px solid var(--status-live-border);
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.04em;
-      font-size: 0.75rem;
-    }
-
-    .pulse-lamp {
-      width: 7px;
-      height: 7px;
-      background-color: var(--status-live);
-      border-radius: 50%;
-      box-shadow: 0 0 8px var(--status-live);
-      animation: pulse-glow 1.8s infinite ease-in-out;
-    }
-
-    @keyframes pulse-glow {
-      0% { transform: scale(0.9); opacity: 0.8; }
-      50% { transform: scale(1.25); opacity: 1; box-shadow: 0 0 12px var(--status-live); }
-      100% { transform: scale(0.9); opacity: 0.8; }
-    }
-
-    .telemetry-tag {
-      color: var(--text-muted);
-    }
-    .telemetry-tag b {
-      color: var(--text-main);
-    }
-
-    /* Hero Section */
-    .hero {
-      padding: 2.75rem 0 2rem;
-      border-bottom: 1px solid var(--border-subtle);
-      background: linear-gradient(180deg, #121215 0%, #09090b 100%);
-    }
-
-    .hero-badges-row {
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      gap: 0.5rem;
-      margin-bottom: 1.25rem;
-    }
-
-    .meta-chip {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.35rem;
-      padding: 0.3rem 0.75rem;
-      border-radius: var(--radius-sm);
-      font-size: 0.75rem;
-      font-weight: 600;
-      font-family: var(--font-mono);
-      background: var(--bg-card);
-      border: 1px solid var(--border-card);
-      color: var(--text-muted);
-    }
-
-    .meta-chip.venue {
-      border-color: var(--status-live-border);
-      color: #fda4af;
-      background: var(--status-live-bg);
-    }
-
-    .meta-chip.ready {
-      border-color: var(--status-pvw-border);
-      color: #6ee7b7;
-      background: var(--status-pvw-bg);
-    }
-
-    .meta-chip.private {
-      border-color: rgba(255, 255, 255, 0.2);
-      color: #e4e4e7;
-    }
-
-    .wa-share-link {
-      margin-left: auto;
-      display: inline-flex;
-      align-items: center;
-      gap: 0.4rem;
-      background: rgba(16, 185, 129, 0.15);
-      border: 1px solid rgba(16, 185, 129, 0.4);
-      color: #6ee7b7;
-      padding: 0.35rem 0.85rem;
-      border-radius: var(--radius-sm);
-      font-size: 0.75rem;
-      font-weight: 700;
-      font-family: var(--font-mono);
-      text-decoration: none;
-      transition: all 0.2s ease;
-    }
-
-    .wa-share-link:hover {
-      background: rgba(16, 185, 129, 0.25);
-      border-color: #10b981;
-      color: #ffffff;
-    }
-
-    .hero-main-title {
-      font-size: 2.35rem;
-      font-weight: 800;
-      letter-spacing: -0.03em;
-      line-height: 1.15;
-      margin-bottom: 0.75rem;
-      color: var(--text-heading);
-    }
-
-    .hero-main-title span {
-      color: var(--text-muted);
-      font-weight: 400;
-    }
-
-    .hero-description {
-      font-size: 1.05rem;
-      color: var(--text-muted);
-      max-width: 900px;
-      margin-bottom: 2rem;
-      line-height: 1.6;
-    }
-
-    /* Metrics Bar */
-    .metrics-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 1rem;
-    }
-
-    .metric-card {
-      background: var(--bg-card);
-      border: 1px solid var(--border-card);
-      border-radius: var(--radius-md);
-      padding: 1.25rem;
-      transition: border-color 0.2s ease, transform 0.2s ease;
-    }
-
-    .metric-card:hover {
-      border-color: var(--border-hover);
-      transform: translateY(-2px);
-    }
-
-    .metric-label {
-      font-size: 0.75rem;
-      color: var(--text-dim);
-      text-transform: uppercase;
-      letter-spacing: 0.06em;
-      font-weight: 700;
-      margin-bottom: 0.35rem;
-    }
-
-    .metric-val {
-      font-size: 1.85rem;
-      font-weight: 800;
-      color: var(--text-heading);
-      font-family: var(--font-mono);
-    }
-
-    .metric-note {
-      font-size: 0.75rem;
-      color: var(--text-muted);
-      margin-top: 0.25rem;
-    }
-
-    /* Sticky Navigation Deck */
-    .nav-deck-wrapper {
-      position: sticky;
-      top: 0;
-      z-index: 50;
-      background: rgba(18, 18, 21, 0.94);
-      backdrop-filter: blur(12px);
-      border-bottom: 1px solid var(--border-card);
-      margin-bottom: 2rem;
-    }
-
-    .nav-deck {
-      display: flex;
-      gap: 0.4rem;
-      overflow-x: auto;
-      padding: 0.75rem 0;
-      scrollbar-width: none;
-    }
-
-    .nav-deck::-webkit-scrollbar {
-      display: none;
-    }
-
-    .nav-btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.45rem;
-      background: transparent;
-      border: 1px solid transparent;
-      color: var(--text-muted);
-      padding: 0.55rem 1rem;
-      border-radius: var(--radius-md);
-      font-size: 0.85rem;
-      font-weight: 600;
-      cursor: pointer;
-      white-space: nowrap;
-      transition: all 0.15s ease;
-    }
-
-    .nav-btn:hover {
-      color: var(--text-heading);
-      background: var(--bg-card);
-      border-color: var(--border-card);
-    }
-
-    .nav-btn.active {
-      background: var(--bg-card);
-      color: #ffffff;
-      border-color: var(--border-hover);
-      box-shadow: var(--shadow-card);
-      font-weight: 700;
-    }
-
-    /* Tab Panels */
-    .tab-pane {
-      display: none;
-      animation: fadeIn 0.2s ease forwards;
-    }
-
-    .tab-pane.active {
-      display: block;
-    }
-
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(4px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    .section-head {
-      margin-bottom: 1.75rem;
-    }
-
-    .section-title {
-      font-size: 1.5rem;
-      font-weight: 700;
-      color: var(--text-heading);
-      display: flex;
-      align-items: center;
-      gap: 0.6rem;
-    }
-
-    .section-desc {
-      color: var(--text-muted);
-      font-size: 0.9rem;
-      margin-top: 0.35rem;
-    }
-
-    /* Overview Subsystems Grid */
-    .overview-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-      gap: 1.5rem;
-      margin-bottom: 2.5rem;
-    }
-
-    .subsystem-card {
-      background: var(--bg-card);
-      border: 1px solid var(--border-card);
-      border-radius: var(--radius-md);
-      padding: 1.5rem;
-      box-shadow: var(--shadow-card);
-    }
-
-    .subsystem-head {
-      display: flex;
-      align-items: center;
-      gap: 0.65rem;
-      margin-bottom: 1rem;
-      padding-bottom: 0.75rem;
-      border-bottom: 1px solid var(--border-subtle);
-    }
-
-    .subsystem-head h3 {
-      font-size: 1.05rem;
-      font-weight: 700;
-      color: var(--text-heading);
-    }
-
-    .spec-list {
-      list-style: none;
-      display: flex;
-      flex-direction: column;
-      gap: 0.65rem;
-      font-size: 0.88rem;
-      color: var(--text-muted);
-    }
-
-    .spec-list li {
-      position: relative;
-      padding-left: 1.25rem;
-      line-height: 1.5;
-    }
-
-    .spec-list li::before {
-      content: "•";
-      position: absolute;
-      left: 0;
-      color: var(--text-dim);
-      font-weight: bold;
-    }
-
-    .spec-list li b {
-      color: var(--text-main);
-    }
-
-    /* Virtual Switcher & Multiview Simulator Deck */
-    .simulator-layout {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 1.5rem;
-      margin-bottom: 1.5rem;
-    }
-
-    .monitor-frame {
-      background: #000000;
-      border: 2px solid var(--border-card);
-      border-radius: var(--radius-md);
-      overflow: hidden;
-      position: relative;
-    }
-
-    .monitor-frame.pgm {
-      border-color: var(--status-live);
-    }
-    .monitor-frame.pvw {
-      border-color: var(--status-pvw);
-    }
-
-    .monitor-header {
-      background: var(--bg-surface);
-      padding: 0.5rem 1rem;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      font-family: var(--font-mono);
-      font-size: 0.78rem;
-      font-weight: 700;
-    }
-
-    .monitor-screen {
-      aspect-ratio: 16 / 9;
-      background: #0d0d11;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      position: relative;
-      padding: 1.5rem;
-      text-align: center;
-    }
-
-    .screen-feed-name {
-      font-size: 1.5rem;
-      font-weight: 800;
-      font-family: var(--font-mono);
-      color: #ffffff;
-    }
-
-    .screen-feed-info {
-      font-size: 0.825rem;
-      color: var(--text-muted);
-      margin-top: 0.25rem;
-    }
-
-    .switcher-control-panel {
-      background: var(--bg-card);
-      border: 1px solid var(--border-card);
-      border-radius: var(--radius-md);
-      padding: 1.5rem;
-      margin-bottom: 2.5rem;
-    }
-
-    .bus-row {
-      display: flex;
-      align-items: center;
-      gap: 1rem;
-      margin-bottom: 1rem;
-    }
-
-    .bus-label {
-      width: 90px;
-      font-size: 0.8rem;
-      font-family: var(--font-mono);
-      font-weight: 700;
-      color: var(--text-dim);
-    }
-
-    .bus-buttons {
-      display: flex;
-      gap: 0.5rem;
-      flex: 1;
-    }
-
-    .hw-btn {
-      flex: 1;
-      background: var(--bg-surface);
-      border: 1px solid var(--border-card);
-      color: var(--text-muted);
-      padding: 0.65rem 0.5rem;
-      border-radius: var(--radius-sm);
-      font-family: var(--font-mono);
-      font-size: 0.8rem;
-      font-weight: 700;
-      cursor: pointer;
-      transition: all 0.15s ease;
-    }
-
-    .hw-btn:hover {
-      background: var(--bg-card-hover);
-      color: var(--text-heading);
-      border-color: var(--border-hover);
-    }
-
-    .hw-btn.pgm-active {
-      background: var(--status-live);
-      color: #ffffff;
-      border-color: var(--status-live);
-      box-shadow: 0 0 12px rgba(244, 63, 94, 0.4);
-    }
-
-    .hw-btn.pvw-active {
-      background: var(--status-pvw);
-      color: #000000;
-      border-color: var(--status-pvw);
-      box-shadow: 0 0 12px rgba(16, 185, 129, 0.4);
-    }
-
-    .transition-row {
-      display: flex;
-      gap: 1rem;
-      margin-top: 1.25rem;
-      padding-top: 1.25rem;
-      border-top: 1px solid var(--border-subtle);
-    }
-
-    .cut-btn {
-      flex: 1;
-      background: #27272a;
-      border: 1px solid #3f3f46;
-      color: #ffffff;
-      padding: 0.85rem;
-      border-radius: var(--radius-sm);
-      font-family: var(--font-mono);
-      font-size: 0.9rem;
-      font-weight: 800;
-      cursor: pointer;
-      transition: all 0.15s ease;
-    }
-
-    .cut-btn:hover {
-      background: var(--status-live);
-      border-color: var(--status-live);
-    }
-
-    .auto-btn {
-      flex: 1;
-      background: #27272a;
-      border: 1px solid #3f3f46;
-      color: #ffffff;
-      padding: 0.85rem;
-      border-radius: var(--radius-sm);
-      font-family: var(--font-mono);
-      font-size: 0.9rem;
-      font-weight: 800;
-      cursor: pointer;
-      transition: all 0.15s ease;
-    }
-
-    .auto-btn:hover {
-      background: var(--status-pvw);
-      color: #000000;
-      border-color: var(--status-pvw);
-    }
-
-    /* Virtual Audio Desk */
-    .audio-desk {
-      background: var(--bg-card);
-      border: 1px solid var(--border-card);
-      border-radius: var(--radius-md);
-      padding: 1.5rem;
-      margin-bottom: 2.5rem;
-    }
-
-    .fader-deck {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-      gap: 1.25rem;
-    }
-
-    .channel-strip {
-      background: var(--bg-surface);
-      border: 1px solid var(--border-card);
-      border-radius: var(--radius-sm);
-      padding: 1.15rem;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      text-align: center;
-    }
-
-    .channel-name {
-      font-weight: 700;
-      font-size: 0.85rem;
-      color: var(--text-heading);
-      margin-bottom: 0.2rem;
-    }
-
-    .channel-source {
-      font-size: 0.72rem;
-      color: var(--text-dim);
-      font-family: var(--font-mono);
-      margin-bottom: 1rem;
-    }
-
-    .vu-meter-bar {
-      width: 14px;
-      height: 120px;
-      background: #000000;
-      border: 1px solid var(--border-subtle);
-      border-radius: 3px;
-      margin-bottom: 1rem;
-      position: relative;
-      overflow: hidden;
-      display: flex;
-      flex-direction: column-reverse;
-    }
-
-    .vu-fill {
-      width: 100%;
-      height: 65%;
-      background: linear-gradient(0deg, #10b981 0%, #10b981 70%, #f59e0b 85%, #f43f5e 100%);
-      transition: height 0.15s ease;
-    }
-
-    .fader-slider {
-      writing-mode: vertical-lr;
-      direction: rtl;
-      width: 24px;
-      height: 110px;
-      cursor: pointer;
-      accent-color: var(--border-active);
-      margin-bottom: 1rem;
-    }
-
-    .fader-mute-btn {
-      width: 100%;
-      padding: 0.4rem;
-      font-size: 0.72rem;
-      font-family: var(--font-mono);
-      font-weight: 700;
-      border-radius: 4px;
-      background: var(--bg-card);
-      border: 1px solid var(--border-card);
-      color: var(--text-muted);
-      cursor: pointer;
-    }
-
-    .fader-mute-btn.muted {
-      background: var(--status-live);
-      color: #ffffff;
-      border-color: var(--status-live);
-    }
-
-    /* Signal & Power Routing Cards */
-    .routing-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
-      gap: 1.25rem;
-      margin-bottom: 2.5rem;
-    }
-
-    .route-card {
-      background: var(--bg-card);
-      border: 1px solid var(--border-card);
-      border-radius: var(--radius-md);
-      padding: 1.35rem;
-      box-shadow: var(--shadow-card);
-      position: relative;
-      overflow: hidden;
-    }
-
-    .route-card::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 4px;
-      height: 100%;
-      background: var(--border-active);
-    }
-
-    .route-card.cam-route::before { background: var(--status-live); }
-    .route-card.audio-route::before { background: var(--status-warning); }
-    .route-card.media-route::before { background: var(--status-pvw); }
-    .route-card.power-route::before { background: #e4e4e7; }
-
-    .route-top {
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-start;
-      margin-bottom: 0.75rem;
-    }
-
-    .route-title {
-      font-size: 1.05rem;
-      font-weight: 700;
-      color: var(--text-heading);
-    }
-
-    .pic-badge {
-      font-size: 0.75rem;
-      font-family: var(--font-mono);
-      padding: 0.2rem 0.55rem;
-      border-radius: 4px;
-      background: rgba(255, 255, 255, 0.08);
-      color: var(--text-main);
-      font-weight: 600;
-    }
-
-    .signal-flow {
-      display: flex;
-      flex-direction: column;
-      gap: 0.45rem;
-      margin-top: 1rem;
-    }
-
-    .flow-step {
-      display: flex;
-      align-items: center;
-      gap: 0.65rem;
-      font-size: 0.85rem;
-      background: var(--bg-card-sub);
-      padding: 0.55rem 0.85rem;
-      border-radius: var(--radius-sm);
-      border: 1px solid var(--border-subtle);
-      color: var(--text-main);
-    }
-
-    .step-num {
-      font-family: var(--font-mono);
-      font-size: 0.75rem;
-      color: var(--text-dim);
-      font-weight: 700;
-    }
-
-    .flow-arrow {
-      text-align: center;
-      color: var(--text-dim);
-      font-size: 0.75rem;
-      line-height: 0.4;
-    }
-
-    /* Crew Roster & Filtering */
-    .filter-row {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.5rem;
-      margin-bottom: 1.5rem;
-    }
-
-    .filter-btn {
-      padding: 0.45rem 0.95rem;
-      font-size: 0.825rem;
-      border-radius: var(--radius-sm);
-      background: var(--bg-card);
-      color: var(--text-muted);
-      border: 1px solid var(--border-card);
-      cursor: pointer;
-      transition: all 0.15s ease;
-      font-weight: 500;
-    }
-
-    .filter-btn:hover {
-      background: var(--bg-card-hover);
-      color: var(--text-heading);
-      border-color: var(--border-hover);
-    }
-
-    .filter-btn.active {
-      background: #ffffff;
-      color: #000000;
-      font-weight: 700;
-      border-color: #ffffff;
-    }
-
-    .crew-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-      gap: 1rem;
-    }
-
-    .crew-card {
-      background: var(--bg-card);
-      border: 1px solid var(--border-card);
-      border-radius: var(--radius-md);
-      padding: 1.25rem;
-      transition: transform 0.2s ease, border-color 0.2s ease;
-    }
-
-    .crew-card:hover {
-      transform: translateY(-2px);
-      border-color: var(--border-hover);
-    }
-
-    .crew-profile {
-      display: flex;
-      align-items: center;
-      gap: 0.85rem;
-      margin-bottom: 0.85rem;
-    }
-
-    .crew-avatar {
-      width: 44px;
-      height: 44px;
-      border-radius: 50%;
-      background: var(--bg-surface);
-      border: 1px solid var(--border-active);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-weight: 700;
-      font-size: 1rem;
-      color: #ffffff;
-      font-family: var(--font-mono);
-    }
-
-    .crew-name {
-      font-weight: 700;
-      font-size: 1rem;
-      color: var(--text-heading);
-    }
-
-    .crew-role {
-      font-size: 0.8rem;
-      color: var(--text-muted);
-    }
-
-    .crew-gear-box {
-      font-size: 0.78rem;
-      background: var(--bg-card-sub);
-      padding: 0.55rem 0.75rem;
-      border-radius: var(--radius-sm);
-      color: var(--text-muted);
-      border-left: 2px solid var(--border-active);
-      line-height: 1.4;
-    }
-
-    .crew-gear-box b {
-      color: var(--text-main);
-    }
-
-    /* Master Inventory Table */
-    .inventory-deck {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 1rem;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 1.25rem;
-    }
-
-    .search-box {
-      background: var(--bg-card);
-      border: 1px solid var(--border-card);
-      color: #ffffff;
-      padding: 0.65rem 1rem;
-      border-radius: var(--radius-md);
-      font-size: 0.9rem;
-      min-width: 280px;
-      transition: border-color 0.2s ease;
-    }
-
-    .search-box:focus {
-      outline: none;
-      border-color: var(--border-active);
-    }
-
-    .inventory-actions {
-      display: flex;
-      align-items: center;
-      gap: 0.75rem;
-    }
-
-    .inventory-progress-badge {
-      background: var(--bg-card);
-      border: 1px solid var(--border-card);
-      padding: 0.6rem 1rem;
-      border-radius: var(--radius-md);
-      display: flex;
-      align-items: center;
-      gap: 1rem;
-      font-size: 0.85rem;
-    }
-
-    .progress-track {
-      width: 140px;
-      height: 8px;
-      background: var(--bg-surface);
-      border: 1px solid var(--border-subtle);
-      border-radius: 999px;
-      overflow: hidden;
-    }
-
-    .progress-fill {
-      height: 100%;
-      width: 0%;
-      background: var(--status-pvw);
-      transition: width 0.3s ease;
-    }
-
-    .print-btn {
-      background: var(--bg-card);
-      border: 1px solid var(--border-card);
-      color: var(--text-main);
-      padding: 0.6rem 1rem;
-      border-radius: var(--radius-md);
-      font-size: 0.825rem;
-      font-weight: 700;
-      cursor: pointer;
-      display: inline-flex;
-      align-items: center;
-      gap: 0.4rem;
-      transition: all 0.15s ease;
-    }
-
-    .print-btn:hover {
-      background: var(--bg-card-hover);
-      border-color: var(--border-hover);
-    }
-
-    .inventory-table-container {
-      background: var(--bg-card);
-      border: 1px solid var(--border-card);
-      border-radius: var(--radius-md);
-      overflow-x: auto;
-      margin-bottom: 2.5rem;
-    }
-
-    .inv-table {
-      width: 100%;
-      border-collapse: collapse;
-      text-align: left;
-      font-size: 0.875rem;
-    }
-
-    .inv-table th {
-      background: var(--bg-surface);
-      padding: 0.85rem 1.15rem;
-      font-size: 0.78rem;
-      text-transform: uppercase;
-      color: var(--text-dim);
-      letter-spacing: 0.05em;
-      border-bottom: 1px solid var(--border-card);
-      font-weight: 700;
-    }
-
-    .inv-table td {
-      padding: 0.8rem 1.15rem;
-      border-bottom: 1px solid var(--border-subtle);
-      vertical-align: middle;
-    }
-
-    .inv-table tr:hover {
-      background: var(--bg-card-hover);
-    }
-
-    .item-check-input {
-      cursor: pointer;
-      accent-color: var(--status-pvw);
-      width: 18px;
-      height: 18px;
-    }
-
-    .status-symbol {
-      font-size: 0.85rem;
-      font-family: var(--font-mono);
-    }
-
-    .source-tag {
-      font-size: 0.75rem;
-      padding: 0.2rem 0.55rem;
-      border-radius: 4px;
-      background: rgba(255, 255, 255, 0.06);
-      font-family: var(--font-mono);
-      color: var(--text-muted);
-    }
-
-    .source-tag.highlight {
-      color: var(--text-heading);
-      background: rgba(255, 255, 255, 0.1);
-    }
-
-    /* Rundown Cue Sheet */
-    .rundown-list {
-      display: flex;
-      flex-direction: column;
-      gap: 1rem;
-      margin-bottom: 2.5rem;
-    }
-
-    .cue-card {
-      background: var(--bg-card);
-      border: 1px solid var(--border-card);
-      border-radius: var(--radius-md);
-      padding: 1.25rem;
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: space-between;
-      align-items: center;
-      gap: 1rem;
-    }
-
-    .cue-card.highlight-cue {
-      border-color: var(--border-hover);
-      background: var(--bg-card-hover);
-    }
-
-    .cue-phase-tag {
-      font-size: 0.75rem;
-      font-family: var(--font-mono);
-      font-weight: 700;
-      text-transform: uppercase;
-      color: var(--text-dim);
-      margin-bottom: 0.25rem;
-    }
-
-    .cue-headline {
-      font-size: 1.1rem;
-      font-weight: 700;
-      color: var(--text-heading);
-    }
-
-    .cue-destinations {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.4rem;
-      margin-top: 0.45rem;
-    }
-
-    .cue-pill {
-      font-size: 0.75rem;
-      padding: 0.2rem 0.6rem;
-      border-radius: 999px;
-      background: var(--bg-surface);
-      border: 1px solid var(--border-card);
-      color: var(--text-muted);
-    }
-
-    /* SOP & Safety Sections */
-    .sop-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-      gap: 1.5rem;
-      margin-bottom: 2.5rem;
-    }
-
-    .sop-box {
-      background: var(--bg-card);
-      border: 1px solid var(--border-card);
-      border-radius: var(--radius-md);
-      padding: 1.5rem;
-      border-left: 4px solid var(--border-active);
-    }
-
-    .sop-box.power-sop { border-left-color: var(--status-warning); }
-    .sop-box.signal-sop { border-left-color: var(--status-info); }
-    .sop-box.teardown-sop { border-left-color: var(--status-pvw); }
-
-    .sop-box h3 {
-      font-size: 1.1rem;
-      font-weight: 700;
-      margin-bottom: 0.75rem;
-      color: var(--text-heading);
-    }
-
-    .sop-box ul {
-      padding-left: 1.25rem;
-      color: var(--text-muted);
-      font-size: 0.88rem;
-      display: flex;
-      flex-direction: column;
-      gap: 0.5rem;
-    }
-
-    /* Raw Text File Viewer */
-    .raw-code-box {
-      background: #000000;
-      border: 1px solid var(--border-card);
-      border-radius: var(--radius-md);
-      padding: 1.25rem;
-      font-family: var(--font-mono);
-      font-size: 0.82rem;
-      color: #e4e4e7;
-      max-height: 520px;
-      overflow-y: auto;
-      white-space: pre-wrap;
-      line-height: 1.5;
-      margin-bottom: 1.5rem;
-    }
-
-    /* Footer */
-    footer {
-      margin-top: 4rem;
-      padding: 2.5rem 0;
-      border-top: 1px solid var(--border-subtle);
-      background: #000000;
-      text-align: center;
-      color: var(--text-dim);
-      font-size: 0.85rem;
-    }
-
-    footer a {
-      color: var(--text-main);
-      text-decoration: none;
-    }
-
-    footer a:hover {
-      text-decoration: underline;
-    }
-
-    /* Responsive */
-    @media (max-width: 860px) {
-      .simulator-layout {
-        grid-template-columns: 1fr;
-      }
-      .hero-main-title {
-        font-size: 1.75rem;
-      }
-      .metrics-grid {
-        grid-template-columns: repeat(2, 1fr);
-      }
-      .inventory-deck {
-        flex-direction: column;
-        align-items: stretch;
-      }
-      .search-box {
-        width: 100%;
-      }
-      .top-telemetry-bar {
-        flex-direction: column;
-        gap: 0.4rem;
-        align-items: flex-start;
-      }
-      .wa-share-link {
-        margin-left: 0;
-        width: 100%;
-        justify-content: center;
-      }
+      --font-mono: 'JetBrains Mono', 'Fira Code', ui-monospace, monospace;
+      --radius-xs: 4px;
+      --radius-sm: 8px;
+      --radius-md: 12px;
+      --radius-lg: 16px;
+      --shadow-elevation-1: 0 4px 20px rgba(0, 0, 0, 0.4);
+      --shadow-elevation-2: 0 8px 32px rgba(0, 0, 0, 0.6);
+      --shadow-glow-live: 0 0 16px rgba(244, 63, 94, 0.35);
+      --shadow-glow-pvw: 0 0 16px rgba(16, 185, 129, 0.35);
     }
   </style>
 </head>
@@ -1169,7 +74,7 @@
         <span>ON-AIR SYSTEM READY</span>
       </div>
       <div class="telemetry-tag">
-        PGM FEED: <b id="top-pgm-tag" style="color: var(--status-live);">CAM 1</b>
+        PGM FEED: <b id="top-pgm-tag" style="color: var(--accent-live-text);">CAM 1</b>
       </div>
       <div class="telemetry-tag">
         VENUE: <b>AUDITORIUM UNNES</b>
@@ -1206,22 +111,22 @@
       <div class="metrics-grid">
         <div class="metric-card">
           <div class="metric-label">Broadcast Cameras</div>
-          <div class="metric-val" style="color: var(--status-live);">4 Units</div>
+          <div class="metric-val" style="color: var(--accent-live-text);">4 Units</div>
           <div class="metric-note">Sony ZV-E10 & A6000 + Pyro H</div>
         </div>
         <div class="metric-card">
           <div class="metric-label">Display Feeds</div>
-          <div class="metric-val">7 Outputs</div>
+          <div class="metric-val" style="color: var(--accent-media-text);">7 Outputs</div>
           <div class="metric-note">LED Center, Sides, TVs & Multiview</div>
         </div>
         <div class="metric-card">
           <div class="metric-label">Audio Mixers</div>
-          <div class="metric-val" style="color: var(--status-warning);">2 Units</div>
+          <div class="metric-val" style="color: var(--accent-warn-text);">2 Units</div>
           <div class="metric-note">Yamaha QL5 FOH + NewBaxs CT80S</div>
         </div>
         <div class="metric-card">
           <div class="metric-label">Production Crew</div>
-          <div class="metric-val" style="color: var(--status-pvw);">14 PIC</div>
+          <div class="metric-val" style="color: var(--accent-pvw-text);">14 PIC</div>
           <div class="metric-note">Broadcast, Media, Engine & Docs</div>
         </div>
       </div>
@@ -1257,7 +162,7 @@
 
       <div class="overview-grid">
         <!-- Broadcast Subsystem -->
-        <div class="subsystem-card" style="border-top: 3px solid var(--status-live);">
+        <div class="subsystem-card" style="border-top: 3px solid var(--accent-live);">
           <div class="subsystem-head">
             <h3>🎥 1. Broadcast Video Subsystem</h3>
           </div>
@@ -1272,7 +177,7 @@
         </div>
 
         <!-- Media & LED Subsystem -->
-        <div class="subsystem-card" style="border-top: 3px solid var(--border-hover);">
+        <div class="subsystem-card" style="border-top: 3px solid var(--accent-media);">
           <div class="subsystem-head">
             <h3>💻 2. Visual & Media Presentation</h3>
           </div>
@@ -1285,7 +190,7 @@
         </div>
 
         <!-- Audio & Network Subsystem -->
-        <div class="subsystem-card" style="border-top: 3px solid var(--status-warning);">
+        <div class="subsystem-card" style="border-top: 3px solid var(--accent-warn);">
           <div class="subsystem-head">
             <h3>🔊 3. Audio & Networking FOH</h3>
           </div>
@@ -1298,7 +203,7 @@
         </div>
 
         <!-- Documentation Subsystem -->
-        <div class="subsystem-card" style="border-top: 3px solid var(--status-pvw);">
+        <div class="subsystem-card" style="border-top: 3px solid var(--accent-pvw);">
           <div class="subsystem-head">
             <h3>📸 4. Dokumentasi & Creative Shots</h3>
           </div>
@@ -1323,7 +228,7 @@
         <!-- PGM Screen -->
         <div class="monitor-frame pgm">
           <div class="monitor-header">
-            <span style="color: var(--status-live);">● PROGRAM ON-AIR (PGM)</span>
+            <span style="color: var(--accent-live-text);">● PROGRAM ON-AIR (PGM)</span>
             <span id="pgm-screen-title">CAM 1</span>
           </div>
           <div class="monitor-screen">
@@ -1335,7 +240,7 @@
         <!-- PVW Screen -->
         <div class="monitor-frame pvw">
           <div class="monitor-header">
-            <span style="color: var(--status-pvw);">● PREVIEW BUS (PVW)</span>
+            <span style="color: var(--accent-pvw-text);">● PREVIEW BUS (PVW)</span>
             <span id="pvw-screen-title">CAM 2</span>
           </div>
           <div class="monitor-screen">
@@ -1436,8 +341,8 @@
             <div class="progress-track">
               <div class="progress-fill" id="progress-bar-fill"></div>
             </div>
-            <span id="progress-count-text" style="font-family: var(--font-mono); font-weight: 700; color: var(--status-pvw);">0 / 0 Siap</span>
-            <button id="reset-checklist-btn" class="filter-btn" style="color: #fda4af; border-color: rgba(244, 63, 94, 0.4);">Reset</button>
+            <span id="progress-count-text" style="font-family: var(--font-mono); font-weight: 700; color: var(--accent-pvw-text);">0 / 0 Siap</span>
+            <button id="reset-checklist-btn" class="filter-btn" style="color: var(--accent-live-text); border-color: var(--accent-live-border);">Reset</button>
           </div>
           <button class="print-btn" id="print-manifest-btn">🖨️ Cetak Slip</button>
         </div>
@@ -1537,7 +442,7 @@
         <p class="section-desc">Arsip teks asli dari file spesifikasi teknis `ip26_pro.txt` dan `ip26_route.txt`.</p>
       </div>
 
-      <h3 style="font-size: 1.1rem; margin-bottom: 0.5rem; color: var(--text-heading);">1. File: ip26_route.txt (Signal Routing Specs)</h3>
+      <h3 style="font-size: 1.1rem; margin-bottom: 0.5rem; color: var(--text-high);">1. File: ip26_route.txt (Signal Routing Specs)</h3>
       <div class="raw-code-box">Broadcast Camera Routing
 - CAM 1 - Sony ZVE10 + Lens 18-105MM + Battery + Memory Card 64GB + Tripod Camera Big + HDMI to Micro HDMI Converter + HDMI Cable 20M + HDMI Splitter 4CH + Power Adaptor SPL + Terminal Cable XCH + HDMI Cable 30M + Cinetreak Cinelive V1 + Power Adaptor MIX (Alex) ✅
 - CAM 2 - Sony ZV-E10 + Lens 18-105MM + Battery + Memory Card 32GB + HDMI to Micro HDMI Cable 30CM + Hollyland Pyro H Transmitter + Hollyland Pyro H Receiver + Stand Lighting Small + HDMI Cable 1,5M + Cinetreak Cinelive V1 + Power Adaptor MIX (Kiel 1) ✅
@@ -1575,7 +480,7 @@ Broadcast System Routing
 ! PRO3 + Television (PRO3 x Darrel) ✅ TIME KEEPER - TERPISAH DARI BROADCAST SYSTEM
 - Terminal Cable XCH + Laptop (Pro Presenter 3) + Power Adaptor LTP + HDMI to HDMI Cable 1M + Television (Darrel) + Power Adaptor TV</div>
 
-      <h3 style="font-size: 1.1rem; margin-bottom: 0.5rem; color: var(--text-heading);">2. File: ip26_pro.txt (Master Production & Loans Log)</h3>
+      <h3 style="font-size: 1.1rem; margin-bottom: 0.5rem; color: var(--text-high);">2. File: ip26_pro.txt (Master Production & Loans Log)</h3>
       <div class="raw-code-box">*IBADAH PERDANA 2026*
 Event : Ibadah Perdana UKK UNNES 2026
 Venue : Gedung Auditorium Universitas Negeri Semarang
@@ -1610,7 +515,7 @@ Production : Panitia Ibadah Perdana 2026
       <p style="margin-top: 0.25rem;">
         Repository: <a href="https://github.com/zzdree/ip26-production" target="_blank" rel="noopener noreferrer">github.com/zzdree/ip26-production</a>
       </p>
-      <p style="margin-top: 0.5rem; font-size: 0.75rem; color: var(--text-dim);">
+      <p style="margin-top: 0.5rem; font-size: 0.75rem; color: var(--text-muted);">
         © 2026 UKK UNNES Production Team & Andreas. All Rights Reserved. (Proprietary Blueprint)
       </p>
     </div>
@@ -1618,11 +523,5 @@ Production : Panitia Ibadah Perdana 2026
 
   <!-- Master Application Script -->
   <script src="app.js"></script>
-  <script>
-    // Embedded Standalone Application Engine
-    if (typeof masterInventory === 'undefined') {
-      console.warn('Loading fallback embedded state...');
-    }
-  </script>
 </body>
 </html>
