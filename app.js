@@ -77,7 +77,7 @@ const masterInventory = [
   { id: 'and-18', name: 'USB-A Splitter Hub (3CH & 4CH)', qty: '2 Unit', category: 'Andreas', type: 'Hub', status: '☑️', notes: 'Hub Periferal Kontrol' },
   { id: 'and-19', name: 'HDMI to Mini HDMI Converter & Cable 1.5M', qty: '2 Unit', category: 'Andreas', type: 'Cable', status: '☑️', notes: 'Patch Display' },
   { id: 'and-20', name: 'HDMI to HDMI Cable 1.5M', qty: '3 Unit', category: 'Andreas', type: 'Cable', status: '✅', notes: 'Koneksi ProPresenter & Switcher' },
-  { id: 'and-21', name: 'VGA to HDMI Converter & VGA Cable 1.5M', qty: '4 Unit', category: 'Andreas', type: 'Adapter', status: '☑️', notes: 'Converter Layar Cadangan' },
+  { id: 'and-21', name: 'VGA to HDMI Converter & VGA Cable 1.5M', qty: '4 Unit', category: 'Adapter', type: 'Adapter', status: '☑️', notes: 'Converter Layar Cadangan' },
   { id: 'and-22', name: 'Power Cable 3PIN (3 Unit)', qty: '3 Unit', category: 'Andreas', type: 'Power', status: '⚠️', notes: 'Periksa Kelayakan Grounding' },
   { id: 'and-23', name: 'Power Cable 2PIN (1 Unit)', qty: '1 Unit', category: 'Andreas', type: 'Power', status: '⚠️', notes: 'Periksa Beban Daya' },
   { id: 'and-24', name: 'Terminal Cable 4CH (3 Unit)', qty: '3 Unit', category: 'Andreas', type: 'Power', status: '⚠️', notes: 'Terminal Distribusi FOH' },
@@ -278,6 +278,18 @@ const cameraFeeds = {
   'CAM 4': { name: 'CAM 4 — Right Wing Angle', pic: 'Nathania', gear: 'Sony A6000 + 16-50mm Kit' }
 };
 
+const paneTitles = {
+  'overview': { tag: 'COMMAND CENTER / ARSITEKTUR', title: 'Dashboard Operasional Master' },
+  'switcher': { tag: 'COMMAND CENTER / VIDEO SWITCHER', title: 'Virtual Switcher & Multiview Simulator' },
+  'audio': { tag: 'COMMAND CENTER / AUDIO CONSOLE', title: 'Virtual Audio Desk & FOH Ingest' },
+  'routing': { tag: 'INFRASTRUCTURE / SIGNAL FLOW', title: 'Detail Rute Sinyal & Kelistrikan' },
+  'crew': { tag: 'INFRASTRUCTURE / CREW DIRECTORY', title: 'Roster Personel & Penugasan Gear' },
+  'inventory': { tag: 'INFRASTRUCTURE / EQUIPMENT LOG', title: 'Master Inventaris & Checklist Peminjaman' },
+  'rundown': { tag: 'OPERATIONS / MEDIA ASSETS', title: 'Rundown & Media Asset Cue Sheet' },
+  'sop': { tag: 'OPERATIONS / SAFETY GUIDELINE', title: 'Standar Operasional & Keamanan (SOP)' },
+  'raw': { tag: 'SPECIFICATIONS / RAW TXT', title: 'Raw TXT & Blueprint Inspector' }
+};
+
 let currentPgm = 'CAM 1';
 let currentPvw = 'CAM 2';
 
@@ -299,7 +311,7 @@ const audioChannels = [
 
 // DOM Ready
 document.addEventListener('DOMContentLoaded', () => {
-  setupTabs();
+  setupSidebarAndTabs();
   setupClock();
   setupSwitcherSimulator();
   setupAudioDesk();
@@ -311,7 +323,7 @@ document.addEventListener('DOMContentLoaded', () => {
   setupEventListeners();
 });
 
-// Live Master Clock
+// Live Clock
 function setupClock() {
   const clockEl = document.getElementById('live-clock');
   function update() {
@@ -324,20 +336,46 @@ function setupClock() {
   setInterval(update, 1000);
 }
 
-// Tab Switching
-function setupTabs() {
-  const tabs = document.querySelectorAll('.nav-btn');
-  tabs.forEach(tab => {
-    tab.addEventListener('click', () => {
-      tabs.forEach(t => t.classList.remove('active'));
-      tab.classList.add('active');
-      
-      const target = tab.getAttribute('data-tab');
+// Sidebar Navigation & Tab Switching
+function setupSidebarAndTabs() {
+  const navBtns = document.querySelectorAll('.nav-link-btn');
+  const sidebar = document.getElementById('app-sidebar');
+  const menuToggle = document.getElementById('menu-toggle-btn');
+
+  if (menuToggle && sidebar) {
+    menuToggle.addEventListener('click', () => {
+      sidebar.classList.toggle('open');
+    });
+  }
+
+  navBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      navBtns.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+
+      const target = btn.getAttribute('data-tab');
+      activeTab = target;
+
       document.querySelectorAll('.tab-pane').forEach(content => {
         content.classList.remove('active');
       });
       const activeContent = document.getElementById(`tab-${target}`);
       if (activeContent) activeContent.classList.add('active');
+
+      // Update Header Breadcrumbs
+      if (paneTitles[target]) {
+        const tagEl = document.getElementById('current-pane-tag');
+        const titleEl = document.getElementById('current-pane-title');
+        if (tagEl) tagEl.textContent = paneTitles[target].tag;
+        if (titleEl) titleEl.textContent = paneTitles[target].title;
+      }
+
+      // Close mobile sidebar on select
+      if (window.innerWidth <= 1024 && sidebar) {
+        sidebar.classList.remove('open');
+      }
+
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     });
   });
 }
@@ -382,25 +420,24 @@ function setupSwitcherSimulator() {
 }
 
 function updateSwitcherDisplays() {
-  // Update Screens
   const pgmTitle = document.getElementById('pgm-screen-title');
+  const pgmTitleBig = document.getElementById('pgm-screen-title-big');
   const pgmInfo = document.getElementById('pgm-screen-info');
   const pvwTitle = document.getElementById('pvw-screen-title');
+  const pvwTitleBig = document.getElementById('pvw-screen-title-big');
   const pvwInfo = document.getElementById('pvw-screen-info');
 
   if (pgmTitle && cameraFeeds[currentPgm]) {
     pgmTitle.textContent = currentPgm;
-    pgmInfo.textContent = `${cameraFeeds[currentPgm].name} — PIC: ${cameraFeeds[currentPgm].pic}`;
+    if (pgmTitleBig) pgmTitleBig.textContent = `${currentPgm} — ON AIR`;
+    if (pgmInfo) pgmInfo.textContent = `${cameraFeeds[currentPgm].name} — PIC: ${cameraFeeds[currentPgm].pic}`;
   }
 
   if (pvwTitle && cameraFeeds[currentPvw]) {
     pvwTitle.textContent = currentPvw;
-    pvwInfo.textContent = `${cameraFeeds[currentPvw].name} — PIC: ${cameraFeeds[currentPvw].pic}`;
+    if (pvwTitleBig) pvwTitleBig.textContent = `${currentPvw} — PREVIEW`;
+    if (pvwInfo) pvwInfo.textContent = `${cameraFeeds[currentPvw].name} — PIC: ${cameraFeeds[currentPvw].pic}`;
   }
-
-  // Update Top Bar Tag
-  const topPgmTag = document.getElementById('top-pgm-tag');
-  if (topPgmTag) topPgmTag.textContent = currentPgm;
 
   // Update Buttons
   document.querySelectorAll('[data-pgm-btn]').forEach(btn => {
@@ -573,12 +610,12 @@ function renderInventory() {
           <span class="status-symbol">${item.status}</span>
         </td>
         <td>
-          <div style="font-weight: 700; color: var(--text-heading);">${item.name}</div>
-          <div style="font-size: 0.75rem; color: var(--text-dim); margin-top: 2px;">${item.notes || ''}</div>
+          <div style="font-weight: 700; color: var(--text-high);">${item.name}</div>
+          <div style="font-size: 0.75rem; color: var(--text-muted); margin-top: 2px;">${item.notes || ''}</div>
         </td>
         <td><span class="source-tag highlight">${item.qty}</span></td>
         <td><span class="source-tag">${item.category}</span></td>
-        <td><span class="source-tag" style="color: var(--text-heading);">${item.type}</span></td>
+        <td><span class="source-tag" style="color: var(--text-primary);">${item.type}</span></td>
       </tr>
     `;
   }).join('');
@@ -688,4 +725,15 @@ function setupEventListeners() {
       window.print();
     });
   }
+}
+
+// Copy Raw Text Helper
+function copyRawText(elementId) {
+  const el = document.getElementById(elementId);
+  if (!el) return;
+  navigator.clipboard.writeText(el.innerText).then(() => {
+    alert('Teks berhasil disalin ke clipboard!');
+  }).catch(() => {
+    alert('Gagal menyalin teks.');
+  });
 }

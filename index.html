@@ -9,441 +9,450 @@
   <meta property="og:description" content="Complete broadcast blueprint, switcher simulator, audio schematics, and master inventory tracker.">
   <meta property="og:url" content="https://zzdree.github.io/ip26-production/">
   <meta property="og:type" content="website">
-  <meta name="theme-color" content="#0e0e11">
+  <meta name="theme-color" content="#0c0d0f">
   
   <!-- Google Fonts: Inter & JetBrains Mono -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
-  
-  <style>
-    /* Inline Design System Backup (Ensures 100% Zero-Glitch Render on Local & Online Pages) */
-    :root {
-      --bg-app: #0e0e11;
-      --bg-surface-1: #16161b;
-      --bg-surface-2: #1e1e26;
-      --bg-surface-3: #282833;
-      --bg-surface-4: #333342;
-      --bg-screen-well: #070709;
-      --border-subtle: rgba(255, 255, 255, 0.07);
-      --border-card: rgba(255, 255, 255, 0.12);
-      --border-hover: rgba(255, 255, 255, 0.22);
-      --border-focus: rgba(255, 255, 255, 0.38);
-      --text-high: #ffffff;
-      --text-primary: #f4f4f5;
-      --text-secondary: #a1a1aa;
-      --text-muted: #71717a;
-      --text-disabled: #52525b;
-      --accent-live: #f43f5e;
-      --accent-live-bg: rgba(244, 63, 94, 0.12);
-      --accent-live-border: rgba(244, 63, 94, 0.38);
-      --accent-live-text: #fda4af;
-      --accent-pvw: #10b981;
-      --accent-pvw-bg: rgba(16, 185, 129, 0.12);
-      --accent-pvw-border: rgba(16, 185, 129, 0.38);
-      --accent-pvw-text: #6ee7b7;
-      --accent-warn: #f59e0b;
-      --accent-warn-bg: rgba(245, 158, 11, 0.12);
-      --accent-warn-border: rgba(245, 158, 11, 0.38);
-      --accent-warn-text: #fde68a;
-      --accent-media: #38bdf8;
-      --accent-media-bg: rgba(56, 189, 248, 0.12);
-      --accent-media-border: rgba(56, 189, 248, 0.38);
-      --accent-media-text: #bae6fd;
-      --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-      --font-mono: 'JetBrains Mono', 'Fira Code', ui-monospace, monospace;
-      --radius-xs: 4px;
-      --radius-sm: 8px;
-      --radius-md: 12px;
-      --radius-lg: 16px;
-      --shadow-elevation-1: 0 4px 20px rgba(0, 0, 0, 0.4);
-      --shadow-elevation-2: 0 8px 32px rgba(0, 0, 0, 0.6);
-      --shadow-glow-live: 0 0 16px rgba(244, 63, 94, 0.35);
-      --shadow-glow-pvw: 0 0 16px rgba(16, 185, 129, 0.35);
-    }
-  </style>
 </head>
 <body>
 
-  <!-- Top Telemetry Bar -->
-  <header class="top-telemetry-bar">
-    <div class="telemetry-left">
-      <div class="tally-badge">
-        <div class="pulse-lamp"></div>
-        <span>ON-AIR SYSTEM READY</span>
+  <div class="app-shell">
+    
+    <!-- LEFT SIDEBAR COMMAND PANEL -->
+    <aside class="sidebar" id="app-sidebar">
+      <div class="sidebar-header">
+        <div class="brand-badge">
+          <div class="brand-logo-icon">⚡</div>
+          <div class="brand-text">
+            IP26 PRO SUITE
+            <span>UKK UNNES 2026</span>
+          </div>
+        </div>
+        <div class="live-status-pill">
+          <div class="pulse-dot"></div>
+          <span>ON-AIR SYSTEM READY</span>
+        </div>
       </div>
-      <div class="telemetry-tag">
-        PGM FEED: <b id="top-pgm-tag" style="color: var(--accent-live-text);">CAM 1</b>
-      </div>
-      <div class="telemetry-tag">
-        VENUE: <b>AUDITORIUM UNNES</b>
-      </div>
-    </div>
-    <div class="telemetry-right">
-      <div class="telemetry-tag">
-        MASTER CLOCK: <b id="live-clock">--:--:-- WIB</b>
-      </div>
-    </div>
-  </header>
 
-  <!-- Hero Section -->
-  <section class="hero">
-    <div class="container">
-      <div class="hero-badges-row">
-        <span class="meta-chip venue">📍 Auditorium UNNES</span>
-        <span class="meta-chip">🗓️ Ibadah Perdana 2026</span>
-        <span class="meta-chip ready">✅ Multi-Cam 4CH + Switcher</span>
-        <span class="meta-chip private">🔒 Private Blueprint</span>
-        <a href="https://wa.me/?text=Halo%20Kru%20IP26!%20Berikut%20link%20technical%20blueprint%20%26%20inventory%20Ibadah%20Perdana%20UKK%20UNNES%202026:%20https://zzdree.github.io/ip26-production/" target="_blank" rel="noopener noreferrer" class="wa-share-link">
-          📲 Share to WhatsApp Crew
-        </a>
-      </div>
-      
-      <h1 class="hero-main-title">
-        IBADAH PERDANA <span>UKK UNNES 2026</span>
-      </h1>
-      <p class="hero-description">
-        Portal komprehensif panduan operasional teknis, simulasi switcher multi-kamera, virtual audio desk FOH, pemetaan alur sinyal video & kelistrikan, serta master checklist logistik inventaris untuk seluruh kru produksi.
-      </p>
+      <nav class="sidebar-nav" aria-label="Master Navigation">
+        <div class="nav-category-title">Command Center</div>
+        <button class="nav-link-btn active" data-tab="overview">
+          <span class="nav-icon">📊</span>
+          <span>Arsitektur Sistem</span>
+        </button>
+        <button class="nav-link-btn" data-tab="switcher">
+          <span class="nav-icon">📺</span>
+          <span>Switcher Simulator</span>
+        </button>
+        <button class="nav-link-btn" data-tab="audio">
+          <span class="nav-icon">🎛️</span>
+          <span>Virtual Audio Desk</span>
+        </button>
 
-      <!-- Metrics Overview Bar -->
-      <div class="metrics-grid">
-        <div class="metric-card">
-          <div class="metric-label">Broadcast Cameras</div>
-          <div class="metric-val" style="color: var(--accent-live-text);">4 Units</div>
-          <div class="metric-note">Sony ZV-E10 & A6000 + Pyro H</div>
-        </div>
-        <div class="metric-card">
-          <div class="metric-label">Display Feeds</div>
-          <div class="metric-val" style="color: var(--accent-media-text);">7 Outputs</div>
-          <div class="metric-note">LED Center, Sides, TVs & Multiview</div>
-        </div>
-        <div class="metric-card">
-          <div class="metric-label">Audio Mixers</div>
-          <div class="metric-val" style="color: var(--accent-warn-text);">2 Units</div>
-          <div class="metric-note">Yamaha QL5 FOH + NewBaxs CT80S</div>
-        </div>
-        <div class="metric-card">
-          <div class="metric-label">Production Crew</div>
-          <div class="metric-val" style="color: var(--accent-pvw-text);">14 PIC</div>
-          <div class="metric-note">Broadcast, Media, Engine & Docs</div>
-        </div>
-      </div>
-    </div>
-  </section>
+        <div class="nav-category-title" style="margin-top: 0.5rem;">Infrastructure</div>
+        <button class="nav-link-btn" data-tab="routing">
+          <span class="nav-icon">🔄</span>
+          <span>Signal & Power Routing</span>
+        </button>
+        <button class="nav-link-btn" data-tab="crew">
+          <span class="nav-icon">👥</span>
+          <span>Personel Kru & Gear</span>
+        </button>
+        <button class="nav-link-btn" data-tab="inventory">
+          <span class="nav-icon">📦</span>
+          <span>Master Inventaris</span>
+        </button>
 
-  <!-- Sticky Navigation Deck -->
-  <div class="nav-deck-wrapper">
-    <div class="container">
-      <nav class="nav-deck" aria-label="Command Center Navigation">
-        <button class="nav-btn active" data-tab="overview">📊 Arsitektur Sistem</button>
-        <button class="nav-btn" data-tab="switcher">📺 Switcher & Multiview</button>
-        <button class="nav-btn" data-tab="audio">🎛️ Virtual Audio Desk</button>
-        <button class="nav-btn" data-tab="routing">🔄 Signal & Power Routing</button>
-        <button class="nav-btn" data-tab="crew">👥 Personel Kru & Gear</button>
-        <button class="nav-btn" data-tab="inventory">📦 Master Inventaris & Log</button>
-        <button class="nav-btn" data-tab="rundown">📑 Rundown & Cues</button>
-        <button class="nav-btn" data-tab="sop">⚡ SOP & Safety</button>
-        <button class="nav-btn" data-tab="raw">📄 Raw TXT Inspector</button>
+        <div class="nav-category-title" style="margin-top: 0.5rem;">Operations & SOP</div>
+        <button class="nav-link-btn" data-tab="rundown">
+          <span class="nav-icon">📑</span>
+          <span>Rundown & Cues</span>
+        </button>
+        <button class="nav-link-btn" data-tab="sop">
+          <span class="nav-icon">⚡</span>
+          <span>SOP & Safety</span>
+        </button>
+        <button class="nav-link-btn" data-tab="raw">
+          <span class="nav-icon">📄</span>
+          <span>Raw Blueprint TXT</span>
+        </button>
       </nav>
-    </div>
-  </div>
 
-  <!-- Main Application Content -->
-  <main class="container">
-
-    <!-- PANEL 1: OVERVIEW -->
-    <section id="tab-overview" class="tab-pane active">
-      <div class="section-head">
-        <h2 class="section-title">📊 Arsitektur Sistem Produksi Master</h2>
-        <p class="section-desc">Ringkasan integrasi menyeluruh antara video broadcast, visual multimedia, audio mixing, dan dokumentasi.</p>
-      </div>
-
-      <div class="overview-grid">
-        <!-- Broadcast Subsystem -->
-        <div class="subsystem-card" style="border-top: 3px solid var(--accent-live);">
-          <div class="subsystem-head">
-            <h3>🎥 1. Broadcast Video Subsystem</h3>
-          </div>
-          <ul class="spec-list">
-            <li><b>Main Switcher:</b> Cinetreak Cinelive V1 (4CH HDMI Ingest).</li>
-            <li><b>CAM 1 (Alex):</b> Sony ZV-E10 + 18-105mm F4 G + HDMI 30M + Big Tripod + Splitter 4CH.</li>
-            <li><b>CAM 2 (Kiel 1):</b> Sony ZV-E10 + 18-105mm F4 G + Hollyland Pyro H (Wireless 5.8GHz).</li>
-            <li><b>CAM 3 (Dewi):</b> Sony A6000 + 18-105mm F4 G + HDMI 10M (Sayap Kiri).</li>
-            <li><b>CAM 4 (Nathania):</b> Sony A6000 + 16-50mm Kit + HDMI 10M (Sayap Kanan).</li>
-            <li><b>Live Stream Output:</b> UVC USB-C ke Laptop OBS Studio (RTMP Feed).</li>
-          </ul>
-        </div>
-
-        <!-- Media & LED Subsystem -->
-        <div class="subsystem-card" style="border-top: 3px solid var(--accent-media);">
-          <div class="subsystem-head">
-            <h3>💻 2. Visual & Media Presentation</h3>
-          </div>
-          <ul class="spec-list">
-            <li><b>Resolume Arena (Andreas):</b> Background motion tema & master visual canvas ke LED Tengah.</li>
-            <li><b>ProPresenter 1 (Rania):</b> Lirik lagu pujian & ayat ke LED Samping (Kiri, Kanan & Belakang).</li>
-            <li><b>ProPresenter 2 (Filia):</b> Slide materi khotbah pembicara dialirkan via HDMI Capture ke Resolume.</li>
-            <li><b>ProPresenter 3 (Darrel):</b> Stage display timer timekeeper ke TV monitor panggung (Terpisah).</li>
-          </ul>
-        </div>
-
-        <!-- Audio & Network Subsystem -->
-        <div class="subsystem-card" style="border-top: 3px solid var(--accent-warn);">
-          <div class="subsystem-head">
-            <h3>🔊 3. Audio & Networking FOH</h3>
-          </div>
-          <ul class="spec-list">
-            <li><b>Main FOH Mixer:</b> Yamaha QL5 Auditorium UNNES via Dual XLR ke Submixer.</li>
-            <li><b>Submixer OBS:</b> NewBaxs CT80S (GIA) via USB-C ke Laptop OBS Studio.</li>
-            <li><b>Virtual Mixer:</b> Kontrol wireless mixing jarak jauh via iPad & Laptop terhubung ke WiFi UNNES-ID (Jordan & Yosua).</li>
-            <li><b>Resolume Audio Ingest:</b> USB-C DAC Hi-Res (Hanason AB17X / Oraimo) ke Jack 3.5mm FOH.</li>
-          </ul>
-        </div>
-
-        <!-- Documentation Subsystem -->
-        <div class="subsystem-card" style="border-top: 3px solid var(--accent-pvw);">
-          <div class="subsystem-head">
-            <h3>📸 4. Dokumentasi & Creative Shots</h3>
-          </div>
-          <ul class="spec-list">
-            <li><b>Lead Photo (Nico):</b> Sony A6400 + 50mm Prime (OWL) + 32GB SD Card.</li>
-            <li><b>Cinematic Video (Joel):</b> Sony A6600 + Zeiss 24-70mm + DJI Ronin RS3 Gimbal.</li>
-            <li><b>Social Media (Jennifer):</b> iPhone 15 Mobile Rig untuk Reels & Story langsung.</li>
-            <li><b>Backup Station (Kiel 1):</b> Laptop sekunder standby & spare accessories.</li>
-          </ul>
+      <div class="sidebar-footer">
+        <div class="quick-venue-card">
+          <b>📍 Auditorium UNNES</b>
+          <span style="color: var(--text-muted);">Ibadah Perdana UKK 2026<br/>Status: 100% Prepared</span>
         </div>
       </div>
-    </section>
+    </aside>
 
-    <!-- PANEL 2: SWITCHER & MULTIVIEW SIMULATOR -->
-    <section id="tab-switcher" class="tab-pane">
-      <div class="section-head">
-        <h2 class="section-title">📺 Virtual Switcher & Multiview Simulator</h2>
-        <p class="section-desc">Simulasi kontrol interaktif Cinetreak Cinelive V1 untuk simulasi pergantian kamera siaran (PGM & PVW).</p>
-      </div>
-
-      <div class="simulator-layout">
-        <!-- PGM Screen -->
-        <div class="monitor-frame pgm">
-          <div class="monitor-header">
-            <span style="color: var(--accent-live-text);">● PROGRAM ON-AIR (PGM)</span>
-            <span id="pgm-screen-title">CAM 1</span>
-          </div>
-          <div class="monitor-screen">
-            <div class="screen-feed-name" id="pgm-screen-title-big">CAM 1 — ON AIR</div>
-            <div class="screen-feed-info" id="pgm-screen-info">Sony ZV-E10 + 18-105mm F4 — PIC: Alex</div>
+    <!-- MAIN WORKSPACE -->
+    <div class="main-workspace">
+      
+      <!-- TOP HEADER BAR -->
+      <header class="top-header">
+        <div class="header-title-box">
+          <button class="mobile-menu-toggle" id="menu-toggle-btn" aria-label="Toggle Menu">☰</button>
+          <div>
+            <div class="breadcrumb-tag" id="current-pane-tag">COMMAND CENTER / ARSITEKTUR SISTEM</div>
+            <h2 style="font-size: 1.15rem; font-weight: 800; color: var(--text-high);" id="current-pane-title">Dashboard Operasional Master</h2>
           </div>
         </div>
 
-        <!-- PVW Screen -->
-        <div class="monitor-frame pvw">
-          <div class="monitor-header">
-            <span style="color: var(--accent-pvw-text);">● PREVIEW BUS (PVW)</span>
-            <span id="pvw-screen-title">CAM 2</span>
+        <div class="header-actions">
+          <div class="header-clock-pill">
+            <span>🕒</span>
+            <span id="live-clock">--:--:-- WIB</span>
           </div>
-          <div class="monitor-screen">
-            <div class="screen-feed-name" id="pvw-screen-title-big">CAM 2 — PREVIEW</div>
-            <div class="screen-feed-info" id="pvw-screen-info">Sony ZV-E10 + Pyro H Wireless — PIC: Kiel 1</div>
-          </div>
+          <a href="https://wa.me/?text=Halo%20Kru%20IP26!%20Berikut%20link%20technical%20blueprint%20%26%20inventory%20Ibadah%20Perdana%20UKK%20UNNES%202026:%20https://zzdree.github.io/ip26-production/" target="_blank" rel="noopener noreferrer" class="wa-btn">
+            📲 Share WA
+          </a>
         </div>
-      </div>
+      </header>
 
-      <!-- Switcher Hardware Controls -->
-      <div class="switcher-control-panel">
-        <div class="bus-row">
-          <div class="bus-label">PGM BUS:</div>
-          <div class="bus-buttons">
-            <button class="hw-btn pgm-active" data-pgm-btn="CAM 1">CAM 1 (Alex)</button>
-            <button class="hw-btn" data-pgm-btn="CAM 2">CAM 2 (Kiel 1)</button>
-            <button class="hw-btn" data-pgm-btn="CAM 3">CAM 3 (Dewi)</button>
-            <button class="hw-btn" data-pgm-btn="CAM 4">CAM 4 (Nathania)</button>
-          </div>
-        </div>
+      <!-- WORKSPACE CONTENT AREA -->
+      <main class="workspace-content">
 
-        <div class="bus-row">
-          <div class="bus-label">PVW BUS:</div>
-          <div class="bus-buttons">
-            <button class="hw-btn" data-pvw-btn="CAM 1">CAM 1 (Alex)</button>
-            <button class="hw-btn pvw-active" data-pvw-btn="CAM 2">CAM 2 (Kiel 1)</button>
-            <button class="hw-btn" data-pvw-btn="CAM 3">CAM 3 (Dewi)</button>
-            <button class="hw-btn" data-pvw-btn="CAM 4">CAM 4 (Nathania)</button>
-          </div>
-        </div>
-
-        <div class="transition-row">
-          <button class="cut-btn" id="btn-cut">⚡ HARD CUT TRANSITION</button>
-          <button class="auto-btn" id="btn-auto">✨ AUTO MIX TRANSITION</button>
-        </div>
-      </div>
-    </section>
-
-    <!-- PANEL 3: VIRTUAL AUDIO DESK -->
-    <section id="tab-audio" class="tab-pane">
-      <div class="section-head">
-        <h2 class="section-title">🎛️ Virtual Audio Desk (Yamaha QL5 & Submix)</h2>
-        <p class="section-desc">Simulasi fader konsol audio digital FOH dan submixer live streaming OBS.</p>
-      </div>
-
-      <div class="audio-desk">
-        <div class="fader-deck" id="audio-deck-container">
-          <!-- Injected via JS -->
-        </div>
-      </div>
-    </section>
-
-    <!-- PANEL 4: SIGNAL & POWER ROUTING -->
-    <section id="tab-routing" class="tab-pane">
-      <div class="section-head">
-        <h2 class="section-title">🔄 Detail Rute Distribusi Sinyal & Kelistrikan</h2>
-        <p class="section-desc">Pemetaan alur kabel, adapter, wireless link, dan capture card dari sumber input hingga output display.</p>
-      </div>
-
-      <div class="routing-grid" id="routes-container">
-        <!-- Injected via JS -->
-      </div>
-    </section>
-
-    <!-- PANEL 5: CREW ROSTER -->
-    <section id="tab-crew" class="tab-pane">
-      <div class="section-head">
-        <h2 class="section-title">👥 Personel Kru & Penugasan Alat</h2>
-        <p class="section-desc">Daftar penanggung jawab divisi serta alat yang dioperasikan selama acara berlangsung.</p>
-      </div>
-
-      <div class="filter-row">
-        <button class="filter-btn active" data-crew-filter="all">Semua Kru (14)</button>
-        <button class="filter-btn" data-crew-filter="broadcast">🎥 Broadcast CAM</button>
-        <button class="filter-btn" data-crew-filter="engine">🎛️ Switcher & Stream</button>
-        <button class="filter-btn" data-crew-filter="media">💻 Media & LED</button>
-        <button class="filter-btn" data-crew-filter="audio">🔊 Audio Master</button>
-        <button class="filter-btn" data-crew-filter="doc">📸 Dokumentasi</button>
-      </div>
-
-      <div class="crew-grid" id="crew-container">
-        <!-- Injected via JS -->
-      </div>
-    </section>
-
-    <!-- PANEL 6: MASTER INVENTORY -->
-    <section id="tab-inventory" class="tab-pane">
-      <div class="section-head">
-        <h2 class="section-title">📦 Master Inventaris & Log Peminjaman Alat</h2>
-        <p class="section-desc">Pemeriksaan fisik 80+ perlengkapan. Checklist tersimpan otomatis di browser masing-masing.</p>
-      </div>
-
-      <div class="inventory-deck">
-        <input type="text" id="inventory-search" class="search-box" placeholder="🔍 Cari nama alat, kabel, adaptor, kamera, PIC..." />
-        
-        <div class="inventory-actions">
-          <div class="inventory-progress-badge">
-            <div class="progress-track">
-              <div class="progress-fill" id="progress-bar-fill"></div>
+        <!-- HERO QUICK KPI BANNER -->
+        <section class="kpi-banner">
+          <div class="kpi-card" style="border-left: 3px solid var(--accent-live);">
+            <div class="kpi-top">
+              <span class="kpi-label">Broadcast Cameras</span>
+              <span class="kpi-icon">🎥</span>
             </div>
-            <span id="progress-count-text" style="font-family: var(--font-mono); font-weight: 700; color: var(--accent-pvw-text);">0 / 0 Siap</span>
-            <button id="reset-checklist-btn" class="filter-btn" style="color: var(--accent-live-text); border-color: var(--accent-live-border);">Reset</button>
+            <div class="kpi-value" style="color: var(--accent-live-text);">4 Units</div>
+            <div class="kpi-sub">Sony ZV-E10 & A6000 + Pyro H</div>
           </div>
-          <button class="print-btn" id="print-manifest-btn">🖨️ Cetak Slip</button>
-        </div>
-      </div>
 
-      <!-- Category Filter -->
-      <div class="filter-row">
-        <button class="filter-btn active" data-cat-filter="all">Semua Asal Unit</button>
-        <button class="filter-btn" data-cat-filter="OWL">OWL Studio (18)</button>
-        <button class="filter-btn" data-cat-filter="UKK">UKK UNNES (12)</button>
-        <button class="filter-btn" data-cat-filter="GIA">GIA Deliksari (6)</button>
-        <button class="filter-btn" data-cat-filter="GKJ">GKJ Ngaliyan (6)</button>
-        <button class="filter-btn" data-cat-filter="Andreas">Andreas Toolkit (29)</button>
-        <button class="filter-btn" data-cat-filter="Team">Peminjaman Kru (17)</button>
-      </div>
+          <div class="kpi-card" style="border-left: 3px solid var(--accent-media);">
+            <div class="kpi-top">
+              <span class="kpi-label">Display Outputs</span>
+              <span class="kpi-icon">🖥️</span>
+            </div>
+            <div class="kpi-value" style="color: var(--accent-media-text);">7 Feeds</div>
+            <div class="kpi-sub">LED Center, Sides, TVs & Multiview</div>
+          </div>
 
-      <!-- Status Filter -->
-      <div class="filter-row" style="margin-top: -0.75rem;">
-        <button class="filter-btn active" data-status-filter="all">Semua Status</button>
-        <button class="filter-btn" data-status-filter="✅">✅ Siap (Confirmed)</button>
-        <button class="filter-btn" data-status-filter="☑️">☑️ Standby / Checked</button>
-        <button class="filter-btn" data-status-filter="⚠️">⚠️ Perlu Perhatian</button>
-      </div>
+          <div class="kpi-card" style="border-left: 3px solid var(--accent-warn);">
+            <div class="kpi-top">
+              <span class="kpi-label">Audio Mixers</span>
+              <span class="kpi-icon">🔊</span>
+            </div>
+            <div class="kpi-value" style="color: var(--accent-warn-text);">2 Consoles</div>
+            <div class="kpi-sub">Yamaha QL5 FOH + NewBaxs CT80S</div>
+          </div>
 
-      <div class="inventory-table-container">
-        <table class="inv-table">
-          <thead>
-            <tr>
-              <th style="text-align: center; width: 44px;">Check</th>
-              <th style="text-align: center; width: 50px;">Status</th>
-              <th>Nama Perlengkapan & Keterangan</th>
-              <th>Jumlah</th>
-              <th>Asal Unit</th>
-              <th>Tipe Kategori</th>
-            </tr>
-          </thead>
-          <tbody id="inventory-tbody">
+          <div class="kpi-card" style="border-left: 3px solid var(--accent-pvw);">
+            <div class="kpi-top">
+              <span class="kpi-label">Production Crew</span>
+              <span class="kpi-icon">👥</span>
+            </div>
+            <div class="kpi-value" style="color: var(--accent-pvw-text);">14 Personel</div>
+            <div class="kpi-sub">Broadcast, Media, Engine & Docs</div>
+          </div>
+        </section>
+
+        <!-- PANEL 1: OVERVIEW -->
+        <section id="tab-overview" class="tab-pane active">
+          <div class="pane-header">
+            <h2 class="pane-title">📊 Arsitektur Sistem Produksi Master</h2>
+            <p class="pane-desc">Ringkasan integrasi menyeluruh antara video broadcast, visual multimedia, audio mixing, dan dokumentasi.</p>
+          </div>
+
+          <div class="subsystems-grid">
+            <!-- Broadcast Subsystem -->
+            <div class="card-module" style="border-top: 3px solid var(--accent-live);">
+              <div class="module-header">
+                <h3>🎥 1. Broadcast Video Subsystem</h3>
+                <span class="pic-badge">PIC: Wilfred & Alex</span>
+              </div>
+              <ul class="spec-list">
+                <li><b>Main Switcher:</b> Cinetreak Cinelive V1 (4CH HDMI Ingest).</li>
+                <li><b>CAM 1 (Alex):</b> Sony ZV-E10 + 18-105mm F4 G + HDMI 30M + Big Tripod + Splitter 4CH.</li>
+                <li><b>CAM 2 (Kiel 1):</b> Sony ZV-E10 + 18-105mm F4 G + Hollyland Pyro H (Wireless 5.8GHz).</li>
+                <li><b>CAM 3 (Dewi):</b> Sony A6000 + 18-105mm F4 G + HDMI 10M (Sayap Kiri).</li>
+                <li><b>CAM 4 (Nathania):</b> Sony A6000 + 16-50mm Kit + HDMI 10M (Sayap Kanan).</li>
+                <li><b>Live Stream Output:</b> UVC USB-C ke Laptop OBS Studio (RTMP Feed).</li>
+              </ul>
+            </div>
+
+            <!-- Media & LED Subsystem -->
+            <div class="card-module" style="border-top: 3px solid var(--accent-media);">
+              <div class="module-header">
+                <h3>💻 2. Visual & Media Presentation</h3>
+                <span class="pic-badge">PIC: Andreas & Rania</span>
+              </div>
+              <ul class="spec-list">
+                <li><b>Resolume Arena (Andreas):</b> Background motion tema & master visual canvas ke LED Tengah.</li>
+                <li><b>ProPresenter 1 (Rania):</b> Lirik lagu pujian & ayat ke LED Samping (Kiri, Kanan & Belakang).</li>
+                <li><b>ProPresenter 2 (Filia):</b> Slide materi khotbah pembicara dialirkan via HDMI Capture ke Resolume.</li>
+                <li><b>ProPresenter 3 (Darrel):</b> Stage display timer timekeeper ke TV monitor panggung (Terpisah).</li>
+              </ul>
+            </div>
+
+            <!-- Audio & Network Subsystem -->
+            <div class="card-module" style="border-top: 3px solid var(--accent-warn);">
+              <div class="module-header">
+                <h3>🔊 3. Audio & Networking FOH</h3>
+                <span class="pic-badge">PIC: Jordan & Yosua</span>
+              </div>
+              <ul class="spec-list">
+                <li><b>Main FOH Mixer:</b> Yamaha QL5 Auditorium UNNES via Dual XLR ke Submixer.</li>
+                <li><b>Submixer OBS:</b> NewBaxs CT80S (GIA) via USB-C ke Laptop OBS Studio.</li>
+                <li><b>Virtual Mixer:</b> Kontrol wireless mixing jarak jauh via iPad & Laptop terhubung ke WiFi UNNES-ID.</li>
+                <li><b>Resolume Audio Ingest:</b> USB-C DAC Hi-Res (Hanason AB17X / Oraimo) ke Jack 3.5mm FOH.</li>
+              </ul>
+            </div>
+
+            <!-- Documentation Subsystem -->
+            <div class="card-module" style="border-top: 3px solid var(--accent-pvw);">
+              <div class="module-header">
+                <h3>📸 4. Dokumentasi & Creative Shots</h3>
+                <span class="pic-badge">PIC: Nico, Joel, Jennifer</span>
+              </div>
+              <ul class="spec-list">
+                <li><b>Lead Photo (Nico):</b> Sony A6400 + 50mm Prime (OWL) + 32GB SD Card.</li>
+                <li><b>Cinematic Video (Joel):</b> Sony A6600 + Zeiss 24-70mm + DJI Ronin RS3 Gimbal.</li>
+                <li><b>Social Media (Jennifer):</b> iPhone 15 Mobile Rig untuk Reels & Story langsung.</li>
+                <li><b>Backup Station (Kiel 1):</b> Laptop sekunder standby & spare accessories.</li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        <!-- PANEL 2: SWITCHER & MULTIVIEW SIMULATOR -->
+        <section id="tab-switcher" class="tab-pane">
+          <div class="pane-header">
+            <h2 class="pane-title">📺 Virtual Switcher & Multiview Simulator</h2>
+            <p class="pane-desc">Simulasi kontrol interaktif Cinetreak Cinelive V1 untuk perpindahan kamera siaran (PGM & PVW).</p>
+          </div>
+
+          <div class="simulator-layout">
+            <!-- PGM Screen -->
+            <div class="monitor-frame pgm">
+              <div class="monitor-header">
+                <span style="color: var(--accent-live-text);">● PROGRAM ON-AIR (PGM)</span>
+                <span id="pgm-screen-title">CAM 1</span>
+              </div>
+              <div class="monitor-screen">
+                <div class="screen-feed-name" id="pgm-screen-title-big">CAM 1 — ON AIR</div>
+                <div class="screen-feed-info" id="pgm-screen-info">Sony ZV-E10 + 18-105mm F4 — PIC: Alex</div>
+              </div>
+            </div>
+
+            <!-- PVW Screen -->
+            <div class="monitor-frame pvw">
+              <div class="monitor-header">
+                <span style="color: var(--accent-pvw-text);">● PREVIEW BUS (PVW)</span>
+                <span id="pvw-screen-title">CAM 2</span>
+              </div>
+              <div class="monitor-screen">
+                <div class="screen-feed-name" id="pvw-screen-title-big">CAM 2 — PREVIEW</div>
+                <div class="screen-feed-info" id="pvw-screen-info">Sony ZV-E10 + Pyro H Wireless — PIC: Kiel 1</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Switcher Hardware Controls -->
+          <div class="switcher-control-panel">
+            <div class="bus-row">
+              <div class="bus-label">PGM BUS:</div>
+              <div class="bus-buttons">
+                <button class="hw-btn pgm-active" data-pgm-btn="CAM 1">CAM 1 (Alex)</button>
+                <button class="hw-btn" data-pgm-btn="CAM 2">CAM 2 (Kiel 1)</button>
+                <button class="hw-btn" data-pgm-btn="CAM 3">CAM 3 (Dewi)</button>
+                <button class="hw-btn" data-pgm-btn="CAM 4">CAM 4 (Nathania)</button>
+              </div>
+            </div>
+
+            <div class="bus-row">
+              <div class="bus-label">PVW BUS:</div>
+              <div class="bus-buttons">
+                <button class="hw-btn" data-pvw-btn="CAM 1">CAM 1 (Alex)</button>
+                <button class="hw-btn pvw-active" data-pvw-btn="CAM 2">CAM 2 (Kiel 1)</button>
+                <button class="hw-btn" data-pvw-btn="CAM 3">CAM 3 (Dewi)</button>
+                <button class="hw-btn" data-pvw-btn="CAM 4">CAM 4 (Nathania)</button>
+              </div>
+            </div>
+
+            <div class="transition-row">
+              <button class="cut-btn" id="btn-cut">⚡ HARD CUT TRANSITION</button>
+              <button class="auto-btn" id="btn-auto">✨ AUTO MIX TRANSITION</button>
+            </div>
+          </div>
+        </section>
+
+        <!-- PANEL 3: VIRTUAL AUDIO DESK -->
+        <section id="tab-audio" class="tab-pane">
+          <div class="pane-header">
+            <h2 class="pane-title">🎛️ Virtual Audio Desk (Yamaha QL5 & Submix)</h2>
+            <p class="pane-desc">Simulasi fader konsol audio digital FOH dan submixer live streaming OBS.</p>
+          </div>
+
+          <div class="audio-desk">
+            <div class="fader-deck" id="audio-deck-container">
+              <!-- Injected via JS -->
+            </div>
+          </div>
+        </section>
+
+        <!-- PANEL 4: SIGNAL & POWER ROUTING -->
+        <section id="tab-routing" class="tab-pane">
+          <div class="pane-header">
+            <h2 class="pane-title">🔄 Detail Rute Distribusi Sinyal & Kelistrikan</h2>
+            <p class="pane-desc">Pemetaan alur kabel, adapter, wireless link, dan capture card dari sumber input hingga output display.</p>
+          </div>
+
+          <div class="routing-grid" id="routes-container">
             <!-- Injected via JS -->
-          </tbody>
-        </table>
-      </div>
-    </section>
+          </div>
+        </section>
 
-    <!-- PANEL 7: RUNDOWN & CUES -->
-    <section id="tab-rundown" class="tab-pane">
-      <div class="section-head">
-        <h2 class="section-title">📑 Rundown & Media Asset Cue Sheet</h2>
-        <p class="section-desc">Urutan pemutaran konten multimedia, slide khotbah, dan routing visual layar auditorium.</p>
-      </div>
+        <!-- PANEL 5: CREW ROSTER -->
+        <section id="tab-crew" class="tab-pane">
+          <div class="pane-header">
+            <h2 class="pane-title">👥 Personel Kru & Penugasan Alat</h2>
+            <p class="pane-desc">Daftar penanggung jawab divisi serta alat yang dioperasikan selama acara berlangsung.</p>
+          </div>
 
-      <div class="rundown-list" id="rundown-container">
-        <!-- Injected via JS -->
-      </div>
-    </section>
+          <div class="filter-row">
+            <button class="filter-btn active" data-crew-filter="all">Semua Kru (14)</button>
+            <button class="filter-btn" data-crew-filter="broadcast">🎥 Broadcast CAM</button>
+            <button class="filter-btn" data-crew-filter="engine">🎛️ Switcher & Stream</button>
+            <button class="filter-btn" data-crew-filter="media">💻 Media & LED</button>
+            <button class="filter-btn" data-crew-filter="audio">🔊 Audio Master</button>
+            <button class="filter-btn" data-crew-filter="doc">📸 Dokumentasi</button>
+          </div>
 
-    <!-- PANEL 8: SOP & SAFETY -->
-    <section id="tab-sop" class="tab-pane">
-      <div class="section-head">
-        <h2 class="section-title">⚡ Standar Operasional & Keamanan (SOP)</h2>
-        <p class="section-desc">Instruksi keselamatan kelistrikan, penanganan kabel sinyal HDMI, dan alur usung-usung.</p>
-      </div>
+          <div class="crew-grid" id="crew-container">
+            <!-- Injected via JS -->
+          </div>
+        </section>
 
-      <div class="sop-grid">
-        <div class="sop-box power-sop">
-          <h3>🔌 1. Distribusi Kelistrikan & Power</h3>
-          <ul>
-            <li>Gunakan Terminal Kabel Heavy Duty berkapasitas daya stabil.</li>
-            <li>Dilarang menumpuk adaptor switcher / splitter pada terminal T tanpa penguncian yang aman.</li>
-            <li>Pastikan laptop operator (OBS, Resolume, ProPresenter) selalu terhubung ke charger asli.</li>
-          </ul>
-        </div>
+        <!-- PANEL 6: MASTER INVENTORY -->
+        <section id="tab-inventory" class="tab-pane">
+          <div class="pane-header">
+            <h2 class="pane-title">📦 Master Inventaris & Log Peminjaman Alat</h2>
+            <p class="pane-desc">Pemeriksaan fisik 80+ perlengkapan. Checklist tersimpan otomatis di browser masing-masing.</p>
+          </div>
 
-        <div class="sop-box signal-sop">
-          <h3>🎥 2. Kabel Sinyal HDMI & Converter</h3>
-          <ul>
-            <li>Hindari menarik kabel HDMI panjang (20M/30M) dengan tegangan berlebih. Beri kelonggaran di area tripod kamera.</li>
-            <li>Pastikan converter Micro-HDMI terfiksasi dengan selotip/klip agar port kamera Sony tidak tertekan beban kabel.</li>
-            <li>Hollyland Pyro H harus diletakkan pada posisi bebas halangan fisik (Line-of-Sight).</li>
-          </ul>
-        </div>
+          <div class="inventory-deck">
+            <input type="text" id="inventory-search" class="search-box" placeholder="🔍 Cari nama alat, kabel, adaptor, kamera, PIC..." />
+            
+            <div class="inventory-actions">
+              <div class="inventory-progress-badge">
+                <div class="progress-track">
+                  <div class="progress-fill" id="progress-bar-fill"></div>
+                </div>
+                <span id="progress-count-text" style="font-family: var(--font-mono); font-weight: 700; color: var(--accent-pvw-text);">0 / 0 Siap</span>
+                <button id="reset-checklist-btn" class="filter-btn" style="color: var(--accent-live-text); border-color: var(--accent-live-border);">Reset</button>
+              </div>
+              <button class="print-btn" id="print-manifest-btn">🖨️ Cetak Slip</button>
+            </div>
+          </div>
 
-        <div class="sop-box teardown-sop">
-          <h3>📦 3. Prosedur Usung-Usung (Teardown)</h3>
-          <ul>
-            <li>Matikan switcher dan mixer sebelum mencabut kabel video dan audio.</li>
-            <li>Kelompokkan kabel dan perlengkapan berdasarkan label pemilik (OWL, UKK, GIA, GKJ, Andreas, Tim).</li>
-            <li>Gunakan tab Master Inventory di web ini untuk centang setiap alat saat dimasukkan ke box/tas.</li>
-          </ul>
-        </div>
-      </div>
-    </section>
+          <!-- Category Filter -->
+          <div class="filter-row">
+            <button class="filter-btn active" data-cat-filter="all">Semua Asal Unit</button>
+            <button class="filter-btn" data-cat-filter="OWL">OWL Studio (18)</button>
+            <button class="filter-btn" data-cat-filter="UKK">UKK UNNES (12)</button>
+            <button class="filter-btn" data-cat-filter="GIA">GIA Deliksari (6)</button>
+            <button class="filter-btn" data-cat-filter="GKJ">GKJ Ngaliyan (6)</button>
+            <button class="filter-btn" data-cat-filter="Andreas">Andreas Toolkit (29)</button>
+            <button class="filter-btn" data-cat-filter="Team">Peminjaman Kru (17)</button>
+          </div>
 
-    <!-- PANEL 9: RAW TXT INSPECTOR -->
-    <section id="tab-raw" class="tab-pane">
-      <div class="section-head">
-        <h2 class="section-title">📄 Raw TXT & Blueprint Inspector</h2>
-        <p class="section-desc">Arsip teks asli dari file spesifikasi teknis `ip26_pro.txt` dan `ip26_route.txt`.</p>
-      </div>
+          <!-- Status Filter -->
+          <div class="filter-row" style="margin-top: -0.75rem;">
+            <button class="filter-btn active" data-status-filter="all">Semua Status</button>
+            <button class="filter-btn" data-status-filter="✅">✅ Siap (Confirmed)</button>
+            <button class="filter-btn" data-status-filter="☑️">☑️ Standby / Checked</button>
+            <button class="filter-btn" data-status-filter="⚠️">⚠️ Perlu Perhatian</button>
+          </div>
 
-      <h3 style="font-size: 1.1rem; margin-bottom: 0.5rem; color: var(--text-high);">1. File: ip26_route.txt (Signal Routing Specs)</h3>
-      <div class="raw-code-box">Broadcast Camera Routing
+          <div class="inventory-table-container">
+            <table class="inv-table">
+              <thead>
+                <tr>
+                  <th style="text-align: center; width: 44px;">Check</th>
+                  <th style="text-align: center; width: 50px;">Status</th>
+                  <th>Nama Perlengkapan & Keterangan</th>
+                  <th>Jumlah</th>
+                  <th>Asal Unit</th>
+                  <th>Tipe Kategori</th>
+                </tr>
+              </thead>
+              <tbody id="inventory-tbody">
+                <!-- Injected via JS -->
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <!-- PANEL 7: RUNDOWN & CUES -->
+        <section id="tab-rundown" class="tab-pane">
+          <div class="pane-header">
+            <h2 class="pane-title">📑 Rundown & Media Asset Cue Sheet</h2>
+            <p class="pane-desc">Urutan pemutaran konten multimedia, slide khotbah, dan routing visual layar auditorium.</p>
+          </div>
+
+          <div class="rundown-list" id="rundown-container">
+            <!-- Injected via JS -->
+          </div>
+        </section>
+
+        <!-- PANEL 8: SOP & SAFETY -->
+        <section id="tab-sop" class="tab-pane">
+          <div class="pane-header">
+            <h2 class="pane-title">⚡ Standar Operasional & Keamanan (SOP)</h2>
+            <p class="pane-desc">Instruksi keselamatan kelistrikan, penanganan kabel sinyal HDMI, dan alur usung-usung.</p>
+          </div>
+
+          <div class="sop-grid">
+            <div class="sop-box power-sop">
+              <h3>🔌 1. Distribusi Kelistrikan & Power</h3>
+              <ul>
+                <li>Gunakan Terminal Kabel Heavy Duty berkapasitas daya stabil.</li>
+                <li>Dilarang menumpuk adaptor switcher / splitter pada terminal T tanpa penguncian yang aman.</li>
+                <li>Pastikan laptop operator (OBS, Resolume, ProPresenter) selalu terhubung ke charger asli.</li>
+              </ul>
+            </div>
+
+            <div class="sop-box signal-sop">
+              <h3>🎥 2. Kabel Sinyal HDMI & Converter</h3>
+              <ul>
+                <li>Hindari menarik kabel HDMI panjang (20M/30M) dengan tegangan berlebih. Beri kelonggaran di area tripod kamera.</li>
+                <li>Pastikan converter Micro-HDMI terfiksasi dengan selotip/klip agar port kamera Sony tidak tertekan beban kabel.</li>
+                <li>Hollyland Pyro H harus diletakkan pada posisi bebas halangan fisik (Line-of-Sight).</li>
+              </ul>
+            </div>
+
+            <div class="sop-box teardown-sop">
+              <h3>📦 3. Prosedur Usung-Usung (Teardown)</h3>
+              <ul>
+                <li>Matikan switcher dan mixer sebelum mencabut kabel video dan audio.</li>
+                <li>Kelompokkan kabel dan perlengkapan berdasarkan label pemilik (OWL, UKK, GIA, GKJ, Andreas, Tim).</li>
+                <li>Gunakan tab Master Inventory di web ini untuk centang setiap alat saat dimasukkan ke box/tas.</li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        <!-- PANEL 9: RAW TXT INSPECTOR -->
+        <section id="tab-raw" class="tab-pane">
+          <div class="pane-header">
+            <h2 class="pane-title">📄 Raw TXT & Blueprint Inspector</h2>
+            <p class="pane-desc">Arsip teks asli dari file spesifikasi teknis `ip26_pro.txt` dan `ip26_route.txt`.</p>
+          </div>
+
+          <div class="raw-header-row">
+            <h3 style="font-size: 1.05rem; font-weight: 700; color: var(--text-high);">1. File: ip26_route.txt (Signal Routing Specs)</h3>
+            <button class="copy-btn" onclick="copyRawText('raw-route-content')">📋 Salin Teks</button>
+          </div>
+          <div class="raw-code-box" id="raw-route-content">Broadcast Camera Routing
 - CAM 1 - Sony ZVE10 + Lens 18-105MM + Battery + Memory Card 64GB + Tripod Camera Big + HDMI to Micro HDMI Converter + HDMI Cable 20M + HDMI Splitter 4CH + Power Adaptor SPL + Terminal Cable XCH + HDMI Cable 30M + Cinetreak Cinelive V1 + Power Adaptor MIX (Alex) ✅
 - CAM 2 - Sony ZV-E10 + Lens 18-105MM + Battery + Memory Card 32GB + HDMI to Micro HDMI Cable 30CM + Hollyland Pyro H Transmitter + Hollyland Pyro H Receiver + Stand Lighting Small + HDMI Cable 1,5M + Cinetreak Cinelive V1 + Power Adaptor MIX (Kiel 1) ✅
 - CAM 3 - Sony A6000 + Lens 18-105MM + Battery + Memory Card 32GB + Tripod Camera Big + Micro HDMI to HDMI Converter + HDMI Cable 10M + Cinetreak Cinelive V1 + Power Adaptor MIX (Dewi) ✅
@@ -480,8 +489,11 @@ Broadcast System Routing
 ! PRO3 + Television (PRO3 x Darrel) ✅ TIME KEEPER - TERPISAH DARI BROADCAST SYSTEM
 - Terminal Cable XCH + Laptop (Pro Presenter 3) + Power Adaptor LTP + HDMI to HDMI Cable 1M + Television (Darrel) + Power Adaptor TV</div>
 
-      <h3 style="font-size: 1.1rem; margin-bottom: 0.5rem; color: var(--text-high);">2. File: ip26_pro.txt (Master Production & Loans Log)</h3>
-      <div class="raw-code-box">*IBADAH PERDANA 2026*
+          <div class="raw-header-row" style="margin-top: 1.5rem;">
+            <h3 style="font-size: 1.05rem; font-weight: 700; color: var(--text-high);">2. File: ip26_pro.txt (Master Production & Loans Log)</h3>
+            <button class="copy-btn" onclick="copyRawText('raw-pro-content')">📋 Salin Teks</button>
+          </div>
+          <div class="raw-code-box" id="raw-pro-content">*IBADAH PERDANA 2026*
 Event : Ibadah Perdana UKK UNNES 2026
 Venue : Gedung Auditorium Universitas Negeri Semarang
 Production : Panitia Ibadah Perdana 2026
@@ -504,22 +516,21 @@ Production : Panitia Ibadah Perdana 2026
 - GKJ Ngaliyan (6 item)
 - Andreas Master Toolkit (29 item)
 - Peminjaman Tim/Personal (17 item)</div>
-    </section>
+        </section>
 
-  </main>
+        <!-- FOOTER -->
+        <footer class="workspace-footer">
+          <div>
+            <b>Ibadah Perdana UKK UNNES 2026</b> — Technical Production & Broadcast Suite
+          </div>
+          <div>
+            Repository: <a href="https://github.com/zzdree/ip26-production" target="_blank" rel="noopener noreferrer">github.com/zzdree/ip26-production</a>
+          </div>
+        </footer>
 
-  <!-- Footer -->
-  <footer>
-    <div class="container">
-      <p><b>Ibadah Perdana UKK UNNES 2026 — Master Production & Broadcast Suite</b></p>
-      <p style="margin-top: 0.25rem;">
-        Repository: <a href="https://github.com/zzdree/ip26-production" target="_blank" rel="noopener noreferrer">github.com/zzdree/ip26-production</a>
-      </p>
-      <p style="margin-top: 0.5rem; font-size: 0.75rem; color: var(--text-muted);">
-        © 2026 UKK UNNES Production Team & Andreas. All Rights Reserved. (Proprietary Blueprint)
-      </p>
+      </main>
     </div>
-  </footer>
+  </div>
 
   <!-- Master Application Script -->
   <script src="app.js"></script>

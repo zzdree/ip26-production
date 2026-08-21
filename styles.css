@@ -1,435 +1,503 @@
 /* ==========================================================================
-   IP26 MASTER PRODUCTION SUITE — DARK UI DESIGN SYSTEM
-   Based on uxdesign.cc Dark UI Principles & Modern Broadcast Ergonomics
-   - Elevation Layering (No Harsh Pure Black Canvas)
-   - Multi-tier Surface Luminance (#0f0f12 -> #17171c -> #212128 -> #2c2c36)
-   - Desaturated, Non-Vibrating Functional Accents (WCAG AA/AAA Compliant)
-   - Generous Negative Space & High Scannability ("Space is Substance")
+   IP26 PRODUCTION MASTER SUITE — SLEEK DARK UI DESIGN SYSTEM
+   Inspired by uxdesign.cc Dark UI Best Practices & Dribbble Pro Dashboards
    ========================================================================== */
 
 :root {
-  /* Surface Elevation Hierarchy (Low-Light Charcoal to Elevated Grey) */
-  --bg-app: #0e0e11;
-  --bg-surface-1: #16161b;   /* Main container / cards */
-  --bg-surface-2: #1e1e26;   /* Sub-cards, wells, input boxes */
-  --bg-surface-3: #282833;   /* Hover, active, elevated chips */
-  --bg-surface-4: #333342;   /* Focus borders, active pills */
-  --bg-screen-well: #070709; /* Deep well for video monitor simulations */
-
-  /* Subtle Crisp Borders (Alpha Layered for Depth) */
-  --border-subtle: rgba(255, 255, 255, 0.07);
-  --border-card: rgba(255, 255, 255, 0.12);
-  --border-hover: rgba(255, 255, 255, 0.22);
-  --border-focus: rgba(255, 255, 255, 0.38);
+  /* Color Palette — Low-light Charcoal & Slate */
+  --bg-app: #0c0d0f;
+  --bg-sidebar: #121317;
+  --bg-card: #17181e;
+  --bg-card-elevated: #1f2028;
+  --bg-card-hover: #262732;
+  --bg-input: #15161b;
+  --bg-screen-well: #070709;
+  
+  /* Borders & Dividers */
+  --border-subtle: rgba(255, 255, 255, 0.06);
+  --border-card: rgba(255, 255, 255, 0.09);
+  --border-hover: rgba(255, 255, 255, 0.18);
+  --border-focus: rgba(255, 255, 255, 0.3);
 
   /* Typography Luminance Hierarchy */
-  --text-high: #ffffff;      /* 100% Emphasis: Headings, Big Numbers */
-  --text-primary: #f4f4f5;   /* 90% Emphasis: Main labels, active text */
-  --text-secondary: #a1a1aa; /* 65% Emphasis: Body paragraphs, specs */
-  --text-muted: #71717a;     /* 45% Emphasis: Metadata, sub-notes, tags */
-  --text-disabled: #52525b;  /* 30% Emphasis: Inactive elements */
+  --text-high: #ffffff;
+  --text-primary: #f3f4f6;
+  --text-secondary: #9ca3af;
+  --text-muted: #6b7280;
+  --text-dim: #4b5563;
 
-  /* Desaturated Functional Accents (Prevents Chromatic Vibration) */
-  --accent-live: #f43f5e;          /* Program On-Air Red */
+  /* Functional Desaturated Accents */
+  --accent-live: #f43f5e;
   --accent-live-bg: rgba(244, 63, 94, 0.12);
-  --accent-live-border: rgba(244, 63, 94, 0.38);
+  --accent-live-border: rgba(244, 63, 94, 0.35);
   --accent-live-text: #fda4af;
 
-  --accent-pvw: #10b981;           /* Preview Bus Green */
+  --accent-pvw: #10b981;
   --accent-pvw-bg: rgba(16, 185, 129, 0.12);
-  --accent-pvw-border: rgba(16, 185, 129, 0.38);
+  --accent-pvw-border: rgba(16, 185, 129, 0.35);
   --accent-pvw-text: #6ee7b7;
 
-  --accent-warn: #f59e0b;          /* Audio / Warning Amber */
+  --accent-warn: #f59e0b;
   --accent-warn-bg: rgba(245, 158, 11, 0.12);
-  --accent-warn-border: rgba(245, 158, 11, 0.38);
+  --accent-warn-border: rgba(245, 158, 11, 0.35);
   --accent-warn-text: #fde68a;
 
-  --accent-media: #38bdf8;         /* Visuals / Media Sky */
+  --accent-media: #38bdf8;
   --accent-media-bg: rgba(56, 189, 248, 0.12);
-  --accent-media-border: rgba(56, 189, 248, 0.38);
+  --accent-media-border: rgba(56, 189, 248, 0.35);
   --accent-media-text: #bae6fd;
 
-  /* Typography */
+  --accent-brand: #6366f1;
+  --accent-brand-bg: rgba(99, 102, 241, 0.12);
+  --accent-brand-border: rgba(99, 102, 241, 0.35);
+
+  /* Fonts */
   --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   --font-mono: 'JetBrains Mono', 'Fira Code', ui-monospace, monospace;
 
-  /* Geometry & Shadows */
-  --radius-xs: 4px;
-  --radius-sm: 8px;
-  --radius-md: 12px;
-  --radius-lg: 16px;
-  --shadow-elevation-1: 0 4px 20px rgba(0, 0, 0, 0.4);
-  --shadow-elevation-2: 0 8px 32px rgba(0, 0, 0, 0.6);
-  --shadow-glow-live: 0 0 16px rgba(244, 63, 94, 0.35);
-  --shadow-glow-pvw: 0 0 16px rgba(16, 185, 129, 0.35);
+  /* Radii & Shadows */
+  --radius-xs: 6px;
+  --radius-sm: 10px;
+  --radius-md: 14px;
+  --radius-lg: 20px;
+  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.3);
+  --shadow-md: 0 6px 24px rgba(0, 0, 0, 0.45);
+  --shadow-lg: 0 12px 40px rgba(0, 0, 0, 0.6);
+  --shadow-glow-live: 0 0 20px rgba(244, 63, 94, 0.3);
+  --shadow-glow-pvw: 0 0 20px rgba(16, 185, 129, 0.3);
 }
 
-/* Base Reset */
+/* Base Setup */
 * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
 }
 
-html {
-  scroll-behavior: smooth;
-  color-scheme: dark;
-}
-
-body {
+html, body {
+  height: 100%;
   background-color: var(--bg-app);
   color: var(--text-primary);
   font-family: var(--font-sans);
-  line-height: 1.6;
   -webkit-font-smoothing: antialiased;
-  min-height: 100vh;
-  letter-spacing: -0.01em;
+  letter-spacing: -0.015em;
+  overflow-x: hidden;
 }
 
-.container {
-  max-width: 1320px;
-  margin: 0 auto;
-  padding: 0 1.75rem;
+/* App Shell Layout (Sidebar + Workspace) */
+.app-shell {
+  display: flex;
+  min-height: 100vh;
+  width: 100%;
 }
 
 /* ==========================================================================
-   Header Telemetry Bar (Low-Light Top Deck)
+   Left Sidebar Navigation (Modern Sleek Command Panel)
    ========================================================================== */
-.top-telemetry-bar {
-  background: var(--bg-surface-1);
+.sidebar {
+  width: 280px;
+  background-color: var(--bg-sidebar);
+  border-right: 1px solid var(--border-card);
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 100;
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.sidebar-header {
+  padding: 1.5rem 1.35rem 1.25rem;
   border-bottom: 1px solid var(--border-subtle);
-  padding: 0.65rem 1.75rem;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  font-size: 0.8rem;
-  font-family: var(--font-mono);
-  position: relative;
-  z-index: 60;
 }
 
-.telemetry-left, .telemetry-right {
+.brand-badge {
   display: flex;
   align-items: center;
-  gap: 1.5rem;
-  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-bottom: 0.85rem;
 }
 
-.tally-badge {
+.brand-logo-icon {
+  width: 36px;
+  height: 36px;
+  border-radius: var(--radius-sm);
+  background: linear-gradient(135deg, #27272a 0%, #18181b 100%);
+  border: 1px solid var(--border-hover);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.15rem;
+  color: #ffffff;
+  box-shadow: var(--shadow-sm);
+}
+
+.brand-text {
+  font-size: 1.05rem;
+  font-weight: 800;
+  color: var(--text-high);
+  letter-spacing: -0.02em;
+}
+
+.brand-text span {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  display: block;
+}
+
+.live-status-pill {
   display: inline-flex;
   align-items: center;
-  gap: 0.5rem;
+  gap: 0.45rem;
   background: var(--accent-live-bg);
-  color: var(--accent-live-text);
-  padding: 0.25rem 0.75rem;
-  border-radius: 999px;
   border: 1px solid var(--accent-live-border);
+  color: var(--accent-live-text);
+  padding: 0.25rem 0.65rem;
+  border-radius: 999px;
+  font-size: 0.72rem;
+  font-family: var(--font-mono);
   font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  font-size: 0.75rem;
+  letter-spacing: 0.04em;
 }
 
-.pulse-lamp {
-  width: 8px;
-  height: 8px;
+.pulse-dot {
+  width: 6px;
+  height: 6px;
   background-color: var(--accent-live);
   border-radius: 50%;
   box-shadow: 0 0 8px var(--accent-live);
-  animation: pulse-glow 2s infinite ease-in-out;
+  animation: pulse-dot-anim 2s infinite ease-in-out;
 }
 
-@keyframes pulse-glow {
-  0% { transform: scale(0.9); opacity: 0.75; }
-  50% { transform: scale(1.2); opacity: 1; box-shadow: 0 0 12px var(--accent-live); }
-  100% { transform: scale(0.9); opacity: 0.75; }
+@keyframes pulse-dot-anim {
+  0% { transform: scale(0.85); opacity: 0.7; }
+  50% { transform: scale(1.25); opacity: 1; box-shadow: 0 0 10px var(--accent-live); }
+  100% { transform: scale(0.85); opacity: 0.7; }
 }
 
-.telemetry-tag {
-  color: var(--text-muted);
-  font-size: 0.78rem;
+.sidebar-nav {
+  flex: 1;
+  padding: 1.25rem 0.85rem;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
 }
 
-.telemetry-tag b {
-  color: var(--text-primary);
+.nav-category-title {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  font-weight: 700;
+  color: var(--text-dim);
+  letter-spacing: 0.08em;
+  padding: 0.6rem 0.65rem 0.3rem;
+  font-family: var(--font-mono);
+}
+
+.nav-link-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  width: 100%;
+  text-align: left;
+  padding: 0.65rem 0.85rem;
+  border-radius: var(--radius-sm);
+  background: transparent;
+  border: 1px solid transparent;
+  color: var(--text-secondary);
+  font-size: 0.875rem;
   font-weight: 600;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.nav-link-btn .nav-icon {
+  font-size: 1rem;
+  width: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.nav-link-btn:hover {
+  background: var(--bg-card);
+  color: var(--text-high);
+  border-color: var(--border-subtle);
+}
+
+.nav-link-btn.active {
+  background: var(--bg-card-elevated);
+  color: #ffffff;
+  border-color: var(--border-hover);
+  box-shadow: var(--shadow-sm);
+}
+
+.sidebar-footer {
+  padding: 1.15rem 1.25rem;
+  border-top: 1px solid var(--border-subtle);
+  background: var(--bg-sidebar);
+}
+
+.quick-venue-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-card);
+  border-radius: var(--radius-sm);
+  padding: 0.75rem;
+  font-size: 0.75rem;
+  line-height: 1.4;
+}
+
+.quick-venue-card b {
+  color: var(--text-high);
+  display: block;
+  margin-bottom: 0.2rem;
 }
 
 /* ==========================================================================
-   Hero Section (Generous Negative Space & High Legibility)
+   Main Workspace Content Area
    ========================================================================== */
-.hero {
-  padding: 3.5rem 0 2.5rem;
-  border-bottom: 1px solid var(--border-subtle);
-  background: linear-gradient(180deg, var(--bg-surface-1) 0%, var(--bg-app) 100%);
-}
-
-.hero-badges-row {
+.main-workspace {
+  flex: 1;
+  margin-left: 280px;
+  min-height: 100vh;
   display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 0.6rem;
-  margin-bottom: 1.5rem;
+  flex-direction: column;
 }
 
-.meta-chip {
+/* Top App Header */
+.top-header {
+  height: 72px;
+  background: rgba(18, 19, 23, 0.85);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--border-card);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 2rem;
+  position: sticky;
+  top: 0;
+  z-index: 90;
+}
+
+.mobile-menu-toggle {
+  display: none;
+  background: transparent;
+  border: 1px solid var(--border-card);
+  color: var(--text-high);
+  width: 38px;
+  height: 38px;
+  border-radius: var(--radius-xs);
+  cursor: pointer;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+}
+
+.header-title-box {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+}
+
+.breadcrumb-tag {
+  font-size: 0.78rem;
+  font-family: var(--font-mono);
+  color: var(--text-muted);
+}
+
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.header-clock-pill {
+  background: var(--bg-card);
+  border: 1px solid var(--border-card);
+  padding: 0.45rem 0.95rem;
+  border-radius: var(--radius-sm);
+  font-family: var(--font-mono);
+  font-size: 0.825rem;
+  font-weight: 700;
+  color: var(--text-high);
   display: inline-flex;
   align-items: center;
-  gap: 0.4rem;
-  padding: 0.35rem 0.85rem;
-  border-radius: var(--radius-sm);
-  font-size: 0.78rem;
-  font-weight: 600;
-  font-family: var(--font-mono);
-  background: var(--bg-surface-2);
-  border: 1px solid var(--border-card);
-  color: var(--text-secondary);
+  gap: 0.45rem;
 }
 
-.meta-chip.venue {
-  border-color: var(--accent-live-border);
-  color: var(--accent-live-text);
-  background: var(--accent-live-bg);
-}
-
-.meta-chip.ready {
-  border-color: var(--accent-pvw-border);
-  color: var(--accent-pvw-text);
-  background: var(--accent-pvw-bg);
-}
-
-.meta-chip.private {
-  border-color: var(--border-hover);
-  color: var(--text-primary);
-}
-
-.wa-share-link {
-  margin-left: auto;
+.wa-btn {
   display: inline-flex;
   align-items: center;
   gap: 0.45rem;
   background: var(--accent-pvw-bg);
   border: 1px solid var(--accent-pvw-border);
   color: var(--accent-pvw-text);
-  padding: 0.4rem 0.95rem;
+  padding: 0.45rem 1rem;
   border-radius: var(--radius-sm);
-  font-size: 0.78rem;
+  font-size: 0.825rem;
   font-weight: 700;
   font-family: var(--font-mono);
   text-decoration: none;
   transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.wa-share-link:hover {
-  background: rgba(16, 185, 129, 0.22);
+.wa-btn:hover {
+  background: rgba(16, 185, 129, 0.25);
   border-color: var(--accent-pvw);
   color: #ffffff;
   transform: translateY(-1px);
 }
 
-.hero-main-title {
-  font-size: 2.65rem;
-  font-weight: 800;
-  letter-spacing: -0.035em;
-  line-height: 1.15;
-  margin-bottom: 0.85rem;
-  color: var(--text-high);
+/* Content Container */
+.workspace-content {
+  padding: 2.25rem 2.25rem 4rem;
+  max-width: 1400px;
+  width: 100%;
 }
 
-.hero-main-title span {
-  color: var(--text-secondary);
-  font-weight: 400;
-}
-
-.hero-description {
-  font-size: 1.05rem;
-  color: var(--text-secondary);
-  max-width: 940px;
-  margin-bottom: 2.25rem;
-  line-height: 1.65;
-}
-
-/* Metrics Grid (Elevation Level 1) */
-.metrics-grid {
+/* Hero Quick KPI Banner */
+.kpi-banner {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
   gap: 1.25rem;
+  margin-bottom: 2.25rem;
 }
 
-.metric-card {
-  background: var(--bg-surface-1);
+.kpi-card {
+  background: var(--bg-card);
   border: 1px solid var(--border-card);
   border-radius: var(--radius-md);
   padding: 1.35rem 1.5rem;
-  box-shadow: var(--shadow-elevation-1);
+  box-shadow: var(--shadow-sm);
   transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  position: relative;
+  overflow: hidden;
 }
 
-.metric-card:hover {
+.kpi-card:hover {
+  background: var(--bg-card-elevated);
   border-color: var(--border-hover);
-  background: var(--bg-surface-2);
   transform: translateY(-2px);
 }
 
-.metric-label {
-  font-size: 0.75rem;
-  color: var(--text-muted);
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
-  font-weight: 700;
-  margin-bottom: 0.4rem;
+.kpi-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.5rem;
 }
 
-.metric-val {
-  font-size: 2rem;
+.kpi-label {
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  letter-spacing: 0.05em;
+}
+
+.kpi-icon {
+  font-size: 1.15rem;
+  opacity: 0.85;
+}
+
+.kpi-value {
+  font-size: 1.9rem;
   font-weight: 800;
-  color: var(--text-high);
   font-family: var(--font-mono);
+  color: var(--text-high);
   letter-spacing: -0.02em;
 }
 
-.metric-note {
+.kpi-sub {
   font-size: 0.78rem;
   color: var(--text-secondary);
   margin-top: 0.35rem;
 }
 
 /* ==========================================================================
-   Navigation Deck (Floating Glass Surface)
+   Modular Cards & Panes (Elevation Level 1)
    ========================================================================== */
-.nav-deck-wrapper {
-  position: sticky;
-  top: 0;
-  z-index: 50;
-  background: rgba(14, 14, 17, 0.88);
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
-  border-bottom: 1px solid var(--border-card);
-  margin-bottom: 2.5rem;
-}
-
-.nav-deck {
-  display: flex;
-  gap: 0.5rem;
-  overflow-x: auto;
-  padding: 0.85rem 0;
-  scrollbar-width: none;
-}
-
-.nav-deck::-webkit-scrollbar {
-  display: none;
-}
-
-.nav-btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  background: transparent;
-  border: 1px solid transparent;
-  color: var(--text-secondary);
-  padding: 0.6rem 1.15rem;
-  border-radius: var(--radius-sm);
-  font-size: 0.875rem;
-  font-weight: 600;
-  cursor: pointer;
-  white-space: nowrap;
-  transition: all 0.15s ease;
-}
-
-.nav-btn:hover {
-  color: var(--text-high);
-  background: var(--bg-surface-2);
-  border-color: var(--border-subtle);
-}
-
-.nav-btn.active {
-  background: var(--bg-surface-2);
-  color: var(--text-high);
-  border-color: var(--border-hover);
-  box-shadow: var(--shadow-elevation-1);
-  font-weight: 700;
-}
-
-/* Tab Panels */
 .tab-pane {
   display: none;
-  animation: fadeIn 0.25s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  animation: paneFadeIn 0.25s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
 .tab-pane.active {
   display: block;
 }
 
-@keyframes fadeIn {
+@keyframes paneFadeIn {
   from { opacity: 0; transform: translateY(6px); }
   to { opacity: 1; transform: translateY(0); }
 }
 
-.section-head {
-  margin-bottom: 2rem;
+.pane-header {
+  margin-bottom: 1.75rem;
 }
 
-.section-title {
+.pane-title {
   font-size: 1.65rem;
   font-weight: 800;
   color: var(--text-high);
+  letter-spacing: -0.025em;
   display: flex;
   align-items: center;
   gap: 0.65rem;
-  letter-spacing: -0.02em;
 }
 
-.section-desc {
+.pane-desc {
   color: var(--text-secondary);
   font-size: 0.925rem;
-  margin-top: 0.4rem;
-  max-width: 860px;
+  margin-top: 0.35rem;
 }
 
-/* ==========================================================================
-   Overview Subsystems Grid (Elevation Level 1 & 2)
-   ========================================================================== */
-.overview-grid {
+/* Overview Cards */
+.subsystems-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
   gap: 1.5rem;
-  margin-bottom: 3rem;
 }
 
-.subsystem-card {
-  background: var(--bg-surface-1);
+.card-module {
+  background: var(--bg-card);
   border: 1px solid var(--border-card);
   border-radius: var(--radius-md);
   padding: 1.75rem;
-  box-shadow: var(--shadow-elevation-1);
-  transition: border-color 0.2s ease;
+  box-shadow: var(--shadow-sm);
+  transition: all 0.2s ease;
 }
 
-.subsystem-card:hover {
+.card-module:hover {
   border-color: var(--border-hover);
 }
 
-.subsystem-head {
+.module-header {
   display: flex;
   align-items: center;
-  gap: 0.75rem;
+  justify-content: space-between;
   margin-bottom: 1.25rem;
   padding-bottom: 0.85rem;
   border-bottom: 1px solid var(--border-subtle);
 }
 
-.subsystem-head h3 {
+.module-header h3 {
   font-size: 1.1rem;
   font-weight: 700;
   color: var(--text-high);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
 }
 
 .spec-list {
   list-style: none;
   display: flex;
   flex-direction: column;
-  gap: 0.75rem;
+  gap: 0.8rem;
   font-size: 0.9rem;
   color: var(--text-secondary);
 }
@@ -453,7 +521,7 @@ body {
 }
 
 /* ==========================================================================
-   Virtual Switcher & Multiview Simulator Deck (Dark UI Ergonomics)
+   Switcher Simulator Deck
    ========================================================================== */
 .simulator-layout {
   display: grid;
@@ -468,7 +536,7 @@ body {
   border-radius: var(--radius-md);
   overflow: hidden;
   position: relative;
-  box-shadow: var(--shadow-elevation-2);
+  box-shadow: var(--shadow-md);
 }
 
 .monitor-frame.pgm {
@@ -481,8 +549,8 @@ body {
 }
 
 .monitor-header {
-  background: var(--bg-surface-1);
-  padding: 0.6rem 1.15rem;
+  background: var(--bg-card);
+  padding: 0.65rem 1.15rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -494,7 +562,7 @@ body {
 
 .monitor-screen {
   aspect-ratio: 16 / 9;
-  background: radial-gradient(circle at center, #16161f 0%, #070709 100%);
+  background: radial-gradient(circle at center, #181922 0%, #070709 100%);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -505,7 +573,7 @@ body {
 }
 
 .screen-feed-name {
-  font-size: 1.65rem;
+  font-size: 1.75rem;
   font-weight: 800;
   font-family: var(--font-mono);
   color: var(--text-high);
@@ -519,12 +587,12 @@ body {
 }
 
 .switcher-control-panel {
-  background: var(--bg-surface-1);
+  background: var(--bg-card);
   border: 1px solid var(--border-card);
   border-radius: var(--radius-md);
   padding: 1.75rem;
-  margin-bottom: 3rem;
-  box-shadow: var(--shadow-elevation-1);
+  margin-bottom: 2rem;
+  box-shadow: var(--shadow-sm);
 }
 
 .bus-row {
@@ -550,10 +618,10 @@ body {
 
 .hw-btn {
   flex: 1;
-  background: var(--bg-surface-2);
+  background: var(--bg-card-elevated);
   border: 1px solid var(--border-card);
   color: var(--text-secondary);
-  padding: 0.75rem 0.5rem;
+  padding: 0.85rem 0.5rem;
   border-radius: var(--radius-sm);
   font-family: var(--font-mono);
   font-size: 0.825rem;
@@ -563,7 +631,7 @@ body {
 }
 
 .hw-btn:hover {
-  background: var(--bg-surface-3);
+  background: var(--bg-card-hover);
   color: var(--text-high);
   border-color: var(--border-hover);
 }
@@ -596,17 +664,17 @@ body {
 
 .cut-btn, .auto-btn {
   flex: 1;
-  padding: 0.95rem;
+  padding: 1rem;
   border-radius: var(--radius-sm);
   font-family: var(--font-mono);
-  font-size: 0.9rem;
+  font-size: 0.925rem;
   font-weight: 800;
   cursor: pointer;
   transition: all 0.15s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .cut-btn {
-  background: var(--bg-surface-2);
+  background: var(--bg-card-elevated);
   border: 1px solid var(--border-hover);
   color: var(--text-high);
 }
@@ -619,7 +687,7 @@ body {
 }
 
 .auto-btn {
-  background: var(--bg-surface-2);
+  background: var(--bg-card-elevated);
   border: 1px solid var(--border-hover);
   color: var(--text-high);
 }
@@ -632,15 +700,14 @@ body {
 }
 
 /* ==========================================================================
-   Virtual Audio Desk (Yamaha QL5 Fader Simulation)
+   Audio Desk
    ========================================================================== */
 .audio-desk {
-  background: var(--bg-surface-1);
+  background: var(--bg-card);
   border: 1px solid var(--border-card);
   border-radius: var(--radius-md);
   padding: 1.75rem;
-  margin-bottom: 3rem;
-  box-shadow: var(--shadow-elevation-1);
+  box-shadow: var(--shadow-sm);
 }
 
 .fader-deck {
@@ -650,7 +717,7 @@ body {
 }
 
 .channel-strip {
-  background: var(--bg-surface-2);
+  background: var(--bg-card-elevated);
   border: 1px solid var(--border-card);
   border-radius: var(--radius-sm);
   padding: 1.35rem;
@@ -711,12 +778,12 @@ body {
 
 .fader-mute-btn {
   width: 100%;
-  padding: 0.45rem;
+  padding: 0.5rem;
   font-size: 0.75rem;
   font-family: var(--font-mono);
   font-weight: 700;
   border-radius: var(--radius-xs);
-  background: var(--bg-surface-3);
+  background: var(--bg-card);
   border: 1px solid var(--border-card);
   color: var(--text-secondary);
   cursor: pointer;
@@ -735,21 +802,20 @@ body {
 }
 
 /* ==========================================================================
-   Signal & Power Routing Cards (Elevation & Accent Borders)
+   Signal & Power Routing Cards
    ========================================================================== */
 .routing-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
   gap: 1.5rem;
-  margin-bottom: 3rem;
 }
 
 .route-card {
-  background: var(--bg-surface-1);
+  background: var(--bg-card);
   border: 1px solid var(--border-card);
   border-radius: var(--radius-md);
   padding: 1.5rem;
-  box-shadow: var(--shadow-elevation-1);
+  box-shadow: var(--shadow-sm);
   position: relative;
   overflow: hidden;
   transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
@@ -767,7 +833,6 @@ body {
   left: 0;
   width: 4px;
   height: 100%;
-  background: var(--text-muted);
 }
 
 .route-card.cam-route::before { background: var(--accent-live); }
@@ -793,7 +858,7 @@ body {
   font-family: var(--font-mono);
   padding: 0.25rem 0.65rem;
   border-radius: var(--radius-xs);
-  background: var(--bg-surface-2);
+  background: var(--bg-card-elevated);
   border: 1px solid var(--border-card);
   color: var(--text-primary);
   font-weight: 600;
@@ -811,7 +876,7 @@ body {
   align-items: center;
   gap: 0.75rem;
   font-size: 0.875rem;
-  background: var(--bg-surface-2);
+  background: var(--bg-input);
   padding: 0.65rem 0.95rem;
   border-radius: var(--radius-sm);
   border: 1px solid var(--border-subtle);
@@ -833,7 +898,7 @@ body {
 }
 
 /* ==========================================================================
-   Crew Roster & Filtering
+   Crew Roster
    ========================================================================== */
 .filter-row {
   display: flex;
@@ -846,7 +911,7 @@ body {
   padding: 0.5rem 1.05rem;
   font-size: 0.825rem;
   border-radius: var(--radius-sm);
-  background: var(--bg-surface-1);
+  background: var(--bg-card);
   color: var(--text-secondary);
   border: 1px solid var(--border-card);
   cursor: pointer;
@@ -855,7 +920,7 @@ body {
 }
 
 .filter-btn:hover {
-  background: var(--bg-surface-2);
+  background: var(--bg-card-elevated);
   color: var(--text-high);
   border-color: var(--border-hover);
 }
@@ -871,15 +936,14 @@ body {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
   gap: 1.25rem;
-  margin-bottom: 3rem;
 }
 
 .crew-card {
-  background: var(--bg-surface-1);
+  background: var(--bg-card);
   border: 1px solid var(--border-card);
   border-radius: var(--radius-md);
   padding: 1.35rem;
-  box-shadow: var(--shadow-elevation-1);
+  box-shadow: var(--shadow-sm);
   transition: transform 0.2s ease, border-color 0.2s ease;
 }
 
@@ -899,7 +963,7 @@ body {
   width: 44px;
   height: 44px;
   border-radius: 50%;
-  background: var(--bg-surface-2);
+  background: var(--bg-card-elevated);
   border: 1px solid var(--border-hover);
   display: flex;
   align-items: center;
@@ -923,7 +987,7 @@ body {
 
 .crew-gear-box {
   font-size: 0.8rem;
-  background: var(--bg-surface-2);
+  background: var(--bg-input);
   padding: 0.65rem 0.85rem;
   border-radius: var(--radius-sm);
   color: var(--text-secondary);
@@ -936,7 +1000,7 @@ body {
 }
 
 /* ==========================================================================
-   Master Inventory Table & Log Peminjaman
+   Master Inventory Table
    ========================================================================== */
 .inventory-deck {
   display: flex;
@@ -948,7 +1012,7 @@ body {
 }
 
 .search-box {
-  background: var(--bg-surface-1);
+  background: var(--bg-input);
   border: 1px solid var(--border-card);
   color: var(--text-high);
   padding: 0.75rem 1.15rem;
@@ -971,7 +1035,7 @@ body {
 }
 
 .inventory-progress-badge {
-  background: var(--bg-surface-1);
+  background: var(--bg-card);
   border: 1px solid var(--border-card);
   padding: 0.65rem 1.15rem;
   border-radius: var(--radius-sm);
@@ -984,7 +1048,7 @@ body {
 .progress-track {
   width: 140px;
   height: 8px;
-  background: var(--bg-surface-2);
+  background: var(--bg-input);
   border: 1px solid var(--border-subtle);
   border-radius: 999px;
   overflow: hidden;
@@ -998,7 +1062,7 @@ body {
 }
 
 .print-btn {
-  background: var(--bg-surface-1);
+  background: var(--bg-card);
   border: 1px solid var(--border-card);
   color: var(--text-primary);
   padding: 0.65rem 1.15rem;
@@ -1013,17 +1077,16 @@ body {
 }
 
 .print-btn:hover {
-  background: var(--bg-surface-2);
+  background: var(--bg-card-elevated);
   border-color: var(--border-hover);
 }
 
 .inventory-table-container {
-  background: var(--bg-surface-1);
+  background: var(--bg-card);
   border: 1px solid var(--border-card);
   border-radius: var(--radius-md);
   overflow-x: auto;
-  margin-bottom: 3rem;
-  box-shadow: var(--shadow-elevation-1);
+  box-shadow: var(--shadow-sm);
 }
 
 .inv-table {
@@ -1034,7 +1097,7 @@ body {
 }
 
 .inv-table th {
-  background: var(--bg-surface-2);
+  background: var(--bg-card-elevated);
   padding: 0.95rem 1.25rem;
   font-size: 0.78rem;
   text-transform: uppercase;
@@ -1051,7 +1114,7 @@ body {
 }
 
 .inv-table tr:hover {
-  background: var(--bg-surface-2);
+  background: var(--bg-card-elevated);
 }
 
 .item-check-input {
@@ -1070,7 +1133,7 @@ body {
   font-size: 0.75rem;
   padding: 0.25rem 0.65rem;
   border-radius: var(--radius-xs);
-  background: var(--bg-surface-2);
+  background: var(--bg-input);
   font-family: var(--font-mono);
   color: var(--text-secondary);
   border: 1px solid var(--border-subtle);
@@ -1078,7 +1141,7 @@ body {
 
 .source-tag.highlight {
   color: var(--text-high);
-  background: var(--bg-surface-3);
+  background: var(--bg-card-hover);
   border-color: var(--border-card);
 }
 
@@ -1089,11 +1152,10 @@ body {
   display: flex;
   flex-direction: column;
   gap: 1.15rem;
-  margin-bottom: 3rem;
 }
 
 .cue-card {
-  background: var(--bg-surface-1);
+  background: var(--bg-card);
   border: 1px solid var(--border-card);
   border-radius: var(--radius-md);
   padding: 1.35rem 1.5rem;
@@ -1102,7 +1164,7 @@ body {
   justify-content: space-between;
   align-items: center;
   gap: 1.25rem;
-  box-shadow: var(--shadow-elevation-1);
+  box-shadow: var(--shadow-sm);
   transition: all 0.2s ease;
 }
 
@@ -1112,7 +1174,7 @@ body {
 
 .cue-card.highlight-cue {
   border-color: var(--border-hover);
-  background: var(--bg-surface-2);
+  background: var(--bg-card-elevated);
 }
 
 .cue-phase-tag {
@@ -1141,28 +1203,27 @@ body {
   font-size: 0.78rem;
   padding: 0.25rem 0.7rem;
   border-radius: 999px;
-  background: var(--bg-surface-2);
+  background: var(--bg-input);
   border: 1px solid var(--border-card);
   color: var(--text-secondary);
 }
 
 /* ==========================================================================
-   SOP & Safety Sections
+   SOP & Safety
    ========================================================================== */
 .sop-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
   gap: 1.5rem;
-  margin-bottom: 3rem;
 }
 
 .sop-box {
-  background: var(--bg-surface-1);
+  background: var(--bg-card);
   border: 1px solid var(--border-card);
   border-radius: var(--radius-md);
   padding: 1.75rem;
   border-left: 4px solid var(--border-hover);
-  box-shadow: var(--shadow-elevation-1);
+  box-shadow: var(--shadow-sm);
 }
 
 .sop-box.power-sop { border-left-color: var(--accent-warn); }
@@ -1188,6 +1249,31 @@ body {
 /* ==========================================================================
    Raw TXT File Inspector
    ========================================================================== */
+.raw-header-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.75rem;
+}
+
+.copy-btn {
+  background: var(--bg-card-elevated);
+  border: 1px solid var(--border-card);
+  color: var(--text-primary);
+  padding: 0.35rem 0.75rem;
+  border-radius: var(--radius-xs);
+  font-size: 0.75rem;
+  font-family: var(--font-mono);
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.copy-btn:hover {
+  background: var(--bg-card-hover);
+  border-color: var(--border-hover);
+}
+
 .raw-code-box {
   background: var(--bg-screen-well);
   border: 1px solid var(--border-card);
@@ -1196,45 +1282,45 @@ body {
   font-family: var(--font-mono);
   font-size: 0.825rem;
   color: var(--text-primary);
-  max-height: 520px;
+  max-height: 480px;
   overflow-y: auto;
   white-space: pre-wrap;
   line-height: 1.55;
   margin-bottom: 2rem;
 }
 
-/* ==========================================================================
-   Footer
-   ========================================================================== */
-footer {
-  margin-top: 4.5rem;
-  padding: 3rem 0;
+/* Footer */
+.workspace-footer {
+  margin-top: auto;
+  padding: 2.5rem 0 1rem;
   border-top: 1px solid var(--border-subtle);
-  background: var(--bg-surface-1);
-  text-align: center;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   color: var(--text-muted);
-  font-size: 0.85rem;
+  font-size: 0.825rem;
 }
 
-footer a {
+.workspace-footer a {
   color: var(--text-primary);
   text-decoration: none;
 }
 
-footer a:hover {
+.workspace-footer a:hover {
   text-decoration: underline;
 }
 
-/* ==========================================================================
-   Print Stylesheet
-   ========================================================================== */
+/* Print Styles */
 @media print {
   body {
     background: #ffffff !important;
     color: #000000 !important;
   }
-  .top-telemetry-bar, .hero, .nav-deck-wrapper, .inventory-deck, footer, .wa-share-link {
+  .sidebar, .top-header, .kpi-banner, .inventory-deck, .workspace-footer {
     display: none !important;
+  }
+  .main-workspace {
+    margin-left: 0 !important;
   }
   .tab-pane {
     display: block !important;
@@ -1245,18 +1331,35 @@ footer a:hover {
   }
 }
 
-/* ==========================================================================
-   Responsive Adaptations
-   ========================================================================== */
-@media (max-width: 860px) {
+/* Responsive Adaptations */
+@media (max-width: 1024px) {
+  .sidebar {
+    transform: translateX(-100%);
+  }
+  .sidebar.open {
+    transform: translateX(0);
+    box-shadow: 0 0 50px rgba(0, 0, 0, 0.8);
+  }
+  .main-workspace {
+    margin-left: 0;
+  }
+  .mobile-menu-toggle {
+    display: flex;
+  }
+  .workspace-content {
+    padding: 1.5rem 1.25rem 3rem;
+  }
+  .top-header {
+    padding: 0 1.25rem;
+  }
+}
+
+@media (max-width: 768px) {
   .simulator-layout {
     grid-template-columns: 1fr;
   }
-  .hero-main-title {
-    font-size: 1.85rem;
-  }
-  .metrics-grid {
-    grid-template-columns: repeat(2, 1fr);
+  .kpi-banner {
+    grid-template-columns: 1fr 1fr;
   }
   .inventory-deck {
     flex-direction: column;
@@ -1264,15 +1367,5 @@ footer a:hover {
   }
   .search-box {
     width: 100%;
-  }
-  .top-telemetry-bar {
-    flex-direction: column;
-    gap: 0.5rem;
-    align-items: flex-start;
-  }
-  .wa-share-link {
-    margin-left: 0;
-    width: 100%;
-    justify-content: center;
   }
 }
