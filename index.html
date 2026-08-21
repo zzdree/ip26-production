@@ -4,58 +4,78 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Ibadah Perdana UKK UNNES 2026 — Production & Broadcast Command</title>
-  <meta name="description" content="Official Command Deck, Signal Routing Matrix, Live Switcher Simulator, Master Inventory Log & Crew Briefing App untuk Ibadah Perdana UKK UNNES 2026." />
-  <meta name="theme-color" content="#06b6d4" />
+  <meta name="description" content="Master Command Deck, Signal Routing Matrix, Live Switcher Simulator, Master Inventory Log & Crew Briefing App untuk Ibadah Perdana UKK UNNES 2026." />
+  <meta name="theme-color" content="#050811" />
   <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220%200%20100%20100%22><text y=%22.9em%22 font-size=%2290%22>🎬</text></svg>">
   
-  <!-- Google Fonts -->
+  <!-- Premium Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
 
   <style>
     /* ==========================================================================
-       IP26 PRODUCTION & BROADCAST BLUEPRINT — COMPLETE STANDALONE STYLES
-       Aesthetic: Tactical Broadcast Command & Cyber-Industrial Utilitarian
+       IP26 PRODUCTION & BROADCAST BLUEPRINT — PREMIUM DARK MODE UI SYSTEM
+       Design Direction: Deep Midnight Cyber-Industrial & Glassmorphic Command UI
+       Reference: Dribbble / Easeout Dark Mode Excellence (Plyuto, DStudio, Quan Ha)
        ========================================================================== */
     :root {
-      --bg-core: #06090f;
-      --bg-surface: #0b111d;
-      --bg-surface-raised: #111a2b;
-      --bg-surface-elevated: #18233a;
-      --bg-glass: rgba(11, 17, 29, 0.88);
-      
-      --border-subtle: rgba(255, 255, 255, 0.08);
-      --border-medium: rgba(255, 255, 255, 0.15);
-      --border-highlight: rgba(6, 182, 212, 0.45);
-      
-      --text-primary: #f8fafc;
+      /* Deep Dark Mode Color Palette */
+      --bg-base: #040711;
+      --bg-midnight: #080d1a;
+      --bg-surface: #0e1626;
+      --bg-surface-raised: #141f36;
+      --bg-surface-elevated: #1b2a47;
+      --bg-glass: rgba(14, 22, 38, 0.75);
+      --bg-glass-card: rgba(20, 31, 54, 0.65);
+      --bg-glass-hover: rgba(27, 42, 71, 0.85);
+
+      /* Luminescent Neon Accents */
+      --neon-cyan: #00f2fe;
+      --neon-cyan-glow: rgba(0, 242, 254, 0.35);
+      --neon-blue: #3877ff;
+      --neon-purple: #9d4edd;
+      --neon-purple-glow: rgba(157, 78, 221, 0.35);
+      --neon-amber: #ff9e00;
+      --neon-amber-glow: rgba(255, 158, 0, 0.35);
+      --neon-emerald: #05f19c;
+      --neon-emerald-glow: rgba(5, 241, 156, 0.35);
+      --neon-red: #ff3366;
+      --neon-red-glow: rgba(255, 51, 102, 0.45);
+
+      /* Typography Grayscale */
+      --text-pure: #ffffff;
+      --text-primary: #f1f5f9;
       --text-secondary: #94a3b8;
       --text-muted: #64748b;
-      
-      --accent-cyan: #06b6d4;
-      --accent-cyan-glow: rgba(6, 182, 212, 0.3);
-      --accent-amber: #f59e0b;
-      --accent-amber-glow: rgba(245, 158, 11, 0.3);
-      --accent-red: #ef4444;
-      --accent-red-glow: rgba(239, 68, 68, 0.4);
-      --accent-green: #10b981;
-      --accent-green-glow: rgba(16, 185, 129, 0.3);
-      --accent-violet: #a855f7;
-      --accent-blue: #3b82f6;
-      
-      --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-      --font-display: 'Space Grotesk', var(--font-sans);
+      --text-dark: #334155;
+
+      /* Precision Borders & Radii */
+      --border-subtle: rgba(255, 255, 255, 0.06);
+      --border-light: rgba(255, 255, 255, 0.12);
+      --border-accent: rgba(0, 242, 254, 0.4);
+      --border-glow: 0 0 15px rgba(0, 242, 254, 0.2);
+
+      --radius-xs: 6px;
+      --radius-sm: 10px;
+      --radius-md: 16px;
+      --radius-lg: 24px;
+      --radius-xl: 32px;
+
+      /* Typography */
+      --font-display: 'Space Grotesk', -apple-system, sans-serif;
+      --font-body: 'Plus Jakarta Sans', -apple-system, sans-serif;
       --font-mono: 'JetBrains Mono', monospace;
-      
-      --header-height: 68px;
-      --radius-sm: 8px;
-      --radius-md: 14px;
-      --radius-lg: 20px;
-      
-      --transition-fast: 0.15s ease;
-      --transition-normal: 0.25s cubic-bezier(0.16, 1, 0.3, 1);
-      --shadow-hud: 0 10px 35px -5px rgba(0, 0, 0, 0.6);
+
+      /* Tactical Shadows */
+      --shadow-soft: 0 10px 30px -10px rgba(0, 0, 0, 0.5);
+      --shadow-deep: 0 20px 50px -10px rgba(0, 0, 0, 0.8);
+      --shadow-glow-cyan: 0 8px 32px -4px rgba(0, 242, 254, 0.3);
+      --shadow-glow-red: 0 8px 32px -4px rgba(255, 51, 102, 0.35);
+      --shadow-glow-green: 0 8px 32px -4px rgba(5, 241, 156, 0.3);
+
+      --header-height: 72px;
+      --transition-smooth: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
     }
 
     *, *::before, *::after {
@@ -71,39 +91,55 @@
     }
 
     body {
-      font-family: var(--font-sans);
-      background-color: var(--bg-core);
+      font-family: var(--font-body);
+      background-color: var(--bg-base);
       color: var(--text-primary);
       line-height: 1.6;
       min-height: 100vh;
       overflow-x: hidden;
       position: relative;
+      /* Ambient Multi-Layer Mesh Background */
       background-image: 
-        radial-gradient(circle at 15% 15%, rgba(6, 182, 212, 0.04) 0%, transparent 45%),
-        radial-gradient(circle at 85% 40%, rgba(168, 85, 247, 0.04) 0%, transparent 45%),
-        radial-gradient(circle at 50% 85%, rgba(245, 158, 11, 0.03) 0%, transparent 45%),
-        linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
-      background-size: 100% 100%, 100% 100%, 100% 100%, 36px 36px, 36px 36px;
+        radial-gradient(ellipse 60% 40% at 10% 10%, rgba(0, 242, 254, 0.07) 0%, transparent 60%),
+        radial-gradient(ellipse 50% 50% at 90% 25%, rgba(157, 78, 221, 0.08) 0%, transparent 65%),
+        radial-gradient(ellipse 60% 40% at 50% 85%, rgba(255, 158, 0, 0.05) 0%, transparent 60%),
+        radial-gradient(ellipse 40% 30% at 30% 60%, rgba(5, 241, 156, 0.04) 0%, transparent 50%),
+        linear-gradient(rgba(255, 255, 255, 0.015) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.015) 1px, transparent 1px);
+      background-size: 100% 100%, 100% 100%, 100% 100%, 100% 100%, 40px 40px, 40px 40px;
     }
 
-    ::-webkit-scrollbar { width: 6px; height: 6px; }
-    ::-webkit-scrollbar-track { background: var(--bg-core); }
-    ::-webkit-scrollbar-thumb { background: var(--bg-surface-elevated); border-radius: 4px; }
-    ::-webkit-scrollbar-thumb:hover { background: var(--accent-cyan); }
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar { width: 7px; height: 7px; }
+    ::-webkit-scrollbar-track { background: var(--bg-base); }
+    ::-webkit-scrollbar-thumb { background: var(--bg-surface-raised); border-radius: 9999px; border: 2px solid var(--bg-base); }
+    ::-webkit-scrollbar-thumb:hover { background: var(--neon-cyan); }
 
+    /* Typography */
     h1, h2, h3, h4, h5, h6 {
       font-family: var(--font-display);
       font-weight: 700;
-      letter-spacing: -0.02em;
-      color: var(--text-primary);
-      line-height: 1.25;
+      letter-spacing: -0.03em;
+      color: var(--text-pure);
+      line-height: 1.2;
     }
 
     .mono { font-family: var(--font-mono); }
 
-    /* Sticky Header */
-    .hud-header {
+    /* Ambient Lighting Circles */
+    .glow-orb {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(80px);
+      pointer-events: none;
+      z-index: 0;
+      opacity: 0.5;
+    }
+
+    /* ==========================================================================
+       HEADER & NAVIGATION HUD
+       ========================================================================== */
+    .command-header {
       position: sticky;
       top: 0;
       z-index: 1000;
@@ -116,377 +152,41 @@
       align-items: center;
       justify-content: space-between;
       padding: 0 2rem;
-      transition: var(--transition-normal);
+      transition: var(--transition-smooth);
     }
 
-    .hud-branding {
+    .brand-cluster {
       display: flex;
       align-items: center;
       gap: 1rem;
       text-decoration: none;
     }
 
-    .hud-logo {
+    .brand-logo-pill {
       display: flex;
       align-items: center;
       justify-content: center;
-      width: 42px;
-      height: 42px;
+      width: 44px;
+      height: 44px;
       border-radius: var(--radius-sm);
-      background: linear-gradient(135deg, #06b6d4, #2563eb);
-      color: #ffffff;
+      background: linear-gradient(135deg, #00f2fe, #3877ff);
+      color: #030712;
+      font-family: var(--font-mono);
       font-weight: 800;
-      font-family: var(--font-mono);
       font-size: 1.15rem;
-      box-shadow: 0 0 16px rgba(6, 182, 212, 0.4);
-    }
-
-    .hud-title-group h1 {
-      font-size: 1.05rem;
-      font-weight: 700;
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-    }
-
-    .hud-title-group p {
-      font-size: 0.75rem;
-      color: var(--text-secondary);
-    }
-
-    .hud-live-tag {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.4rem;
-      font-family: var(--font-mono);
-      font-size: 0.68rem;
-      font-weight: 700;
-      background: rgba(239, 68, 68, 0.15);
-      color: var(--accent-red);
-      padding: 0.15rem 0.5rem;
-      border-radius: 4px;
-      border: 1px solid rgba(239, 68, 68, 0.4);
-    }
-
-    .hud-pulse-dot {
-      width: 7px;
-      height: 7px;
-      border-radius: 50%;
-      background: var(--accent-red);
-      animation: pulse-red 1.5s infinite;
-    }
-
-    @keyframes pulse-red {
-      0% { transform: scale(0.9); opacity: 0.8; box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.7); }
-      70% { transform: scale(1.1); opacity: 1; box-shadow: 0 0 0 8px rgba(239, 68, 68, 0); }
-      100% { transform: scale(0.9); opacity: 0.8; }
-    }
-
-    .hud-nav {
-      display: flex;
-      align-items: center;
-      gap: 0.25rem;
-    }
-
-    .hud-nav-link {
-      color: var(--text-secondary);
-      text-decoration: none;
-      font-size: 0.85rem;
-      font-weight: 600;
-      padding: 0.45rem 0.85rem;
-      border-radius: var(--radius-sm);
-      transition: var(--transition-fast);
-    }
-
-    .hud-nav-link:hover {
-      color: var(--text-primary);
-      background: var(--bg-surface-raised);
-    }
-
-    .hud-nav-link.active {
-      color: var(--accent-cyan);
-      background: rgba(6, 182, 212, 0.12);
-      border: 1px solid rgba(6, 182, 212, 0.3);
-    }
-
-    .hud-actions {
-      display: flex;
-      align-items: center;
-      gap: 0.75rem;
-    }
-
-    .hud-clock {
-      font-family: var(--font-mono);
-      font-size: 0.9rem;
-      font-weight: 600;
-      background: var(--bg-surface);
-      border: 1px solid var(--border-subtle);
-      padding: 0.4rem 0.75rem;
-      border-radius: var(--radius-sm);
-      color: var(--accent-cyan);
-    }
-
-    /* Buttons */
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 0.5rem;
-      padding: 0.6rem 1.25rem;
-      border-radius: var(--radius-sm);
-      font-family: var(--font-sans);
-      font-size: 0.88rem;
-      font-weight: 600;
-      cursor: pointer;
-      border: 1px solid transparent;
-      transition: var(--transition-fast);
-      text-decoration: none;
-    }
-
-    .btn-primary {
-      background: linear-gradient(135deg, var(--accent-cyan), #2563eb);
-      color: #ffffff;
-      box-shadow: 0 4px 15px rgba(6, 182, 212, 0.3);
-    }
-    .btn-primary:hover {
-      opacity: 0.93;
-      transform: translateY(-2px);
-      box-shadow: 0 6px 20px rgba(6, 182, 212, 0.45);
-    }
-
-    .btn-tally-red {
-      background: linear-gradient(135deg, var(--accent-red), #b91c1c);
-      color: #ffffff;
-      box-shadow: 0 4px 15px rgba(239, 68, 68, 0.35);
-    }
-    .btn-tally-red:hover {
-      opacity: 0.93;
-      transform: translateY(-2px);
-    }
-
-    .btn-tactical {
-      background: var(--bg-surface-raised);
-      color: var(--text-primary);
-      border: 1px solid var(--border-medium);
-    }
-    .btn-tactical:hover {
-      background: var(--bg-surface-elevated);
-      border-color: var(--accent-cyan);
-      color: var(--accent-cyan);
-    }
-
-    .btn-sm {
-      padding: 0.35rem 0.75rem;
-      font-size: 0.78rem;
-    }
-
-    /* Landing Container */
-    .landing-wrapper {
-      max-width: 1440px;
-      margin: 0 auto;
-      padding: 2rem 2rem 5rem;
-      display: flex;
-      flex-direction: column;
-      gap: 4rem;
-    }
-
-    .landing-section {
-      scroll-margin-top: calc(var(--header-height) + 1.5rem);
-    }
-
-    .section-header {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      flex-wrap: wrap;
-      gap: 1rem;
-      margin-bottom: 1.5rem;
-    }
-
-    .section-title-group {
-      display: flex;
-      flex-direction: column;
-      gap: 0.35rem;
-    }
-
-    .section-tag {
-      font-family: var(--font-mono);
-      font-size: 0.72rem;
-      font-weight: 700;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      color: var(--accent-cyan);
-    }
-
-    .section-title {
-      font-size: 1.75rem;
-      font-weight: 700;
-    }
-
-    .section-subtitle {
-      font-size: 0.9rem;
-      color: var(--text-secondary);
-      max-width: 750px;
-    }
-
-    /* Hero Card */
-    .hero-card {
-      background: linear-gradient(135deg, var(--bg-surface), var(--bg-surface-raised));
-      border: 1px solid var(--border-medium);
-      border-radius: var(--radius-lg);
-      padding: 3rem;
+      box-shadow: 0 0 25px rgba(0, 242, 254, 0.4);
       position: relative;
       overflow: hidden;
-      box-shadow: var(--shadow-hud);
     }
 
-    .hero-card::before {
+    .brand-logo-pill::after {
       content: '';
       position: absolute;
-      top: 0; left: 0; right: 0; height: 4px;
-      background: linear-gradient(90deg, var(--accent-cyan), var(--accent-violet), var(--accent-amber), var(--accent-red));
+      inset: 0;
+      background: linear-gradient(rgba(255,255,255,0.4), transparent);
     }
 
-    .hero-grid {
-      display: grid;
-      grid-template-columns: 1.4fr 1fr;
-      gap: 2.5rem;
-      align-items: center;
-    }
-
-    .hero-badge-row {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.5rem;
-      margin-bottom: 1.25rem;
-    }
-
-    .pill-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.35rem;
-      font-family: var(--font-mono);
-      font-size: 0.75rem;
-      padding: 0.3rem 0.75rem;
-      border-radius: 9999px;
-      background: var(--bg-surface-elevated);
-      border: 1px solid var(--border-subtle);
-      color: var(--text-secondary);
-    }
-
-    .pill-badge.cyan { border-color: rgba(6, 182, 212, 0.4); color: var(--accent-cyan); }
-    .pill-badge.green { border-color: rgba(16, 185, 129, 0.4); color: var(--accent-green); }
-    .pill-badge.amber { border-color: rgba(245, 158, 11, 0.4); color: var(--accent-amber); }
-    .pill-badge.violet { border-color: rgba(168, 85, 247, 0.4); color: var(--accent-violet); }
-    .pill-badge.red { border-color: rgba(239, 68, 68, 0.4); color: var(--accent-red); }
-
-    .hero-title {
-      font-size: 2.5rem;
-      line-height: 1.15;
-      margin-bottom: 1rem;
-    }
-
-    .hero-desc {
-      font-size: 1rem;
-      color: var(--text-secondary);
-      line-height: 1.65;
-      margin-bottom: 1.75rem;
-    }
-
-    .hero-cta-group {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.75rem;
-    }
-
-    .hero-status-widget {
-      background: var(--bg-surface-elevated);
-      border: 1px solid var(--border-medium);
-      border-radius: var(--radius-md);
-      padding: 1.75rem;
-      display: flex;
-      flex-direction: column;
-      gap: 1.25rem;
-    }
-
-    .widget-stat-row {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding-bottom: 0.75rem;
-      border-bottom: 1px solid var(--border-subtle);
-    }
-
-    .widget-stat-label { font-size: 0.85rem; color: var(--text-secondary); }
-    .widget-stat-val { font-family: var(--font-mono); font-weight: 700; font-size: 0.95rem; color: var(--text-primary); }
-
-    /* KPI Grid */
-    .kpi-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
-      gap: 1.25rem;
-    }
-
-    .kpi-card {
-      background: var(--bg-surface);
-      border: 1px solid var(--border-subtle);
-      border-radius: var(--radius-md);
-      padding: 1.25rem;
-      display: flex;
-      align-items: center;
-      gap: 1rem;
-      transition: var(--transition-fast);
-    }
-
-    .kpi-card:hover {
-      border-color: var(--border-medium);
-      transform: translateY(-2px);
-      background: var(--bg-surface-raised);
-    }
-
-    .kpi-icon {
-      width: 50px;
-      height: 50px;
-      border-radius: var(--radius-sm);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.5rem;
-      background: var(--bg-surface-elevated);
-      color: var(--accent-cyan);
-      flex-shrink: 0;
-    }
-
-    .kpi-value {
-      font-family: var(--font-display);
-      font-size: 1.75rem;
-      font-weight: 700;
-      line-height: 1.1;
-    }
-
-    .kpi-label { font-size: 0.8rem; color: var(--text-secondary); }
-
-    /* Panel */
-    .panel {
-      background: var(--bg-surface);
-      border: 1px solid var(--border-subtle);
-      border-radius: var(--radius-md);
-      overflow: hidden;
-      box-shadow: var(--shadow-hud);
-    }
-
-    .panel-header {
-      padding: 1.1rem 1.5rem;
-      background: var(--bg-surface-raised);
-      border-bottom: 1px solid var(--border-subtle);
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      flex-wrap: wrap;
-      gap: 1rem;
-    }
-
-    .panel-title {
+    .brand-title-group h1 {
       font-size: 1.05rem;
       font-weight: 700;
       display: flex;
@@ -494,599 +194,1039 @@
       gap: 0.6rem;
     }
 
-    .panel-body { padding: 1.5rem; }
-
-    /* Crew Cards */
-    .crew-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
-      gap: 1.25rem;
+    .brand-title-group p {
+      font-size: 0.75rem;
+      color: var(--text-secondary);
+      font-weight: 500;
     }
 
-    .crew-card {
-      background: var(--bg-surface-raised);
-      border: 1px solid var(--border-subtle);
+    .live-status-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      font-family: var(--font-mono);
+      font-size: 0.68rem;
+      font-weight: 700;
+      background: rgba(255, 51, 102, 0.12);
+      color: var(--neon-red);
+      padding: 0.2rem 0.6rem;
+      border-radius: 9999px;
+      border: 1px solid rgba(255, 51, 102, 0.35);
+      box-shadow: 0 0 12px rgba(255, 51, 102, 0.2);
+    }
+
+    .pulsing-lamp {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--neon-red);
+      animation: pulseGlow 1.4s infinite;
+    }
+
+    @keyframes pulseGlow {
+      0% { transform: scale(0.9); opacity: 0.7; box-shadow: 0 0 0 0 rgba(255, 51, 102, 0.7); }
+      70% { transform: scale(1.15); opacity: 1; box-shadow: 0 0 0 8px rgba(255, 51, 102, 0); }
+      100% { transform: scale(0.9); opacity: 0.7; }
+    }
+
+    .header-nav {
+      display: flex;
+      align-items: center;
+      gap: 0.35rem;
+      background: rgba(8, 13, 26, 0.6);
+      padding: 0.3rem 0.4rem;
       border-radius: var(--radius-md);
-      padding: 1.25rem;
+      border: 1px solid var(--border-subtle);
+    }
+
+    .nav-link {
+      color: var(--text-secondary);
+      text-decoration: none;
+      font-size: 0.84rem;
+      font-weight: 600;
+      padding: 0.45rem 0.9rem;
+      border-radius: var(--radius-sm);
+      transition: var(--transition-smooth);
+    }
+
+    .nav-link:hover {
+      color: var(--text-pure);
+      background: rgba(255, 255, 255, 0.05);
+    }
+
+    .nav-link.active {
+      color: #030712;
+      background: linear-gradient(135deg, var(--neon-cyan), #3877ff);
+      font-weight: 700;
+      box-shadow: 0 2px 14px rgba(0, 242, 254, 0.35);
+    }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 0.85rem;
+    }
+
+    .telemetry-clock {
+      font-family: var(--font-mono);
+      font-size: 0.92rem;
+      font-weight: 700;
+      background: var(--bg-surface);
+      border: 1px solid var(--border-light);
+      padding: 0.45rem 0.85rem;
+      border-radius: var(--radius-sm);
+      color: var(--neon-cyan);
+      letter-spacing: 0.05em;
+      box-shadow: inset 0 2px 6px rgba(0, 0, 0, 0.4);
+    }
+
+    /* Buttons */
+    .btn-lux {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      padding: 0.65rem 1.35rem;
+      border-radius: var(--radius-sm);
+      font-family: var(--font-body);
+      font-size: 0.88rem;
+      font-weight: 600;
+      cursor: pointer;
+      border: 1px solid transparent;
+      transition: var(--transition-smooth);
+      text-decoration: none;
+      user-select: none;
+    }
+
+    .btn-lux-primary {
+      background: linear-gradient(135deg, var(--neon-cyan), #3877ff);
+      color: #040813;
+      font-weight: 700;
+      box-shadow: var(--shadow-glow-cyan);
+    }
+    .btn-lux-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 30px rgba(0, 242, 254, 0.5);
+    }
+
+    .btn-lux-red {
+      background: linear-gradient(135deg, var(--neon-red), #b91c1c);
+      color: #ffffff;
+      font-weight: 700;
+      box-shadow: var(--shadow-glow-red);
+    }
+    .btn-lux-red:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 30px rgba(255, 51, 102, 0.5);
+    }
+
+    .btn-lux-ghost {
+      background: var(--bg-glass-card);
+      backdrop-filter: blur(12px);
+      color: var(--text-primary);
+      border: 1px solid var(--border-light);
+    }
+    .btn-lux-ghost:hover {
+      background: var(--bg-surface-elevated);
+      border-color: var(--neon-cyan);
+      color: var(--neon-cyan);
+      box-shadow: 0 0 15px rgba(0, 242, 254, 0.2);
+    }
+
+    .btn-lux-sm {
+      padding: 0.38rem 0.85rem;
+      font-size: 0.78rem;
+      border-radius: var(--radius-xs);
+    }
+
+    /* Layout Container */
+    .master-layout {
+      max-width: 1440px;
+      margin: 0 auto;
+      padding: 2.5rem 2rem 6rem;
       display: flex;
       flex-direction: column;
-      justify-content: space-between;
-      transition: var(--transition-fast);
+      gap: 4.5rem;
+      position: relative;
+      z-index: 1;
     }
 
-    .crew-card:hover {
-      border-color: var(--accent-cyan);
-      background: var(--bg-surface-elevated);
+    .section-block {
+      scroll-margin-top: calc(var(--header-height) + 2rem);
     }
 
-    .crew-card-top {
+    .section-head {
       display: flex;
-      align-items: flex-start;
+      align-items: flex-end;
       justify-content: space-between;
-      margin-bottom: 0.75rem;
+      flex-wrap: wrap;
+      gap: 1.25rem;
+      margin-bottom: 1.75rem;
+      padding-bottom: 1rem;
+      border-bottom: 1px solid var(--border-subtle);
     }
 
-    .crew-name { font-size: 1.1rem; font-weight: 700; }
-    .crew-role { font-size: 0.85rem; color: var(--accent-cyan); font-weight: 600; margin-bottom: 0.5rem; }
-    .crew-device {
+    .section-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
       font-family: var(--font-mono);
-      font-size: 0.78rem;
-      color: var(--text-secondary);
-      background: var(--bg-surface);
-      padding: 0.4rem 0.6rem;
-      border-radius: var(--radius-sm);
-      margin-bottom: 0.75rem;
-      border: 1px solid var(--border-subtle);
+      font-size: 0.72rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--neon-cyan);
+      margin-bottom: 0.4rem;
     }
 
-    .crew-task { font-size: 0.83rem; color: var(--text-secondary); margin-bottom: 1rem; flex: 1; }
-    .crew-card-footer {
+    .section-title {
+      font-size: 1.85rem;
+      font-weight: 700;
+      color: var(--text-pure);
+    }
+
+    .section-sub {
+      font-size: 0.92rem;
+      color: var(--text-secondary);
+      max-width: 780px;
+      margin-top: 0.25rem;
+    }
+
+    /* Badge Pills */
+    .glow-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      font-weight: 600;
+      padding: 0.3rem 0.8rem;
+      border-radius: 9999px;
+      background: rgba(14, 22, 38, 0.8);
+      border: 1px solid var(--border-light);
+      backdrop-filter: blur(8px);
+      color: var(--text-secondary);
+    }
+
+    .glow-badge.cyan { border-color: rgba(0, 242, 254, 0.4); color: var(--neon-cyan); background: rgba(0, 242, 254, 0.08); }
+    .glow-badge.emerald { border-color: rgba(5, 241, 156, 0.4); color: var(--neon-emerald); background: rgba(5, 241, 156, 0.08); }
+    .glow-badge.amber { border-color: rgba(255, 158, 0, 0.4); color: var(--neon-amber); background: rgba(255, 158, 0, 0.08); }
+    .glow-badge.purple { border-color: rgba(157, 78, 221, 0.4); color: var(--neon-purple); background: rgba(157, 78, 221, 0.08); }
+    .glow-badge.red { border-color: rgba(255, 51, 102, 0.4); color: var(--neon-red); background: rgba(255, 51, 102, 0.08); }
+
+    /* ==========================================================================
+       HERO COMMAND BANNER
+       ========================================================================== */
+    .hero-banner {
+      background: linear-gradient(135deg, rgba(20, 31, 54, 0.75), rgba(8, 13, 26, 0.95));
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius-xl);
+      padding: 3.5rem;
+      position: relative;
+      overflow: hidden;
+      box-shadow: var(--shadow-deep);
+      backdrop-filter: blur(20px);
+    }
+
+    .hero-banner::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0; height: 3px;
+      background: linear-gradient(90deg, var(--neon-cyan), var(--neon-purple), var(--neon-amber), var(--neon-emerald));
+    }
+
+    .hero-inner-grid {
+      display: grid;
+      grid-template-columns: 1.35fr 1fr;
+      gap: 3rem;
+      align-items: center;
+    }
+
+    .hero-title-main {
+      font-size: 2.75rem;
+      font-weight: 800;
+      letter-spacing: -0.04em;
+      margin-bottom: 1.15rem;
+      background: linear-gradient(135deg, #ffffff 40%, #94a3b8 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .hero-lead-text {
+      font-size: 1.05rem;
+      color: var(--text-secondary);
+      line-height: 1.7;
+      margin-bottom: 2rem;
+    }
+
+    .hero-buttons-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.85rem;
+    }
+
+    .telemetry-card-cluster {
+      background: rgba(14, 22, 38, 0.85);
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius-lg);
+      padding: 2rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1), var(--shadow-soft);
+      backdrop-filter: blur(16px);
+    }
+
+    .telemetry-header-bar {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding-top: 0.75rem;
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      color: var(--neon-cyan);
+      font-weight: 700;
+      padding-bottom: 0.75rem;
+      border-bottom: 1px solid var(--border-subtle);
+    }
+
+    .telemetry-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.4rem 0;
+    }
+
+    .telemetry-key { font-size: 0.88rem; color: var(--text-secondary); }
+    .telemetry-val { font-family: var(--font-mono); font-weight: 700; font-size: 0.95rem; }
+
+    /* ==========================================================================
+       METRIC KPI CARDS
+       ========================================================================== */
+    .kpi-deck {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .kpi-unit {
+      background: var(--bg-glass-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      padding: 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 1.25rem;
+      transition: var(--transition-smooth);
+      box-shadow: var(--shadow-soft);
+      backdrop-filter: blur(12px);
+    }
+
+    .kpi-unit:hover {
+      border-color: var(--border-accent);
+      transform: translateY(-3px);
+      box-shadow: var(--shadow-glow-cyan);
+      background: var(--bg-glass-hover);
+    }
+
+    .kpi-symbol-box {
+      width: 54px;
+      height: 54px;
+      border-radius: var(--radius-sm);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.6rem;
+      background: rgba(8, 13, 26, 0.8);
+      border: 1px solid var(--border-light);
+      flex-shrink: 0;
+    }
+
+    .kpi-figure {
+      font-family: var(--font-display);
+      font-size: 1.9rem;
+      font-weight: 800;
+      line-height: 1.1;
+      color: var(--text-pure);
+    }
+
+    .kpi-desc { font-size: 0.82rem; color: var(--text-secondary); margin-top: 0.2rem; }
+
+    /* ==========================================================================
+       CAMERA RIGGING & CREW CARDS
+       ========================================================================== */
+    .crew-deck-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(310px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .glass-card {
+      background: var(--bg-glass-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      padding: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: var(--transition-smooth);
+      backdrop-filter: blur(12px);
+      box-shadow: var(--shadow-soft);
+    }
+
+    .glass-card:hover {
+      border-color: var(--neon-cyan);
+      transform: translateY(-3px);
+      box-shadow: 0 12px 35px -5px rgba(0, 242, 254, 0.2);
+      background: var(--bg-glass-hover);
+    }
+
+    .card-top-row {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      margin-bottom: 0.85rem;
+    }
+
+    .card-main-title { font-size: 1.15rem; font-weight: 700; color: var(--text-pure); }
+    .card-subtitle-role { font-size: 0.88rem; color: var(--neon-cyan); font-weight: 600; margin-bottom: 0.6rem; }
+    
+    .card-tech-chip {
+      font-family: var(--font-mono);
+      font-size: 0.78rem;
+      color: var(--text-secondary);
+      background: rgba(8, 13, 26, 0.7);
+      padding: 0.5rem 0.75rem;
+      border-radius: var(--radius-xs);
+      margin-bottom: 0.85rem;
+      border: 1px solid var(--border-subtle);
+      line-height: 1.4;
+    }
+
+    .card-body-text { font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 1.25rem; flex: 1; line-height: 1.55; }
+    
+    .card-bottom-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-top: 0.85rem;
       border-top: 1px solid var(--border-subtle);
       font-family: var(--font-mono);
       font-size: 0.75rem;
       color: var(--text-muted);
     }
 
-    /* Pipeline Items */
-    .pipeline-item {
-      background: var(--bg-surface-raised);
-      border: 1px solid var(--border-subtle);
-      border-radius: var(--radius-md);
-      margin-bottom: 1rem;
-      overflow: hidden;
-      transition: var(--transition-fast);
+    /* Filter Chips */
+    .chip-filter-row { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+    
+    .filter-pill {
+      padding: 0.45rem 1rem;
+      border-radius: 9999px;
+      background: rgba(14, 22, 38, 0.7);
+      border: 1px solid var(--border-light);
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: var(--text-secondary);
+      cursor: pointer;
+      transition: var(--transition-smooth);
+      backdrop-filter: blur(8px);
     }
 
-    .pipeline-item:hover { border-color: var(--border-medium); }
-    .pipeline-header {
-      padding: 1rem 1.4rem;
+    .filter-pill:hover {
+      border-color: var(--neon-cyan);
+      color: var(--text-pure);
+      background: var(--bg-surface-raised);
+    }
+
+    .filter-pill.active {
+      background: linear-gradient(135deg, var(--neon-cyan), #3877ff);
+      border-color: transparent;
+      color: #030712;
+      font-weight: 700;
+      box-shadow: 0 4px 15px rgba(0, 242, 254, 0.35);
+    }
+
+    /* ==========================================================================
+       SIGNAL ROUTING MATRIX
+       ========================================================================== */
+    .pipeline-container {
+      background: var(--bg-glass-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      margin-bottom: 1.15rem;
+      overflow: hidden;
+      transition: var(--transition-smooth);
+      backdrop-filter: blur(12px);
+    }
+
+    .pipeline-container:hover { border-color: var(--border-light); }
+
+    .pipeline-top-bar {
+      padding: 1.1rem 1.6rem;
       display: flex;
       align-items: center;
       justify-content: space-between;
       cursor: pointer;
       user-select: none;
+      background: rgba(20, 31, 54, 0.4);
     }
 
-    .pipeline-title-group { display: flex; align-items: center; gap: 0.75rem; }
-    .pipeline-title { font-size: 0.98rem; font-weight: 600; }
-    .pipeline-tag {
-      font-family: var(--font-mono);
-      font-size: 0.72rem;
-      padding: 0.15rem 0.5rem;
-      background: var(--bg-surface);
-      border-radius: 4px;
-      color: var(--accent-cyan);
-      border: 1px solid var(--border-subtle);
-    }
+    .pipeline-title-cluster { display: flex; align-items: center; gap: 0.85rem; }
+    .pipeline-name { font-size: 1.02rem; font-weight: 700; color: var(--text-pure); }
 
-    .pipeline-chain-visual {
+    .pipeline-chain-flow {
       display: flex;
       align-items: center;
       flex-wrap: wrap;
-      gap: 0.5rem;
-      padding: 1.25rem 1.4rem;
-      background: var(--bg-surface);
+      gap: 0.6rem;
+      padding: 1.35rem 1.6rem;
+      background: rgba(8, 13, 26, 0.85);
       border-top: 1px solid var(--border-subtle);
     }
 
-    .chain-node {
-      background: var(--bg-surface-elevated);
-      border: 1px solid var(--border-subtle);
-      padding: 0.4rem 0.8rem;
-      border-radius: var(--radius-sm);
+    .pipeline-node {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-light);
+      padding: 0.45rem 0.9rem;
+      border-radius: var(--radius-xs);
       font-family: var(--font-mono);
-      font-size: 0.78rem;
+      font-size: 0.8rem;
       color: var(--text-primary);
       display: inline-flex;
       align-items: center;
-      gap: 0.4rem;
+      gap: 0.45rem;
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08);
     }
 
-    .chain-arrow { color: var(--accent-cyan); font-weight: bold; }
-    .pipeline-details {
-      padding: 0.75rem 1.4rem 1.25rem;
-      font-size: 0.85rem;
+    .pipeline-arrow { color: var(--neon-cyan); font-weight: 800; }
+    
+    .pipeline-desc-box {
+      padding: 0.9rem 1.6rem 1.35rem;
+      font-size: 0.88rem;
       color: var(--text-secondary);
-      background: var(--bg-surface);
+      background: rgba(8, 13, 26, 0.85);
       border-top: 1px dashed var(--border-subtle);
+      line-height: 1.6;
     }
 
-    /* Switcher Console */
-    .switcher-console {
+    /* ==========================================================================
+       HARDWARE SWITCHER SIMULATOR DECK
+       ========================================================================== */
+    .switcher-master-deck {
       display: grid;
-      grid-template-columns: 2fr 1fr;
-      gap: 1.5rem;
-      background: #050811;
-      border: 2px solid var(--border-medium);
-      border-radius: var(--radius-lg);
-      padding: 1.75rem;
-      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6);
+      grid-template-columns: 2.1fr 1fr;
+      gap: 2rem;
+      background: #03060f;
+      border: 2px solid var(--border-light);
+      border-radius: var(--radius-xl);
+      padding: 2rem;
+      box-shadow: 0 25px 60px rgba(0, 0, 0, 0.9);
+      position: relative;
     }
 
-    .multiview-screen-container { display: flex; flex-direction: column; gap: 1rem; }
-    .multiview-grid {
+    .multiview-theater { display: flex; flex-direction: column; gap: 1.25rem; }
+    
+    .multiview-quad-grid {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
-      gap: 0.75rem;
+      gap: 0.85rem;
       aspect-ratio: 16/9;
       background: #000000;
       border-radius: var(--radius-sm);
-      padding: 0.75rem;
-      border: 1px solid var(--border-medium);
+      padding: 0.85rem;
+      border: 1px solid var(--border-light);
+      box-shadow: inset 0 0 30px rgba(0, 0, 0, 0.9);
     }
 
-    .multiview-slot {
-      background: #0a0e17;
+    .camera-slot {
+      background: #060a14;
       border: 2px solid #1e293b;
-      border-radius: 4px;
+      border-radius: 6px;
       position: relative;
       overflow: hidden;
       display: flex;
-      flex-direction: column;
       align-items: center;
       justify-content: center;
-      transition: var(--transition-fast);
+      transition: var(--transition-smooth);
     }
 
-    .multiview-slot.active-pgm {
-      border-color: var(--accent-red);
-      box-shadow: 0 0 15px rgba(239, 68, 68, 0.4);
+    .camera-slot.active-pgm {
+      border-color: var(--neon-red);
+      box-shadow: 0 0 25px var(--neon-red-glow);
     }
 
-    .multiview-slot.active-pvw {
-      border-color: var(--accent-green);
-      box-shadow: 0 0 15px rgba(16, 185, 129, 0.4);
+    .camera-slot.active-pvw {
+      border-color: var(--neon-emerald);
+      box-shadow: 0 0 25px var(--neon-emerald-glow);
     }
 
-    .slot-label {
-      position: absolute;
-      top: 6px; left: 6px;
-      font-family: var(--font-mono);
-      font-size: 0.7rem; font-weight: 700;
-      background: rgba(0, 0, 0, 0.75);
-      padding: 0.1rem 0.45rem; border-radius: 3px;
-    }
-
-    .slot-tally {
-      position: absolute;
-      top: 6px; right: 6px;
-      width: 10px; height: 10px;
-      border-radius: 50%;
-      background: #334155;
-    }
-
-    .slot-tally.pgm { background: var(--accent-red); box-shadow: 0 0 8px var(--accent-red); }
-    .slot-tally.pvw { background: var(--accent-green); box-shadow: 0 0 8px var(--accent-green); }
-
-    .multiview-preview-pgm-row {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 1rem;
-    }
-
-    .monitor-box {
-      background: #000000;
-      border: 2px solid var(--border-medium);
-      border-radius: var(--radius-sm);
-      aspect-ratio: 16/9;
-      position: relative;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      overflow: hidden;
-    }
-
-    .monitor-box.pgm-master { border-color: var(--accent-red); box-shadow: 0 0 20px rgba(239, 68, 68, 0.2); }
-    .monitor-box.pvw-master { border-color: var(--accent-green); box-shadow: 0 0 20px rgba(16, 185, 129, 0.2); }
-
-    .monitor-tag {
+    .slot-id-badge {
       position: absolute;
       top: 8px; left: 8px;
       font-family: var(--font-mono);
-      font-size: 0.75rem; font-weight: 700;
-      padding: 0.2rem 0.6rem; border-radius: 4px;
+      font-size: 0.72rem; font-weight: 700;
+      background: rgba(0, 0, 0, 0.85);
+      padding: 0.2rem 0.55rem;
+      border-radius: 4px;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      color: #ffffff;
+      z-index: 5;
     }
-    .monitor-tag.red { background: var(--accent-red); color: #fff; }
-    .monitor-tag.green { background: var(--accent-green); color: #fff; }
 
-    .switcher-control-deck {
+    .slot-tally-lamp {
+      position: absolute;
+      top: 8px; right: 8px;
+      width: 12px; height: 12px;
+      border-radius: 50%;
+      background: #1e293b;
+      z-index: 5;
+      transition: var(--transition-smooth);
+    }
+
+    .slot-tally-lamp.pgm { background: var(--neon-red); box-shadow: 0 0 12px var(--neon-red); }
+    .slot-tally-lamp.pvw { background: var(--neon-emerald); box-shadow: 0 0 12px var(--neon-emerald); }
+
+    .master-screens-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.25rem;
+    }
+
+    .screen-housing {
+      background: #000000;
+      border: 2px solid var(--border-light);
+      border-radius: var(--radius-sm);
+      aspect-ratio: 16/9;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .screen-housing.pgm-live { border-color: var(--neon-red); box-shadow: 0 0 30px var(--neon-red-glow); }
+    .screen-housing.pvw-live { border-color: var(--neon-emerald); box-shadow: 0 0 30px var(--neon-emerald-glow); }
+
+    .screen-header-tag {
+      position: absolute;
+      top: 10px; left: 10px;
+      font-family: var(--font-mono);
+      font-size: 0.75rem; font-weight: 800;
+      padding: 0.25rem 0.7rem; border-radius: 4px;
+      z-index: 5;
+    }
+    .screen-header-tag.red { background: var(--neon-red); color: #fff; box-shadow: 0 0 10px var(--neon-red); }
+    .screen-header-tag.green { background: var(--neon-emerald); color: #040813; box-shadow: 0 0 10px var(--neon-emerald); }
+
+    .control-console-deck {
       display: flex;
       flex-direction: column;
-      gap: 1.25rem;
-      background: var(--bg-surface-raised);
-      padding: 1.25rem;
-      border-radius: var(--radius-md);
-      border: 1px solid var(--border-medium);
+      gap: 1.5rem;
+      background: var(--bg-surface);
+      padding: 1.5rem;
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--border-light);
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1);
     }
 
-    .bus-label {
+    .bus-title-label {
       font-family: var(--font-mono);
-      font-size: 0.72rem; font-weight: 700;
-      text-transform: uppercase; color: var(--text-muted);
-      margin-bottom: 0.4rem;
+      font-size: 0.74rem; font-weight: 800;
+      text-transform: uppercase; letter-spacing: 0.08em;
+      margin-bottom: 0.5rem;
     }
 
-    .bus-buttons-row {
+    .bus-grid-buttons {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
-      gap: 0.5rem;
+      gap: 0.6rem;
     }
 
-    .btn-bus {
-      height: 48px;
-      background: var(--bg-surface-elevated);
-      border: 2px solid var(--border-medium);
+    .btn-tactile-bus {
+      height: 52px;
+      background: var(--bg-surface-raised);
+      border: 2px solid var(--border-light);
       border-radius: var(--radius-sm);
       color: var(--text-primary);
       font-family: var(--font-mono);
-      font-size: 0.85rem; font-weight: 700;
+      font-size: 0.9rem; font-weight: 800;
       cursor: pointer;
-      transition: var(--transition-fast);
+      transition: var(--transition-smooth);
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
     }
 
-    .btn-bus:hover { border-color: #94a3b8; }
-    .btn-bus.pgm-selected {
-      background: var(--accent-red);
+    .btn-tactile-bus:hover { border-color: var(--neon-cyan); }
+    
+    .btn-tactile-bus.pgm-selected {
+      background: var(--neon-red);
       border-color: #ffffff;
       color: #ffffff;
-      box-shadow: 0 0 16px rgba(239, 68, 68, 0.6);
-    }
-    .btn-bus.pvw-selected {
-      background: var(--accent-green);
-      border-color: #ffffff;
-      color: #ffffff;
-      box-shadow: 0 0 16px rgba(16, 185, 129, 0.6);
+      box-shadow: 0 0 20px rgba(255, 51, 102, 0.7);
     }
 
-    .transition-controls {
+    .btn-tactile-bus.pvw-selected {
+      background: var(--neon-emerald);
+      border-color: #ffffff;
+      color: #030712;
+      box-shadow: 0 0 20px rgba(5, 241, 156, 0.7);
+    }
+
+    .transition-split {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 0.75rem;
-      margin-top: 0.5rem;
+      gap: 0.85rem;
     }
 
-    .btn-cut {
-      background: #334155; color: #ffffff;
-      font-family: var(--font-mono); font-weight: 800;
-      height: 48px; border-radius: var(--radius-sm);
-      border: 1px solid var(--border-medium); cursor: pointer;
+    .btn-cut-action {
+      background: #1e293b; color: #ffffff;
+      font-family: var(--font-mono); font-weight: 800; font-size: 0.95rem;
+      height: 52px; border-radius: var(--radius-sm);
+      border: 1px solid var(--border-light); cursor: pointer;
+      transition: var(--transition-smooth);
     }
-    .btn-cut:active { background: var(--accent-red); }
+    .btn-cut-action:active { background: var(--neon-red); transform: scale(0.97); }
 
-    .btn-auto {
-      background: var(--accent-cyan); color: #030712;
-      font-family: var(--font-mono); font-weight: 800;
-      height: 48px; border-radius: var(--radius-sm);
+    .btn-auto-action {
+      background: linear-gradient(135deg, var(--neon-cyan), #3877ff);
+      color: #030712;
+      font-family: var(--font-mono); font-weight: 800; font-size: 0.95rem;
+      height: 52px; border-radius: var(--radius-sm);
       border: none; cursor: pointer;
-      box-shadow: 0 0 12px rgba(6, 182, 212, 0.4);
+      box-shadow: 0 0 20px rgba(0, 242, 254, 0.4);
+      transition: var(--transition-smooth);
     }
+    .btn-auto-action:active { transform: scale(0.97); }
 
-    .audio-vu-rack {
+    .audio-vu-meter-rack {
       display: flex; gap: 1.25rem;
-      background: var(--bg-surface); padding: 1.25rem;
+      background: rgba(8, 13, 26, 0.8); padding: 1.25rem;
       border-radius: var(--radius-md); border: 1px solid var(--border-subtle);
     }
 
-    .vu-channel { flex: 1; display: flex; flex-direction: column; align-items: center; gap: 0.5rem; }
-    .vu-bar-track {
-      width: 16px; height: 120px;
-      background: #090d16; border-radius: 4px;
+    .vu-column { flex: 1; display: flex; flex-direction: column; align-items: center; gap: 0.6rem; }
+    
+    .vu-bar-housing {
+      width: 18px; height: 130px;
+      background: #040711; border-radius: 4px;
       border: 1px solid var(--border-subtle);
       display: flex; flex-direction: column-reverse;
       padding: 2px; overflow: hidden;
     }
 
-    .vu-bar-fill {
+    .vu-fill-meter {
       width: 100%;
-      background: linear-gradient(to top, #10b981 0%, #10b981 70%, #f59e0b 85%, #ef4444 100%);
+      background: linear-gradient(to top, #05f19c 0%, #05f19c 68%, #ff9e00 84%, #ff3366 100%);
       border-radius: 2px;
       transition: height 0.08s ease;
     }
 
-    .vu-label { font-family: var(--font-mono); font-size: 0.7rem; color: var(--text-muted); }
+    .vu-channel-text { font-family: var(--font-mono); font-size: 0.72rem; color: var(--text-muted); font-weight: 600; }
 
-    /* Inventory Toolbar & Table */
-    .inventory-toolbar {
+    /* ==========================================================================
+       MASTER INVENTORY & DATA TABLE
+       ========================================================================== */
+    .inventory-master-panel {
+      background: var(--bg-glass-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-lg);
+      padding: 2rem;
+      box-shadow: var(--shadow-soft);
+      backdrop-filter: blur(16px);
+    }
+
+    .inventory-toolbar-cluster {
       display: flex; flex-wrap: wrap;
       align-items: center; justify-content: space-between;
-      gap: 1rem; margin-bottom: 1.25rem;
+      gap: 1.25rem; margin-bottom: 1.5rem;
     }
 
-    .search-input-group { position: relative; flex: 1; min-width: 260px; }
-    .search-input {
+    .search-bar-wrap { position: relative; flex: 1; min-width: 280px; }
+    
+    .glass-input {
       width: 100%;
-      background: var(--bg-surface-raised);
-      border: 1px solid var(--border-subtle);
+      background: rgba(8, 13, 26, 0.75);
+      border: 1px solid var(--border-light);
       border-radius: var(--radius-sm);
-      padding: 0.6rem 1rem 0.6rem 2.4rem;
-      color: var(--text-primary);
-      font-family: var(--font-sans);
-      font-size: 0.88rem; outline: none;
-    }
-    .search-input:focus {
-      border-color: var(--accent-cyan);
-      box-shadow: 0 0 10px rgba(6, 182, 212, 0.2);
+      padding: 0.7rem 1.25rem 0.7rem 2.6rem;
+      color: var(--text-pure);
+      font-family: var(--font-body);
+      font-size: 0.9rem; outline: none;
+      transition: var(--transition-smooth);
     }
 
-    .search-icon {
-      position: absolute; left: 0.85rem; top: 50%;
+    .glass-input:focus {
+      border-color: var(--neon-cyan);
+      box-shadow: 0 0 15px rgba(0, 242, 254, 0.25);
+    }
+
+    .search-icon-pos {
+      position: absolute; left: 0.95rem; top: 50%;
       transform: translateY(-50%); color: var(--text-muted);
     }
 
-    .filter-chips-row { display: flex; flex-wrap: wrap; gap: 0.4rem; }
-    .chip {
-      padding: 0.35rem 0.75rem;
-      border-radius: 9999px;
-      background: var(--bg-surface-raised);
-      border: 1px solid var(--border-subtle);
-      font-size: 0.78rem; color: var(--text-secondary);
-      cursor: pointer; transition: var(--transition-fast);
-    }
-
-    .chip:hover { border-color: var(--border-medium); color: var(--text-primary); }
-    .chip.active {
-      background: rgba(6, 182, 212, 0.15);
-      border-color: var(--accent-cyan);
-      color: var(--accent-cyan); font-weight: 600;
-    }
-
-    .table-responsive {
+    .table-scroll-wrapper {
       width: 100%; overflow-x: auto;
       border: 1px solid var(--border-subtle);
       border-radius: var(--radius-md);
+      background: rgba(8, 13, 26, 0.6);
     }
 
-    .tactical-table { width: 100%; border-collapse: collapse; font-size: 0.88rem; text-align: left; }
-    .tactical-table th {
-      background: var(--bg-surface-raised);
+    .modern-dark-table { width: 100%; border-collapse: collapse; font-size: 0.9rem; text-align: left; }
+    
+    .modern-dark-table th {
+      background: var(--bg-surface);
       color: var(--text-secondary);
       font-family: var(--font-mono); font-size: 0.75rem;
-      text-transform: uppercase; letter-spacing: 0.05em;
-      padding: 0.85rem 1.25rem; border-bottom: 1px solid var(--border-medium);
+      text-transform: uppercase; letter-spacing: 0.08em;
+      padding: 1rem 1.35rem; border-bottom: 1px solid var(--border-light);
     }
 
-    .tactical-table td {
-      padding: 0.85rem 1.25rem;
+    .modern-dark-table td {
+      padding: 1rem 1.35rem;
       border-bottom: 1px solid var(--border-subtle);
-      color: var(--text-primary); background: var(--bg-surface);
+      color: var(--text-primary);
     }
 
-    .tactical-table tr:hover td { background: var(--bg-surface-raised); }
+    .modern-dark-table tr:hover td { background: rgba(255, 255, 255, 0.03); }
 
-    .checkbox-custom {
-      appearance: none; width: 18px; height: 18px;
-      border: 2px solid var(--border-medium); border-radius: 4px;
-      background: var(--bg-surface-elevated); cursor: pointer;
+    .custom-check-box {
+      appearance: none; width: 20px; height: 20px;
+      border: 2px solid var(--border-light); border-radius: 6px;
+      background: var(--bg-surface-raised); cursor: pointer;
       position: relative; display: inline-block; vertical-align: middle;
+      transition: var(--transition-smooth);
     }
 
-    .checkbox-custom:checked { background: var(--accent-green); border-color: var(--accent-green); }
-    .checkbox-custom:checked::after {
+    .custom-check-box:checked {
+      background: var(--neon-emerald);
+      border-color: var(--neon-emerald);
+      box-shadow: 0 0 10px var(--neon-emerald);
+    }
+
+    .custom-check-box:checked::after {
       content: '✓'; position: absolute; top: 50%; left: 50%;
-      transform: translate(-50%, -50%); color: #fff; font-weight: bold; font-size: 12px;
+      transform: translate(-50%, -50%); color: #040813; font-weight: 900; font-size: 13px;
     }
 
-    /* Media Cue Cards */
-    .phase-section { margin-bottom: 2rem; }
-    .phase-header {
-      display: flex; align-items: center; gap: 0.75rem;
-      margin-bottom: 1rem; padding-bottom: 0.5rem; border-bottom: 2px solid var(--border-subtle);
+    /* ==========================================================================
+       MEDIA RUNDOWN & TIMEKEEPER
+       ========================================================================== */
+    .timekeeper-glass-banner {
+      background: linear-gradient(135deg, rgba(8, 13, 26, 0.9), rgba(20, 31, 54, 0.8));
+      border: 1px solid var(--border-accent);
+      border-radius: var(--radius-lg);
+      padding: 1.75rem 2rem;
+      margin-bottom: 2rem;
+      box-shadow: 0 0 30px rgba(0, 242, 254, 0.15);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1.5rem;
     }
 
-    .phase-title { font-size: 1.2rem; color: var(--accent-cyan); }
-    .media-cards-grid {
-      display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 1rem;
+    .time-digits-giant {
+      font-family: var(--font-mono);
+      font-size: 3.8rem;
+      font-weight: 800;
+      color: var(--neon-cyan);
+      line-height: 1;
+      text-shadow: 0 0 25px rgba(0, 242, 254, 0.4);
     }
 
-    .media-cue-card {
-      background: var(--bg-surface-raised);
-      border: 1px solid var(--border-subtle);
-      border-radius: var(--radius-md); padding: 1.25rem;
-      transition: var(--transition-fast);
-      display: flex; flex-direction: column; justify-content: space-between;
+    .phase-subhead {
+      display: flex; align-items: center; gap: 0.85rem;
+      margin-bottom: 1.25rem; padding-bottom: 0.6rem; border-bottom: 1px solid var(--border-light);
     }
 
-    .media-cue-card:hover { border-color: var(--border-medium); transform: translateY(-2px); }
-    .cue-top { display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 0.6rem; }
-    .cue-title { font-size: 0.95rem; font-weight: 700; }
-    .cue-dest { font-family: var(--font-mono); font-size: 0.75rem; color: var(--accent-amber); margin-bottom: 0.5rem; }
-    .cue-notes {
-      font-size: 0.82rem; color: var(--text-secondary);
-      background: var(--bg-surface); padding: 0.5rem 0.75rem;
-      border-radius: var(--radius-sm); border-left: 3px solid var(--accent-cyan);
-    }
+    .phase-headline { font-size: 1.3rem; color: var(--neon-cyan); }
 
-    /* Tools Grid */
-    .tools-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
-    .test-pattern-canvas {
+    /* ==========================================================================
+       CALIBRATION TOOLS & UTILITIES
+       ========================================================================== */
+    .tools-split-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; }
+    
+    .pattern-canvas-frame {
       width: 100%; aspect-ratio: 16/9;
-      border: 1px solid var(--border-medium); border-radius: var(--radius-sm);
+      border: 1px solid var(--border-light); border-radius: var(--radius-sm);
       background: #000000; display: block;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.6);
     }
 
-    /* Presentation Modal Deck */
-    .presentation-modal {
+    /* ==========================================================================
+       PRESENTATION DECK MODAL
+       ========================================================================== */
+    .deck-modal {
       display: none; position: fixed; inset: 0; z-index: 99999;
-      background: #04070d; color: #ffffff; flex-direction: column;
+      background: #02040a; color: #ffffff; flex-direction: column;
     }
 
-    .presentation-modal.active { display: flex; }
-    .pres-header {
-      height: 60px; background: rgba(10, 15, 26, 0.9);
-      backdrop-filter: blur(12px); border-bottom: 1px solid var(--border-subtle);
-      display: flex; align-items: center; justify-content: space-between; padding: 0 2rem;
+    .deck-modal.active { display: flex; }
+    
+    .deck-top-nav {
+      height: 68px; background: rgba(8, 13, 26, 0.9);
+      backdrop-filter: blur(16px); border-bottom: 1px solid var(--border-subtle);
+      display: flex; align-items: center; justify-content: space-between; padding: 0 2.5rem;
     }
 
-    .pres-slide-container {
+    .deck-slide-stage {
       flex: 1; display: flex; align-items: center; justify-content: center;
-      padding: 2.5rem 3.5rem; position: relative; overflow-y: auto;
+      padding: 3rem 4rem; position: relative; overflow-y: auto;
     }
 
-    .pres-slide { display: none; width: 100%; max-width: 1180px; animation: slideIn 0.3s ease; }
-    .pres-slide.active { display: block; }
+    .deck-slide-unit { display: none; width: 100%; max-width: 1200px; animation: deckFade 0.35s ease; }
+    .deck-slide-unit.active { display: block; }
 
-    @keyframes slideIn {
+    @keyframes deckFade {
       from { opacity: 0; transform: scale(0.98); }
       to { opacity: 1; transform: scale(1); }
     }
 
-    .pres-footer {
-      height: 60px; background: rgba(10, 15, 26, 0.9);
+    .deck-bottom-nav {
+      height: 68px; background: rgba(8, 13, 26, 0.9);
       border-top: 1px solid var(--border-subtle);
-      display: flex; align-items: center; justify-content: space-between; padding: 0 2rem;
+      display: flex; align-items: center; justify-content: space-between; padding: 0 2.5rem;
     }
 
-    /* Mobile Bottom Dock */
-    .mobile-bottom-dock {
+    /* ==========================================================================
+       MOBILE ADAPTIVE BOTTOM DOCK
+       ========================================================================== */
+    .mobile-floating-dock {
       display: none; position: fixed; bottom: 0; left: 0; right: 0; z-index: 1000;
-      background: rgba(11, 17, 29, 0.92); backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px); border-top: 1px solid var(--border-subtle);
-      padding: 0.5rem 0.75rem; justify-content: space-around;
+      background: rgba(8, 13, 26, 0.92); backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px); border-top: 1px solid var(--border-light);
+      padding: 0.6rem 0.85rem; justify-content: space-around;
+      box-shadow: 0 -10px 25px rgba(0, 0, 0, 0.6);
     }
 
-    .dock-item {
-      display: flex; flex-direction: column; align-items: center; gap: 0.2rem;
+    .dock-btn {
+      display: flex; flex-direction: column; align-items: center; gap: 0.25rem;
       color: var(--text-secondary); text-decoration: none;
-      font-size: 0.68rem; font-weight: 600;
+      font-size: 0.7rem; font-weight: 600;
+      transition: var(--transition-smooth);
     }
 
-    .dock-item.active { color: var(--accent-cyan); }
-    .dock-icon { font-size: 1.15rem; }
+    .dock-btn.active { color: var(--neon-cyan); }
+    .dock-symbol { font-size: 1.25rem; }
 
-    /* Responsive */
+    /* ==========================================================================
+       RESPONSIVE BREAKPOINTS
+       ========================================================================== */
     @media (max-width: 1024px) {
-      .hero-grid { grid-template-columns: 1fr; gap: 1.75rem; }
-      .switcher-console { grid-template-columns: 1fr; }
-      .tools-grid { grid-template-columns: 1fr; }
-      .hud-nav { display: none; }
+      .hero-inner-grid { grid-template-columns: 1fr; gap: 2rem; }
+      .switcher-master-deck { grid-template-columns: 1fr; }
+      .tools-split-layout { grid-template-columns: 1fr; }
+      .header-nav { display: none; }
     }
 
     @media (max-width: 768px) {
-      .landing-wrapper { padding: 1.25rem 1rem 5rem; gap: 2.5rem; }
-      .hero-card { padding: 1.75rem 1.25rem; }
-      .hero-title { font-size: 1.75rem; }
-      .hud-header { padding: 0 1rem; }
-      .hud-clock { display: none; }
-      .mobile-bottom-dock { display: flex; }
+      .master-layout { padding: 1.5rem 1.25rem 6rem; gap: 3rem; }
+      .hero-banner { padding: 2rem 1.5rem; }
+      .hero-title-main { font-size: 2rem; }
+      .command-header { padding: 0 1.25rem; }
+      .telemetry-clock { display: none; }
+      .mobile-floating-dock { display: flex; }
+      .time-digits-giant { font-size: 2.8rem; }
     }
   </style>
 </head>
 <body>
 
-  <!-- Top Sticky HUD Header -->
-  <header class="hud-header">
-    <a href="#hero" class="hud-branding">
-      <div class="hud-logo">IP26</div>
-      <div class="hud-title-group">
+  <!-- Background Ambient Glow Elements -->
+  <div class="glow-orb" style="top: 5%; left: 5%; width: 450px; height: 450px; background: rgba(0, 242, 254, 0.15);"></div>
+  <div class="glow-orb" style="top: 35%; right: 5%; width: 500px; height: 500px; background: rgba(157, 78, 221, 0.15);"></div>
+  <div class="glow-orb" style="top: 75%; left: 20%; width: 450px; height: 450px; background: rgba(255, 158, 0, 0.12);"></div>
+
+  <!-- Top Sticky Command HUD -->
+  <header class="command-header">
+    <a href="#hero" class="brand-cluster">
+      <div class="brand-logo-pill">IP26</div>
+      <div class="brand-title-group">
         <h1>
           Ibadah Perdana UKK UNNES
-          <span class="hud-live-tag">
-            <span class="hud-pulse-dot"></span> LIVE COMMAND
+          <span class="live-status-pill">
+            <span class="pulsing-lamp"></span> BROADCAST LIVE
           </span>
         </h1>
         <p>Gedung Auditorium UNNES • Master Production & Engineering</p>
       </div>
     </a>
 
-    <!-- Desktop Navigation Links (Smooth Scroll Anchor Links) -->
-    <nav class="hud-nav">
-      <a href="#overview" class="hud-nav-link active">Overview</a>
-      <a href="#cameras" class="hud-nav-link">Kamera</a>
-      <a href="#crew" class="hud-nav-link">Crew PIC</a>
-      <a href="#routing" class="hud-nav-link">Routing</a>
-      <a href="#switcher" class="hud-nav-link">Switcher</a>
-      <a href="#inventory" class="hud-nav-link">Inventaris</a>
-      <a href="#rundown" class="hud-nav-link">Rundown</a>
-      <a href="#tools" class="hud-nav-link">Tools</a>
-      <a href="#sop" class="hud-nav-link">SOP</a>
+    <!-- Adaptive Navigation Bar -->
+    <nav class="header-nav">
+      <a href="#overview" class="nav-link active">Overview</a>
+      <a href="#cameras" class="nav-link">Kamera</a>
+      <a href="#crew" class="nav-link">Crew PIC</a>
+      <a href="#routing" class="nav-link">Routing</a>
+      <a href="#switcher" class="nav-link">Switcher</a>
+      <a href="#inventory" class="nav-link">Inventaris</a>
+      <a href="#rundown" class="nav-link">Rundown</a>
+      <a href="#tools" class="nav-link">Tools</a>
+      <a href="#sop" class="nav-link">SOP</a>
     </nav>
 
-    <div class="hud-actions">
-      <div class="hud-clock" id="live-event-clock">00:00:00</div>
-      <button class="btn btn-primary btn-sm" id="btn-open-presentation">
+    <div class="header-actions">
+      <div class="telemetry-clock" id="live-event-clock">00:00:00</div>
+      <button class="btn-lux btn-lux-primary btn-lux-sm" id="btn-open-presentation">
         📽️ Mode Presentasi
       </button>
-      <a href="https://github.com/zzdree/ip26-production" target="_blank" rel="noopener" class="btn btn-tactical btn-sm" title="GitHub Repository">
+      <a href="https://github.com/zzdree/ip26-production" target="_blank" rel="noopener" class="btn-lux btn-lux-ghost btn-lux-sm" title="GitHub Repository">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
       </a>
     </div>
   </header>
 
-  <!-- Continuous Single-Page Landing Wrapper -->
-  <div class="landing-wrapper">
+  <!-- Master Landing Wrapper -->
+  <main class="master-layout">
 
-    <!-- 1. HERO SECTION -->
-    <section class="landing-section" id="hero">
-      <div class="hero-card">
-        <div class="hero-grid">
+    <!-- 1. HERO COMMAND BANNER -->
+    <section class="section-block" id="hero">
+      <div class="hero-banner">
+        <div class="hero-inner-grid">
           <div>
-            <div class="hero-badge-row">
-              <span class="pill-badge cyan">UKK UNNES 2026</span>
-              <span class="pill-badge green">STATUS: OPERATIONAL READY</span>
-              <span class="pill-badge amber">VENUE: AUDITORIUM UNNES</span>
+            <div style="display:flex; flex-wrap:wrap; gap:0.5rem; margin-bottom:1.25rem;">
+              <span class="glow-badge cyan">UKK UNNES 2026</span>
+              <span class="glow-badge emerald">STATUS: OPERATIONAL READY</span>
+              <span class="glow-badge amber">VENUE: AUDITORIUM UNNES</span>
             </div>
-            <h1 class="hero-title">
+            <h1 class="hero-title-main">
               Production & Broadcast Command Blueprint
             </h1>
-            <p class="hero-desc">
-              Pusat kendali operasional, arsitektur alur sinyal video 4-kamera (Dual Wireless Hollyland Pyro S & Pyro H), integrasi audio FOH Yamaha QL5 & Submix NewBaxs CT80S, visual stage mapping Resolume Arena & ProPresenter 7, serta master log inventaris peminjaman alat.
+            <p class="hero-lead-text">
+              Pusat kendali komprehensif siaran langsung: konfigurasi 4-kamera broadcast (Dual Wireless Hollyland Pyro S & Pyro H), integrasi audio FOH Yamaha QL5 & Submix NewBaxs CT80S, visual stage mapping Resolume Arena & ProPresenter 7, serta master log inventaris peminjaman alat.
             </p>
-            <div class="hero-cta-group">
-              <a href="#switcher" class="btn btn-tally-red">
+            <div class="hero-buttons-row">
+              <a href="#switcher" class="btn-lux btn-lux-red">
                 ⚡ Uji Switcher & Multiview
               </a>
-              <a href="#routing" class="btn btn-tactical">
+              <a href="#routing" class="btn-lux btn-lux-ghost">
                 📡 Cek Jalur Kabel & Routing
               </a>
-              <button class="btn btn-primary" onclick="document.getElementById('btn-open-presentation').click()">
+              <button class="btn-lux btn-lux-primary" onclick="document.getElementById('btn-open-presentation').click()">
                 📽️ Slide Presentasi Kru
               </button>
             </div>
           </div>
 
-          <div class="hero-status-widget">
-            <div style="font-family:var(--font-mono); font-size:0.75rem; color:var(--accent-cyan); font-weight:700; text-transform:uppercase;">
-              SYSTEM TELEMETRY SUMMARY
+          <div class="telemetry-card-cluster">
+            <div class="telemetry-header-bar">
+              <span>SYSTEM TELEMETRY SUMMARY</span>
+              <span style="color:var(--neon-emerald);">● ACTIVE</span>
             </div>
-            <div class="widget-stat-row">
-              <span class="widget-stat-label">Broadcast Switcher</span>
-              <span class="widget-stat-val" style="color:var(--accent-cyan);">Cinetreak V1 (4CH)</span>
+            <div class="telemetry-row">
+              <span class="telemetry-key">Broadcast Switcher</span>
+              <span class="telemetry-val" style="color:var(--neon-cyan);">Cinetreak V1 (4CH)</span>
             </div>
-            <div class="widget-stat-row">
-              <span class="widget-stat-label">Audio Pipeline</span>
-              <span class="widget-stat-val" style="color:var(--accent-violet);">Yamaha QL5 + CT80S</span>
+            <div class="telemetry-row">
+              <span class="telemetry-key">Audio Pipeline</span>
+              <span class="telemetry-val" style="color:var(--neon-purple);">Yamaha QL5 + CT80S</span>
             </div>
-            <div class="widget-stat-row">
-              <span class="widget-stat-label">Wireless Transmission</span>
-              <span class="widget-stat-val" style="color:var(--accent-amber);">Pyro S & Pyro H (5.8GHz)</span>
+            <div class="telemetry-row">
+              <span class="telemetry-key">Wireless Transmission</span>
+              <span class="telemetry-val" style="color:var(--neon-amber);">Pyro S & Pyro H (5.8GHz)</span>
             </div>
-            <div class="widget-stat-row" style="border-bottom:none; padding-bottom:0;">
-              <span class="widget-stat-label">Stage Timekeeper</span>
-              <span class="widget-stat-val" style="color:var(--accent-green);">ProPresenter 3 TV</span>
+            <div class="telemetry-row">
+              <span class="telemetry-key">Stage Timekeeper</span>
+              <span class="telemetry-val" style="color:var(--neon-emerald);">ProPresenter 3 TV</span>
             </div>
           </div>
         </div>
@@ -1094,182 +1234,190 @@
     </section>
 
     <!-- 2. EXECUTIVE OVERVIEW & KPI METRICS -->
-    <section class="landing-section" id="overview">
-      <div class="section-header">
-        <div class="section-title-group">
+    <section class="section-block" id="overview">
+      <div class="section-head">
+        <div>
           <span class="section-tag">01 • Executive Metrics</span>
           <h2 class="section-title">Ringkasan Kapasitas Sistem</h2>
+          <p class="section-sub">Parameter operasional dan kesiapan perangkat broadcast di lokasi acara.</p>
         </div>
-        <span class="pill-badge green">Semua Modul Aktif</span>
+        <span class="glow-badge emerald">Semua Modul Aktif</span>
       </div>
 
-      <div class="kpi-grid">
-        <div class="kpi-card">
-          <div class="kpi-icon">🎥</div>
+      <div class="kpi-deck">
+        <div class="kpi-unit">
+          <div class="kpi-symbol-box" style="color:var(--neon-cyan);">🎥</div>
           <div>
-            <div class="kpi-value">4 CAM</div>
-            <div class="kpi-label">2 Wireless + 2 Tethered</div>
+            <div class="kpi-figure">4 CAM</div>
+            <div class="kpi-desc">2 Wireless + 2 Tethered</div>
           </div>
         </div>
-        <div class="kpi-card">
-          <div class="kpi-icon" style="color:var(--accent-green);">📦</div>
+        <div class="kpi-unit">
+          <div class="kpi-symbol-box" style="color:var(--neon-emerald);">📦</div>
           <div>
-            <div class="kpi-value" id="kpi-inv-total">90+ Item</div>
-            <div class="kpi-label">Inventaris Log Terdata</div>
+            <div class="kpi-figure" id="kpi-inv-total">90+ Item</div>
+            <div class="kpi-desc">Inventaris Log Terdata</div>
           </div>
         </div>
-        <div class="kpi-card">
-          <div class="kpi-icon" style="color:var(--accent-amber);">⚡</div>
+        <div class="kpi-unit">
+          <div class="kpi-symbol-box" style="color:var(--neon-amber);">⚡</div>
           <div>
-            <div class="kpi-value">12 Line</div>
-            <div class="kpi-label">Jalur Sinyal Terintegrasi</div>
+            <div class="kpi-figure">12 Line</div>
+            <div class="kpi-desc">Jalur Sinyal Terintegrasi</div>
           </div>
         </div>
-        <div class="kpi-card">
-          <div class="kpi-icon" style="color:var(--accent-violet);">👥</div>
+        <div class="kpi-unit">
+          <div class="kpi-symbol-box" style="color:var(--neon-purple);">👥</div>
           <div>
-            <div class="kpi-value">15 Kru</div>
-            <div class="kpi-label">Divisi Teknis & Dokumentasi</div>
+            <div class="kpi-figure">15 Kru</div>
+            <div class="kpi-desc">Divisi Teknis & Dokumentasi</div>
           </div>
         </div>
       </div>
     </section>
 
     <!-- 3. BROADCAST & DOCUMENTATION CAMERAS -->
-    <section class="landing-section" id="cameras">
-      <div class="section-header">
-        <div class="section-title-group">
+    <section class="section-block" id="cameras">
+      <div class="section-head">
+        <div>
           <span class="section-tag">02 • Camera Rigging</span>
           <h2 class="section-title">Konfigurasi Kamera & Lensa</h2>
-          <p class="section-subtitle">Spesifikasi 4 kamera broadcast live stream (Dual Wireless) dan 3 unit kamera dokumentasi terpisah.</p>
+          <p class="section-sub">Spesifikasi 4 kamera broadcast live stream (Dual Wireless) dan 3 unit kamera dokumentasi terpisah.</p>
         </div>
-        <span class="pill-badge cyan">Dual Wireless + Sony System</span>
+        <span class="glow-badge cyan">Dual Wireless + Sony System</span>
       </div>
 
       <!-- Broadcast 4-CAM Cards -->
-      <div class="crew-grid" style="margin-bottom:1.5rem;">
-        <div class="crew-card">
-          <div class="crew-card-top">
-            <span class="crew-name">CAM 1 — Center Long Shot (Wireless)</span>
-            <span class="pill-badge cyan">ALEX</span>
+      <div class="crew-deck-grid" style="margin-bottom:1.5rem;">
+        <div class="glass-card">
+          <div>
+            <div class="card-top-row">
+              <span class="card-main-title">CAM 1 — Center Long Shot</span>
+              <span class="glow-badge cyan">ALEX</span>
+            </div>
+            <div class="card-subtitle-role">Sony ZV-E10 + Lens 18-105mm F4 G OSS</div>
+            <div class="card-tech-chip">Hollyland Pyro S Wireless (TX/RX) • Stand Lighting • HDMI 1.5M • Tripod Big</div>
+            <div class="card-body-text">Main Long-shot & Stage Master framing. Sinyal dikirim via transmisi nirkabel Hollyland Pyro S ke Input 1 Switcher Cinetreak V1.</div>
           </div>
-          <div class="crew-role">Sony ZV-E10 + Lens 18-105mm F4 G OSS</div>
-          <div class="crew-device">Hollyland Pyro S Wireless (TX/RX) • Stand Lighting • HDMI 1.5M • Tripod Big</div>
-          <div class="crew-task">Main Long-shot & Stage Master framing. Sinyal dikirim via transmisi nirkabel Hollyland Pyro S ke Input 1 Switcher Cinetreak V1.</div>
-          <div class="crew-card-footer">
+          <div class="card-bottom-row">
             <span>FOH Center Deck</span>
-            <span style="color:var(--accent-cyan);">5.8GHz Pyro S Wireless</span>
+            <span style="color:var(--neon-cyan); font-weight:700;">5.8GHz Pyro S Wireless</span>
           </div>
         </div>
 
-        <div class="crew-card">
-          <div class="crew-card-top">
-            <span class="crew-name">CAM 2 — Roving Wireless</span>
-            <span class="pill-badge amber">KIEL 1</span>
+        <div class="glass-card">
+          <div>
+            <div class="card-top-row">
+              <span class="card-main-title">CAM 2 — Roving Wireless</span>
+              <span class="glow-badge amber">KIEL 1</span>
+            </div>
+            <div class="card-subtitle-role">Sony ZV-E10 + Lens 18-105mm F4 G OSS</div>
+            <div class="card-tech-chip">Hollyland Pyro H Wireless Kit (TX/RX) • Stand Lighting • HDMI 1.5M</div>
+            <div class="card-body-text">Wireless roving camera untuk close-up WL, Singer, dan interaksi jemaat dengan transmisi 5.8GHz ultra-low latency.</div>
           </div>
-          <div class="crew-role">Sony ZV-E10 + Lens 18-105mm F4 G OSS</div>
-          <div class="crew-device">Hollyland Pyro H Wireless Kit (TX/RX) • Stand Lighting • HDMI 1.5M</div>
-          <div class="crew-task">Wireless roving camera untuk close-up WL, Singer, dan interaksi jemaat dengan transmisi 5.8GHz ultra-low latency.</div>
-          <div class="crew-card-footer">
+          <div class="card-bottom-row">
             <span>Altar Stage Front</span>
-            <span style="color:var(--accent-amber);">5.8GHz Pyro H Wireless</span>
+            <span style="color:var(--neon-amber); font-weight:700;">5.8GHz Pyro H Wireless</span>
           </div>
         </div>
 
-        <div class="crew-card">
-          <div class="crew-card-top">
-            <span class="crew-name">CAM 3 — Left Wing Angle</span>
-            <span class="pill-badge violet">DEWI</span>
+        <div class="glass-card">
+          <div>
+            <div class="card-top-row">
+              <span class="card-main-title">CAM 3 — Left Wing Angle</span>
+              <span class="glow-badge purple">DEWI</span>
+            </div>
+            <div class="card-subtitle-role">Sony A6000 + Lens 18-105mm F4 G OSS</div>
+            <div class="card-tech-chip">HDMI 10M Line • Micro-HDMI Converter • Tripod Big</div>
+            <div class="card-body-text">Stage left medium & profile shot, speaker cross-angle framing langsung ke Cinetreak V1 Input 3.</div>
           </div>
-          <div class="crew-role">Sony A6000 + Lens 18-105mm F4 G OSS</div>
-          <div class="crew-device">HDMI 10M Line • Micro-HDMI Converter • Tripod Big</div>
-          <div class="crew-task">Stage left medium & profile shot, speaker cross-angle framing langsung ke Cinetreak V1 Input 3.</div>
-          <div class="crew-card-footer">
+          <div class="card-bottom-row">
             <span>Wing House Left</span>
-            <span style="color:var(--accent-green);">1080p60 HDMI</span>
+            <span style="color:var(--neon-emerald); font-weight:700;">1080p60 HDMI</span>
           </div>
         </div>
 
-        <div class="crew-card">
-          <div class="crew-card-top">
-            <span class="crew-name">CAM 4 — Right Wing Angle</span>
-            <span class="pill-badge green">NATHANIA</span>
+        <div class="glass-card">
+          <div>
+            <div class="card-top-row">
+              <span class="card-main-title">CAM 4 — Right Wing Angle</span>
+              <span class="glow-badge emerald">NATHANIA</span>
+            </div>
+            <div class="card-subtitle-role">Sony A6000 + Lens 16-50mm Kit OSS</div>
+            <div class="card-tech-chip">HDMI 10M Line • Micro-HDMI Converter • Tripod Big</div>
+            <div class="card-body-text">Stage right wide angle, coverage worship team & instrumen musik panggung ke Input 4 Switcher.</div>
           </div>
-          <div class="crew-role">Sony A6000 + Lens 16-50mm Kit OSS</div>
-          <div class="crew-device">HDMI 10M Line • Micro-HDMI Converter • Tripod Big</div>
-          <div class="crew-task">Stage right wide angle, coverage worship team & instrumen musik panggung ke Input 4 Switcher.</div>
-          <div class="crew-card-footer">
+          <div class="card-bottom-row">
             <span>Wing House Right</span>
-            <span style="color:var(--accent-green);">1080p60 HDMI</span>
+            <span style="color:var(--neon-emerald); font-weight:700;">1080p60 HDMI</span>
           </div>
         </div>
       </div>
 
       <!-- Documentation Dedicated Row -->
-      <div class="panel" style="background:var(--bg-surface-raised);">
-        <div class="panel-header">
-          <div class="panel-title">
-            <span>📸 Shots System (Dokumentasi Terpisah dari Broadcast)</span>
+      <div class="glass-card" style="background:rgba(20, 31, 54, 0.45);">
+        <div class="card-top-row" style="margin-bottom:1.25rem;">
+          <div>
+            <h3 style="font-size:1.15rem; font-weight:700;">📸 Shots System (Dokumentasi Terpisah dari Broadcast)</h3>
+            <p style="font-size:0.85rem; color:var(--text-secondary); margin-top:0.2rem;">Tim media kreatif untuk dokumentasi still photo, video sinematik aftermovie, dan publikasi sosial media.</p>
           </div>
-          <span class="pill-badge violet">Non-Streaming Units</span>
+          <span class="glow-badge purple">Non-Streaming Units</span>
         </div>
-        <div class="panel-body">
-          <div class="crew-grid">
-            <div class="crew-card">
-              <div class="crew-card-top"><span class="crew-name">Nico — Lead Photographer</span><span class="pill-badge violet">PHOTO</span></div>
-              <div class="crew-device">Sony A6400 + Sony 50mm Prime (OWL)</div>
-              <div class="crew-task">Foto high-res panggung, candid jemaat, stage lighting atmosphere, dan foto kepengurusan.</div>
-            </div>
-            <div class="crew-card">
-              <div class="crew-card-top"><span class="crew-name">Joel — Cinematic Video</span><span class="pill-badge violet">CINEMA</span></div>
-              <div class="crew-device">Sony A6600 + Zeiss 24-70mm + DJI Ronin RS3</div>
-              <div class="crew-task">Video aftermovie sinematik 4K S-Log, slow motion tracking, dan b-roll backstage.</div>
-            </div>
-            <div class="crew-card">
-              <div class="crew-card-top"><span class="crew-name">Jennifer — Mobile Reels</span><span class="pill-badge violet">SOCIAL</span></div>
-              <div class="crew-device">Apple iPhone 15 Pro 4K HDR</div>
-              <div class="crew-task">Konten instan Instagram Reels, Stories real-time, dan update publikasi media sosial UKK.</div>
-            </div>
+        <div class="crew-deck-grid">
+          <div class="glass-card" style="background:rgba(8, 13, 26, 0.8);">
+            <div class="card-top-row"><span class="card-main-title">Nico — Lead Photographer</span><span class="glow-badge purple">PHOTO</span></div>
+            <div class="card-tech-chip">Sony A6400 + Sony 50mm Prime (OWL)</div>
+            <div class="card-body-text">Foto high-res panggung, candid jemaat, stage lighting atmosphere, dan foto kepengurusan.</div>
+          </div>
+          <div class="glass-card" style="background:rgba(8, 13, 26, 0.8);">
+            <div class="card-top-row"><span class="card-main-title">Joel — Cinematic Video</span><span class="glow-badge purple">CINEMA</span></div>
+            <div class="card-tech-chip">Sony A6600 + Zeiss 24-70mm + DJI Ronin RS3</div>
+            <div class="card-body-text">Video aftermovie sinematik 4K S-Log, slow motion tracking, dan b-roll backstage.</div>
+          </div>
+          <div class="glass-card" style="background:rgba(8, 13, 26, 0.8);">
+            <div class="card-top-row"><span class="card-main-title">Jennifer — Mobile Reels</span><span class="glow-badge purple">SOCIAL</span></div>
+            <div class="card-tech-chip">Apple iPhone 15 Pro 4K HDR</div>
+            <div class="card-body-text">Konten instan Instagram Reels, Stories real-time, dan update publikasi media sosial UKK.</div>
           </div>
         </div>
       </div>
     </section>
 
     <!-- 4. MASTER CREW DIRECTORY -->
-    <section class="landing-section" id="crew">
-      <div class="section-header">
-        <div class="section-title-group">
+    <section class="section-block" id="crew">
+      <div class="section-head">
+        <div>
           <span class="section-tag">03 • Personnel In Charge</span>
           <h2 class="section-title">Struktur Tim & Pembagian Tugas</h2>
-          <p class="section-subtitle">Daftar kontak intercom, perangkat yang dipegang, dan rincian SOP setiap kru.</p>
+          <p class="section-sub">Daftar kontak intercom, perangkat yang dipegang, dan rincian SOP setiap kru.</p>
         </div>
-        <div class="filter-chips-row">
-          <button class="chip crew-filter-btn active" data-division="all">Semua Kru</button>
-          <button class="chip crew-filter-btn" data-division="broadcast">Broadcast</button>
-          <button class="chip crew-filter-btn" data-division="docs">Dokumentasi</button>
-          <button class="chip crew-filter-btn" data-division="engine">Engine & OBS</button>
-          <button class="chip crew-filter-btn" data-division="media">Media LED</button>
-          <button class="chip crew-filter-btn" data-division="audio">Virtual Audio</button>
+        <div class="chip-filter-row">
+          <button class="filter-pill crew-filter-btn active" data-division="all">Semua Kru</button>
+          <button class="filter-pill crew-filter-btn" data-division="broadcast">Broadcast</button>
+          <button class="filter-pill crew-filter-btn" data-division="docs">Dokumentasi</button>
+          <button class="filter-pill crew-filter-btn" data-division="engine">Engine & OBS</button>
+          <button class="filter-pill crew-filter-btn" data-division="media">Media LED</button>
+          <button class="filter-pill crew-filter-btn" data-division="audio">Virtual Audio</button>
         </div>
       </div>
 
-      <div class="crew-grid" id="crew-directory-grid"></div>
+      <div class="crew-deck-grid" id="crew-directory-grid"></div>
     </section>
 
     <!-- 5. SIGNAL ROUTING & MATRIX -->
-    <section class="landing-section" id="routing">
-      <div class="section-header">
-        <div class="section-title-group">
+    <section class="section-block" id="routing">
+      <div class="section-head">
+        <div>
           <span class="section-tag">04 • Signal Architecture</span>
           <h2 class="section-title">Wiring & Signal Routing Matrix</h2>
-          <p class="section-subtitle">Alur kabel ujung-ke-ujung untuk video switcher, audio QL5, LED mapping, dan kelistrikan.</p>
+          <p class="section-sub">Alur kabel ujung-ke-ujung untuk video switcher, audio QL5, LED mapping, dan kelistrikan.</p>
         </div>
-        <div class="filter-chips-row">
-          <button class="chip route-filter-btn active" data-filter="all">Semua Pipeline (12)</button>
-          <button class="chip route-filter-btn" data-filter="video">Video Broadcast</button>
-          <button class="chip route-filter-btn" data-filter="media">Media & LED</button>
-          <button class="chip route-filter-btn" data-filter="audio">Audio Master</button>
-          <button class="chip route-filter-btn" data-filter="power">Kelistrikan</button>
+        <div class="chip-filter-row">
+          <button class="filter-pill route-filter-btn active" data-filter="all">Semua Pipeline (12)</button>
+          <button class="filter-pill route-filter-btn" data-filter="video">Video Broadcast</button>
+          <button class="filter-pill route-filter-btn" data-filter="media">Media & LED</button>
+          <button class="filter-pill route-filter-btn" data-filter="audio">Audio Master</button>
+          <button class="filter-pill route-filter-btn" data-filter="power">Kelistrikan</button>
         </div>
       </div>
 
@@ -1277,108 +1425,108 @@
     </section>
 
     <!-- 6. LIVE SWITCHER SIMULATOR -->
-    <section class="landing-section" id="switcher">
-      <div class="section-header">
-        <div class="section-title-group">
+    <section class="section-block" id="switcher">
+      <div class="section-head">
+        <div>
           <span class="section-tag">05 • Hardware Simulation</span>
           <h2 class="section-title">Cinetreak Cinelive V1 Switcher Console</h2>
-          <p class="section-subtitle">Simulasi kontrol bus Program (PGM), Preview (PVW), transisi CUT/MIX, PiP, dan audio VU meter.</p>
+          <p class="section-sub">Simulasi kontrol bus Program (PGM), Preview (PVW), transisi CUT/MIX, PiP, dan audio VU meter.</p>
         </div>
         <div style="display:flex; align-items:center; gap:0.75rem;">
-          <span class="pill-badge red" id="pgm-channel-label">PGM: CAM 1</span>
-          <span class="pill-badge green" id="pvw-channel-label">PVW: CAM 2</span>
+          <span class="glow-badge red" id="pgm-channel-label">PGM: CAM 1</span>
+          <span class="glow-badge emerald" id="pvw-channel-label">PVW: CAM 2</span>
         </div>
       </div>
 
-      <div class="switcher-console">
-        <!-- Multiview 4-slot & PGM/PVW Master Displays -->
-        <div class="multiview-screen-container">
-          <div class="multiview-grid">
-            <div class="multiview-slot active-pgm" id="mv-slot-1">
-              <span class="slot-label">01 • CAM 1 (Pyro S Alex)</span>
-              <span class="slot-tally pgm" id="mv-tally-1"></span>
+      <div class="switcher-master-deck">
+        <!-- Multiview & PGM/PVW Master Displays -->
+        <div class="multiview-theater">
+          <div class="multiview-quad-grid">
+            <div class="camera-slot active-pgm" id="mv-slot-1">
+              <span class="slot-id-badge">01 • CAM 1 (Pyro S Alex)</span>
+              <span class="slot-tally-lamp pgm" id="mv-tally-1"></span>
               <canvas id="canvas-cam-1" width="280" height="158" style="width:100%; height:100%; object-fit:cover;"></canvas>
             </div>
-            <div class="multiview-slot active-pvw" id="mv-slot-2">
-              <span class="slot-label">02 • CAM 2 (Pyro H Kiel)</span>
-              <span class="slot-tally pvw" id="mv-tally-2"></span>
+            <div class="camera-slot active-pvw" id="mv-slot-2">
+              <span class="slot-id-badge">02 • CAM 2 (Pyro H Kiel)</span>
+              <span class="slot-tally-lamp pvw" id="mv-tally-2"></span>
               <canvas id="canvas-cam-2" width="280" height="158" style="width:100%; height:100%; object-fit:cover;"></canvas>
             </div>
-            <div class="multiview-slot" id="mv-slot-3">
-              <span class="slot-label">03 • CAM 3 (Dewi)</span>
-              <span class="slot-tally" id="mv-tally-3"></span>
+            <div class="camera-slot" id="mv-slot-3">
+              <span class="slot-id-badge">03 • CAM 3 (Dewi)</span>
+              <span class="slot-tally-lamp" id="mv-tally-3"></span>
               <canvas id="canvas-cam-3" width="280" height="158" style="width:100%; height:100%; object-fit:cover;"></canvas>
             </div>
-            <div class="multiview-slot" id="mv-slot-4">
-              <span class="slot-label">04 • CAM 4 (Nathania)</span>
-              <span class="slot-tally" id="mv-tally-4"></span>
+            <div class="camera-slot" id="mv-slot-4">
+              <span class="slot-id-badge">04 • CAM 4 (Nathania)</span>
+              <span class="slot-tally-lamp" id="mv-tally-4"></span>
               <canvas id="canvas-cam-4" width="280" height="158" style="width:100%; height:100%; object-fit:cover;"></canvas>
             </div>
           </div>
 
-          <div class="multiview-preview-pgm-row">
-            <div class="monitor-box pvw-master">
-              <span class="monitor-tag green">PREVIEW (PVW)</span>
+          <div class="master-screens-row">
+            <div class="screen-housing pvw-live">
+              <span class="screen-header-tag green">PREVIEW (PVW)</span>
               <canvas id="canvas-pvw-master" width="380" height="214" style="width:100%; height:100%; object-fit:cover;"></canvas>
             </div>
-            <div class="monitor-box pgm-master">
-              <span class="monitor-tag red">LIVE PROGRAM (PGM)</span>
+            <div class="screen-housing pgm-live">
+              <span class="screen-header-tag red">LIVE PROGRAM (PGM)</span>
               <canvas id="canvas-pgm-master" width="380" height="214" style="width:100%; height:100%; object-fit:cover;"></canvas>
             </div>
           </div>
         </div>
 
-        <!-- Tactile Control Deck -->
-        <div class="switcher-control-deck">
+        <!-- Tactile Control Console Deck -->
+        <div class="control-console-deck">
           <div>
-            <div class="bus-label" style="color:var(--accent-red);">PROGRAM BUS (ON AIR)</div>
-            <div class="bus-buttons-row">
-              <button class="btn-bus pgm-selected" data-pgm-btn="1">CAM 1</button>
-              <button class="btn-bus" data-pgm-btn="2">CAM 2</button>
-              <button class="btn-bus" data-pgm-btn="3">CAM 3</button>
-              <button class="btn-bus" data-pgm-btn="4">CAM 4</button>
+            <div class="bus-title-label" style="color:var(--neon-red);">PROGRAM BUS (ON AIR)</div>
+            <div class="bus-grid-buttons">
+              <button class="btn-tactile-bus pgm-selected" data-pgm-btn="1">CAM 1</button>
+              <button class="btn-tactile-bus" data-pgm-btn="2">CAM 2</button>
+              <button class="btn-tactile-bus" data-pgm-btn="3">CAM 3</button>
+              <button class="btn-tactile-bus" data-pgm-btn="4">CAM 4</button>
             </div>
           </div>
 
           <div>
-            <div class="bus-label" style="color:var(--accent-green);">PREVIEW BUS (NEXT CUE)</div>
-            <div class="bus-buttons-row">
-              <button class="btn-bus" data-pvw-btn="1">CAM 1</button>
-              <button class="btn-bus pvw-selected" data-pvw-btn="2">CAM 2</button>
-              <button class="btn-bus" data-pvw-btn="3">CAM 3</button>
-              <button class="btn-bus" data-pvw-btn="4">CAM 4</button>
+            <div class="bus-title-label" style="color:var(--neon-emerald);">PREVIEW BUS (NEXT CUE)</div>
+            <div class="bus-grid-buttons">
+              <button class="btn-tactile-bus" data-pvw-btn="1">CAM 1</button>
+              <button class="btn-tactile-bus pvw-selected" data-pvw-btn="2">CAM 2</button>
+              <button class="btn-tactile-bus" data-pvw-btn="3">CAM 3</button>
+              <button class="btn-tactile-bus" data-pvw-btn="4">CAM 4</button>
             </div>
           </div>
 
           <div>
-            <div class="bus-label">TRANSITION & EFFECTS</div>
-            <div class="transition-controls">
-              <button class="btn-cut" id="btn-switcher-cut">⚡ HARD CUT</button>
-              <button class="btn-auto" id="btn-switcher-auto">✨ AUTO MIX</button>
+            <div class="bus-title-label" style="color:var(--neon-cyan);">TRANSITION & EFFECTS</div>
+            <div class="transition-split">
+              <button class="btn-cut-action" id="btn-switcher-cut">⚡ HARD CUT</button>
+              <button class="btn-auto-action" id="btn-switcher-auto">✨ AUTO MIX</button>
             </div>
-            <button class="btn btn-tactical" id="btn-switcher-pip" style="width:100%; margin-top:0.6rem;">
+            <button class="btn-lux btn-lux-ghost" id="btn-switcher-pip" style="width:100%; margin-top:0.75rem;">
               🖼️ Toggle PiP (Picture-in-Picture)
             </button>
           </div>
 
           <div>
-            <div class="bus-label">AUDIO LEVEL METER (DBFS)</div>
-            <div class="audio-vu-rack">
-              <div class="vu-channel">
-                <div class="vu-bar-track"><div class="vu-bar-fill" id="vu-ql5-l" style="height:70%;"></div></div>
-                <span class="vu-label">QL5 L</span>
+            <div class="bus-title-label">AUDIO LEVEL METER (DBFS)</div>
+            <div class="audio-vu-meter-rack">
+              <div class="vu-column">
+                <div class="vu-bar-housing"><div class="vu-fill-meter" id="vu-ql5-l" style="height:70%;"></div></div>
+                <span class="vu-channel-text">QL5 L</span>
               </div>
-              <div class="vu-channel">
-                <div class="vu-bar-track"><div class="vu-bar-fill" id="vu-ql5-r" style="height:72%;"></div></div>
-                <span class="vu-label">QL5 R</span>
+              <div class="vu-column">
+                <div class="vu-bar-housing"><div class="vu-fill-meter" id="vu-ql5-r" style="height:72%;"></div></div>
+                <span class="vu-channel-text">QL5 R</span>
               </div>
-              <div class="vu-channel">
-                <div class="vu-bar-track"><div class="vu-bar-fill" id="vu-obs-l" style="height:65%;"></div></div>
-                <span class="vu-label">OBS L</span>
+              <div class="vu-column">
+                <div class="vu-bar-housing"><div class="vu-fill-meter" id="vu-obs-l" style="height:65%;"></div></div>
+                <span class="vu-channel-text">OBS L</span>
               </div>
-              <div class="vu-channel">
-                <div class="vu-bar-track"><div class="vu-bar-fill" id="vu-obs-r" style="height:68%;"></div></div>
-                <span class="vu-label">OBS R</span>
+              <div class="vu-column">
+                <div class="vu-bar-housing"><div class="vu-fill-meter" id="vu-obs-r" style="height:68%;"></div></div>
+                <span class="vu-channel-text">OBS R</span>
               </div>
             </div>
           </div>
@@ -1387,329 +1535,307 @@
     </section>
 
     <!-- 7. MASTER INVENTORY & PEMINJAMAN -->
-    <section class="landing-section" id="inventory">
-      <div class="section-header">
-        <div class="section-title-group">
+    <section class="section-block" id="inventory">
+      <div class="section-head">
+        <div>
           <span class="section-tag">06 • Equipment Loan & Storage</span>
           <h2 class="section-title">Master Inventory & Checklist Alat</h2>
-          <p class="section-subtitle">Log inventaris lintas pemilik (OWL, GIA, GKJ, UKK, Andreas, Kiel, Lio, Joel, Kezia, Jennifer, Darrel, Panitia) dengan auto-save di browser.</p>
+          <p class="section-sub">Log inventaris lintas pemilik (OWL, GIA, GKJ, UKK, Andreas, Kiel, Lio, Joel, Kezia, Jennifer, Darrel, Panitia) dengan auto-save di browser.</p>
         </div>
-        <div style="display:flex; gap:0.5rem; flex-wrap:wrap;">
-          <button class="btn btn-tactical btn-sm" id="btn-check-all-inv">✅ Check All</button>
-          <button class="btn btn-tactical btn-sm" id="btn-reset-check-inv">🔄 Reset</button>
-          <button class="btn btn-tactical btn-sm" id="btn-export-inv-json">💾 Export JSON</button>
-          <button class="btn btn-tactical btn-sm" id="btn-print-inv">🖨️ Cetak Manifest</button>
+        <div style="display:flex; gap:0.6rem; flex-wrap:wrap;">
+          <button class="btn-lux btn-lux-ghost btn-lux-sm" id="btn-check-all-inv">✅ Check All</button>
+          <button class="btn-lux btn-lux-ghost btn-lux-sm" id="btn-reset-check-inv">🔄 Reset</button>
+          <button class="btn-lux btn-lux-ghost btn-lux-sm" id="btn-export-inv-json">💾 Export JSON</button>
+          <button class="btn-lux btn-lux-ghost btn-lux-sm" id="btn-print-inv">🖨️ Cetak Manifest</button>
         </div>
       </div>
 
       <!-- Inventory Metrics Bar -->
-      <div class="kpi-grid" style="margin-bottom:1.5rem;">
-        <div class="kpi-card">
-          <div class="kpi-icon">📦</div>
+      <div class="kpi-deck" style="margin-bottom:1.75rem;">
+        <div class="kpi-unit">
+          <div class="kpi-symbol-box">📦</div>
           <div>
-            <div class="kpi-value" id="inv-stat-total">0</div>
-            <div class="kpi-label">Total Unit Perlengkapan</div>
+            <div class="kpi-figure" id="inv-stat-total">0</div>
+            <div class="kpi-desc">Total Unit Perlengkapan</div>
           </div>
         </div>
-        <div class="kpi-card">
-          <div class="kpi-icon" style="color:var(--accent-green);">✅</div>
+        <div class="kpi-unit">
+          <div class="kpi-symbol-box" style="color:var(--neon-emerald);">✅</div>
           <div>
-            <div class="kpi-value" id="inv-stat-checked" style="color:var(--accent-green);">0</div>
-            <div class="kpi-label">Terverifikasi di Lokasi</div>
+            <div class="kpi-figure" id="inv-stat-checked" style="color:var(--neon-emerald);">0</div>
+            <div class="kpi-desc">Terverifikasi di Lokasi</div>
           </div>
         </div>
-        <div class="kpi-card">
-          <div class="kpi-icon" style="color:var(--accent-amber);">⏳</div>
+        <div class="kpi-unit">
+          <div class="kpi-symbol-box" style="color:var(--neon-amber);">⏳</div>
           <div>
-            <div class="kpi-value" id="inv-stat-remaining" style="color:var(--accent-amber);">0</div>
-            <div class="kpi-label">Belum Check-In / Standby</div>
+            <div class="kpi-figure" id="inv-stat-remaining" style="color:var(--neon-amber);">0</div>
+            <div class="kpi-desc">Belum Check-In / Standby</div>
           </div>
         </div>
-        <div class="kpi-card">
-          <div class="kpi-icon" style="color:var(--accent-cyan);">📊</div>
+        <div class="kpi-unit">
+          <div class="kpi-symbol-box" style="color:var(--neon-cyan);">📊</div>
           <div>
-            <div class="kpi-value" id="inv-stat-percent">0%</div>
-            <div style="width:100%; background:var(--bg-surface-elevated); height:6px; border-radius:3px; margin-top:4px; overflow:hidden;">
-              <div id="inv-stat-progress-bar" style="height:100%; width:0%; background:var(--accent-green); transition:width 0.3s ease;"></div>
+            <div class="kpi-figure" id="inv-stat-percent">0%</div>
+            <div style="width:100%; background:rgba(8, 13, 26, 0.9); height:6px; border-radius:9999px; margin-top:6px; overflow:hidden;">
+              <div id="inv-stat-progress-bar" style="height:100%; width:0%; background:var(--neon-emerald); transition:width 0.3s ease;"></div>
             </div>
           </div>
         </div>
       </div>
 
-      <div class="panel">
-        <div class="panel-body">
-          <div class="inventory-toolbar">
-            <div class="search-input-group">
-              <span class="search-icon">🔍</span>
-              <input type="text" id="inventory-search-input" class="search-input" placeholder="Cari nama alat, pemilik, kabel, adaptor..." />
-            </div>
-            <div style="display:flex; gap:0.75rem; flex-wrap:wrap;">
-              <select id="category-filter-select" class="search-input" style="width:auto; padding-left:1rem; cursor:pointer;"></select>
-              <select id="status-filter-select" class="search-input" style="width:auto; padding-left:1rem; cursor:pointer;">
-                <option value="all">Semua Status</option>
-                <option value="Verified">Verified ✅</option>
-                <option value="Checked">Checked ☑️</option>
-                <option value="Warning">Warning ⚠️</option>
-              </select>
-            </div>
+      <div class="inventory-master-panel">
+        <div class="inventory-toolbar-cluster">
+          <div class="search-bar-wrap">
+            <span class="search-icon-pos">🔍</span>
+            <input type="text" id="inventory-search-input" class="glass-input" placeholder="Cari nama alat, pemilik, kabel, adaptor..." />
           </div>
-
-          <div class="filter-chips-row" id="provider-filter-chips" style="margin-bottom: 1.25rem;"></div>
-
-          <div class="table-responsive">
-            <table class="tactical-table">
-              <thead>
-                <tr>
-                  <th style="width:45px; text-align:center;">Check</th>
-                  <th style="width:40px;">No</th>
-                  <th>Nama Perlengkapan & Keterangan</th>
-                  <th>Qty</th>
-                  <th>Pemilik / Provider</th>
-                  <th>Kategori</th>
-                  <th>Status</th>
-                </tr>
-              </thead>
-              <tbody id="inventory-table-body"></tbody>
-            </table>
+          <div style="display:flex; gap:0.85rem; flex-wrap:wrap;">
+            <select id="category-filter-select" class="glass-input" style="width:auto; padding-left:1.25rem; cursor:pointer;"></select>
+            <select id="status-filter-select" class="glass-input" style="width:auto; padding-left:1.25rem; cursor:pointer;">
+              <option value="all">Semua Status</option>
+              <option value="Verified">Verified ✅</option>
+              <option value="Checked">Checked ☑️</option>
+              <option value="Warning">Warning ⚠️</option>
+            </select>
           </div>
+        </div>
+
+        <div class="chip-filter-row" id="provider-filter-chips" style="margin-bottom: 1.5rem;"></div>
+
+        <div class="table-scroll-wrapper">
+          <table class="modern-dark-table">
+            <thead>
+              <tr>
+                <th style="width:45px; text-align:center;">Check</th>
+                <th style="width:45px;">No</th>
+                <th>Nama Perlengkapan & Keterangan</th>
+                <th>Qty</th>
+                <th>Pemilik / Provider</th>
+                <th>Kategori</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+            <tbody id="inventory-table-body"></tbody>
+          </table>
         </div>
       </div>
     </section>
 
     <!-- 8. RUNDOWN & MEDIA ASSET CHECKLIST -->
-    <section class="landing-section" id="rundown">
-      <div class="section-header">
-        <div class="section-title-group">
+    <section class="section-block" id="rundown">
+      <div class="section-head">
+        <div>
           <span class="section-tag">07 • Event Execution</span>
           <h2 class="section-title">Rundown & Media Asset Checklist</h2>
-          <p class="section-subtitle">Daftar putar video loop, sambutan, materi lirik, PPT firman, dan QRIS persembahan.</p>
+          <p class="section-sub">Daftar putar video loop, sambutan, materi lirik, PPT firman, dan QRIS persembahan.</p>
         </div>
-        <span class="pill-badge violet">15 Cues</span>
+        <span class="glow-badge purple">15 Cues</span>
       </div>
 
       <!-- Stage Timekeeper Stopwatch Widget -->
-      <div class="panel" style="background:linear-gradient(135deg, #090e1a, #111a2e); border-color:var(--border-highlight); margin-bottom:1.5rem;">
-        <div class="panel-header">
-          <div class="panel-title">
-            <span>⏱️ Stage Timekeeper & Event Stopwatch (Darrel)</span>
-          </div>
-          <div style="display:flex; gap:0.5rem;">
-            <button class="btn btn-primary btn-sm" id="btn-sw-start">▶️ Start</button>
-            <button class="btn btn-tactical btn-sm" id="btn-sw-pause">⏸️ Pause</button>
-            <button class="btn btn-tactical btn-sm" id="btn-sw-reset">🔄 Reset</button>
+      <div class="timekeeper-glass-banner">
+        <div>
+          <div class="section-tag">STAGE TIMEKEEPER & EVENT STOPWATCH (DARREL)</div>
+          <div class="time-digits-giant" id="stopwatch-display">00:00</div>
+          <div style="font-size:0.85rem; color:var(--text-secondary); margin-top:0.4rem;">
+            Target Khotbah: 40–45 Menit • Peringatan visual kuning saat waktu tersisa 5 menit.
           </div>
         </div>
-        <div class="panel-body" style="display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:1rem;">
-          <div>
-            <div style="font-size:0.85rem; color:var(--text-secondary);">Stage Clock Display:</div>
-            <div id="stopwatch-display" style="font-family:var(--font-mono); font-size:3.2rem; font-weight:800; color:var(--accent-cyan); line-height:1;">
-              00:00
-            </div>
-          </div>
-          <div style="max-width:550px; font-size:0.85rem; color:var(--text-secondary);">
-            <strong>Panduan Timekeeper:</strong> Waktu khotbah standar dialokasikan 40–45 menit. Berikan peringatan visual kuning saat waktu tersisa 5 menit.
-          </div>
+        <div style="display:flex; gap:0.6rem; align-items:center;">
+          <button class="btn-lux btn-lux-primary" id="btn-sw-start">▶️ Start</button>
+          <button class="btn-lux btn-lux-ghost" id="btn-sw-pause">⏸️ Pause</button>
+          <button class="btn-lux btn-lux-ghost" id="btn-sw-reset">🔄 Reset</button>
         </div>
       </div>
 
-      <div class="panel">
-        <div class="panel-body" id="media-rundown-container"></div>
+      <div class="inventory-master-panel">
+        <div id="media-rundown-container"></div>
       </div>
     </section>
 
     <!-- 9. PRODUCTION CALIBRATION TOOLS -->
-    <section class="landing-section" id="tools">
-      <div class="section-header">
-        <div class="section-title-group">
+    <section class="section-block" id="tools">
+      <div class="section-head">
+        <div>
           <span class="section-tag">08 • Engineering Utilities</span>
           <h2 class="section-title">Alat Kalibrasi Layar & Audio Panggung</h2>
-          <p class="section-subtitle">SMPTE Test pattern, safe area 16:9 grid, generator gelombang sinus 1 kHz, dan catatan lapangan.</p>
+          <p class="section-sub">SMPTE Test pattern, safe area 16:9 grid, generator gelombang sinus 1 kHz, dan catatan lapangan.</p>
         </div>
       </div>
 
-      <div class="tools-grid">
+      <div class="tools-split-layout">
         <!-- Display Pattern -->
-        <div class="panel">
-          <div class="panel-header">
-            <div class="panel-title">
-              <span>🎨 Display & LED Test Pattern</span>
-            </div>
-            <button class="btn btn-tactical btn-sm" id="btn-pattern-fullscreen">⛶ Fullscreen</button>
+        <div class="inventory-master-panel">
+          <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:1.25rem;">
+            <h3 style="font-size:1.15rem; font-weight:700;">🎨 Display & LED Test Pattern</h3>
+            <button class="btn-lux btn-lux-ghost btn-lux-sm" id="btn-pattern-fullscreen">⛶ Fullscreen</button>
           </div>
-          <div class="panel-body">
-            <div class="filter-chips-row" style="margin-bottom:1rem;">
-              <button class="chip active" data-pattern="smpte">SMPTE Color Bars</button>
-              <button class="chip" data-pattern="grid">16:9 Safe Area Grid</button>
-              <button class="chip" data-pattern="white">Solid White (100%)</button>
-              <button class="chip" data-pattern="black">Solid Black (0%)</button>
-            </div>
-            <canvas id="test-pattern-canvas" width="640" height="360" class="test-pattern-canvas"></canvas>
+          <div class="chip-filter-row" style="margin-bottom:1.25rem;">
+            <button class="filter-pill active" data-pattern="smpte">SMPTE Color Bars</button>
+            <button class="filter-pill" data-pattern="grid">16:9 Safe Area Grid</button>
+            <button class="filter-pill" data-pattern="white">Solid White (100%)</button>
+            <button class="filter-pill" data-pattern="black">Solid Black (0%)</button>
           </div>
+          <canvas id="test-pattern-canvas" width="640" height="360" class="pattern-canvas-frame"></canvas>
         </div>
 
         <!-- Audio Tone Gen -->
-        <div class="panel">
-          <div class="panel-header">
-            <div class="panel-title">
-              <span>🔊 Web Audio 1 kHz Tone Generator</span>
-            </div>
-            <span class="pill-badge green">Web Audio API</span>
+        <div class="inventory-master-panel">
+          <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:1.25rem;">
+            <h3 style="font-size:1.15rem; font-weight:700;">🔊 Web Audio 1 kHz Tone Generator</h3>
+            <span class="glow-badge emerald">Web Audio API</span>
           </div>
-          <div class="panel-body">
-            <div style="margin-bottom:1.25rem;">
-              <label style="font-size:0.85rem; color:var(--text-secondary); display:block; margin-bottom:0.4rem;">Pilih Frekuensi Kalibrasi:</label>
-              <select id="tone-freq-select" class="search-input">
-                <option value="1000">1 kHz Sine Wave (Standard EBU Reference -18dBFS)</option>
-                <option value="440">440 Hz Concert Pitch A4</option>
-                <option value="100">100 Hz Subwoofer & Bass Check</option>
-                <option value="10000">10 kHz High Freq Check</option>
-              </select>
-            </div>
-
-            <div style="margin-bottom:1.5rem;">
-              <label style="font-size:0.85rem; color:var(--text-secondary); display:block; margin-bottom:0.4rem;">Volume Output Gain:</label>
-              <input type="range" id="tone-vol-slider" min="0" max="0.5" step="0.01" value="0.15" style="width:100%; accent-color:var(--accent-cyan);" />
-            </div>
-
-            <button class="btn btn-primary" id="btn-play-tone" style="width:100%; height:46px;">
-              🔊 Nyalakan Test Tone
-            </button>
+          
+          <div style="margin-bottom:1.25rem;">
+            <label style="font-size:0.85rem; color:var(--text-secondary); display:block; margin-bottom:0.5rem;">Pilih Frekuensi Kalibrasi:</label>
+            <select id="tone-freq-select" class="glass-input">
+              <option value="1000">1 kHz Sine Wave (Standard EBU Reference -18dBFS)</option>
+              <option value="440">440 Hz Concert Pitch A4</option>
+              <option value="100">100 Hz Subwoofer & Bass Check</option>
+              <option value="10000">10 kHz High Freq Check</option>
+            </select>
           </div>
+
+          <div style="margin-bottom:1.5rem;">
+            <label style="font-size:0.85rem; color:var(--text-secondary); display:block; margin-bottom:0.5rem;">Volume Output Gain:</label>
+            <input type="range" id="tone-vol-slider" min="0" max="0.5" step="0.01" value="0.15" style="width:100%; accent-color:var(--neon-cyan);" />
+          </div>
+
+          <button class="btn-lux btn-lux-primary" id="btn-play-tone" style="width:100%; height:48px;">
+            🔊 Nyalakan Test Tone
+          </button>
         </div>
       </div>
 
       <!-- Field Notes -->
-      <div class="panel" style="margin-top:1.5rem;">
-        <div class="panel-header">
-          <div class="panel-title">
-            <span>📝 Catatan Lapangan & Log Kru (Auto-Saved)</span>
-          </div>
-          <button class="btn btn-tactical btn-sm" id="btn-clear-notes">🗑️ Clear</button>
+      <div class="inventory-master-panel" style="margin-top:2rem;">
+        <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:1rem;">
+          <h3 style="font-size:1.15rem; font-weight:700;">📝 Catatan Lapangan & Log Kru (Auto-Saved)</h3>
+          <button class="btn-lux btn-lux-ghost btn-lux-sm" id="btn-clear-notes">🗑️ Clear</button>
         </div>
-        <div class="panel-body">
-          <textarea id="field-notes-textarea" class="search-input" rows="5" placeholder="Tulis catatan kendala teknis, feedback audio, atau nomor kontak cadangan di sini (otomatis tersimpan di HP/browser)..." style="resize:vertical; font-family:var(--font-mono);"></textarea>
-        </div>
+        <textarea id="field-notes-textarea" class="glass-input" rows="5" placeholder="Tulis catatan kendala teknis, feedback audio, atau nomor kontak cadangan di sini (otomatis tersimpan di HP/browser)..." style="resize:vertical; font-family:var(--font-mono);"></textarea>
       </div>
     </section>
 
     <!-- 10. SOP & FAIL-SAFE CONTINGENCY -->
-    <section class="landing-section" id="sop">
-      <div class="section-header">
-        <div class="section-title-group">
+    <section class="section-block" id="sop">
+      <div class="section-head">
+        <div>
           <span class="section-tag">09 • Safety & Fail-Safe</span>
           <h2 class="section-title">Standar Operasional & Prosedur Darurat</h2>
-          <p class="section-subtitle">Protokol pra-acara H-3 jam, pedoman operator kamera nirkabel, dan tindakan penanganan kegagalan teknis.</p>
+          <p class="section-sub">Protokol pra-acara H-3 jam, pedoman operator kamera nirkabel, dan tindakan penanganan kegagalan teknis.</p>
         </div>
       </div>
 
       <div id="sop-container"></div>
     </section>
 
-  </div>
+  </main>
 
-  <!-- Mobile Bottom Quick Navigation Dock -->
-  <div class="mobile-bottom-dock">
-    <a href="#hero" class="dock-item">
-      <span class="dock-icon">🏠</span>
+  <!-- Mobile Floating Quick Navigation Dock -->
+  <div class="mobile-floating-dock">
+    <a href="#hero" class="dock-btn">
+      <span class="dock-symbol">🏠</span>
       <span>Home</span>
     </a>
-    <a href="#cameras" class="dock-item">
-      <span class="dock-icon">🎥</span>
+    <a href="#cameras" class="dock-btn">
+      <span class="dock-symbol">🎥</span>
       <span>Kamera</span>
     </a>
-    <a href="#routing" class="dock-item">
-      <span class="dock-icon">📡</span>
+    <a href="#routing" class="dock-btn">
+      <span class="dock-symbol">📡</span>
       <span>Routing</span>
     </a>
-    <a href="#switcher" class="dock-item">
-      <span class="dock-icon">🎛️</span>
+    <a href="#switcher" class="dock-btn">
+      <span class="dock-symbol">🎛️</span>
       <span>Switcher</span>
     </a>
-    <a href="#inventory" class="dock-item">
-      <span class="dock-icon">📦</span>
+    <a href="#inventory" class="dock-btn">
+      <span class="dock-symbol">📦</span>
       <span>Alat</span>
     </a>
-    <a href="#rundown" class="dock-item">
-      <span class="dock-icon">📑</span>
+    <a href="#rundown" class="dock-btn">
+      <span class="dock-symbol">📑</span>
       <span>Materi</span>
     </a>
   </div>
 
   <!-- FULLSCREEN CREW PRESENTATION DECK MODAL -->
-  <div class="presentation-modal" id="presentation-modal">
-    <div class="pres-header">
-      <div style="display:flex; align-items:center; gap:0.75rem;">
-        <span class="hud-logo" style="width:34px; height:34px; font-size:1rem;">IP26</span>
-        <span style="font-weight:700; font-size:1rem;">CREW MASTER BRIEFING & PITCH DECK</span>
+  <div class="deck-modal" id="presentation-modal">
+    <div class="deck-top-nav">
+      <div style="display:flex; align-items:center; gap:0.85rem;">
+        <span class="brand-logo-pill" style="width:36px; height:36px; font-size:1rem;">IP26</span>
+        <span style="font-weight:800; font-size:1.05rem; letter-spacing:-0.02em;">CREW MASTER BRIEFING & PITCH DECK</span>
       </div>
-      <div style="display:flex; align-items:center; gap:1rem;">
+      <div style="display:flex; align-items:center; gap:1.25rem;">
         <span id="pres-slide-indicator" style="font-family:var(--font-mono); font-size:0.85rem; color:var(--text-secondary);">Slide 1 of 8</span>
-        <button class="btn btn-tactical btn-sm" id="btn-close-presentation">✕ Keluar (Esc)</button>
+        <button class="btn-lux btn-lux-ghost btn-lux-sm" id="btn-close-presentation">✕ Keluar (Esc)</button>
       </div>
     </div>
 
-    <!-- Slides Container -->
-    <div class="pres-slide-container">
+    <!-- Slides Stage -->
+    <div class="deck-slide-stage">
       
       <!-- Slide 1: Title -->
-      <div class="pres-slide active">
-        <span class="pill-badge cyan">OFFICIAL TECHNICAL BRIEFING</span>
-        <h1 style="font-size:2.8rem; margin:1rem 0 0.5rem; line-height:1.15;">
+      <div class="deck-slide-unit active">
+        <span class="glow-badge cyan">OFFICIAL TECHNICAL BRIEFING</span>
+        <h1 style="font-size:3.2rem; margin:1.25rem 0 0.75rem; line-height:1.15; font-weight:800;">
           Ibadah Perdana UKK UNNES 2026
         </h1>
-        <h3 style="color:var(--accent-cyan); font-weight:500; margin-bottom:1.5rem;">
+        <h3 style="color:var(--neon-cyan); font-weight:500; margin-bottom:2rem; font-size:1.35rem;">
           Production, Multi-Camera Broadcast & Media Engineering Architecture
         </h3>
-        <div style="display:grid; grid-template-columns:repeat(3, 1fr); gap:1.25rem; margin-top:1.5rem;">
-          <div class="kpi-card">
-            <div class="kpi-icon">📍</div>
+        <div style="display:grid; grid-template-columns:repeat(3, 1fr); gap:1.5rem; margin-top:2rem;">
+          <div class="kpi-unit">
+            <div class="kpi-symbol-box">📍</div>
             <div>
-              <div class="kpi-value" style="font-size:1.15rem;">Auditorium UNNES</div>
-              <div class="kpi-label">Master Venue</div>
+              <div class="kpi-figure" style="font-size:1.25rem;">Auditorium UNNES</div>
+              <div class="kpi-desc">Master Venue</div>
             </div>
           </div>
-          <div class="kpi-card">
-            <div class="kpi-icon" style="color:var(--accent-amber);">🎥</div>
+          <div class="kpi-unit">
+            <div class="kpi-symbol-box" style="color:var(--neon-amber);">🎥</div>
             <div>
-              <div class="kpi-value" style="font-size:1.15rem;">Dual Wireless</div>
-              <div class="kpi-label">Pyro S + Pyro H</div>
+              <div class="kpi-figure" style="font-size:1.25rem;">Dual Wireless</div>
+              <div class="kpi-desc">Pyro S + Pyro H</div>
             </div>
           </div>
-          <div class="kpi-card">
-            <div class="kpi-icon" style="color:var(--accent-green);">🖥️</div>
+          <div class="kpi-unit">
+            <div class="kpi-symbol-box" style="color:var(--neon-emerald);">🖥️</div>
             <div>
-              <div class="kpi-value" style="font-size:1.15rem;">Megascreen LED</div>
-              <div class="kpi-label">Center + Wing Sayap</div>
+              <div class="kpi-figure" style="font-size:1.25rem;">Megascreen LED</div>
+              <div class="kpi-desc">Center + Wing Sayap</div>
             </div>
           </div>
         </div>
       </div>
 
       <!-- Slide 2: Crew Hierarchy -->
-      <div class="pres-slide">
-        <span class="pill-badge amber">STRUKTUR ORGANISASI</span>
-        <h2 style="font-size:2.2rem; margin:0.5rem 0 1.25rem;">Master Production Crew & PIC</h2>
-        <div class="crew-grid">
-          <div class="crew-card">
-            <div class="crew-card-top"><span class="crew-name">🎥 BROADCAST TEAM</span></div>
-            <div class="crew-task" style="font-size:0.9rem;">
+      <div class="deck-slide-unit">
+        <span class="glow-badge amber">STRUKTUR ORGANISASI</span>
+        <h2 style="font-size:2.4rem; margin:0.75rem 0 1.5rem;">Master Production Crew & PIC</h2>
+        <div class="crew-deck-grid">
+          <div class="glass-card">
+            <div class="card-top-row"><span class="card-main-title">🎥 BROADCAST TEAM</span></div>
+            <div class="card-body-text" style="font-size:0.92rem; line-height:1.7;">
               • CAM 1: <strong>Alex</strong> (ZV-E10 Wireless Pyro S)<br/>
               • CAM 2: <strong>Kiel 1</strong> (ZV-E10 Wireless Pyro H)<br/>
               • CAM 3: <strong>Dewi</strong> (A6000 Wing Left HDMI 10M)<br/>
               • CAM 4: <strong>Nathania</strong> (A6000 Wing Right HDMI 10M)
             </div>
           </div>
-          <div class="crew-card">
-            <div class="crew-card-top"><span class="crew-name">📸 DOCUMENTATION</span></div>
-            <div class="crew-task" style="font-size:0.9rem;">
+          <div class="glass-card">
+            <div class="card-top-row"><span class="card-main-title">📸 DOCUMENTATION</span></div>
+            <div class="card-body-text" style="font-size:0.92rem; line-height:1.7;">
               • Photo Lead: <strong>Nico</strong> (A6400 + 50mm)<br/>
               • Cinematic Video: <strong>Joel</strong> (A6600 + RS3 Gimbal)<br/>
               • Social Media: <strong>Jennifer</strong> (iPhone 15 Pro)
             </div>
           </div>
-          <div class="crew-card">
-            <div class="crew-card-top"><span class="crew-name">💻 ENGINE & MEDIA</span></div>
-            <div class="crew-task" style="font-size:0.9rem;">
+          <div class="glass-card">
+            <div class="card-top-row"><span class="card-main-title">💻 ENGINE & MEDIA</span></div>
+            <div class="card-body-text" style="font-size:0.92rem; line-height:1.7;">
               • Switcher: <strong>Wilfred</strong> (Cinetreak V1 + TV Kezia)<br/>
               • OBS & Lead Eng: <strong>Andreas</strong><br/>
               • ProPresenter 1: <strong>Rania</strong> (LED Sayap)<br/>
@@ -1721,20 +1847,20 @@
       </div>
 
       <!-- Slide 3: Camera Strategy -->
-      <div class="pres-slide">
-        <span class="pill-badge cyan">CAMERA PLACEMENT</span>
-        <h2 style="font-size:2.2rem; margin:0.5rem 0 1.25rem;">Broadcast Camera Setup & Angles</h2>
-        <div style="display:grid; grid-template-columns:1fr 1fr; gap:1.5rem;">
-          <div class="crew-card">
-            <div class="crew-name" style="color:var(--accent-cyan);">CAM 1 (Alex) & CAM 2 (Kiel 1) — Dual Wireless</div>
-            <p style="font-size:0.9rem; color:var(--text-secondary); margin-top:0.5rem;">
+      <div class="deck-slide-unit">
+        <span class="glow-badge cyan">CAMERA PLACEMENT</span>
+        <h2 style="font-size:2.4rem; margin:0.75rem 0 1.5rem;">Broadcast Camera Setup & Angles</h2>
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:1.75rem;">
+          <div class="glass-card">
+            <div class="card-main-title" style="color:var(--neon-cyan); margin-bottom:0.75rem;">CAM 1 (Alex) & CAM 2 (Kiel 1) — Dual Wireless</div>
+            <p style="font-size:0.95rem; color:var(--text-secondary); line-height:1.7;">
               • <strong>CAM 1 (Pyro S):</strong> Berdiri di FOH Center. Memegang Master Stage Shot, Altar & Speaker Framing secara nirkabel.<br/><br/>
               • <strong>CAM 2 (Pyro H):</strong> Roving Kamera Wireless nirkabel. Menangkap ekspresi jemaat, close-up WL & Singer secara dinamis di panggung.
             </p>
           </div>
-          <div class="crew-card">
-            <div class="crew-name" style="color:var(--accent-violet);">CAM 3 (Dewi) & CAM 4 (Nathania) — Tethered HDMI</div>
-            <p style="font-size:0.9rem; color:var(--text-secondary); margin-top:0.5rem;">
+          <div class="glass-card">
+            <div class="card-main-title" style="color:var(--neon-purple); margin-bottom:0.75rem;">CAM 3 (Dewi) & CAM 4 (Nathania) — Tethered HDMI</div>
+            <p style="font-size:0.95rem; color:var(--text-secondary); line-height:1.7;">
               • <strong>CAM 3 (Wing Left):</strong> Cross-angle shot ke arah pembicara dan keyboardist panggung. Jalur HDMI 10M.<br/><br/>
               • <strong>CAM 4 (Wing Right):</strong> Cross-angle shot ke arah worship leader dan drum/gitar panggung. Jalur HDMI 10M.
             </p>
@@ -1743,11 +1869,11 @@
       </div>
 
       <!-- Slide 4: Video Routing -->
-      <div class="pres-slide">
-        <span class="pill-badge red">VIDEO PIPELINE</span>
-        <h2 style="font-size:2.2rem; margin:0.5rem 0 1.25rem;">Cinetreak V1 Switcher & OBS Livestream</h2>
-        <div class="crew-card" style="padding:1.5rem;">
-          <p style="font-size:0.95rem; color:var(--text-primary); line-height:1.8;">
+      <div class="deck-slide-unit">
+        <span class="glow-badge red">VIDEO PIPELINE</span>
+        <h2 style="font-size:2.4rem; margin:0.75rem 0 1.5rem;">Cinetreak V1 Switcher & OBS Livestream</h2>
+        <div class="glass-card" style="padding:2rem;">
+          <p style="font-size:1rem; color:var(--text-primary); line-height:1.9;">
             1. <strong>Input 1-4:</strong> 4 Sinyal Kamera Masuk ke Switcher Cinetreak Cinelive V1 (Input 1: Pyro S, Input 2: Pyro H, Input 3-4: HDMI 10M).<br/>
             2. <strong>HDMI Multi-view Out:</strong> Masuk ke TV Monitor (Kezia) untuk monitoring 4 kamera + audio bar.<br/>
             3. <strong>USB-C UVC Out:</strong> Terhubung langsung via kabel Data USB 3.0 ke Laptop OBS Studio (Andreas).<br/>
@@ -1757,19 +1883,19 @@
       </div>
 
       <!-- Slide 5: LED Stage Mapping -->
-      <div class="pres-slide">
-        <span class="pill-badge amber">STAGE VISUAL ENGINE</span>
-        <h2 style="font-size:2.2rem; margin:0.5rem 0 1.25rem;">Stage LED Mapping & Media Presentation</h2>
-        <div style="display:grid; grid-template-columns:1fr 1fr; gap:1.5rem;">
-          <div class="crew-card">
-            <div class="crew-name" style="color:var(--accent-amber);">LED Megascreen Center (Resolume Arena)</div>
-            <p style="font-size:0.9rem; color:var(--text-secondary); margin-top:0.5rem;">
+      <div class="deck-slide-unit">
+        <span class="glow-badge amber">STAGE VISUAL ENGINE</span>
+        <h2 style="font-size:2.4rem; margin:0.75rem 0 1.5rem;">Stage LED Mapping & Media Presentation</h2>
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:1.75rem;">
+          <div class="glass-card">
+            <div class="card-main-title" style="color:var(--neon-amber); margin-bottom:0.75rem;">LED Megascreen Center (Resolume Arena)</div>
+            <p style="font-size:0.92rem; color:var(--text-secondary); line-height:1.7;">
               Dikelola oleh Andreas & Bayu. Menampilkan Video Loop Pre-Ibadah, Opening Video, Motion Background Tema, dan live camera mix via HDMI 15M ke NovaStar Processor.
             </p>
           </div>
-          <div class="crew-card">
-            <div class="crew-name" style="color:var(--accent-cyan);">LED Sayap Kanan-Kiri (ProPresenter 1 & 2)</div>
-            <p style="font-size:0.9rem; color:var(--text-secondary); margin-top:0.5rem;">
+          <div class="glass-card">
+            <div class="card-main-title" style="color:var(--neon-cyan); margin-bottom:0.75rem;">LED Sayap Kanan-Kiri (ProPresenter 1 & 2)</div>
+            <p style="font-size:0.92rem; color:var(--text-secondary); line-height:1.7;">
               Dikelola oleh Rania & Filia. Menampilkan Lirik Lagu, Slide Firman Alkitab, PPT Pembicara, dan QRIS Persembahan langsung ke Video Processor Auditorium UNNES.
             </p>
           </div>
@@ -1777,11 +1903,11 @@
       </div>
 
       <!-- Slide 6: Audio Chain -->
-      <div class="pres-slide">
-        <span class="pill-badge green">AUDIO PIPELINE</span>
-        <h2 style="font-size:2.2rem; margin:0.5rem 0 1.25rem;">Dual Mixer Master Audio Routing</h2>
-        <div class="crew-card" style="padding:1.5rem;">
-          <p style="font-size:0.95rem; color:var(--text-primary); line-height:1.8;">
+      <div class="deck-slide-unit">
+        <span class="glow-badge emerald">AUDIO PIPELINE</span>
+        <h2 style="font-size:2.4rem; margin:0.75rem 0 1.5rem;">Dual Mixer Master Audio Routing</h2>
+        <div class="glass-card" style="padding:2rem;">
+          <p style="font-size:1rem; color:var(--text-primary); line-height:1.9;">
             • <strong>FOH Main Console:</strong> Yamaha QL5 (UNNES) mengelola seluruh 32 mic & instrumen panggung.<br/>
             • <strong>Broadcast Matrix Send:</strong> Yamaha QL5 ➔ XLR 10M (UKK) ➔ XLR 3M (GIA) ➔ <strong>NewBaxs CT80S Sub-Mixer</strong>.<br/>
             • <strong>Digital Audio Interface:</strong> NewBaxs CT80S terhubung via kabel USB Audio ke OBS Studio.<br/>
@@ -1791,20 +1917,20 @@
       </div>
 
       <!-- Slide 7: Rundown Cues -->
-      <div class="pres-slide">
-        <span class="pill-badge violet">RUNDOWN & CUES</span>
-        <h2 style="font-size:2.2rem; margin:0.5rem 0 1.25rem;">Media Checklist & Timing Cues</h2>
-        <div style="display:grid; grid-template-columns:repeat(3, 1fr); gap:1.25rem;">
-          <div class="crew-card">
-            <div class="crew-name" style="color:var(--accent-cyan);">1. Pre-Ibadah</div>
-            <p style="font-size:0.85rem; color:var(--text-secondary); margin-top:0.5rem;">
+      <div class="deck-slide-unit">
+        <span class="glow-badge purple">RUNDOWN & CUES</span>
+        <h2 style="font-size:2.4rem; margin:0.75rem 0 1.5rem;">Media Checklist & Timing Cues</h2>
+        <div style="display:grid; grid-template-columns:repeat(3, 1fr); gap:1.5rem;">
+          <div class="glass-card">
+            <div class="card-main-title" style="color:var(--neon-cyan); margin-bottom:0.75rem;">1. Pre-Ibadah</div>
+            <p style="font-size:0.88rem; color:var(--text-secondary); line-height:1.6;">
               • Open Gate Playlist Audio<br/>
               • Loop Video Profile UKK & Aftermovie IP25/IN25 di LED Center.
             </p>
           </div>
-          <div class="crew-card">
-            <div class="crew-name" style="color:var(--accent-amber);">2. Sesi Ibadah</div>
-            <p style="font-size:0.85rem; color:var(--text-secondary); margin-top:0.5rem;">
+          <div class="glass-card">
+            <div class="card-main-title" style="color:var(--neon-amber); margin-bottom:0.75rem;">2. Sesi Ibadah</div>
+            <p style="font-size:0.88rem; color:var(--text-secondary); line-height:1.6;">
               • Opening Countdown Video<br/>
               • Sambutan Bu Grave<br/>
               • Lirik Lagu WL<br/>
@@ -1812,9 +1938,9 @@
               • QRIS Persembahan & UKK News.
             </p>
           </div>
-          <div class="crew-card">
-            <div class="crew-name" style="color:var(--accent-green);">3. Post-Ibadah</div>
-            <p style="font-size:0.85rem; color:var(--text-secondary); margin-top:0.5rem;">
+          <div class="glass-card">
+            <div class="card-main-title" style="color:var(--neon-emerald); margin-bottom:0.75rem;">3. Post-Ibadah</div>
+            <p style="font-size:0.88rem; color:var(--text-secondary); line-height:1.6;">
               • Usung-usung alat<br/>
               • Verifikasi checklist pengembalian (OWL, GIA, GKJ, UKK, Pribadi).
             </p>
@@ -1823,11 +1949,11 @@
       </div>
 
       <!-- Slide 8: Safety & Contingency -->
-      <div class="pres-slide">
-        <span class="pill-badge red">SOP & FAIL-SAFE</span>
-        <h2 style="font-size:2.2rem; margin:0.5rem 0 1.25rem;">Prosedur Darurat & Keamanan Elektrikal</h2>
-        <div class="crew-card" style="padding:1.5rem;">
-          <p style="font-size:0.95rem; color:var(--text-primary); line-height:1.8;">
+      <div class="deck-slide-unit">
+        <span class="glow-badge red">SOP & FAIL-SAFE</span>
+        <h2 style="font-size:2.4rem; margin:0.75rem 0 1.5rem;">Prosedur Darurat & Keamanan Elektrikal</h2>
+        <div class="glass-card" style="padding:2rem;">
+          <p style="font-size:1rem; color:var(--text-primary); line-height:1.9;">
             ⚠️ <strong>Jika Hollyland Pyro S/H Dropout:</strong> Operator kamera segera mendekati tiang lighting stand receiver RX untuk re-locking sinyal.<br/>
             ⚠️ <strong>Jika Kabel HDMI CAM 3/4 Terputus:</strong> Switcher segera beralih (CUT) ke CAM 1/2 Wireless atau Standby Graphic di OBS.<br/>
             ⚠️ <strong>Jika Resolume / ProPresenter Crash:</strong> Switcher alihkan ke Direct Hardware Pass-through.<br/>
@@ -1839,15 +1965,15 @@
     </div>
 
     <!-- Presentation Footer Navigation -->
-    <div class="pres-footer">
-      <div style="display:flex; align-items:center; gap:0.5rem;">
-        <button class="btn btn-tactical btn-sm" id="btn-pres-prev">◀ Previous Slide</button>
-        <button class="btn btn-primary btn-sm" id="btn-pres-next">Next Slide ▶</button>
+    <div class="deck-bottom-nav">
+      <div style="display:flex; align-items:center; gap:0.6rem;">
+        <button class="btn-lux btn-lux-ghost btn-lux-sm" id="btn-pres-prev">◀ Previous Slide</button>
+        <button class="btn-lux btn-lux-primary btn-lux-sm" id="btn-pres-next">Next Slide ▶</button>
       </div>
-      <div style="width:300px; background:var(--bg-surface-elevated); height:6px; border-radius:3px; overflow:hidden;">
-        <div id="pres-progress-bar" style="height:100%; width:12.5%; background:var(--accent-cyan); transition:width 0.2s ease;"></div>
+      <div style="width:320px; background:rgba(255, 255, 255, 0.08); height:6px; border-radius:9999px; overflow:hidden;">
+        <div id="pres-progress-bar" style="height:100%; width:12.5%; background:var(--neon-cyan); box-shadow:0 0 10px var(--neon-cyan); transition:width 0.25s ease;"></div>
       </div>
-      <div style="font-size:0.8rem; color:var(--text-muted);">
+      <div style="font-size:0.8rem; color:var(--text-muted); font-family:var(--font-mono);">
         Gunakan tombol panah ◄ ► atau Spacebar
       </div>
     </div>
@@ -2103,9 +2229,9 @@
     ];
 
     /* ==========================================================================
-       CONTROLLER & INTERACTIVE ENGINES
+       MASTER COMMAND CONTROLLER
        ========================================================================== */
-    class StandaloneApp {
+    class MasterCommandApp {
       constructor() {
         this.pgmChannel = 1;
         this.pvwChannel = 2;
@@ -2169,9 +2295,9 @@
       }
 
       initScrollSpy() {
-        const sections = document.querySelectorAll('.landing-section');
-        const navLinks = document.querySelectorAll('.hud-nav-link');
-        const dockItems = document.querySelectorAll('.dock-item');
+        const sections = document.querySelectorAll('.section-block');
+        const navLinks = document.querySelectorAll('.nav-link');
+        const dockItems = document.querySelectorAll('.dock-btn');
 
         const observer = new IntersectionObserver((entries) => {
           entries.forEach(entry => {
@@ -2191,19 +2317,19 @@
         if (!container) return;
         const filtered = div === 'all' ? CREW_ROLES : CREW_ROLES.filter(c => c.division === div);
         container.innerHTML = filtered.map(c => `
-          <div class="crew-card">
+          <div class="glass-card">
             <div>
-              <div class="crew-card-top">
-                <span class="crew-name">${c.name}</span>
-                <span class="pill-badge ${c.division === 'broadcast' ? 'cyan' : c.division === 'engine' ? 'red' : 'violet'}">${c.badge}</span>
+              <div class="card-top-row">
+                <span class="card-main-title">${c.name}</span>
+                <span class="glow-badge ${c.division === 'broadcast' ? 'cyan' : c.division === 'engine' ? 'red' : 'purple'}">${c.badge}</span>
               </div>
-              <div class="crew-role">${c.role}</div>
-              <div class="crew-device">⚡ ${c.device}</div>
-              <div class="crew-task">${c.taskDescription}</div>
+              <div class="card-subtitle-role">${c.role}</div>
+              <div class="card-tech-chip">⚡ ${c.device}</div>
+              <div class="card-body-text">${c.taskDescription}</div>
             </div>
-            <div class="crew-card-footer">
+            <div class="card-bottom-row">
               <span>📻 ${c.contact}</span>
-              <span style="color:var(--accent-green);">ONLINE / READY</span>
+              <span style="color:var(--neon-emerald); font-weight:700;">ONLINE / READY</span>
             </div>
           </div>
         `).join('');
@@ -2224,25 +2350,25 @@
         if (!container) return;
         const filtered = filter === 'all' ? ROUTING_PIPELINES : ROUTING_PIPELINES.filter(p => p.category === filter);
         container.innerHTML = filtered.map(p => `
-          <div class="pipeline-item">
-            <div class="pipeline-header">
-              <div class="pipeline-title-group">
-                <span class="pill-badge ${p.category === 'video' ? 'cyan' : p.category === 'audio' ? 'violet' : p.category === 'power' ? 'green' : 'amber'}">${p.category.toUpperCase()}</span>
-                <span class="pipeline-title">${p.title}</span>
+          <div class="pipeline-container">
+            <div class="pipeline-top-bar">
+              <div class="pipeline-title-cluster">
+                <span class="glow-badge ${p.category === 'video' ? 'cyan' : p.category === 'audio' ? 'purple' : p.category === 'power' ? 'emerald' : 'amber'}">${p.category.toUpperCase()}</span>
+                <span class="pipeline-name">${p.title}</span>
               </div>
-              <div style="display:flex; align-items:center; gap:0.6rem;">
-                <span class="pipeline-tag">${p.tag}</span>
-                <span style="color:var(--accent-green); font-size:0.85rem; font-weight:700;">${p.status}</span>
+              <div style="display:flex; align-items:center; gap:0.75rem;">
+                <span class="glow-badge cyan">${p.tag}</span>
+                <span style="color:var(--neon-emerald); font-size:0.85rem; font-weight:800;">${p.status}</span>
               </div>
             </div>
-            <div class="pipeline-chain-visual">
+            <div class="pipeline-chain-flow">
               ${p.chain.map((n, i) => `
-                <span class="chain-node"><span style="color:var(--accent-cyan); font-weight:bold;">${i+1}.</span> ${n}</span>
-                ${i < p.chain.length - 1 ? '<span class="chain-arrow">➔</span>' : ''}
+                <span class="pipeline-node"><strong style="color:var(--neon-cyan);">${i+1}.</strong> ${n}</span>
+                ${i < p.chain.length - 1 ? '<span class="pipeline-arrow">➔</span>' : ''}
               `).join('')}
             </div>
-            <div class="pipeline-details">
-              <strong>Rincian Teknis:</strong> ${p.details}
+            <div class="pipeline-desc-box">
+              <strong>Rincian Teknis & Wiring:</strong> ${p.details}
             </div>
           </div>
         `).join('');
@@ -2366,9 +2492,9 @@
               const ctx = pgmCanvas.getContext('2d');
               const pw = pgmCanvas.width * 0.32, ph = pgmCanvas.height * 0.32;
               const px = pgmCanvas.width - pw - 12, py = 12;
-              ctx.fillStyle = '#000'; ctx.strokeStyle = '#f59e0b'; ctx.lineWidth = 2;
+              ctx.fillStyle = '#000'; ctx.strokeStyle = '#ff9e00'; ctx.lineWidth = 2;
               ctx.fillRect(px, py, pw, ph); ctx.strokeRect(px, py, pw, ph);
-              ctx.fillStyle = '#f59e0b'; ctx.font = 'bold 9px "JetBrains Mono", monospace';
+              ctx.fillStyle = '#ff9e00'; ctx.font = 'bold 9px "JetBrains Mono", monospace';
               ctx.fillText(`PiP: CAM ${this.pvwChannel}`, px + 6, py + 14);
             }
           }
@@ -2381,16 +2507,16 @@
         const ctx = canvas.getContext('2d');
         if (!ctx) return;
         const w = canvas.width, h = canvas.height;
-        ctx.fillStyle = '#0a0f1d'; ctx.fillRect(0, 0, w, h);
+        ctx.fillStyle = '#050a14'; ctx.fillRect(0, 0, w, h);
         ctx.strokeStyle = 'rgba(255, 255, 255, 0.05)'; ctx.lineWidth = 1;
         for (let x = 0; x < w; x += 30) { ctx.beginPath(); ctx.moveTo(x, 0); ctx.lineTo(x, h); ctx.stroke(); }
         for (let y = 0; y < h; y += 30) { ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(w, y); ctx.stroke(); }
 
-        const grad = ctx.createRadialGradient(w/2 + Math.sin(t + ch)*(w/4), h/2 + Math.cos(t*0.7 + ch)*20, 10, w/2, h/2, w/1.5);
-        if (ch === 1) grad.addColorStop(0, 'rgba(6, 182, 212, 0.35)');
-        else if (ch === 2) grad.addColorStop(0, 'rgba(245, 158, 11, 0.35)');
-        else if (ch === 3) grad.addColorStop(0, 'rgba(168, 85, 247, 0.35)');
-        else grad.addColorStop(0, 'rgba(16, 185, 129, 0.35)');
+        const grad = ctx.createRadialGradient(w/2 + Math.sin(t + ch)*(w/4), h/2 + Math.cos(t*0.7 + ch)*20, 10, w/2, h/2, w/1.4);
+        if (ch === 1) grad.addColorStop(0, 'rgba(0, 242, 254, 0.35)');
+        else if (ch === 2) grad.addColorStop(0, 'rgba(255, 158, 0, 0.35)');
+        else if (ch === 3) grad.addColorStop(0, 'rgba(157, 78, 221, 0.35)');
+        else grad.addColorStop(0, 'rgba(5, 241, 156, 0.35)');
         grad.addColorStop(1, 'transparent');
         ctx.fillStyle = grad; ctx.fillRect(0, 0, w, h);
 
@@ -2424,10 +2550,10 @@
 
         const providers = ['all', ...Array.from(new Set(MASTER_INVENTORY.map(i => i.provider))).sort()];
         if (provSelect) {
-          provSelect.innerHTML = providers.map(p => `<button class="chip ${p === 'all' ? 'active' : ''}" data-p="${p}">${p === 'all' ? 'Semua Pemilik' : p}</button>`).join('');
+          provSelect.innerHTML = providers.map(p => `<button class="filter-pill ${p === 'all' ? 'active' : ''}" data-p="${p}">${p === 'all' ? 'Semua Pemilik' : p}</button>`).join('');
           provSelect.querySelectorAll('[data-p]').forEach(b => {
             b.addEventListener('click', () => {
-              provSelect.querySelectorAll('.chip').forEach(c => c.classList.remove('active'));
+              provSelect.querySelectorAll('.filter-pill').forEach(c => c.classList.remove('active'));
               b.classList.add('active');
               this.currentProvider = b.dataset.p;
               this.renderInventoryTable();
@@ -2501,13 +2627,13 @@
 
         tbody.innerHTML = filtered.map((item, idx) => `
           <tr>
-            <td style="text-align:center;"><input type="checkbox" class="checkbox-custom inv-cb" data-id="${item.id}" ${this.checkedInv[item.id] ? 'checked' : ''} /></td>
+            <td style="text-align:center;"><input type="checkbox" class="custom-check-box inv-cb" data-id="${item.id}" ${this.checkedInv[item.id] ? 'checked' : ''} /></td>
             <td style="font-family:var(--font-mono); font-size:0.78rem; color:var(--text-muted);">${idx + 1}</td>
-            <td><div style="font-weight:600;">${item.name}</div><div style="font-size:0.75rem; color:var(--text-muted);">${item.note || '-'}</div></td>
-            <td style="font-family:var(--font-mono); font-weight:700; color:var(--accent-cyan);">${item.qty}</td>
-            <td><span class="pill-badge amber">${item.provider}</span></td>
-            <td><span class="pill-badge cyan">${item.category.toUpperCase()}</span></td>
-            <td><span class="pill-badge ${item.status === 'Verified' ? 'green' : item.status === 'Warning' ? 'red' : 'cyan'}">${item.status}</span></td>
+            <td><div style="font-weight:600; color:var(--text-pure);">${item.name}</div><div style="font-size:0.75rem; color:var(--text-muted);">${item.note || '-'}</div></td>
+            <td style="font-family:var(--font-mono); font-weight:700; color:var(--neon-cyan);">${item.qty}</td>
+            <td><span class="glow-badge amber">${item.provider}</span></td>
+            <td><span class="glow-badge cyan">${item.category.toUpperCase()}</span></td>
+            <td><span class="glow-badge ${item.status === 'Verified' ? 'emerald' : item.status === 'Warning' ? 'red' : 'cyan'}">${item.status}</span></td>
           </tr>
         `).join('');
 
@@ -2547,24 +2673,26 @@
         const container = document.getElementById('media-rundown-container');
         if (!container) return;
         container.innerHTML = MEDIA_ASSET_CHECKLIST.map((phase, pIdx) => `
-          <div class="phase-section">
-            <div class="phase-header">
-              <span class="pill-badge cyan">FASE ${pIdx + 1}</span>
-              <h3 class="phase-title">${phase.phase}</h3>
+          <div style="margin-bottom:2rem;">
+            <div class="phase-subhead">
+              <span class="glow-badge cyan">FASE ${pIdx + 1}</span>
+              <h3 class="phase-headline">${phase.phase}</h3>
             </div>
-            <div class="media-cards-grid">
+            <div class="crew-deck-grid">
               ${phase.items.map(item => `
-                <div class="media-cue-card">
+                <div class="glass-card" style="background:rgba(14, 22, 38, 0.55);">
                   <div>
-                    <div class="cue-top">
-                      <span class="pill-badge violet">${item.type}</span>
-                      <input type="checkbox" class="checkbox-custom media-cb" data-id="${item.id}" ${this.checkedMedia[item.id] ? 'checked' : ''} />
+                    <div class="card-top-row">
+                      <span class="glow-badge purple">${item.type}</span>
+                      <input type="checkbox" class="custom-check-box media-cb" data-id="${item.id}" ${this.checkedMedia[item.id] ? 'checked' : ''} />
                     </div>
-                    <div class="cue-title">${item.title}</div>
-                    <div class="cue-dest">🎯 Destinasi: ${item.dest}</div>
-                    <div style="font-size:0.78rem; color:var(--text-muted); margin-bottom:0.6rem;">👤 PIC: <strong>${item.pic}</strong></div>
+                    <div class="card-main-title" style="font-size:1.05rem; margin-bottom:0.4rem;">${item.title}</div>
+                    <div style="font-family:var(--font-mono); font-size:0.78rem; color:var(--neon-amber); margin-bottom:0.5rem;">🎯 Destinasi: ${item.dest}</div>
+                    <div style="font-size:0.8rem; color:var(--text-muted); margin-bottom:0.75rem;">👤 PIC: <strong style="color:var(--text-primary);">${item.pic}</strong></div>
                   </div>
-                  <div class="cue-notes">💡 ${item.notes}</div>
+                  <div style="font-size:0.82rem; color:var(--text-secondary); background:rgba(8, 13, 26, 0.7); padding:0.6rem 0.85rem; border-radius:var(--radius-xs); border-left:3px solid var(--neon-cyan);">
+                    💡 ${item.notes}
+                  </div>
                 </div>
               `).join('')}
             </div>
@@ -2632,13 +2760,13 @@
             if (this.isAudioPlaying) {
               this.stopAudio();
               playToneBtn.textContent = '🔊 Nyalakan Test Tone';
-              playToneBtn.classList.remove('btn-tally-red'); playToneBtn.classList.add('btn-primary');
+              playToneBtn.classList.remove('btn-lux-red'); playToneBtn.classList.add('btn-lux-primary');
             } else {
               const freq = freqSel ? parseFloat(freqSel.value) : 1000;
               const vol = volSlider ? parseFloat(volSlider.value) : 0.2;
               this.playTone(freq, vol);
               playToneBtn.textContent = '⏹️ Hentikan Test Tone';
-              playToneBtn.classList.remove('btn-primary'); playToneBtn.classList.add('btn-tally-red');
+              playToneBtn.classList.remove('btn-lux-primary'); playToneBtn.classList.add('btn-lux-red');
             }
           });
         }
@@ -2672,12 +2800,12 @@
           ctx.fillStyle = '#fff'; ctx.font = 'bold 12px "JetBrains Mono", monospace'; ctx.textAlign = 'center';
           ctx.fillText('SMPTE COLOR BARS — 1080p60 TEST PATTERN', w / 2, h - 15);
         } else if (pattern === 'grid') {
-          ctx.fillStyle = '#05070d'; ctx.fillRect(0, 0, w, h);
+          ctx.fillStyle = '#040711'; ctx.fillRect(0, 0, w, h);
           ctx.strokeStyle = 'rgba(255, 255, 255, 0.15)'; ctx.lineWidth = 1;
           for (let x = 0; x <= w; x += 40) { ctx.beginPath(); ctx.moveTo(x, 0); ctx.lineTo(x, h); ctx.stroke(); }
           for (let y = 0; y <= h; y += 40) { ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(w, y); ctx.stroke(); }
-          ctx.strokeStyle = '#10b981'; ctx.lineWidth = 2; ctx.strokeRect(w * 0.05, h * 0.05, w * 0.9, h * 0.9);
-          ctx.strokeStyle = '#f59e0b'; ctx.lineWidth = 2; ctx.strokeRect(w * 0.1, h * 0.1, w * 0.8, h * 0.8);
+          ctx.strokeStyle = '#05f19c'; ctx.lineWidth = 2; ctx.strokeRect(w * 0.05, h * 0.05, w * 0.9, h * 0.9);
+          ctx.strokeStyle = '#ff9e00'; ctx.lineWidth = 2; ctx.strokeRect(w * 0.1, h * 0.1, w * 0.8, h * 0.8);
           ctx.fillStyle = '#fff'; ctx.font = 'bold 11px "JetBrains Mono", monospace'; ctx.textAlign = 'center';
           ctx.fillText('STAGE LED ALIGNMENT & SAFE AREA GRID (16:9)', w / 2, 25);
         } else if (pattern === 'white') {
@@ -2716,30 +2844,28 @@
         const container = document.getElementById('sop-container');
         if (!container) return;
         container.innerHTML = SOP_AND_CONTINGENCIES.map((sop, idx) => `
-          <div class="panel" style="margin-bottom:1.5rem;">
-            <div class="panel-header">
-              <div class="panel-title">
-                <span class="pill-badge ${idx === 2 ? 'red' : 'cyan'}">SOP PROTOCOL 0${idx + 1}</span>
-                <span>${sop.title}</span>
+          <div class="glass-card" style="margin-bottom:1.5rem; background:rgba(14, 22, 38, 0.65);">
+            <div class="card-top-row" style="margin-bottom:1.25rem;">
+              <div style="display:flex; align-items:center; gap:0.75rem;">
+                <span class="glow-badge ${idx === 2 ? 'red' : 'cyan'}">SOP PROTOCOL 0${idx + 1}</span>
+                <span style="font-size:1.1rem; font-weight:700; color:var(--text-pure);">${sop.title}</span>
               </div>
             </div>
-            <div class="panel-body">
-              <ul style="list-style:none; display:flex; flex-direction:column; gap:0.75rem;">
-                ${sop.steps.map((step, sIdx) => `
-                  <li style="display:flex; align-items:flex-start; gap:0.75rem; font-size:0.9rem; color:var(--text-secondary);">
-                    <span style="font-family:var(--font-mono); color:var(--accent-cyan); font-weight:700;">[0${sIdx + 1}]</span>
-                    <span>${step}</span>
-                  </li>
-                `).join('')}
-              </ul>
-            </div>
+            <ul style="list-style:none; display:flex; flex-direction:column; gap:0.85rem;">
+              ${sop.steps.map((step, sIdx) => `
+                <li style="display:flex; align-items:flex-start; gap:0.85rem; font-size:0.92rem; color:var(--text-secondary); line-height:1.6;">
+                  <span style="font-family:var(--font-mono); color:var(--neon-cyan); font-weight:800;">[0${sIdx + 1}]</span>
+                  <span>${step}</span>
+                </li>
+              `).join('')}
+            </ul>
           </div>
         `).join('');
       }
 
       initPresentation() {
         const modal = document.getElementById('presentation-modal');
-        const slides = Array.from(document.querySelectorAll('.pres-slide'));
+        const slides = Array.from(document.querySelectorAll('.deck-slide-unit'));
         const openBtn = document.getElementById('btn-open-presentation');
         const closeBtn = document.getElementById('btn-close-presentation');
         const prevBtn = document.getElementById('btn-pres-prev');
@@ -2775,7 +2901,7 @@
     }
 
     document.addEventListener('DOMContentLoaded', () => {
-      const app = new StandaloneApp();
+      const app = new MasterCommandApp();
       app.init();
     });
   </script>
