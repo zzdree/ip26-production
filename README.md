@@ -135,13 +135,14 @@ graph LR
         RES["Laptop Resolume Arena (Bayu / Andreas)"]
     end
 
-    subgraph Processors["⚙️ Signal Processing & Routing"]
+    subgraph Processors["⚙️ Signal Processing & Ingest"]
         Splitter["HDMI Splitter 4CH (UKK/GKJ)"]
         CapOWL1["HDMI Capture (OWL)"]
         CapOWL2["HDMI Capture (OWL)"]
         CapABON["HDMI Capture (ABON)"]
         CapGKJ["HDMI Capture (GKJ)"]
-        Nova["NovaStar & Video Processor (UNNES)"]
+        PC_UNNES["PC Display Ingest (UNNES)"]
+        Nova["NovaStar Video Processor (UNNES)"]
     end
 
     subgraph Screens["📽️ Stage Display Outputs"]
@@ -155,7 +156,7 @@ graph LR
     PRO2 -->|HDMI 1.5M (Andreas)| CapOWL2 --> RES
 
     Splitter -->|HDMI 1.5M (Andreas)| CapABON --> RES
-    RES -->|HDMI 15M (GKJ)| CapGKJ --> Nova --> LED_Center
+    RES -->|HDMI 15M (GKJ)| CapGKJ --> PC_UNNES --> Nova --> LED_Center
 ```
 
 ### 🔊 C. Audio Master & Virtual Mixing Pipeline
@@ -174,8 +175,8 @@ graph TD
 
     subgraph VirtualControl["📱 Remote Virtual Mixing"]
         WiFi["Local WiFi Network (UNNES-ID)"]
-        iPadVM["iPad Virtual Mixer 1 (Jennifer / Jordan & Yosua)"]
-        LaptopVM["Laptop Virtual Mixer 2 (Andreas / Jordan & Yosua)"]
+        iPadVM["iPad Virtual Mixer 2 (Jennifer / Jordan & Yosua)"]
+        LaptopVM["Laptop Virtual Mixer 1 (Andreas / Jordan & Yosua)"]
     end
 
     RES_Audio --> DAC -->|Audio Cable 20M (UNNES)| QL5
@@ -295,12 +296,12 @@ graph LR
 - [x] Power Cable XPIN (X Unit) ☑️
 
 ### 👥 7. Peminjaman Personal & Tim
+- **Jennifer:** HP iPhone 15 (1 Unit) ✅ + TAB iPad (1 Unit) ✅
 - **Lio:** HDMI Cable 1.5M (1 Unit) ✅
 - **Darrel:** Television (1 Unit) ✅ + Power Adaptor TV (1 Pack) ✅ + Memory Card 8GB (1 Unit) ☑️
 - **Kiel:** Sony ZV-E10 (1 Unit) ✅ + Lens Kit 16–50mm (1 Unit) ✅ + Battery (2 Unit) ✅ + Charger (1 Pack) ✅ + Memory Card 64GB (1 Unit) ✅ + Lens Manual 50mm (1 Unit) ☑️ + Memory Card 128GB (1 Unit) ☑️ + Laptop Backup Station ✅
 - **Joel:** Sony A6600 (1 Unit) ✅ + Lens Zeiss 24–70mm (1 Unit) ✅ + Battery (2 Unit) ✅ + Charger (1 Pack) ✅ + Memory Card 64GB (1 Unit) ✅ + Gimbal DJI Ronin RS3 (1 Unit) ✅
 - **Kezia:** Television Multiview (1 Unit) ✅ + Power Adaptor TV (1 Pack) ✅
-- **Jennifer:** HP iPhone 15 (1 Unit) ✅
 - **Panitia:** HDMI to Micro HDMI Converter (2 Unit) ✅ + Terminal Cable XCH (X Unit) ✅
 
 </details>

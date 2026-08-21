@@ -52,19 +52,19 @@ x XCH adalah X Channel, misal Terminal 5CH, adalah Terminal 5 Channel
 - Terminal Cable XCH (UKK) + Cinetreak Cinelive V1 (OWL) + Power Adaptor MIX (OWL) + HDMI to HDMI Cable 1M (GIA) + Television (Kezia) + Power Adaptor TV (Kezia)
 
 ! Switcher + Splitter ✅
-- Terminal Cable XCH (UKK) + Cinetreak Cinelive V1 (OWL) + Power Adaptor MIX (OWL) + HDMI to HDMI Cable 1M (GIA) HDMI Splitter 4CH (UKK/GKJ) + Power Adaptor SPL (UKK/GKJ)
+- Terminal Cable XCH (UKK) + Cinetreak Cinelive V1 (OWL) + Power Adaptor MIX (OWL) + HDMI to HDMI Cable 1M (GIA) + HDMI Splitter 4CH (UKK/GKJ) + Power Adaptor SPL (UKK/GKJ)
 
 ! Switcher + OBS ✅
 - Terminal Cable XCH (UKK) + Cinetreak Cinelive V1 (OWL) + Power Adaptor MIX (OWL) + USB A to USB C Data Cable (Andreas) + Laptop (OBS Studio) + Power Adaptor LTP (OBS Studio)
 
 ! Splitter + PRO1 + LED Left Right Back ✅
-- HDMI Splitter 4CH (UKK/GKJ) + Power Adaptor SPL (UKK/GKJ) + HDMI to HDMI Cable 1,5M (Andreas) + HDMI Capture (OWL) + Laptop (Pro Presenter 1) + Power Adaptor LTP (Pro Presenter 1) + HDMI Cable 20M (UNNES) + Novastar (UNNES) + Video Processor (UNNES) + LED Left Right Back (UNNES)
+- HDMI Splitter 4CH (UKK/GKJ) + Power Adaptor SPL (UKK/GKJ) + HDMI to HDMI Cable 1,5M (Andreas) + HDMI Capture (OWL) + Laptop (Pro Presenter 1) + Power Adaptor LTP (Pro Presenter 1) + HDMI Cable 20M (UNNES) + Novastar Video Processor (UNNES) + LED Left Right Back (UNNES)
 
 ! PRO2 + RES ✅
 - Laptop (Pro Presenter 2) + Power Adaptor LTP (Pro Presenter 2) + HDMI to HDMI Cable 1,5M (Andreas) + HDMI Capture (OWL) + Laptop (Resolume Arena) + Power Adaptor LTP (Resolume Arena)
 
 ! Splitter + RES + LED Center (Andreas x GKJ x RES x GKJ x ABON x UNNES) ✅
-- HDMI Splitter 4CH (UKK/GKJ) + Power Adaptor SPL (UKK/GKJ) + HDMI to HDMI Cable 1,5M (Andreas) + HDMI Capture (ABON) + Laptop (Resolume Arena) + Power Adaptor LTP + HDMI Cable 15M (GKJ) + HDMI Capture (GKJ) + Novastar (UNNES) + Video Processor (UNNES) + LED Center (UNNES)
+- HDMI Splitter 4CH (UKK/GKJ) + Power Adaptor SPL (UKK/GKJ) + HDMI to HDMI Cable 1,5M (Andreas) + HDMI Capture (ABON) + Laptop (Resolume Arena) + Power Adaptor LTP + HDMI Cable 15M (GKJ) + HDMI Capture (GKJ) + PC (UNNES) + Novastar Video Processor (UNNES) + LED Center (UNNES)
 
 *Engine System - Audio*
 
@@ -75,7 +75,7 @@ x XCH adalah X Channel, misal Terminal 5CH, adalah Terminal 5 Channel
 - Laptop (Resolume Arena) + Power Adaptor LTP (Resolume Arena) + USB C DAC Hanason AB17X/USB C DAC Oraimo OAA310 (Andres) + Audio Cable 20M (UNNES) + Mixer Yamaha QL5 (UNNES)
 
 ! Mixer 1 + VM1 ✅
-- Mixer Yamaha QL5 (UNNES) + WiFi (UNNES-ID) + Laptop (Virtual Mixer 2) + Power Adaptor LTP (Virtual Mixer 2)
+- Mixer Yamaha QL5 (UNNES) + WiFi (UNNES-ID) + Laptop (Virtual Mixer 1) + Power Adaptor LTP (Virtual Mixer 1)
 
 ! Mixer 1 + VM2 ✅
 - Mixer Yamaha QL5 (UNNES) + WiFi (UNNES-ID) + iPad (Virtual Mixer 2)
@@ -96,6 +96,7 @@ x Ada 3 HDMI Splitter, GKJ Punya 1 Unit HDMI Splitter 4CH, UKK punya 1 Unit HDMI
 x Merupakan bagian dari BROADCAST SYSTEM dan ENGINE SYSTEM
 x WIRING/ROUTING Dengan keterangan barang siapa dan bukan operator
 x Centang Hijau merupakan terverifikasi
+x Sengaja tidak saya sertakan di peminjaman, disini saja
 
 - Mixer 1 - Yamaha QL5 (UNNES)
 - Mixer 2 - NewBaxs CT80S (GIA)
