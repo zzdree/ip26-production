@@ -1,7 +1,7 @@
 /**
  * ==========================================================================
- * IP26 ATEM PRO BROADCAST COMMAND SUITE — MASTER ENGINE RUNTIME (v10.0)
- * Dual-Engine Theme System • Supabase PostgreSQL Realtime Sync • 119 Items
+ * IP26 BROADCAST COMMAND SUITE — FLUID ENGINE RUNTIME (v11.0)
+ * Single-Page Flow • IntersectionObserver Active Nav • Supabase Realtime Sync
  * ==========================================================================
  */
 
@@ -20,7 +20,7 @@ if (typeof window.supabase !== 'undefined') {
   }
 }
 
-// 2. MASTER INVENTORY DIRECTORY (119 ITEMS ACROSS 13 LENDERS)
+// 2. MASTER INVENTORY DATA (119 ITEMS ACROSS 13 LENDERS)
 const MASTER_INVENTORY = [
   // OWL (17 Items)
   { id: 'owl-1', lender: 'OWL', name: 'Sony A6000', qty: '2 Unit', status: 'used', usage: 'CAM 3 & 4 (Wired)' },
@@ -168,77 +168,46 @@ const MASTER_INVENTORY = [
   { id: 'pan-2', lender: 'Panitia', name: 'Terminal Cable XCH', qty: 'X Unit', status: 'used', usage: 'Master Electrical Line' }
 ];
 
-// Local State
+// Local state
 let checklistState = {};
 let activeLenderFilter = 'All';
 let activeSearchQuery = '';
 let filterUnreturnedOnly = false;
-let currentPgmChannel = 1;
-let currentPvwChannel = 2;
 
 // 3. INITIALIZATION ON DOM READY
 document.addEventListener('DOMContentLoaded', () => {
-  initThemeEngine();
   initTimers();
-  initManifestState();
+  initChecklistState();
   renderLenderPills();
-  renderManifestGrid();
-  updateManifestTelemetry();
+  renderManifestCards();
+  updateProgressUI();
   initSupabaseRealtime();
+  setupScrollSpy();
   setupKeyboardShortcuts();
 });
 
-// 4. DUAL-ENGINE THEME TOGGLE
-function initThemeEngine() {
-  const savedTheme = localStorage.getItem('ip26_theme') || 'dark';
-  document.documentElement.setAttribute('data-theme', savedTheme);
-  updateThemeButtonUI(savedTheme);
-}
-
-function toggleConsoleTheme() {
-  const current = document.documentElement.getAttribute('data-theme') || 'dark';
-  const target = current === 'dark' ? 'light' : 'dark';
-  document.documentElement.setAttribute('data-theme', target);
-  localStorage.setItem('ip26_theme', target);
-  updateThemeButtonUI(target);
-}
-
-function updateThemeButtonUI(theme) {
-  const icon = document.getElementById('themeIcon');
-  const label = document.getElementById('themeLabel');
-  if (icon && label) {
-    if (theme === 'dark') {
-      icon.textContent = '☀️';
-      label.textContent = 'Light';
-    } else {
-      icon.textContent = '🌙';
-      label.textContent = 'Dark';
-    }
-  }
-}
-
-// 5. TIMERS (MASTER CLOCK & COUNTDOWN TO 17 SEPT 2026)
+// 4. TIMERS (MASTER WIB CLOCK & EVENT COUNTDOWN)
 function initTimers() {
   updateMasterClock();
-  updateEventCountdown();
+  updateCountdown();
   setInterval(updateMasterClock, 1000);
-  setInterval(updateEventCountdown, 1000);
+  setInterval(updateCountdown, 1000);
 }
 
 function updateMasterClock() {
   const now = new Date();
   const options = { timeZone: 'Asia/Jakarta', hour12: false, hour: '2-digit', minute: '2-digit', second: '2-digit' };
-  const wibTime = new Intl.DateTimeFormat('id-ID', options).format(now);
-  const el = document.getElementById('masterClock');
-  if (el) el.textContent = `${wibTime} WIB`;
+  const wibStr = new Intl.DateTimeFormat('id-ID', options).format(now);
+  const el = document.getElementById('masterClockWIB');
+  if (el) el.textContent = `${wibStr} WIB`;
 }
 
-function updateEventCountdown() {
+function updateCountdown() {
   const eventDate = new Date('2026-09-17T00:00:00+07:00').getTime();
   const now = new Date().getTime();
   const diff = eventDate - now;
 
-  const el = document.getElementById('eventCountdown');
+  const el = document.getElementById('liveCountdownText');
   if (!el) return;
 
   if (diff <= 0) {
@@ -249,104 +218,88 @@ function updateEventCountdown() {
   const days = Math.floor(diff / (1000 * 60 * 60 * 24));
   const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
   const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-  el.textContent = `${days}d ${hours}h ${minutes}m`;
+  const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+  el.textContent = `${days}d ${hours}h ${minutes}m ${seconds}s`;
 }
 
-// 6. HARDWARE DECK SWITCHER
-function switchDeck(deckId) {
-  const decks = {
-    vision: { btn: 'btnDeckVision', view: 'deckVision' },
-    manifest: { btn: 'btnDeckManifest', view: 'deckManifest' },
-    rigs: { btn: 'btnDeckRigs', view: 'deckRigs' },
-    rundown: { btn: 'btnDeckRundown', view: 'deckRundown' }
+// 5. SINGLE-PAGE SCROLL SPY (DESKTOP TOP NAV & MOBILE BOTTOM DOCK)
+function setupScrollSpy() {
+  const sectionIds = ['secOverview', 'secInventory', 'secCameras', 'secRouting', 'secRundown'];
+  const sections = sectionIds.map(id => document.getElementById(id)).filter(Boolean);
+
+  const desktopLinks = {
+    secOverview: document.getElementById('navLinkOverview'),
+    secInventory: document.getElementById('navLinkInventory'),
+    secCameras: document.getElementById('navLinkCameras'),
+    secRouting: document.getElementById('navLinkRouting'),
+    secRundown: document.getElementById('navLinkRundown')
   };
 
-  Object.keys(decks).forEach(k => {
-    const b = document.getElementById(decks[k].btn);
-    const v = document.getElementById(decks[k].view);
-    if (b && v) {
-      if (k === deckId) {
-        b.classList.add('active');
-        v.classList.add('active');
-      } else {
-        b.classList.remove('active');
-        v.classList.remove('active');
+  const mobileDocks = {
+    secOverview: document.getElementById('dockOverview'),
+    secInventory: document.getElementById('dockInventory'),
+    secCameras: document.getElementById('dockCameras'),
+    secRouting: document.getElementById('dockRouting'),
+    secRundown: document.getElementById('dockRundown')
+  };
+
+  const observerOptions = {
+    root: null,
+    rootMargin: '-20% 0px -70% 0px',
+    threshold: 0
+  };
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const id = entry.target.id;
+        
+        // Update Desktop
+        Object.keys(desktopLinks).forEach(k => {
+          if (desktopLinks[k]) {
+            if (k === id) desktopLinks[k].classList.add('active');
+            else desktopLinks[k].classList.remove('active');
+          }
+        });
+
+        // Update Mobile
+        Object.keys(mobileDocks).forEach(k => {
+          if (mobileDocks[k]) {
+            if (k === id) mobileDocks[k].classList.add('active');
+            else mobileDocks[k].classList.remove('active');
+          }
+        });
       }
-    }
-  });
+    });
+  }, observerOptions);
+
+  sections.forEach(sec => observer.observe(sec));
 }
 
-// 7. CAMERA RIG SUB-CATEGORY SWITCHER
-function switchCameraCategory(cat) {
-  const btnBrd = document.getElementById('btnSubCamBroadcast');
-  const btnDoc = document.getElementById('btnSubCamDoc');
-  const gridBrd = document.getElementById('camBroadcastGrid');
-  const gridDoc = document.getElementById('camDocGrid');
-
-  if (cat === 'broadcast') {
-    btnBrd.classList.add('active-pgm');
-    btnDoc.classList.remove('active-pgm');
-    gridBrd.style.display = 'grid';
-    gridDoc.style.display = 'none';
-  } else {
-    btnDoc.classList.add('active-pgm');
-    btnBrd.classList.remove('active-pgm');
-    gridDoc.style.display = 'grid';
-    gridBrd.style.display = 'none';
-  }
-}
-
-// 8. INTERACTIVE SWITCHER BUS LOGIC (PGM / PVW)
-function setPgmChannel(channelNum) {
-  currentPgmChannel = channelNum;
-  for (let i = 1; i <= 4; i++) {
-    const btn = document.getElementById(`pgmBtn${i}`);
-    if (btn) {
-      if (i === channelNum) btn.classList.add('active-pgm');
-      else btn.classList.remove('active-pgm');
-    }
-  }
-  const textEl = document.getElementById('currentPgmText');
-  if (textEl) textEl.textContent = `CAM ${channelNum}`;
-}
-
-function setPvwChannel(channelNum) {
-  currentPvwChannel = channelNum;
-  for (let i = 1; i <= 4; i++) {
-    const btn = document.getElementById(`pvwBtn${i}`);
-    if (btn) {
-      if (i === channelNum) btn.classList.add('active-pvw');
-      else btn.classList.remove('active-pvw');
-    }
-  }
-  const textEl = document.getElementById('currentPvwText');
-  if (textEl) textEl.textContent = `CAM ${channelNum}`;
-}
-
-// 9. MANIFEST & CHECKLIST LOGIC
-function initManifestState() {
+// 6. MANIFEST & CHECKLIST LOGIC
+function initChecklistState() {
   MASTER_INVENTORY.forEach(item => {
     checklistState[item.id] = false;
   });
 
-  const localSaved = localStorage.getItem('ip26_checklist_v10');
+  const localSaved = localStorage.getItem('ip26_checklist_v11');
   if (localSaved) {
     try {
       const parsed = JSON.parse(localSaved);
       Object.assign(checklistState, parsed);
     } catch (e) {
-      console.warn('Checklist parse error:', e);
+      console.warn('Local manifest parse error:', e);
     }
   }
 }
 
 function renderLenderPills() {
   const lenders = ['All', ...new Set(MASTER_INVENTORY.map(i => i.lender))];
-  const wrap = document.getElementById('lenderPillsWrap');
-  if (!wrap) return;
+  const rack = document.getElementById('lenderPillsRack');
+  if (!rack) return;
 
-  wrap.innerHTML = lenders.map(l => `
-    <button class="filter-pill ${l === activeLenderFilter ? 'active' : ''}" onclick="setLenderFilter('${l}')">
+  rack.innerHTML = lenders.map(l => `
+    <button class="lender-pill-btn ${l === activeLenderFilter ? 'active' : ''}" onclick="setLenderFilter('${l}')">
       ${l}
     </button>
   `).join('');
@@ -355,34 +308,33 @@ function renderLenderPills() {
 function setLenderFilter(lender) {
   activeLenderFilter = lender;
   renderLenderPills();
-  renderManifestGrid();
+  renderManifestCards();
 }
 
-function handleManifestSearch(query) {
-  activeSearchQuery = (query || '').toLowerCase().trim();
+function handleSearch(val) {
+  activeSearchQuery = (val || '').toLowerCase().trim();
   const clearBtn = document.getElementById('clearSearchBtn');
   if (clearBtn) clearBtn.style.display = activeSearchQuery ? 'block' : 'none';
-  renderManifestGrid();
+  renderManifestCards();
 }
 
-function clearManifestSearch() {
-  const input = document.getElementById('manifestSearchInput');
+function clearSearch() {
+  const input = document.getElementById('inventorySearchInput');
   if (input) input.value = '';
-  handleManifestSearch('');
+  handleSearch('');
 }
 
-function toggleFilterUnreturned() {
+function toggleUnreturnedFilter() {
   filterUnreturnedOnly = !filterUnreturnedOnly;
   const btn = document.getElementById('btnFilterUnreturned');
   if (btn) btn.classList.toggle('active', filterUnreturnedOnly);
-  renderManifestGrid();
+  renderManifestCards();
 }
 
-function renderManifestGrid() {
-  const grid = document.getElementById('manifestGrid');
+function renderManifestCards() {
+  const grid = document.getElementById('manifestCardsGrid');
   if (!grid) return;
 
-  // Filter items
   let filtered = MASTER_INVENTORY.filter(item => {
     const matchLender = (activeLenderFilter === 'All' || item.lender === activeLenderFilter);
     const matchSearch = (!activeSearchQuery || 
@@ -394,7 +346,6 @@ function renderManifestGrid() {
     return matchLender && matchSearch && matchUnreturned;
   });
 
-  // Group by lender
   const grouped = {};
   filtered.forEach(item => {
     if (!grouped[item.lender]) grouped[item.lender] = [];
@@ -404,9 +355,9 @@ function renderManifestGrid() {
   const lenderNames = Object.keys(grouped);
   if (lenderNames.length === 0) {
     grid.innerHTML = `
-      <div style="grid-column: 1 / -1; padding: 40px; text-align: center; color: var(--text-dim);">
-        <p style="font-size: 16px; font-weight: 700;">Tidak ada barang yang cocok dengan filter / pencarian.</p>
-        <p style="font-size: 12px; margin-top: 4px;">Coba ubah kata kunci pencarian atau reset filter peminjam.</p>
+      <div style="grid-column: 1 / -1; padding: 36px 16px; text-align: center; color: var(--text-dim);">
+        <p style="font-size: 15px; font-weight: 700; color: var(--text-main);">Tidak ada barang yang cocok.</p>
+        <p style="font-size: 12px; margin-top: 4px;">Ubah filter peminjam atau kata kunci pencarian.</p>
       </div>
     `;
     return;
@@ -417,27 +368,27 @@ function renderManifestGrid() {
     const packedCount = items.filter(i => checklistState[i.id]).length;
 
     return `
-      <div class="manifest-card">
-        <div class="manifest-card-head">
-          <span class="manifest-lender-title">${lender}</span>
-          <span class="manifest-lender-count">${packedCount} / ${items.length} Selesai</span>
+      <div class="lender-group-card">
+        <div class="lender-card-header">
+          <span class="lender-header-name">${lender}</span>
+          <span class="lender-header-count">${packedCount} / ${items.length} Selesai</span>
         </div>
-        <ul class="manifest-item-list">
+        <ul class="lender-items-list">
           ${items.map(item => {
             const isPacked = !!checklistState[item.id];
             return `
-              <li class="manifest-item-row ${isPacked ? 'is-packed' : ''}">
-                <label class="tactile-checkbox">
-                  <input type="checkbox" ${isPacked ? 'checked' : ''} onchange="toggleManifestItem('${item.id}', this.checked)">
-                  <span class="checkbox-box">
+              <li class="item-list-row ${isPacked ? 'is-packed' : ''}">
+                <label class="fluid-checkbox">
+                  <input type="checkbox" ${isPacked ? 'checked' : ''} onchange="toggleItem('${item.id}', this.checked)">
+                  <span class="checkbox-skin">
                     <svg width="10" height="10" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2.5">
                       <polyline points="1.5 6 4.5 9 10.5 2"></polyline>
                     </svg>
                   </span>
-                  <span class="item-text">${item.name}</span>
+                  <span class="item-name-text">${item.name}</span>
                 </label>
-                <div class="item-badge-group">
-                  <span class="unit-tag">${item.qty}</span>
+                <div class="item-meta-group">
+                  <span class="qty-unit-pill">${item.qty}</span>
                   ${renderStatusBadge(item.status)}
                 </div>
               </li>
@@ -450,17 +401,17 @@ function renderManifestGrid() {
 }
 
 function renderStatusBadge(status) {
-  if (status === 'used') return `<span class="badge-tally badge-used" title="Terpakai di routing aktif">✅ Terpakai</span>`;
-  if (status === 'partial') return `<span class="badge-tally badge-partial" title="Terpakai sebagian">⚠️ Parsial</span>`;
-  return `<span class="badge-tally badge-standby" title="Standby di lokasi">☑️ Standby</span>`;
+  if (status === 'used') return `<span class="status-pill used" title="Terpakai di routing aktif">✅ Terpakai</span>`;
+  if (status === 'partial') return `<span class="status-pill partial" title="Terpakai sebagian">⚠️ Parsial</span>`;
+  return `<span class="status-pill standby" title="Standby">☑️ Standby</span>`;
 }
 
-// 10. REALTIME CHECKLIST SYNC (OPTIMISTIC + SUPABASE)
-async function toggleManifestItem(itemId, isChecked) {
+// 7. REALTIME CHECKLIST SYNC (OPTIMISTIC + SUPABASE)
+async function toggleItem(itemId, isChecked) {
   checklistState[itemId] = isChecked;
-  saveLocalManifest();
-  renderManifestGrid();
-  updateManifestTelemetry();
+  saveLocalState();
+  renderManifestCards();
+  updateProgressUI();
 
   if (supabaseClient) {
     try {
@@ -478,13 +429,13 @@ async function toggleManifestItem(itemId, isChecked) {
   }
 }
 
-async function markAllManifest(targetState) {
+async function batchSetChecklist(targetState) {
   MASTER_INVENTORY.forEach(item => {
     checklistState[item.id] = targetState;
   });
-  saveLocalManifest();
-  renderManifestGrid();
-  updateManifestTelemetry();
+  saveLocalState();
+  renderManifestCards();
+  updateProgressUI();
 
   if (supabaseClient) {
     try {
@@ -501,38 +452,31 @@ async function markAllManifest(targetState) {
   }
 }
 
-function saveLocalManifest() {
-  localStorage.setItem('ip26_checklist_v10', JSON.stringify(checklistState));
+function saveLocalState() {
+  localStorage.setItem('ip26_checklist_v11', JSON.stringify(checklistState));
 }
 
-function updateManifestTelemetry() {
+function updateProgressUI() {
   const total = MASTER_INVENTORY.length;
   const packed = Object.values(checklistState).filter(Boolean).length;
   const pct = Math.round((packed / total) * 100);
 
-  const ratioEl = document.getElementById('manifestRatio');
-  const subEl = document.getElementById('manifestSubText');
-  const textGauge = document.getElementById('manifestGaugeText');
-  const barGauge = document.getElementById('manifestGaugeBar');
-  const badgeEl = document.getElementById('manifestBadge');
+  const ratioEl = document.getElementById('progressRatioText');
+  const pctEl = document.getElementById('progressPctText');
+  const fillEl = document.getElementById('progressFillFluid');
+  const sumEl = document.getElementById('progressSummaryText');
 
   if (ratioEl) ratioEl.textContent = `${packed} / ${total} Item Ter-packing`;
-  if (subEl) subEl.textContent = `${total - packed} barang belum kembali &bull; ${pct}% progres`;
-  if (textGauge) textGauge.textContent = `${pct}%`;
-  if (badgeEl) badgeEl.textContent = `${packed}/${total}`;
-
-  if (barGauge) {
-    const circumference = 2 * Math.PI * 28; // r = 28 -> ~176
-    const offset = circumference - (pct / 100) * circumference;
-    barGauge.style.strokeDashoffset = offset;
-  }
+  if (pctEl) pctEl.textContent = `${pct}% Selesai`;
+  if (fillEl) fillEl.style.width = `${pct}%`;
+  if (sumEl) sumEl.textContent = `${total - packed} barang belum kembali &bull; ${pct}% progres lapangan`;
 }
 
-// 11. SUPABASE REALTIME SUBSCRIPTION
+// 8. SUPABASE REALTIME SUBSCRIPTION
 async function initSupabaseRealtime() {
   if (!supabaseClient) return;
 
-  const pill = document.getElementById('supabaseStatusPill');
+  const pill = document.getElementById('supabasePill');
 
   try {
     const { data, error } = await supabaseClient.from('inventory_checklist').select('id, is_packed');
@@ -542,27 +486,27 @@ async function initSupabaseRealtime() {
           checklistState[row.id] = !!row.is_packed;
         }
       });
-      saveLocalManifest();
-      renderManifestGrid();
-      updateManifestTelemetry();
+      saveLocalState();
+      renderManifestCards();
+      updateProgressUI();
     }
 
     supabaseClient
-      .channel('realtime_manifest_v10')
+      .channel('realtime_fluid_manifest')
       .on('postgres_changes', { event: '*', schema: 'public', table: 'inventory_checklist' }, payload => {
         if (payload.new && payload.new.id) {
           checklistState[payload.new.id] = !!payload.new.is_packed;
-          saveLocalManifest();
-          renderManifestGrid();
-          updateManifestTelemetry();
+          saveLocalState();
+          renderManifestCards();
+          updateProgressUI();
         }
       })
       .subscribe((status) => {
         if (pill) {
           if (status === 'SUBSCRIBED') {
-            pill.innerHTML = `<span class="db-dot"></span><span>Supabase DB (Live)</span>`;
+            pill.innerHTML = `<span class="live-pulse-dot"></span><span>Supabase DB (Live)</span>`;
           } else {
-            pill.innerHTML = `<span class="db-dot" style="background: var(--tally-stby);"></span><span>Supabase Syncing</span>`;
+            pill.innerHTML = `<span class="live-pulse-dot" style="background: var(--amber);"></span><span>Supabase Syncing</span>`;
           }
         }
       });
@@ -572,34 +516,60 @@ async function initSupabaseRealtime() {
   }
 }
 
-// 12. 1-CLICK WHATSAPP BRIEF DISPATCHER
-function copyRigBrief(rigName, details) {
-  const briefText = `🎬 [BRIEFING RIG - IBADAH PERDANA 2026]\nUnit: ${rigName}\nGear: ${details}\nStatus: Siap di Lokasi ✅\nVenue: Auditorium UNNES`;
+// 9. INTERACTIVE SWITCHER BUS LOGIC (PGM / PVW)
+function setBusPgm(ch) {
+  for (let i = 1; i <= 4; i++) {
+    const b = document.getElementById(`btnPgm${i}`);
+    if (b) {
+      if (i === ch) b.classList.add('active-pgm');
+      else b.classList.remove('active-pgm');
+    }
+  }
+  const lbl = document.getElementById('pgmLabel');
+  if (lbl) lbl.textContent = `CAM ${ch}`;
+}
+
+function setBusPvw(ch) {
+  for (let i = 1; i <= 4; i++) {
+    const b = document.getElementById(`btnPvw${i}`);
+    if (b) {
+      if (i === ch) b.classList.add('active-pvw');
+      else b.classList.remove('active-pvw');
+    }
+  }
+  const lbl = document.getElementById('pvwLabel');
+  if (lbl) lbl.textContent = `CAM ${ch}`;
+}
+
+// 10. 1-CLICK WHATSAPP BRIEF DISPATCHER
+function copyBriefWA(unitName, gearDetails) {
+  const briefText = `🎬 [BRIEFING RIG - IBADAH PERDANA 2026]\nUnit: ${unitName}\nGear: ${gearDetails}\nStatus: Siap di Lokasi ✅\nVenue: Auditorium UNNES`;
   navigator.clipboard.writeText(briefText).then(() => {
-    showToast(`Briefing ${rigName} berhasil disalin! 📋`);
+    showToast(`Briefing ${unitName} tersalin ke WhatsApp! 📋`);
   }).catch(() => {
     showToast(`Tersalin! ✅`);
   });
 }
 
 function showToast(msg) {
-  const toast = document.getElementById('atemToast');
-  if (!toast) return;
-  toast.textContent = msg;
-  toast.style.display = 'block';
+  const t = document.getElementById('fluidToast');
+  if (!t) return;
+  t.textContent = msg;
+  t.style.display = 'block';
   setTimeout(() => {
-    toast.style.display = 'none';
+    t.style.display = 'none';
   }, 2200);
 }
 
-// 13. KEYBOARD SHORTCUTS (Ctrl+K for Search)
+// 11. KEYBOARD SHORTCUTS (Ctrl+K)
 function setupKeyboardShortcuts() {
   window.addEventListener('keydown', (e) => {
     if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'k') {
       e.preventDefault();
-      switchDeck('manifest');
-      const input = document.getElementById('manifestSearchInput');
-      if (input) input.focus();
+      const sec = document.getElementById('secInventory');
+      if (sec) sec.scrollIntoView({ behavior: 'smooth' });
+      const input = document.getElementById('inventorySearchInput');
+      if (input) setTimeout(() => input.focus(), 300);
     }
   });
 }
