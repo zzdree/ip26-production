@@ -108,15 +108,6 @@ document.addEventListener('DOMContentLoaded', () => {
   const batchModalDesc = document.getElementById('batch-modal-desc');
   const batchOptionsContainer = document.getElementById('batch-options-container');
 
-  // Modal elements
-  const cloudConfigModal = document.getElementById('cloud-config-modal');
-  const btnOpenCloudConfig = document.getElementById('btn-open-cloud-config');
-  const btnCloseModal = document.getElementById('btn-close-modal');
-  const btnSaveCloudConfig = document.getElementById('btn-save-cloud-config');
-  const btnDisconnectCloud = document.getElementById('btn-disconnect-cloud');
-  const supabaseUrlInput = document.getElementById('supabase-url-input');
-  const supabaseKeyInput = document.getElementById('supabase-key-input');
-
   // In-memory state cache
   const inventoryState = {}; // { itemId: { loaded, loaded_by, loaded_at, packed, packed_by, packed_at } }
   let totalInventoryCount = 0;
@@ -198,6 +189,9 @@ document.addEventListener('DOMContentLoaded', () => {
       `;
 
       const rowCols = row.children;
+      if (rowCols[0]) rowCols[0].setAttribute('title', rowCols[0].textContent.trim());
+      if (rowCols[3]) rowCols[3].setAttribute('title', rowCols[3].textContent.trim());
+
       if (rowCols.length >= 4) {
         row.insertBefore(tdLoading, rowCols[3]);
         row.insertBefore(tdPacking, rowCols[4]);
@@ -504,81 +498,25 @@ document.addEventListener('DOMContentLoaded', () => {
   const DEFAULT_SUPABASE_URL = 'https://ssbkhhnnzwuykyeznpwd.supabase.co';
   const DEFAULT_SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InNzYmtoaG5uend1eWt5ZXpucHdkIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODc0MDQ1NzcsImV4cCI6MjEwMjk4MDU3N30.-zGe_xWDTBmo604VS39jl8o7YvhEQYb3fZvCV-fcEbk';
 
-  // Load Saved Supabase Credentials or Fallback to Default Project
-  const savedUrl = localStorage.getItem('ip26_sb_url') || DEFAULT_SUPABASE_URL;
-  const savedKey = localStorage.getItem('ip26_sb_key') || DEFAULT_SUPABASE_KEY;
-  if (supabaseUrlInput) supabaseUrlInput.value = savedUrl;
-  if (supabaseKeyInput) supabaseKeyInput.value = savedKey;
-
-  if (savedUrl && savedKey) {
-    initSupabase(savedUrl, savedKey);
-  } else {
-    setSyncStatus('offline', '🟡 Mode Offline (Klik Setup Cloud untuk Sinkron Multi-HP)');
-  }
-
-  // Modal Handlers
-  if (btnOpenCloudConfig) {
-    btnOpenCloudConfig.addEventListener('click', () => {
-      if (cloudConfigModal) cloudConfigModal.style.display = 'flex';
-    });
-  }
-
-  if (btnCloseModal) {
-    btnCloseModal.addEventListener('click', () => {
-      if (cloudConfigModal) cloudConfigModal.style.display = 'none';
-    });
-  }
-
-  if (btnSaveCloudConfig) {
-    btnSaveCloudConfig.addEventListener('click', () => {
-      const url = (supabaseUrlInput?.value || '').trim();
-      const key = (supabaseKeyInput?.value || '').trim();
-
-      if (url && key) {
-        localStorage.setItem('ip26_sb_url', url);
-        localStorage.setItem('ip26_sb_key', key);
-        initSupabase(url, key);
-        showToast('Terkoneksi', 'Kredensial database Supabase tersimpan!', 'success');
-      }
-      if (cloudConfigModal) cloudConfigModal.style.display = 'none';
-    });
-  }
-
-  if (btnDisconnectCloud) {
-    btnDisconnectCloud.addEventListener('click', () => {
-      localStorage.removeItem('ip26_sb_url');
-      localStorage.removeItem('ip26_sb_key');
-      if (supabaseUrlInput) supabaseUrlInput.value = '';
-      if (supabaseKeyInput) supabaseKeyInput.value = '';
-      if (supabaseClient && realtimeChannel) {
-        supabaseClient.removeChannel(realtimeChannel);
-      }
-      if (supabaseClient && presenceChannel) {
-        supabaseClient.removeChannel(presenceChannel);
-      }
-      supabaseClient = null;
-      setSyncStatus('offline', '🟡 Koneksi Cloud Dinonaktifkan');
-      if (cloudConfigModal) cloudConfigModal.style.display = 'none';
-      showToast('Terputus', 'Koneksi database Supabase dinonaktifkan.', 'warning');
-    });
-  }
+  // Always initialize Supabase automatically
+  initSupabase(DEFAULT_SUPABASE_URL, DEFAULT_SUPABASE_KEY);
 
   // Batch Action Handlers
   function openBatchModal(isCheckAll) {
     if (!batchActionModal || !batchOptionsContainer) return;
 
     if (isCheckAll) {
-      if (batchModalTitle) batchModalTitle.innerHTML = '✅ Centang Semua Barang Inventaris';
-      if (batchModalDesc) batchModalDesc.textContent = 'Pilih target centang yang ingin diterapkan untuk seluruh 154 item:';
+      if (batchModalTitle) batchModalTitle.innerHTML = '✓ Ceklis Semua Barang Inventaris';
+      if (batchModalDesc) batchModalDesc.textContent = 'Pilih target status yang ingin diterapkan untuk seluruh 154 item:';
       batchOptionsContainer.innerHTML = `
         <button type="button" class="btn btn-primary" id="btn-batch-act-load" style="width: 100%; justify-content: flex-start; text-align: left; padding: var(--space-3) var(--space-4);">
-          📦 <strong>Centang Semua Pasang (Loading In)</strong>
+          📦 <strong>Tandai Semua Pasang (Loading In)</strong>
         </button>
         <button type="button" class="btn btn-primary" id="btn-batch-act-pack" style="width: 100%; justify-content: flex-start; text-align: left; padding: var(--space-3) var(--space-4);">
-          🧳 <strong>Centang Semua Kemas (Packing Out)</strong>
+          🧳 <strong>Tandai Semua Kemas (Packing Out)</strong>
         </button>
         <button type="button" class="btn btn-secondary" id="btn-batch-act-both" style="width: 100%; justify-content: flex-start; text-align: left; padding: var(--space-3) var(--space-4);">
-          ⚡ <strong>Centang Semua Pasang & Kemas (100% Selesai)</strong>
+          ⚡ <strong>Tandai Selesai Total (Pasang & Kemas 100%)</strong>
         </button>
       `;
 
@@ -595,17 +533,17 @@ document.addEventListener('DOMContentLoaded', () => {
         batchSetAll('check-all');
       });
     } else {
-      if (batchModalTitle) batchModalTitle.innerHTML = '⬜ Uncentang / Reset Status Checklist';
-      if (batchModalDesc) batchModalDesc.textContent = 'Pilih target checklist yang ingin dikosongkan (reset) untuk seluruh item:';
+      if (batchModalTitle) batchModalTitle.innerHTML = '↺ Reset Status Ceklis Inventaris';
+      if (batchModalDesc) batchModalDesc.textContent = 'Pilih status ceklis yang ingin dikosongkan (reset) untuk seluruh item:';
       batchOptionsContainer.innerHTML = `
         <button type="button" class="btn btn-outline" id="btn-batch-act-unload" style="width: 100%; justify-content: flex-start; text-align: left; padding: var(--space-3) var(--space-4);">
-          📦 <strong>Kosongkan Centang Pasang (Loading In)</strong>
+          📦 <strong>Kosongkan Status Pasang (Loading In)</strong>
         </button>
         <button type="button" class="btn btn-outline" id="btn-batch-act-unpack" style="width: 100%; justify-content: flex-start; text-align: left; padding: var(--space-3) var(--space-4);">
-          🧳 <strong>Kosongkan Centang Kemas (Packing Out)</strong>
+          🧳 <strong>Kosongkan Status Kemas (Packing Out)</strong>
         </button>
         <button type="button" class="btn btn-outline" id="btn-batch-act-unboth" style="width: 100%; justify-content: flex-start; text-align: left; padding: var(--space-3) var(--space-4); border-color: rgba(239, 68, 68, 0.4); color: #f87171;">
-          ⚠️ <strong>Kosongkan Semua (Reset Total Pasang & Kemas)</strong>
+          ⚠️ <strong>Reset Total (Kosongkan Pasang & Kemas)</strong>
         </button>
       `;
 

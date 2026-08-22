@@ -2002,11 +2002,60 @@ code {
   background: linear-gradient(90deg, #f59e0b, #10b981);
 }
 
-/* Tactile Inventory Checkboxes in Table */
-.th-sync {
+/* Tactile Inventory Checkboxes & Strict Fixed Column Alignment */
+.data-table.inv-table {
+  table-layout: fixed;
+  width: 100%;
+  min-width: 820px;
+}
+
+/* Col 1: Nama Barang */
+.data-table.inv-table th:nth-child(1),
+.data-table.inv-table td:nth-child(1) {
+  width: 26%;
+  font-weight: 600;
+  color: var(--text-primary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Col 2: Jumlah */
+.data-table.inv-table th:nth-child(2),
+.data-table.inv-table td:nth-child(2) {
+  width: 11%;
+  font-family: var(--font-mono);
+  font-size: 0.82rem;
+  white-space: nowrap;
+}
+
+/* Col 3: Status */
+.data-table.inv-table th:nth-child(3),
+.data-table.inv-table td:nth-child(3) {
+  width: 8%;
   text-align: center;
-  min-width: 76px;
+  white-space: nowrap;
+}
+
+/* Col 4 & 5: Pasang & Kemas Checkboxes */
+.data-table.inv-table th.th-sync,
+.data-table.inv-table td.sync-td {
   width: 80px;
+  min-width: 80px;
+  max-width: 80px;
+  text-align: center;
+  white-space: nowrap;
+}
+
+/* Col 6: Keterangan Penggunaan (Strictly 1 Single Line) */
+.data-table.inv-table th:nth-child(6),
+.data-table.inv-table td:nth-child(6) {
+  width: 39%;
+  color: var(--text-secondary);
+  font-size: 0.84rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .sync-td {

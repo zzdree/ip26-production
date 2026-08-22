@@ -1034,17 +1034,14 @@ flowchart LR
               <span class="presence-badge" id="presence-badge">👥 <strong id="online-crew-count">1</strong> Kru Aktif</span>
             </div>
             <div class="sync-actions">
-              <button class="btn btn-sm btn-outline" id="btn-batch-check-all" title="Centang Semua Barang Inventaris">
-                ✅ Centang Semua
+              <button class="btn btn-sm btn-outline" id="btn-batch-check-all" title="Tandai Semua Barang Inventaris">
+                ✓ Ceklis Semua
               </button>
-              <button class="btn btn-sm btn-outline" id="btn-batch-uncheck-all" title="Hapus Centang Barang (Reset)">
-                ⬜ Uncentang Semua
+              <button class="btn btn-sm btn-outline" id="btn-batch-uncheck-all" title="Reset Status Ceklis Inventaris">
+                ↺ Reset Ceklis
               </button>
               <button class="btn btn-sm btn-outline" id="btn-copy-summary" title="Salin Ringkasan Progress Checklist">
                 📋 Salin Ringkasan
-              </button>
-              <button class="btn btn-sm btn-secondary" id="btn-open-cloud-config" title="Konfigurasi Database Cloud Supabase">
-                ⚡ Setup Cloud
               </button>
             </div>
           </div>
@@ -1071,44 +1068,6 @@ flowchart LR
                   <div class="progress-bar-fill fill-packing" id="packing-progress-bar" style="width: 0%;"></div>
                 </div>
               </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Cloud Config Modal -->
-        <div class="modal-overlay" id="cloud-config-modal" style="display: none;">
-          <div class="modal-card">
-            <div class="modal-header">
-              <h3 class="modal-title">⚡ Konfigurasi Realtime Cloud Database (Supabase)</h3>
-              <button class="modal-close-btn" id="btn-close-modal" aria-label="Close modal">✕</button>
-            </div>
-            <div class="modal-body">
-              <p class="modal-desc">
-                Hubungkan portal ke cloud database Supabase agar centang <strong>Loading</strong> dan <strong>Packing</strong> langsung tersinkronisasi instan di HP seluruh crew secara bersamaan.
-              </p>
-              
-              <div class="form-group">
-                <label for="supabase-url-input">Supabase Project URL:</label>
-                <input type="url" id="supabase-url-input" class="form-input" placeholder="https://your-project.supabase.co" />
-              </div>
-
-              <div class="form-group">
-                <label for="supabase-key-input">Supabase Anon Public Key:</label>
-                <input type="password" id="supabase-key-input" class="form-input" placeholder="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..." />
-              </div>
-
-              <div class="modal-notice">
-                <strong>💡 Cara Penggunaan / Setup Cepat:</strong>
-                <ol>
-                  <li>Jalankan skrip <code>supabase-schema.sql</code> di SQL Editor project Supabase kamu.</li>
-                  <li>Salin <strong>Project URL</strong> dan <strong>anon key</strong> ke kolom di atas.</li>
-                  <li>Klik <strong>Simpan & Hubungkan</strong>. Semua HP crew yang membuka link ini akan otomatis tersinkron.</li>
-                </ol>
-              </div>
-            </div>
-            <div class="modal-footer">
-              <button class="btn btn-secondary" id="btn-disconnect-cloud">Pakai Mode Lokal (Offline)</button>
-              <button class="btn btn-primary" id="btn-save-cloud-config">Simpan & Hubungkan</button>
             </div>
           </div>
         </div>
