@@ -282,7 +282,7 @@ document.addEventListener('DOMContentLoaded', () => {
   function updateProgressMeters() {
     let loadedCount = 0;
     let packedCount = 0;
-    const total = totalInventoryCount || 65;
+    const total = totalInventoryCount || Object.keys(inventoryState).length || 1;
 
     Object.keys(inventoryState).forEach((id) => {
       if (inventoryState[id]?.loaded) loadedCount++;
@@ -566,9 +566,9 @@ document.addEventListener('DOMContentLoaded', () => {
         supabaseClient.removeChannel(presenceChannel);
       }
       supabaseClient = null;
-      setSyncStatus('offline', '🟡 Mode Offline (Penyimpanan Lokal)');
+      setSyncStatus('offline', '🟡 Koneksi Cloud Dinonaktifkan');
       if (cloudConfigModal) cloudConfigModal.style.display = 'none';
-      showToast('Terputus', 'Beralih ke mode offline lokal.', 'warning');
+      showToast('Terputus', 'Koneksi database Supabase dinonaktifkan.', 'warning');
     });
   }
 
