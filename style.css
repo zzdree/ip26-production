@@ -1,64 +1,52 @@
 /* ==========================================================================
-   IP26 BROADCAST COMMAND SUITE — ULTRA PERFORMANCE PURE DARK GREY
-   Optimizations:
-   - 0ms Zero-Jank Scroll: No fixed-attachment repaint, hardware-accelerated transforms
-   - Isolated DOM Trees: content-visibility & contain for 60+ FPS desktop rendering
-   - Crisp High-Performance Pure Dark Grey Palette (Zero Blue Hue)
+   IP26 COMMAND SUITE — HIGH SPEED PURE DARK GREY MASTER STYLESHEET
+   100% Zero-Lag Architecture (Optimized for 60-144Hz Desktop & Mobile)
    ========================================================================== */
 
 :root {
-  /* Pure Neutral Dark Grey Surface Tokens (NO Blue) */
-  --bg-canvas: #121214;
-  --bg-surface: #18191d;
-  --bg-card: #1f2026;
-  --bg-card-hover: #262830;
-  --bg-inset: #0d0e10;
-  --bg-glass: rgba(22, 23, 27, 0.94);
+  /* Pure Neutral Dark Grey Palette (Zero Blue Tint) */
+  --bg-canvas: #111214;
+  --bg-surface: #17181c;
+  --bg-card: #1e1f25;
+  --bg-card-hover: #252730;
+  --bg-inset: #0c0d0f;
+  --bg-nav: #16171b;
 
-  /* Hairlines & Borders */
-  --border-subtle: rgba(255, 255, 255, 0.08);
-  --border-card: rgba(255, 255, 255, 0.12);
-  --border-card-hover: rgba(0, 229, 255, 0.4);
+  /* Sharp Hairlines & Borders */
+  --border-subtle: rgba(255, 255, 255, 0.07);
+  --border-card: rgba(255, 255, 255, 0.11);
+  --border-active: rgba(0, 229, 255, 0.5);
 
-  /* Radiant High-Contrast Accents */
+  /* High-Contrast Vibrant Accents */
   --neon-cyan: #00e5ff;
   --neon-cyan-bg: rgba(0, 229, 255, 0.12);
-  --neon-cyan-glow: 0 0 16px rgba(0, 229, 255, 0.3);
-
   --neon-emerald: #00e676;
   --neon-emerald-bg: rgba(0, 230, 118, 0.12);
-  --neon-emerald-glow: 0 0 16px rgba(0, 230, 118, 0.3);
-
   --neon-amber: #ffab00;
   --neon-amber-bg: rgba(255, 171, 0, 0.12);
-  --neon-amber-glow: 0 0 16px rgba(255, 171, 0, 0.3);
-
   --neon-purple: #a855f7;
-  --neon-purple-bg: rgba(168, 85, 247, 0.14);
-  --neon-purple-glow: 0 0 16px rgba(168, 85, 247, 0.3);
+  --neon-purple-bg: rgba(168, 85, 247, 0.12);
 
   /* Typography */
-  --font-display: 'Space Grotesk', -apple-system, BlinkMacSystemFont, sans-serif;
-  --font-body: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
-  --font-mono: 'JetBrains Mono', monospace;
+  --font-display: 'Space Grotesk', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-body: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-mono: 'JetBrains Mono', 'SF Mono', Consolas, monospace;
 
   --text-main: #f8fafc;
   --text-muted: #94a3b8;
   --text-dim: #64748b;
   --text-dark: #0c0d0f;
 
-  /* Performant Shadows (Hardware Friendly) */
-  --shadow-card: 0 4px 16px rgba(0, 0, 0, 0.45);
-  --shadow-card-hover: 0 8px 24px rgba(0, 0, 0, 0.65), 0 0 16px rgba(0, 229, 255, 0.12);
-  --shadow-inset: inset 0 2px 6px rgba(0, 0, 0, 0.7);
+  /* Fast Single-Pass Hardware Shadows */
+  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.4);
+  --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.5);
 
-  /* Transitions */
-  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
-  --transition-fast: 0.15s ease;
+  /* Transitions (Optimized, No transition: all) */
+  --fast-transition: 0.12s ease-out;
 }
 
 /* ==========================================================================
-   RESET & ULTRA-LIGHT CORE BASE
+   RESET & CORE BASE
    ========================================================================== */
 
 *, *::before, *::after {
@@ -73,14 +61,14 @@ html {
 }
 
 body.app-body {
-  background-color: var(--bg-canvas);
-  background-image: linear-gradient(180deg, #16171b 0%, #121214 400px);
+  background: var(--bg-canvas);
   color: var(--text-main);
   font-family: var(--font-body);
   font-size: 15px;
-  line-height: 1.6;
+  line-height: 1.55;
   -webkit-font-smoothing: antialiased;
   min-height: 100vh;
+  overflow-x: hidden;
 }
 
 /* Centered Body Layout */
@@ -88,14 +76,13 @@ body.app-body {
   width: 100%;
   display: flex;
   justify-content: center;
-  padding: 32px 0 80px;
+  padding: 24px 0 80px;
 }
 
 .site-container {
   width: 100%;
   max-width: 1200px;
-  padding-left: 24px;
-  padding-right: 24px;
+  padding: 0 24px;
   margin: 0 auto;
 }
 
@@ -103,7 +90,7 @@ body.app-body {
 h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-display);
   font-weight: 700;
-  letter-spacing: -0.025em;
+  letter-spacing: -0.02em;
   color: #fff;
   line-height: 1.25;
 }
@@ -111,7 +98,7 @@ h1, h2, h3, h4, h5, h6 {
 a {
   color: var(--neon-cyan);
   text-decoration: none;
-  transition: color var(--transition-fast);
+  transition: color var(--fast-transition);
 }
 
 a:hover {
@@ -133,13 +120,13 @@ a:hover {
 .text-center { text-align: center; }
 
 /* ==========================================================================
-   1. GLOBAL TELEMETRY TOP BAR & CLOUD STATUS
+   1. GLOBAL TELEMETRY TOP BAR
    ========================================================================== */
 
 .telemetry-bar {
-  background: #111215;
+  background: #0e0f11;
   border-bottom: 1px solid var(--border-subtle);
-  padding: 8px 24px;
+  padding: 7px 24px;
   font-size: 12px;
   position: sticky;
   top: 0;
@@ -151,7 +138,7 @@ a:hover {
   justify-content: space-between;
   align-items: center;
   flex-wrap: wrap;
-  gap: 12px;
+  gap: 10px;
   max-width: 1200px;
   margin: 0 auto;
 }
@@ -168,7 +155,7 @@ a:hover {
   align-items: center;
   gap: 6px;
   background: var(--neon-emerald-bg);
-  border: 1px solid rgba(0, 230, 118, 0.4);
+  border: 1px solid rgba(0, 230, 118, 0.35);
   color: var(--neon-emerald);
   padding: 2px 8px;
   border-radius: 100px;
@@ -181,14 +168,6 @@ a:hover {
   height: 7px;
   background: var(--neon-emerald);
   border-radius: 50%;
-  box-shadow: var(--neon-emerald-glow);
-  animation: radarPulse 1.8s infinite;
-}
-
-@keyframes radarPulse {
-  0% { transform: scale(0.95); opacity: 0.8; }
-  50% { transform: scale(1.2); opacity: 1; }
-  100% { transform: scale(0.95); opacity: 0.8; }
 }
 
 .cloud-status-pill {
@@ -211,14 +190,14 @@ a:hover {
   border-radius: 50%;
 }
 
-.cloud-status-pill.connected .cloud-dot {
-  background: var(--neon-emerald);
-}
-
 .cloud-status-pill.connected {
   border-color: rgba(0, 230, 118, 0.4);
   color: var(--neon-emerald);
   background: var(--neon-emerald-bg);
+}
+
+.cloud-status-pill.connected .cloud-dot {
+  background: var(--neon-emerald);
 }
 
 .telemetry-clock {
@@ -255,16 +234,14 @@ a:hover {
 }
 
 /* ==========================================================================
-   2. DESKTOP STICKY TOP NAVBAR (TAB SWITCHER ON TOP)
+   2. DESKTOP STICKY TOP NAVBAR
    ========================================================================== */
 
 .top-nav-header {
   position: sticky;
-  top: 37px;
+  top: 35px;
   z-index: 150;
-  background: var(--bg-glass);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
+  background: var(--bg-nav);
   border-bottom: 1px solid var(--border-subtle);
   padding: 10px 24px;
 }
@@ -281,13 +258,13 @@ a:hover {
 .nav-brand {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 10px;
   text-decoration: none;
 }
 
 .brand-badge-icon {
-  width: 36px;
-  height: 36px;
+  width: 34px;
+  height: 34px;
   background: var(--bg-card);
   border: 1px solid var(--border-card);
   border-radius: 8px;
@@ -304,20 +281,19 @@ a:hover {
 
 .brand-name {
   font-family: var(--font-display);
-  font-size: 15px;
+  font-size: 14.5px;
   font-weight: 800;
   color: #fff;
-  letter-spacing: 0.04em;
+  letter-spacing: 0.03em;
 }
 
 .brand-tag {
-  font-size: 10px;
+  font-size: 9.5px;
   font-weight: 700;
   color: var(--neon-cyan);
   letter-spacing: 0.08em;
 }
 
-/* Desktop Navigation Tabs */
 .desktop-nav-tabs {
   display: flex;
   align-items: center;
@@ -329,12 +305,12 @@ a:hover {
 }
 
 .tab-link {
-  padding: 6px 15px;
+  padding: 6px 14px;
   font-size: 13px;
   font-weight: 600;
   color: var(--text-muted);
   border-radius: 100px;
-  transition: all var(--transition-fast);
+  transition: color var(--fast-transition), background-color var(--fast-transition);
 }
 
 .tab-link:hover {
@@ -351,53 +327,52 @@ a:hover {
 .btn-github-link {
   display: inline-flex;
   align-items: center;
-  gap: 8px;
+  gap: 7px;
   background: var(--bg-surface);
   border: 1px solid var(--border-card);
   border-radius: 8px;
-  padding: 7px 14px;
-  font-size: 13px;
+  padding: 6px 12px;
+  font-size: 12.5px;
   font-weight: 600;
   color: var(--text-main);
-  transition: all var(--transition-fast);
+  transition: background-color var(--fast-transition), border-color var(--fast-transition);
 }
 
 .btn-github-link:hover {
   background: var(--bg-card);
-  border-color: var(--border-card-hover);
+  border-color: var(--border-active);
   color: #fff;
 }
 
 /* ==========================================================================
-   3. CONTENT SECTIONS (PERFORMANCE ISOLATED)
+   3. CONTENT SECTIONS
    ========================================================================== */
 
 .content-section {
-  margin-bottom: 56px;
-  scroll-margin-top: 100px;
-  contain: layout style;
+  margin-bottom: 52px;
+  scroll-margin-top: 90px;
 }
 
 .section-head-box {
   display: flex;
   justify-content: space-between;
   align-items: flex-end;
-  margin-bottom: 20px;
+  margin-bottom: 18px;
   flex-wrap: wrap;
-  gap: 14px;
+  gap: 12px;
 }
 
 .section-badge-tag {
-  font-size: 11px;
+  font-size: 10.5px;
   font-weight: 800;
   letter-spacing: 0.12em;
   color: var(--neon-cyan);
   display: inline-block;
-  margin-bottom: 4px;
+  margin-bottom: 3px;
 }
 
 .section-h2 {
-  font-size: 26px;
+  font-size: 24px;
   font-weight: 800;
   color: #fff;
 }
@@ -411,21 +386,21 @@ a:hover {
 
 /* Hero Section */
 .hero-section {
-  padding: 16px 0 32px;
+  padding: 8px 0 28px;
 }
 
 .hero-top-row {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 10px;
   flex-wrap: wrap;
-  margin-bottom: 12px;
+  margin-bottom: 10px;
 }
 
 .hero-tag-glow {
   display: inline-flex;
   align-items: center;
-  gap: 8px;
+  gap: 7px;
   padding: 4px 10px;
   background: var(--neon-cyan-bg);
   border: 1px solid rgba(0, 229, 255, 0.3);
@@ -437,50 +412,47 @@ a:hover {
 }
 
 .tag-radar {
-  width: 7px;
-  height: 7px;
+  width: 6px;
+  height: 6px;
   background: var(--neon-cyan);
   border-radius: 50%;
 }
 
 .hero-h1 {
-  font-size: clamp(30px, 4vw, 46px);
+  font-size: clamp(26px, 3.5vw, 42px);
   font-weight: 800;
-  letter-spacing: -0.035em;
+  letter-spacing: -0.03em;
   color: #ffffff;
-  margin-bottom: 12px;
+  margin-bottom: 10px;
 }
 
 .hero-subtitle {
-  font-size: 15.5px;
+  font-size: 15px;
   color: var(--text-muted);
-  max-width: 860px;
-  line-height: 1.6;
-  margin-bottom: 28px;
+  max-width: 840px;
+  line-height: 1.55;
+  margin-bottom: 24px;
 }
 
 /* Metric Widgets Deck */
 .widgets-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 16px;
+  gap: 14px;
 }
 
 .widget-box {
   background: var(--bg-card);
   border: 1px solid var(--border-card);
-  border-radius: 14px;
-  padding: 20px;
-  box-shadow: var(--shadow-card);
-  position: relative;
+  border-radius: 12px;
+  padding: 18px;
+  box-shadow: var(--shadow-sm);
   display: flex;
   flex-direction: column;
-  transition: border-color var(--transition-fast), transform var(--transition-fast);
 }
 
 .widget-box:hover {
-  transform: translateY(-2px);
-  border-color: var(--border-card-hover);
+  border-color: var(--border-active);
 }
 
 .widget-head {
@@ -491,7 +463,7 @@ a:hover {
 }
 
 .widget-title {
-  font-size: 11px;
+  font-size: 10.5px;
   font-weight: 800;
   letter-spacing: 0.08em;
   color: var(--text-dim);
@@ -503,7 +475,7 @@ a:hover {
 
 .widget-val {
   font-family: var(--font-display);
-  font-size: 38px;
+  font-size: 34px;
   font-weight: 800;
   line-height: 1;
   margin-bottom: 10px;
@@ -533,8 +505,8 @@ a:hover {
 .legend-box {
   background: var(--bg-surface);
   border: 1px solid var(--border-card);
-  border-radius: 12px;
-  padding: 12px 18px;
+  border-radius: 10px;
+  padding: 10px 16px;
   display: flex;
   align-items: center;
   gap: 16px;
@@ -542,7 +514,7 @@ a:hover {
 }
 
 .legend-header {
-  font-size: 11px;
+  font-size: 10.5px;
   font-weight: 800;
   letter-spacing: 0.08em;
   color: var(--text-dim);
@@ -550,45 +522,45 @@ a:hover {
 
 .legend-items {
   display: flex;
-  gap: 16px;
+  gap: 14px;
   flex-wrap: wrap;
 }
 
 .legend-pill {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 6px;
   font-size: 12px;
   color: var(--text-muted);
 }
 
 /* ==========================================================================
-   4. INTERACTIVE TOPOLOGY DECK
+   4. TOPOLOGY DECK
    ========================================================================== */
 
 .topology-deck {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 16px;
+  gap: 14px;
 }
 
 .topo-card {
   background: var(--bg-card);
   border: 1px solid var(--border-card);
-  border-radius: 14px;
-  padding: 18px;
-  box-shadow: var(--shadow-card);
+  border-radius: 12px;
+  padding: 16px;
+  box-shadow: var(--shadow-sm);
   display: flex;
   flex-direction: column;
 }
 
 .topo-core {
-  background: #23252e;
+  background: #21232b;
   border-color: rgba(0, 229, 255, 0.4);
 }
 
 .topo-card-header {
-  margin-bottom: 12px;
+  margin-bottom: 10px;
   padding-bottom: 8px;
   border-bottom: 1px solid var(--border-subtle);
 }
@@ -602,7 +574,7 @@ a:hover {
 }
 
 .topo-card-title {
-  font-size: 15px;
+  font-size: 14.5px;
   font-weight: 700;
   color: #fff;
 }
@@ -617,16 +589,14 @@ a:hover {
   background: var(--bg-surface);
   border: 1px solid var(--border-card);
   border-radius: 8px;
-  padding: 10px 12px;
+  padding: 9px 11px;
   display: flex;
   align-items: center;
   gap: 10px;
-  transition: border-color var(--transition-fast);
 }
 
 .topo-item:hover {
-  border-color: var(--border-card-hover);
-  background: var(--bg-card-hover);
+  border-color: var(--border-active);
 }
 
 .topo-item.highlight {
@@ -678,9 +648,9 @@ a:hover {
   gap: 4px;
   background: var(--bg-inset);
   padding: 4px;
-  border-radius: 10px;
+  border-radius: 8px;
   border: 1px solid var(--border-subtle);
-  margin-bottom: 20px;
+  margin-bottom: 18px;
   width: fit-content;
   max-width: 100%;
 }
@@ -692,10 +662,10 @@ a:hover {
   font-family: var(--font-body);
   font-size: 13px;
   font-weight: 600;
-  padding: 8px 18px;
-  border-radius: 8px;
+  padding: 7px 16px;
+  border-radius: 6px;
   cursor: pointer;
-  transition: all var(--transition-fast);
+  transition: color var(--fast-transition), background-color var(--fast-transition);
 }
 
 .seg-tab-btn:hover {
@@ -720,57 +690,54 @@ a:hover {
 .rig-deck-2 {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 16px;
+  gap: 14px;
 }
 
 .rig-deck-3 {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 16px;
+  gap: 14px;
 }
 
 .rig-card-box {
   background: var(--bg-card);
   border: 1px solid var(--border-card);
-  border-radius: 14px;
-  padding: 20px;
-  box-shadow: var(--shadow-card);
-  position: relative;
+  border-radius: 12px;
+  padding: 18px;
+  box-shadow: var(--shadow-sm);
   display: flex;
   flex-direction: column;
-  transition: border-color var(--transition-fast), transform var(--transition-fast);
 }
 
 .rig-card-box:hover {
-  transform: translateY(-2px);
-  border-color: var(--border-card-hover);
+  border-color: var(--border-active);
 }
 
 .rig-card-top {
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
-  margin-bottom: 14px;
-  padding-bottom: 12px;
+  margin-bottom: 12px;
+  padding-bottom: 10px;
   border-bottom: 1px solid var(--border-subtle);
-  gap: 12px;
+  gap: 10px;
 }
 
 .rig-id-row {
   display: flex;
   align-items: center;
   gap: 8px;
-  margin-bottom: 4px;
+  margin-bottom: 3px;
 }
 
 .rig-id {
   font-family: var(--font-display);
-  font-size: 14px;
+  font-size: 13.5px;
   font-weight: 800;
 }
 
 .rig-name {
-  font-size: 16px;
+  font-size: 15.5px;
   font-weight: 700;
   color: #fff;
 }
@@ -788,15 +755,15 @@ a:hover {
 }
 
 .op-val {
-  font-size: 13.5px;
+  font-size: 13px;
   font-weight: 700;
 }
 
 .rig-spec-list {
   display: flex;
   flex-direction: column;
-  gap: 8px;
-  margin-bottom: 16px;
+  gap: 7px;
+  margin-bottom: 14px;
 }
 
 .rig-spec-row {
@@ -814,7 +781,7 @@ a:hover {
 }
 
 .rv {
-  font-size: 13px;
+  font-size: 12.5px;
   color: var(--text-main);
 }
 
@@ -837,7 +804,6 @@ a:hover {
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  transition: all var(--transition-fast);
 }
 
 .btn-copy-rig:hover {
@@ -850,28 +816,28 @@ a:hover {
   background: var(--bg-surface);
   border: 1px solid var(--border-card);
   border-left: 3px solid var(--neon-cyan);
-  padding: 14px 18px;
-  border-radius: 0 10px 10px 0;
+  padding: 12px 16px;
+  border-radius: 0 8px 8px 0;
   display: flex;
   align-items: flex-start;
   gap: 12px;
-  font-size: 13.5px;
+  font-size: 13px;
   color: var(--text-muted);
 }
 
 .callout-ico {
-  font-size: 18px;
+  font-size: 16px;
 }
 
 /* ==========================================================================
-   6. TABLES & TERMINAL WRAPPERS
+   6. TABLES
    ========================================================================== */
 
 .custom-table-wrap {
   border: 1px solid var(--border-card);
-  border-radius: 12px;
+  border-radius: 10px;
   background: var(--bg-card);
-  box-shadow: var(--shadow-card);
+  box-shadow: var(--shadow-sm);
   overflow-x: auto;
 }
 
@@ -884,7 +850,7 @@ a:hover {
 
 .darkgrey-table th {
   background: var(--bg-surface);
-  padding: 14px 18px;
+  padding: 12px 16px;
   font-family: var(--font-display);
   font-weight: 800;
   font-size: 11px;
@@ -895,7 +861,7 @@ a:hover {
 }
 
 .darkgrey-table td {
-  padding: 13px 18px;
+  padding: 12px 16px;
   border-bottom: 1px solid var(--border-subtle);
   color: var(--text-main);
   vertical-align: middle;
@@ -917,23 +883,23 @@ a:hover {
   background: var(--bg-card);
   border: 1px solid var(--border-card);
   border-radius: 12px;
-  padding: 20px;
+  padding: 18px;
 }
 
 .terminal-title {
-  font-size: 17px;
+  font-size: 16px;
   margin-bottom: 8px;
 }
 
 .terminal-code {
   font-family: var(--font-mono);
-  font-size: 12.5px;
+  font-size: 12px;
   background: var(--bg-inset);
   border: 1px solid var(--border-subtle);
-  padding: 14px 18px;
+  padding: 12px 16px;
   border-radius: 8px;
   color: var(--neon-cyan);
-  margin-top: 12px;
+  margin-top: 10px;
   overflow-x: auto;
   white-space: pre-wrap;
   word-break: break-word;
@@ -946,10 +912,10 @@ a:hover {
 .checklist-progress-card {
   background: var(--bg-card);
   border: 1px solid rgba(0, 230, 118, 0.35);
-  border-radius: 14px;
-  padding: 20px;
-  box-shadow: var(--shadow-card);
-  margin-bottom: 20px;
+  border-radius: 12px;
+  padding: 18px;
+  box-shadow: var(--shadow-sm);
+  margin-bottom: 18px;
 }
 
 .progress-top-row {
@@ -957,12 +923,12 @@ a:hover {
   justify-content: space-between;
   align-items: center;
   flex-wrap: wrap;
-  gap: 12px;
+  gap: 10px;
   margin-bottom: 10px;
 }
 
 .progress-stage-label {
-  font-size: 10.5px;
+  font-size: 10px;
   font-weight: 800;
   letter-spacing: 0.1em;
   color: var(--neon-emerald);
@@ -970,7 +936,7 @@ a:hover {
 }
 
 .progress-counter-title {
-  font-size: 20px;
+  font-size: 18px;
   font-weight: 800;
   color: #fff;
 }
@@ -982,18 +948,18 @@ a:hover {
 
 .progress-bar-large-track {
   width: 100%;
-  height: 8px;
+  height: 7px;
   background: var(--bg-inset);
   border-radius: 100px;
   overflow: hidden;
-  margin-bottom: 16px;
+  margin-bottom: 14px;
   border: 1px solid var(--border-subtle);
 }
 
 .progress-bar-large-fill {
   height: 100%;
   background: linear-gradient(90deg, #00e5ff 0%, #00e676 100%);
-  transition: width 0.3s ease;
+  transition: width 0.25s ease;
 }
 
 .checklist-batch-actions {
@@ -1006,14 +972,14 @@ a:hover {
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  padding: 7px 14px;
-  border-radius: 8px;
+  padding: 7px 13px;
+  border-radius: 7px;
   font-family: var(--font-body);
   font-size: 12px;
   font-weight: 700;
   cursor: pointer;
-  transition: all var(--transition-fast);
   border: 1px solid var(--border-card);
+  transition: background-color var(--fast-transition), color var(--fast-transition);
 }
 
 .btn-pack-all {
@@ -1059,15 +1025,15 @@ a:hover {
   background: var(--bg-surface);
   border: 1px solid var(--border-card);
   color: var(--neon-cyan);
-  padding: 5px 12px;
+  padding: 4px 10px;
   border-radius: 100px;
 }
 
 .inv-toolbar {
   display: flex;
   flex-direction: column;
-  gap: 12px;
-  margin-bottom: 20px;
+  gap: 10px;
+  margin-bottom: 18px;
 }
 
 .inv-search-cavity {
@@ -1077,7 +1043,7 @@ a:hover {
 
 .cavity-ico {
   position: absolute;
-  left: 16px;
+  left: 14px;
   top: 50%;
   transform: translateY(-50%);
   color: var(--text-dim);
@@ -1088,14 +1054,13 @@ a:hover {
   width: 100%;
   background: var(--bg-surface);
   border: 1px solid var(--border-card);
-  padding: 12px 40px 12px 44px;
-  border-radius: 10px;
+  padding: 10px 36px 10px 40px;
+  border-radius: 8px;
   color: #fff;
   font-family: var(--font-body);
-  font-size: 14px;
+  font-size: 13.5px;
   outline: none;
-  box-shadow: var(--shadow-inset);
-  transition: border-color var(--transition-fast);
+  transition: border-color var(--fast-transition);
 }
 
 #inventorySearch:focus {
@@ -1104,13 +1069,13 @@ a:hover {
 
 .clear-cavity-btn {
   position: absolute;
-  right: 12px;
+  right: 10px;
   top: 50%;
   transform: translateY(-50%);
   background: transparent;
   border: none;
   color: var(--text-dim);
-  font-size: 18px;
+  font-size: 16px;
   cursor: pointer;
   padding: 4px;
 }
@@ -1129,12 +1094,12 @@ a:hover {
   background: var(--bg-surface);
   border: 1px solid var(--border-subtle);
   color: var(--text-muted);
-  padding: 7px 14px;
-  border-radius: 8px;
+  padding: 6px 12px;
+  border-radius: 7px;
   font-size: 12px;
   font-weight: 600;
   cursor: pointer;
-  transition: all var(--transition-fast);
+  transition: background-color var(--fast-transition), color var(--fast-transition);
 }
 
 .status-chip:hover {
@@ -1157,7 +1122,7 @@ a:hover {
 }
 
 .lender-filter-label {
-  font-size: 11px;
+  font-size: 10.5px;
   font-weight: 800;
   color: var(--text-dim);
   letter-spacing: 0.06em;
@@ -1165,7 +1130,7 @@ a:hover {
 
 .lender-chips-wrap {
   display: flex;
-  gap: 6px;
+  gap: 5px;
   flex-wrap: wrap;
 }
 
@@ -1173,12 +1138,11 @@ a:hover {
   background: var(--bg-surface);
   border: 1px solid var(--border-subtle);
   color: var(--text-muted);
-  padding: 4px 10px;
+  padding: 3px 9px;
   border-radius: 100px;
-  font-size: 11.5px;
+  font-size: 11px;
   font-weight: 600;
   cursor: pointer;
-  transition: all var(--transition-fast);
 }
 
 .lender-pill:hover {
@@ -1195,28 +1159,27 @@ a:hover {
 /* Inventory Cards Grid */
 .inv-cards-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-  gap: 16px;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 14px;
 }
 
 .inv-group-card {
   background: var(--bg-card);
   border: 1px solid var(--border-card);
-  border-radius: 12px;
+  border-radius: 10px;
   overflow: hidden;
-  box-shadow: var(--shadow-card);
-  transition: border-color var(--transition-fast);
+  box-shadow: var(--shadow-sm);
 }
 
 .inv-group-card:hover {
-  border-color: var(--border-card-hover);
+  border-color: var(--border-active);
 }
 
 .inv-group-header {
   background: var(--bg-surface);
-  padding: 10px 16px;
+  padding: 9px 14px;
   font-family: var(--font-display);
-  font-size: 14px;
+  font-size: 13.5px;
   font-weight: 700;
   color: #fff;
   border-bottom: 1px solid var(--border-subtle);
@@ -1233,10 +1196,10 @@ a:hover {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 10px 16px;
+  padding: 9px 14px;
   border-bottom: 1px solid var(--border-subtle);
   font-size: 13px;
-  gap: 10px;
+  gap: 8px;
 }
 
 .inv-item-row:last-child {
@@ -1255,7 +1218,7 @@ a:hover {
   color: var(--text-muted);
 }
 
-/* Custom Interactive Checkbox */
+/* Custom Checkbox */
 .custom-chk-label {
   display: inline-flex;
   align-items: center;
@@ -1274,16 +1237,15 @@ a:hover {
 }
 
 .custom-chk-box {
-  width: 18px;
-  height: 18px;
+  width: 17px;
+  height: 17px;
   background: var(--bg-inset);
   border: 1.5px solid var(--border-card);
-  border-radius: 5px;
+  border-radius: 4px;
   display: inline-flex;
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
-  transition: all var(--transition-fast);
 }
 
 .custom-chk-input:checked ~ .custom-chk-box {
@@ -1307,15 +1269,15 @@ a:hover {
 .rundown-deck-3 {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 16px;
+  gap: 14px;
 }
 
 .rundown-card-box {
   background: var(--bg-card);
   border: 1px solid var(--border-card);
-  border-radius: 14px;
+  border-radius: 12px;
   overflow: hidden;
-  box-shadow: var(--shadow-card);
+  box-shadow: var(--shadow-sm);
   position: relative;
   display: flex;
   flex-direction: column;
@@ -1334,7 +1296,7 @@ a:hover {
 .card-glow-edge.purple { background: var(--neon-purple); }
 
 .rundown-card-top {
-  padding: 16px 18px;
+  padding: 14px 16px;
   border-bottom: 1px solid var(--border-subtle);
   display: flex;
   justify-content: space-between;
@@ -1342,31 +1304,31 @@ a:hover {
 }
 
 .rd-phase {
-  font-size: 10.5px;
+  font-size: 10px;
   font-weight: 800;
   letter-spacing: 0.08em;
   display: block;
 }
 
 .rd-title {
-  font-size: 15.5px;
+  font-size: 15px;
   font-weight: 700;
   color: #fff;
 }
 
 .rd-list {
   list-style: none;
-  padding: 6px 0;
+  padding: 4px 0;
 }
 
 .rd-list li {
-  padding: 9px 18px;
+  padding: 8px 16px;
   border-bottom: 1px solid var(--border-subtle);
   display: flex;
   justify-content: space-between;
   align-items: center;
-  gap: 12px;
-  font-size: 13px;
+  gap: 10px;
+  font-size: 12.5px;
 }
 
 .rd-list li:last-child {
@@ -1374,11 +1336,11 @@ a:hover {
 }
 
 .rd-badge {
-  font-size: 10.5px;
+  font-size: 10px;
   font-weight: 700;
   background: var(--bg-surface);
   border: 1px solid var(--border-subtle);
-  padding: 2px 7px;
+  padding: 2px 6px;
   border-radius: 4px;
   color: var(--neon-cyan);
   white-space: nowrap;
@@ -1389,8 +1351,8 @@ a:hover {
   display: inline-flex;
   align-items: center;
   gap: 4px;
-  padding: 3px 7px;
-  border-radius: 5px;
+  padding: 2px 6px;
+  border-radius: 4px;
   font-size: 11px;
   font-weight: 700;
 }
@@ -1422,36 +1384,36 @@ a:hover {
 /* Site Footer */
 .site-footer-centered {
   border-top: 1px solid var(--border-subtle);
-  padding-top: 32px;
+  padding-top: 28px;
   color: var(--text-dim);
-  font-size: 13px;
+  font-size: 12.5px;
 }
 
 .footer-inner {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  gap: 18px;
+  gap: 16px;
   flex-wrap: wrap;
 }
 
 .footer-brand {
   font-family: var(--font-display);
   font-weight: 800;
-  font-size: 15px;
+  font-size: 14.5px;
   color: #fff;
   display: block;
-  margin-bottom: 4px;
+  margin-bottom: 2px;
 }
 
 .footer-copy {
   max-width: 600px;
-  line-height: 1.5;
+  line-height: 1.45;
 }
 
 .footer-actions {
   display: flex;
-  gap: 14px;
+  gap: 12px;
 }
 
 .footer-link {
@@ -1462,13 +1424,13 @@ a:hover {
   color: var(--neon-cyan);
 }
 
-/* Mobile Bottom Navigation Dock (Hidden on Desktop) */
+/* Mobile Bottom Navigation Dock */
 .mobile-dock-bottom {
   display: none;
 }
 
 /* ==========================================================================
-   9. RESPONSIVE BREAKPOINTS
+   9. RESPONSIVE BREAKPOINTS (DESKTOP & MOBILE)
    ========================================================================== */
 
 @media (max-width: 1024px) {
@@ -1481,6 +1443,9 @@ a:hover {
   .rundown-deck-3 {
     grid-template-columns: 1fr;
   }
+  .rig-deck-3 {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }
 
 @media (max-width: 768px) {
@@ -1489,12 +1454,11 @@ a:hover {
   }
 
   .site-container {
-    padding-left: 16px;
-    padding-right: 16px;
+    padding: 0 16px;
   }
 
   .page-main-centered {
-    padding: 16px 0 85px;
+    padding: 14px 0 85px;
   }
 
   .telemetry-container {
@@ -1517,9 +1481,9 @@ a:hover {
     bottom: 0;
     left: 0;
     right: 0;
-    background: rgba(18, 19, 23, 0.96);
+    background: #141519;
     border-top: 1px solid var(--border-subtle);
-    padding: 8px 12px;
+    padding: 6px 10px calc(6px + env(safe-area-inset-bottom));
     justify-content: space-around;
     z-index: 300;
   }
@@ -1528,12 +1492,13 @@ a:hover {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 4px;
-    font-size: 11px;
+    gap: 3px;
+    font-size: 10.5px;
     font-weight: 600;
     color: var(--text-muted);
-    padding: 6px 10px;
-    border-radius: 8px;
+    padding: 5px 8px;
+    border-radius: 6px;
+    touch-action: manipulation;
   }
 
   .dock-btn.active, .dock-btn:hover {
@@ -1555,7 +1520,7 @@ a:hover {
     overflow-x: auto;
     flex-wrap: nowrap;
     width: 100%;
-    padding-bottom: 6px;
+    padding-bottom: 4px;
     -webkit-overflow-scrolling: touch;
   }
 
@@ -1570,6 +1535,11 @@ a:hover {
   .btn-batch-action {
     width: 100%;
     justify-content: center;
+    padding: 9px 12px;
+  }
+
+  .inv-cards-grid {
+    grid-template-columns: 1fr;
   }
 }
 
@@ -1578,6 +1548,6 @@ a:hover {
     grid-template-columns: 1fr;
   }
   .hero-h1 {
-    font-size: 25px;
+    font-size: 24px;
   }
 }

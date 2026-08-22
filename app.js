@@ -525,95 +525,91 @@ function clearSearch() {
   renderInventory();
 }
 
-// Render Inventory Catalog Cards with Live Checkboxes
+// Render Inventory Catalog Cards with Live Checkboxes (Single-Pass String Injection)
 function renderInventory() {
   const container = document.getElementById('inventoryGrid');
   const countBadge = document.getElementById('invCountBadge');
   if (!container) return;
 
-  container.innerHTML = '';
   let matchCount = 0;
+  let html = '';
 
-  INVENTORY_DATA.forEach(group => {
+  for (let i = 0; i < INVENTORY_DATA.length; i++) {
+    const group = INVENTORY_DATA[i];
     if (currentLenderFilter !== 'ALL' && group.lender !== currentLenderFilter) {
-      return;
+      continue;
     }
 
-    const matchedItems = group.items.filter(item => {
-      // Filter only unpacked if enabled
+    const matchedItems = [];
+    for (let j = 0; j < group.items.length; j++) {
+      const item = group.items[j];
+
       if (onlyUnpackedFilter && checklistState[item.id] === true) {
-        return false;
+        continue;
       }
-
       if (currentStatusFilter !== 'all' && item.status !== currentStatusFilter) {
-        return false;
+        continue;
       }
-
       if (currentSearchQuery) {
-        const matchName = item.name.toLowerCase().includes(currentSearchQuery);
-        const matchLender = group.lender.toLowerCase().includes(currentSearchQuery);
-        const matchQty = item.qty.toLowerCase().includes(currentSearchQuery);
-        return matchName || matchLender || matchQty;
+        const q = currentSearchQuery;
+        if (!item.name.toLowerCase().includes(q) && !group.lender.toLowerCase().includes(q) && !item.qty.toLowerCase().includes(q)) {
+          continue;
+        }
       }
-
-      return true;
-    });
+      matchedItems.push(item);
+    }
 
     if (matchedItems.length > 0) {
       matchCount += matchedItems.length;
 
-      const groupCard = document.createElement('div');
-      groupCard.className = 'inv-group-card';
-
-      const header = document.createElement('div');
-      header.className = 'inv-group-header';
-      header.innerHTML = `
-        <span>${group.lender}</span>
-        <span class="badge badge-tech font-mono">${matchedItems.length} Item</span>
-      `;
-
-      const ul = document.createElement('ul');
-      ul.className = 'inv-item-list';
-
-      matchedItems.forEach(it => {
+      let itemsHtml = '';
+      for (let k = 0; k < matchedItems.length; k++) {
+        const it = matchedItems[k];
         const isPacked = checklistState[it.id] === true;
-        const li = document.createElement('li');
-        li.className = `inv-item-row ${isPacked ? 'is-packed' : ''}`;
-        li.id = `row_${it.id}`;
-
-        li.innerHTML = `
-          <label class="custom-chk-label" for="chk_${it.id}">
-            <input type="checkbox" id="chk_${it.id}" class="custom-chk-input" ${isPacked ? 'checked' : ''} onchange="toggleItemCheck('${it.id}', this.checked)">
-            <span class="custom-chk-box">
-              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
-            </span>
-            <span class="item-name-text">${it.name} <strong style="color:var(--text-dim);font-weight:normal;">(${it.qty})</strong></span>
-          </label>
-          <span class="badge ${it.status === 'active' ? 'badge-success' : (it.status === 'partial' ? 'badge-warning' : 'badge-standby')}">${it.symbol}</span>
+        const badgeClass = it.status === 'active' ? 'badge-success' : (it.status === 'partial' ? 'badge-warning' : 'badge-standby');
+        
+        itemsHtml += `
+          <li class="inv-item-row ${isPacked ? 'is-packed' : ''}" id="row_${it.id}">
+            <label class="custom-chk-label" for="chk_${it.id}">
+              <input type="checkbox" id="chk_${it.id}" class="custom-chk-input" ${isPacked ? 'checked' : ''} onchange="toggleItemCheck('${it.id}', this.checked)">
+              <span class="custom-chk-box">
+                <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              </span>
+              <span class="item-name-text">${it.name} <strong style="color:var(--text-dim);font-weight:normal;">(${it.qty})</strong></span>
+            </label>
+            <span class="badge ${badgeClass}">${it.symbol}</span>
+          </li>
         `;
-        ul.appendChild(li);
-      });
+      }
 
-      groupCard.appendChild(header);
-      groupCard.appendChild(ul);
-      container.appendChild(groupCard);
+      html += `
+        <div class="inv-group-card">
+          <div class="inv-group-header">
+            <span>${group.lender}</span>
+            <span class="badge badge-tech font-mono">${matchedItems.length} Item</span>
+          </div>
+          <ul class="inv-item-list">${itemsHtml}</ul>
+        </div>
+      `;
     }
-  });
-
-  if (countBadge) {
-    countBadge.textContent = `Menampilkan ${matchCount} dari ${TOTAL_ITEMS_COUNT} Barang`;
   }
 
   if (matchCount === 0) {
     container.innerHTML = `
-      <div class="callout-banner" style="grid-column: 1 / -1; justify-content: center; text-align: center; padding: 40px;">
+      <div class="callout-banner" style="grid-column: 1 / -1; justify-content: center; text-align: center; padding: 32px;">
         <div>
-          <strong style="color:#fff; font-size:16px;">Semua Barang Selesai Di-Packing / Tidak Ada Hasil</strong>
+          <strong style="color:#fff; font-size:15px;">Semua Barang Selesai Di-Packing / Tidak Ada Hasil</strong>
           <p class="text-muted mt-1">Tidak ada item inventaris yang cocok dengan filter atau kata kunci saat ini.</p>
-          <button class="btn-copy-rig mt-3" style="padding: 8px 16px;" onclick="clearSearch(); onlyUnpackedFilter = false; setFilterStatus('all', document.querySelector('.status-chip')); setLenderFilter('ALL', document.querySelector('.lender-pill'));">Reset Semua Filter</button>
+          <button class="btn-copy-rig mt-3" style="padding: 7px 14px;" onclick="clearSearch(); onlyUnpackedFilter = false; setFilterStatus('all', document.querySelector('.status-chip')); setLenderFilter('ALL', document.querySelector('.lender-pill'));">Reset Semua Filter</button>
         </div>
       </div>
     `;
+  } else {
+    container.innerHTML = html;
+  }
+
+  if (countBadge) {
+    countBadge.textContent = `Menampilkan ${matchCount} dari ${TOTAL_ITEMS_COUNT} Barang`;
   }
 }
 
