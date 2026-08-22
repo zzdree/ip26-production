@@ -1,6 +1,6 @@
 /**
- * IP26 BROADCAST COMMAND SUITE — LOGIC & AUTO CLOUD SYNC ENGINE
- * Zero Setup & Zero Login Multi-Device Realtime Synchronization via Open Cloud Relay + SSE Stream
+ * IP26 BROADCAST COMMAND SUITE — MINIMALIST STUDIO RUNTIME & REALTIME SUPABASE ENGINE
+ * Clean, Zero-Lag, 144Hz Architecture with Supabase Realtime Synchronization
  */
 
 // Master Inventory Dataset (119 Items across 13 Lenders)
@@ -191,16 +191,14 @@ const INVENTORY_DATA = [
   }
 ];
 
-const TOTAL_ITEMS_COUNT = INVENTORY_DATA.reduce((acc, g) => acc + g.items.length, 0);
-
-// Global Checklist State
-let checklistState = {}; // { [id]: boolean }
+const TOTAL_ITEMS_COUNT = 119;
+let checklistState = {};
 let onlyUnpackedFilter = false;
 let currentStatusFilter = 'all';
 let currentLenderFilter = 'ALL';
 let currentSearchQuery = '';
 
-// Dedicated Cloud Database & Realtime Sync Engine (Supabase Postgres + Fallback Open Relay)
+// Supabase PostgreSQL Client Configuration
 const SUPABASE_URL = 'https://ssbkhhnnzwuykyeznpwd.supabase.co';
 const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InNzYmtoaG5uend1eWt5ZXpucHdkIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODc0MDQ1NzcsImV4cCI6MjEwMjk4MDU3N30.-zGe_xWDTBmo604VS39jl8o7YvhEQYb3fZvCV-fcEbk';
 
@@ -208,9 +206,8 @@ let supabaseClient = null;
 if (typeof supabase !== 'undefined' && supabase.createClient) {
   try {
     supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
-    console.log("⚡ Supabase JS Client initialized successfully");
-  } catch (err) {
-    console.warn("Supabase client init note:", err);
+  } catch (e) {
+    console.warn("Supabase init note:", e);
   }
 }
 
@@ -218,18 +215,47 @@ if (typeof supabase !== 'undefined' && supabase.createClient) {
 const CLOUD_SYNC_TOPIC = "ip26_checklist_sync_2026";
 const CLOUD_RELAY_PUB = `https://ntfy.sh/${CLOUD_SYNC_TOPIC}`;
 const CLOUD_RELAY_SSE = `https://ntfy.sh/${CLOUD_SYNC_TOPIC}/sse`;
-const CLOUD_RELAY_POLL = `https://ntfy.sh/${CLOUD_SYNC_TOPIC}/json?poll=1&since=24h`;
 
 let eventSource = null;
 
 // Initialize Application
 document.addEventListener('DOMContentLoaded', () => {
   initLiveClock();
-  initNavScroll();
   loadLocalState();
   initCloudSync();
   initKeepAlivePing();
 });
+
+// Main Tab Navigation Switcher
+function switchMainTab(tabName) {
+  const tabs = ['inventory', 'cameras', 'routing', 'rundown'];
+  tabs.forEach(t => {
+    const btn = document.getElementById(`navBtn${t.charAt(0).toUpperCase() + t.slice(1)}`);
+    const view = document.getElementById(`view${t.charAt(0).toUpperCase() + t.slice(1)}`);
+    if (btn) btn.classList.toggle('active', t === tabName);
+    if (view) view.classList.toggle('active', t === tabName);
+  });
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+// Camera Sub Tab Switcher
+function switchCameraSubTab(subTab) {
+  document.getElementById('camSubBtnBroadcast').classList.toggle('active', subTab === 'broadcast');
+  document.getElementById('camSubBtnDoc').classList.toggle('active', subTab === 'documentation');
+  document.getElementById('camSubBroadcast').classList.toggle('active', subTab === 'broadcast');
+  document.getElementById('camSubDoc').classList.toggle('active', subTab === 'documentation');
+}
+
+// Routing Sub Tab Switcher
+function switchRoutingSubTab(subTab) {
+  const subTabs = ['video', 'audio', 'time', 'elec'];
+  subTabs.forEach(s => {
+    const btn = document.getElementById(`routeSubBtn${s.charAt(0).toUpperCase() + s.slice(1)}`);
+    const panel = document.getElementById(`routeSub${s.charAt(0).toUpperCase() + s.slice(1)}`);
+    if (btn) btn.classList.toggle('active', s === subTab);
+    if (panel) panel.classList.toggle('active', s === subTab);
+  });
+}
 
 // Load local cache immediately
 function loadLocalState() {
@@ -252,10 +278,9 @@ function saveLocalState() {
 
 // Initialize Supabase & Realtime Cloud Sync
 async function initCloudSync() {
-  const statusPill = document.getElementById('cloudStatusPill');
   const statusText = document.getElementById('cloudStatusText');
 
-  // 1. If Supabase is available, sync directly from Postgres
+  // 1. Fetch current state from Supabase
   if (supabaseClient) {
     try {
       const { data, error } = await supabaseClient
@@ -263,28 +288,19 @@ async function initCloudSync() {
         .select('id, is_packed');
 
       if (!error && Array.isArray(data)) {
-        console.log(`⚡ Synced ${data.length} items from Supabase Postgres`);
         data.forEach(row => {
-          if (row.id) {
-            checklistState[row.id] = row.is_packed;
-          }
+          if (row.id) checklistState[row.id] = row.is_packed;
         });
         saveLocalState();
         renderInventory();
         updatePackingProgress();
-
-        if (statusPill && statusText) {
-          statusPill.className = 'cloud-status-pill connected';
-          statusText.textContent = '🟢 Supabase DB (Live Sync)';
-        }
+        if (statusText) statusText.textContent = '🟢 Supabase DB (Live Sync)';
       }
-    } catch (e) {
-      console.warn("Supabase fetch note:", e);
-    }
+    } catch (e) {}
 
-    // Subscribe to Realtime Postgres Changes
+    // Subscribe to Postgres Realtime Changes
     try {
-      const realtimeChannel = supabaseClient.channel('realtime_inventory_checklist')
+      supabaseClient.channel('realtime_inventory_checklist')
         .on(
           'postgres_changes',
           { event: '*', schema: 'public', table: 'inventory_checklist' },
@@ -301,28 +317,17 @@ async function initCloudSync() {
           }
         )
         .subscribe((status) => {
-          if (status === 'SUBSCRIBED' && statusPill && statusText) {
-            statusPill.className = 'cloud-status-pill connected';
+          if (status === 'SUBSCRIBED' && statusText) {
             statusText.textContent = '🟢 Supabase DB (Live Sync)';
           }
         });
-    } catch (err) {
-      console.warn("Supabase realtime subscription note:", err);
-    }
+    } catch (err) {}
   }
 
-  // 2. Auxiliary Fallback Relay SSE stream
+  // 2. Auxiliary SSE Relay
   try {
     if (eventSource) eventSource.close();
     eventSource = new EventSource(CLOUD_RELAY_SSE);
-
-    eventSource.onopen = () => {
-      if (statusPill && statusText && !statusText.textContent.includes('Supabase')) {
-        statusPill.className = 'cloud-status-pill connected';
-        statusText.textContent = '🟢 Cloud Live (Auto-Sync)';
-      }
-    };
-
     eventSource.onmessage = (event) => {
       try {
         const data = JSON.parse(event.data);
@@ -332,27 +337,23 @@ async function initCloudSync() {
         }
       } catch (err) {}
     };
-  } catch (err) {
-    console.warn("Auxiliary SSE note:", err);
-  }
+  } catch (err) {}
 }
 
-// Keep-Alive Ping (Runs in background every 10 minutes to prevent auto-pause)
+// Keep-Alive Ping (Runs in background every 10 minutes)
 function initKeepAlivePing() {
   setInterval(async () => {
     if (supabaseClient) {
       try {
         await supabaseClient.from('inventory_checklist').select('id').limit(1);
-        console.log('⚡ Supabase keep-alive ping sent successfully');
       } catch (e) {}
     }
   }, 10 * 60 * 1000);
 }
 
-// Process incoming sync events from other crew smartphones
+// Process incoming auxiliary sync events
 function processIncomingSyncEvent(payload, triggerUIUpdate) {
   if (!payload || !payload.type) return;
-
   if (payload.type === 'toggle') {
     checklistState[payload.id] = payload.val;
     if (triggerUIUpdate) {
@@ -377,15 +378,6 @@ function processIncomingSyncEvent(payload, triggerUIUpdate) {
   }
 }
 
-// Publish event to Cloud Relay
-function broadcastCloudEvent(payload) {
-  fetch(CLOUD_RELAY_PUB, {
-    method: 'POST',
-    body: JSON.stringify(payload),
-    headers: { 'Content-Type': 'application/json' }
-  }).catch(() => {});
-}
-
 // User toggles an item checkbox
 async function toggleItemCheck(itemId, isChecked) {
   checklistState[itemId] = isChecked;
@@ -397,7 +389,6 @@ async function toggleItemCheck(itemId, isChecked) {
     rowEl.classList.toggle('is-packed', isChecked);
   }
 
-  // 1. Upsert to Supabase PostgreSQL Database
   if (supabaseClient) {
     try {
       await supabaseClient
@@ -407,18 +398,14 @@ async function toggleItemCheck(itemId, isChecked) {
           is_packed: isChecked,
           updated_at: new Date().toISOString()
         });
-    } catch (e) {
-      console.warn("Supabase update note:", e);
-    }
+    } catch (e) {}
   }
 
-  // 2. Broadcast auxiliary payload
-  broadcastCloudEvent({
-    type: 'toggle',
-    id: itemId,
-    val: isChecked,
-    ts: Date.now()
-  });
+  fetch(CLOUD_RELAY_PUB, {
+    method: 'POST',
+    body: JSON.stringify({ type: 'toggle', id: itemId, val: isChecked, ts: Date.now() }),
+    headers: { 'Content-Type': 'application/json' }
+  }).catch(() => {});
 }
 
 // Batch Actions: Pack All (true) or Unload All (false)
@@ -433,7 +420,6 @@ async function batchCheckAll(checkValue) {
   renderInventory();
   updatePackingProgress();
 
-  // 1. Batch upsert to Supabase PostgreSQL
   if (supabaseClient) {
     try {
       const upsertRows = [];
@@ -446,20 +432,15 @@ async function batchCheckAll(checkValue) {
           });
         });
       });
-      await supabaseClient
-        .from('inventory_checklist')
-        .upsert(upsertRows);
-    } catch (e) {
-      console.warn("Supabase batch update note:", e);
-    }
+      await supabaseClient.from('inventory_checklist').upsert(upsertRows);
+    } catch (e) {}
   }
 
-  // 2. Broadcast auxiliary batch payload
-  broadcastCloudEvent({
-    type: 'batch',
-    val: checkValue,
-    ts: Date.now()
-  });
+  fetch(CLOUD_RELAY_PUB, {
+    method: 'POST',
+    body: JSON.stringify({ type: 'batch', val: checkValue, ts: Date.now() }),
+    headers: { 'Content-Type': 'application/json' }
+  }).catch(() => {});
 }
 
 // Toggle "Only Unpacked" Filter
@@ -469,19 +450,17 @@ function toggleOnlyUnpackedFilter(btnElement) {
     btnElement.classList.toggle('active', onlyUnpackedFilter);
     btnElement.innerHTML = onlyUnpackedFilter 
       ? `<span>⚠️ Menampilkan Hanya Belum Kembali</span>` 
-      : `<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg><span>Tampilkan Hanya Belum Kembali</span>`;
+      : `<span>Tampilkan Hanya Belum Kembali</span>`;
   }
   renderInventory();
 }
 
-// Update Packing Progress Bar and Badges
+// Update Packing Progress
 function updatePackingProgress() {
   let packedCount = 0;
   INVENTORY_DATA.forEach(group => {
     group.items.forEach(it => {
-      if (checklistState[it.id] === true) {
-        packedCount++;
-      }
+      if (checklistState[it.id] === true) packedCount++;
     });
   });
 
@@ -491,119 +470,46 @@ function updatePackingProgress() {
   const packedBadge = document.getElementById('packedCountBadge');
   const unpackedBadge = document.getElementById('unpackedCountBadge');
 
-  if (counterText) {
-    counterText.textContent = `${packedCount} / ${TOTAL_ITEMS_COUNT} Barang Terpacking (${percentage}%)`;
-  }
-  if (progressFill) {
-    progressFill.style.width = `${percentage}%`;
-  }
-  if (packedBadge) {
-    packedBadge.textContent = `${packedCount} Packed ✅`;
-  }
+  if (counterText) counterText.textContent = `${packedCount} / ${TOTAL_ITEMS_COUNT} Barang Terpacking (${percentage}%)`;
+  if (progressFill) progressFill.style.width = `${percentage}%`;
+  if (packedBadge) packedBadge.textContent = `${packedCount} Packed ✅`;
   if (unpackedBadge) {
     const remaining = TOTAL_ITEMS_COUNT - packedCount;
     unpackedBadge.textContent = `${remaining} Belum Kembali ⚠️`;
   }
 }
 
-// Live Digital Clock
-function initLiveClock() {
-  const clockEl = document.getElementById('liveClock');
-  if (!clockEl) return;
-
-  function update() {
-    const now = new Date();
-    const hrs = String(now.getHours()).padStart(2, '0');
-    const mins = String(now.getMinutes()).padStart(2, '0');
-    const secs = String(now.getSeconds()).padStart(2, '0');
-    clockEl.textContent = `${hrs}:${mins}:${secs} WIB`;
-  }
-  update();
-  setInterval(update, 1000);
-}
-
-// Copy Text Helper
-function copyText(text, btnElement) {
-  if (!navigator.clipboard) {
-    const textArea = document.createElement('textarea');
-    textArea.value = text;
-    document.body.appendChild(textArea);
-    textArea.select();
-    try { document.execCommand('copy'); } catch (err) {}
-    document.body.removeChild(textArea);
-  } else {
-    navigator.clipboard.writeText(text);
-  }
-
-  if (btnElement) {
-    const originalHTML = btnElement.innerHTML;
-    btnElement.innerHTML = `<span>Tersalin! ✅</span>`;
-    btnElement.style.borderColor = 'var(--neon-emerald)';
-    btnElement.style.color = 'var(--neon-emerald)';
-    setTimeout(() => {
-      btnElement.innerHTML = originalHTML;
-      btnElement.style.borderColor = '';
-      btnElement.style.color = '';
-    }, 2000);
-  }
-}
-
-// Camera Tab Switcher
-function switchCameraTab(tabName) {
-  document.getElementById('tabBtnBroadcast').classList.toggle('active', tabName === 'broadcast');
-  document.getElementById('tabBtnDoc').classList.toggle('active', tabName === 'documentation');
-  
-  document.getElementById('tabBroadcast').classList.toggle('active', tabName === 'broadcast');
-  document.getElementById('tabDoc').classList.toggle('active', tabName === 'documentation');
-}
-
-// Routing Tab Switcher
-function switchRoutingTab(tabName) {
-  const tabs = ['video', 'audio', 'timekeeper', 'electric'];
-  tabs.forEach(t => {
-    const btn = document.getElementById(`tabBtn${t.charAt(0).toUpperCase() + t.slice(1)}`);
-    const panel = document.getElementById(`tab${t.charAt(0).toUpperCase() + t.slice(1)}`);
-    if (btn) btn.classList.toggle('active', t === tabName);
-    if (panel) panel.classList.toggle('active', t === tabName);
-  });
-}
-
-// Status filter
+// Filter Status
 function setFilterStatus(status, element) {
   currentStatusFilter = status;
-  const chips = document.querySelectorAll('.status-chips-bar .status-chip');
+  const chips = document.querySelectorAll('.status-chips-wrap .chip-btn');
   chips.forEach(c => c.classList.remove('active'));
   if (element) element.classList.add('active');
   renderInventory();
 }
 
-// Lender filter
+// Filter Lender
 function setLenderFilter(lender, element) {
   currentLenderFilter = lender;
-  const pills = document.querySelectorAll('.lender-chips-wrap .lender-pill');
+  const pills = document.querySelectorAll('.lender-pills-list .pill-btn');
   pills.forEach(p => p.classList.remove('active'));
   if (element) element.classList.add('active');
   renderInventory();
 }
 
-// Live Search Filter (Debounced for Instant 144Hz Responsiveness)
+// Search Filter (Debounced)
 let searchDebounceTimer = null;
 function filterInventory() {
   clearTimeout(searchDebounceTimer);
   searchDebounceTimer = setTimeout(() => {
     const input = document.getElementById('inventorySearch');
     const clearBtn = document.getElementById('clearSearchBtn');
-    if (input) {
-      currentSearchQuery = input.value.toLowerCase().trim();
-    }
-    if (clearBtn) {
-      clearBtn.style.display = currentSearchQuery ? 'block' : 'none';
-    }
+    if (input) currentSearchQuery = input.value.toLowerCase().trim();
+    if (clearBtn) clearBtn.style.display = currentSearchQuery ? 'block' : 'none';
     renderInventory();
   }, 35);
 }
 
-// Clear Search
 function clearSearch() {
   const input = document.getElementById('inventorySearch');
   const clearBtn = document.getElementById('clearSearchBtn');
@@ -613,7 +519,7 @@ function clearSearch() {
   renderInventory();
 }
 
-// Render Inventory Catalog Cards with Live Checkboxes (Single-Pass String Injection)
+// Render Inventory Catalog Cards
 function renderInventory() {
   const container = document.getElementById('inventoryGrid');
   const countBadge = document.getElementById('invCountBadge');
@@ -631,13 +537,8 @@ function renderInventory() {
     const matchedItems = [];
     for (let j = 0; j < group.items.length; j++) {
       const item = group.items[j];
-
-      if (onlyUnpackedFilter && checklistState[item.id] === true) {
-        continue;
-      }
-      if (currentStatusFilter !== 'all' && item.status !== currentStatusFilter) {
-        continue;
-      }
+      if (onlyUnpackedFilter && checklistState[item.id] === true) continue;
+      if (currentStatusFilter !== 'all' && item.status !== currentStatusFilter) continue;
       if (currentSearchQuery) {
         const q = currentSearchQuery;
         if (!item.name.toLowerCase().includes(q) && !group.lender.toLowerCase().includes(q) && !item.qty.toLowerCase().includes(q)) {
@@ -649,81 +550,97 @@ function renderInventory() {
 
     if (matchedItems.length > 0) {
       matchCount += matchedItems.length;
-
       let itemsHtml = '';
+
       for (let k = 0; k < matchedItems.length; k++) {
         const it = matchedItems[k];
         const isPacked = checklistState[it.id] === true;
-        const badgeClass = it.status === 'active' ? 'badge-success' : (it.status === 'partial' ? 'badge-warning' : 'badge-standby');
-        
+        const pillClass = it.status === 'active' ? 'pill-success' : (it.status === 'partial' ? 'pill-warning' : 'pill-tech');
+
         itemsHtml += `
-          <li class="inv-item-row ${isPacked ? 'is-packed' : ''}" id="row_${it.id}">
-            <label class="custom-chk-label" for="chk_${it.id}">
-              <input type="checkbox" id="chk_${it.id}" class="custom-chk-input" ${isPacked ? 'checked' : ''} onchange="toggleItemCheck('${it.id}', this.checked)">
-              <span class="custom-chk-box">
+          <li id="row_${it.id}" class="item-row ${isPacked ? 'is-packed' : ''}">
+            <label class="checkbox-label" for="chk_${it.id}">
+              <input type="checkbox" id="chk_${it.id}" class="checkbox-input" ${isPacked ? 'checked' : ''} onchange="toggleItemCheck('${it.id}', this.checked)">
+              <div class="checkbox-visual">
                 <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
-              </span>
-              <span class="item-name-text">${it.name} <strong style="color:var(--text-dim);font-weight:normal;">(${it.qty})</strong></span>
+              </div>
+              <span class="item-label-text">${it.name}</span>
             </label>
-            <span class="badge ${badgeClass}">${it.symbol}</span>
+            <div class="item-right-meta">
+              <span class="qty-badge">${it.qty}</span>
+              <span class="pill ${pillClass}">${it.symbol}</span>
+            </div>
           </li>
         `;
       }
 
       html += `
-        <div class="inv-group-card">
-          <div class="inv-group-header">
-            <span>${group.lender}</span>
-            <span class="badge badge-tech font-mono">${matchedItems.length} Item</span>
+        <div class="lender-card">
+          <div class="lender-card-head">
+            <span class="lender-name">${group.lender}</span>
+            <span class="lender-count-badge">${matchedItems.length} Item</span>
           </div>
-          <ul class="inv-item-list">${itemsHtml}</ul>
+          <ul class="items-list">
+            ${itemsHtml}
+          </ul>
         </div>
       `;
     }
   }
 
-  if (matchCount === 0) {
-    container.innerHTML = `
-      <div class="callout-banner" style="grid-column: 1 / -1; justify-content: center; text-align: center; padding: 32px;">
+  if (html === '') {
+    html = `
+      <div class="callout-card" style="grid-column: 1 / -1; justify-content: center; text-align: center; padding: 30px;">
         <div>
-          <strong style="color:#fff; font-size:15px;">Semua Barang Selesai Di-Packing / Tidak Ada Hasil</strong>
-          <p class="text-muted mt-1">Tidak ada item inventaris yang cocok dengan filter atau kata kunci saat ini.</p>
-          <button class="btn-copy-rig mt-3" style="padding: 7px 14px;" onclick="clearSearch(); onlyUnpackedFilter = false; setFilterStatus('all', document.querySelector('.status-chip')); setLenderFilter('ALL', document.querySelector('.lender-pill'));">Reset Semua Filter</button>
+          <strong class="text-white" style="font-size: 15px;">Tidak Ada Barang yang Cocok</strong>
+          <p class="text-dim mt-1">Semua barang telah selesai dipacking atau tidak ada hasil untuk filter saat ini.</p>
+          <button class="btn btn-secondary mt-3" onclick="clearSearch(); onlyUnpackedFilter = false; setFilterStatus('all', document.querySelector('.chip-btn')); setLenderFilter('ALL', document.querySelector('.pill-btn'));">Reset Semua Filter</button>
         </div>
       </div>
     `;
-  } else {
-    container.innerHTML = html;
   }
 
-  if (countBadge) {
-    countBadge.textContent = `Menampilkan ${matchCount} dari ${TOTAL_ITEMS_COUNT} Barang`;
-  }
+  container.innerHTML = html;
+  if (countBadge) countBadge.textContent = `Menampilkan ${matchCount} dari ${TOTAL_ITEMS_COUNT} Barang`;
 }
 
-// Ultra-Fast IntersectionObserver Scroll Spy (0ms main-thread scroll overhead)
-function initNavScroll() {
-  const sections = document.querySelectorAll('.content-section');
-  const desktopLinks = document.querySelectorAll('.desktop-nav-tabs .tab-link');
-  const dockLinks = document.querySelectorAll('.mobile-dock-bottom .dock-btn');
+// Live Digital Clock
+function initLiveClock() {
+  const clockEl = document.getElementById('liveClock');
+  if (!clockEl) return;
+  function update() {
+    const now = new Date();
+    const hrs = String(now.getHours()).padStart(2, '0');
+    const mins = String(now.getMinutes()).padStart(2, '0');
+    const secs = String(now.getSeconds()).padStart(2, '0');
+    clockEl.textContent = `${hrs}:${mins}:${secs} WIB`;
+  }
+  update();
+  setInterval(update, 1000);
+}
 
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        const id = entry.target.getAttribute('id');
-        if (id) {
-          desktopLinks.forEach(link => {
-            link.classList.toggle('active', link.getAttribute('href') === `#${id}`);
-          });
-          dockLinks.forEach(link => {
-            link.classList.toggle('active', link.getAttribute('href') === `#${id}`);
-          });
-        }
-      }
-    });
-  }, {
-    rootMargin: '-20% 0px -70% 0px'
-  });
+// Copy Text Helper
+function copyText(text, btnElement) {
+  if (navigator.clipboard) {
+    navigator.clipboard.writeText(text);
+  } else {
+    const textArea = document.createElement('textarea');
+    textArea.value = text;
+    document.body.appendChild(textArea);
+    textArea.select();
+    try { document.execCommand('copy'); } catch (err) {}
+    document.body.removeChild(textArea);
+  }
 
-  sections.forEach(section => observer.observe(section));
+  if (btnElement) {
+    const originalText = btnElement.textContent;
+    btnElement.textContent = "Tersalin! ✅";
+    btnElement.style.color = "var(--emerald)";
+    btnElement.style.borderColor = "var(--emerald)";
+    setTimeout(() => {
+      btnElement.textContent = originalText;
+      btnElement.style.color = "";
+      btnElement.style.borderColor = "";
+    }, 2000);
+  }
 }
