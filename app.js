@@ -142,6 +142,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // Augment Inventory Tables with Checklist Columns
+  // Augment Inventory Tables with Checklist Columns
   const vendorBlocks = document.querySelectorAll('.vendor-block');
   vendorBlocks.forEach((block) => {
     const vendor = block.getAttribute('data-vendor') || 'Unknown';
@@ -154,11 +155,11 @@ document.addEventListener('DOMContentLoaded', () => {
       const thCols = headerRow.children;
       const thLoading = document.createElement('th');
       thLoading.className = 'th-sync';
-      thLoading.innerHTML = '📦 Loading In';
+      thLoading.innerHTML = '📦 Pasang';
 
       const thPacking = document.createElement('th');
       thPacking.className = 'th-sync';
-      thPacking.innerHTML = '🧳 Packing Out';
+      thPacking.innerHTML = '🧳 Kemas';
 
       if (thCols.length >= 4) {
         headerRow.insertBefore(thLoading, thCols[3]);
@@ -179,15 +180,7 @@ document.addEventListener('DOMContentLoaded', () => {
       row.setAttribute('data-vendor-name', vendor);
       row.setAttribute('data-item-title', itemName);
 
-      // Load cached local state
-      const localCached = localStorage.getItem(`ip26_inv_${itemId}`);
-      if (localCached) {
-        try {
-          inventoryState[itemId] = JSON.parse(localCached);
-        } catch (e) {
-          inventoryState[itemId] = { loaded: false, packed: false };
-        }
-      } else {
+      if (!inventoryState[itemId]) {
         inventoryState[itemId] = { loaded: false, packed: false };
       }
 
@@ -197,18 +190,16 @@ document.addEventListener('DOMContentLoaded', () => {
       const tdLoading = document.createElement('td');
       tdLoading.className = 'sync-td';
       tdLoading.innerHTML = `
-        <button type="button" class="check-toggle-btn btn-loading" data-item="${itemId}" data-type="loading" aria-label="Tandai status loading ${itemName}">
-          <span class="check-label">📦 Belum</span>
-          <span class="check-meta-tag">-</span>
+        <button type="button" class="inv-checkbox-btn check-loading" data-item="${itemId}" data-type="loading" role="checkbox" aria-checked="false" aria-label="Tandai pasang ${itemName}" title="Tandai Pasang">
+          <svg class="check-svg" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg>
         </button>
       `;
 
       const tdPacking = document.createElement('td');
       tdPacking.className = 'sync-td';
       tdPacking.innerHTML = `
-        <button type="button" class="check-toggle-btn btn-packing" data-item="${itemId}" data-type="packing" aria-label="Tandai status packing ${itemName}">
-          <span class="check-label">🧳 Belum</span>
-          <span class="check-meta-tag">-</span>
+        <button type="button" class="inv-checkbox-btn check-packing" data-item="${itemId}" data-type="packing" role="checkbox" aria-checked="false" aria-label="Tandai kemas ${itemName}" title="Tandai Kemas">
+          <svg class="check-svg" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg>
         </button>
       `;
 
@@ -222,8 +213,8 @@ document.addEventListener('DOMContentLoaded', () => {
       }
 
       // Attach Click Listeners
-      const loadBtn = tdLoading.querySelector('.btn-loading');
-      const packBtn = tdPacking.querySelector('.btn-packing');
+      const loadBtn = tdLoading.querySelector('.check-loading');
+      const packBtn = tdPacking.querySelector('.check-packing');
 
       loadBtn.addEventListener('click', (e) => {
         e.stopPropagation();
@@ -235,51 +226,41 @@ document.addEventListener('DOMContentLoaded', () => {
         toggleItemCheck(itemId, 'packing', vendor, itemName);
       });
 
-      // Render initial button state
+      // Render initial state
       renderRowUI(itemId, inventoryState[itemId]);
     });
   });
 
-  // Render Row Buttons UI
+  // Render Row Checkboxes UI
   function renderRowUI(itemId, state, isRemote = false, remoteName = '') {
     if (!state) return;
     const row = document.querySelector(`tr[data-item-id="${itemId}"]`);
     if (!row) return;
 
-    const loadBtn = row.querySelector('.btn-loading');
-    const packBtn = row.querySelector('.btn-packing');
+    const loadBtn = row.querySelector('.check-loading');
+    const packBtn = row.querySelector('.check-packing');
 
     if (loadBtn) {
-      const label = loadBtn.querySelector('.check-label');
-      const meta = loadBtn.querySelector('.check-meta-tag');
-      if (state.loaded) {
-        loadBtn.classList.add('active-loading');
-        if (label) label.textContent = '📦 Siap';
-        if (meta) {
-          const time = state.loaded_at ? new Date(state.loaded_at).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }) : '';
-          meta.textContent = `${state.loaded_by || 'Crew'} ${time}`.trim();
-        }
+      const isLoaded = Boolean(state.loaded);
+      loadBtn.classList.toggle('checked', isLoaded);
+      loadBtn.setAttribute('aria-checked', isLoaded ? 'true' : 'false');
+      if (isLoaded) {
+        const time = state.loaded_at ? new Date(state.loaded_at).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }) : '';
+        loadBtn.title = `Dipasang oleh: ${state.loaded_by || 'Crew'} (${time})`;
       } else {
-        loadBtn.classList.remove('active-loading');
-        if (label) label.textContent = '📦 Belum';
-        if (meta) meta.textContent = '-';
+        loadBtn.title = 'Tandai Pasang';
       }
     }
 
     if (packBtn) {
-      const label = packBtn.querySelector('.check-label');
-      const meta = packBtn.querySelector('.check-meta-tag');
-      if (state.packed) {
-        packBtn.classList.add('active-packing');
-        if (label) label.textContent = '🧳 Kemas';
-        if (meta) {
-          const time = state.packed_at ? new Date(state.packed_at).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }) : '';
-          meta.textContent = `${state.packed_by || 'Crew'} ${time}`.trim();
-        }
+      const isPacked = Boolean(state.packed);
+      packBtn.classList.toggle('checked', isPacked);
+      packBtn.setAttribute('aria-checked', isPacked ? 'true' : 'false');
+      if (isPacked) {
+        const time = state.packed_at ? new Date(state.packed_at).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }) : '';
+        packBtn.title = `Dikemas oleh: ${state.packed_by || 'Crew'} (${time})`;
       } else {
-        packBtn.classList.remove('active-packing');
-        if (label) label.textContent = '🧳 Belum';
-        if (meta) meta.textContent = '-';
+        packBtn.title = 'Tandai Kemas';
       }
     }
 
@@ -287,7 +268,7 @@ document.addEventListener('DOMContentLoaded', () => {
       row.classList.remove('remote-updated');
       void row.offsetWidth; // trigger reflow
       row.classList.add('remote-updated');
-      setTimeout(() => { row.classList.remove('remote-updated'); }, 1400);
+      setTimeout(() => { row.classList.remove('remote-updated'); }, 1200);
 
       const title = row.getAttribute('data-item-title') || 'Barang';
       showToast('Sinkronisasi Masuk', `${remoteName || 'Rekan kru'} memperbarui: ${title}`, 'info');
@@ -316,7 +297,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   updateProgressMeters();
 
-  // Toggle Item Check
+  // Toggle Item Check (100% Supabase Cloud Driven)
   async function toggleItemCheck(itemId, type, vendor, itemName) {
     const currentState = inventoryState[itemId] || { loaded: false, packed: false };
     const by = getEffectiveCrewName();
@@ -333,16 +314,15 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     inventoryState[itemId] = currentState;
-    localStorage.setItem(`ip26_inv_${itemId}`, JSON.stringify(currentState));
 
     // Optimistic UI update
     renderRowUI(itemId, currentState, false);
     updateProgressMeters();
     filterInventory(); // re-filter if status filter is active
 
-    // Push to Supabase if connected
+    // Direct Push to Supabase Cloud
     if (supabaseClient) {
-      setSyncStatus('syncing', '🔵 Menyinkronkan ke Cloud...');
+      setSyncStatus('syncing', '🔵 Menyinkronkan ke Supabase Cloud...');
       try {
         const { error } = await supabaseClient
           .from('inventory_items')
@@ -361,13 +341,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
         if (error) {
           console.warn('Supabase upsert warning:', error.message);
-          setSyncStatus('connected', '🟢 Terhubung Cloud (Live)');
-        } else {
-          setSyncStatus('connected', '🟢 Terhubung Cloud (Live)');
         }
+        setSyncStatus('connected', '🟢 Terhubung Supabase Cloud (Live Multi-Device)');
       } catch (err) {
         console.error('Supabase sync error:', err);
-        setSyncStatus('connected', '🟢 Terhubung Cloud (Live)');
+        setSyncStatus('connected', '🟢 Terhubung Supabase Cloud (Live Multi-Device)');
       }
     }
   }
@@ -445,17 +423,16 @@ document.addEventListener('DOMContentLoaded', () => {
                   packed_by: row.packed_by || '',
                   packed_at: row.packed_at
                 };
-                localStorage.setItem(`ip26_inv_${row.item_id}`, JSON.stringify(inventoryState[row.item_id]));
                 renderRowUI(row.item_id, inventoryState[row.item_id]);
               }
             });
             updateProgressMeters();
             filterInventory();
           }
-          setSyncStatus('connected', '🟢 Terhubung Cloud (Realtime Multi-HP)');
+          setSyncStatus('connected', '🟢 Terhubung Supabase Cloud (Live Multi-Device)');
         })
         .catch(() => {
-          setSyncStatus('connected', '🟢 Terhubung Cloud (Realtime Multi-HP)');
+          setSyncStatus('connected', '🟢 Terhubung Supabase Cloud (Live Multi-Device)');
         });
 
       // 2. Subscribe to Realtime PostgreSQL CDC Changes
@@ -480,7 +457,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 packed_at: row.packed_at
               };
               inventoryState[row.item_id] = updatedState;
-              localStorage.setItem(`ip26_inv_${row.item_id}`, JSON.stringify(updatedState));
               renderRowUI(row.item_id, updatedState, true, row.loaded_by || row.packed_by);
               updateProgressMeters();
               filterInventory();
@@ -489,9 +465,9 @@ document.addEventListener('DOMContentLoaded', () => {
         )
         .subscribe((status) => {
           if (status === 'SUBSCRIBED') {
-            setSyncStatus('connected', '🟢 Terhubung Cloud (Realtime Multi-HP)');
+            setSyncStatus('connected', '🟢 Terhubung Supabase Cloud (Live Multi-Device)');
           } else if (status === 'CHANNEL_ERROR' || status === 'TIMED_OUT') {
-            setSyncStatus('offline', '🟡 Gangguan Koneksi (Mode Offline Lokal)');
+            setSyncStatus('offline', '🟡 Menunggu Koneksi Internet...');
           }
         });
 
