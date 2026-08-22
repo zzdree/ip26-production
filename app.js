@@ -1,393 +1,466 @@
 /**
- * IP26 BROADCAST COMMAND SUITE — MINIMALIST STUDIO RUNTIME & REALTIME SUPABASE ENGINE
- * Clean, Zero-Lag, 144Hz Architecture with Supabase Realtime Synchronization
+ * ==========================================================================
+ * IP26 ATEM PRO BROADCAST COMMAND SUITE — MASTER ENGINE RUNTIME (v10.0)
+ * Dual-Engine Theme System • Supabase PostgreSQL Realtime Sync • 119 Items
+ * ==========================================================================
  */
 
-// Master Inventory Dataset (119 Items across 13 Lenders)
-const INVENTORY_DATA = [
-  {
-    lender: "OWL",
-    items: [
-      { id: "owl_1", name: "Sony A6000", qty: "2 Unit", status: "active", symbol: "✅" },
-      { id: "owl_2", name: "Sony A6400", qty: "1 Unit", status: "active", symbol: "✅" },
-      { id: "owl_3", name: "Sony ZV-E10", qty: "1 Unit", status: "active", symbol: "✅" },
-      { id: "owl_4", name: "Lens 18-105MM", qty: "3 Unit", status: "active", symbol: "✅" },
-      { id: "owl_5", name: "Lens 50MM", qty: "1 Unit", status: "active", symbol: "✅" },
-      { id: "owl_6", name: "Battery", qty: "8 Unit", status: "active", symbol: "✅" },
-      { id: "owl_7", name: "Charger", qty: "1 Pack", status: "active", symbol: "✅" },
-      { id: "owl_8", name: "Memory Card 32GB", qty: "4 Unit", status: "active", symbol: "✅" },
-      { id: "owl_9", name: "Cinetreak Cinelive V1", qty: "1 Pack", status: "active", symbol: "✅" },
-      { id: "owl_10", name: "Power Adaptor MIX", qty: "1 Unit", status: "active", symbol: "✅" },
-      { id: "owl_11", name: "Hollyland Pyro H", qty: "1 Pack", status: "active", symbol: "✅" },
-      { id: "owl_12", name: "Hollyland Pyro S", qty: "1 Pack", status: "active", symbol: "✅" },
-      { id: "owl_13", name: "Battery WIR", qty: "4 Unit", status: "active", symbol: "✅" },
-      { id: "owl_14", name: "Tripod Camera Big", qty: "1 Unit", status: "active", symbol: "✅" },
-      { id: "owl_15", name: "HDMI to Micro HDMI Converter", qty: "2 Unit", status: "active", symbol: "✅" },
-      { id: "owl_16", name: "HDMI to Micro HDMI Cable 30CM", qty: "2 Unit", status: "active", symbol: "✅" },
-      { id: "owl_17", name: "HDMI Capture", qty: "2 Unit", status: "active", symbol: "✅" }
-    ]
-  },
-  {
-    lender: "ABON",
-    items: [
-      { id: "abon_1", name: "HDMI Capture", qty: "2 Unit", status: "partial", symbol: "⚠️ 1/2" }
-    ]
-  },
-  {
-    lender: "Andreas",
-    items: [
-      { id: "andreas_1", name: "Fan Cooler", qty: "1 Unit", status: "standby", symbol: "☑️" },
-      { id: "andreas_2", name: "Mouse Pad", qty: "1 Unit", status: "standby", symbol: "☑️" },
-      { id: "andreas_3", name: "Keyboard Ext", qty: "1 Unit", status: "standby", symbol: "☑️" },
-      { id: "andreas_4", name: "Mouse Ext", qty: "1 Unit", status: "standby", symbol: "☑️" },
-      { id: "andreas_5", name: "Powerbank", qty: "1 Unit", status: "standby", symbol: "☑️" },
-      { id: "andreas_6", name: "Power Adaptor USB A", qty: "9 Unit", status: "standby", symbol: "☑️" },
-      { id: "andreas_7", name: "Power Adaptor USB A x C", qty: "1 Unit", status: "standby", symbol: "☑️" },
-      { id: "andreas_8", name: "Power Adaptor USB C", qty: "1 Unit", status: "standby", symbol: "☑️" },
-      { id: "andreas_9", name: "USB A to USB B Data Cable", qty: "1 Unit", status: "standby", symbol: "☑️" },
-      { id: "andreas_10", name: "USB A to USB Micro B Data Cable", qty: "2 Unit", status: "standby", symbol: "☑️" },
-      { id: "andreas_11", name: "USB A to USB C Data Cable", qty: "1 Unit", status: "active", symbol: "✅" },
-      { id: "andreas_12", name: "USB A to USB C Charge Cable", qty: "1 Unit", status: "standby", symbol: "☑️" },
-      { id: "andreas_13", name: "USB C to USB C Charge Cable", qty: "1 Unit", status: "standby", symbol: "☑️" },
-      { id: "andreas_14", name: "USB A to USB A Extender 30CM", qty: "2 Unit", status: "standby", symbol: "☑️" },
-      { id: "andreas_15", name: "USB A to USB A Extender 2M", qty: "1 Unit", status: "active", symbol: "✅" },
-      { id: "andreas_16", name: "USB A to USB C Male Converter", qty: "4 Unit", status: "standby", symbol: "☑️" },
-      { id: "andreas_17", name: "USB A to USB C Female Converter", qty: "2 Unit", status: "standby", symbol: "☑️" },
-      { id: "andreas_18", name: "USB A to Mini USB Cable", qty: "1 Unit", status: "standby", symbol: "☑️" },
-      { id: "andreas_19", name: "USB A Splitter 3CH", qty: "1 Unit", status: "standby", symbol: "☑️" },
-      { id: "andreas_20", name: "USB A Splitter 4CH", qty: "1 Unit", status: "standby", symbol: "☑️" },
-      { id: "andreas_21", name: "USB C DAC Hanason AB17X", qty: "1 Unit", status: "active", symbol: "✅" },
-      { id: "andreas_22", name: "USB C DAC Oraimo OAA310", qty: "1 Unit", status: "standby", symbol: "☑️" },
-      { id: "andreas_23", name: "In Ear Monitor QKZ Hi7T", qty: "1 Pack", status: "standby", symbol: "☑️" },
-      { id: "andreas_24", name: "In Ear Monitor KZ EDX Pro", qty: "1 Pack", status: "standby", symbol: "☑️" },
-      { id: "andreas_25", name: "Fastdrive Vgen SSD 128GB", qty: "1 Pack", status: "standby", symbol: "☑️" },
-      { id: "andreas_26", name: "Fastdrive Toshiba HDD 1TB", qty: "1 Pack", status: "standby", symbol: "☑️" },
-      { id: "andreas_27", name: "Flashdrive Toshiba 8GB", qty: "1 Unit", status: "standby", symbol: "☑️" },
-      { id: "andreas_28", name: "Flashdrive Sandisk 16GB", qty: "1 Unit", status: "standby", symbol: "☑️" },
-      { id: "andreas_29", name: "Flashdrive Toshiba 32GB", qty: "1 Unit", status: "standby", symbol: "☑️" },
-      { id: "andreas_30", name: "Flashdrive Toshiba 64GB", qty: "1 Unit", status: "standby", symbol: "☑️" },
-      { id: "andreas_31", name: "HDMI to Mini HDMI Converter", qty: "1 Unit", status: "standby", symbol: "☑️" },
-      { id: "andreas_32", name: "Mini HDMI to Mini HDMI Cable 1,5M", qty: "1 Unit", status: "standby", symbol: "☑️" },
-      { id: "andreas_33", name: "HDMI to HDMI Cable 1,5M", qty: "3 Unit", status: "active", symbol: "✅" },
-      { id: "andreas_34", name: "VGA to HDMI Converter", qty: "3 Unit", status: "standby", symbol: "☑️" },
-      { id: "andreas_35", name: "VGA to VGA Cable 1,5M", qty: "1 Unit", status: "standby", symbol: "☑️" },
-      { id: "andreas_36", name: "Power Cable 3PIN", qty: "3 Unit", status: "partial", symbol: "⚠️" },
-      { id: "andreas_37", name: "Power Cable 2PIN", qty: "1 Unit", status: "partial", symbol: "⚠️" },
-      { id: "andreas_38", name: "Terminal Cable 4CH", qty: "3 Unit", status: "partial", symbol: "⚠️" },
-      { id: "andreas_39", name: "Terminal Cable 3CH", qty: "2 Unit", status: "partial", symbol: "⚠️" },
-      { id: "andreas_40", name: "Terminal Cable 2CH", qty: "1 Unit", status: "partial", symbol: "⚠️" },
-      { id: "andreas_41", name: "Terminal Cable XCH", qty: "X Unit", status: "active", symbol: "✅" },
-      { id: "andreas_42", name: "Terminal T", qty: "8 Unit", status: "partial", symbol: "⚠️" },
-      { id: "andreas_43", name: "Addon Box", qty: "1 Pack", status: "standby", symbol: "☑️" },
-      { id: "andreas_44", name: "Jack Box", qty: "1 Pack", status: "standby", symbol: "☑️" },
-      { id: "andreas_45", name: "Screw Box", qty: "1 Pack", status: "standby", symbol: "☑️" },
-      { id: "andreas_46", name: "Ties Box", qty: "1 Pack", status: "standby", symbol: "☑️" },
-      { id: "andreas_47", name: "Tool Box", qty: "2 Pack", status: "standby", symbol: "☑️" },
-      { id: "andreas_48", name: "Cable", qty: "1 Pack", status: "standby", symbol: "☑️" },
-      { id: "andreas_49", name: "Tape", qty: "1 Pack", status: "standby", symbol: "☑️" }
-    ]
-  },
-  {
-    lender: "GIA Deliksari",
-    items: [
-      { id: "gia_1", name: "Mixer NewBaxs CT80S", qty: "1 Unit", status: "active", symbol: "✅" },
-      { id: "gia_2", name: "XLR Female to Male Cable 3M", qty: "2 Unit", status: "active", symbol: "✅" },
-      { id: "gia_3", name: "USB A to USB C Data Cable", qty: "1 Unit", status: "active", symbol: "✅" },
-      { id: "gia_4", name: "Tripod Camera Big", qty: "1 Unit", status: "active", symbol: "✅" },
-      { id: "gia_5", name: "HDMI Splitter 2CH", qty: "1 Unit", status: "standby", symbol: "☑️" },
-      { id: "gia_6", name: "Power Adaptor SPL", qty: "1 Pack", status: "standby", symbol: "☑️" },
-      { id: "gia_7", name: "HDMI to HDMI Cable 1M", qty: "2 Unit", status: "active", symbol: "✅" }
-    ]
-  },
-  {
-    lender: "GKJ Ngaliyan",
-    items: [
-      { id: "gkj_1", name: "Stand Lighting Small", qty: "1 Unit", status: "standby", symbol: "☑️" },
-      { id: "gkj_2", name: "HDMI Cable 15M", qty: "1 Unit", status: "active", symbol: "✅" },
-      { id: "gkj_3", name: "HDMI Cable 10M", qty: "1 Unit", status: "active", symbol: "✅" },
-      { id: "gkj_4", name: "HDMI Cable 5M", qty: "1 Unit", status: "standby", symbol: "☑️" },
-      { id: "gkj_5", name: "HDMI Cable 1,5M", qty: "1 Unit", status: "standby", symbol: "☑️" },
-      { id: "gkj_6", name: "HDMI Capture", qty: "1 Unit", status: "active", symbol: "✅" },
-      { id: "gkj_7", name: "HDMI Splitter 4CH", qty: "1 Unit", status: "standby", symbol: "☑️" },
-      { id: "gkj_8", name: "Power Adaptor SPL", qty: "1 Pack", status: "standby", symbol: "☑️" }
-    ]
-  },
-  {
-    lender: "UKK UNNES",
-    items: [
-      { id: "ukk_1", name: "XLR Female to Male Cable 10M", qty: "3 Unit", status: "partial", symbol: "⚠️ 2/3" },
-      { id: "ukk_2", name: "Stand Lighting Small", qty: "4 Unit", status: "partial", symbol: "⚠️ 2/4" },
-      { id: "ukk_3", name: "Tripod Camera Big", qty: "1 Unit", status: "active", symbol: "✅" },
-      { id: "ukk_4", name: "HDMI to Mini HDMI Cable 2,5M", qty: "1 Unit", status: "standby", symbol: "☑️" },
-      { id: "ukk_5", name: "HDMI Cable 15M", qty: "1 Unit", status: "standby", symbol: "☑️" },
-      { id: "ukk_6", name: "HDMI Cable 10M", qty: "1 Unit", status: "active", symbol: "✅" },
-      { id: "ukk_7", name: "HDMI Cable 1,5M", qty: "4 Unit", status: "partial", symbol: "⚠️ 2/4" },
-      { id: "ukk_8", name: "HDMI Splitter 4CH", qty: "1 Unit", status: "active", symbol: "✅" },
-      { id: "ukk_9", name: "Power Adaptor SPL", qty: "1 Pack", status: "active", symbol: "✅" },
-      { id: "ukk_10", name: "VGA to VGA Cable 1,5M", qty: "1 Unit", status: "standby", symbol: "☑️" },
-      { id: "ukk_11", name: "VGA to VGA Cable 2,5M", qty: "1 Unit", status: "standby", symbol: "☑️" },
-      { id: "ukk_12", name: "VGA to HDMI Converter", qty: "2 Unit", status: "standby", symbol: "☑️" },
-      { id: "ukk_13", name: "Power Cable XPIN", qty: "X Unit", status: "standby", symbol: "☑️" },
-      { id: "ukk_14", name: "Terminal Cable XCH", qty: "X Unit", status: "active", symbol: "✅" }
-    ]
-  },
-  {
-    lender: "Lio",
-    items: [
-      { id: "lio_1", name: "HDMI Cable 1,5M", qty: "1 Unit", status: "active", symbol: "✅" }
-    ]
-  },
-  {
-    lender: "Darrel",
-    items: [
-      { id: "darrel_1", name: "Television", qty: "1 Unit", status: "active", symbol: "✅" },
-      { id: "darrel_2", name: "Power Adaptor TV", qty: "1 Pack", status: "active", symbol: "✅" },
-      { id: "darrel_3", name: "Memory Card 8GB", qty: "1 Unit", status: "standby", symbol: "☑️" }
-    ]
-  },
-  {
-    lender: "Kiel 1",
-    items: [
-      { id: "kiel_1", name: "Sony ZVE10", qty: "1 Unit", status: "active", symbol: "✅" },
-      { id: "kiel_2", name: "Lens 16-50MM Kit", qty: "1 Unit", status: "active", symbol: "✅" },
-      { id: "kiel_3", name: "Lens 50MM Fix", qty: "1 Unit", status: "standby", symbol: "☑️" },
-      { id: "kiel_4", name: "Battery", qty: "2 Unit", status: "active", symbol: "✅" },
-      { id: "kiel_5", name: "Charger", qty: "1 Pack", status: "active", symbol: "✅" },
-      { id: "kiel_6", name: "Memory Card 64GB", qty: "1 Unit", status: "active", symbol: "✅" },
-      { id: "kiel_7", name: "Memory Card 128GB", qty: "1 Unit", status: "standby", symbol: "☑️" }
-    ]
-  },
-  {
-    lender: "Joel",
-    items: [
-      { id: "joel_1", name: "Sony A6600", qty: "1 Unit", status: "active", symbol: "✅" },
-      { id: "joel_2", name: "Lens 24-70MM Zeiss", qty: "1 Unit", status: "active", symbol: "✅" },
-      { id: "joel_3", name: "Battery", qty: "2 Unit", status: "active", symbol: "✅" },
-      { id: "joel_4", name: "Charger", qty: "1 Pack", status: "active", symbol: "✅" },
-      { id: "joel_5", name: "Memory Card 64GB", qty: "1 Unit", status: "active", symbol: "✅" },
-      { id: "joel_6", name: "Gimbal DJI Ronin RS3", qty: "1 Unit", status: "active", symbol: "✅" }
-    ]
-  },
-  {
-    lender: "Kezia",
-    items: [
-      { id: "kezia_1", name: "Television", qty: "1 Unit", status: "active", symbol: "✅" },
-      { id: "kezia_2", name: "Power Adaptor TV", qty: "1 Pack", status: "active", symbol: "✅" }
-    ]
-  },
-  {
-    lender: "Jennifer",
-    items: [
-      { id: "jennifer_1", name: "HP Iphone 15", qty: "1 Unit", status: "active", symbol: "✅" },
-      { id: "jennifer_2", name: "TAB iPad", qty: "1 Unit", status: "active", symbol: "✅" }
-    ]
-  },
-  {
-    lender: "Panitia",
-    items: [
-      { id: "panitia_1", name: "HDMI to Micro HDMI Converter", qty: "2 Unit", status: "active", symbol: "✅" },
-      { id: "panitia_2", name: "Terminal Cable XCH", qty: "X Unit", status: "active", symbol: "✅" }
-    ]
-  }
-];
-
-const TOTAL_ITEMS_COUNT = 119;
-let checklistState = {};
-let onlyUnpackedFilter = false;
-let currentStatusFilter = 'all';
-let currentLenderFilter = 'ALL';
-let currentSearchQuery = '';
-
-// Supabase PostgreSQL Client Configuration
-const SUPABASE_URL = 'https://ssbkhhnnzwuykyeznpwd.supabase.co';
-const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InNzYmtoaG5uend1eWt5ZXpucHdkIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODc0MDQ1NzcsImV4cCI6MjEwMjk4MDU3N30.-zGe_xWDTBmo604VS39jl8o7YvhEQYb3fZvCV-fcEbk';
+// 1. SUPABASE REALTIME CONFIGURATION
+const SUPABASE_CONFIG = {
+  url: 'https://ssbkhhnnzwuykyeznpwd.supabase.co',
+  anonKey: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InNzYmtoaG5uend1eWt5ZXpucHdkIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODc0MDQ1NzcsImV4cCI6MjEwMjk4MDU3N30.-zGe_xWDTBmo604VS39jl8o7YvhEQYb3fZvCV-fcEbk'
+};
 
 let supabaseClient = null;
-if (typeof supabase !== 'undefined' && supabase.createClient) {
+if (typeof window.supabase !== 'undefined') {
   try {
-    supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
-  } catch (e) {
-    console.warn("Supabase init note:", e);
+    supabaseClient = window.supabase.createClient(SUPABASE_CONFIG.url, SUPABASE_CONFIG.anonKey);
+  } catch (err) {
+    console.warn('[Supabase] Initialisation fallback:', err);
   }
 }
 
-// Fallback Relay Channel
-const CLOUD_SYNC_TOPIC = "ip26_checklist_sync_2026";
-const CLOUD_RELAY_PUB = `https://ntfy.sh/${CLOUD_SYNC_TOPIC}`;
-const CLOUD_RELAY_SSE = `https://ntfy.sh/${CLOUD_SYNC_TOPIC}/sse`;
+// 2. MASTER INVENTORY DIRECTORY (119 ITEMS ACROSS 13 LENDERS)
+const MASTER_INVENTORY = [
+  // OWL (17 Items)
+  { id: 'owl-1', lender: 'OWL', name: 'Sony A6000', qty: '2 Unit', status: 'used', usage: 'CAM 3 & 4 (Wired)' },
+  { id: 'owl-2', lender: 'OWL', name: 'Sony A6400', qty: '1 Unit', status: 'used', usage: 'CAM PHO (Nico)' },
+  { id: 'owl-3', lender: 'OWL', name: 'Sony ZV-E10', qty: '1 Unit', status: 'used', usage: 'CAM 2 (Mobile)' },
+  { id: 'owl-4', lender: 'OWL', name: 'Lens 18-105MM', qty: '3 Unit', status: 'used', usage: 'CAM 1, 2, 3' },
+  { id: 'owl-5', lender: 'OWL', name: 'Lens 50MM Prime', qty: '1 Unit', status: 'used', usage: 'CAM PHO (Nico)' },
+  { id: 'owl-6', lender: 'OWL', name: 'Battery Camera', qty: '8 Unit', status: 'used', usage: 'Power CAM 2, 3, 4, PHO' },
+  { id: 'owl-7', lender: 'OWL', name: 'Charger Hub', qty: '1 Pack', status: 'used', usage: 'Charging Station' },
+  { id: 'owl-8', lender: 'OWL', name: 'Memory Card 32GB', qty: '4 Unit', status: 'used', usage: 'CAM 2, 3, 4, PHO' },
+  { id: 'owl-9', lender: 'OWL', name: 'Cinetreak Cinelive V1', qty: '1 Pack', status: 'used', usage: 'Master Video Switcher' },
+  { id: 'owl-10', lender: 'OWL', name: 'Power Adaptor MIX', qty: '1 Unit', status: 'used', usage: 'Power Cinetreak' },
+  { id: 'owl-11', lender: 'OWL', name: 'Hollyland Pyro H', qty: '1 Pack', status: 'used', usage: 'CAM 2 Wireless TX/RX' },
+  { id: 'owl-12', lender: 'OWL', name: 'Hollyland Pyro S', qty: '1 Pack', status: 'used', usage: 'CAM 1 Wireless TX/RX' },
+  { id: 'owl-13', lender: 'OWL', name: 'Battery WIR', qty: '4 Unit', status: 'used', usage: 'Power Pyro TX/RX' },
+  { id: 'owl-14', lender: 'OWL', name: 'Tripod Camera Big', qty: '1 Unit', status: 'used', usage: 'Mount CAM 1' },
+  { id: 'owl-15', lender: 'OWL', name: 'HDMI to Micro HDMI Converter', qty: '2 Unit', status: 'used', usage: 'Converter CAM 3 & 4' },
+  { id: 'owl-16', lender: 'OWL', name: 'HDMI to Micro HDMI Cable 30CM', qty: '2 Unit', status: 'used', usage: 'Rig CAM 1 & 2' },
+  { id: 'owl-17', lender: 'OWL', name: 'HDMI Capture Card', qty: '2 Unit', status: 'used', usage: 'ProPresenter 1 & 2 In' },
 
-let eventSource = null;
+  // ABON (1 Item)
+  { id: 'abon-1', lender: 'ABON', name: 'HDMI Capture Card', qty: '2 Unit', status: 'partial', usage: '1 Unit Active di Resolume Center' },
 
-// Initialize Application
+  // Andreas (49 Items)
+  { id: 'and-1', lender: 'Andreas', name: 'Fan Cooler', qty: '1 Unit', status: 'standby', usage: 'Cooling Workstation' },
+  { id: 'and-2', lender: 'Andreas', name: 'Mouse Pad', qty: '1 Unit', status: 'standby', usage: 'FOH Desk' },
+  { id: 'and-3', lender: 'Andreas', name: 'Keyboard Ext', qty: '1 Unit', status: 'standby', usage: 'FOH Desk' },
+  { id: 'and-4', lender: 'Andreas', name: 'Mouse Ext', qty: '1 Unit', status: 'standby', usage: 'FOH Desk' },
+  { id: 'and-5', lender: 'Andreas', name: 'Powerbank', qty: '1 Unit', status: 'standby', usage: 'Emergency Power' },
+  { id: 'and-6', lender: 'Andreas', name: 'Power Adaptor USB A', qty: '9 Unit', status: 'standby', usage: 'Peripheral Power' },
+  { id: 'and-7', lender: 'Andreas', name: 'Power Adaptor USB A x C', qty: '1 Unit', status: 'standby', usage: 'Multi-port Charger' },
+  { id: 'and-8', lender: 'Andreas', name: 'Power Adaptor USB C', qty: '1 Unit', status: 'standby', usage: 'PD Charger' },
+  { id: 'and-9', lender: 'Andreas', name: 'USB A to USB B Data Cable', qty: '1 Unit', status: 'standby', usage: 'Printer/Audio Cable' },
+  { id: 'and-10', lender: 'Andreas', name: 'USB A to USB Micro B Cable', qty: '2 Unit', status: 'standby', usage: 'Aux Power' },
+  { id: 'and-11', lender: 'Andreas', name: 'USB A to USB C Data Cable', qty: '1 Unit', status: 'used', usage: 'Cinetreak to OBS' },
+  { id: 'and-12', lender: 'Andreas', name: 'USB A to USB C Charge Cable', qty: '1 Unit', status: 'standby', usage: 'Charging' },
+  { id: 'and-13', lender: 'Andreas', name: 'USB C to USB C Charge Cable', qty: '1 Unit', status: 'standby', usage: 'Charging' },
+  { id: 'and-14', lender: 'Andreas', name: 'USB A to USB A Extender 30CM', qty: '2 Unit', status: 'standby', usage: 'Port Extender' },
+  { id: 'and-15', lender: 'Andreas', name: 'USB A to USB A Extender 2M', qty: '1 Unit', status: 'used', usage: 'CT80S to OBS Audio' },
+  { id: 'and-16', lender: 'Andreas', name: 'USB A to USB C Male Converter', qty: '4 Unit', status: 'standby', usage: 'Adaptor' },
+  { id: 'and-17', lender: 'Andreas', name: 'USB A to USB C Female Converter', qty: '2 Unit', status: 'standby', usage: 'Adaptor' },
+  { id: 'and-18', lender: 'Andreas', name: 'USB A to Mini USB Cable', qty: '1 Unit', status: 'standby', usage: 'Legacy Cable' },
+  { id: 'and-19', lender: 'Andreas', name: 'USB A Splitter 3CH', qty: '1 Unit', status: 'standby', usage: 'Hub Splitter' },
+  { id: 'and-20', lender: 'Andreas', name: 'USB A Splitter 4CH', qty: '1 Unit', status: 'standby', usage: 'Hub Splitter' },
+  { id: 'and-21', lender: 'Andreas', name: 'USB C DAC Hanason AB17X', qty: '1 Unit', status: 'used', usage: 'Resolume Arena Audio Out' },
+  { id: 'and-22', lender: 'Andreas', name: 'USB C DAC Oraimo OAA310', qty: '1 Unit', status: 'standby', usage: 'Backup DAC Audio' },
+  { id: 'and-23', lender: 'Andreas', name: 'In Ear Monitor QKZ Hi7T', qty: '1 Pack', status: 'standby', usage: 'Audio Monitoring' },
+  { id: 'and-24', lender: 'Andreas', name: 'In Ear Monitor KZ EDX Pro', qty: '1 Pack', status: 'standby', usage: 'Audio Monitoring' },
+  { id: 'and-25', lender: 'Andreas', name: 'Fastdrive Vgen SSD 128GB', qty: '1 Pack', status: 'standby', usage: 'High-speed Media' },
+  { id: 'and-26', lender: 'Andreas', name: 'Fastdrive Toshiba HDD 1TB', qty: '1 Pack', status: 'standby', usage: 'Master Backup' },
+  { id: 'and-27', lender: 'Andreas', name: 'Flashdrive Toshiba 8GB', qty: '1 Unit', status: 'standby', usage: 'PPT Transfer' },
+  { id: 'and-28', lender: 'Andreas', name: 'Flashdrive Sandisk 16GB', qty: '1 Unit', status: 'standby', usage: 'Media Transfer' },
+  { id: 'and-29', lender: 'Andreas', name: 'Flashdrive Toshiba 32GB', qty: '1 Unit', status: 'standby', usage: 'Media Transfer' },
+  { id: 'and-30', lender: 'Andreas', name: 'Flashdrive Toshiba 64GB', qty: '1 Unit', status: 'standby', usage: 'Media Transfer' },
+  { id: 'and-31', lender: 'Andreas', name: 'HDMI to Mini HDMI Converter', qty: '1 Unit', status: 'standby', usage: 'Video Converter' },
+  { id: 'and-32', lender: 'Andreas', name: 'Mini HDMI to Mini HDMI Cable 1,5M', qty: '1 Unit', status: 'standby', usage: 'Video Cable' },
+  { id: 'and-33', lender: 'Andreas', name: 'HDMI to HDMI Cable 1,5M', qty: '3 Unit', status: 'used', usage: 'Splitter to Capture' },
+  { id: 'and-34', lender: 'Andreas', name: 'VGA to HDMI Converter', qty: '3 Unit', status: 'standby', usage: 'Display Converter' },
+  { id: 'and-35', lender: 'Andreas', name: 'VGA to VGA Cable 1,5M', qty: '1 Unit', status: 'standby', usage: 'Legacy Cable' },
+  { id: 'and-36', lender: 'Andreas', name: 'Power Cable 3PIN', qty: '3 Unit', status: 'partial', usage: 'Power Extension' },
+  { id: 'and-37', lender: 'Andreas', name: 'Power Cable 2PIN', qty: '1 Unit', status: 'partial', usage: 'Power Extension' },
+  { id: 'and-38', lender: 'Andreas', name: 'Terminal Cable 4CH', qty: '3 Unit', status: 'partial', usage: 'Electrical Distribution' },
+  { id: 'and-39', lender: 'Andreas', name: 'Terminal Cable 3CH', qty: '2 Unit', status: 'partial', usage: 'Electrical Distribution' },
+  { id: 'and-40', lender: 'Andreas', name: 'Terminal Cable 2CH', qty: '1 Unit', status: 'partial', usage: 'Electrical Distribution' },
+  { id: 'and-41', lender: 'Andreas', name: 'Terminal Cable XCH', qty: 'X Unit', status: 'used', usage: 'Master Electrical Line' },
+  { id: 'and-42', lender: 'Andreas', name: 'Terminal T', qty: '8 Unit', status: 'partial', usage: 'Electrical T-Plugs' },
+  { id: 'and-43', lender: 'Andreas', name: 'Addon Box', qty: '1 Pack', status: 'standby', usage: 'Production Toolkit' },
+  { id: 'and-44', lender: 'Andreas', name: 'Jack Box', qty: '1 Pack', status: 'standby', usage: 'Audio Adapters' },
+  { id: 'and-45', lender: 'Andreas', name: 'Screw Box', qty: '1 Pack', status: 'standby', usage: 'Rigging Hardware' },
+  { id: 'and-46', lender: 'Andreas', name: 'Ties Box', qty: '1 Pack', status: 'standby', usage: 'Cable Management' },
+  { id: 'and-47', lender: 'Andreas', name: 'Tool Box', qty: '2 Pack', status: 'standby', usage: 'Maintenance Tools' },
+  { id: 'and-48', lender: 'Andreas', name: 'Cable Pack', qty: '1 Pack', status: 'standby', usage: 'Spare Cabling' },
+  { id: 'and-49', lender: 'Andreas', name: 'Tape Pack (Gaffer)', qty: '1 Pack', status: 'standby', usage: 'Stage Safety Gaffer' },
+
+  // GIA Deliksari (7 Items)
+  { id: 'gia-1', lender: 'GIA Deliksari', name: 'Mixer NewBaxs CT80S', qty: '1 Unit', status: 'used', usage: 'Mixer 2 (Streaming Sub-Mix)' },
+  { id: 'gia-2', lender: 'GIA Deliksari', name: 'XLR Female to Male Cable 3M', qty: '2 Unit', status: 'used', usage: 'Audio Routing FOH to CT80S' },
+  { id: 'gia-3', lender: 'GIA Deliksari', name: 'USB A to USB C Data Cable', qty: '1 Unit', status: 'used', usage: 'CT80S Audio Interface Out' },
+  { id: 'gia-4', lender: 'GIA Deliksari', name: 'Tripod Camera Big', qty: '1 Unit', status: 'used', usage: 'Mount CAM 3' },
+  { id: 'gia-5', lender: 'GIA Deliksari', name: 'HDMI Splitter 2CH', qty: '1 Unit', status: 'standby', usage: 'Backup Splitter 2CH' },
+  { id: 'gia-6', lender: 'GIA Deliksari', name: 'Power Adaptor SPL', qty: '1 Pack', status: 'standby', usage: 'Splitter Power' },
+  { id: 'gia-7', lender: 'GIA Deliksari', name: 'HDMI to HDMI Cable 1M', qty: '2 Unit', status: 'used', usage: 'Cinetreak to Splitter' },
+
+  // GKJ Ngaliyan (8 Items)
+  { id: 'gkj-1', lender: 'GKJ Ngaliyan', name: 'Stand Lighting Small', qty: '1 Unit', status: 'standby', usage: 'Aux Lighting' },
+  { id: 'gkj-2', lender: 'GKJ Ngaliyan', name: 'HDMI Cable 15M', qty: '1 Unit', status: 'used', usage: 'Resolume to Novastar Center' },
+  { id: 'gkj-3', lender: 'GKJ Ngaliyan', name: 'HDMI Cable 10M', qty: '1 Unit', status: 'used', usage: 'CAM 3 Wired Line' },
+  { id: 'gkj-4', lender: 'GKJ Ngaliyan', name: 'HDMI Cable 5M', qty: '1 Unit', status: 'standby', usage: 'Spare HDMI Line' },
+  { id: 'gkj-5', lender: 'GKJ Ngaliyan', name: 'HDMI Cable 1,5M', qty: '1 Unit', status: 'standby', usage: 'Patch Cable' },
+  { id: 'gkj-6', lender: 'GKJ Ngaliyan', name: 'HDMI Capture Card', qty: '1 Unit', status: 'used', usage: 'Novastar Video Capture' },
+  { id: 'gkj-7', lender: 'GKJ Ngaliyan', name: 'HDMI Splitter 4CH', qty: '1 Unit', status: 'standby', usage: 'Backup Master Splitter' },
+  { id: 'gkj-8', lender: 'GKJ Ngaliyan', name: 'Power Adaptor SPL', qty: '1 Pack', status: 'standby', usage: 'Splitter Power' },
+
+  // UKK UNNES (14 Items)
+  { id: 'ukk-1', lender: 'UKK UNNES', name: 'XLR Female to Male Cable 10M', qty: '3 Unit', status: 'partial', usage: '2 Unit Active FOH to CT80S' },
+  { id: 'ukk-2', lender: 'UKK UNNES', name: 'Stand Lighting Small', qty: '4 Unit', status: 'partial', usage: '2 Unit Active for Wireless Mount' },
+  { id: 'ukk-3', lender: 'UKK UNNES', name: 'Tripod Camera Big', qty: '1 Unit', status: 'used', usage: 'Mount CAM 4' },
+  { id: 'ukk-4', lender: 'UKK UNNES', name: 'HDMI to Mini HDMI Cable 2,5M', qty: '1 Unit', status: 'standby', usage: 'Patch Cable' },
+  { id: 'ukk-5', lender: 'UKK UNNES', name: 'HDMI Cable 15M', qty: '1 Unit', status: 'standby', usage: 'Long Run Backup' },
+  { id: 'ukk-6', lender: 'UKK UNNES', name: 'HDMI Cable 10M', qty: '1 Unit', status: 'used', usage: 'CAM 4 Wired Line' },
+  { id: 'ukk-7', lender: 'UKK UNNES', name: 'HDMI Cable 1,5M', qty: '4 Unit', status: 'partial', usage: '2 Unit Active for Wireless Rig' },
+  { id: 'ukk-8', lender: 'UKK UNNES', name: 'HDMI Splitter 4CH', qty: '1 Unit', status: 'used', usage: 'Active Video Distribution' },
+  { id: 'ukk-9', lender: 'UKK UNNES', name: 'Power Adaptor SPL', qty: '1 Pack', status: 'used', usage: 'Power HDMI Splitter' },
+  { id: 'ukk-10', lender: 'UKK UNNES', name: 'VGA to VGA Cable 1,5M', qty: '1 Unit', status: 'standby', usage: 'Legacy Cable' },
+  { id: 'ukk-11', lender: 'UKK UNNES', name: 'VGA to VGA Cable 2,5M', qty: '1 Unit', status: 'standby', usage: 'Legacy Cable' },
+  { id: 'ukk-12', lender: 'UKK UNNES', name: 'VGA to HDMI Converter', qty: '2 Unit', status: 'standby', usage: 'Display Converter' },
+  { id: 'ukk-13', lender: 'UKK UNNES', name: 'Power Cable XPIN', qty: 'X Unit', status: 'standby', usage: 'Power Extension' },
+  { id: 'ukk-14', lender: 'UKK UNNES', name: 'Terminal Cable XCH', qty: 'X Unit', status: 'used', usage: 'Electrical Distribution' },
+
+  // Lio (1 Item)
+  { id: 'lio-1', lender: 'Lio', name: 'HDMI Cable 1,5M', qty: '1 Unit', status: 'used', usage: 'Timekeeper to TV Darrel' },
+
+  // Darrel (3 Items)
+  { id: 'dar-1', lender: 'Darrel', name: 'Television (Stage Monitor)', qty: '1 Unit', status: 'used', usage: 'Timekeeper Display' },
+  { id: 'dar-2', lender: 'Darrel', name: 'Power Adaptor TV', qty: '1 Pack', status: 'used', usage: 'Power TV Darrel' },
+  { id: 'dar-3', lender: 'Darrel', name: 'Memory Card 8GB', qty: '1 Unit', status: 'standby', usage: 'Spare Storage' },
+
+  // Kiel 1 (7 Items)
+  { id: 'kiel-1', lender: 'Kiel 1', name: 'Sony ZVE10', qty: '1 Unit', status: 'used', usage: 'CAM 1 (FOH Center)' },
+  { id: 'kiel-2', lender: 'Kiel 1', name: 'Lens 16-50MM Kit', qty: '1 Unit', status: 'used', usage: 'CAM 4 (Close-Up)' },
+  { id: 'kiel-3', lender: 'Kiel 1', name: 'Lens 50MM Fix', qty: '1 Unit', status: 'standby', usage: 'Spare Prime Lens' },
+  { id: 'kiel-4', lender: 'Kiel 1', name: 'Battery Camera', qty: '2 Unit', status: 'used', usage: 'Power CAM 1' },
+  { id: 'kiel-5', lender: 'Kiel 1', name: 'Charger Hub', qty: '1 Pack', status: 'used', usage: 'Charging Station' },
+  { id: 'kiel-6', lender: 'Kiel 1', name: 'Memory Card 64GB', qty: '1 Unit', status: 'used', usage: 'CAM 1 Storage' },
+  { id: 'kiel-7', lender: 'Kiel 1', name: 'Memory Card 128GB', qty: '1 Unit', status: 'standby', usage: 'Master Backup Storage' },
+
+  // Joel (6 Items)
+  { id: 'joel-1', lender: 'Joel', name: 'Sony A6600', qty: '1 Unit', status: 'used', usage: 'CAM VID (Joel)' },
+  { id: 'joel-2', lender: 'Joel', name: 'Lens 24-70MM Zeiss', qty: '1 Unit', status: 'used', usage: 'CAM VID (Joel)' },
+  { id: 'joel-3', lender: 'Joel', name: 'Battery Camera', qty: '2 Unit', status: 'used', usage: 'Power CAM VID' },
+  { id: 'joel-4', lender: 'Joel', name: 'Charger Hub', qty: '1 Pack', status: 'used', usage: 'Charging Station' },
+  { id: 'joel-5', lender: 'Joel', name: 'Memory Card 64GB', qty: '1 Unit', status: 'used', usage: 'CAM VID Storage' },
+  { id: 'joel-6', lender: 'Joel', name: 'Gimbal DJI Ronin RS3', qty: '1 Unit', status: 'used', usage: 'Stabilizer CAM VID' },
+
+  // Kezia (2 Items)
+  { id: 'kez-1', lender: 'Kezia', name: 'Television (Multiview)', qty: '1 Unit', status: 'used', usage: 'Switcher Multiview Display' },
+  { id: 'kez-2', lender: 'Kezia', name: 'Power Adaptor TV', qty: '1 Pack', status: 'used', usage: 'Power TV Multiview' },
+
+  // Jennifer (2 Items)
+  { id: 'jen-1', lender: 'Jennifer', name: 'HP iPhone 15 Pro', qty: '1 Unit', status: 'used', usage: 'Social Media & Story' },
+  { id: 'jen-2', lender: 'Jennifer', name: 'TAB iPad', qty: '1 Unit', status: 'used', usage: 'Virtual Mixer 2 Control' },
+
+  // Panitia (2 Items)
+  { id: 'pan-1', lender: 'Panitia', name: 'HDMI to Micro HDMI Converter', qty: '2 Unit', status: 'used', usage: 'Backup Video Converters' },
+  { id: 'pan-2', lender: 'Panitia', name: 'Terminal Cable XCH', qty: 'X Unit', status: 'used', usage: 'Master Electrical Line' }
+];
+
+// Local State
+let checklistState = {};
+let activeLenderFilter = 'All';
+let activeSearchQuery = '';
+let filterUnreturnedOnly = false;
+let currentPgmChannel = 1;
+let currentPvwChannel = 2;
+
+// 3. INITIALIZATION ON DOM READY
 document.addEventListener('DOMContentLoaded', () => {
-  initLiveClock();
-  loadLocalState();
-  initCloudSync();
-  initKeepAlivePing();
+  initThemeEngine();
+  initTimers();
+  initManifestState();
+  renderLenderPills();
+  renderManifestGrid();
+  updateManifestTelemetry();
+  initSupabaseRealtime();
+  setupKeyboardShortcuts();
 });
 
-// Main Tab Navigation Switcher
-function switchMainTab(tabName) {
-  const tabs = ['inventory', 'cameras', 'routing', 'rundown'];
-  tabs.forEach(t => {
-    const btn = document.getElementById(`navBtn${t.charAt(0).toUpperCase() + t.slice(1)}`);
-    const view = document.getElementById(`view${t.charAt(0).toUpperCase() + t.slice(1)}`);
-    if (btn) btn.classList.toggle('active', t === tabName);
-    if (view) view.classList.toggle('active', t === tabName);
-  });
-  window.scrollTo({ top: 0, behavior: 'smooth' });
+// 4. DUAL-ENGINE THEME TOGGLE
+function initThemeEngine() {
+  const savedTheme = localStorage.getItem('ip26_theme') || 'dark';
+  document.documentElement.setAttribute('data-theme', savedTheme);
+  updateThemeButtonUI(savedTheme);
 }
 
-// Camera Sub Tab Switcher
-function switchCameraSubTab(subTab) {
-  document.getElementById('camSubBtnBroadcast').classList.toggle('active', subTab === 'broadcast');
-  document.getElementById('camSubBtnDoc').classList.toggle('active', subTab === 'documentation');
-  document.getElementById('camSubBroadcast').classList.toggle('active', subTab === 'broadcast');
-  document.getElementById('camSubDoc').classList.toggle('active', subTab === 'documentation');
+function toggleConsoleTheme() {
+  const current = document.documentElement.getAttribute('data-theme') || 'dark';
+  const target = current === 'dark' ? 'light' : 'dark';
+  document.documentElement.setAttribute('data-theme', target);
+  localStorage.setItem('ip26_theme', target);
+  updateThemeButtonUI(target);
 }
 
-// Routing Sub Tab Switcher
-function switchRoutingSubTab(subTab) {
-  const subTabs = ['video', 'audio', 'time', 'elec'];
-  subTabs.forEach(s => {
-    const btn = document.getElementById(`routeSubBtn${s.charAt(0).toUpperCase() + s.slice(1)}`);
-    const panel = document.getElementById(`routeSub${s.charAt(0).toUpperCase() + s.slice(1)}`);
-    if (btn) btn.classList.toggle('active', s === subTab);
-    if (panel) panel.classList.toggle('active', s === subTab);
-  });
-}
-
-// Load local cache immediately
-function loadLocalState() {
-  try {
-    const saved = localStorage.getItem('ip26_checklist_state');
-    if (saved) {
-      checklistState = JSON.parse(saved);
+function updateThemeButtonUI(theme) {
+  const icon = document.getElementById('themeIcon');
+  const label = document.getElementById('themeLabel');
+  if (icon && label) {
+    if (theme === 'dark') {
+      icon.textContent = '☀️';
+      label.textContent = 'Light';
+    } else {
+      icon.textContent = '🌙';
+      label.textContent = 'Dark';
     }
-  } catch (e) {}
-  renderInventory();
-  updatePackingProgress();
+  }
 }
 
-// Save local cache
-function saveLocalState() {
-  try {
-    localStorage.setItem('ip26_checklist_state', JSON.stringify(checklistState));
-  } catch (e) {}
+// 5. TIMERS (MASTER CLOCK & COUNTDOWN TO 17 SEPT 2026)
+function initTimers() {
+  updateMasterClock();
+  updateEventCountdown();
+  setInterval(updateMasterClock, 1000);
+  setInterval(updateEventCountdown, 1000);
 }
 
-// Initialize Supabase & Realtime Cloud Sync
-async function initCloudSync() {
-  const statusText = document.getElementById('cloudStatusText');
+function updateMasterClock() {
+  const now = new Date();
+  const options = { timeZone: 'Asia/Jakarta', hour12: false, hour: '2-digit', minute: '2-digit', second: '2-digit' };
+  const wibTime = new Intl.DateTimeFormat('id-ID', options).format(now);
+  const el = document.getElementById('masterClock');
+  if (el) el.textContent = `${wibTime} WIB`;
+}
 
-  // 1. Fetch current state from Supabase
-  if (supabaseClient) {
-    try {
-      const { data, error } = await supabaseClient
-        .from('inventory_checklist')
-        .select('id, is_packed');
+function updateEventCountdown() {
+  const eventDate = new Date('2026-09-17T00:00:00+07:00').getTime();
+  const now = new Date().getTime();
+  const diff = eventDate - now;
 
-      if (!error && Array.isArray(data)) {
-        data.forEach(row => {
-          if (row.id) checklistState[row.id] = row.is_packed;
-        });
-        saveLocalState();
-        renderInventory();
-        updatePackingProgress();
-        if (statusText) statusText.textContent = '🟢 Supabase DB (Live Sync)';
+  const el = document.getElementById('eventCountdown');
+  if (!el) return;
+
+  if (diff <= 0) {
+    el.textContent = 'EVENT DAY! 🚀';
+    return;
+  }
+
+  const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+  const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+  const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+  el.textContent = `${days}d ${hours}h ${minutes}m`;
+}
+
+// 6. HARDWARE DECK SWITCHER
+function switchDeck(deckId) {
+  const decks = {
+    vision: { btn: 'btnDeckVision', view: 'deckVision' },
+    manifest: { btn: 'btnDeckManifest', view: 'deckManifest' },
+    rigs: { btn: 'btnDeckRigs', view: 'deckRigs' },
+    rundown: { btn: 'btnDeckRundown', view: 'deckRundown' }
+  };
+
+  Object.keys(decks).forEach(k => {
+    const b = document.getElementById(decks[k].btn);
+    const v = document.getElementById(decks[k].view);
+    if (b && v) {
+      if (k === deckId) {
+        b.classList.add('active');
+        v.classList.add('active');
+      } else {
+        b.classList.remove('active');
+        v.classList.remove('active');
       }
-    } catch (e) {}
+    }
+  });
+}
 
-    // Subscribe to Postgres Realtime Changes
+// 7. CAMERA RIG SUB-CATEGORY SWITCHER
+function switchCameraCategory(cat) {
+  const btnBrd = document.getElementById('btnSubCamBroadcast');
+  const btnDoc = document.getElementById('btnSubCamDoc');
+  const gridBrd = document.getElementById('camBroadcastGrid');
+  const gridDoc = document.getElementById('camDocGrid');
+
+  if (cat === 'broadcast') {
+    btnBrd.classList.add('active-pgm');
+    btnDoc.classList.remove('active-pgm');
+    gridBrd.style.display = 'grid';
+    gridDoc.style.display = 'none';
+  } else {
+    btnDoc.classList.add('active-pgm');
+    btnBrd.classList.remove('active-pgm');
+    gridDoc.style.display = 'grid';
+    gridBrd.style.display = 'none';
+  }
+}
+
+// 8. INTERACTIVE SWITCHER BUS LOGIC (PGM / PVW)
+function setPgmChannel(channelNum) {
+  currentPgmChannel = channelNum;
+  for (let i = 1; i <= 4; i++) {
+    const btn = document.getElementById(`pgmBtn${i}`);
+    if (btn) {
+      if (i === channelNum) btn.classList.add('active-pgm');
+      else btn.classList.remove('active-pgm');
+    }
+  }
+  const textEl = document.getElementById('currentPgmText');
+  if (textEl) textEl.textContent = `CAM ${channelNum}`;
+}
+
+function setPvwChannel(channelNum) {
+  currentPvwChannel = channelNum;
+  for (let i = 1; i <= 4; i++) {
+    const btn = document.getElementById(`pvwBtn${i}`);
+    if (btn) {
+      if (i === channelNum) btn.classList.add('active-pvw');
+      else btn.classList.remove('active-pvw');
+    }
+  }
+  const textEl = document.getElementById('currentPvwText');
+  if (textEl) textEl.textContent = `CAM ${channelNum}`;
+}
+
+// 9. MANIFEST & CHECKLIST LOGIC
+function initManifestState() {
+  MASTER_INVENTORY.forEach(item => {
+    checklistState[item.id] = false;
+  });
+
+  const localSaved = localStorage.getItem('ip26_checklist_v10');
+  if (localSaved) {
     try {
-      supabaseClient.channel('realtime_inventory_checklist')
-        .on(
-          'postgres_changes',
-          { event: '*', schema: 'public', table: 'inventory_checklist' },
-          (payload) => {
-            if (payload.new && payload.new.id) {
-              checklistState[payload.new.id] = payload.new.is_packed;
-              saveLocalState();
-              const chkInput = document.getElementById(`chk_${payload.new.id}`);
-              const rowEl = document.getElementById(`row_${payload.new.id}`);
-              if (chkInput) chkInput.checked = payload.new.is_packed;
-              if (rowEl) rowEl.classList.toggle('is-packed', payload.new.is_packed);
-              updatePackingProgress();
-            }
-          }
-        )
-        .subscribe((status) => {
-          if (status === 'SUBSCRIBED' && statusText) {
-            statusText.textContent = '🟢 Supabase DB (Live Sync)';
-          }
-        });
-    } catch (err) {}
-  }
-
-  // 2. Auxiliary SSE Relay
-  try {
-    if (eventSource) eventSource.close();
-    eventSource = new EventSource(CLOUD_RELAY_SSE);
-    eventSource.onmessage = (event) => {
-      try {
-        const data = JSON.parse(event.data);
-        if (data && data.message) {
-          const payload = JSON.parse(data.message);
-          processIncomingSyncEvent(payload, true);
-        }
-      } catch (err) {}
-    };
-  } catch (err) {}
-}
-
-// Keep-Alive Ping (Runs in background every 10 minutes)
-function initKeepAlivePing() {
-  setInterval(async () => {
-    if (supabaseClient) {
-      try {
-        await supabaseClient.from('inventory_checklist').select('id').limit(1);
-      } catch (e) {}
-    }
-  }, 10 * 60 * 1000);
-}
-
-// Process incoming auxiliary sync events
-function processIncomingSyncEvent(payload, triggerUIUpdate) {
-  if (!payload || !payload.type) return;
-  if (payload.type === 'toggle') {
-    checklistState[payload.id] = payload.val;
-    if (triggerUIUpdate) {
-      saveLocalState();
-      const chkInput = document.getElementById(`chk_${payload.id}`);
-      const rowEl = document.getElementById(`row_${payload.id}`);
-      if (chkInput) chkInput.checked = payload.val;
-      if (rowEl) rowEl.classList.toggle('is-packed', payload.val);
-      updatePackingProgress();
-    }
-  } else if (payload.type === 'batch') {
-    INVENTORY_DATA.forEach(group => {
-      group.items.forEach(it => {
-        checklistState[it.id] = payload.val;
-      });
-    });
-    if (triggerUIUpdate) {
-      saveLocalState();
-      renderInventory();
-      updatePackingProgress();
+      const parsed = JSON.parse(localSaved);
+      Object.assign(checklistState, parsed);
+    } catch (e) {
+      console.warn('Checklist parse error:', e);
     }
   }
 }
 
-// User toggles an item checkbox
-async function toggleItemCheck(itemId, isChecked) {
+function renderLenderPills() {
+  const lenders = ['All', ...new Set(MASTER_INVENTORY.map(i => i.lender))];
+  const wrap = document.getElementById('lenderPillsWrap');
+  if (!wrap) return;
+
+  wrap.innerHTML = lenders.map(l => `
+    <button class="filter-pill ${l === activeLenderFilter ? 'active' : ''}" onclick="setLenderFilter('${l}')">
+      ${l}
+    </button>
+  `).join('');
+}
+
+function setLenderFilter(lender) {
+  activeLenderFilter = lender;
+  renderLenderPills();
+  renderManifestGrid();
+}
+
+function handleManifestSearch(query) {
+  activeSearchQuery = (query || '').toLowerCase().trim();
+  const clearBtn = document.getElementById('clearSearchBtn');
+  if (clearBtn) clearBtn.style.display = activeSearchQuery ? 'block' : 'none';
+  renderManifestGrid();
+}
+
+function clearManifestSearch() {
+  const input = document.getElementById('manifestSearchInput');
+  if (input) input.value = '';
+  handleManifestSearch('');
+}
+
+function toggleFilterUnreturned() {
+  filterUnreturnedOnly = !filterUnreturnedOnly;
+  const btn = document.getElementById('btnFilterUnreturned');
+  if (btn) btn.classList.toggle('active', filterUnreturnedOnly);
+  renderManifestGrid();
+}
+
+function renderManifestGrid() {
+  const grid = document.getElementById('manifestGrid');
+  if (!grid) return;
+
+  // Filter items
+  let filtered = MASTER_INVENTORY.filter(item => {
+    const matchLender = (activeLenderFilter === 'All' || item.lender === activeLenderFilter);
+    const matchSearch = (!activeSearchQuery || 
+      item.name.toLowerCase().includes(activeSearchQuery) || 
+      item.lender.toLowerCase().includes(activeSearchQuery) ||
+      (item.usage && item.usage.toLowerCase().includes(activeSearchQuery))
+    );
+    const matchUnreturned = (!filterUnreturnedOnly || !checklistState[item.id]);
+    return matchLender && matchSearch && matchUnreturned;
+  });
+
+  // Group by lender
+  const grouped = {};
+  filtered.forEach(item => {
+    if (!grouped[item.lender]) grouped[item.lender] = [];
+    grouped[item.lender].push(item);
+  });
+
+  const lenderNames = Object.keys(grouped);
+  if (lenderNames.length === 0) {
+    grid.innerHTML = `
+      <div style="grid-column: 1 / -1; padding: 40px; text-align: center; color: var(--text-dim);">
+        <p style="font-size: 16px; font-weight: 700;">Tidak ada barang yang cocok dengan filter / pencarian.</p>
+        <p style="font-size: 12px; margin-top: 4px;">Coba ubah kata kunci pencarian atau reset filter peminjam.</p>
+      </div>
+    `;
+    return;
+  }
+
+  grid.innerHTML = lenderNames.map(lender => {
+    const items = grouped[lender];
+    const packedCount = items.filter(i => checklistState[i.id]).length;
+
+    return `
+      <div class="manifest-card">
+        <div class="manifest-card-head">
+          <span class="manifest-lender-title">${lender}</span>
+          <span class="manifest-lender-count">${packedCount} / ${items.length} Selesai</span>
+        </div>
+        <ul class="manifest-item-list">
+          ${items.map(item => {
+            const isPacked = !!checklistState[item.id];
+            return `
+              <li class="manifest-item-row ${isPacked ? 'is-packed' : ''}">
+                <label class="tactile-checkbox">
+                  <input type="checkbox" ${isPacked ? 'checked' : ''} onchange="toggleManifestItem('${item.id}', this.checked)">
+                  <span class="checkbox-box">
+                    <svg width="10" height="10" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2.5">
+                      <polyline points="1.5 6 4.5 9 10.5 2"></polyline>
+                    </svg>
+                  </span>
+                  <span class="item-text">${item.name}</span>
+                </label>
+                <div class="item-badge-group">
+                  <span class="unit-tag">${item.qty}</span>
+                  ${renderStatusBadge(item.status)}
+                </div>
+              </li>
+            `;
+          }).join('')}
+        </ul>
+      </div>
+    `;
+  }).join('');
+}
+
+function renderStatusBadge(status) {
+  if (status === 'used') return `<span class="badge-tally badge-used" title="Terpakai di routing aktif">✅ Terpakai</span>`;
+  if (status === 'partial') return `<span class="badge-tally badge-partial" title="Terpakai sebagian">⚠️ Parsial</span>`;
+  return `<span class="badge-tally badge-standby" title="Standby di lokasi">☑️ Standby</span>`;
+}
+
+// 10. REALTIME CHECKLIST SYNC (OPTIMISTIC + SUPABASE)
+async function toggleManifestItem(itemId, isChecked) {
   checklistState[itemId] = isChecked;
-  saveLocalState();
-  updatePackingProgress();
-
-  const rowEl = document.getElementById(`row_${itemId}`);
-  if (rowEl) {
-    rowEl.classList.toggle('is-packed', isChecked);
-  }
+  saveLocalManifest();
+  renderManifestGrid();
+  updateManifestTelemetry();
 
   if (supabaseClient) {
     try {
@@ -396,251 +469,137 @@ async function toggleItemCheck(itemId, isChecked) {
         .upsert({
           id: itemId,
           is_packed: isChecked,
+          updated_by: 'web_crew',
           updated_at: new Date().toISOString()
         });
-    } catch (e) {}
+    } catch (err) {
+      console.warn('[Supabase Sync Error]', err);
+    }
   }
-
-  fetch(CLOUD_RELAY_PUB, {
-    method: 'POST',
-    body: JSON.stringify({ type: 'toggle', id: itemId, val: isChecked, ts: Date.now() }),
-    headers: { 'Content-Type': 'application/json' }
-  }).catch(() => {});
 }
 
-// Batch Actions: Pack All (true) or Unload All (false)
-async function batchCheckAll(checkValue) {
-  INVENTORY_DATA.forEach(group => {
-    group.items.forEach(it => {
-      checklistState[it.id] = checkValue;
-    });
+async function markAllManifest(targetState) {
+  MASTER_INVENTORY.forEach(item => {
+    checklistState[item.id] = targetState;
   });
-
-  saveLocalState();
-  renderInventory();
-  updatePackingProgress();
+  saveLocalManifest();
+  renderManifestGrid();
+  updateManifestTelemetry();
 
   if (supabaseClient) {
     try {
-      const upsertRows = [];
-      INVENTORY_DATA.forEach(group => {
-        group.items.forEach(it => {
-          upsertRows.push({
-            id: it.id,
-            is_packed: checkValue,
-            updated_at: new Date().toISOString()
-          });
-        });
-      });
-      await supabaseClient.from('inventory_checklist').upsert(upsertRows);
-    } catch (e) {}
-  }
-
-  fetch(CLOUD_RELAY_PUB, {
-    method: 'POST',
-    body: JSON.stringify({ type: 'batch', val: checkValue, ts: Date.now() }),
-    headers: { 'Content-Type': 'application/json' }
-  }).catch(() => {});
-}
-
-// Toggle "Only Unpacked" Filter
-function toggleOnlyUnpackedFilter(btnElement) {
-  onlyUnpackedFilter = !onlyUnpackedFilter;
-  if (btnElement) {
-    btnElement.classList.toggle('active', onlyUnpackedFilter);
-    btnElement.innerHTML = onlyUnpackedFilter 
-      ? `<span>⚠️ Menampilkan Hanya Belum Kembali</span>` 
-      : `<span>Tampilkan Hanya Belum Kembali</span>`;
-  }
-  renderInventory();
-}
-
-// Update Packing Progress
-function updatePackingProgress() {
-  let packedCount = 0;
-  INVENTORY_DATA.forEach(group => {
-    group.items.forEach(it => {
-      if (checklistState[it.id] === true) packedCount++;
-    });
-  });
-
-  const percentage = Math.round((packedCount / TOTAL_ITEMS_COUNT) * 100);
-  const counterText = document.getElementById('packingCounterText');
-  const progressFill = document.getElementById('packingProgressFill');
-  const packedBadge = document.getElementById('packedCountBadge');
-  const unpackedBadge = document.getElementById('unpackedCountBadge');
-
-  if (counterText) counterText.textContent = `${packedCount} / ${TOTAL_ITEMS_COUNT} Barang Terpacking (${percentage}%)`;
-  if (progressFill) progressFill.style.width = `${percentage}%`;
-  if (packedBadge) packedBadge.textContent = `${packedCount} Packed ✅`;
-  if (unpackedBadge) {
-    const remaining = TOTAL_ITEMS_COUNT - packedCount;
-    unpackedBadge.textContent = `${remaining} Belum Kembali ⚠️`;
-  }
-}
-
-// Filter Status
-function setFilterStatus(status, element) {
-  currentStatusFilter = status;
-  const chips = document.querySelectorAll('.status-chips-wrap .chip-btn');
-  chips.forEach(c => c.classList.remove('active'));
-  if (element) element.classList.add('active');
-  renderInventory();
-}
-
-// Filter Lender
-function setLenderFilter(lender, element) {
-  currentLenderFilter = lender;
-  const pills = document.querySelectorAll('.lender-pills-list .pill-btn');
-  pills.forEach(p => p.classList.remove('active'));
-  if (element) element.classList.add('active');
-  renderInventory();
-}
-
-// Search Filter (Debounced)
-let searchDebounceTimer = null;
-function filterInventory() {
-  clearTimeout(searchDebounceTimer);
-  searchDebounceTimer = setTimeout(() => {
-    const input = document.getElementById('inventorySearch');
-    const clearBtn = document.getElementById('clearSearchBtn');
-    if (input) currentSearchQuery = input.value.toLowerCase().trim();
-    if (clearBtn) clearBtn.style.display = currentSearchQuery ? 'block' : 'none';
-    renderInventory();
-  }, 35);
-}
-
-function clearSearch() {
-  const input = document.getElementById('inventorySearch');
-  const clearBtn = document.getElementById('clearSearchBtn');
-  if (input) input.value = '';
-  if (clearBtn) clearBtn.style.display = 'none';
-  currentSearchQuery = '';
-  renderInventory();
-}
-
-// Render Inventory Catalog Cards
-function renderInventory() {
-  const container = document.getElementById('inventoryGrid');
-  const countBadge = document.getElementById('invCountBadge');
-  if (!container) return;
-
-  let matchCount = 0;
-  let html = '';
-
-  for (let i = 0; i < INVENTORY_DATA.length; i++) {
-    const group = INVENTORY_DATA[i];
-    if (currentLenderFilter !== 'ALL' && group.lender !== currentLenderFilter) {
-      continue;
+      const records = MASTER_INVENTORY.map(item => ({
+        id: item.id,
+        is_packed: targetState,
+        updated_by: 'batch_crew',
+        updated_at: new Date().toISOString()
+      }));
+      await supabaseClient.from('inventory_checklist').upsert(records);
+    } catch (err) {
+      console.warn('[Supabase Batch Sync Error]', err);
     }
+  }
+}
 
-    const matchedItems = [];
-    for (let j = 0; j < group.items.length; j++) {
-      const item = group.items[j];
-      if (onlyUnpackedFilter && checklistState[item.id] === true) continue;
-      if (currentStatusFilter !== 'all' && item.status !== currentStatusFilter) continue;
-      if (currentSearchQuery) {
-        const q = currentSearchQuery;
-        if (!item.name.toLowerCase().includes(q) && !group.lender.toLowerCase().includes(q) && !item.qty.toLowerCase().includes(q)) {
-          continue;
+function saveLocalManifest() {
+  localStorage.setItem('ip26_checklist_v10', JSON.stringify(checklistState));
+}
+
+function updateManifestTelemetry() {
+  const total = MASTER_INVENTORY.length;
+  const packed = Object.values(checklistState).filter(Boolean).length;
+  const pct = Math.round((packed / total) * 100);
+
+  const ratioEl = document.getElementById('manifestRatio');
+  const subEl = document.getElementById('manifestSubText');
+  const textGauge = document.getElementById('manifestGaugeText');
+  const barGauge = document.getElementById('manifestGaugeBar');
+  const badgeEl = document.getElementById('manifestBadge');
+
+  if (ratioEl) ratioEl.textContent = `${packed} / ${total} Item Ter-packing`;
+  if (subEl) subEl.textContent = `${total - packed} barang belum kembali &bull; ${pct}% progres`;
+  if (textGauge) textGauge.textContent = `${pct}%`;
+  if (badgeEl) badgeEl.textContent = `${packed}/${total}`;
+
+  if (barGauge) {
+    const circumference = 2 * Math.PI * 28; // r = 28 -> ~176
+    const offset = circumference - (pct / 100) * circumference;
+    barGauge.style.strokeDashoffset = offset;
+  }
+}
+
+// 11. SUPABASE REALTIME SUBSCRIPTION
+async function initSupabaseRealtime() {
+  if (!supabaseClient) return;
+
+  const pill = document.getElementById('supabaseStatusPill');
+
+  try {
+    const { data, error } = await supabaseClient.from('inventory_checklist').select('id, is_packed');
+    if (!error && data) {
+      data.forEach(row => {
+        if (checklistState.hasOwnProperty(row.id)) {
+          checklistState[row.id] = !!row.is_packed;
         }
-      }
-      matchedItems.push(item);
+      });
+      saveLocalManifest();
+      renderManifestGrid();
+      updateManifestTelemetry();
     }
 
-    if (matchedItems.length > 0) {
-      matchCount += matchedItems.length;
-      let itemsHtml = '';
+    supabaseClient
+      .channel('realtime_manifest_v10')
+      .on('postgres_changes', { event: '*', schema: 'public', table: 'inventory_checklist' }, payload => {
+        if (payload.new && payload.new.id) {
+          checklistState[payload.new.id] = !!payload.new.is_packed;
+          saveLocalManifest();
+          renderManifestGrid();
+          updateManifestTelemetry();
+        }
+      })
+      .subscribe((status) => {
+        if (pill) {
+          if (status === 'SUBSCRIBED') {
+            pill.innerHTML = `<span class="db-dot"></span><span>Supabase DB (Live)</span>`;
+          } else {
+            pill.innerHTML = `<span class="db-dot" style="background: var(--tally-stby);"></span><span>Supabase Syncing</span>`;
+          }
+        }
+      });
 
-      for (let k = 0; k < matchedItems.length; k++) {
-        const it = matchedItems[k];
-        const isPacked = checklistState[it.id] === true;
-        const pillClass = it.status === 'active' ? 'pill-success' : (it.status === 'partial' ? 'pill-warning' : 'pill-tech');
+  } catch (e) {
+    console.warn('Realtime subscription error:', e);
+  }
+}
 
-        itemsHtml += `
-          <li id="row_${it.id}" class="item-row ${isPacked ? 'is-packed' : ''}">
-            <label class="checkbox-label" for="chk_${it.id}">
-              <input type="checkbox" id="chk_${it.id}" class="checkbox-input" ${isPacked ? 'checked' : ''} onchange="toggleItemCheck('${it.id}', this.checked)">
-              <div class="checkbox-visual">
-                <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
-              </div>
-              <span class="item-label-text">${it.name}</span>
-            </label>
-            <div class="item-right-meta">
-              <span class="qty-badge">${it.qty}</span>
-              <span class="pill ${pillClass}">${it.symbol}</span>
-            </div>
-          </li>
-        `;
-      }
+// 12. 1-CLICK WHATSAPP BRIEF DISPATCHER
+function copyRigBrief(rigName, details) {
+  const briefText = `🎬 [BRIEFING RIG - IBADAH PERDANA 2026]\nUnit: ${rigName}\nGear: ${details}\nStatus: Siap di Lokasi ✅\nVenue: Auditorium UNNES`;
+  navigator.clipboard.writeText(briefText).then(() => {
+    showToast(`Briefing ${rigName} berhasil disalin! 📋`);
+  }).catch(() => {
+    showToast(`Tersalin! ✅`);
+  });
+}
 
-      html += `
-        <div class="lender-card">
-          <div class="lender-card-head">
-            <span class="lender-name">${group.lender}</span>
-            <span class="lender-count-badge">${matchedItems.length} Item</span>
-          </div>
-          <ul class="items-list">
-            ${itemsHtml}
-          </ul>
-        </div>
-      `;
+function showToast(msg) {
+  const toast = document.getElementById('atemToast');
+  if (!toast) return;
+  toast.textContent = msg;
+  toast.style.display = 'block';
+  setTimeout(() => {
+    toast.style.display = 'none';
+  }, 2200);
+}
+
+// 13. KEYBOARD SHORTCUTS (Ctrl+K for Search)
+function setupKeyboardShortcuts() {
+  window.addEventListener('keydown', (e) => {
+    if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'k') {
+      e.preventDefault();
+      switchDeck('manifest');
+      const input = document.getElementById('manifestSearchInput');
+      if (input) input.focus();
     }
-  }
-
-  if (html === '') {
-    html = `
-      <div class="callout-card" style="grid-column: 1 / -1; justify-content: center; text-align: center; padding: 30px;">
-        <div>
-          <strong class="text-white" style="font-size: 15px;">Tidak Ada Barang yang Cocok</strong>
-          <p class="text-dim mt-1">Semua barang telah selesai dipacking atau tidak ada hasil untuk filter saat ini.</p>
-          <button class="btn btn-secondary mt-3" onclick="clearSearch(); onlyUnpackedFilter = false; setFilterStatus('all', document.querySelector('.chip-btn')); setLenderFilter('ALL', document.querySelector('.pill-btn'));">Reset Semua Filter</button>
-        </div>
-      </div>
-    `;
-  }
-
-  container.innerHTML = html;
-  if (countBadge) countBadge.textContent = `Menampilkan ${matchCount} dari ${TOTAL_ITEMS_COUNT} Barang`;
-}
-
-// Live Digital Clock
-function initLiveClock() {
-  const clockEl = document.getElementById('liveClock');
-  if (!clockEl) return;
-  function update() {
-    const now = new Date();
-    const hrs = String(now.getHours()).padStart(2, '0');
-    const mins = String(now.getMinutes()).padStart(2, '0');
-    const secs = String(now.getSeconds()).padStart(2, '0');
-    clockEl.textContent = `${hrs}:${mins}:${secs} WIB`;
-  }
-  update();
-  setInterval(update, 1000);
-}
-
-// Copy Text Helper
-function copyText(text, btnElement) {
-  if (navigator.clipboard) {
-    navigator.clipboard.writeText(text);
-  } else {
-    const textArea = document.createElement('textarea');
-    textArea.value = text;
-    document.body.appendChild(textArea);
-    textArea.select();
-    try { document.execCommand('copy'); } catch (err) {}
-    document.body.removeChild(textArea);
-  }
-
-  if (btnElement) {
-    const originalText = btnElement.textContent;
-    btnElement.textContent = "Tersalin! ✅";
-    btnElement.style.color = "var(--emerald)";
-    btnElement.style.borderColor = "var(--emerald)";
-    setTimeout(() => {
-      btnElement.textContent = originalText;
-      btnElement.style.color = "";
-      btnElement.style.borderColor = "";
-    }, 2000);
-  }
+  });
 }

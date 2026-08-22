@@ -1,111 +1,112 @@
-# 🎨 DESIGN SYSTEM SPECIFICATION (DESIGN.md)
-## IP26 Broadcast Command Suite — Genesis Light Studio Edition
+# 🎨 DESIGN SYSTEM SPECIFICATION (DESIGN.md v10.0)
+## IP26 ATEM Pro Broadcast Command Suite — Dual Engine Edition
 
 ---
 
 ### 1. Filosofi & Visi Desain
-Sistem desain **IP26 Broadcast Command Suite (Genesis Light Studio Edition)** dirancang berdasarkan standar desain editorial modern dari **DesignMD (`chef/genesis`)**, Linear Studio, dan Apple Pro Developer Tools.
+Sistem desain **IP26 ATEM Pro Broadcast Suite** dibangun di atas metafora **Industrial Broadcast Console & Mission Control** (*Blackmagic ATEM Software Control, DaVinci Resolve, Avid Media Composer, Linear, & Vercel*).
 
-* **Prinsip Utama**:
-  1. **Clarity & High Contrast**: Menggunakan warna dasar *Soft Slate Light* (`#F8FAFC`) dengan kartu *Pure White* (`#FFFFFF`) untuk kenyamanan mata maksimal di lingkungan kerja terang atau panggung.
-  2. **Task-Oriented 4-Tab Modularity**: Membagi informasi produksi menjadi 4 modul independen (*Inventaris & Packing, Rig Kamera, Routing Sinyal, Rundown & Tim*) untuk menghilangkan *visual overload*.
-  3. **Zero-Lag 144Hz Architecture**: Bebas dari kalkulasi blur berat (`backdrop-filter`) dan bebas dari animasi kontinu yang membebani GPU/CPU perangkat.
-  4. **Frictionless Field Usability**: Checkbox berkecepatan 0ms (*optimistic UI*), *search filter* ter-*debounce* 35ms, dan tombol *1-Click Copy Brief*.
+Antarmuka ini menolak tampilan template generic SaaS / form steril. Setiap piksel berfungsi layaknya perangkat keras studio siaran berstandar industri dengan:
+* **Tactile Hardware Aesthetic**: Panel bertingkat dengan hairline border presisi, tombol bergaya switch konsol, dan meteran status visual.
+* **Dual-Theme Engine (1-Click Switcher)**:
+  * 🎛️ **Broadcast Dark (Default Studio)**: Karbon-slate pekat (`#0d1117`) dengan lampu indikator Tally (🔴 Program / 🟢 Preview / 🟡 Standby).
+  * 💡 **Studio Paper Light**: Slate putih bersih (`#f8fafc`) dengan kontras tinggi untuk pengoperasian di area terang/outdoor.
+* **Zero Visual Lag**: 144Hz framerate tanpa backdrop-filter berat, hardware-accelerated CSS murni.
 
 ---
 
-### 2. Hierarki Permukaan & Palet Warna (Genesis Light Palette)
+### 2. Tokens & Hierarki Warna (Dual Palette)
+
+#### A. Broadcast Dark Theme Tokens:
+| Token CSS | Hex / RGBA | Peruntukan |
+| :--- | :--- | :--- |
+| `--bg-base` | `#0b0e14` | Chassis dasar studio |
+| `--bg-surface` | `#121721` | Panel konsol & kartu modul |
+| `--bg-surface-hover`| `#18202d` | Highlight interaktif modul |
+| `--bg-inset` | `#080b10` | Input cavity, kotak kode, status pod |
+| `--border-color` | `#232d3d` | Hairline border presisi konsol |
+| `--border-accent` | `#3b82f6` | Border aktif tombol/tab |
+| `--text-primary` | `#f1f5f9` | Teks utama kontras tinggi |
+| `--text-secondary` | `#94a3b8` | Deskripsi & label pendukung |
+| `--text-dimmed` | `#64748b` | Metadata, unit, dan catatan kecil |
+
+#### B. Studio Paper Light Theme Tokens:
+| Token CSS | Hex / RGBA | Peruntukan |
+| :--- | :--- | :--- |
+| `--bg-base` | `#f8fafc` | Kanvas terang (Slate 50) |
+| `--bg-surface` | `#ffffff` | Kartu putih berbayang lembut |
+| `--bg-surface-hover`| `#f1f5f9` | Highlight kartu saat disentuh |
+| `--bg-inset` | `#f1f5f9` | Kotak input pencarian |
+| `--border-color` | `#e2e8f0` | Hairline border halus (Slate 200) |
+| `--border-accent` | `#2563eb` | Border aktif tombol/tab |
+| `--text-primary` | `#0f172a` | Hitam pekat natural (Slate 900) |
+| `--text-secondary` | `#475569` | Abu-abu gelap (Slate 600) |
+| `--text-dimmed` | `#94a3b8` | Metadata dan teks redup |
+
+#### C. Broadcast Tally & Functional Lamp Accents:
+* 🔴 **Tally Program (PGM / Live)**: `#ef4444` (`rgba(239, 68, 68, 0.15)` background soft).
+* 🟢 **Tally Preview (PVW / Packed ✅)**: `#10b981` (`rgba(16, 185, 129, 0.15)` background soft).
+* 🟡 **Tally Standby (STBY / Warning ⚠️)**: `#f59e0b` (`rgba(245, 158, 11, 0.15)` background soft).
+* 🔵 **Tally Auxiliary (AUX / Creative 🎬)**: `#3b82f6` (`rgba(59, 130, 246, 0.15)` background soft).
+* 🟣 **Tally Panitia (Structural 🏛️)**: `#8b5cf6` (`rgba(139, 92, 246, 0.15)` background soft).
+
+---
+
+### 3. Sistem Tipografi
+
+1. **`Space Grotesk` (Display & Broadcast Badges)**:
+   * Karakteristik: Geometris, tajam, profesional.
+   * Digunakan untuk: Judul modul, tally badge, kode kamera, dan indikator persentase.
+2. **`Plus Jakarta Sans` (Body & Interface Controls)**:
+   * Karakteristik: Bersih dan mudah dibaca cepat.
+   * Digunakan untuk: Nama item barang, deskripsi tugas kru, dan label filter.
+3. **`JetBrains Mono` (Broadcast Telemetry & Timestamps)**:
+   * Karakteristik: Monospace dengan spasi presisi.
+   * Digunakan untuk: Jam digital WIB, countdown event, nomor kuantitas, dan jalur sinyal I/O.
+
+---
+
+### 4. Spesifikasi Komponen & Modul (4 Master Decks)
 
 ```
 ┌────────────────────────────────────────────────────────────────────────┐
-│ LEVEL 0: Canvas Base (#F8FAFC - Soft Slate Light)                      │
-│   ┌──────────────────────────────────────────────────────────────────┐ │
-│   │ LEVEL 1: Header & Navigation Containers (#FFFFFF - Pure White)   │ │
-│   │   ┌────────────────────────────────────────────────────────────┐ │ │
-│   │   │ LEVEL 2: Cards & Modul (#FFFFFF + Border: #E2E8F0)         │ │ │
-│   │   │   ┌──────────────────────────────────────────────────────┐ │ │ │
-│   │   │   │ LEVEL -1: Input & Sub-list Cavities (#F1F5F9)        │ │ │ │
-│   │   │   └──────────────────────────────────────────────────────┘ │ │ │
-│   │   └────────────────────────────────────────────────────────────┘ │ │
-│   └──────────────────────────────────────────────────────────────────┘ │
+│ HEADER: Logo IP26 │ Live Countdown │ WIB Clock │ Supabase Status │ 🌙/☀️ │
+├────────────────────────────────────────────────────────────────────────┤
+│ DECK SELECTOR: [ 🎛️ Vision Mixer ] [ 📦 Manifest ] [ 🎥 Rigging ] [ ⏱️ Rundown ] │
+├────────────────────────────────────────────────────────────────────────┤
+│ ACTIVE DECK VIEW (Hardware Console Surface)                            │
+│                                                                        │
+│  [ Deck Content with Custom Broadcast Tally Lamps & Telemetry Gauges ] │
+│                                                                        │
+├────────────────────────────────────────────────────────────────────────┤
+│ FOOTER: Event Metadata & Supabase Engine Telemetry                      │
 └────────────────────────────────────────────────────────────────────────┘
 ```
 
-#### Palet Warna Permukaan (Surface Tokens):
-| Token CSS | Nilai Hex | Fungsi / Konteks |
-| :--- | :--- | :--- |
-| `--bg-canvas` | `#F8FAFC` | Latar belakang kanvas aplikasi (Slate 50) |
-| `--bg-header` | `#FFFFFF` | Latar header sticky & footer |
-| `--bg-card` | `#FFFFFF` | Latar kartu inventaris, spek rig, dan tabel |
-| `--bg-card-hover` | `#FCFDFE` | Status hover interaktif pada kartu |
-| `--bg-inset` | `#F1F5F9` | Kotak pencarian, tag filter, dan sub-detail |
-| `--border` | `#E2E8F0` | Hairline border presisi 1px (Slate 200) |
-| `--border-hover` | `#CBD5E1` | Highlight border saat hover |
-| `--border-focus` | `#4F46E5` | Fokus aktif pada kotak input |
+1. **Header Control Ribbon**:
+   * Badge Brand `IP26` dengan gaya indikator siaran.
+   * Live Event Countdown Timer (Menghitung mundur otomatis ke 17 September 2026).
+   * Jam Master WIB format `HH:MM:SS WIB`.
+   * Live Supabase Database Synchronizer Pill.
+   * Dual-Theme Toggle Button (🌙 Dark / ☀️ Light).
 
-#### Palet Aksen Fungsional (Luminescent & Semantic Accents):
-| Aksen | Hex Code | Soft Background | Semantik & Penggunaan |
-| :--- | :--- | :--- | :--- |
-| **Primary Indigo** | `#4F46E5` | `rgba(79, 70, 229, 0.08)` | Brand IP26, active tab, counter badge, telemetry |
-| **Emerald Green** | `#059669` | `rgba(5, 150, 105, 0.08)` | Status terverifikasi (✅), item packed, Supabase DB live |
-| **Warm Amber** | `#D97706` | `rgba(217, 119, 6, 0.08)` | Status parsial (⚠️), item belum kembali, tips panggung |
-| **Purple Creative** | `#7C3AED` | `rgba(124, 58, 237, 0.08)` | Rig kamera dokumentasi, badge Panitia struktural |
-| **Coral Red** | `#DC2626` | `rgba(220, 38, 38, 0.08)` | Tombol reset checklist & tindakan krusial |
+2. **Deck 1: Vision Mixer & Sinyal Interaktif**:
+   * Interactive Switcher Visualizer: Menampilkan 4 input kamera aktif dengan tombol PGM/PVW visual.
+   * Matriks alur sinyal kabel (Video, Audio, Timekeeper, Listrik).
+   * Alokasi 11 Workstation Media & Operator (Yamaha QL5, CT80S, Virtual Mixers, Resolume, ProPresenter, OBS, Backup).
 
----
+3. **Deck 2: Tactical Packing Manifest (119 Item)**:
+   * Circular SVG Telemetry Gauge (menampilkan persentase packing secara real-time).
+   * Quick-Action Matrix: *Tandai Selesai*, *Reset Manifest*, *Hanya Belum Kembali*.
+   * Filter Rack Peminjam (13 Peminjam) & Status.
+   * Checkbox taktil dengan efek centang instan (*0ms optimistic update*).
 
-### 3. Tipografi Presisi (Typography Tokens)
+4. **Deck 3: Camera Rigging Directory**:
+   * 5 Broadcast Rigs + 3 Documentation Rigs.
+   * Komponen lengkap per rig (Body, Lensa, Baterai, Wireless TX/RX, Kabel, Input Mixer).
+   * Tombol *1-Click Copy Brief* untuk kirim cepat ke WhatsApp operator.
 
-Memadukan 3 font modern dengan keterbacaan tinggi:
-
-1. **`Space Grotesk` (Display & Headings)**:
-   * Karakter: Modern, presisi, geometris.
-   * Digunakan pada: Judul halaman, logo badge `IP26`, judul rig kamera, dan angka counter.
-   * `letter-spacing: -0.02em; font-weight: 700 / 800; color: #0F172A;`
-2. **`Plus Jakarta Sans` (Body & Interface)**:
-   * Karakter: Bersih dan mudah dibaca pada layar kecil maupun besar.
-   * Digunakan pada: Teks utama, label checkbox, nama peminjam, deskripsi tugas, dan tombol.
-   * `font-weight: 500 / 600 / 700; color: #0F172A / #475569;`
-3. **`JetBrains Mono` (Technical Data)**:
-   * Karakter: Monospace teknis berjarak tetap.
-   * Digunakan pada: Jam digital WIB, jumlah unit (`2 Unit`, `1 Pack`), jalur kabel, dan ID barang.
-   * `font-weight: 500 / 700;`
-
----
-
-### 4. Komponen Antarmuka & UX
-
-#### A. Header & View Switcher (Navigasi 4-Tab)
-* **Top Bar**:
-  * Brand Badge `IP26` di kiri dengan warna *Indigo Soft*.
-  * Status Pill `🟢 Supabase DB (Live Sync)` di kanan dengan *Emerald indicator*.
-  * Jam digital presisi WIB format `HH:MM:SS WIB`.
-  * Tautan GitHub.
-* **4-Tab Navigation**:
-  * `[ 📦 Inventaris & Packing (119) ]`
-  * `[ 🎥 Rig Kamera & Operator ]`
-  * `[ 🔀 Routing Sinyal & Media ]`
-  * `[ ⏱️ Rundown & Tim Produksi ]`
-
-#### B. Packing Progress & Controls Card
-* **Headline Counter**: Menampilkan rasio barang ter-packing secara real-time.
-* **Progress Track**: Track `8px` dengan gradien halus `linear-gradient(90deg, #4F46E5, #059669)`.
-* **Action Buttons**:
-  * *Tandai Semua Selesai* (Emerald Soft).
-  * *Reset Checklist* (Coral Soft).
-  * *Tampilkan Hanya Belum Kembali* (Amber Toggle).
-
-#### C. Custom Checkbox Inventaris
-* Menggunakan kotak putih bersih dengan border `#CBD5E1` yang berubah menjadi hijau emerald `#059669` dengan ikon SVG centang putih saat tercentang.
-* Teks item tercentang otomatis diberi efek *line-through* dan warna redup (`#64748B`).
-
-#### D. Camera Spec Cards & 1-Click Copy Brief
-* Kartu putih rapi dengan kepala rincian operator & fungsi panggung.
-* Tombol **"📋 Salin Rincian"** menyalin *briefing text* langsung ke clipboard dan berubah menjadi **"Tersalin! ✅"** selama 2 detik.
-
----
-
-### 5. Integrasi Database & Real-Time Sync
-* **Database**: Supabase PostgreSQL (`ssbkhhnnzwuykyeznpwd.supabase.co`).
-* **Realtime Protocol**: WebSockets via `@supabase/supabase-js` (`postgres_changes` on `inventory_checklist`).
-* **Keep-Alive Cron**: GitHub Actions Daily Workflow (`0 0 * * *`) via `.github/workflows/supabase-keep-alive.yml` untuk mencegah 7-day auto-pause.
+5. **Deck 4: Run of Show (Rundown) & Crew Axioms**:
+   * 5 Aksioma Operasional (Struktur Panitia vs Pelayan).
+   * Bagan Kepemimpinan Divisi Teknis.
+   * Tabel 3 Sesi Rundown (Pre, Main, Post-Ibadah).

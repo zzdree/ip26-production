@@ -1,92 +1,101 @@
-# PRODUCT REQUIREMENT DOCUMENT (PRD) v9.0
-## IP26 Broadcast Command Suite — Minimalist Modular Edition
+# 📋 PRODUCT REQUIREMENTS DOCUMENT (PRD v10.0)
+## Ibadah Perdana UKK UNNES 2026 — Master Broadcast Command Suite
 
 ---
 
-### 1. Executive Summary & Vision
-* **Project Name**: IP26 Broadcast Command Suite
-* **Event**: Ibadah Perdana UKK UNNES 2026 (17 September 2026)
-* **Venue**: Gedung Auditorium Universitas Negeri Semarang
-* **Production Core**: Panitia & Pelayan Ibadah Perdana 2026
-* **Design Philosophy**: Minimalist High-Focus Studio UI (Inspired by *Raycast & Linear*).
-* **Key Objective**: Menyederhanakan tampilan antarmuka (*de-cluttering visual overload*) menjadi sistem modular 4-Tab yang bersih, ringan, dan fokus pada tugas operasional tanpa menghilangkan satupun data teknis dari sumber acuan.
+### 1. Executive Summary & Event Context
+* **Nama Acara**: Ibadah Perdana UKK UNNES 2026
+* **Tanggal Pelaksanaan**: 17 September 2026
+* **Lokasi**: Gedung Auditorium Universitas Negeri Semarang (UNNES)
+* **Pelaksana Produksi**: Panitia Ibadah Perdana 2026 & Divisi Pelayan Multimedia UKK UNNES
+* **Tujuan Aplikasi**: Platform kendali komando siaran terpadu (*Unified Broadcast Command Suite*) yang menyatukan alur checklist 119 alat inventaris, 5 rig kamera broadcast, 3 kamera dokumentasi, 4 matriks routing kabel/sinyal, alokasi 11 workstation operator media, serta sinkronisasi database real-time antar perangkat kru.
 
 ---
 
-### 2. 5 Prinsip Operasional Dasar (Panitia vs Pelayan)
-Sistem membedakan secara tegas dan harmonis antara fungsi Panitia Struktural dan Pelayan Operasional:
-1. **Panitia bisa menjadi pelayan**: Anggota panitia struktural dapat bertugas teknis di lapangan.
-2. **Pelayan belum tentu panitia**: Kru pelayan teknis tidak selalu berstatus panitia struktural.
-3. **PIC ada yang menjadi panitia**: Person in Charge tertentu memegang posisi di kepanitiaan.
-4. **PIC yang bukan panitia berarti pelayan**: Seluruh PIC non-panitia berstatus Pelayan Teknis.
-5. **PIC dan Pelayan itu sama**: Dalam eksekusi operasional teknis, PIC dan Pelayan setara.
+### 2. Lima Aksioma & Prinsip Operasional (Axioms of Operation)
+Sistem membedakan secara tegas peran struktural panitia dan fungsionalitas pelayanan teknis:
+1. **Prinsip 1**: Panitia bisa menjadi pelayan.
+2. **Prinsip 2**: Pelayan belum tentu panitia.
+3. **Prinsip 3**: PIC ada yang menjadi panitia.
+4. **Prinsip 4**: PIC yang bukan panitia berarti pelayan.
+5. **Prinsip 5**: PIC dan Pelayan berkedudukan setara dalam eksekusi teknis lapangan.
 
 ---
 
-### 3. Struktur Modul & Tab Navigation (Clean View Switcher)
+### 3. Arsitektur 4 Master Decks (Functional Modules)
 
-```
-┌─────────────────────────────────────────────────────────────────────────────────────────┐
-│ [LOGO IP26]  IP26 COMMAND SUITE    🟢 Supabase DB (Live Sync)   21:30:00 WIB  [GitHub]  │
-├─────────────────────────────────────────────────────────────────────────────────────────┤
-│   [ 📦 Inventaris (119) ]   [ 🎥 Rig Kamera ]   [ 🔀 Routing Sinyal ]   [ ⏱️ Rundown & Tim ]    │
-└─────────────────────────────────────────────────────────────────────────────────────────┘
-```
+#### 🎛️ Deck 1: Vision Mixer & Live Signal Topology
+* **Switcher Engine**: Cinetreak Cinelive V1 (Input CAM 1-4, Output Multi-Screen & OBS).
+* **Signal Matrices**:
+  * **Video Routing**: Cinetreak ➔ Splitter HDMI 4CH ➔ Resolume Arena & ProPresenter ➔ Video Processor Novastar ➔ LED Wall (Center, Left, Right, Back Stage).
+  * **Audio Routing**: Yamaha QL5 (UNNES FOH) ➔ XLR 10M & 3M ➔ NewBaxs CT80S (GIA) ➔ USB DAC & OBS Studio (Auxiliary Streaming Feed).
+  * **Timekeeper Routing**: ProPresenter 3 ➔ HDMI 1.5M ➔ TV Panggung Darrel (Display Waktu Pembicara).
+  * **Electrical Routing**: Terminal 4CH, 3CH, 2CH, dan Terminal T dengan jalur beban seimbang.
+* **Media Workstations & Operators**:
+  1. *Mixer 1 Yamaha QL5*: Jordan / Yosua (UNNES) ✅
+  2. *Mixer 2 NewBaxs CT80S*: Andreas (GIA) ✅
+  3. *Virtual Mixer 1 Laptop*: Jordan / Yosua (Andreas) ✅
+  4. *Virtual Mixer 2 iPad*: Jordan / Yosua (Jennifer) ✅
+  5. *Resolume Arena*: Andreas (Bayu) ✅
+  6. *ProPresenter 1*: Rania (Laptop TBD) ⚠️
+  7. *ProPresenter 2*: Filia (Laptop TBD) ⚠️
+  8. *ProPresenter 3 + TV*: Acara (Darrel) ⚠️
+  9. *Switcher Cinetreak + TV*: Wilfred (OWL & Kezia) ✅
+  10. *OBS Studio*: Andreas (Laptop TBD) ⚠️
+  11. *Backup Workstation*: Kiel 1 (Kiel 1) ✅
 
-#### Tab 1: 📦 Inventaris & Packing Checklist (Focus Mode)
-* **Dataset**: 119 Item dari 13 Peminjam (OWL, Andreas, GIA, GKJ, UKK UNNES, Lio, Darrel, Kiel 1, Joel, Kezia, Jennifer, ABON, Panitia).
-* **Indikator Progress**: Progress bar terintegrasi dengan counter real-time (contoh: `0 / 119 Barang Terpacking (0%)`).
-* **Filter Interaktif**:
-  * Pilihan Peminjam (Pills: *Semua, OWL, Andreas, UKK UNNES, GIA, GKJ, Kiel 1, Joel, Darrel, Kezia, Jennifer, Lio, ABON, Panitia*).
-  * Status Barang: *Semua, Terpakai (✅), Parsial (⚠️), Standby (☑️)*.
-  * Filter Cepat: *Tampilkan Hanya yang Belum Kembali*.
-  * Pencarian Real-Time (Debounced 35ms).
-* **Aksi Cepat (Batch Actions)**: *Tandai Semua Selesai*, *Reset Checklist*.
+#### 📦 Deck 2: Tactical Packing Manifest (119 Item / 13 Peminjam)
+* **Peminjam Terdaftar**:
+  1. OWL (17 Unit)
+  2. Andreas (49 Unit)
+  3. UKK UNNES (14 Unit)
+  4. GKJ Ngaliyan (8 Unit)
+  5. GIA Deliksari (7 Unit)
+  6. Kiel 1 (7 Unit)
+  7. Joel (6 Unit)
+  8. Darrel (3 Unit)
+  9. Kezia (2 Unit)
+  10. Jennifer (2 Unit)
+  11. ABON (1 Unit)
+  12. Lio (1 Unit)
+  13. Panitia (2 Unit)
+* **Klasifikasi Status Barang**:
+  * `✅ Terpakai`: Masuk dalam wiring/routing aktif.
+  * `⚠️ Parsial`: Terpakai sebagian unit.
+  * `☑️ Standby`: Siap sedia sebagai backup lapangan.
+* **Fitur Manifest**:
+  * Realtime Supabase PostgreSQL synchronization via WebSockets.
+  * Filter multi-peminjam, pencarian cepat *debounced*, dan tombol filter khusus barang belum kembali.
 
-#### Tab 2: 🎥 Rig Kamera & Operator
-* **Broadcast Camera System (4 Rig Terverifikasi + 1 Backup)**:
-  * **CAM 1 (Wireless + Fixed)**: Alex *(Sony ZV-E10 Kiel 1 + Pyro S + Lens 18-105)*.
-  * **CAM 2 (Wireless + Mobile)**: Kiel 1 *(Sony ZV-E10 OWL + Pyro H + Lens 18-105)*.
-  * **CAM 3 (Wired + Fixed)**: Nia *(Sony A6000 OWL + Micro HDMI + HDMI 10M GKJ)*.
-  * **CAM 4 (Wired + Fixed)**: Ferdy *(Sony A6000 OWL + Lens 16-50 + HDMI 10M UKK)*.
-  * **Backup**: 2 Unit Micro HDMI to HDMI Converter (Panitia).
-* **Documentation Camera System (3 Rig)**:
-  * **CAM PHO (Photo)**: Nico *(Sony A6400 OWL + 50MM OWL)*.
-  * **CAM VID (Video)**: Joel *(Sony A6600 Joel + 24-70 Zeiss + DJI RS3)*.
-  * **CAM HP (Social Media)**: Jennifer *(iPhone 15)*.
+#### 🎥 Deck 3: Camera Systems & Rigging Specifications
+* **Broadcast System (Terintegrasi ke Switcher)**:
+  * **CAM 1 (FOH Center / Wide)**: Sony ZV-E10 + Lens 18-105mm + Hollyland Pyro S Wireless TX/RX ➔ Cinetreak (Operator: Alex) ✅
+  * **CAM 2 (Left Stage / Mobile)**: Sony ZV-E10 + Lens 18-105mm + Hollyland Pyro H Wireless TX/RX ➔ Cinetreak (Operator: Kiel 1) ✅
+  * **CAM 3 (Right Stage / Fixed)**: Sony A6000 + Lens 18-105mm + Cable HDMI 10M ➔ Cinetreak (Operator: Nia) ✅
+  * **CAM 4 (Close-Up / Fixed)**: Sony A6000 + Lens 16-50mm + Cable HDMI 10M ➔ Cinetreak (Operator: Ferdy) ✅
+  * **CAM 5 (Backup)**: Micro HDMI to HDMI Converter 2X (Panitia)
+* **Documentation System (Terpisah)**:
+  * **PHO (Still Photography)**: Sony A6400 + Lens Sony 50mm Prime (Operator: Nico) ✅
+  * **VID (Cinematic Reels)**: Sony A6600 + Lens 24-70mm Zeiss + Gimbal DJI Ronin RS3 (Operator: Joel) ✅
+  * **HP (Social Media VIP)**: iPhone 15 Pro (Operator: Jennifer) ✅
+* **Fitur Khusus**: Tombol *1-Click Copy Brief* untuk kirim instruksi rigging langsung ke WhatsApp crew.
 
-#### Tab 3: 🔀 Routing Sinyal & Media Engine
-* **Sub-Kategori**:
-  1. **Video Signal Matrix**: Switcher Cinetreak Cinelive V1 (OWL) ➔ Splitter HDMI 4CH (UKK/GKJ) ➔ Resolume Arena ➔ OBS Studio ➔ Novastar LED Center/Left/Right/Back.
-  2. **Audio Signal Matrix**: Yamaha QL5 (UNNES) ➔ XLR 10M/3M ➔ NewBaxs CT80S (GIA) ➔ DAC Hanason/Oraimo ➔ OBS Studio & Virtual Mixers (Laptop Andreas + iPad Jennifer).
-  3. **Timekeeper Display**: ProPresenter 3 (Laptop) ➔ HDMI 1.5M (Lio) ➔ TV (Darrel).
-  4. **Electrical & Power**: Distribusi Terminal XCH (Andreas, UKK, Panitia) & Terminal T.
-* **Perangkat & Operator Terdaftar**:
-  * Mixer 1 (Jordan/Yosua), Mixer 2 (Andreas), VM 1 & 2 (Jordan/Yosua), Resolume (Andreas), ProPresenter 1 (Rania), ProPresenter 2 (Filia), ProPresenter 3 (Acara), Switcher (Wilfred), OBS (Andreas), Backup (Kiel 1).
-
-#### Tab 4: ⏱️ Rundown & Tim Produksi
-* **Struktur Tim**:
-  * **System Engineer (✨ Pelayan)**: Andreas *(Leader)*.
-  * **Media Engineer (🏛️ Panitia)**: Richard *(Leader)*, Wilfred, Alex, Rania.
-  * **Creative Engineer (🏛️ Panitia)**: Jennifer *(Leader)*, Filia, Felani, Wike.
-  * **Divisi Acara (🏛️ Panitia)**: Tim Acara.
-  * **Pelayan Lapangan (✨ Pelayan)**: Andreas, Kiel 1, Nia, Ferdy, Nico, Joel, Jordan, Yosua.
-* **Materi & Sesi Acara**:
-  * **Pre-Ibadah (Open Gate)**: Playlist Lagu Rohani, Loop Video Profile UKK, After Movie IP25/IN25.
-  * **Main Ibadah (Main Event)**: Video Opening, Sambutan Bu Grace, Background Lagu & Lirik, Video Generation, PPT/Ayat/Quote Pembicara, QRIS Persembahan, UKK News, Pokok Doa.
-  * **Post-Ibadah (Close Gate)**: Usung-usung & Rekap Inventaris.
+#### ⏱️ Deck 4: Run of Show (Rundown) & Operational Command
+* **Struktur Divisi**:
+  * *System Engineer (Pelayan)*: Andreas (Leader)
+  * *Media Engineer (Panitia)*: Richard (Leader), Wilfred, Alex, Rania
+  * *Creative Engineer (Panitia)*: Jennifer (Leader), Filia, Felani, Wike
+* **3-Fase Rundown**:
+  1. *Pre-Ibadah (Open Gate)*: Playlist Rohani FOH, Loop Video Profil UKK, After Movie IP25 & IN25 di LED Tengah.
+  2. *Main Ibadah (Main Event)*: Opening Video, Sambutan Bu Grace, Background Tema, Background Musik, Lirik Lagu, Video Generation, PPT/Ayat/Quote Pembicara, QRIS Persembahan, UKK News, Pokok Doa.
+  3. *Post-Ibadah (Close Gate)*: Usung-usung, re-packing checklist, dan verifikasi serah-terima barang pinjaman.
 
 ---
 
-### 4. Database & Cloud Architecture
-* **Primary Database**: Supabase PostgreSQL (`ssbkhhnnzwuykyeznpwd.supabase.co`).
-* **Realtime Protocol**: WebSockets via `@supabase/supabase-js` (`postgres_changes` on `inventory_checklist`).
-* **Keep-Alive Automation**: GitHub Actions Daily Cron (`0 0 * * *`) via `.github/workflows/supabase-keep-alive.yml` untuk mencegah 7-day auto-pause.
-* **Local Offline Fallback**: Web Storage (`localStorage`) + Auxiliary SSE Relay (`ntfy.sh`).
-
----
-
-### 5. UI/UX & Non-Functional Specifications
-* **Aesthetics**: Obsidian Clean Dark (`#0b0c0f` canvas, `#14171f` card surfaces, 1px crisp borders, Inter/Space Grotesk typography).
-* **Performance**: 144Hz Smooth Scrolling, Hardware-Accelerated Canvas, Zero Cumulative Layout Shift (CLS), Debounced Input.
-* **Responsiveness**: Mobile-First Dock Navigation + Desktop Top Nav Tabs.
+### 4. Spesifikasi Teknis & Database
+* **Database**: Supabase PostgreSQL (`ssbkhhnnzwuykyeznpwd.supabase.co`)
+* **Realtime Protocol**: WebSockets channel `public.inventory_checklist`
+* **Keep-Alive Cron**: GitHub Actions `.github/workflows/supabase-keep-alive.yml` (Cron harian `0 0 * * *`)
+* **Dual-Theme Engine**:
+  * Mode 1: *ATEM Pro Broadcast Dark* (`#0d1117`, `#161b22`, Tally Ruby & Emerald)
+  * Mode 2: *Studio Paper Light* (`#f8fafc`, `#ffffff`, Slate & Indigo)
