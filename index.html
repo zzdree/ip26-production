@@ -11,8 +11,12 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&family=Space+Grotesk:wght@500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
   
+  <!-- Firebase Cloud Realtime Database SDK (Google Cloud) -->
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database-compat.js"></script>
+
   <!-- Pure Dark Grey Master Stylesheet -->
-  <link rel="stylesheet" href="style.css?v=20260822_puredarkgrey">
+  <link rel="stylesheet" href="style.css?v=20260822_cloudsync">
 </head>
 <body class="app-body">
 
@@ -24,6 +28,11 @@
         <span class="telemetry-clock" id="liveClock">--:--:-- WIB</span>
         <span class="telemetry-sep">•</span>
         <span class="telemetry-venue">Auditorium UNNES</span>
+        <span class="telemetry-sep">•</span>
+        <span class="cloud-status-pill" id="cloudStatusPill">
+          <span class="cloud-dot"></span>
+          <span id="cloudStatusText">Cloud DB Syncing...</span>
+        </span>
       </div>
       <div class="telemetry-right">
         <span class="badge badge-warning">PENGADAAN PENDING</span>
@@ -42,7 +51,7 @@
         </div>
         <div class="brand-meta">
           <span class="brand-name">IP26 COMMAND</span>
-          <span class="brand-tag">MEDIA SYSTEM</span>
+          <span class="brand-tag">MEDIA CLOUD SUITE</span>
         </div>
       </a>
 
@@ -53,7 +62,7 @@
         <a href="#cameras" class="tab-link">Kamera</a>
         <a href="#routing" class="tab-link">Routing</a>
         <a href="#workstations" class="tab-link">Workstation</a>
-        <a href="#inventory" class="tab-link">Inventaris</a>
+        <a href="#inventory" class="tab-link">Inventaris & Checklist</a>
         <a href="#rundown" class="tab-link">Rundown</a>
       </nav>
 
@@ -77,12 +86,12 @@
             <span class="tag-radar"></span>
             <span>UKK UNNES BROADCAST ENGINE 2026</span>
           </div>
-          <span class="badge badge-tech font-mono">SPEC V5.0 MASTER</span>
+          <span class="badge badge-tech font-mono">SPEC V6.0 CLOUD MASTER</span>
         </div>
 
         <h1 class="hero-h1">Ibadah Perdana UKK UNNES 2026</h1>
         <p class="hero-subtitle">
-          Pusat kendali teknis terintegrasi: arsitektur routing multi-kamera siaran, tata suara FOH & streaming, alokasi operator stasiun kerja, katalog 13 mitra inventaris, dan alur tayang multimedia.
+          Pusat kendali teknis terintegrasi: arsitektur routing multi-kamera siaran, tata suara FOH & streaming, alokasi operator stasiun kerja, <strong>Checklist Inventaris Realtime Cloud Database antar-HP crew</strong>, dan alur tayang multimedia.
         </p>
 
         <!-- Metric Widgets Grid (Pure Dark Grey Cards) -->
@@ -754,19 +763,52 @@ Terminal Cable XCH (Andreas) + Terminal Cable XCH (UKK) + Terminal Cable XCH (Pa
         </div>
       </section>
 
-      <!-- INVENTORY SECTION -->
+      <!-- INVENTORY & REALTIME CHECKLIST SECTION -->
       <section class="content-section" id="inventory">
         <div class="section-head-box">
           <div>
-            <span class="section-badge-tag">MASTER STORAGE</span>
-            <h2 class="section-h2">Direktori Inventaris & Peminjaman Alat</h2>
-            <p class="section-desc">Katalog lengkap 84 item peralatan dari 13 pihak peminjam dengan pencarian dan filter instan.</p>
+            <span class="section-badge-tag">MASTER STORAGE & CHECKLIST</span>
+            <h2 class="section-h2">Inventaris & Checklist Realtime Cloud</h2>
+            <p class="section-desc">Katalog 84 item perlengkapan terintegrasi <strong>Google Cloud Realtime Database</strong>. Centang saat <em>Loading / Unloading</em> dan <em>Packing</em> otomatis tersinkronisasi di seluruh smartphone crew secara langsung.</p>
           </div>
-          <div class="inv-live-badge" id="invCountBadge">Memuat data...</div>
+          <div class="inv-live-badge" id="invCountBadge">Memuat database...</div>
+        </div>
+
+        <!-- Realtime Packing Progress Hero Card -->
+        <div class="checklist-progress-card">
+          <div class="progress-top-row">
+            <div class="progress-info">
+              <span class="progress-stage-label">REALTIME GEAR VERIFICATION STATUS</span>
+              <h3 class="progress-counter-title" id="packingCounterText">0 / 84 Barang Terpacking (0%)</h3>
+            </div>
+            <div class="progress-stats-badge">
+              <span id="packedCountBadge" class="badge badge-success">0 Packed</span>
+              <span id="unpackedCountBadge" class="badge badge-warning">84 Pending / Panggung</span>
+            </div>
+          </div>
+          <div class="progress-bar-large-track">
+            <div class="progress-bar-large-fill" id="packingProgressFill" style="width: 0%;"></div>
+          </div>
+          
+          <!-- Quick Batch Actions for Crew -->
+          <div class="checklist-batch-actions">
+            <button class="btn-batch-action btn-pack-all" onclick="batchCheckAll(true)">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              <span>Centang Semua (100% Selesai Packing)</span>
+            </button>
+            <button class="btn-batch-action btn-unload-all" onclick="batchCheckAll(false)">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 3h18v18H3z"></path><path d="M9 9h6v6H9z"></path></svg>
+              <span>Uncentang Semua (Mulai Loading / Unload)</span>
+            </button>
+            <button class="btn-batch-action btn-filter-unpacked" id="btnFilterUnpacked" onclick="toggleOnlyUnpackedFilter(this)">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
+              <span>Tampilkan Hanya Belum Kembali</span>
+            </button>
+          </div>
         </div>
 
         <!-- Inventory Console Toolbar -->
-        <div class="inv-toolbar">
+        <div class="inv-toolbar mt-4">
           <div class="inv-search-cavity">
             <svg class="cavity-ico" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
             <input type="text" id="inventorySearch" placeholder="Cari nama barang, kabel, adaptor, kamera, atau pemilik..." onkeyup="filterInventory()">
@@ -803,7 +845,7 @@ Terminal Cable XCH (Andreas) + Terminal Cable XCH (UKK) + Terminal Cable XCH (Pa
 
         <!-- Inventory Grid Cards -->
         <div class="inv-cards-grid" id="inventoryGrid">
-          <!-- Rendered by app.js -->
+          <!-- Rendered by app.js with Live Checkboxes -->
         </div>
       </section>
 
@@ -924,10 +966,10 @@ Terminal Cable XCH (Andreas) + Terminal Cable XCH (UKK) + Terminal Cable XCH (Pa
     </a>
     <a href="#inventory" class="dock-btn">
       <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path></svg>
-      <span>Inventaris</span>
+      <span>Checklist</span>
     </a>
   </nav>
 
-  <script src="app.js?v=20260822_puredarkgrey"></script>
+  <script src="app.js?v=20260822_cloudsync"></script>
 </body>
 </html>

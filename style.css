@@ -2,6 +2,7 @@
    IP26 BROADCAST COMMAND SUITE — PURE DARK GREY MASTER DESIGN SYSTEM
    Theme: Pure Dark Grey / Neutral Charcoal Slate (Zero Blue Tint)
    Layout: Centered Single Page + Top Desktop Nav + Bottom Mobile Dock
+   Features: Realtime Cloud Database Checklist & Multi-Device Sync
    ========================================================================== */
 
 :root {
@@ -139,7 +140,7 @@ a:hover {
 .text-center { text-align: center; }
 
 /* ==========================================================================
-   1. GLOBAL TELEMETRY TOP BAR (PURE DARK GREY)
+   1. GLOBAL TELEMETRY TOP BAR & CLOUD STATUS
    ========================================================================== */
 
 .telemetry-bar {
@@ -197,6 +198,38 @@ a:hover {
   0% { transform: scale(0.95); opacity: 0.8; }
   50% { transform: scale(1.25); opacity: 1; box-shadow: 0 0 12px var(--neon-emerald); }
   100% { transform: scale(0.95); opacity: 0.8; }
+}
+
+.cloud-status-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(0, 229, 255, 0.1);
+  border: 1px solid rgba(0, 229, 255, 0.3);
+  color: var(--neon-cyan);
+  padding: 2px 8px;
+  border-radius: 100px;
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.cloud-dot {
+  width: 6px;
+  height: 6px;
+  background: var(--neon-cyan);
+  border-radius: 50%;
+  box-shadow: var(--neon-cyan-glow);
+}
+
+.cloud-status-pill.connected .cloud-dot {
+  background: var(--neon-emerald);
+  box-shadow: var(--neon-emerald-glow);
+}
+
+.cloud-status-pill.connected {
+  border-color: rgba(0, 230, 118, 0.4);
+  color: var(--neon-emerald);
+  background: var(--neon-emerald-bg);
 }
 
 .telemetry-clock {
@@ -953,8 +986,121 @@ a:hover {
 }
 
 /* ==========================================================================
-   7. INVENTORY CONSOLE & DIRECTORY (PURE DARK GREY)
+   7. REALTIME CHECKLIST CONSOLE & INVENTORY (PURE DARK GREY)
    ========================================================================== */
+
+.checklist-progress-card {
+  background: linear-gradient(145deg, #242630 0%, #1a1b22 100%);
+  border: 1px solid rgba(0, 230, 118, 0.35);
+  border-radius: 16px;
+  padding: 22px 24px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7), 0 0 25px rgba(0, 230, 118, 0.12);
+  margin-bottom: 24px;
+}
+
+.progress-top-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.progress-stage-label {
+  font-size: 10.5px;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  color: var(--neon-emerald);
+  display: block;
+}
+
+.progress-counter-title {
+  font-size: 22px;
+  font-weight: 800;
+  color: #fff;
+}
+
+.progress-stats-badge {
+  display: flex;
+  gap: 8px;
+}
+
+.progress-bar-large-track {
+  width: 100%;
+  height: 10px;
+  background: var(--bg-inset);
+  border-radius: 100px;
+  overflow: hidden;
+  margin-bottom: 18px;
+  border: 1px solid var(--border-subtle);
+}
+
+.progress-bar-large-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #00e5ff 0%, #00e676 100%);
+  box-shadow: var(--neon-emerald-glow);
+  transition: width 0.4s var(--ease-out-expo);
+}
+
+.checklist-batch-actions {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.btn-batch-action {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  border-radius: 8px;
+  font-family: var(--font-body);
+  font-size: 12.5px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  border: 1px solid var(--border-card);
+}
+
+.btn-pack-all {
+  background: var(--neon-emerald-bg);
+  color: var(--neon-emerald);
+  border-color: rgba(0, 230, 118, 0.4);
+}
+
+.btn-pack-all:hover {
+  background: rgba(0, 230, 118, 0.25);
+  box-shadow: var(--neon-emerald-glow);
+}
+
+.btn-unload-all {
+  background: var(--bg-surface);
+  color: var(--text-muted);
+}
+
+.btn-unload-all:hover {
+  background: var(--bg-card);
+  color: #fff;
+  border-color: var(--border-card-hover);
+}
+
+.btn-filter-unpacked {
+  background: var(--bg-surface);
+  color: var(--neon-amber);
+  border-color: rgba(255, 171, 0, 0.3);
+}
+
+.btn-filter-unpacked:hover {
+  background: rgba(255, 171, 0, 0.15);
+}
+
+.btn-filter-unpacked.active {
+  background: var(--neon-amber);
+  color: var(--text-dark);
+  font-weight: 800;
+  box-shadow: var(--neon-amber-glow);
+}
 
 .inv-live-badge {
   font-family: var(--font-mono);
@@ -1144,9 +1290,11 @@ a:hover {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 10px 18px;
+  padding: 12px 18px;
   border-bottom: 1px solid var(--border-subtle);
   font-size: 13.5px;
+  gap: 12px;
+  transition: background var(--transition-fast);
 }
 
 .inv-item-row:last-child {
@@ -1155,6 +1303,60 @@ a:hover {
 
 .inv-item-row:hover {
   background: var(--bg-card-hover);
+}
+
+.inv-item-row.is-packed {
+  background: rgba(0, 230, 118, 0.05);
+}
+
+.inv-item-row.is-packed .item-name-text {
+  color: var(--text-muted);
+}
+
+/* Custom Interactive Checkbox */
+.custom-chk-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+  user-select: none;
+  flex: 1;
+}
+
+.custom-chk-input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+.custom-chk-box {
+  width: 20px;
+  height: 20px;
+  background: var(--bg-inset);
+  border: 1.5px solid var(--border-card);
+  border-radius: 6px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: all var(--transition-fast);
+}
+
+.custom-chk-input:checked ~ .custom-chk-box {
+  background: var(--neon-emerald);
+  border-color: var(--neon-emerald);
+  box-shadow: 0 0 10px rgba(0, 230, 118, 0.5);
+}
+
+.custom-chk-box svg {
+  display: none;
+  color: var(--text-dark);
+}
+
+.custom-chk-input:checked ~ .custom-chk-box svg {
+  display: block;
 }
 
 /* ==========================================================================
@@ -1421,6 +1623,15 @@ a:hover {
 
   .lender-pill {
     white-space: nowrap;
+  }
+
+  .checklist-batch-actions {
+    flex-direction: column;
+  }
+
+  .btn-batch-action {
+    width: 100%;
+    justify-content: center;
   }
 }
 
