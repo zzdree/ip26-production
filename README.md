@@ -20,7 +20,7 @@
 
 </div>
 
-> **Dokumentasi Utama Sistem Produksi, Manajemen Inventaris, Routing Audio-Visual, & Distribusi Sinyal Multimedia Ibadah Perdana UKK UNNES 2026.**
+> **Dokumentasi Terpadu Arsitektur Sistem Produksi, Manajemen Inventaris, Routing Audio-Visual, Diagram Sinyal Master & Sub-Sistem, Serta Eksekusi Multimedia Ibadah Perdana UKK UNNES 2026.**
 
 ---
 
@@ -39,20 +39,20 @@
 
 ---
 
-## 👥 Tim & Struktur Organisasi Produksi
+## 👥 Struktur Organisasi & Komando Produksi
 
 ```mermaid
 flowchart TD
-    A[Production Lead / System Engineer<br><b>Andreas</b>] --> B[Media Engineer<br><b>Richard</b>]
-    A --> C[Creative Engineer<br><b>Jennifer</b>]
+    A["👑 Production Lead / System Engineer<br/><b>Andreas</b>"] --> B["🎬 Media Engineer<br/><b>Richard (Leader)</b>"]
+    A --> C["🎨 Creative Engineer<br/><b>Jennifer (Leader)</b>"]
     
-    B --> B1[Wilfred - Switcher]
-    B --> B2[Alex - CAM 1]
-    B --> B3[Rania - ProPresenter 1]
+    B --> B1["Wilfred — Video Switcher Master"]
+    B --> B2["Alex — Operator CAM 1 Wireless"]
+    B --> B3["Rania — Operator ProPresenter 1 (Side & Back LED)"]
     
-    C --> C1[Filia - ProPresenter 2]
-    C --> C2[Felani]
-    C --> C3[Wike]
+    C --> C1["Filia — Operator ProPresenter 2 (Center Lyrics/Layer)"]
+    C --> C2["Felani — Creative Support"]
+    C --> C3["Wike — Creative Support"]
 ```
 
 ### 1. System Engineer (Pelayan)
@@ -72,18 +72,222 @@ flowchart TD
 
 > [!NOTE]
 > **Prinsip & Aturan Penugasan Tim:**
-> - Panitia bisa bertindak sebagai pelayan teknis.
-> - Pelayan belum tentu bagian dari panitia struktural.
-> - PIC ada yang berstatus panitia dan ada yang berstatus pelayan.
+> - Panitia dapat bertindak sebagai pelayan teknis.
+> - Pelayan belum tentu bagian dari kepanitiaan struktural.
+> - PIC ada yang berstatus panitia dan ada yang berstatus pelayan teknis.
 > - PIC yang bukan panitia secara fungsional adalah pelayan teknis.
-> - PIC dan Pelayan memiliki tanggung jawab teknis yang setara di lapangan.
+> - Seluruh PIC dan Pelayan memiliki tanggung jawab teknis yang setara di lapangan.
 
 ---
 
-## 🎥 Camera Systems & Routing Detail
+## 🗺️ MASTER ARCHITECTURE FLOWCHART
 
-### A. Broadcast Camera System (Terintegrasi ke Master Engine)
-*Catatan: Terverifikasi Penuh (✅) & Terhubung Langsung ke Switcher Utama Cinetreak Cinelive V1.*
+Diagram berikut menggambarkan **keseluruhan ekosistem teknis terintegrasi** yang mencakup input video kamera, switching, pemrosesan visual LED (ProPresenter & Resolume), distribusi audio digital & analog, kontrol nirkabel FOH, hingga streaming OBS dan monitor panggung.
+
+```mermaid
+flowchart TB
+    %% SECTION: CAMERA INPUTS
+    subgraph S_CAM["🎥 1. CAMERA ACQUISITION"]
+        CAM1["CAM 1 (Alex)<br/>Sony ZVE10 + Pyro S TX"]
+        CAM2["CAM 2 (Kiel 1)<br/>Sony ZV-E10 + Pyro H TX"]
+        CAM3["CAM 3 (Nia)<br/>Sony A6000 + HDMI 10M"]
+        CAM4["CAM 4 (Ferdy)<br/>Sony A6000 + HDMI 10M"]
+    end
+
+    %% SECTION: VIDEO SWITCHING & MONITORING
+    subgraph S_SW["🎛️ 2. BROADCAST SWITCHING & MULTIVIEW"]
+        RX1["Pyro S RX (UKK Stand)"]
+        RX2["Pyro H RX (UKK Stand)"]
+        SW["Master Switcher<br/><b>Cinetreak Cinelive V1</b><br/>(Wilfred)"]
+        TV_MV["Television Multiview<br/>(Kezia)"]
+        SPL["HDMI Splitter 4CH<br/>(UKK / GKJ)"]
+    end
+
+    %% SECTION: PRESENTATION & LED VIDEO PROCESSING
+    subgraph S_VIS["💻 3. PRESENTATION & LED MAPPING ENGINE"]
+        P1["Laptop ProPresenter 1<br/>(Rania)<br/><i>L/R/Back Visuals</i>"]
+        P2["Laptop ProPresenter 2<br/>(Filia)<br/><i>Lyrics / Layers</i>"]
+        RES["Laptop Resolume Arena<br/>(Andreas / Bayu)<br/><i>Center Screen Mapper</i>"]
+        PC_UN["PC UNNES<br/>(Passthrough & Scale)"]
+        NOVA1["Novastar Processor 1<br/>(UNNES)"]
+        NOVA2["Novastar Processor 2<br/>(UNNES)"]
+        LED_LR["🖥️ LED Left, Right & Back<br/>(Auditorium UNNES)"]
+        LED_CTR["🖥️ LED Center Main Stage<br/>(Auditorium UNNES)"]
+    end
+
+    %% SECTION: AUDIO & STREAMING
+    subgraph S_AUD["🔊 4. AUDIO ROUTING & LIVE STREAMING"]
+        STAGE_MIC["Stage Mics, Instruments & Vocal"]
+        QL5["Master Digital Audio Mixer<br/><b>Yamaha QL5 UNNES</b><br/>(Jordan / Yosua)"]
+        VM1["Laptop Virtual Mixer 1<br/>(Andreas)"]
+        VM2["iPad Virtual Mixer 2<br/>(Jennifer)"]
+        DAC["USB-C DAC Hanason / Oraimo<br/>(Audio Playback Resolume)"]
+        CT80S["Sub-Mix Audio Mixer<br/><b>NewBaxs CT80S GIA</b><br/>(Andreas)"]
+        OBS["Live Streaming Workstation<br/><b>OBS Studio</b><br/>(Andreas)"]
+    end
+
+    %% SECTION: TIME KEEPER
+    subgraph S_TK["⏱️ 5. STAGE TIME KEEPER SYSTEM"]
+        P3["Laptop ProPresenter 3<br/>(Tim Acara)"]
+        TV_TK["Stage Television<br/>(Darrel)"]
+    end
+
+    %% SIGNAL CONNECTIONS
+    CAM1 -.->|Wireless 5GHz| RX1 -->|HDMI 1.5M| SW
+    CAM2 -.->|Wireless 5GHz| RX2 -->|HDMI 1.5M| SW
+    CAM3 -->|HDMI 10M GKJ| SW
+    CAM4 -->|HDMI 10M UKK| SW
+
+    SW -->|HDMI 1M GIA| TV_MV
+    SW -->|USB-A to USB-C Andreas| OBS
+    SW -->|HDMI 1M GIA| SPL
+
+    SPL -->|HDMI 1.5M + Capture OWL| P1
+    SPL -->|HDMI 1.5M + Capture ABON| RES
+    P2 -->|HDMI 1.5M + Capture OWL| RES
+
+    P1 -->|HDMI 20M UNNES| NOVA1 --> LED_LR
+    RES -->|HDMI 15M GKJ + Capture GKJ| PC_UN --> NOVA2 --> LED_CTR
+
+    RES -->|USB-C DAC + Audio 20M| DAC --> QL5
+    STAGE_MIC --> QL5
+    QL5 -.->|WiFi UNNES-ID| VM1
+    QL5 -.->|WiFi UNNES-ID| VM2
+    QL5 -->|2x XLR 10M UKK + 2x XLR 3M GIA| CT80S
+    CT80S -->|USB Extender 2M + USB Cable GIA| OBS
+
+    P3 -->|HDMI 1.5M Lio| TV_TK
+```
+
+---
+
+## 🔍 DETAIL SUB-SYSTEM FLOWCHARTS & TEKNIS
+
+---
+
+### Sub-Flowchart 1: Broadcast Camera & Wireless Acquisition Sub-System
+
+```mermaid
+flowchart LR
+    subgraph CAM_1["CAM 1 (Steady Wireless) — Alex"]
+        C1[Sony ZVE10 Kiel 1<br/>+ Lens 18-105 OWL] -->|Micro HDMI 30cm| TX1[Hollyland Pyro S TX]
+        TX1 -.->|Wireless 5GHz| RX1[Hollyland Pyro S RX]
+        RX1 -->|HDMI 1.5M UKK| SW_IN1[Ch 1 Switcher]
+    end
+
+    subgraph CAM_2["CAM 2 (Mobile Wireless) — Kiel 1"]
+        C2[Sony ZV-E10 OWL<br/>+ Lens 18-105 OWL] -->|Micro HDMI 30cm| TX2[Hollyland Pyro H TX]
+        TX2 -.->|Wireless 5GHz| RX2[Hollyland Pyro H RX]
+        RX2 -->|HDMI 1.5M UKK| SW_IN2[Ch 2 Switcher]
+    end
+
+    subgraph CAM_3["CAM 3 (Steady Wired) — Nia"]
+        C3[Sony A6000 OWL<br/>+ Lens 18-105 OWL] -->|Micro HDMI Conv| CAB3[HDMI Cable 10M GKJ]
+        CAB3 --> SW_IN3[Ch 3 Switcher]
+    end
+
+    subgraph CAM_4["CAM 4 (Steady Wired) — Ferdy"]
+        C4[Sony A6000 OWL<br/>+ Lens 16-50 Kit Kiel 1] -->|Micro HDMI Conv| CAB4[HDMI Cable 10M UKK]
+        CAB4 --> SW_IN4[Ch 4 Switcher]
+    end
+```
+
+#### 📖 Penjelasan Teknis Sub-Sistem Kamera:
+1. **CAM 1 (Alex - Steady Wireless):** Ditempatkan pada Tripod Big OWL. Sinyal Full HD dikirim melalui transmitter nirkabel Hollyland Pyro S TX bertenaga Baterai WIR menuju Receiver Pyro S RX yang dipasang pada Stand Lighting Small UKK di dekat meja switcher, lalu dihubungkan via kabel HDMI 1.5M UKK.
+2. **CAM 2 (Kiel 1 - Mobile Wireless):** Kamera bergerak (*handheld/roaming*) untuk menangkap momen dinamis jemaat dan panggung. Menggunakan transmitter Hollyland Pyro H TX/RX nirkabel berlatensi rendah dengan kabel patch Micro HDMI 30cm.
+3. **CAM 3 (Nia - Steady Wired) & CAM 4 (Ferdy - Steady Wired):** Kamera posisi tetap di sisi auditorium menggunakan konverter Micro HDMI to HDMI OWL dan kabel HDMI solid 10 meter (GKJ & UKK) langsung menuju switcher tanpa dependensi sinyal frekuensi radio.
+4. **Redundansi / Backup:** 2 unit Converter Micro HDMI to HDMI Panitia disiagakan di kotak perkakas untuk antisipasi kegagalan port kamera.
+
+---
+
+### Sub-Flowchart 2: Video Distribution & Multi-Screen LED Mapping Sub-System
+
+```mermaid
+flowchart TD
+    SW_OUT[Program / Aux Output Switcher Cinetreak V1] -->|HDMI 1M GIA| SPL4[HDMI Splitter 4CH UKK/GKJ]
+    
+    SPL4 -->|HDMI 1.5M Andreas| CAP_OWL1[HDMI Capture OWL] --> P1_IN[Laptop ProPresenter 1 Rania]
+    SPL4 -->|HDMI 1.5M Andreas| CAP_ABON[HDMI Capture ABON] --> RES_IN1[Input 1: Resolume Arena Andreas]
+    
+    P2_OUT[Laptop ProPresenter 2 Filia] -->|HDMI 1.5M Andreas| CAP_OWL2[HDMI Capture OWL] --> RES_IN2[Input 2: Resolume Arena Andreas]
+
+    P1_IN -->|HDMI 20M UNNES| NOV1[Novastar Processor 1] --> LED_SIDE[LED Screen Left, Right & Back]
+    RES_IN1 & RES_IN2 --> RES_OUT[Output Resolume] -->|HDMI 15M GKJ| CAP_GKJ[HDMI Capture GKJ] --> PC_UN[PC UNNES Passthrough] --> NOV2[Novastar Processor 2] --> LED_MID[LED Screen Center Stage]
+```
+
+#### 📖 Penjelasan Teknis Sub-Sistem Visual & LED:
+1. **Distribusi Splitter 4CH:** Sinyal PGM dari Switcher Cinetreak dialirkan ke Splitter 4CH (UKK/GKJ) untuk diumpankan ke ProPresenter 1 (Layer Kamera Samping/Belakang) dan Resolume Arena (Layer Kamera Tengah).
+2. **ProPresenter 1 (LED Samping & Belakang):** Menggabungkan video live camera feed dari Capture Card OWL dengan slide pengumuman/ayat/tema, lalu dikirim via kabel HDMI 20M UNNES ke Novastar Processor 1 untuk layar LED Kiri, Kanan, dan Belakang.
+3. **ProPresenter 2 $\rightarrow$ Resolume Arena (LED Tengah):** Lirik lagu dan materi grafis dari ProPresenter 2 dialirkan via Capture Card OWL ke Resolume Arena. Resolume berfungsi sebagai *master visual compositor* yang memadukan background dinamis, video generation, dan live camera feed.
+4. **Output Resolume $\rightarrow$ Novastar 2:** Sinyal output Resolume dikirim via kabel HDMI 15M GKJ ke Capture Card GKJ yang terpasang di PC UNNES, lalu diteruskan ke Novastar Video Processor 2 untuk menampilkan visual panggung utama (LED Center).
+5. **Cadangan Splitter:** Tersedia 1 unit Splitter 4CH GKJ dan 1 unit Splitter 2CH GIA sebagai cadangan jika splitter utama mengalami gangguan daya/sinyal.
+
+---
+
+### Sub-Flowchart 3: Audio Routing & Live Streaming Sub-System
+
+```mermaid
+flowchart TD
+    STAGE_SRC[Vokal, Musik, & Panggung] --> QL5_MAIN[Master Digital Mixer Yamaha QL5 UNNES]
+    RES_AUDIO[Laptop Resolume Playback] -->|USB-C DAC Hanason/Oraimo| AUD_20M[Kabel Audio 20M UNNES] --> QL5_MAIN
+    
+    QL5_MAIN -.->|Jaringan WiFi UNNES-ID| VM1_APP[Virtual Mixer 1 Laptop Andreas]
+    QL5_MAIN -.->|Jaringan WiFi UNNES-ID| VM2_APP[Virtual Mixer 2 iPad Jennifer]
+    
+    QL5_MAIN -->|XLR 10M 2X UKK + XLR 3M 2X GIA| CT80S_IN[Mixer NewBaxs CT80S GIA]
+    
+    CT80S_IN -->|USB A to C Data GIA + Extender 2M Andreas| OBS_IN[Workstation OBS Studio]
+    SW_CAM[Switcher Cinetreak V1 Video Feed] -->|USB A to C Data Andreas| OBS_IN
+    
+    OBS_IN --> STREAM_OUT[🚀 YouTube / Online Live Stream]
+```
+
+#### 📖 Penjelasan Teknis Sub-Sistem Audio & Streaming:
+1. **Master FOH Console (Yamaha QL5 UNNES):** Mengontrol seluruh input panggung (mikrofon vokal, instrumen musik, dan audio multimedia dari Resolume via USB-C DAC Hanason/Oraimo dengan kabel audio 20M).
+2. **Virtual Mixing Remote:** FOH Sound Engineer (Jordan / Yosua) dapat melakukan remote fader, gain, dan EQ secara nirkabel melalui Virtual Mixer 1 (Laptop Andreas) dan Virtual Mixer 2 (iPad Jennifer) melalui koneksi WiFi UNNES-ID.
+3. **Dedicated Streaming Sub-Mix (NewBaxs CT80S GIA):** Sinyal audio master dari Yamaha QL5 dikirim melalui sambungan kabel balance XLR (2x 10M UKK + 2x 3M GIA) ke Mixer NewBaxs CT80S. Ini memungkinkan Andreas menyetel level audio streaming secara terpisah dan independen tanpa mempengaruhi tata suara ruangan Auditorium.
+4. **Integrasi OBS Studio:** Workstation OBS menerima audio digital murni dari NewBaxs CT80S melalui kabel USB Data + Extender 2M, serta feed video digital langsung dari Cinetreak V1 via USB-C untuk disiarkan secara *real-time*.
+
+---
+
+### Sub-Flowchart 4: Stage Time Keeper Sub-System
+
+```mermaid
+flowchart LR
+    P3_LAP[Laptop ProPresenter 3<br/>Tim Acara / Time Keeper] -->|HDMI Cable 1.5M Lio| TV_STAGE[Television Stage Darrel<br/>+ Power Adaptor Darrel]
+    PWR_UKK[Terminal Cable XCH UKK] -.-> P3_LAP & TV_STAGE
+```
+
+#### 📖 Penjelasan Teknis Sub-Sistem Time Keeper:
+- **Isolasi Sistem:** Sistem Time Keeper dirancang **100% independen** dan terpisah dari jaringan video master switcher untuk mencegah resiko *cross-feed* atau *blackout* ketika terjadi perpindahan tema ibadah.
+- **Hardware:** Menggunakan Laptop ProPresenter 3 (Tim Acara) yang tersambung langsung ke TV Stage Darrel via kabel HDMI 1.5M Lio dan terminal daya UKK untuk menampilkan timer hitung mundur khotbah, durasi pujian, dan penanda waktu rundown.
+
+---
+
+### Sub-Flowchart 5: Electrical & Power Distribution Sub-System
+
+```mermaid
+flowchart TD
+    SOURCE[⚡ Sumber Daya Listrik Auditorium UNNES] --> MAIN_PANEL[Panel Utama Distribusi]
+    
+    MAIN_PANEL --> T1[Terminal Cable XCH Andreas<br/><b>Meja Broadcast & Streaming</b>]
+    MAIN_PANEL --> T2[Terminal Cable XCH UKK<br/><b>Meja Visual & Switcher</b>]
+    MAIN_PANEL --> T3[Terminal Cable XCH Panitia<br/><b>Area FOH Audio & Panggung</b>]
+
+    T1 --> D_BROADCAST[Laptop OBS, Charger Kamera, DAC, Extender, Aksesoris]
+    T2 --> D_VISUAL[Switcher Cinetreak, Splitter 4CH, TV Kezia, ProPresenter 1 & 2, Resolume]
+    T3 --> D_AUDIO[Mixer NewBaxs CT80S, Virtual Mixer 1, TV Stage Darrel, Stand Wireless RX]
+```
+
+#### 📖 Penjelasan Teknis Distribusi Daya:
+- Menggunakan 3 jalur terminal utama (`Terminal Cable XCH`) dari Andreas, UKK, dan Panitia untuk memisahkan beban daya perangkat audio, pemrosesan video berdaya tinggi, dan charger baterai nirkabel guna mencegah terjadinya *electrical ground loop hum* pada sistem audio.
+
+---
+
+## 🎥 Camera Systems & Technical Specs
+
+### A. Broadcast Camera System (Terintegrasi ke Master Switcher)
+*Status Verifikasi: ✅ Terverifikasi Penuh*
 
 | Kamera | Mode Operasi | Rantai Perangkat & Routing Sinyal (*Hardware Path*) | PIC / Operator | Status |
 | :--- | :--- | :--- | :--- | :---: |
@@ -94,90 +298,13 @@ flowchart TD
 | **BACKUP** | Spare Parts | 2x Micro HDMI to HDMI Converter (Panitia) | - | ✅ |
 
 ### B. Documentation Camera System (Terpisah / Standalone)
-*Catatan: Terpisah dari Broadcast System dan Engine System untuk keperluan dokumentasi foto, aftermovie, dan media sosial.*
+*Status Verifikasi: ✅ Terverifikasi Penuh*
 
 | Fungsi | Rantai Perangkat (*Hardware Path*) | PIC / Operator | Status |
 | :--- | :--- | :--- | :---: |
 | **CAM PHO (Foto)** | Sony A6400 (OWL) + Lensa Sony 50MM (OWL) + Battery X2 (OWL) + Memory Card 32GB (OWL) | **Nico** | ✅ |
 | **CAM VID (Video)** | Sony A6600 (Joel) + Lensa 24-70MM Zeiss (Joel) + Battery X2 (Joel) + Memory Card 64GB (Joel) + Gimbal DJI Ronin RS3 (Joel) | **Joel** | ✅ |
 | **CAM HP (Mobile)** | iPhone 15 (Jennifer) | **Jennifer** | ✅ |
-
----
-
-## 🎛️ Master Engine & AV Signal Flow Architecture
-
-```mermaid
-flowchart TD
-    subgraph Video Input
-        C1[CAM 1 Wireless Pyro S] --> SW[Switcher Cinetreak Cinelive V1 OWL]
-        C2[CAM 2 Wireless Pyro H] --> SW
-        C3[CAM 3 Wired 10M GKJ] --> SW
-        C4[CAM 4 Wired 10M UKK] --> SW
-    end
-
-    subgraph Video Switching & Distribution
-        SW -->|HDMI 1M GIA| TV_MV[Television Multiview Kezia]
-        SW -->|USB A to C Andreas| OBS[Laptop OBS Studio Andreas]
-        SW -->|HDMI 1M GIA| SPL[HDMI Splitter 4CH UKK/GKJ]
-    end
-
-    subgraph Presentation & LED Processing
-        SPL -->|HDMI 1.5M + Capture OWL| P1[Laptop ProPresenter 1 Rania]
-        SPL -->|HDMI 1.5M + Capture ABON| RES[Laptop Resolume Arena Bayu / Andreas]
-        P2[Laptop ProPresenter 2 Filia] -->|HDMI 1.5M + Capture OWL| RES
-        
-        P1 -->|HDMI Cable 20M UNNES| NOVA1[Novastar Video Processor 1 UNNES] --> LED_LR[LED Left, Right & Back UNNES]
-        RES -->|HDMI 15M GKJ + Capture GKJ| PC_UNNES[PC UNNES] --> NOVA2[Novastar Video Processor 2 UNNES] --> LED_CTR[LED Center UNNES]
-    end
-
-    subgraph Audio Engineering & Live Sub-Mix
-        STAGE[Stage Mics & Instruments] --> QL5[Mixer Yamaha QL5 UNNES]
-        RES -->|USB-C DAC + Audio Cable 20M UNNES| QL5
-        QL5 -->|XLR 10M UKK + XLR 3M GIA| CT80S[Mixer NewBaxs CT80S GIA]
-        CT80S -->|USB Extender 2M + USB Cable GIA| OBS
-        QL5 -.->|WiFi UNNES-ID| VM1[Laptop Virtual Mixer 1 Andreas]
-        QL5 -.->|WiFi UNNES-ID| VM2[iPad Virtual Mixer 2 Jennifer]
-    end
-
-    subgraph Stage Time Keeper System
-        P3[Laptop ProPresenter 3 Acara] -->|HDMI 1.5M Lio| TV_TK[Television Stage Darrel]
-    end
-```
-
----
-
-## 🔌 Detail Spesifikasi Routing Engine
-
-### 1. Electrical Routing (Power Distribution)
-- `Terminal Cable XCH (Andreas)` + `Terminal Cable XCH (UKK)` + `Terminal Cable XCH (Panitia)`
-- Distribusi daya menyeluruh untuk meja kontrol Broadcast, Audio FOH, Multimedia/Visual LED, dan Panggung.
-
-### 2. Video Broadcast & LED Routing
-- **Switcher + Television (Multiview):** `Terminal Cable XCH (UKK)` + `Cinetreak Cinelive V1 (OWL)` + `Power Adaptor MIX (OWL)` + `HDMI to HDMI Cable 1M (GIA)` + `Television (Kezia)` + `Power Adaptor TV (Kezia)` ✅
-- **Switcher + Splitter (Master Feed Distribution):** `Terminal Cable XCH (UKK)` + `Cinetreak Cinelive V1 (OWL)` + `Power Adaptor MIX (OWL)` + `HDMI to HDMI Cable 1M (GIA)` + `HDMI Splitter 4CH (UKK/GKJ)` + `Power Adaptor SPL (UKK/GKJ)` ✅
-- **Switcher + OBS (Live Streaming Program Feed):** `Terminal Cable XCH (UKK)` + `Cinetreak Cinelive V1 (OWL)` + `Power Adaptor MIX (OWL)` + `USB A to USB C Data Cable (Andreas)` + `Laptop (OBS Studio)` + `Power Adaptor LTP (OBS Studio)` ✅
-- **Splitter + PRO1 + LED Left Right Back:** `HDMI Splitter 4CH (UKK/GKJ)` + `Power Adaptor SPL (UKK/GKJ)` + `HDMI to HDMI Cable 1,5M (Andreas)` + `HDMI Capture (OWL)` + `Laptop (Pro Presenter 1)` + `Power Adaptor LTP (Pro Presenter 1)` + `HDMI Cable 20M (UNNES)` + `Novastar Video Processor (UNNES)` + `LED Left Right Back (UNNES)` ✅
-- **PRO2 + RES (Graphics/Lyrics to Visual Mapper):** `Laptop (Pro Presenter 2)` + `Power Adaptor LTP (Pro Presenter 2)` + `HDMI to HDMI Cable 1,5M (Andreas)` + `HDMI Capture (OWL)` + `Laptop (Resolume Arena)` + `Power Adaptor LTP (Resolume Arena)` ✅
-- **Splitter + RES + LED Center (Main Stage Visual):** `HDMI Splitter 4CH (UKK/GKJ)` + `Power Adaptor SPL (UKK/GKJ)` + `HDMI to HDMI Cable 1,5M (Andreas)` + `HDMI Capture (ABON)` + `Laptop (Resolume Arena)` + `Power Adaptor LTP` + `HDMI Cable 15M (GKJ)` + `HDMI Capture (GKJ)` + `PC (UNNES)` + `Novastar Video Processor (UNNES)` + `LED Center (UNNES)` ✅
-
-### 3. Audio Sub-System Routing
-- **Mixer 1 + XLR Cable + Mixer 2 + OBS (Broadcast Sub-Mix):** `Mixer Yamaha QL5 (UNNES)` + `XLR Female to Male Cable 10M 2X (UKK)` + `XLR Female to Male Cable 3M 2X (GIA)` + `Mixer NewBaxs CT80S (GIA)` + `USB A to USB A Extender 2M (Andreas)` + `USB A to USB C Data Cable (GIA)` + `Laptop (OBS Studio)` + `Power Adaptor LTP (OBS Studio)` ✅
-- **RES + DAC + Mixer 1 (BGM / Video Playback Audio):** `Laptop (Resolume Arena)` + `Power Adaptor LTP (Resolume Arena)` + `USB C DAC Hanason AB17X / USB C DAC Oraimo OAA310 (Andreas)` + `Audio Cable 20M (UNNES)` + `Mixer Yamaha QL5 (UNNES)` ✅
-- **Mixer 1 + VM1 (FOH Remote 1):** `Mixer Yamaha QL5 (UNNES)` + `WiFi (UNNES-ID)` + `Laptop (Virtual Mixer 1)` + `Power Adaptor LTP (Virtual Mixer 1)` ✅
-- **Mixer 1 + VM2 (FOH Remote 2):** `Mixer Yamaha QL5 (UNNES)` + `WiFi (UNNES-ID)` + `iPad (Virtual Mixer 2)` ✅
-
-### 4. Stage Time Keeper System
-- **PRO3 + Television (Stage Monitor Waktu):** `Terminal Cable XCH (UKK)` + `Laptop (Pro Presenter 3)` + `Power Adaptor LTP (Pro Presenter 3)` + `HDMI to HDMI Cable 1.5M (Lio)` + `Television (Darrel)` + `Power Adaptor TV (Darrel)` ✅ *(Sistem terpisah independen)*
-
-### 5. Catatan Redundansi Splitter
-> [!TIP]
-> **Cadangan HDMI Splitter:**
-> Tersedia 3 unit HDMI Splitter siap pakai:
-> - GKJ Ngaliyan: 1 Unit HDMI Splitter 4CH + Adaptor
-> - UKK UNNES: 1 Unit HDMI Splitter 4CH + Adaptor
-> - GIA Deliksari: 1 Unit HDMI Splitter 2CH + Adaptor
-> 
-> *Sistem utama menggunakan 1 unit Splitter 4CH, menyisakan 2 unit HDMI Splitter sebagai unit backup instan.*
 
 ---
 
