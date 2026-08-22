@@ -504,15 +504,21 @@ function setLenderFilter(lender, element) {
   renderInventory();
 }
 
-// Live Search Filter
+// Live Search Filter (Debounced for Instant 144Hz Responsiveness)
+let searchDebounceTimer = null;
 function filterInventory() {
-  const input = document.getElementById('inventorySearch');
-  const clearBtn = document.getElementById('clearSearchBtn');
-  currentSearchQuery = input.value.toLowerCase().trim();
-  if (clearBtn) {
-    clearBtn.style.display = currentSearchQuery ? 'block' : 'none';
-  }
-  renderInventory();
+  clearTimeout(searchDebounceTimer);
+  searchDebounceTimer = setTimeout(() => {
+    const input = document.getElementById('inventorySearch');
+    const clearBtn = document.getElementById('clearSearchBtn');
+    if (input) {
+      currentSearchQuery = input.value.toLowerCase().trim();
+    }
+    if (clearBtn) {
+      clearBtn.style.display = currentSearchQuery ? 'block' : 'none';
+    }
+    renderInventory();
+  }, 35);
 }
 
 // Clear Search
