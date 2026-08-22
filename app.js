@@ -1,6 +1,6 @@
 /**
  * IP26 PRODUCTION COMMAND DASHBOARD — JAVASCRIPT LOGIC
- * Features: Tab switching, live inventory search & filter, responsive navigation
+ * Features: Live Telemetry Clock, Copy-to-Clipboard, Inventory Search & Filtering, Responsive Tabs
  */
 
 // Master Inventory Data Store (100% extracted from ip26_pro2.txt)
@@ -191,16 +191,64 @@ const INVENTORY_DATA = [
   }
 ];
 
-// Current State
+// Calculate Total Items
+const TOTAL_ITEMS_COUNT = INVENTORY_DATA.reduce((acc, g) => acc + g.items.length, 0);
+
+// Current Filtering State
 let currentStatusFilter = 'all';
 let currentLenderFilter = 'ALL';
 let currentSearchQuery = '';
 
-// Initialize on DOM Ready
+// DOM Initialization
 document.addEventListener('DOMContentLoaded', () => {
   renderInventory();
+  initLiveClock();
   initNavScroll();
 });
+
+// Live WIB Clock
+function initLiveClock() {
+  const clockEl = document.getElementById('liveClock');
+  if (!clockEl) return;
+
+  function update() {
+    const now = new Date();
+    const hrs = String(now.getHours()).padStart(2, '0');
+    const mins = String(now.getMinutes()).padStart(2, '0');
+    const secs = String(now.getSeconds()).padStart(2, '0');
+    clockEl.textContent = `${hrs}:${mins}:${secs} WIB`;
+  }
+  update();
+  setInterval(update, 1000);
+}
+
+// Copy-to-Clipboard Utility
+function copyText(text, btnElement) {
+  if (!navigator.clipboard) {
+    const textArea = document.createElement('textarea');
+    textArea.value = text;
+    document.body.appendChild(textArea);
+    textArea.select();
+    try {
+      document.execCommand('copy');
+    } catch (err) {}
+    document.body.removeChild(textArea);
+  } else {
+    navigator.clipboard.writeText(text);
+  }
+
+  if (btnElement) {
+    const originalHTML = btnElement.innerHTML;
+    btnElement.innerHTML = `<span>Tersalin! ✅</span>`;
+    btnElement.style.borderColor = 'var(--accent-emerald)';
+    btnElement.style.color = 'var(--accent-emerald)';
+    setTimeout(() => {
+      btnElement.innerHTML = originalHTML;
+      btnElement.style.borderColor = '';
+      btnElement.style.color = '';
+    }, 2000);
+  }
+}
 
 // Switch Camera Tabs
 function switchCameraTab(tabName) {
@@ -222,33 +270,27 @@ function switchRoutingTab(tabName) {
   });
 }
 
-// Filter Status Buttons
+// Filter Status
 function setFilterStatus(status, element) {
   currentStatusFilter = status;
   
-  // Update UI chips
-  const chips = document.querySelectorAll('.filter-chips .chip');
+  const chips = document.querySelectorAll('.status-chips-row .status-chip');
   chips.forEach(c => c.classList.remove('active'));
   if (element) {
     element.classList.add('active');
-  } else if (typeof event !== 'undefined' && event && event.target) {
-    event.target.closest('.chip').classList.add('active');
   }
 
   renderInventory();
 }
 
-// Filter Lender Buttons
+// Filter Lender
 function setLenderFilter(lender, element) {
   currentLenderFilter = lender;
 
-  // Update UI pills
-  const pills = document.querySelectorAll('.lender-pills .lender-pill');
+  const pills = document.querySelectorAll('.lender-pill-group .pill-btn');
   pills.forEach(p => p.classList.remove('active'));
   if (element) {
     element.classList.add('active');
-  } else if (typeof event !== 'undefined' && event && event.target) {
-    event.target.closest('.lender-pill').classList.add('active');
   }
 
   renderInventory();
@@ -256,25 +298,43 @@ function setLenderFilter(lender, element) {
 
 // Live Search Input Handler
 function filterInventory() {
-  currentSearchQuery = document.getElementById('inventorySearch').value.toLowerCase().trim();
+  const input = document.getElementById('inventorySearch');
+  const clearBtn = document.getElementById('clearSearchBtn');
+  currentSearchQuery = input.value.toLowerCase().trim();
+  
+  if (clearBtn) {
+    clearBtn.style.display = currentSearchQuery ? 'block' : 'none';
+  }
+
+  renderInventory();
+}
+
+// Clear Search
+function clearSearch() {
+  const input = document.getElementById('inventorySearch');
+  const clearBtn = document.getElementById('clearSearchBtn');
+  if (input) input.value = '';
+  if (clearBtn) clearBtn.style.display = 'none';
+  currentSearchQuery = '';
   renderInventory();
 }
 
 // Render Filtered Inventory Grid
 function renderInventory() {
   const container = document.getElementById('inventoryGrid');
+  const countBadge = document.getElementById('invCountBadge');
   if (!container) return;
 
   container.innerHTML = '';
   let matchCount = 0;
 
   INVENTORY_DATA.forEach(group => {
-    // Check lender filter
+    // Lender filter
     if (currentLenderFilter !== 'ALL' && group.lender !== currentLenderFilter) {
       return;
     }
 
-    // Filter items inside this group
+    // Filter individual items
     const matchedItems = group.items.filter(item => {
       // Status filter
       if (currentStatusFilter !== 'all' && item.status !== currentStatusFilter) {
@@ -302,7 +362,7 @@ function renderInventory() {
       header.className = 'inv-group-header';
       header.innerHTML = `
         <span>${group.lender}</span>
-        <span class="badge badge-tech">${matchedItems.length} Item</span>
+        <span class="badge badge-tech font-mono">${matchedItems.length} Item</span>
       `;
 
       const ul = document.createElement('ul');
@@ -329,23 +389,31 @@ function renderInventory() {
     }
   });
 
+  if (countBadge) {
+    countBadge.textContent = `Menampilkan ${matchCount} dari ${TOTAL_ITEMS_COUNT} Barang`;
+  }
+
   if (matchCount === 0) {
     container.innerHTML = `
-      <div class="note-box" style="grid-column: 1 / -1; text-align: center; padding: 32px;">
-        Tidak ada barang inventaris yang sesuai dengan filter atau kata kunci pencarian.
+      <div class="callout-box" style="grid-column: 1 / -1; justify-content: center; text-align: center; padding: 36px;">
+        <div>
+          <strong>Pencarian Tidak Ditemukan</strong>
+          <p class="text-muted mt-1">Tidak ada item inventaris yang sesuai dengan filter atau kata kunci "${currentSearchQuery}".</p>
+          <button class="btn-console mt-2" onclick="clearSearch(); setFilterStatus('all', document.querySelector('.status-chip')); setLenderFilter('ALL', document.querySelector('.pill-btn'));">Reset Semua Filter</button>
+        </div>
       </div>
     `;
   }
 }
 
-// Smooth Navigation Spy
+// Smooth Navigation Scroll Spy
 function initNavScroll() {
   const sections = document.querySelectorAll('section[id], header[id]');
   const navLinks = document.querySelectorAll('.nav-link');
 
   window.addEventListener('scroll', () => {
     let current = '';
-    const scrollPos = window.scrollY + 120;
+    const scrollPos = window.scrollY + 140;
 
     sections.forEach(section => {
       const sectionTop = section.offsetTop;
