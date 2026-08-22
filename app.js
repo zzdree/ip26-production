@@ -418,9 +418,13 @@ document.addEventListener('DOMContentLoaded', () => {
     syncStatusText.textContent = message;
   }
 
-  // Load Saved Supabase Credentials
-  const savedUrl = localStorage.getItem('ip26_sb_url') || '';
-  const savedKey = localStorage.getItem('ip26_sb_key') || '';
+  // Default Project Supabase Credentials (Zero-Config for all crew members)
+  const DEFAULT_SUPABASE_URL = 'https://ssbkhhnnzwuykyeznpwd.supabase.co';
+  const DEFAULT_SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InNzYmtoaG5uend1eWt5ZXpucHdkIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODc0MDQ1NzcsImV4cCI6MjEwMjk4MDU3N30.-zGe_xWDTBmo604VS39jl8o7YvhEQYb3fZvCV-fcEbk';
+
+  // Load Saved Supabase Credentials or Fallback to Default Project
+  const savedUrl = localStorage.getItem('ip26_sb_url') || DEFAULT_SUPABASE_URL;
+  const savedKey = localStorage.getItem('ip26_sb_key') || DEFAULT_SUPABASE_KEY;
   if (supabaseUrlInput) supabaseUrlInput.value = savedUrl;
   if (supabaseKeyInput) supabaseKeyInput.value = savedKey;
 
