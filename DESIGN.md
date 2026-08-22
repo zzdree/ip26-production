@@ -80,7 +80,8 @@ The visual language is inspired by high-end professional broadcast control rooms
 ### C. Interactive Diagrams & Transparent Adaptive Mermaid Engine
 - **Master Signal Board:** 4-stage interactive high-level hardware pipeline (Camera $\rightarrow$ Switcher $\rightarrow$ LED Processors $\rightarrow$ Stage & Stream).
 - **Dynamic Transparent Flowcharts (Mermaid.js):** 
-  - **Transparent Node Boxes:** Node containers have transparent / ultra-subtle tinted fills (`rgba(255,255,255,0.05)` dark / `rgba(0,0,0,0.03)` light) preventing solid blocky white/black rectangles.
+  - **Transparent Node Containers:** Node containers have 100% transparent fills (`rgba(255,255,255,0.03)` dark / `rgba(0,0,0,0.02)` light) with clean 1px subtle resting strokes (`var(--border-subtle)`), completely eliminating solid blocky white/black rectangles.
+  - **Dynamic Glowing Node Outlines on Interaction:** Mermaid node containers remain quiet at 1px stroke in default state, and light up with a **2.5px cyan glowing outline (`#00d2ff`, filter drop-shadow)** ONLY when hovered (`:hover`) or clicked (`:active`).
   - **Auto-Adaptive Lines & Typography:**
     - *Dark Mode:* Pure light text (`#f5f5f5`) and cyan/grey connecting vector lines.
     - *Light Mode:* Deep charcoal text (`#1c1917`) and sky-blue connecting vector lines.
@@ -88,16 +89,16 @@ The visual language is inspired by high-end professional broadcast control rooms
   - Flowcharts rendered:
     1. *Bagan Struktur Komando & Hierarki Tim*
     2. *Master Architecture Signal Flow (5 Sub-Graphs)*
-    3. *Sub-Flowchart 1: Broadcast Camera & Wireless Links*
-    4. *Sub-Flowchart 2: Video Distribution & LED Mapping*
-    5. *Sub-Flowchart 3: Audio Routing & Live Streaming*
-    6. *Sub-Flowchart 4: Stage Time Keeper System*
-    7. *Sub-Flowchart 5: Electrical & Power Distribution System*
+    3. *Sub-Flowchart 1: Broadcast Camera & Wireless Links (`flowchart LR`)*
+    4. *Sub-Flowchart 2: Video Distribution & LED Mapping (`flowchart LR`)*
+    5. *Sub-Flowchart 3: Audio Routing & Live Streaming (`flowchart LR`)*
+    6. *Sub-Flowchart 4: Stage Time Keeper System (`flowchart LR`)*
+    7. *Sub-Flowchart 5: Electrical & Power Distribution System (`flowchart LR`)*
 
 ### D. Cards, Hardware Bins & 2-Column Subsystem Grid
 - Subtly rounded corners (`border-radius: 14px`).
-- 1px hairline technical borders (`1px solid var(--border-subtle)`).
-- Micro-lift hover animation (`transform: translateY(-2px)`) with 200ms cubic-bezier transition.
+- **Hairline Default Resting State:** 1px hairline technical borders (`1px solid var(--border-subtle)`) across all cards, callouts, telemetry blocks, and camera spec bins with zero intrusive static borders.
+- **Dynamic Interactive Outlines:** Prominently highlights with a **2.5px glowing cyan outline (`0 0 0 2px var(--accent-cyan-subtle), var(--shadow-glow)`)** and micro-lift (`translateY(-2px)`) ONLY on hover (`:hover`), active/click (`:active`), or keyboard focus (`:focus-visible`).
 - **2-Column Responsive Subsystem Grid (`.subsystems-grid`):** Displays the 5 deep-dive technical chains side-by-side in a 2-column grid on desktop/tablets (collapsing cleanly on mobile) paired with horizontal `flowchart LR` diagrams to drastically eliminate vertical scrolling fatigue.
 - **Direct Tactile Checkboxes:** Streamlined 32×32px responsive checkboxes with SVG checkmarks (`✓`) directly synchronized to Supabase Cloud with crew timestamps.
 
