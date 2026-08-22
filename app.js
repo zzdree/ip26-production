@@ -1,6 +1,6 @@
 /**
- * IP26 BROADCAST COMMAND SUITE — LOGIC & REALTIME CLOUD SYNC ENGINE
- * Features: Google Firebase Cloud Realtime Database, Live Checkbox Sync, Batch Loading/Packing Actions
+ * IP26 BROADCAST COMMAND SUITE — LOGIC & AUTO CLOUD SYNC ENGINE
+ * Zero Setup & Zero Login Multi-Device Realtime Synchronization via Open Cloud Relay + SSE Stream
  */
 
 // Master Inventory Dataset (84 Items across 13 Lenders)
@@ -193,87 +193,32 @@ const INVENTORY_DATA = [
 
 const TOTAL_ITEMS_COUNT = INVENTORY_DATA.reduce((acc, g) => acc + g.items.length, 0);
 
-// Global Checklist States
+// Global Checklist State
 let checklistState = {}; // { [id]: boolean }
 let onlyUnpackedFilter = false;
 let currentStatusFilter = 'all';
 let currentLenderFilter = 'ALL';
 let currentSearchQuery = '';
 
-// Cloud Sync Connection
-const CLOUD_PROJECT_URL = "https://ip26-production-default-rtdb.asia-southeast1.firebasedatabase.app";
-let isFirebaseConnected = false;
-let firebaseDbRef = null;
+// Dedicated Cloud Sync Channel Topic
+const CLOUD_SYNC_TOPIC = "ip26_checklist_sync_2026";
+const CLOUD_RELAY_PUB = `https://ntfy.sh/${CLOUD_SYNC_TOPIC}`;
+const CLOUD_RELAY_SSE = `https://ntfy.sh/${CLOUD_SYNC_TOPIC}/sse`;
+const CLOUD_RELAY_POLL = `https://ntfy.sh/${CLOUD_SYNC_TOPIC}/json?poll=1&since=24h`;
 
-// Initialize App
+let eventSource = null;
+let lastActionTimestamp = 0;
+
+// Initialize Application
 document.addEventListener('DOMContentLoaded', () => {
   initLiveClock();
   initNavScroll();
-  initCloudDatabase();
+  loadLocalState();
+  initCloudSync();
 });
 
-// Initialize Cloud Database Connection
-function initCloudDatabase() {
-  const statusPill = document.getElementById('cloudStatusPill');
-  const statusText = document.getElementById('cloudStatusText');
-
-  try {
-    if (typeof firebase !== 'undefined') {
-      const firebaseConfig = {
-        databaseURL: CLOUD_PROJECT_URL
-      };
-
-      if (!firebase.apps.length) {
-        firebase.initializeApp(firebaseConfig);
-      }
-
-      firebaseDbRef = firebase.database().ref('ip26_checklist');
-
-      // Realtime listener for live sync across all crew smartphones
-      firebaseDbRef.on('value', (snapshot) => {
-        const data = snapshot.val();
-        if (data && typeof data === 'object') {
-          checklistState = data;
-        }
-        setCloudStatus(true);
-        renderInventory();
-        updatePackingProgress();
-      }, (error) => {
-        console.warn("Cloud DB sync notice (using cloud REST / local fallback):", error);
-        loadFallbackState();
-      });
-
-      // Connection state listener
-      firebase.database().ref('.info/connected').on('value', (snap) => {
-        if (snap.val() === true) {
-          setCloudStatus(true);
-        }
-      });
-    } else {
-      loadFallbackState();
-    }
-  } catch (err) {
-    console.warn("Cloud DB init note:", err);
-    loadFallbackState();
-  }
-}
-
-function setCloudStatus(connected) {
-  isFirebaseConnected = connected;
-  const statusPill = document.getElementById('cloudStatusPill');
-  const statusText = document.getElementById('cloudStatusText');
-  if (statusPill && statusText) {
-    if (connected) {
-      statusPill.className = 'cloud-status-pill connected';
-      statusText.textContent = '🟢 Cloud DB Live';
-    } else {
-      statusPill.className = 'cloud-status-pill';
-      statusText.textContent = '🟡 Cloud Syncing';
-    }
-  }
-}
-
-function loadFallbackState() {
+// Load local cache immediately
+function loadLocalState() {
   try {
     const saved = localStorage.getItem('ip26_checklist_state');
     if (saved) {
@@ -284,27 +229,135 @@ function loadFallbackState() {
   updatePackingProgress();
 }
 
-// Toggle individual item checklist and sync to Cloud DB
-function toggleItemCheck(itemId, isChecked) {
-  checklistState[itemId] = isChecked;
-
-  // 1. Sync to Firebase Cloud Database (Instant Multi-Device Broadcast)
-  if (firebaseDbRef) {
-    firebaseDbRef.child(itemId).set(isChecked).catch(err => console.warn(err));
-  }
-
-  // 2. Persist local cache
+// Save local cache
+function saveLocalState() {
   try {
     localStorage.setItem('ip26_checklist_state', JSON.stringify(checklistState));
   } catch (e) {}
+}
 
+// Initialize Realtime Multi-Device Cloud Sync
+function initCloudSync() {
+  const statusPill = document.getElementById('cloudStatusPill');
+  const statusText = document.getElementById('cloudStatusText');
+
+  // 1. Fetch historical cloud log to sync with all crew members
+  fetch(CLOUD_RELAY_POLL)
+    .then(res => res.text())
+    .then(rawText => {
+      if (rawText) {
+        const lines = rawText.trim().split('\n');
+        lines.forEach(line => {
+          try {
+            const data = JSON.parse(line);
+            if (data && data.message) {
+              const payload = JSON.parse(data.message);
+              processIncomingSyncEvent(payload, false);
+            }
+          } catch(err) {}
+        });
+        saveLocalState();
+        renderInventory();
+        updatePackingProgress();
+      }
+    })
+    .catch(err => {
+      console.warn("Backlog sync note:", err);
+    });
+
+  // 2. Connect to Server-Sent Events (SSE) stream for instant push updates
+  try {
+    if (eventSource) {
+      eventSource.close();
+    }
+    eventSource = new EventSource(CLOUD_RELAY_SSE);
+
+    eventSource.onopen = () => {
+      if (statusPill && statusText) {
+        statusPill.className = 'cloud-status-pill connected';
+        statusText.textContent = '🟢 Cloud Live (Auto-Sync)';
+      }
+    };
+
+    eventSource.onmessage = (event) => {
+      try {
+        const data = JSON.parse(event.data);
+        if (data && data.message) {
+          const payload = JSON.parse(data.message);
+          processIncomingSyncEvent(payload, true);
+        }
+      } catch (err) {}
+    };
+
+    eventSource.onerror = () => {
+      if (statusPill && statusText) {
+        statusPill.className = 'cloud-status-pill';
+        statusText.textContent = '🟡 Reconnecting...';
+      }
+    };
+  } catch (err) {
+    console.warn("SSE init note:", err);
+  }
+}
+
+// Process incoming sync events from other crew smartphones
+function processIncomingSyncEvent(payload, triggerUIUpdate) {
+  if (!payload || !payload.type) return;
+
+  if (payload.type === 'toggle') {
+    checklistState[payload.id] = payload.val;
+    if (triggerUIUpdate) {
+      saveLocalState();
+      // Update specific DOM checkbox directly for high speed
+      const chkInput = document.getElementById(`chk_${payload.id}`);
+      const rowEl = document.getElementById(`row_${payload.id}`);
+      if (chkInput) chkInput.checked = payload.val;
+      if (rowEl) rowEl.classList.toggle('is-packed', payload.val);
+      updatePackingProgress();
+    }
+  } else if (payload.type === 'batch') {
+    INVENTORY_DATA.forEach(group => {
+      group.items.forEach(it => {
+        checklistState[it.id] = payload.val;
+      });
+    });
+    if (triggerUIUpdate) {
+      saveLocalState();
+      renderInventory();
+      updatePackingProgress();
+    }
+  }
+}
+
+// Publish event to Cloud Relay (Sent to all connected crew smartphones)
+function broadcastCloudEvent(payload) {
+  fetch(CLOUD_RELAY_PUB, {
+    method: 'POST',
+    body: JSON.stringify(payload),
+    headers: { 'Content-Type': 'application/json' }
+  }).catch(err => {
+    console.warn("Cloud publish note:", err);
+  });
+}
+
+// User toggles an item checkbox
+function toggleItemCheck(itemId, isChecked) {
+  checklistState[itemId] = isChecked;
+  saveLocalState();
   updatePackingProgress();
-  
-  // Highlight row immediately
+
   const rowEl = document.getElementById(`row_${itemId}`);
   if (rowEl) {
     rowEl.classList.toggle('is-packed', isChecked);
   }
+
+  // Broadcast to all crew phones in realtime
+  broadcastCloudEvent({
+    type: 'toggle',
+    id: itemId,
+    val: isChecked,
+    ts: Date.now()
+  });
 }
 
 // Batch Actions: Pack All (true) or Unload All (false)
@@ -315,17 +368,16 @@ function batchCheckAll(checkValue) {
     });
   });
 
-  // Sync whole state to Cloud DB
-  if (firebaseDbRef) {
-    firebaseDbRef.set(checklistState).catch(err => console.warn(err));
-  }
-
-  try {
-    localStorage.setItem('ip26_checklist_state', JSON.stringify(checklistState));
-  } catch (e) {}
-
+  saveLocalState();
   renderInventory();
   updatePackingProgress();
+
+  // Broadcast batch action to all crew phones
+  broadcastCloudEvent({
+    type: 'batch',
+    val: checkValue,
+    ts: Date.now()
+  });
 }
 
 // Toggle "Only Unpacked" Filter
