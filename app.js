@@ -593,6 +593,28 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
+  // License Modal Listeners
+  const btnOpenLicense = document.getElementById('btn-open-license');
+  const licenseModal = document.getElementById('license-modal');
+  const btnCloseLicenseModal = document.getElementById('btn-close-license-modal');
+  const btnDismissLicense = document.getElementById('btn-dismiss-license');
+
+  if (btnOpenLicense) {
+    btnOpenLicense.addEventListener('click', () => {
+      if (licenseModal) licenseModal.style.display = 'flex';
+    });
+  }
+  if (btnCloseLicenseModal) {
+    btnCloseLicenseModal.addEventListener('click', () => {
+      if (licenseModal) licenseModal.style.display = 'none';
+    });
+  }
+  if (btnDismissLicense) {
+    btnDismissLicense.addEventListener('click', () => {
+      if (licenseModal) licenseModal.style.display = 'none';
+    });
+  }
+
   // =========================================================================
   // 4. LIVE MULTI-DIMENSIONAL SEARCH & DUAL FILTER ENGINE
   // =========================================================================
@@ -757,9 +779,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Keyboard Navigation & Escape key accessibility for Modals
   document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && cloudConfigModal && cloudConfigModal.style.display === 'flex') {
-      cloudConfigModal.style.display = 'none';
-      if (btnOpenCloudConfig) btnOpenCloudConfig.focus();
+    if (e.key === 'Escape') {
+      if (cloudConfigModal && cloudConfigModal.style.display === 'flex') {
+        cloudConfigModal.style.display = 'none';
+        if (btnOpenCloudConfig) btnOpenCloudConfig.focus();
+      }
+      if (licenseModal && licenseModal.style.display === 'flex') {
+        licenseModal.style.display = 'none';
+        if (btnOpenLicense) btnOpenLicense.focus();
+      }
     }
   });
 

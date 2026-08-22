@@ -248,12 +248,18 @@
           </div>
         </div>
 
-        <!-- Principles Alert Box -->
+        <!-- Principles Alert Box (5 Golden Rules) -->
         <div class="callout callout-info">
-          <div class="callout-icon">💡</div>
+          <div class="callout-icon">📌</div>
           <div class="callout-body">
-            <h4 class="callout-title">Prinsip & Aturan Penugasan Tim</h4>
-            <p>Panitia dapat bertindak sebagai pelayan teknis; Pelayan belum tentu bagian dari kepanitiaan struktural. PIC yang bukan panitia secara fungsional bertindak sebagai pelayan teknis dengan tanggung jawab setara demi kelancaran ibadah.</p>
+            <h4 class="callout-title">Prinsip & Aturan Penugasan Tim Teknis</h4>
+            <ul class="rule-list" style="margin: 8px 0 0 16px; padding: 0; line-height: 1.6; font-size: 0.88rem; color: var(--text-secondary);">
+              <li>Panitia dapat bertindak sebagai pelayan teknis.</li>
+              <li>Pelayan belum tentu bagian dari kepanitiaan struktural.</li>
+              <li>PIC ada yang berstatus panitia dan ada yang berstatus pelayan teknis.</li>
+              <li>PIC yang bukan panitia secara fungsional adalah pelayan teknis.</li>
+              <li>Seluruh PIC dan Pelayan memiliki tanggung jawab teknis yang setara di lapangan demi kelancaran ibadah.</li>
+            </ul>
           </div>
         </div>
       </div>
@@ -1369,6 +1375,9 @@
           <p class="footer-policy-text">
             <strong>PROPRIETARY & CONFIDENTIAL:</strong> Seluruh arsitektur, diagram alur sinyal, dan matriks peralatan dilindungi hak cipta internal Panitia Ibadah Perdana UKK UNNES 2026. Dilarang menduplikasi atau menyebarluaskan tanpa persetujuan Production Lead / System Engineer.
           </p>
+          <button id="btn-open-license" class="btn btn-sm btn-outline mt-2" style="font-size: 0.78rem;">
+            📜 Baca Naskah Lisensi Lengkap (5 Klausul)
+          </button>
         </div>
       </div>
 
@@ -1378,6 +1387,62 @@
       </div>
     </div>
   </footer>
+
+  <!-- ========================================================================= -->
+  <!-- FULL OPERATIONAL LICENSE MODAL (FROM README.md) -->
+  <!-- ========================================================================= -->
+  <div class="modal-overlay" id="license-modal" style="display: none;">
+    <div class="modal-card" style="max-width: 680px;">
+      <div class="modal-header">
+        <h3 class="modal-title">🔒 Naskah Lisensi & Kebijakan Operasional Resmi</h3>
+        <button class="modal-close-btn" id="btn-close-license-modal" aria-label="Tutup modal lisensi">✕</button>
+      </div>
+      <div class="modal-body" style="max-height: 65vh; overflow-y: auto;">
+        <div style="font-family: var(--font-mono); font-size: 0.78rem; line-height: 1.6; background: var(--bg-surface-elevated); padding: var(--space-4); border-radius: var(--radius-md); border: 1px solid var(--border-subtle); color: var(--text-secondary); white-space: pre-wrap;">
+================================================================================
+          PROPRIETARY, CONFIDENTIAL & INTERNAL OPERATIONAL LICENSE
+================================================================================
+
+EVENT: Ibadah Perdana UKK UNNES 2026
+VENUE: Gedung Auditorium Universitas Negeri Semarang (UNNES)
+ORGANIZER: Panitia Ibadah Perdana UKK UNNES 2026
+TECHNICAL LEAD: System Engineer & Media Production Team
+
+Copyright (c) 2026 Panitia Ibadah Perdana UKK UNNES & Technical Production Team.
+All Rights Reserved.
+
+1. DEFINITIONS & SCOPE
+   This repository and all associated documentation, files, diagrams, specifications, 
+   and configurations comprise proprietary operational and technical guidelines 
+   designed specifically for the execution of Ibadah Perdana UKK UNNES 2026.
+
+2. AUTHORIZED USE & INTERNAL ACCESS
+   Access to and use of these Technical Materials is strictly limited to authorized 
+   members of Panitia Ibadah Perdana UKK UNNES 2026, System Engineers, Media Engineers, 
+   Creative Engineers, Camera/Audio/Visual Operators, and authorized technical servants.
+
+3. RESTRICTIONS
+   Unauthorized duplication, public mirroring, fork publication, external transmission, 
+   or commercial utilization of these routing topologies, system schematics, or 
+   equipment records without prior written consent from the Technical Leadership 
+   is strictly prohibited.
+
+4. EQUIPMENT RESPONSIBILITY & INTEGRITY
+   All listed equipment represents valuable assets loaned in trust from OWL, ABON, 
+   Andreas, GIA Deliksari, GKJ Ngaliyan, UKK UNNES, Auditorium UNNES, and personal 
+   contributors. All handlers and operators are bound to maintain electrical safety 
+   protocols and standard operational procedures throughout setup, event, and teardown.
+
+5. GOVERNANCE
+   The System Engineer / Production Lead reserves all rights to update, modify, 
+   or adapt these operational guidelines to ensure maximum stability during live production.
+================================================================================</div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-primary" id="btn-dismiss-license">Saya Mengerti & Setuju</button>
+      </div>
+    </div>
+  </div>
 
   <!-- ========================================================================= -->
   <!-- 11. MOBILE BOTTOM NAVIGATION DOCK -->
