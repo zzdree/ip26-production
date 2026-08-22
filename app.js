@@ -1069,7 +1069,10 @@ document.addEventListener('DOMContentLoaded', () => {
       for (let i = 0; i < mermaidNodes.length; i++) {
         const node = mermaidNodes[i];
         if (!node.getAttribute('data-mermaid-src')) {
-          node.setAttribute('data-mermaid-src', node.textContent.trim());
+          const currentText = node.textContent.trim();
+          if (currentText && !currentText.startsWith('<') && !currentText.includes('mermaid-svg-')) {
+            node.setAttribute('data-mermaid-src', currentText);
+          }
         }
         const rawCode = node.getAttribute('data-mermaid-src');
         if (!rawCode) continue;

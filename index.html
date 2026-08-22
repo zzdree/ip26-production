@@ -69,6 +69,11 @@
 
   <!-- Mermaid.js for Dynamic Flowchart & Architecture Rendering -->
   <script src="https://cdn.jsdelivr.net/npm/mermaid@10.9.1/dist/mermaid.min.js"></script>
+  <script>
+    if (window.mermaid) {
+      window.mermaid.initialize({ startOnLoad: false });
+    }
+  </script>
 </head>
 <body>
 

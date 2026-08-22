@@ -1624,6 +1624,13 @@ code {
   border: 1px solid var(--border-subtle);
   border-radius: var(--radius-lg);
   padding: var(--space-6);
+  transition: transform var(--transition-fast), border-color var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.timeline-phase:hover, .timeline-phase:active {
+  border-color: var(--accent-cyan);
+  box-shadow: 0 0 0 2px var(--accent-cyan-subtle), var(--shadow-md);
+  transform: translateY(-2px);
 }
 
 .phase-active {
@@ -1634,6 +1641,7 @@ code {
 .phase-active:hover, .phase-active:active {
   border-color: var(--accent-cyan);
   box-shadow: 0 0 0 2px var(--accent-cyan-subtle), var(--shadow-glow);
+  transform: translateY(-2px);
 }
 
 .phase-header {
@@ -1683,6 +1691,13 @@ code {
   display: flex;
   flex-direction: column;
   gap: 2px;
+  transition: transform var(--transition-fast), border-color var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.timeline-box:hover, .timeline-box:active {
+  border-color: var(--accent-cyan);
+  box-shadow: 0 0 0 2px var(--accent-cyan-subtle);
+  transform: translateY(-1px);
 }
 
 .timeline-box strong {
