@@ -1,7 +1,7 @@
 /**
  * ==========================================================================
- * IP26 BROADCAST COMMAND SUITE — FLUID ENGINE RUNTIME (v11.0)
- * Single-Page Flow • IntersectionObserver Active Nav • Supabase Realtime Sync
+ * IP26 BROADCAST COMMAND SUITE — CLEAN ENGINE RUNTIME (v13.0)
+ * Linear / Vercel Compact • Collapsible Accordions • Supabase Realtime Sync
  * ==========================================================================
  */
 
@@ -16,7 +16,7 @@ if (typeof window.supabase !== 'undefined') {
   try {
     supabaseClient = window.supabase.createClient(SUPABASE_CONFIG.url, SUPABASE_CONFIG.anonKey);
   } catch (err) {
-    console.warn('[Supabase] Initialisation fallback:', err);
+    console.warn('[Supabase] Init fallback:', err);
   }
 }
 
@@ -168,13 +168,13 @@ const MASTER_INVENTORY = [
   { id: 'pan-2', lender: 'Panitia', name: 'Terminal Cable XCH', qty: 'X Unit', status: 'used', usage: 'Master Electrical Line' }
 ];
 
-// Local state
+// Local State
 let checklistState = {};
 let activeLenderFilter = 'All';
 let activeSearchQuery = '';
 let filterUnreturnedOnly = false;
 
-// 3. INITIALIZATION ON DOM READY
+// 3. INITIALIZATION
 document.addEventListener('DOMContentLoaded', () => {
   initTimers();
   initChecklistState();
@@ -211,7 +211,7 @@ function updateCountdown() {
   if (!el) return;
 
   if (diff <= 0) {
-    el.textContent = 'EVENT DAY! 🚀';
+    el.textContent = 'EVENT LIVE! 🚀';
     return;
   }
 
@@ -219,90 +219,188 @@ function updateCountdown() {
   const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
   const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
   const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+
   el.textContent = `${days}d ${hours}h ${minutes}m ${seconds}s`;
 }
 
-// 5. SINGLE-PAGE SCROLL SPY (DESKTOP TOP NAV & MOBILE BOTTOM DOCK)
+// 5. ACCORDION TOGGLE & JUMP-TO LOGIC
+function toggleSection(sectionId) {
+  const el = document.getElementById(sectionId);
+  if (el) {
+    el.classList.toggle('collapsed');
+  }
+}
+
+function navJumpTo(sectionId) {
+  const el = document.getElementById(sectionId);
+  if (!el) return;
+
+  // Auto expand if collapsed
+  if (el.classList.contains('collapsed')) {
+    el.classList.remove('collapsed');
+  }
+
+  // Scroll smoothly
+  el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+
+  // Update active state in navs
+  updateActiveNavState(sectionId);
+}
+
+function updateActiveNavState(activeId) {
+  const idMap = {
+    'modInventory': { top: 'navLinkInventory', dock: 'dockInventory' },
+    'modCameras': { top: 'navLinkCameras', dock: 'dockCameras' },
+    'modRouting': { top: 'navLinkRouting', dock: 'dockRouting' },
+    'modStage': { top: 'navLinkStage', dock: 'dockStage' },
+    'modRundown': { top: 'navLinkRundown', dock: 'dockRundown' }
+  };
+
+  document.querySelectorAll('.nav-link-item').forEach(el => el.classList.remove('active'));
+  document.querySelectorAll('.dock-item').forEach(el => el.classList.remove('active'));
+
+  if (idMap[activeId]) {
+    const topEl = document.getElementById(idMap[activeId].top);
+    const dockEl = document.getElementById(idMap[activeId].dock);
+    if (topEl) topEl.classList.add('active');
+    if (dockEl) dockEl.classList.add('active');
+  }
+}
+
+// 6. SCROLL SPY
 function setupScrollSpy() {
-  const sectionIds = ['secOverview', 'secInventory', 'secCameras', 'secRouting', 'secRundown'];
-  const sections = sectionIds.map(id => document.getElementById(id)).filter(Boolean);
-
-  const desktopLinks = {
-    secOverview: document.getElementById('navLinkOverview'),
-    secInventory: document.getElementById('navLinkInventory'),
-    secCameras: document.getElementById('navLinkCameras'),
-    secRouting: document.getElementById('navLinkRouting'),
-    secRundown: document.getElementById('navLinkRundown')
-  };
-
-  const mobileDocks = {
-    secOverview: document.getElementById('dockOverview'),
-    secInventory: document.getElementById('dockInventory'),
-    secCameras: document.getElementById('dockCameras'),
-    secRouting: document.getElementById('dockRouting'),
-    secRundown: document.getElementById('dockRundown')
-  };
-
-  const observerOptions = {
-    root: null,
-    rootMargin: '-20% 0px -70% 0px',
-    threshold: 0
-  };
-
+  const sections = document.querySelectorAll('.accordion-module');
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
-        const id = entry.target.id;
-        
-        // Update Desktop
-        Object.keys(desktopLinks).forEach(k => {
-          if (desktopLinks[k]) {
-            if (k === id) desktopLinks[k].classList.add('active');
-            else desktopLinks[k].classList.remove('active');
-          }
-        });
-
-        // Update Mobile
-        Object.keys(mobileDocks).forEach(k => {
-          if (mobileDocks[k]) {
-            if (k === id) mobileDocks[k].classList.add('active');
-            else mobileDocks[k].classList.remove('active');
-          }
-        });
+        updateActiveNavState(entry.target.id);
       }
     });
-  }, observerOptions);
+  }, {
+    rootMargin: '-20% 0px -60% 0px',
+    threshold: 0.1
+  });
 
   sections.forEach(sec => observer.observe(sec));
 }
 
-// 6. MANIFEST & CHECKLIST LOGIC
+// 7. CHECKLIST STATE & SUPABASE SYNC
 function initChecklistState() {
-  MASTER_INVENTORY.forEach(item => {
-    checklistState[item.id] = false;
-  });
-
-  const localSaved = localStorage.getItem('ip26_checklist_v11');
+  const localSaved = localStorage.getItem('ip26_checklist_state_v13');
   if (localSaved) {
     try {
-      const parsed = JSON.parse(localSaved);
-      Object.assign(checklistState, parsed);
+      checklistState = JSON.parse(localSaved);
     } catch (e) {
-      console.warn('Local manifest parse error:', e);
+      checklistState = {};
+    }
+  } else {
+    // Default initial
+    MASTER_INVENTORY.forEach(item => {
+      checklistState[item.id] = false;
+    });
+  }
+}
+
+function saveLocalState() {
+  localStorage.setItem('ip26_checklist_state_v13', JSON.stringify(checklistState));
+}
+
+async function initSupabaseRealtime() {
+  if (!supabaseClient) return;
+
+  try {
+    // 1. Fetch current remote state
+    const { data, error } = await supabaseClient
+      .from('inventory_checklist')
+      .select('item_id, is_checked');
+
+    if (!error && Array.isArray(data)) {
+      data.forEach(row => {
+        checklistState[row.item_id] = Boolean(row.is_checked);
+      });
+      saveLocalState();
+      renderManifestCards();
+      updateProgressUI();
+    }
+
+    // 2. Subscribe to realtime changes
+    supabaseClient
+      .channel('public:inventory_checklist')
+      .on('postgres_changes', { event: '*', schema: 'public', table: 'inventory_checklist' }, (payload) => {
+        if (payload.new && payload.new.item_id) {
+          checklistState[payload.new.item_id] = Boolean(payload.new.is_checked);
+          saveLocalState();
+          renderManifestCards();
+          updateProgressUI();
+        }
+      })
+      .subscribe();
+
+  } catch (err) {
+    console.warn('[Supabase Realtime] Fallback to local storage:', err);
+  }
+}
+
+async function toggleItem(itemId, isChecked) {
+  checklistState[itemId] = isChecked;
+  saveLocalState();
+  updateProgressUI();
+
+  // Optimistic UI update on target row
+  const row = document.getElementById(`row-${itemId}`);
+  if (row) {
+    if (isChecked) {
+      row.classList.add('checked');
+    } else {
+      row.classList.remove('checked');
+    }
+  }
+
+  // Push to Supabase
+  if (supabaseClient) {
+    try {
+      await supabaseClient
+        .from('inventory_checklist')
+        .upsert({
+          item_id: itemId,
+          is_checked: isChecked,
+          updated_at: new Date().toISOString()
+        }, { onConflict: 'item_id' });
+    } catch (e) {
+      console.warn('[Supabase] Update failed, cached locally:', e);
     }
   }
 }
 
+function batchSetChecklist(setAllTo) {
+  MASTER_INVENTORY.forEach(item => {
+    checklistState[item.id] = setAllTo;
+  });
+  saveLocalState();
+  renderManifestCards();
+  updateProgressUI();
+
+  if (supabaseClient) {
+    const payload = MASTER_INVENTORY.map(item => ({
+      item_id: item.id,
+      is_checked: setAllTo,
+      updated_at: new Date().toISOString()
+    }));
+    supabaseClient.from('inventory_checklist').upsert(payload, { onConflict: 'item_id' }).catch(console.warn);
+  }
+}
+
+// 8. RENDER LENDER PILLS & MANIFEST CARDS
 function renderLenderPills() {
-  const lenders = ['All', ...new Set(MASTER_INVENTORY.map(i => i.lender))];
   const rack = document.getElementById('lenderPillsRack');
   if (!rack) return;
 
-  rack.innerHTML = lenders.map(l => `
-    <button class="lender-pill-btn ${l === activeLenderFilter ? 'active' : ''}" onclick="setLenderFilter('${l}')">
-      ${l}
-    </button>
-  `).join('');
+  const lenders = ['All', ...new Set(MASTER_INVENTORY.map(i => i.lender))];
+  rack.innerHTML = lenders.map(lender => {
+    const count = lender === 'All' ? MASTER_INVENTORY.length : MASTER_INVENTORY.filter(i => i.lender === lender).length;
+    const activeCls = lender === activeLenderFilter ? 'active' : '';
+    return `<button class="lender-tab-pill ${activeCls}" onclick="setLenderFilter('${lender}')">${lender} (${count})</button>`;
+  }).join('');
 }
 
 function setLenderFilter(lender) {
@@ -314,20 +412,33 @@ function setLenderFilter(lender) {
 function handleSearch(val) {
   activeSearchQuery = (val || '').toLowerCase().trim();
   const clearBtn = document.getElementById('clearSearchBtn');
-  if (clearBtn) clearBtn.style.display = activeSearchQuery ? 'block' : 'none';
+  if (clearBtn) {
+    clearBtn.style.display = activeSearchQuery.length > 0 ? 'block' : 'none';
+  }
   renderManifestCards();
 }
 
 function clearSearch() {
   const input = document.getElementById('inventorySearchInput');
   if (input) input.value = '';
-  handleSearch('');
+  activeSearchQuery = '';
+  const clearBtn = document.getElementById('clearSearchBtn');
+  if (clearBtn) clearBtn.style.display = 'none';
+  renderManifestCards();
 }
 
 function toggleUnreturnedFilter() {
   filterUnreturnedOnly = !filterUnreturnedOnly;
   const btn = document.getElementById('btnFilterUnreturned');
-  if (btn) btn.classList.toggle('active', filterUnreturnedOnly);
+  if (btn) {
+    if (filterUnreturnedOnly) {
+      btn.classList.add('btn-coral');
+      btn.textContent = '✕ Tampilkan Semua';
+    } else {
+      btn.classList.remove('btn-coral');
+      btn.textContent = '⚠️ Belum Selesai';
+    }
+  }
   renderManifestCards();
 }
 
@@ -335,241 +446,178 @@ function renderManifestCards() {
   const grid = document.getElementById('manifestCardsGrid');
   if (!grid) return;
 
+  // Filter items
   let filtered = MASTER_INVENTORY.filter(item => {
-    const matchLender = (activeLenderFilter === 'All' || item.lender === activeLenderFilter);
-    const matchSearch = (!activeSearchQuery || 
-      item.name.toLowerCase().includes(activeSearchQuery) || 
-      item.lender.toLowerCase().includes(activeSearchQuery) ||
-      (item.usage && item.usage.toLowerCase().includes(activeSearchQuery))
-    );
-    const matchUnreturned = (!filterUnreturnedOnly || !checklistState[item.id]);
-    return matchLender && matchSearch && matchUnreturned;
+    // Lender filter
+    if (activeLenderFilter !== 'All' && item.lender !== activeLenderFilter) {
+      return false;
+    }
+    // Search query
+    if (activeSearchQuery.length > 0) {
+      const matchName = item.name.toLowerCase().includes(activeSearchQuery);
+      const matchLender = item.lender.toLowerCase().includes(activeSearchQuery);
+      const matchUsage = item.usage.toLowerCase().includes(activeSearchQuery);
+      if (!matchName && !matchLender && !matchUsage) return false;
+    }
+    // Unreturned only filter
+    if (filterUnreturnedOnly && checklistState[item.id]) {
+      return false;
+    }
+    return true;
   });
 
+  if (filtered.length === 0) {
+    grid.innerHTML = `<div style="grid-column: 1/-1; padding: 24px; text-align: center; color: var(--text-dim);">Tidak ada barang yang cocok dengan pencarian / filter.</div>`;
+    return;
+  }
+
+  // Group by lender
   const grouped = {};
   filtered.forEach(item => {
     if (!grouped[item.lender]) grouped[item.lender] = [];
     grouped[item.lender].push(item);
   });
 
-  const lenderNames = Object.keys(grouped);
-  if (lenderNames.length === 0) {
-    grid.innerHTML = `
-      <div style="grid-column: 1 / -1; padding: 36px 16px; text-align: center; color: var(--text-dim);">
-        <p style="font-size: 15px; font-weight: 700; color: var(--text-main);">Tidak ada barang yang cocok.</p>
-        <p style="font-size: 12px; margin-top: 4px;">Ubah filter peminjam atau kata kunci pencarian.</p>
-      </div>
-    `;
-    return;
-  }
+  grid.innerHTML = Object.keys(grouped).map(lenderName => {
+    const items = grouped[lenderName];
+    const checkedCount = items.filter(i => checklistState[i.id]).length;
 
-  grid.innerHTML = lenderNames.map(lender => {
-    const items = grouped[lender];
-    const packedCount = items.filter(i => checklistState[i.id]).length;
+    const rowsHtml = items.map(item => {
+      const isChecked = Boolean(checklistState[item.id]);
+      const checkedCls = isChecked ? 'checked' : '';
+      const badgeCls = item.status === 'used' ? 'used' : (item.status === 'partial' ? 'partial' : 'standby');
+      const badgeLabel = item.status === 'used' ? '✅ Terpasang' : (item.status === 'partial' ? '⚠️ Sebagian' : '☑️ Standby');
+
+      return `
+        <div class="checklist-item-row ${checkedCls}" id="row-${item.id}" onclick="triggerRowToggle('${item.id}')">
+          <div class="custom-checkbox-wrap" onclick="event.stopPropagation();">
+            <input type="checkbox" id="chk-${item.id}" ${isChecked ? 'checked' : ''} onchange="toggleItem('${item.id}', this.checked)">
+          </div>
+          <div class="item-details-body">
+            <span class="item-name-headline">${item.name} (${item.qty})</span>
+            <div class="item-meta-sub">
+              <span class="status-badge ${badgeCls}">${badgeLabel}</span>
+              <span>${item.usage}</span>
+            </div>
+          </div>
+        </div>
+      `;
+    }).join('');
 
     return `
       <div class="lender-group-card">
-        <div class="lender-card-header">
-          <span class="lender-header-name">${lender}</span>
-          <span class="lender-header-count">${packedCount} / ${items.length} Selesai</span>
+        <div class="lender-group-header">
+          <span class="lender-name-text">${lenderName}</span>
+          <span class="lender-count-tag">${checkedCount}/${items.length} Selesai</span>
         </div>
-        <ul class="lender-items-list">
-          ${items.map(item => {
-            const isPacked = !!checklistState[item.id];
-            return `
-              <li class="item-list-row ${isPacked ? 'is-packed' : ''}">
-                <label class="fluid-checkbox">
-                  <input type="checkbox" ${isPacked ? 'checked' : ''} onchange="toggleItem('${item.id}', this.checked)">
-                  <span class="checkbox-skin">
-                    <svg width="10" height="10" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2.5">
-                      <polyline points="1.5 6 4.5 9 10.5 2"></polyline>
-                    </svg>
-                  </span>
-                  <span class="item-name-text">${item.name}</span>
-                </label>
-                <div class="item-meta-group">
-                  <span class="qty-unit-pill">${item.qty}</span>
-                  ${renderStatusBadge(item.status)}
-                </div>
-              </li>
-            `;
-          }).join('')}
-        </ul>
+        <div class="items-list-container">
+          ${rowsHtml}
+        </div>
       </div>
     `;
   }).join('');
 }
 
-function renderStatusBadge(status) {
-  if (status === 'used') return `<span class="status-pill used" title="Terpakai di routing aktif">✅ Terpakai</span>`;
-  if (status === 'partial') return `<span class="status-pill partial" title="Terpakai sebagian">⚠️ Parsial</span>`;
-  return `<span class="status-pill standby" title="Standby">☑️ Standby</span>`;
-}
-
-// 7. REALTIME CHECKLIST SYNC (OPTIMISTIC + SUPABASE)
-async function toggleItem(itemId, isChecked) {
-  checklistState[itemId] = isChecked;
-  saveLocalState();
-  renderManifestCards();
-  updateProgressUI();
-
-  if (supabaseClient) {
-    try {
-      await supabaseClient
-        .from('inventory_checklist')
-        .upsert({
-          id: itemId,
-          is_packed: isChecked,
-          updated_by: 'web_crew',
-          updated_at: new Date().toISOString()
-        });
-    } catch (err) {
-      console.warn('[Supabase Sync Error]', err);
-    }
+function triggerRowToggle(itemId) {
+  const chk = document.getElementById(`chk-${itemId}`);
+  if (chk) {
+    chk.checked = !chk.checked;
+    toggleItem(itemId, chk.checked);
   }
 }
 
-async function batchSetChecklist(targetState) {
-  MASTER_INVENTORY.forEach(item => {
-    checklistState[item.id] = targetState;
-  });
-  saveLocalState();
-  renderManifestCards();
-  updateProgressUI();
-
-  if (supabaseClient) {
-    try {
-      const records = MASTER_INVENTORY.map(item => ({
-        id: item.id,
-        is_packed: targetState,
-        updated_by: 'batch_crew',
-        updated_at: new Date().toISOString()
-      }));
-      await supabaseClient.from('inventory_checklist').upsert(records);
-    } catch (err) {
-      console.warn('[Supabase Batch Sync Error]', err);
-    }
-  }
-}
-
-function saveLocalState() {
-  localStorage.setItem('ip26_checklist_v11', JSON.stringify(checklistState));
-}
-
+// 9. PROGRESS UI UPDATE
 function updateProgressUI() {
   const total = MASTER_INVENTORY.length;
-  const packed = Object.values(checklistState).filter(Boolean).length;
-  const pct = Math.round((packed / total) * 100);
+  const checked = MASTER_INVENTORY.filter(i => checklistState[i.id]).length;
+  const pct = Math.round((checked / total) * 100);
 
   const ratioEl = document.getElementById('progressRatioText');
   const pctEl = document.getElementById('progressPctText');
-  const fillEl = document.getElementById('progressFillFluid');
-  const sumEl = document.getElementById('progressSummaryText');
+  const fillEl = document.getElementById('progressFillBar');
+  const headerBadge = document.getElementById('manifestHeaderStatus');
 
-  if (ratioEl) ratioEl.textContent = `${packed} / ${total} Item Ter-packing`;
+  if (ratioEl) ratioEl.textContent = `${checked} / ${total} Item Ter-packing`;
   if (pctEl) pctEl.textContent = `${pct}% Selesai`;
   if (fillEl) fillEl.style.width = `${pct}%`;
-  if (sumEl) sumEl.textContent = `${total - packed} barang belum kembali &bull; ${pct}% progres lapangan`;
+  if (headerBadge) headerBadge.textContent = `${checked}/${total} Selesai`;
 }
 
-// 8. SUPABASE REALTIME SUBSCRIPTION
-async function initSupabaseRealtime() {
-  if (!supabaseClient) return;
+// 10. 1-CLICK WHATSAPP BRIEFING COPY
+function copyBriefWA(unitName, gearDetails) {
+  const message = `*BRIEFING KAMERA & GEAR — IBADAH PERDANA 2026*\n\n` +
+    `📍 *Unit:* ${unitName}\n` +
+    `📦 *Alat & Rigging:* ${gearDetails}\n` +
+    `📅 *Jadwal:* 17 September 2026\n` +
+    `🏛️ *Lokasi:* Gedung Auditorium UNNES\n\n` +
+    `_Harap cek kelengkapan baterai, kabel, dan memory card sebelum gladi resik._`;
 
-  const pill = document.getElementById('supabasePill');
+  if (navigator.clipboard && navigator.clipboard.writeText) {
+    navigator.clipboard.writeText(message).then(showToast).catch(() => fallbackCopy(message));
+  } else {
+    fallbackCopy(message);
+  }
+}
 
+function fallbackCopy(text) {
+  const ta = document.createElement('textarea');
+  ta.value = text;
+  ta.style.position = 'fixed';
+  ta.style.opacity = '0';
+  document.body.appendChild(ta);
+  ta.focus();
+  ta.select();
   try {
-    const { data, error } = await supabaseClient.from('inventory_checklist').select('id, is_packed');
-    if (!error && data) {
-      data.forEach(row => {
-        if (checklistState.hasOwnProperty(row.id)) {
-          checklistState[row.id] = !!row.is_packed;
-        }
-      });
-      saveLocalState();
-      renderManifestCards();
-      updateProgressUI();
-    }
-
-    supabaseClient
-      .channel('realtime_fluid_manifest')
-      .on('postgres_changes', { event: '*', schema: 'public', table: 'inventory_checklist' }, payload => {
-        if (payload.new && payload.new.id) {
-          checklistState[payload.new.id] = !!payload.new.is_packed;
-          saveLocalState();
-          renderManifestCards();
-          updateProgressUI();
-        }
-      })
-      .subscribe((status) => {
-        if (pill) {
-          if (status === 'SUBSCRIBED') {
-            pill.innerHTML = `<span class="live-pulse-dot"></span><span>Supabase DB (Live)</span>`;
-          } else {
-            pill.innerHTML = `<span class="live-pulse-dot" style="background: var(--amber);"></span><span>Supabase Syncing</span>`;
-          }
-        }
-      });
-
-  } catch (e) {
-    console.warn('Realtime subscription error:', e);
+    document.execCommand('copy');
+    showToast();
+  } catch (err) {
+    alert('Gagal menyalin teks briefing.');
   }
+  document.body.removeChild(ta);
 }
 
-// 9. INTERACTIVE SWITCHER BUS LOGIC (PGM / PVW)
+function showToast() {
+  const toast = document.getElementById('fluidToast');
+  if (!toast) return;
+  toast.style.display = 'block';
+  setTimeout(() => {
+    toast.style.display = 'none';
+  }, 2200);
+}
+
+// 11. SWITCHER BUS HANDLERS
 function setBusPgm(ch) {
-  for (let i = 1; i <= 4; i++) {
-    const b = document.getElementById(`btnPgm${i}`);
-    if (b) {
-      if (i === ch) b.classList.add('active-pgm');
-      else b.classList.remove('active-pgm');
+  document.querySelectorAll('.bus-label.pgm ~ .bus-buttons .btn-bus').forEach((btn, idx) => {
+    if (idx + 1 === ch) {
+      btn.classList.add('active-pgm');
+    } else {
+      btn.classList.remove('active-pgm');
     }
-  }
+  });
   const lbl = document.getElementById('pgmLabel');
   if (lbl) lbl.textContent = `CAM ${ch}`;
 }
 
 function setBusPvw(ch) {
-  for (let i = 1; i <= 4; i++) {
-    const b = document.getElementById(`btnPvw${i}`);
-    if (b) {
-      if (i === ch) b.classList.add('active-pvw');
-      else b.classList.remove('active-pvw');
+  document.querySelectorAll('.bus-label.pvw ~ .bus-buttons .btn-bus').forEach((btn, idx) => {
+    if (idx + 1 === ch) {
+      btn.classList.add('active-pvw');
+    } else {
+      btn.classList.remove('active-pvw');
     }
-  }
+  });
   const lbl = document.getElementById('pvwLabel');
   if (lbl) lbl.textContent = `CAM ${ch}`;
 }
 
-// 10. 1-CLICK WHATSAPP BRIEF DISPATCHER
-function copyBriefWA(unitName, gearDetails) {
-  const briefText = `🎬 [BRIEFING RIG - IBADAH PERDANA 2026]\nUnit: ${unitName}\nGear: ${gearDetails}\nStatus: Siap di Lokasi ✅\nVenue: Auditorium UNNES`;
-  navigator.clipboard.writeText(briefText).then(() => {
-    showToast(`Briefing ${unitName} tersalin ke WhatsApp! 📋`);
-  }).catch(() => {
-    showToast(`Tersalin! ✅`);
-  });
-}
-
-function showToast(msg) {
-  const t = document.getElementById('fluidToast');
-  if (!t) return;
-  t.textContent = msg;
-  t.style.display = 'block';
-  setTimeout(() => {
-    t.style.display = 'none';
-  }, 2200);
-}
-
-// 11. KEYBOARD SHORTCUTS (Ctrl+K)
+// 12. KEYBOARD SHORTCUTS
 function setupKeyboardShortcuts() {
-  window.addEventListener('keydown', (e) => {
+  document.addEventListener('keydown', (e) => {
     if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'k') {
       e.preventDefault();
-      const sec = document.getElementById('secInventory');
-      if (sec) sec.scrollIntoView({ behavior: 'smooth' });
-      const input = document.getElementById('inventorySearchInput');
-      if (input) setTimeout(() => input.focus(), 300);
+      navJumpTo('modInventory');
+      const search = document.getElementById('inventorySearchInput');
+      if (search) search.focus();
     }
   });
 }
