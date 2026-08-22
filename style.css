@@ -1,5 +1,6 @@
 /* IP26 PRODUCTION CALL SHEET (v16.1) - Light/Dark + Swappable Pastel Accents */
 :root,[data-theme="light"]{
+  --acc:#C4633E; --acc-soft:rgba(196,99,62,.13);
   --paper:#EEE8DB; --card:#F8F4EA; --inset:#E3DCCC;
   --ink:#27282C; --ink-soft:#57595F; --ink-dim:#85878D;
   --rule:#27282C; --hairline:rgba(39,40,44,.17); --hairline-soft:rgba(39,40,44,.09);
@@ -10,6 +11,7 @@
   --purple:#6C4FA8; --purple-soft:rgba(108,79,168,.13);
 }
 [data-theme="dark"]{
+  --acc:#E09A72; --acc-soft:rgba(224,154,114,.16);
   --paper:#1A1B1E; --card:#232428; --inset:#2C2D32;
   --ink:#ECE9DF; --ink-soft:#B5B3AB; --ink-dim:#7F7D76;
   --rule:#4A4B52; --hairline:rgba(236,233,223,.18); --hairline-soft:rgba(236,233,223,.09);
@@ -20,12 +22,6 @@
   --purple:#B49DE3; --purple-soft:rgba(180,157,227,.16);
 }
 /* SWAPPABLE PASTEL ACCENTS */
-[data-accent="terra"]{--acc:#C4633E;--acc-soft:rgba(196,99,62,.13)}
-[data-accent="sage"]{--acc:#5F7F62;--acc-soft:rgba(95,127,98,.15)}
-[data-accent="blush"]{--acc:#BC6F79;--acc-soft:rgba(188,111,121,.14)}
-[data-accent="lav"]{--acc:#8677C6;--acc-soft:rgba(134,119,198,.14)}
-[data-accent="honey"]{--acc:#B8862B;--acc-soft:rgba(184,134,43,.15)}
-[data-accent="ocean"]{--acc:#5C80A8;--acc-soft:rgba(92,128,168,.14)}
 
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth;color-scheme:light dark}
