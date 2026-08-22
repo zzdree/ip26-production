@@ -1,67 +1,37 @@
-# DESIGN.md — Precision Studio Pro Design System (v14.0)
-**Theme:** Raycast / Blackmagic ATEM Precision Instrument Aesthetic  
-**Aesthetic Standard:** Deep Obsidian Canvas, Slate Hardware Cards, 0.5px Hairline Borders, Studio Tally Accents  
+# DESIGN.md — Siaran Mission Control (v15.0)
 
----
+**Dial:** ENERGY 2 / RHYTHM 3 / MOTION 2
+**Aesthetic:** OB-Van Telemetry Console (bukan clone produk komersial)
+**Inspiration:** Konsol teknik siaran nyata (Cinetreak, tally light, source grid)
 
-## 1. Color Palette & Semantic Tokens
-```css
-:root {
-  /* Canvas & Surfaces */
-  --bg-base: #08090b;            /* Deep Obsidian */
-  --bg-surface: #111317;         /* Master Slate Hardware Card */
-  --bg-surface-hover: #16191f;   /* Elevated Slate */
-  --bg-inset: #0c0e12;           /* Inset Row / Recessed Surface */
-  --bg-dock: rgba(17, 19, 23, 0.92);
+## 1. Visual Theme & Atmosphere
+Konsol operasional siaran yang padat dan terfokus. Charcoal pekat sebagai substrate, aksen amber terang sebagai sinyal tunggal. Status ditunjukkan via *tally light semantics* (hijau/amber/ungu/merah) yang konsisten di seluruh modul — ini adalah motif identitas, bukan dekorasi.
 
-  /* Hairline Borders */
-  --border-card: rgba(255, 255, 255, 0.07);
-  --border-subtle: rgba(255, 255, 255, 0.035);
-  --border-hover: rgba(255, 255, 255, 0.15);
-  --border-focus: #0ea5e9;
+## 2. Color Palette & Roles
+- **Charcoal Base** `#0E0F12` — background utama (substrate gelap, bukan hitam murni agar nyaman di layar)
+- **Slate Surface** `#16181D` — panel/kartu modul
+- **Inset** `#0B0C0F` — baris ter-recessed, search, table
+- **Hairline** `rgba(255,255,255,.08)` — batas presisi 1px
+- **Signal Amber** `#F5A524` — aksen tunggal: tombol aktif, highlight, countdown (focus point)
+- **Verified Green** `#34D399` — barang terverifikasi aktif ✅ / checklist selesai
+- **Caution Amber-Status** `#FBBF24` — sebagian / pending ⚠️
+- **Standby Purple** `#A78BFA` — standby / backup ☑️ (diredam, bukan dominan)
+- **On-Air Red** `#F43F5E` — PGM tally / switcher live
 
-  /* Typography */
-  --text-main: #f8fafc;
-  --text-muted: #94a3b8;
-  --text-dim: #64748b;
+## 3. Typography
+- **Space Grotesk** (display + angka telemetry): terlihat teknis tapi punya karakter, bukan Inter/Roboto.
+- **Plus Jakarta Sans** (body/labels): keterbacaan tinggi.
+- **JetBrains Mono** (ID teknis: port, kabel, jam, channel): sebagai identitas "telemetry".
+- Heading modul 15px/700; body 13px; telemetry 28-32px mono.
 
-  /* Studio Hardware Accents (Tally & Signal) */
-  --tally-pgm: #ef4444;          /* Red PGM Live */
-  --tally-pgm-soft: rgba(239, 68, 68, 0.12);
-  --tally-pvw: #10b981;          /* Green PVW / Ready / Checked */
-  --tally-pvw-soft: rgba(16, 185, 129, 0.12);
-  --accent-cyan: #0ea5e9;        /* Signal Route / Focus */
-  --accent-cyan-soft: rgba(14, 165, 233, 0.1);
-  --accent-amber: #f59e0b;       /* Standby / Caution */
-  --accent-amber-soft: rgba(245, 158, 11, 0.12);
-  --accent-purple: #a855f7;      /* Wireless TX/RX */
-  --accent-purple-soft: rgba(168, 85, 247, 0.12);
-}
-```
+## 4. Component Stylings
+- **Buttons:** sudut kecil (6px), amber solid untuk primary aktif, outline hairline untuk secondary. Tidak semua pill.
+- **Cards/Modules:** sudut 12px, border hairline, collapsible accordion. Hover border sedikit terang.
+- **Inputs:** inset bg, border fokus amber, mono placeholder.
+- **Tally Badges:** dot + label, warna status semantik.
 
----
-
-## 2. Typography
-* **Primary Interface Font:** `'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif`
-* **Technical Monospace Font:** `'JetBrains Mono', monospace` (for Telemetry, Quantities, Clocks, Timecodes, Port IDs)
-* **Hierarchy:**
-  * App Header Brand: `14px / weight 700 / letter-spacing -0.01em`
-  * Section Titles: `15px / weight 700 / letter-spacing -0.02em`
-  * Sub-headings: `13px / weight 600`
-  * Body Text: `12.5px / line-height 1.5`
-  * Small Meta / Badges: `10.5px–11px / weight 600–700 / JetBrains Mono`
-
----
-
-## 3. Component Architecture
-1. **Studio Header (Desktop)**: Height 52px, frosted blur (16px), quick navigation pills with subtle hover background and active blue glow.
-2. **Mobile Cockpit Dock**: Height 56px, fixed bottom, icon + label with thumb-friendly touch targets (min 44px).
-3. **Accordion Module Cards**:
-   * Header: tactile row with index tag (`01`), bold module title, right status badge, and rotating chevron icon.
-   * Smooth collapse/expand state transitions.
-4. **Hardware Checklist Rows**:
-   * Compact 36px height row, custom green checkmark on active, strikethrough muted typography, lender name pill, and signal usage badge.
-5. **Interactive Cinetreak Bus**:
-   * Hardware switcher buttons for PGM (Red Tally) and PVW (Green Tally).
-6. **Data Tables**:
-   * Monospace technical table with subtle alternating row hover and compact 8px padding.
+## 5. Layout Principles
+- Top nav (desktop) + bottom dock (mobile) dengan ikon + label thumb-zone.
+- Hero: countdown besar sebagai focal point tunggal per layar.
+- Grid modul auto-fit, dense tapi bernapas. Whitespace sebagai pemisah antar section.
+- RHYTHM 3: komposisi bervariasi (hero asimetris, grid kamera, tabel routing, kartu roster).

@@ -3,857 +3,365 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>IP26 Command Suite — Ibadah Perdana UKK UNNES 2026</title>
-  <meta name="description" content="Aplikasi Komando Siaran & Tracking Inventaris Ibadah Perdana UKK UNNES 2026, Gedung Auditorium UNNES.">
-  <meta name="theme-color" content="#0a0b0d">
-
-  <!-- Google Fonts: Plus Jakarta Sans & JetBrains Mono -->
+  <title>IP26 Siaran Mission Control — Ibadah Perdana UKK UNNES 2026</title>
+  <meta name="description" content="Konsol kendali siaran dan inventaris Ibadah Perdana UKK UNNES 2026, Auditorium UNNES.">
+  <meta name="theme-color" content="#0E0F12">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-
-  <!-- Supabase JS Library (v2) -->
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-  <!-- ====================================================================
-       1. DESKTOP STICKY TOP HEADER
-       ==================================================================== -->
+  <!-- 1. DESKTOP TOP NAV -->
   <header class="studio-header">
     <div class="header-inner">
-      
-      <!-- Brand Logo -->
       <a href="#" class="header-brand" onclick="window.scrollTo({top:0, behavior:'smooth'}); return false;">
         <span class="brand-badge">IP26</span>
-        <span class="brand-text">Production Command</span>
+        <span class="brand-text">Siaran Mission Control</span>
       </a>
-
-      <!-- Desktop Navigation Links (Jump & Expand) -->
       <nav class="desktop-nav-links" id="desktopNavLinks">
-        <a href="#modInventory" class="nav-link-item active" id="navLinkInventory" onclick="navJumpTo('modInventory'); return false;">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline><line x1="12" y1="22.08" x2="12" y2="12"></line></svg>
-          <span>Manifest (119)</span>
-        </a>
-        <a href="#modCameras" class="nav-link-item" id="navLinkCameras" onclick="navJumpTo('modCameras'); return false;">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 7l-7 5 7 5V7z"></path><rect x="1" y="5" width="15" height="14" rx="2" ry="2"></rect></svg>
-          <span>Kamera</span>
-        </a>
-        <a href="#modRouting" class="nav-link-item" id="navLinkRouting" onclick="navJumpTo('modRouting'); return false;">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>
-          <span>Routing & Workstation</span>
-        </a>
-        <a href="#modStage" class="nav-link-item" id="navLinkStage" onclick="navJumpTo('modStage'); return false;">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect><line x1="8" y1="21" x2="16" y2="21"></line><line x1="12" y1="17" x2="12" y2="21"></line></svg>
-          <span>Tata Layar LED</span>
-        </a>
-        <a href="#modRundown" class="nav-link-item" id="navLinkRundown" onclick="navJumpTo('modRundown'); return false;">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
-          <span>Rundown & Tim</span>
-        </a>
+        <a href="#secHero" class="nav-link-item active" id="navLinkHero" onclick="navJumpTo('secHero'); return false;">Ringkas</a>
+        <a href="#secTeam" class="nav-link-item" id="navLinkTeam" onclick="navJumpTo('secTeam'); return false;">Tim</a>
+        <a href="#secCam" class="nav-link-item" id="navLinkCam" onclick="navJumpTo('secCam'); return false;">Kamera</a>
+        <a href="#secEngine" class="nav-link-item" id="navLinkEngine" onclick="navJumpTo('secEngine'); return false;">Engine</a>
+        <a href="#secWork" class="nav-link-item" id="navLinkWork" onclick="navJumpTo('secWork'); return false;">Workstation</a>
+        <a href="#secInv" class="nav-link-item" id="navLinkInv" onclick="navJumpTo('secInv'); return false;">Inventaris</a>
+        <a href="#secStage" class="nav-link-item" id="navLinkStage" onclick="navJumpTo('secStage'); return false;">LED</a>
+        <a href="#secRun" class="nav-link-item" id="navLinkRun" onclick="navJumpTo('secRun'); return false;">Rundown</a>
       </nav>
-
-      <!-- Status Chips -->
       <div class="header-right">
-        <div class="telemetry-chip">
-          <span class="live-pulse-dot"></span>
-          <span>Supabase Live</span>
-        </div>
-        <div class="telemetry-chip">
-          <span class="clock-text" id="masterClockWIB">--:--:-- WIB</span>
-        </div>
+        <div class="telemetry-chip"><span class="live-pulse-dot"></span><span>Supabase Live</span></div>
+        <div class="telemetry-chip"><span class="clock-text" id="masterClockWIB">--:--:-- WIB</span></div>
       </div>
-
     </div>
   </header>
 
-  <!-- ====================================================================
-       2. MOBILE BOTTOM FLOATING DOCK
-       ==================================================================== -->
+  <!-- 2. MOBILE BOTTOM DOCK -->
   <nav class="mobile-bottom-dock" id="mobileBottomDock">
-    <a href="#modInventory" class="dock-item active" id="dockInventory" onclick="navJumpTo('modInventory'); return false;">
-      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline><line x1="12" y1="22.08" x2="12" y2="12"></line></svg>
-      <span>Manifest</span>
+    <a href="#secHero" class="dock-item active" id="dockHero" onclick="navJumpTo('secHero'); return false;">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg><span>Ringkas</span>
     </a>
-    <a href="#modCameras" class="dock-item" id="dockCameras" onclick="navJumpTo('modCameras'); return false;">
-      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 7l-7 5 7 5V7z"></path><rect x="1" y="5" width="15" height="14" rx="2" ry="2"></rect></svg>
-      <span>Kamera</span>
+    <a href="#secCam" class="dock-item" id="dockCam" onclick="navJumpTo('secCam'); return false;">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 7l-7 5 7 5V7z"></path><rect x="1" y="5" width="15" height="14" rx="2" ry="2"></rect></svg><span>Kamera</span>
     </a>
-    <a href="#modRouting" class="dock-item" id="dockRouting" onclick="navJumpTo('modRouting'); return false;">
-      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>
-      <span>Sinyal</span>
+    <a href="#secEngine" class="dock-item" id="dockEngine" onclick="navJumpTo('secEngine'); return false;">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg><span>Engine</span>
     </a>
-    <a href="#modStage" class="dock-item" id="dockStage" onclick="navJumpTo('modStage'); return false;">
-      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect><line x1="8" y1="21" x2="16" y2="21"></line><line x1="12" y1="17" x2="12" y2="21"></line></svg>
-      <span>LED</span>
+    <a href="#secInv" class="dock-item" id="dockInv" onclick="navJumpTo('secInv'); return false;">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline><line x1="12" y1="22.08" x2="12" y2="12"></line></svg><span>Inventaris</span>
     </a>
-    <a href="#modRundown" class="dock-item" id="dockRundown" onclick="navJumpTo('modRundown'); return false;">
-      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
-      <span>Rundown</span>
+    <a href="#secRun" class="dock-item" id="dockRun" onclick="navJumpTo('secRun'); return false;">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect><line x1="8" y1="21" x2="16" y2="21"></line><line x1="12" y1="17" x2="12" y2="21"></line></svg><span>Rundown</span>
     </a>
   </nav>
 
-  <!-- ====================================================================
-       3. MAIN CONTAINER
-       ==================================================================== -->
   <main class="studio-main-container">
 
-    <!-- HERO COMPACT CARD & STATS -->
-    <section class="hero-compact-card">
+    <!-- 3. HERO -->
+    <section class="hero-compact-card" id="secHero">
       <div class="hero-top-row">
         <div class="hero-title-group">
-          <span class="hero-tag-badge">● LIVE PRODUCTION READY &bull; UNNES 2026</span>
+          <span class="hero-tag-badge">● ON AIR READY &bull; UNNES 2026</span>
           <h1 class="hero-main-title">Ibadah Perdana UKK UNNES 2026</h1>
           <div class="hero-meta-row">
-            <span>📍 Gedung Auditorium UNNES</span>
-            <span>&bull;</span>
-            <span>📅 17 September 2026</span>
+            <span>📍 Auditorium UNNES</span><span>&bull;</span><span>📅 17 September 2026</span>
           </div>
         </div>
-
         <div class="countdown-box">
           <span class="countdown-label">COUNTDOWN TO EVENT</span>
-          <span class="countdown-digits" id="liveCountdownText">Calculating...</span>
+          <span class="countdown-digits" id="liveCountdownText">...</span>
         </div>
       </div>
-
-      <!-- Quick Telemetry Counters -->
       <div class="telemetry-grid">
-        <div class="telemetry-stat-card" style="cursor: pointer;" onclick="navJumpTo('modInventory')">
-          <span class="stat-val" style="color: var(--accent-cyan);" id="statHeroManifestCount">119</span>
-          <span class="stat-lbl">📦 Item Inventaris (13 Lenders)</span>
+        <div class="telemetry-stat-card" onclick="navJumpTo('secInv')"><span class="stat-val" style="color:var(--signal-amber)">119</span><span class="stat-lbl">📦 Inventaris (13 peminjam)</span></div>
+        <div class="telemetry-stat-card" onclick="navJumpTo('secCam')"><span class="stat-val" style="color:var(--verified-green)">8</span><span class="stat-lbl">🎥 Unit Kamera</span></div>
+        <div class="telemetry-stat-card" onclick="navJumpTo('secWork')"><span class="stat-val" style="color:var(--standby-purple)">11</span><span class="stat-lbl">🎛️ Workstation</span></div>
+        <div class="telemetry-stat-card" onclick="navJumpTo('secRun')"><span class="stat-val" style="color:var(--caution-amber)">3</span><span class="stat-lbl">⏱️ Sesi Rundown</span></div>
+      </div>
+    </section>
+
+    <!-- 4. TEAM STRUCTURE -->
+    <section>
+      <div class="section-eyebrow"><span class="eyebrow-num">01</span><span class="eyebrow-text">Struktur Tim & Klasifikasi</span></div>
+      <div class="crew-roster-grid">
+        <div class="crew-card">
+          <div class="crew-header-row"><span class="crew-div-title">System Engineer</span><span class="status-badge used">Pelayan</span></div>
+          <div class="crew-leader-line"><span style="font-size:10px;font-weight:800;color:var(--text-dim)">LEADER</span><strong>Andreas</strong></div>
+          <span style="font-size:11px;color:var(--text-muted)">Arsitektur sistem, routing sinyal, switcher, OBS, audio, kelistrikan.</span>
         </div>
-        <div class="telemetry-stat-card" style="cursor: pointer;" onclick="navJumpTo('modCameras')">
-          <span class="stat-val" style="color: var(--accent-emerald);">8</span>
-          <span class="stat-lbl">🎥 Unit Rig Kamera</span>
+        <div class="crew-card">
+          <div class="crew-header-row"><span class="crew-div-title">Media Engineer</span><span class="status-badge standby">Panitia</span></div>
+          <div class="crew-leader-line"><span style="font-size:10px;font-weight:800;color:var(--text-dim)">LEADER</span><strong>Richard</strong></div>
+          <div class="crew-tags-list"><span class="crew-tag-item">Wilfred (Switcher)</span><span class="crew-tag-item">Alex (CAM 1)</span><span class="crew-tag-item">Rania (PRO1)</span></div>
         </div>
-        <div class="telemetry-stat-card" style="cursor: pointer;" onclick="navJumpTo('modRouting')">
-          <span class="stat-val" style="color: var(--accent-purple);">11</span>
-          <span class="stat-lbl">🎛️ Stasiun Kerja Media</span>
+        <div class="crew-card">
+          <div class="crew-header-row"><span class="crew-div-title">Creative Engineer</span><span class="status-badge standby">Panitia</span></div>
+          <div class="crew-leader-line"><span style="font-size:10px;font-weight:800;color:var(--text-dim)">LEADER</span><strong>Jennifer</strong></div>
+          <div class="crew-tags-list"><span class="crew-tag-item">Filia (PRO2)</span><span class="crew-tag-item">Felani</span><span class="crew-tag-item">Wike</span></div>
         </div>
-        <div class="telemetry-stat-card" style="cursor: pointer;" onclick="navJumpTo('modRundown')">
-          <span class="stat-val" style="color: var(--accent-amber);">3</span>
-          <span class="stat-lbl">⏱️ Sesi Rundown Acara</span>
+      </div>
+      <div class="legend-row" style="margin-top:12px">
+        <span style="font-size:11.5px;color:var(--text-dim);font-weight:600">Klasifikasi:</span>
+        <span class="legend-item"><span class="legend-dot" style="background:var(--signal-amber)"></span>Panitia</span>
+        <span class="legend-item"><span class="legend-dot" style="background:var(--verified-green)"></span>Pelayan</span>
+        <span style="font-size:10.5px;color:var(--text-dim)">Catatan: Panitia dapat menjadi pelayan, namun pelayan belum tentu panitia. PIC yang bukan panitia adalah pelayan.</span>
+      </div>
+    </section>
+
+    <!-- 5. STATUS LEGEND -->
+    <section>
+      <div class="section-eyebrow"><span class="eyebrow-num">02</span><span class="eyebrow-text">Legenda Status Indikator</span></div>
+      <div class="legend-row">
+        <span class="legend-item"><span class="legend-dot" style="background:var(--verified-green)"></span>✅ Terverifikasi & Aktif</span>
+        <span class="legend-item"><span class="legend-dot" style="background:var(--caution-amber)"></span>⚠️ Sebagian / Pending</span>
+        <span class="legend-item"><span class="legend-dot" style="background:var(--standby-purple)"></span>☑️ Standby / Backup</span>
+      </div>
+    </section>
+
+    <!-- 6. BROADCAST CAMERA -->
+    <section class="accordion-module" id="secCam">
+      <div class="accordion-header" onclick="toggleSection('secCam')">
+        <div class="accordion-title-wrap"><span class="module-index-tag">03</span><h2 class="module-heading">🎥 Sistem Kamera Siaran (Broadcast + Dokumentasi)</h2></div>
+        <div class="accordion-right-info"><span class="accordion-meta-badge">8 Unit</span><svg class="accordion-chevron-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg></div>
+      </div>
+      <div class="accordion-content">
+        <div class="cameras-grid">
+          <div class="camera-card">
+            <div class="cam-card-top"><div><h3 class="cam-id-title">CAM 1 &bull; FOH Wide (Fixed+Wireless)</h3><span style="font-size:11px;color:var(--text-muted)">Hollyland Pyro S</span></div><span class="cam-operator-pill">Alex</span></div>
+            <div class="cam-gear-specs">Sony ZVE10 (Kiel 1) + Lens 18-105mm (OWL) + Battery (Kiel 1) + SD 64GB (Kiel 1) + Tripod Big (OWL) + Micro HDMI 30cm (OWL) + Pyro S TX/RX (OWL) + Bat WIR (OWL) + Stand Light (UKK) + HDMI 1.5M (UKK) + Cinetreak (OWL) + Adaptor MIX (OWL) ✅</div>
+            <button class="copy-brief-btn" onclick="copyBriefWA('CAM 1 (Alex)', 'Sony ZVE10+18-105mm, Pyro S Wireless, Tripod Big')">📋 Salin Briefing WA</button>
+          </div>
+          <div class="camera-card">
+            <div class="cam-card-top"><div><h3 class="cam-id-title">CAM 2 &bull; Stage Mobile (Wireless)</h3><span style="font-size:11px;color:var(--text-muted)">Hollyland Pyro H</span></div><span class="cam-operator-pill">Kiel 1</span></div>
+            <div class="cam-gear-specs">Sony ZV-E10 (OWL) + Lens 18-105mm (OWL) + Battery (OWL) + SD 32GB (OWL) + Micro HDMI 30cm (OWL) + Pyro H TX/RX (OWL) + Bat WIR (OWL) + Stand Light (UKK) + HDMI 1.5M (UKK) + Cinetreak (OWL) + Adaptor MIX (OWL) ✅</div>
+            <button class="copy-brief-btn" onclick="copyBriefWA('CAM 2 (Kiel 1)', 'Sony ZV-E10+18-105mm, Pyro H Wireless')">📋 Salin Briefing WA</button>
+          </div>
+          <div class="camera-card">
+            <div class="cam-card-top"><div><h3 class="cam-id-title">CAM 3 &bull; Stage Left (Wired Fixed)</h3><span style="font-size:11px;color:var(--text-muted)">HDMI 10M GKJ</span></div><span class="cam-operator-pill">Nia</span></div>
+            <div class="cam-gear-specs">Sony A6000 (OWL) + Lens 18-105mm (OWL) + Battery (OWL) + SD 32GB (OWL) + Tripod Big (GIA) + Micro Conv (OWL) + HDMI 10M (GKJ) + Cinetreak (OWL) + Adaptor MIX (OWL) ✅</div>
+            <button class="copy-brief-btn" onclick="copyBriefWA('CAM 3 (Nia)', 'Sony A6000+18-105mm, Wired HDMI 10M GKJ')">📋 Salin Briefing WA</button>
+          </div>
+          <div class="camera-card">
+            <div class="cam-card-top"><div><h3 class="cam-id-title">CAM 4 &bull; Stage Right (Wired Fixed)</h3><span style="font-size:11px;color:var(--text-muted)">HDMI 10M UKK</span></div><span class="cam-operator-pill">Ferdy</span></div>
+            <div class="cam-gear-specs">Sony A6000 (OWL) + Lens 16-50mm (Kiel 1) + Battery (OWL) + SD 32GB (OWL) + Tripod Big (UKK) + Micro Conv (OWL) + HDMI 10M (UKK) + Cinetreak (OWL) + Adaptor MIX (OWL) ✅</div>
+            <button class="copy-brief-btn" onclick="copyBriefWA('CAM 4 (Ferdy)', 'Sony A6000+16-50mm, Wired HDMI 10M UKK')">📋 Salin Briefing WA</button>
+          </div>
+          <div class="camera-card">
+            <div class="cam-card-top"><div><h3 class="cam-id-title">CAM PHO &bull; Stills</h3></div><span class="cam-operator-pill">Nico</span></div>
+            <div class="cam-gear-specs">Sony A6400 (OWL) + Sony 50mm (OWL) + Battery X2 (OWL) + SD 32GB (OWL) ✅</div>
+            <button class="copy-brief-btn" onclick="copyBriefWA('CAM PHO (Nico)', 'Sony A6400+50mm, 2x Battery, SD 32GB')">📋 Salin Briefing WA</button>
+          </div>
+          <div class="camera-card">
+            <div class="cam-card-top"><div><h3 class="cam-id-title">CAM VID &bull; Cinematic</h3></div><span class="cam-operator-pill">Joel</span></div>
+            <div class="cam-gear-specs">Sony A6600 (Joel) + 24-70mm Zeiss (Joel) + Battery X2 (Joel) + SD 64GB (Joel) + Gimbal DJI RS3 (Joel) ✅</div>
+            <button class="copy-brief-btn" onclick="copyBriefWA('CAM VID (Joel)', 'Sony A6600+24-70mm Zeiss, Gimbal RS3')">📋 Salin Briefing WA</button>
+          </div>
+          <div class="camera-card">
+            <div class="cam-card-top"><div><h3 class="cam-id-title">CAM HP &bull; Social</h3></div><span class="cam-operator-pill">Jennifer</span></div>
+            <div class="cam-gear-specs">iPhone 15 Pro (Jennifer) ✅</div>
+            <button class="copy-brief-btn" onclick="copyBriefWA('CAM HP (Jennifer)', 'iPhone 15 Pro Live Story')">📋 Salin Briefing WA</button>
+          </div>
+          <div class="camera-card">
+            <div class="cam-card-top"><div><h3 class="cam-id-title">BACKUP LINE</h3></div><span class="cam-operator-pill" style="color:var(--caution-amber);background:var(--caution-amber-soft)">Panitia</span></div>
+            <div class="cam-gear-specs">Micro HDMI to HDMI Converter X2 (Panitia) ✅</div>
+            <button class="copy-brief-btn" onclick="copyBriefWA('BACKUP LINE', 'Micro HDMI Converter X2')">📋 Salin Briefing WA</button>
+          </div>
         </div>
       </div>
     </section>
 
-    <!-- ==================================================================
-         MODULE 1: MASTER INVENTARIS & PACKING (119 ITEM) - DEFAULT OPEN
-         ================================================================== -->
-    <section class="accordion-module" id="modInventory">
-      <div class="accordion-header" onclick="toggleSection('modInventory')">
-        <div class="accordion-title-wrap">
-          <span class="module-index-tag">01</span>
-          <h2 class="module-heading">📦 Master Inventaris & Packing Manifest (119 Item)</h2>
-        </div>
-        <div class="accordion-right-info">
-          <span class="accordion-meta-badge" id="manifestHeaderStatus">0/119 Selesai</span>
-          <svg class="accordion-chevron-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
-        </div>
+    <!-- 7. ENGINE SYSTEM -->
+    <section class="accordion-module collapsed" id="secEngine">
+      <div class="accordion-header" onclick="toggleSection('secEngine')">
+        <div class="accordion-title-wrap"><span class="module-index-tag">04</span><h2 class="module-heading">⚡ Arsitektur Engine System (Routing Lengkap)</h2></div>
+        <div class="accordion-right-info"><span class="accordion-meta-badge">Video + Audio + Listrik</span><svg class="accordion-chevron-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg></div>
       </div>
-
       <div class="accordion-content">
-        
-        <!-- Packing Progress Bar -->
-        <div class="progress-row-box">
-          <div class="progress-labels">
-            <span style="font-weight: 700; color: var(--text-main);" id="progressRatioText">0 / 119 Item Ter-packing</span>
-            <span style="font-family: var(--font-mono); font-weight: 800; color: var(--accent-emerald);" id="progressPctText">0%</span>
+        <div class="switcher-panel">
+          <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px">
+            <strong style="font-size:12.5px;color:var(--text-main)">🎛️ Simulasi Cinetreak Cinelive V1 Switcher Bus</strong>
+            <div style="font-family:var(--font-mono);font-size:11px;display:flex;gap:10px">
+              <span style="color:var(--onair-red)">🔴 PGM: <strong id="pgmLabel">CAM 1</strong></span>
+              <span style="color:var(--verified-green)">🟢 PVW: <strong id="pvwLabel">CAM 2</strong></span>
+            </div>
           </div>
-          <div class="progress-track-bg">
-            <div class="progress-fill-bar" id="progressFillBar" style="width: 0%;"></div>
-          </div>
+          <div class="switcher-bus-row"><span class="bus-label pgm">PGM</span><div class="bus-buttons">
+            <button class="btn-bus active-pgm" id="btnPgm1" onclick="setBusPgm(1)">CAM 1</button>
+            <button class="btn-bus" id="btnPgm2" onclick="setBusPgm(2)">CAM 2</button>
+            <button class="btn-bus" id="btnPgm3" onclick="setBusPgm(3)">CAM 3</button>
+            <button class="btn-bus" id="btnPgm4" onclick="setBusPgm(4)">CAM 4</button>
+          </div></div>
+          <div class="switcher-bus-row"><span class="bus-label pvw">PVW</span><div class="bus-buttons">
+            <button class="btn-bus" id="btnPvw1" onclick="setBusPvw(1)">CAM 1</button>
+            <button class="btn-bus active-pvw" id="btnPvw2" onclick="setBusPvw(2)">CAM 2</button>
+            <button class="btn-bus" id="btnPvw3" onclick="setBusPvw(3)">CAM 3</button>
+            <button class="btn-bus" id="btnPvw4" onclick="setBusPvw(4)">CAM 4</button>
+          </div></div>
         </div>
 
-        <!-- Toolbar: Search & Action Buttons -->
+        <h3 style="font-size:13px;font-weight:700;color:var(--text-main)">🔌 Electrical Routing ✅</h3>
+        <div class="callout-box">Terminal Cable XCH (Andreas) + Terminal Cable XCH (UKK) + Terminal Cable XCH (Panitia)</div>
+
+        <h3 style="font-size:13px;font-weight:700;color:var(--text-main)">📺 Video Signal Routing</h3>
+        <div class="table-wrap"><table class="compact-table">
+          <thead><tr><th>Sub-Sistem</th><th>Chain Perangkat</th><th>Status</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Switcher + TV</strong></td><td>Terminal XCH (UKK) + Cinetreak (OWL) + Adaptor MIX (OWL) + HDMI 1M (GIA) + TV (Kezia) + Adaptor TV (Kezia)</td><td><span class="status-badge used">✅</span></td></tr>
+            <tr><td><strong>Switcher + Splitter</strong></td><td>Terminal XCH (UKK) + Cinetreak (OWL) + Adaptor MIX (OWL) + HDMI 1M (GIA) + Splitter 4CH (UKK/GKJ) + Adaptor SPL</td><td><span class="status-badge used">✅</span></td></tr>
+            <tr><td><strong>Switcher + OBS</strong></td><td>Terminal XCH (UKK) + Cinetreak (OWL) + Adaptor MIX (OWL) + USB A to C Data (Andreas) + Laptop OBS + Adaptor LTP</td><td><span class="status-badge used">✅</span></td></tr>
+            <tr><td><strong>Splitter + PRO1 + LED L/R/Back</strong></td><td>Splitter 4CH + HDMI 1.5M (Andreas) + Capture (OWL) + Laptop PRO1 + HDMI 20M (UNNES) + Novastar + LED L/R/Back</td><td><span class="status-badge used">✅</span></td></tr>
+            <tr><td><strong>PRO2 + RES</strong></td><td>Laptop PRO2 + HDMI 1.5M (Andreas) + Capture (OWL) + Laptop Resolume + Adaptor LTP</td><td><span class="status-badge used">✅</span></td></tr>
+            <tr><td><strong>Splitter + RES + LED Center</strong></td><td>Splitter 4CH + HDMI 1.5M (Andreas) + Capture (ABON) + Resolume + HDMI 15M (GKJ) + Capture (GKJ) + PC (UNNES) + Novastar + LED Center</td><td><span class="status-badge used">✅</span></td></tr>
+          </tbody>
+        </table></div>
+
+        <h3 style="font-size:13px;font-weight:700;color:var(--text-main)">🔊 Audio Signal & Mixing</h3>
+        <div class="table-wrap"><table class="compact-table">
+          <thead><tr><th>Chain</th><th>Perangkat</th><th>Status</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Mixer1 + XLR + Mixer2 + OBS</strong></td><td>QL5 (UNNES) + XLR 10M 2X (UKK) + XLR 3M 2X (GIA) + CT80S (GIA) + USB A to A 2M (Andreas) + USB A to C (GIA) + OBS</td><td><span class="status-badge used">✅</span></td></tr>
+            <tr><td><strong>RES + DAC + Mixer1</strong></td><td>Resolume + USB C DAC Hanason/Oraimo (Andreas) + Audio 20M (UNNES) + QL5</td><td><span class="status-badge used">✅</span></td></tr>
+            <tr><td><strong>Mixer1 + VM1</strong></td><td>QL5 + WiFi (UNNES-ID) + Laptop VM1 + Adaptor LTP</td><td><span class="status-badge used">✅</span></td></tr>
+            <tr><td><strong>Mixer1 + VM2</strong></td><td>QL5 + WiFi (UNNES-ID) + iPad VM2</td><td><span class="status-badge used">✅</span></td></tr>
+          </tbody>
+        </table></div>
+
+        <h3 style="font-size:13px;font-weight:700;color:var(--text-main)">⏱️ Time Keeper</h3>
+        <div class="callout-box">PRO3 + Television ✅: Terminal XCH (UKK) + Laptop PRO3 + HDMI 1.5M (Lio) + TV (Darrel) + Adaptor TV (Darrel)</div>
+
+        <div class="callout-box">📝 Catatan Splitter: 3 unit tersedia, GKJ (4CH), UKK (4CH), GIA (2CH) lengkap Adaptor SPL, plus 2 unit backup.</div>
+      </div>
+    </section>
+
+    <!-- 8. MEDIA WORKSTATIONS -->
+    <section class="accordion-module collapsed" id="secWork">
+      <div class="accordion-header" onclick="toggleSection('secWork')">
+        <div class="accordion-title-wrap"><span class="module-index-tag">05</span><h2 class="module-heading">💻 Media Workstation & Operator (11 Device)</h2></div>
+        <div class="accordion-right-info"><span class="accordion-meta-badge">Device + PIC</span><svg class="accordion-chevron-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg></div>
+      </div>
+      <div class="accordion-content">
+        <div class="table-wrap"><table class="compact-table">
+          <thead><tr><th>Station</th><th>Hardware</th><th>PIC / Operator</th><th>Status</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Mixer 1</strong></td><td>Yamaha QL5</td><td>Jordan / Yosua</td><td><span class="status-badge used">✅</span></td></tr>
+            <tr><td><strong>Mixer 2</strong></td><td>NewBaxs CT80S (GIA)</td><td>Andreas</td><td><span class="status-badge used">✅</span></td></tr>
+            <tr><td><strong>Virtual Mixer 1</strong></td><td>Laptop (Andreas)</td><td>Jordan / Yosua</td><td><span class="status-badge used">✅</span></td></tr>
+            <tr><td><strong>Virtual Mixer 2</strong></td><td>iPad (Jennifer)</td><td>Jordan / Yosua</td><td><span class="status-badge used">✅</span></td></tr>
+            <tr><td><strong>Resolume Arena</strong></td><td>Laptop (Bayu)</td><td>Andreas</td><td><span class="status-badge used">✅</span></td></tr>
+            <tr><td><strong>ProPresenter 1</strong></td><td>Laptop LED L/R/Back</td><td>Rania</td><td><span class="status-badge partial">⚠️ Laptop TBD</span></td></tr>
+            <tr><td><strong>ProPresenter 2</strong></td><td>Laptop Background</td><td>Filia</td><td><span class="status-badge partial">⚠️ Laptop TBD</span></td></tr>
+            <tr><td><strong>ProPresenter 3 + TV</strong></td><td>Laptop (TBD) + TV (Darrel)</td><td>Acara</td><td><span class="status-badge partial">⚠️ Laptop TBD</span></td></tr>
+            <tr><td><strong>Switcher + TV</strong></td><td>Cinetreak (OWL) + TV (Kezia)</td><td>Wilfred</td><td><span class="status-badge used">✅</span></td></tr>
+            <tr><td><strong>OBS Studio</strong></td><td>Laptop Live</td><td>Andreas</td><td><span class="status-badge partial">⚠️ Laptop TBD</span></td></tr>
+            <tr><td><strong>Backup</strong></td><td>Laptop (Kiel 1)</td><td>Kiel 1</td><td><span class="status-badge used">✅</span></td></tr>
+          </tbody>
+        </table></div>
+      </div>
+    </section>
+
+    <!-- 9. INVENTORY -->
+    <section class="accordion-module collapsed" id="secInv">
+      <div class="accordion-header" onclick="toggleSection('secInv')">
+        <div class="accordion-title-wrap"><span class="module-index-tag">06</span><h2 class="module-heading">📦 Master Inventaris & Packing (119 Item)</h2></div>
+        <div class="accordion-right-info"><span class="accordion-meta-badge" id="manifestHeaderStatus">0/119 Selesai</span><svg class="accordion-chevron-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg></div>
+      </div>
+      <div class="accordion-content">
+        <div class="progress-row-box">
+          <div class="progress-labels"><span style="font-weight:700;color:var(--text-main)" id="progressRatioText">0 / 119 Ter-packing</span><span style="font-family:var(--font-mono);font-weight:800;color:var(--verified-green)" id="progressPctText">0%</span></div>
+          <div class="progress-track-bg"><div class="progress-fill-bar" id="progressFillBar" style="width:0%"></div></div>
+        </div>
         <div class="manifest-toolbar">
           <div class="search-box-wrap">
-            <input type="text" id="inventorySearchInput" placeholder="Cari nama barang, kabel, lensa, adaptor, atau peminjam... (Ctrl+K)" oninput="handleSearch(this.value)">
-            <button class="search-clear-btn" id="clearSearchBtn" onclick="clearSearch()" style="display: none;">&times;</button>
+            <input type="text" id="inventorySearchInput" placeholder="Cari barang, kabel, lensa, peminjam (Ctrl+K)" oninput="handleSearch(this.value)">
+            <button class="search-clear-btn" id="clearSearchBtn" onclick="clearSearch()" style="display:none">&times;</button>
           </div>
-
           <div class="batch-buttons-group">
             <button class="btn-compact btn-emerald" onclick="batchSetChecklist(true)">✓ Tandai Semua</button>
             <button class="btn-compact btn-coral" onclick="batchSetChecklist(false)">↺ Reset</button>
             <button class="btn-compact" id="btnFilterUnreturned" onclick="toggleUnreturnedFilter()">⚠️ Belum Selesai</button>
           </div>
         </div>
-
-        <!-- Lender Filter Tabs -->
-        <div class="lender-tabs-row" id="lenderPillsRack">
-          <!-- Rendered by JS -->
-        </div>
-
-        <!-- Manifest Cards Grid (13 Lenders) -->
-        <div class="manifest-lenders-grid" id="manifestCardsGrid">
-          <!-- Rendered by JS -->
-        </div>
-
+        <div class="lender-tabs-row" id="lenderPillsRack"></div>
+        <div class="manifest-lenders-grid" id="manifestCardsGrid"></div>
       </div>
     </section>
 
-    <!-- ==================================================================
-         MODULE 2: SISTEM RIGGING KAMERA (5 Broadcast + 3 Doc)
-         ================================================================== -->
-    <section class="accordion-module collapsed" id="modCameras">
-      <div class="accordion-header" onclick="toggleSection('modCameras')">
-        <div class="accordion-title-wrap">
-          <span class="module-index-tag">02</span>
-          <h2 class="module-heading">🎥 Sistem Kamera & Operator Rigging (8 Unit)</h2>
-        </div>
-        <div class="accordion-right-info">
-          <span class="accordion-meta-badge">5 Broadcast &bull; 3 Doc</span>
-          <svg class="accordion-chevron-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
-        </div>
+    <!-- 10. STAGE LED -->
+    <section class="accordion-module collapsed" id="secStage">
+      <div class="accordion-header" onclick="toggleSection('secStage')">
+        <div class="accordion-title-wrap"><span class="module-index-tag">07</span><h2 class="module-heading">🏛️ Denah Panggung & Multi-Screen LED</h2></div>
+        <div class="accordion-right-info"><span class="accordion-meta-badge">Auditorium UNNES</span><svg class="accordion-chevron-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg></div>
       </div>
-
-      <div class="accordion-content">
-        <div class="cameras-grid">
-          
-          <!-- CAM 1 -->
-          <div class="camera-card">
-            <div class="cam-card-top">
-              <div>
-                <h3 class="cam-id-title">CAM 1 &bull; FOH Wide (Fixed)</h3>
-                <span style="font-size: 11px; color: var(--text-muted);">Transmisi: Wireless Hollyland Pyro S</span>
-              </div>
-              <span class="cam-operator-pill">Alex (Panitia)</span>
-            </div>
-            <div class="cam-gear-specs">
-              Sony ZVE10 (Kiel 1) + Lensa 18-105mm (OWL) + Baterai (Kiel 1) + SD 64GB (Kiel 1) + Tripod Big (OWL) + Micro HDMI 30cm (OWL) + Pyro S TX/RX (OWL) + Bat WIR (OWL) + Stand Light (UKK) + HDMI 1.5M (UKK) + Cinetreak (OWL) + Adaptor MIX (OWL)
-            </div>
-            <button class="copy-brief-btn" onclick="copyBriefWA('CAM 1 (Alex)', 'Sony ZVE10 + Lensa 18-105mm + Hollyland Pyro S Wireless TX/RX + Tripod Big')">📋 Salin Briefing WA</button>
-          </div>
-
-          <!-- CAM 2 -->
-          <div class="camera-card">
-            <div class="cam-card-top">
-              <div>
-                <h3 class="cam-id-title">CAM 2 &bull; Stage Roaming (Mobile)</h3>
-                <span style="font-size: 11px; color: var(--text-muted);">Transmisi: Wireless Hollyland Pyro H</span>
-              </div>
-              <span class="cam-operator-pill">Kiel 1 (Pelayan)</span>
-            </div>
-            <div class="cam-gear-specs">
-              Sony ZV-E10 (OWL) + Lensa 18-105mm (OWL) + Baterai (OWL) + SD 32GB (OWL) + Micro HDMI 30cm (OWL) + Pyro H TX/RX (OWL) + Bat WIR (OWL) + Stand Light (UKK) + HDMI 1.5M (UKK) + Cinetreak (OWL) + Adaptor MIX (OWL)
-            </div>
-            <button class="copy-brief-btn" onclick="copyBriefWA('CAM 2 (Kiel 1)', 'Sony ZV-E10 + Lensa 18-105mm + Hollyland Pyro H Wireless TX/RX')">📋 Salin Briefing WA</button>
-          </div>
-
-          <!-- CAM 3 -->
-          <div class="camera-card">
-            <div class="cam-card-top">
-              <div>
-                <h3 class="cam-id-title">CAM 3 &bull; Stage Left (Fixed)</h3>
-                <span style="font-size: 11px; color: var(--text-muted);">Transmisi: Wired HDMI 10M (GKJ)</span>
-              </div>
-              <span class="cam-operator-pill">Nia (Pelayan)</span>
-            </div>
-            <div class="cam-gear-specs">
-              Sony A6000 (OWL) + Lensa 18-105mm (OWL) + Baterai (OWL) + SD 32GB (OWL) + Tripod Big (GIA) + Micro Converter (OWL) + HDMI 10M (GKJ) + Cinetreak (OWL) + Adaptor MIX (OWL)
-            </div>
-            <button class="copy-brief-btn" onclick="copyBriefWA('CAM 3 (Nia)', 'Sony A6000 + Lensa 18-105mm + HDMI 10M GKJ + Tripod Big GIA')">📋 Salin Briefing WA</button>
-          </div>
-
-          <!-- CAM 4 -->
-          <div class="camera-card">
-            <div class="cam-card-top">
-              <div>
-                <h3 class="cam-id-title">CAM 4 &bull; Stage Right Close-Up (Fixed)</h3>
-                <span style="font-size: 11px; color: var(--text-muted);">Transmisi: Wired HDMI 10M (UKK)</span>
-              </div>
-              <span class="cam-operator-pill">Ferdy (Pelayan)</span>
-            </div>
-            <div class="cam-gear-specs">
-              Sony A6000 (OWL) + Lensa 16-50mm Kit (Kiel 1) + Baterai (OWL) + SD 32GB (OWL) + Tripod Big (UKK) + Micro Converter (OWL) + HDMI 10M (UKK) + Cinetreak (OWL) + Adaptor MIX (OWL)
-            </div>
-            <button class="copy-brief-btn" onclick="copyBriefWA('CAM 4 (Ferdy)', 'Sony A6000 + Lensa 16-50mm + HDMI 10M UKK + Tripod Big UKK')">📋 Salin Briefing WA</button>
-          </div>
-
-          <!-- CAM PHO -->
-          <div class="camera-card">
-            <div class="cam-card-top">
-              <div>
-                <h3 class="cam-id-title">CAM PHO &bull; Stills Photography</h3>
-                <span style="font-size: 11px; color: var(--text-muted);">Dokumentasi Liputan & Foto Resmi</span>
-              </div>
-              <span class="cam-operator-pill">Nico (Pelayan)</span>
-            </div>
-            <div class="cam-gear-specs">
-              Sony A6400 (OWL) + Sony 50mm Prime (OWL) + Baterai X2 (OWL) + Memory Card 32GB (OWL)
-            </div>
-            <button class="copy-brief-btn" onclick="copyBriefWA('CAM PHO (Nico)', 'Sony A6400 + Lensa 50mm Prime + 2x Baterai + SD 32GB')">📋 Salin Briefing WA</button>
-          </div>
-
-          <!-- CAM VID -->
-          <div class="camera-card">
-            <div class="cam-card-top">
-              <div>
-                <h3 class="cam-id-title">CAM VID &bull; Cinematic Video</h3>
-                <span style="font-size: 11px; color: var(--text-muted);">Highlight Video & Aftermovie</span>
-              </div>
-              <span class="cam-operator-pill">Joel (Pelayan)</span>
-            </div>
-            <div class="cam-gear-specs">
-              Sony A6600 (Joel) + Lensa 24-70mm Zeiss (Joel) + Baterai X2 (Joel) + SD 64GB (Joel) + Gimbal DJI Ronin RS3 (Joel)
-            </div>
-            <button class="copy-brief-btn" onclick="copyBriefWA('CAM VID (Joel)', 'Sony A6600 + Lensa 24-70mm Zeiss + Gimbal DJI RS3 + 2x Baterai')">📋 Salin Briefing WA</button>
-          </div>
-
-          <!-- CAM HP -->
-          <div class="camera-card">
-            <div class="cam-card-top">
-              <div>
-                <h3 class="cam-id-title">CAM HP &bull; Social Media & Reels</h3>
-                <span style="font-size: 11px; color: var(--text-muted);">Instant Story & Live Updates</span>
-              </div>
-              <span class="cam-operator-pill">Jennifer (Panitia)</span>
-            </div>
-            <div class="cam-gear-specs">
-              iPhone 15 Pro (Jennifer) - Live Instagram Highlights & Reels
-            </div>
-            <button class="copy-brief-btn" onclick="copyBriefWA('CAM HP (Jennifer)', 'iPhone 15 Pro - Live Story & Reels Coverage')">📋 Salin Briefing WA</button>
-          </div>
-
-          <!-- CAM BACKUP -->
-          <div class="camera-card">
-            <div class="cam-card-top">
-              <div>
-                <h3 class="cam-id-title">BACKUP LINE & HARDWARE</h3>
-                <span style="font-size: 11px; color: var(--text-muted);">Failover Standby Line</span>
-              </div>
-              <span class="cam-operator-pill" style="color: var(--accent-amber); background: var(--accent-amber-soft);">Panitia Standby</span>
-            </div>
-            <div class="cam-gear-specs">
-              Micro HDMI to HDMI Converter X2 (Panitia) + 2x Splitter HDMI Backup (GKJ 4CH / GIA 2CH)
-            </div>
-            <button class="copy-brief-btn" onclick="copyBriefWA('BACKUP LINE', 'Converter Micro HDMI x2 + Splitter Backup')">📋 Salin Briefing WA</button>
-          </div>
-
-        </div>
-      </div>
-    </section>
-
-    <!-- ==================================================================
-         MODULE 3: ROUTING SINYAL & WORKSTATION MEDIA
-         ================================================================== -->
-    <section class="accordion-module collapsed" id="modRouting">
-      <div class="accordion-header" onclick="toggleSection('modRouting')">
-        <div class="accordion-title-wrap">
-          <span class="module-index-tag">03</span>
-          <h2 class="module-heading">🔀 Routing Sinyal & 11 Workstation Media</h2>
-        </div>
-        <div class="accordion-right-info">
-          <span class="accordion-meta-badge">Video &bull; Audio &bull; Workstations</span>
-          <svg class="accordion-chevron-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
-        </div>
-      </div>
-
-      <div class="accordion-content">
-        
-        <!-- Interactive Switcher Panel -->
-        <div class="switcher-panel">
-          <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px;">
-            <strong style="font-size: 12.5px; color: var(--text-main);">🎛️ Simulasi Cinetreak Cinelive V1 Switcher Bus</strong>
-            <div style="font-family: var(--font-mono); font-size: 11px; display: flex; gap: 10px;">
-              <span style="color: var(--accent-coral);">🔴 PGM: <strong id="pgmLabel">CAM 1</strong></span>
-              <span style="color: var(--accent-emerald);">🟢 PVW: <strong id="pvwLabel">CAM 2</strong></span>
-            </div>
-          </div>
-
-          <div class="switcher-bus-row">
-            <span class="bus-label pgm">PGM</span>
-            <div class="bus-buttons">
-              <button class="btn-bus active-pgm" id="btnPgm1" onclick="setBusPgm(1)">CAM 1 (FOH)</button>
-              <button class="btn-bus" id="btnPgm2" onclick="setBusPgm(2)">CAM 2 (Mobile)</button>
-              <button class="btn-bus" id="btnPgm3" onclick="setBusPgm(3)">CAM 3 (Left)</button>
-              <button class="btn-bus" id="btnPgm4" onclick="setBusPgm(4)">CAM 4 (Right)</button>
-            </div>
-          </div>
-
-          <div class="switcher-bus-row">
-            <span class="bus-label pvw">PVW</span>
-            <div class="bus-buttons">
-              <button class="btn-bus" id="btnPvw1" onclick="setBusPvw(1)">CAM 1 (FOH)</button>
-              <button class="btn-bus active-pvw" id="btnPvw2" onclick="setBusPvw(2)">CAM 2 (Mobile)</button>
-              <button class="btn-bus" id="btnPvw3" onclick="setBusPvw(3)">CAM 3 (Left)</button>
-              <button class="btn-bus" id="btnPvw4" onclick="setBusPvw(4)">CAM 4 (Right)</button>
-            </div>
-          </div>
-        </div>
-
-        <!-- Video Matrix Table -->
-        <div>
-          <h3 style="font-size: 13px; font-weight: 700; color: var(--text-main); margin-bottom: 6px;">📺 Matriks Transmisi Video</h3>
-          <div class="table-wrap">
-            <table class="compact-table">
-              <thead>
-                <tr>
-                  <th>Input / Asal</th>
-                  <th>Kabel & Interface</th>
-                  <th>Output / Tujuan</th>
-                  <th>Status</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td><strong>CAM 1 & 2</strong></td>
-                  <td>Hollyland Pyro S/H + HDMI 1.5M (UKK)</td>
-                  <td>Cinetreak Input 1 & 2</td>
-                  <td><span class="status-badge used">✅ LIVE</span></td>
-                </tr>
-                <tr>
-                  <td><strong>CAM 3 & 4</strong></td>
-                  <td>HDMI 10M (GKJ/UKK) + Micro Converter</td>
-                  <td>Cinetreak Input 3 & 4</td>
-                  <td><span class="status-badge used">✅ LIVE</span></td>
-                </tr>
-                <tr>
-                  <td><strong>Switcher HDMI OUT</strong></td>
-                  <td>HDMI 1M (GIA)</td>
-                  <td>HDMI Splitter 4CH (UKK/GKJ)</td>
-                  <td><span class="status-badge used">✅ MASTER</span></td>
-                </tr>
-                <tr>
-                  <td><strong>Splitter CH 1</strong></td>
-                  <td>HDMI 1.5M (Andreas) + Capture (OWL)</td>
-                  <td>ProPresenter 1 ➔ Novastar LED L/R/Back</td>
-                  <td><span class="status-badge used">✅ ACTIVE</span></td>
-                </tr>
-                <tr>
-                  <td><strong>Splitter CH 2</strong></td>
-                  <td>HDMI 1.5M (Andreas) + Capture (ABON)</td>
-                  <td>Resolume Arena ➔ Novastar LED Center</td>
-                  <td><span class="status-badge used">✅ ACTIVE</span></td>
-                </tr>
-                <tr>
-                  <td><strong>ProPresenter 2</strong></td>
-                  <td>HDMI 1.5M (Andreas) + Capture (OWL)</td>
-                  <td>Resolume Arena (Bayu)</td>
-                  <td><span class="status-badge used">✅ ACTIVE</span></td>
-                </tr>
-                <tr>
-                  <td><strong>Switcher USB-C</strong></td>
-                  <td>USB A to USB C Data Cable (Andreas)</td>
-                  <td>Laptop OBS Studio (Live Stream)</td>
-                  <td><span class="status-badge used">✅ STREAM</span></td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
-
-        <!-- Audio & Stage Routing Table -->
-        <div>
-          <h3 style="font-size: 13px; font-weight: 700; color: var(--text-main); margin-bottom: 6px;">🔊 Matriks Audio & Stage Timekeeper</h3>
-          <div class="table-wrap">
-            <table class="compact-table">
-              <thead>
-                <tr>
-                  <th>Perangkat Asal</th>
-                  <th>Kabel & Jalur</th>
-                  <th>Tujuan Akhir</th>
-                  <th>Status</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td><strong>Yamaha QL5</strong> (FOH UNNES)</td>
-                  <td>XLR 10M 2X (UKK) + XLR 3M 2X (GIA)</td>
-                  <td>Mixer NewBaxs CT80S (GIA)</td>
-                  <td><span class="status-badge used">✅ FOH FEED</span></td>
-                </tr>
-                <tr>
-                  <td><strong>NewBaxs CT80S</strong></td>
-                  <td>USB Extender 2M + USB-C Cable (Andreas)</td>
-                  <td>Laptop OBS Studio</td>
-                  <td><span class="status-badge used">✅ STREAM AUDIO</span></td>
-                </tr>
-                <tr>
-                  <td><strong>Resolume Arena</strong></td>
-                  <td>USB-C DAC Hanason + Audio 20M (UNNES)</td>
-                  <td>Mixer Yamaha QL5 (UNNES)</td>
-                  <td><span class="status-badge used">✅ PLAYBACK</span></td>
-                </tr>
-                <tr>
-                  <td><strong>Virtual Mixer 1 & 2</strong></td>
-                  <td>WiFi Dedicated (UNNES-ID) Laptop & iPad</td>
-                  <td>Yamaha QL5 FOH Control</td>
-                  <td><span class="status-badge used">✅ WIRELESS</span></td>
-                </tr>
-                <tr>
-                  <td><strong>ProPresenter 3 (Timekeeper)</strong></td>
-                  <td>HDMI 1.5M (Lio)</td>
-                  <td>TV Darrel (Stage Time Monitor)</td>
-                  <td><span class="status-badge used">✅ TIMER</span></td>
-                </tr>
-                <tr>
-                  <td><strong>Electrical Terminal XCH</strong></td>
-                  <td>Jalur 4CH, 3CH, 2CH & T (Andreas/UKK/Panitia)</td>
-                  <td>All FOH & Stage Workstation Racks</td>
-                  <td><span class="status-badge used">✅ BALANCED</span></td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
-
-        <!-- Splitter Note -->
-        <div class="callout-box">
-          <strong style="color: var(--accent-cyan);">⚡ Ketersediaan Splitter:</strong> Tersedia 3 Unit HDMI Splitter: GKJ (4CH), UKK (4CH), dan GIA (2CH) lengkap dengan adaptor masing-masing, plus 2 unit cadangan aktif.
-        </div>
-
-        <!-- 11 Workstations Table -->
-        <div>
-          <h3 style="font-size: 13px; font-weight: 700; color: var(--text-main); margin-bottom: 6px;">💻 Alokasi 11 Workstation Media & Operator</h3>
-          <div class="table-wrap">
-            <table class="compact-table">
-              <thead>
-                <tr>
-                  <th>Station</th>
-                  <th>Hardware & Alat</th>
-                  <th>Pemilik Gear</th>
-                  <th>Operator (PIC)</th>
-                  <th>Kesiapan</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td><strong>Mixer 1</strong></td>
-                  <td>Yamaha QL5 Console</td>
-                  <td>UNNES</td>
-                  <td>Jordan / Yosua</td>
-                  <td><span class="status-badge used">✅ Terpasang</span></td>
-                </tr>
-                <tr>
-                  <td><strong>Mixer 2</strong></td>
-                  <td>NewBaxs CT80S</td>
-                  <td>GIA Deliksari</td>
-                  <td>Andreas</td>
-                  <td><span class="status-badge used">✅ Terpasang</span></td>
-                </tr>
-                <tr>
-                  <td><strong>Virtual Mixer 1</strong></td>
-                  <td>Laptop + Adaptor</td>
-                  <td>Andreas</td>
-                  <td>Jordan / Yosua</td>
-                  <td><span class="status-badge used">✅ Terpasang</span></td>
-                </tr>
-                <tr>
-                  <td><strong>Virtual Mixer 2</strong></td>
-                  <td>iPad Remote</td>
-                  <td>Jennifer</td>
-                  <td>Jordan / Yosua</td>
-                  <td><span class="status-badge used">✅ Terpasang</span></td>
-                </tr>
-                <tr>
-                  <td><strong>Resolume Arena</strong></td>
-                  <td>Laptop + Adaptor</td>
-                  <td>Bayu</td>
-                  <td>Andreas</td>
-                  <td><span class="status-badge used">✅ Terpasang</span></td>
-                </tr>
-                <tr>
-                  <td><strong>ProPresenter 1</strong></td>
-                  <td>Laptop LED L/R/Back</td>
-                  <td>Belum Ada</td>
-                  <td>Rania</td>
-                  <td><span class="status-badge partial">⚠️ Laptop TBD</span></td>
-                </tr>
-                <tr>
-                  <td><strong>ProPresenter 2</strong></td>
-                  <td>Laptop Background Video</td>
-                  <td>Belum Ada</td>
-                  <td>Filia</td>
-                  <td><span class="status-badge partial">⚠️ Laptop TBD</span></td>
-                </tr>
-                <tr>
-                  <td><strong>ProPresenter 3 + TV</strong></td>
-                  <td>Laptop Timekeeper + TV</td>
-                  <td>Laptop (Belum Ada) + TV (Darrel)</td>
-                  <td>Acara</td>
-                  <td><span class="status-badge partial">⚠️ Laptop TBD</span></td>
-                </tr>
-                <tr>
-                  <td><strong>Switcher + TV</strong></td>
-                  <td>Cinetreak V1 + TV Multiview</td>
-                  <td>OWL + Kezia</td>
-                  <td>Wilfred</td>
-                  <td><span class="status-badge used">✅ Terpasang</span></td>
-                </tr>
-                <tr>
-                  <td><strong>OBS Studio</strong></td>
-                  <td>Laptop Live Streaming</td>
-                  <td>Belum Ada</td>
-                  <td>Andreas</td>
-                  <td><span class="status-badge partial">⚠️ Laptop TBD</span></td>
-                </tr>
-                <tr>
-                  <td><strong>Backup Station</strong></td>
-                  <td>Laptop Standby</td>
-                  <td>Kiel 1</td>
-                  <td>Kiel 1</td>
-                  <td><span class="status-badge used">✅ Terpasang</span></td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
-
-      </div>
-    </section>
-
-    <!-- ==================================================================
-         MODULE 4: DENAH PANGGUNG & TATA LAYAR LED
-         ================================================================== -->
-    <section class="accordion-module collapsed" id="modStage">
-      <div class="accordion-header" onclick="toggleSection('modStage')">
-        <div class="accordion-title-wrap">
-          <span class="module-index-tag">04</span>
-          <h2 class="module-heading">🏛️ Denah Tata Panggung & Multi-Screen LED</h2>
-        </div>
-        <div class="accordion-right-info">
-          <span class="accordion-meta-badge">Auditorium UNNES</span>
-          <svg class="accordion-chevron-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
-        </div>
-      </div>
-
       <div class="accordion-content">
         <div class="stage-schematic-wrap">
-          
-          <!-- 4 LED Screens -->
           <div class="screens-flex-row">
-            <div class="screen-card-box">
-              <span class="screen-title">LED LEFT</span>
-              <span class="screen-feed">ProPresenter 1 (Rania)</span>
-              <span style="font-size: 9.5px; color: var(--text-dim);">Lirik & Sambutan</span>
-            </div>
-            <div class="screen-card-box center-main">
-              <span class="screen-title" style="color: var(--accent-cyan);">LED CENTER (MAIN)</span>
-              <span class="screen-feed">Resolume Arena (Andreas)</span>
-              <span style="font-size: 9.5px; color: var(--text-dim);">Multi-Cam + Video + PPT</span>
-            </div>
-            <div class="screen-card-box">
-              <span class="screen-title">LED RIGHT</span>
-              <span class="screen-feed">ProPresenter 1 (Rania)</span>
-              <span style="font-size: 9.5px; color: var(--text-dim);">Lirik & Sambutan</span>
-            </div>
-            <div class="screen-card-box">
-              <span class="screen-title">LED BACK STAGE</span>
-              <span class="screen-feed">ProPresenter 1 (Rania)</span>
-              <span style="font-size: 9.5px; color: var(--text-dim);">Background Panggung</span>
-            </div>
+            <div class="screen-card-box"><span class="screen-title">LED LEFT</span><span class="screen-feed">ProPresenter 1 (Rania)</span></div>
+            <div class="screen-card-box center-main"><span class="screen-title" style="color:var(--signal-amber)">LED CENTER</span><span class="screen-feed">Resolume (Andreas)</span></div>
+            <div class="screen-card-box"><span class="screen-title">LED RIGHT</span><span class="screen-feed">ProPresenter 1 (Rania)</span></div>
+            <div class="screen-card-box"><span class="screen-title">LED BACK</span><span class="screen-feed">ProPresenter 1 (Rania)</span></div>
           </div>
-
-          <!-- Main Stage Area & Timekeeper -->
           <div class="stage-platform-box">
-            <strong style="font-size: 11.5px; color: var(--text-main);">PANGGUNG UTAMA (Pembicara &bull; WL &bull; Singers &bull; Band &bull; Tim Acara)</strong>
-            <span class="timekeeper-tag">⏱️ TV Timekeeper Darrel (ProPresenter 3 - Acara)</span>
+            <strong style="font-size:11.5px;color:var(--text-main)">PANGGUNG UTAMA (Pembicara, WL, Singers, Band, Tim Acara)</strong>
+            <span class="timekeeper-tag">⏱️ TV Timekeeper Darrel (PRO3)</span>
           </div>
-
-          <!-- Camera Anchor Positions -->
-          <div style="text-align: center;">
-            <span style="font-size: 10.5px; font-weight: 700; color: var(--text-dim); text-transform: uppercase;">Posisi Kamera:</span>
-            <div class="camera-tags-wrap" style="margin-top: 6px;">
-              <a href="#modCameras" class="cam-anchor-tag" onclick="navJumpTo('modCameras')">CAM 1: Alex (FOH)</a>
-              <a href="#modCameras" class="cam-anchor-tag" onclick="navJumpTo('modCameras')">CAM 2: Kiel 1 (Mobile)</a>
-              <a href="#modCameras" class="cam-anchor-tag" onclick="navJumpTo('modCameras')">CAM 3: Nia (Left)</a>
-              <a href="#modCameras" class="cam-anchor-tag" onclick="navJumpTo('modCameras')">CAM 4: Ferdy (Right)</a>
-              <a href="#modCameras" class="cam-anchor-tag" onclick="navJumpTo('modCameras')">CAM PHO: Nico</a>
-              <a href="#modCameras" class="cam-anchor-tag" onclick="navJumpTo('modCameras')">CAM VID: Joel</a>
-              <a href="#modCameras" class="cam-anchor-tag" onclick="navJumpTo('modCameras')">CAM HP: Jennifer</a>
+          <div style="text-align:center"><span style="font-size:10.5px;font-weight:700;color:var(--text-dim);text-transform:uppercase">Posisi Kamera</span>
+            <div class="camera-tags-wrap" style="margin-top:6px">
+              <a href="#secCam" class="cam-anchor-tag" onclick="navJumpTo('secCam')">CAM 1 Alex</a>
+              <a href="#secCam" class="cam-anchor-tag" onclick="navJumpTo('secCam')">CAM 2 Kiel 1</a>
+              <a href="#secCam" class="cam-anchor-tag" onclick="navJumpTo('secCam')">CAM 3 Nia</a>
+              <a href="#secCam" class="cam-anchor-tag" onclick="navJumpTo('secCam')">CAM 4 Ferdy</a>
+              <a href="#secCam" class="cam-anchor-tag" onclick="navJumpTo('secCam')">PHO Nico</a>
+              <a href="#secCam" class="cam-anchor-tag" onclick="navJumpTo('secCam')">VID Joel</a>
+              <a href="#secCam" class="cam-anchor-tag" onclick="navJumpTo('secCam')">HP Jennifer</a>
             </div>
           </div>
-
         </div>
       </div>
     </section>
 
-    <!-- ==================================================================
-         MODULE 5: RUNDOWN ACARA & TIM MULTIMEDIA
-         ================================================================== -->
-    <section class="accordion-module collapsed" id="modRundown">
-      <div class="accordion-header" onclick="toggleSection('modRundown')">
-        <div class="accordion-title-wrap">
-          <span class="module-index-tag">05</span>
-          <h2 class="module-heading">⏱️ Rundown Acara & Struktur Tim</h2>
-        </div>
-        <div class="accordion-right-info">
-          <span class="accordion-meta-badge">3 Sesi &bull; 3 Divisi</span>
-          <svg class="accordion-chevron-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
-        </div>
+    <!-- 11. RUNDOWN -->
+    <section class="accordion-module collapsed" id="secRun">
+      <div class="accordion-header" onclick="toggleSection('secRun')">
+        <div class="accordion-title-wrap"><span class="module-index-tag">08</span><h2 class="module-heading">⏱️ Rundown Konten (3 Sesi)</h2></div>
+        <div class="accordion-right-info"><span class="accordion-meta-badge">Pre / Main / Post</span><svg class="accordion-chevron-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg></div>
       </div>
-
       <div class="accordion-content">
-        
-        <!-- Team Structure Roster -->
-        <div class="crew-roster-grid">
-          
-          <div class="crew-card">
-            <div class="crew-header-row">
-              <span class="crew-div-title">System Engineer</span>
-              <span class="status-badge used">Pelayan</span>
-            </div>
-            <div class="crew-leader-line">
-              <span style="font-size: 10px; font-weight: 800; color: var(--text-dim);">LEADER</span>
-              <strong>Andreas</strong>
-            </div>
-            <span style="font-size: 11px; color: var(--text-muted);">Arsitektur sistem, routing sinyal, switcher, OBS, audio interfacing, dan kelistrikan.</span>
-          </div>
-
-          <div class="crew-card">
-            <div class="crew-header-row">
-              <span class="crew-div-title">Media Engineer</span>
-              <span class="status-badge standby">Panitia</span>
-            </div>
-            <div class="crew-leader-line">
-              <span style="font-size: 10px; font-weight: 800; color: var(--text-dim);">LEADER</span>
-              <strong>Richard</strong>
-            </div>
-            <div class="crew-tags-list">
-              <span class="crew-tag-item">Wilfred (Switcher)</span>
-              <span class="crew-tag-item">Alex (Cam 1)</span>
-              <span class="crew-tag-item">Rania (ProPresenter 1)</span>
-            </div>
-          </div>
-
-          <div class="crew-card">
-            <div class="crew-header-row">
-              <span class="crew-div-title">Creative Engineer</span>
-              <span class="status-badge standby">Panitia</span>
-            </div>
-            <div class="crew-leader-line">
-              <span style="font-size: 10px; font-weight: 800; color: var(--text-dim);">LEADER</span>
-              <strong>Jennifer</strong>
-            </div>
-            <div class="crew-tags-list">
-              <span class="crew-tag-item">Filia (ProPresenter 2)</span>
-              <span class="crew-tag-item">Felani</span>
-              <span class="crew-tag-item">Wike</span>
-            </div>
-          </div>
-
-        </div>
-
-        <!-- 3-Phase Rundown Table -->
-        <div class="table-wrap">
-          <table class="compact-table">
-            <thead>
-              <tr>
-                <th>Sesi</th>
-                <th>Materi / Konten</th>
-                <th>Target Output Layar / Sound</th>
-                <th>Penanggung Jawab</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td rowspan="2"><strong>1. Pre-Ibadah</strong><br/><span style="font-size: 10px; color: var(--text-dim);">Open Gate</span></td>
-                <td>Playlist Lagu Rohani</td>
-                <td>FOH Sound System (Yamaha QL5)</td>
-                <td>Jordan / Yosua</td>
-              </tr>
-              <tr>
-                <td>Loop Video Profil UKK, After Movie IP25 & IN25</td>
-                <td>LED Tengah (Center)</td>
-                <td>Andreas (Resolume)</td>
-              </tr>
-              <tr>
-                <td rowspan="12"><strong>2. Main Ibadah</strong><br/><span style="font-size: 10px; color: var(--text-dim);">Main Event</span></td>
-                <td>Video Opening</td>
-                <td>LED Tengah (Center)</td>
-                <td>Filia (ProPresenter 2)</td>
-              </tr>
-              <tr>
-                <td>Video Sambutan Bu Grace</td>
-                <td>LED Tengah, Kanan & Kiri</td>
-                <td>Filia (ProPresenter 2)</td>
-              </tr>
-              <tr>
-                <td>Background Tema</td>
-                <td>LED Tengah (Center)</td>
-                <td>Filia (ProPresenter 2)</td>
-              </tr>
-              <tr>
-                <td>Background Lagu / BGM</td>
-                <td>FOH Sound System (Yamaha QL5)</td>
-                <td>Andreas / Jordan & Yosua</td>
-              </tr>
-              <tr>
-                <td>Lirik Lagu Pujian & Penyembahan</td>
-                <td>LED Tengah, Kanan & Kiri</td>
-                <td>Rania (ProPresenter 1)</td>
-              </tr>
-              <tr>
-                <td>Video Generation</td>
-                <td>LED Tengah, Kanan & Kiri</td>
-                <td>Filia (ProPresenter 2)</td>
-              </tr>
-              <tr>
-                <td>PPT Pembicara</td>
-                <td>LED Tengah, Kanan & Kiri</td>
-                <td>Rania & Filia</td>
-              </tr>
-              <tr>
-                <td>Ayat Pembicara</td>
-                <td>LED Tengah, Kanan & Kiri</td>
-                <td>Rania & Filia</td>
-              </tr>
-              <tr>
-                <td>Quote Pembicara</td>
-                <td>LED Tengah, Kanan & Kiri</td>
-                <td>Rania & Filia</td>
-              </tr>
-              <tr>
-                <td>Persembahan (QRIS)</td>
-                <td>LED Tengah, Kanan & Kiri</td>
-                <td>Rania (ProPresenter 1)</td>
-              </tr>
-              <tr>
-                <td>UKK News (Warta Jemaat)</td>
-                <td>LED Tengah, Kanan & Kiri</td>
-                <td>Filia (ProPresenter 2)</td>
-              </tr>
-              <tr>
-                <td>Pokok Doa Syafaat</td>
-                <td>LED Tengah, Kanan & Kiri</td>
-                <td>Rania (ProPresenter 1)</td>
-              </tr>
-              <tr>
-                <td><strong>3. Post-Ibadah</strong><br/><span style="font-size: 10px; color: var(--text-dim);">Close Gate</span></td>
-                <td>Usung-Usung, De-rigging, Re-packing 119 Manifest & Serah Terima Pinjaman</td>
-                <td>Loading Area & Storage 13 Peminjam</td>
-                <td>Seluruh Tim Engineering</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-
+        <div class="table-wrap"><table class="compact-table">
+          <thead><tr><th>Sesi</th><th>Materi</th><th>Tampilan</th></tr></thead>
+          <tbody>
+            <tr><td rowspan="2"><strong>Pre Ibadah</strong><br><span style="font-size:10px;color:var(--text-dim)">Open Gate</span></td><td>Playlist Lagu Rohani</td><td>Sound System</td></tr>
+            <tr><td>Loop Video (Profil UKK, After Movie IP25, IN25)</td><td>LED Tengah</td></tr>
+            <tr><td rowspan="12"><strong>Main Ibadah</strong><br><span style="font-size:10px;color:var(--text-dim)">Main Event</span></td><td>Video Opening</td><td>LED Tengah</td></tr>
+            <tr><td>Video Sambutan Bu Grace</td><td>LED Tengah, Kanan, Kiri</td></tr>
+            <tr><td>Background Tema</td><td>LED Tengah</td></tr>
+            <tr><td>Background Lagu</td><td>Sound System</td></tr>
+            <tr><td>Lirik Lagu</td><td>LED Tengah, Kanan, Kiri</td></tr>
+            <tr><td>Video Generation</td><td>LED Tengah, Kanan, Kiri</td></tr>
+            <tr><td>PPT Pembicara</td><td>LED Tengah, Kanan, Kiri</td></tr>
+            <tr><td>Ayat Pembicara</td><td>LED Tengah, Kanan, Kiri</td></tr>
+            <tr><td>Quote Pembicara</td><td>LED Tengah, Kanan, Kiri</td></tr>
+            <tr><td>Persembahan (QRIS)</td><td>LED Tengah, Kanan, Kiri</td></tr>
+            <tr><td>UKK News</td><td>LED Tengah, Kanan, Kiri</td></tr>
+            <tr><td>Pokok Doa</td><td>LED Tengah, Kanan, Kiri</td></tr>
+            <tr><td><strong>Post Ibadah</strong><br><span style="font-size:10px;color:var(--text-dim)">Close Gate</span></td><td>Usung-Usung</td><td>Loading & Storage</td></tr>
+          </tbody>
+        </table></div>
       </div>
     </section>
 
   </main>
 
-  <!-- ====================================================================
-       4. CONSOLE FOOTER & TOAST
-       ==================================================================== -->
   <footer class="site-footer">
     <div class="footer-inner">
-      <div>
-        <strong>IP26 Broadcast Command Suite</strong> &bull; Ibadah Perdana UKK UNNES 2026
-      </div>
-      <div>
-        Auditorium UNNES &bull; Panitia & Pelayan Media
-      </div>
+      <div><strong>IP26 Siaran Mission Control</strong> &bull; Ibadah Perdana UKK UNNES 2026</div>
+      <div>Auditorium UNNES &bull; Panitia & Pelayan Media</div>
     </div>
   </footer>
 
-  <div class="fluid-toast" id="fluidToast">✓ Teks briefing berhasil disalin!</div>
+  <div class="fluid-toast" id="fluidToast">✓ Briefing disalin!</div>
 
-  <!-- Runtime JavaScript -->
   <script src="app.js"></script>
 </body>
 </html>
