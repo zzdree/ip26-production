@@ -908,4 +908,25 @@ document.addEventListener('DOMContentLoaded', () => {
 
     renderAmbientMesh();
   }
+
+  // =========================================================================
+  // 7. INITIALIZE MERMAID FLOWCHARTS (DARK/LIGHT ADAPTIVE)
+  // =========================================================================
+  if (window.mermaid) {
+    try {
+      const isDark = (document.documentElement.getAttribute('data-theme') || 'dark') === 'dark';
+      window.mermaid.initialize({
+        startOnLoad: true,
+        theme: isDark ? 'dark' : 'default',
+        securityLevel: 'loose',
+        flowchart: {
+          useMaxWidth: true,
+          htmlLabels: true,
+          curve: 'basis'
+        }
+      });
+    } catch (err) {
+      console.warn('Mermaid initialization info:', err);
+    }
+  }
 });

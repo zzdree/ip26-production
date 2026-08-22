@@ -62,6 +62,9 @@
 
   <!-- Supabase JS Client for Realtime Database Sync -->
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+  <!-- Mermaid.js for Dynamic Flowchart & Architecture Rendering -->
+  <script src="https://cdn.jsdelivr.net/npm/mermaid@10.9.1/dist/mermaid.min.js"></script>
 </head>
 <body>
 
@@ -248,6 +251,24 @@
           </div>
         </div>
 
+        <!-- Mermaid Organizational Flowchart -->
+        <div class="mermaid-container">
+          <div class="mermaid-title">👥 Visual Bagan Hierarki Komando & Koordinasi Divisi (Mermaid Flowchart)</div>
+          <pre class="mermaid">
+flowchart TD
+    A["👑 Production Lead / System Engineer<br/><b>Andreas</b>"] --> B["🎬 Media Engineer<br/><b>Richard (Leader)</b>"]
+    A --> C["🎨 Creative Engineer<br/><b>Jennifer (Leader)</b>"]
+    
+    B --> B1["Wilfred — Video Switcher Master"]
+    B --> B2["Alex — Operator CAM 1 Wireless"]
+    B --> B3["Rania — Operator ProPresenter 1 (Side & Back LED)"]
+    
+    C --> C1["Filia — Operator ProPresenter 2 (Center Lyrics/Layer)"]
+    C --> C2["Felani — Creative Support"]
+    C --> C3["Wike — Creative Support"]
+          </pre>
+        </div>
+
         <!-- Principles Alert Box (5 Golden Rules) -->
         <div class="callout callout-info">
           <div class="callout-icon">📌</div>
@@ -383,6 +404,85 @@
           </div>
         </div>
 
+        <!-- Master Mermaid Architecture Flowchart -->
+        <div class="mermaid-container">
+          <div class="mermaid-title">🗺️ Diagram Sinyal Master Arsitektur Lengkap (Mermaid Engine)</div>
+          <pre class="mermaid">
+flowchart TB
+    %% SECTION: CAMERA INPUTS
+    subgraph S_CAM["🎥 1. CAMERA ACQUISITION"]
+        CAM1["CAM 1 (Alex)<br/>Sony ZVE10 + Pyro S TX"]
+        CAM2["CAM 2 (Kiel 1)<br/>Sony ZV-E10 + Pyro H TX"]
+        CAM3["CAM 3 (Nia)<br/>Sony A6000 + HDMI 10M"]
+        CAM4["CAM 4 (Ferdy)<br/>Sony A6000 + HDMI 10M"]
+    end
+
+    %% SECTION: VIDEO SWITCHING & MONITORING
+    subgraph S_SW["🎛️ 2. BROADCAST SWITCHING & MULTIVIEW"]
+        RX1["Pyro S RX (UKK Stand)"]
+        RX2["Pyro H RX (UKK Stand)"]
+        SW["Master Switcher<br/><b>Cinetreak Cinelive V1</b><br/>(Wilfred)"]
+        TV_MV["Television Multiview<br/>(Kezia)"]
+        SPL["HDMI Splitter 4CH<br/>(UKK / GKJ)"]
+    end
+
+    %% SECTION: PRESENTATION & LED VIDEO PROCESSING
+    subgraph S_VIS["💻 3. PRESENTATION & LED MAPPING ENGINE"]
+        P1["Laptop ProPresenter 1<br/>(Rania)<br/><i>L/R/Back Visuals</i>"]
+        P2["Laptop ProPresenter 2<br/>(Filia)<br/><i>Lyrics / Layers</i>"]
+        RES["Laptop Resolume Arena<br/>(Andreas / Bayu)<br/><i>Center Screen Mapper</i>"]
+        PC_UN["PC UNNES<br/>(Passthrough & Scale)"]
+        NOVA1["Novastar Processor 1<br/>(UNNES)"]
+        NOVA2["Novastar Processor 2<br/>(UNNES)"]
+        LED_LR["🖥️ LED Left, Right & Back<br/>(Auditorium UNNES)"]
+        LED_CTR["🖥️ LED Center Main Stage<br/>(Auditorium UNNES)"]
+    end
+
+    %% SECTION: AUDIO & STREAMING
+    subgraph S_AUD["🔊 4. AUDIO ROUTING & LIVE STREAMING"]
+        STAGE_MIC["Stage Mics, Instruments & Vocal"]
+        QL5["Master Digital Audio Mixer<br/><b>Yamaha QL5 UNNES</b><br/>(Jordan / Yosua)"]
+        VM1["Laptop Virtual Mixer 1<br/>(Andreas)"]
+        VM2["iPad Virtual Mixer 2<br/>(Jennifer)"]
+        DAC["USB-C DAC Hanason / Oraimo<br/>(Audio Playback Resolume)"]
+        CT80S["Sub-Mix Audio Mixer<br/><b>NewBaxs CT80S GIA</b><br/>(Andreas)"]
+        OBS["Live Streaming Workstation<br/><b>OBS Studio</b><br/>(Andreas)"]
+    end
+
+    %% SECTION: TIME KEEPER
+    subgraph S_TK["⏱️ 5. STAGE TIME KEEPER SYSTEM"]
+        P3["Laptop ProPresenter 3<br/>(Tim Acara)"]
+        TV_TK["Stage Television<br/>(Darrel)"]
+    end
+
+    %% SIGNAL CONNECTIONS
+    CAM1 -.->|Wireless 5GHz| RX1 -->|HDMI 1.5M| SW
+    CAM2 -.->|Wireless 5GHz| RX2 -->|HDMI 1.5M| SW
+    CAM3 -->|HDMI 10M GKJ| SW
+    CAM4 -->|HDMI 10M UKK| SW
+
+    SW -->|HDMI 1M GIA| TV_MV
+    SW -->|USB-A to USB-C Andreas| OBS
+    SW -->|HDMI 1M GIA| SPL
+
+    SPL -->|HDMI 1.5M + Capture OWL| P1
+    SPL -->|HDMI 1.5M + Capture ABON| RES
+    P2 -->|HDMI 1.5M + Capture OWL| RES
+
+    P1 -->|HDMI 20M UNNES| NOVA1 --> LED_LR
+    RES -->|HDMI 15M GKJ + Capture GKJ| PC_UN --> NOVA2 --> LED_CTR
+
+    RES -->|USB-C DAC + Audio 20M| DAC --> QL5
+    STAGE_MIC --> QL5
+    QL5 -.->|WiFi UNNES-ID| VM1
+    QL5 -.->|WiFi UNNES-ID| VM2
+    QL5 -->|2x XLR 10M UKK + 2x XLR 3M GIA| CT80S
+    CT80S -->|USB Extender 2M + USB Cable GIA| OBS
+
+    P3 -->|HDMI 1.5M Lio| TV_TK
+          </pre>
+        </div>
+
         <div class="callout callout-tip mt-4">
           <div class="callout-icon">⚡</div>
           <div class="callout-body">
@@ -417,6 +517,32 @@
               </div>
             </div>
             <div class="subsystem-body">
+              <div class="mermaid-container">
+                <pre class="mermaid">
+flowchart LR
+    subgraph CAM_1["CAM 1 (Steady Wireless) — Alex"]
+        C1[Sony ZVE10 Kiel 1<br/>+ Lens 18-105 OWL] -->|Micro HDMI 30cm| TX1[Hollyland Pyro S TX]
+        TX1 -.->|Wireless 5GHz| RX1[Hollyland Pyro S RX]
+        RX1 -->|HDMI 1.5M UKK| SW_IN1[Ch 1 Switcher]
+    end
+
+    subgraph CAM_2["CAM 2 (Mobile Wireless) — Kiel 1"]
+        C2[Sony ZV-E10 OWL<br/>+ Lens 18-105 OWL] -->|Micro HDMI 30cm| TX2[Hollyland Pyro H TX]
+        TX2 -.->|Wireless 5GHz| RX2[Hollyland Pyro H RX]
+        RX2 -->|HDMI 1.5M UKK| SW_IN2[Ch 2 Switcher]
+    end
+
+    subgraph CAM_3["CAM 3 (Steady Wired) — Nia"]
+        C3[Sony A6000 OWL<br/>+ Lens 18-105 OWL] -->|Micro HDMI Conv| CAB3[HDMI Cable 10M GKJ]
+        CAB3 --> SW_IN3[Ch 3 Switcher]
+    end
+
+    subgraph CAM_4["CAM 4 (Steady Wired) — Ferdy"]
+        C4[Sony A6000 OWL<br/>+ Lens 16-50 Kit Kiel 1] -->|Micro HDMI Conv| CAB4[HDMI Cable 10M UKK]
+        CAB4 --> SW_IN4[Ch 4 Switcher]
+    end
+                </pre>
+              </div>
               <div class="tech-route-box">
                 <div class="route-item">
                   <span class="route-tag">CAM 1 (Alex)</span>
@@ -451,6 +577,20 @@
               </div>
             </div>
             <div class="subsystem-body">
+              <div class="mermaid-container">
+                <pre class="mermaid">
+flowchart TD
+    SW_OUT[Program / Aux Output Switcher Cinetreak V1] -->|HDMI 1M GIA| SPL4[HDMI Splitter 4CH UKK/GKJ]
+    
+    SPL4 -->|HDMI 1.5M Andreas| CAP_OWL1[HDMI Capture OWL] --> P1_IN[Laptop ProPresenter 1 Rania]
+    SPL4 -->|HDMI 1.5M Andreas| CAP_ABON[HDMI Capture ABON] --> RES_IN1[Input 1: Resolume Arena Andreas]
+    
+    P2_OUT[Laptop ProPresenter 2 Filia] -->|HDMI 1.5M Andreas| CAP_OWL2[HDMI Capture OWL] --> RES_IN2[Input 2: Resolume Arena Andreas]
+
+    P1_IN -->|HDMI 20M UNNES| NOV1[Novastar Processor 1] --> LED_SIDE[LED Screen Left, Right & Back]
+    RES_IN1 & RES_IN2 --> RES_OUT[Output Resolume] -->|HDMI 15M GKJ| CAP_GKJ[HDMI Capture GKJ] --> PC_UN[PC UNNES Passthrough] --> NOV2[Novastar Processor 2] --> LED_MID[LED Screen Center Stage]
+                </pre>
+              </div>
               <div class="tech-route-box">
                 <div class="route-item">
                   <span class="route-tag">LED Samping & Belakang</span>
@@ -477,6 +617,23 @@
               </div>
             </div>
             <div class="subsystem-body">
+              <div class="mermaid-container">
+                <pre class="mermaid">
+flowchart TD
+    STAGE_SRC[Vokal, Musik, & Panggung] --> QL5_MAIN[Master Digital Mixer Yamaha QL5 UNNES]
+    RES_AUDIO[Laptop Resolume Playback] -->|USB-C DAC Hanason/Oraimo| AUD_20M[Kabel Audio 20M UNNES] --> QL5_MAIN
+    
+    QL5_MAIN -.->|Jaringan WiFi UNNES-ID| VM1_APP[Virtual Mixer 1 Laptop Andreas]
+    QL5_MAIN -.->|Jaringan WiFi UNNES-ID| VM2_APP[Virtual Mixer 2 iPad Jennifer]
+    
+    QL5_MAIN -->|XLR 10M 2X UKK + XLR 3M 2X GIA| CT80S_IN[Mixer NewBaxs CT80S GIA]
+    
+    CT80S_IN -->|USB A to C Data GIA + Extender 2M Andreas| OBS_IN[Workstation OBS Studio]
+    SW_CAM[Switcher Cinetreak V1 Video Feed] -->|USB A to C Data Andreas| OBS_IN
+    
+    OBS_IN --> STREAM_OUT[🚀 YouTube / Online Live Stream]
+                </pre>
+              </div>
               <div class="tech-route-box">
                 <div class="route-item">
                   <span class="route-tag">FOH Master Console</span>
@@ -507,6 +664,13 @@
               </div>
             </div>
             <div class="subsystem-body">
+              <div class="mermaid-container">
+                <pre class="mermaid">
+flowchart LR
+    P3_LAP[Laptop ProPresenter 3<br/>Tim Acara / Time Keeper] -->|HDMI Cable 1.5M Lio| TV_STAGE[Television Stage Darrel<br/>+ Power Adaptor Darrel]
+    PWR_UKK[Terminal Cable XCH UKK] -.-> P3_LAP & TV_STAGE
+                </pre>
+              </div>
               <div class="tech-route-box">
                 <div class="route-item">
                   <span class="route-tag">Jalur Time Keeper</span>
@@ -529,6 +693,20 @@
               </div>
             </div>
             <div class="subsystem-body">
+              <div class="mermaid-container">
+                <pre class="mermaid">
+flowchart TD
+    SOURCE[⚡ Sumber Daya Listrik Auditorium UNNES] --> MAIN_PANEL[Panel Utama Distribusi]
+    
+    MAIN_PANEL --> T1[Terminal Cable XCH Andreas<br/><b>Meja Broadcast & Streaming</b>]
+    MAIN_PANEL --> T2[Terminal Cable XCH UKK<br/><b>Meja Visual & Switcher</b>]
+    MAIN_PANEL --> T3[Terminal Cable XCH Panitia<br/><b>Area FOH Audio & Panggung</b>]
+
+    T1 --> D_BROADCAST[Laptop OBS, Charger Kamera, DAC, Extender, Aksesoris]
+    T2 --> D_VISUAL[Switcher Cinetreak, Splitter 4CH, TV Kezia, ProPresenter 1 & 2, Resolume]
+    T3 --> D_AUDIO[Mixer NewBaxs CT80S, Virtual Mixer 1, TV Stage Darrel, Stand Wireless RX]
+                </pre>
+              </div>
               <div class="tech-route-box">
                 <div class="route-item">
                   <span class="route-tag">Jalur 1: Broadcast & Streaming</span>
