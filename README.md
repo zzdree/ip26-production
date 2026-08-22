@@ -1,5 +1,25 @@
 # 🎥 Ibadah Perdana UKK UNNES 2026 — Production & Technical Master Guide
 
+<div align="center">
+
+[![Event](https://img.shields.io/badge/Event-IP26%20UKK%20UNNES-007ACC?style=for-the-badge&logo=eventstore&logoColor=white)](#)
+[![Venue](https://img.shields.io/badge/Venue-Auditorium%20UNNES-critical?style=for-the-badge&logo=googlemaps&logoColor=white)](#)
+[![Status](https://img.shields.io/badge/Status-Production%20Ready-success?style=for-the-badge&logo=checkmarx&logoColor=white)](#)
+[![License](https://img.shields.io/badge/License-Private%20%26%20Confidential-red?style=for-the-badge&logo=lock&logoColor=white)](./LICENSE)
+
+<br/>
+
+[![Visual](https://img.shields.io/badge/Visual-Resolume%20Arena-orange?style=flat-square&logo=adobeaftereffects&logoColor=white)](#)
+[![Lyrics](https://img.shields.io/badge/Lyrics-ProPresenter%207-blue?style=flat-square)](#)
+[![Stream](https://img.shields.io/badge/Stream-OBS%20Studio-302E31?style=flat-square&logo=obsstudio&logoColor=white)](#)
+[![Switcher](https://img.shields.io/badge/Switcher-Cinetreak%20Cinelive%20V1-blueviolet?style=flat-square)](#)
+[![Audio FOH](https://img.shields.io/badge/FOH%20Audio-Yamaha%20QL5-555555?style=flat-square)](#)
+[![Audio Submix](https://img.shields.io/badge/Sub--Mixer-NewBaxs%20CT80S-grey?style=flat-square)](#)
+[![Camera](https://img.shields.io/badge/Camera-Sony%20Alpha%20%26%20ZV--E10-000000?style=flat-square&logo=sony&logoColor=white)](#)
+[![Wireless](https://img.shields.io/badge/Wireless%20TX%2FRX-Hollyland%20Pyro-008080?style=flat-square)](#)
+
+</div>
+
 > **Sistem Produksi, Manajemen Inventaris, Routing Audio-Visual, & Distribusi Sinyal Multimedia Ibadah Perdana UKK UNNES 2026.**
 
 ---
