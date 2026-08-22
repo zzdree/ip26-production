@@ -1,23 +1,24 @@
 /* ==========================================================================
-   IP26 BROADCAST COMMAND SUITE — MASTER EASEOUT DARK MODE UI
-   Design Hierarchy: Dribbble Pro Dark UI, Broadcast Cockpit & Elevated Obsidian Surfaces
+   IP26 BROADCAST COMMAND SUITE — DARK GREY / CHARCOAL MASTER DESIGN SYSTEM
+   Inspired by: Easeout 25 Dark Mode UI Examples & Modern Matte Charcoal Cockpits
+   Color Scheme: Dark Grey / Anthracite Slate + Luminous Neon Accent Signaling
    ========================================================================== */
 
 :root {
-  /* Surface Layers */
-  --bg-canvas: #060a12;
-  --bg-sidebar: #090f1d;
-  --bg-cockpit: #080d18;
-  --bg-surface: #0e172a;
-  --bg-card: #13203a;
-  --bg-card-hover: #182848;
-  --bg-inset: #04070e;
-  --bg-glass: rgba(14, 23, 42, 0.85);
+  /* Dark Grey / Charcoal / Graphite Surface Layers */
+  --bg-canvas: #0d0e12;
+  --bg-sidebar: #13151c;
+  --bg-cockpit: #101217;
+  --bg-surface: #181b24;
+  --bg-card: #1e222d;
+  --bg-card-hover: #252a38;
+  --bg-inset: #090a0d;
+  --bg-glass: rgba(24, 27, 36, 0.88);
 
   /* Hairlines & Borders */
-  --border-subtle: rgba(255, 255, 255, 0.07);
-  --border-card: rgba(255, 255, 255, 0.11);
-  --border-card-hover: rgba(0, 229, 255, 0.4);
+  --border-subtle: rgba(255, 255, 255, 0.08);
+  --border-card: rgba(255, 255, 255, 0.12);
+  --border-card-hover: rgba(0, 229, 255, 0.45);
   --border-focus: #00e5ff;
 
   /* Radiant High-Contrast Accents */
@@ -33,9 +34,9 @@
   --neon-amber-bg: rgba(255, 171, 0, 0.12);
   --neon-amber-glow: 0 0 20px rgba(255, 171, 0, 0.35);
 
-  --neon-purple: #7c4dff;
-  --neon-purple-bg: rgba(124, 77, 255, 0.14);
-  --neon-purple-glow: 0 0 20px rgba(124, 77, 255, 0.35);
+  --neon-purple: #a855f7;
+  --neon-purple-bg: rgba(168, 85, 247, 0.14);
+  --neon-purple-glow: 0 0 20px rgba(168, 85, 247, 0.35);
 
   --neon-red: #ff5252;
 
@@ -47,12 +48,12 @@
   --text-main: #f8fafc;
   --text-muted: #94a3b8;
   --text-dim: #64748b;
-  --text-dark: #020617;
+  --text-dark: #090a0d;
 
   /* Shadows & Depth */
-  --shadow-card: 0 6px 24px rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.08);
-  --shadow-card-hover: 0 16px 40px rgba(0, 0, 0, 0.8), 0 0 24px rgba(0, 229, 255, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.15);
-  --shadow-inset: inset 0 2px 6px rgba(0, 0, 0, 0.8);
+  --shadow-card: 0 8px 28px rgba(0, 0, 0, 0.75), inset 0 1px 0 rgba(255, 255, 255, 0.09);
+  --shadow-card-hover: 0 18px 44px rgba(0, 0, 0, 0.9), 0 0 24px rgba(0, 229, 255, 0.18), inset 0 1px 0 rgba(255, 255, 255, 0.16);
+  --shadow-inset: inset 0 2px 8px rgba(0, 0, 0, 0.85);
 
   /* Animation Timings */
   --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
@@ -61,7 +62,7 @@
 }
 
 /* ==========================================================================
-   RESET & CORE BASE
+   RESET & CORE BASE (DARK GREY BACKGROUND)
    ========================================================================== */
 
 *, *::before, *::after {
@@ -78,9 +79,9 @@ html {
 body.app-body {
   background-color: var(--bg-canvas);
   background-image: 
-    radial-gradient(at 10% 0%, rgba(0, 229, 255, 0.06) 0px, transparent 40%),
-    radial-gradient(at 90% 10%, rgba(124, 77, 255, 0.05) 0px, transparent 40%),
-    radial-gradient(at 50% 70%, rgba(0, 230, 118, 0.03) 0px, transparent 50%);
+    radial-gradient(at 15% 0%, #1a1d26 0px, transparent 55%),
+    radial-gradient(at 85% 15%, #181b24 0px, transparent 55%),
+    radial-gradient(at 50% 70%, #14161d 0px, transparent 65%);
   background-attachment: fixed;
   color: var(--text-main);
   font-family: var(--font-body);
@@ -124,11 +125,11 @@ a:hover {
 .text-center { text-align: center; }
 
 /* ==========================================================================
-   1. GLOBAL TELEMETRY TOP BAR
+   1. GLOBAL TELEMETRY TOP BAR (DARK GREY SLATE)
    ========================================================================== */
 
 .telemetry-bar {
-  background: linear-gradient(90deg, #060a12 0%, #151006 50%, #060a12 100%);
+  background: linear-gradient(90deg, #101218 0%, #1f1b12 50%, #101218 100%);
   border-bottom: 1px solid var(--border-subtle);
   padding: 8px 24px;
   font-size: 12px;
@@ -218,7 +219,7 @@ a:hover {
 }
 
 /* ==========================================================================
-   2. APP SHELL & SIDEBAR (EASEOUT DASHBOARD PATTERN)
+   2. APP SHELL & SIDEBAR (MATTE GRAPHITE GREY)
    ========================================================================== */
 
 .app-shell {
@@ -256,7 +257,7 @@ a:hover {
 .brand-badge-icon {
   width: 40px;
   height: 40px;
-  background: linear-gradient(135deg, var(--bg-card), var(--bg-surface));
+  background: linear-gradient(135deg, #252a38, #181b24);
   border: 1px solid var(--border-card);
   border-radius: 10px;
   display: flex;
@@ -368,12 +369,12 @@ a:hover {
 }
 
 .sidebar-link:hover {
-  background: rgba(255, 255, 255, 0.05);
+  background: rgba(255, 255, 255, 0.06);
   color: #fff;
 }
 
 .sidebar-link.active {
-  background: linear-gradient(90deg, var(--bg-card), var(--bg-surface));
+  background: linear-gradient(90deg, #252a38, #1c202a);
   color: #fff;
   border: 1px solid var(--border-card);
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.15);
@@ -411,7 +412,7 @@ a:hover {
 }
 
 /* ==========================================================================
-   3. MAIN COCKPIT DASHBOARD VIEW
+   3. MAIN COCKPIT DASHBOARD VIEW (DARK GREY SLATE)
    ========================================================================== */
 
 .cockpit-main {
@@ -510,7 +511,7 @@ a:hover {
   margin-bottom: 28px;
 }
 
-/* Metric Widgets Deck (Easeout DStudio Style) */
+/* Metric Widgets Deck (Dark Grey Card Style) */
 .widgets-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -538,7 +539,7 @@ a:hover {
   height: 90px;
   border-radius: 50%;
   filter: blur(36px);
-  opacity: 0.28;
+  opacity: 0.25;
   pointer-events: none;
 }
 
@@ -633,7 +634,7 @@ a:hover {
 }
 
 /* ==========================================================================
-   4. INTERACTIVE TOPOLOGY DECK
+   4. INTERACTIVE TOPOLOGY DECK (DARK GREY)
    ========================================================================== */
 
 .topology-deck {
@@ -653,8 +654,8 @@ a:hover {
 }
 
 .topo-core {
-  background: linear-gradient(160deg, #0d1e3a 0%, #112548 100%);
-  border-color: rgba(0, 229, 255, 0.35);
+  background: linear-gradient(160deg, #252a38 0%, #1a1d26 100%);
+  border-color: rgba(0, 229, 255, 0.4);
   box-shadow: 0 0 20px rgba(0, 229, 255, 0.12);
 }
 
@@ -717,7 +718,7 @@ a:hover {
 .node-chip.cyan { background: var(--neon-cyan-bg); color: var(--neon-cyan); border: 1px solid rgba(0, 229, 255, 0.3); }
 .node-chip.emerald { background: var(--neon-emerald-bg); color: var(--neon-emerald); border: 1px solid rgba(0, 230, 118, 0.3); }
 .node-chip.amber { background: var(--neon-amber-bg); color: var(--neon-amber); border: 1px solid rgba(255, 171, 0, 0.3); }
-.node-chip.purple { background: var(--neon-purple-bg); color: var(--neon-purple); border: 1px solid rgba(124, 77, 255, 0.3); }
+.node-chip.purple { background: var(--neon-purple-bg); color: var(--neon-purple); border: 1px solid rgba(168, 85, 247, 0.3); }
 
 .topo-detail {
   font-size: 11.5px;
@@ -741,7 +742,7 @@ a:hover {
 }
 
 /* ==========================================================================
-   5. CAMERAS & RIG SPECIFICATION
+   5. CAMERAS & RIG SPECIFICATION (DARK GREY CARDS)
    ========================================================================== */
 
 .cockpit-segmented {
@@ -771,7 +772,7 @@ a:hover {
 
 .cockpit-seg-btn:hover {
   color: #fff;
-  background: rgba(255, 255, 255, 0.05);
+  background: rgba(255, 255, 255, 0.06);
 }
 
 .cockpit-seg-btn.active {
@@ -944,7 +945,7 @@ a:hover {
 }
 
 /* ==========================================================================
-   6. TABLES & TERMINAL WRAPPERS
+   6. TABLES & TERMINAL WRAPPERS (DARK GREY)
    ========================================================================== */
 
 .cockpit-table-wrap {
@@ -990,7 +991,7 @@ a:hover {
 }
 
 .row-warning-pro td {
-  background: rgba(255, 171, 0, 0.05);
+  background: rgba(255, 171, 0, 0.06);
 }
 
 .spec-terminal-box {
@@ -1020,7 +1021,7 @@ a:hover {
 }
 
 /* ==========================================================================
-   7. INVENTORY CONSOLE & DIRECTORY
+   7. INVENTORY CONSOLE & DIRECTORY (DARK GREY CAVITY)
    ========================================================================== */
 
 .inv-live-badge {
@@ -1162,7 +1163,7 @@ a:hover {
 }
 
 .lender-pill.active {
-  background: rgba(255, 255, 255, 0.16);
+  background: rgba(255, 255, 255, 0.18);
   color: #fff;
   border-color: rgba(255, 255, 255, 0.35);
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2);
@@ -1225,7 +1226,7 @@ a:hover {
 }
 
 /* ==========================================================================
-   8. RUNDOWN GRID
+   8. RUNDOWN GRID (DARK GREY CARDS)
    ========================================================================== */
 
 .rundown-grid {
@@ -1340,7 +1341,7 @@ a:hover {
 .badge-standby {
   background: var(--neon-purple-bg);
   color: var(--neon-purple);
-  border: 1px solid rgba(124, 77, 255, 0.35);
+  border: 1px solid rgba(168, 85, 247, 0.35);
 }
 
 /* Cockpit Footer */
@@ -1413,7 +1414,7 @@ a:hover {
   }
   .cockpit-main {
     max-width: 100%;
-    padding: 24px 18px 80px; /* bottom padding for mobile dock */
+    padding: 24px 18px 80px;
   }
   .rig-deck, .rig-deck-3 {
     grid-template-columns: 1fr;
@@ -1422,14 +1423,13 @@ a:hover {
     grid-template-columns: 1fr;
   }
 
-  /* Show Mobile Floating Dock */
   .mobile-dock {
     display: flex;
     position: fixed;
     bottom: 0;
     left: 0;
     right: 0;
-    background: rgba(9, 15, 29, 0.92);
+    background: rgba(19, 21, 28, 0.94);
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
     border-top: 1px solid var(--border-subtle);
