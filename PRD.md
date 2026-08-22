@@ -43,10 +43,11 @@ The portal provides instant, frictionless, mobile-optimized access to master sig
 ### 4. Non-Functional Requirements (NFR)
 
 1. **Performance & Web Vitals:** Ultra-fast initial load (< 300ms), sub-millisecond DOM filter query speeds, and zero blocking scripts.
-2. **Accessibility (a11y):** WCAG 2.1 AA compliant contrast ratios in both dark and light modes; keyboard accessible navigation (`Tab`, `Escape` modals, `Skip-to-content` link); clean hairline default borders with high-visibility focused outlines strictly on active/hovered elements. Bottom-right floating toasts with auto-dismiss and stack animation.
-3. **Responsiveness:** Fluid scaling across ultra-compact mobile (320px), standard tablets (768px), compact laptop viewports (1024px), and wide monitors (1440px+).
-4. **Zero-Build Architecture:** Pure Vanilla HTML5, CSS3, and modern ES6+ JavaScript for maximum longevity, independence from build tool obsolescence, and instant execution via standard web browsers.
-5. **Database Availability & Anti-Pause Automation:** Automated GitHub Actions cron trigger (`supabase-keep-alive.yml`) pinging the Supabase REST API twice daily (`0 0,12 * * *`) to ensure the cloud database remains continuously active and never paused by Supabase free-tier 7-day inactivity policies.
+2. **Accessibility & Universal Focus Management (a11y):** WCAG 2.1 AA compliant contrast ratios in both dark and light modes; keyboard accessible navigation (`Tab`, `Escape` modals, `Skip-to-content` link). Universal focus reset (`*:focus:not(:focus-visible) { outline: none !important; }`) eliminating sticky outlines after mouse clicks, with explicit 2px cyan focus rings reserved exclusively for keyboard navigation (`*:focus-visible`). Bottom-right floating toasts with auto-dismiss and stack animation.
+3. **Diagram Engine Resilience (Mermaid.js 10.9.1):** Zero-error asynchronous vector rendering with race-condition prevention (`startOnLoad: false` declared in document `<head>`) and immutable source-code caching (`data-mermaid-src`), ensuring seamless real-time graph re-rendering during dynamic Dark/Light theme switching.
+4. **Responsiveness & Smooth Micro-Interactions:** Fluid scaling across ultra-compact mobile (320px), standard tablets (768px), compact laptop viewports (1024px), and wide monitors (1440px+). Clean hairline default borders (`1px solid var(--border-subtle)`) with smooth hover micro-lifts across all cards, inventory rows, and the 3-phase Rundown schedule blocks (Pre-Ibadah, Main Ibadah, Post-Ibadah).
+5. **Zero-Build Architecture:** Pure Vanilla HTML5, CSS3, and modern ES6+ JavaScript for maximum longevity, independence from build tool obsolescence, and instant execution via standard web browsers.
+6. **Database Availability & Anti-Pause Automation:** Automated GitHub Actions cron trigger (`supabase-keep-alive.yml`) pinging the Supabase REST API twice daily (`0 0,12 * * *`) to ensure the cloud database remains continuously active and never paused by Supabase free-tier 7-day inactivity policies.
 
 ---
 
@@ -59,6 +60,6 @@ The portal provides instant, frictionless, mobile-optimized access to master sig
 6. **Camera Acquisition Systems:** 2-Column Broadcast (CAM 1–4) & 3-Column Documentation camera specifications.
 7. **Workstations & Media Matrix:** Operator roles and device allocation statuses.
 8. **Master Inventory Directory:** Live search, 14 vendor filter pills, strict fixed-column tables with single-line ellipsis, dual-action realtime checklist (`[v] Pasang` & `[v] Kemas`), batch bulk actions ("✓ Ceklis Semua" & "↺ Reset Ceklis"), dynamic progress gauges, and clipboard summary exporter.
-9. **Rundown & Screen Mapping:** Schedule and multimedia asset targets.
+9. **Rundown & Screen Mapping:** 3-Phase structured timeline (Pre-Ibadah, Main Ibadah, Post-Ibadah) with multimedia asset distribution targets.
 10. **Footer & Governance:** Operational charter and 5-clause ASCII license modal.
 11. **Mobile Bottom Dock:** 5 touch-friendly quick-access tabs with active scrollspy tracking.

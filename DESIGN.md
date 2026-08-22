@@ -82,13 +82,14 @@ The visual language is inspired by high-end professional broadcast control rooms
 
 ### C. Interactive Diagrams & Transparent Adaptive Mermaid Engine
 - **Master Signal Board:** 4-stage interactive high-level hardware pipeline (Camera $\rightarrow$ Switcher $\rightarrow$ LED Processors $\rightarrow$ Stage & Stream).
-- **Dynamic Transparent Flowcharts (Mermaid.js):** 
+- **Dynamic Transparent Flowcharts (Mermaid.js 10.9.1):** 
   - **Transparent Node Containers:** Node containers have 100% transparent fills (`rgba(255,255,255,0.03)` dark / `rgba(0,0,0,0.02)` light) with clean 1px subtle resting strokes (`var(--border-subtle)`), completely eliminating solid blocky white/black rectangles.
   - **Dynamic Glowing Node Outlines on Interaction:** Mermaid node containers remain quiet at 1px stroke in default state, and light up with a **2.5px cyan glowing outline (`#00d2ff`, filter drop-shadow)** ONLY when hovered (`:hover`) or clicked (`:active`).
+  - **Engine Resilience & Race-Condition Hardening:** `startOnLoad: false` is initialized immediately in the document `<head>` to prevent premature parsing. The application caches immutable raw diagram source text in `data-mermaid-src`, completely preventing SVG-reparsing syntax errors during live theme transitions.
   - **Auto-Adaptive Lines & Typography:**
     - *Dark Mode:* Pure light text (`#f5f5f5`) and cyan/grey connecting vector lines.
     - *Light Mode:* Deep charcoal text (`#1c1917`) and sky-blue connecting vector lines.
-  - **Instant Re-rendering on Theme Toggle:** Automatically captures raw diagram definitions and re-renders SVG vector graphs in real-time when the theme switcher is clicked without requiring page reload.
+  - **Instant Re-rendering on Theme Toggle:** Automatically re-renders SVG vector graphs in real-time when the theme switcher is clicked without requiring page reload.
   - Flowcharts rendered:
     1. *Bagan Struktur Komando & Hierarki Tim*
     2. *Master Architecture Signal Flow (5 Sub-Graphs)*
@@ -99,10 +100,12 @@ The visual language is inspired by high-end professional broadcast control rooms
     7. *Sub-Flowchart 5: Sub-Sistem Stage Time Keeper (`flowchart LR`)*
     8. *Sub-Flowchart 6: Sub-Sistem Distribusi Daya & Grounding (`flowchart LR`)*
 
-### D. Cards, Camera Grids, Fixed Tables & Subsystem Grid
+### D. Cards, Camera Grids, Fixed Tables & Rundown Matrix
 - Subtly rounded corners (`border-radius: 14px`).
-- **Hairline Default Resting State:** 1px hairline technical borders (`1px solid var(--border-subtle)`) across all cards, callouts, telemetry blocks, and camera spec bins with zero intrusive static outlines.
+- **Universal Focus Ring Reset:** All interactive elements implement `*:focus:not(:focus-visible) { outline: none !important; }` to eliminate sticky mouse-click outlines, while reserving high-visibility 2px cyan rings (`*:focus-visible`) for keyboard navigation.
+- **Hairline Default Resting State:** 1px hairline technical borders (`1px solid var(--border-subtle)`) across all cards, callouts, telemetry blocks, camera spec bins, and Rundown phase containers with zero intrusive static outlines.
 - **Dynamic Interactive Outlines:** Prominently highlights with a **2.5px glowing cyan outline (`0 0 0 2px var(--accent-cyan-subtle), var(--shadow-glow)`)** and micro-lift (`translateY(-2px)`) ONLY on hover (`:hover`), active/click (`:active`), or keyboard focus (`:focus-visible`).
+- **3-Phase Rundown Schedule Design (`.timeline-phase` & `.timeline-box`):** Structured into Pre-Ibadah (Open Gate), Main Ibadah (Main Event), and Post-Ibadah (Usung-usung/Close Gate) with consistent hairline resting borders and smooth micro-lift hover animations.
 - **Strict Fixed Column Alignment across 14 Inventory Tables (`.data-table.inv-table`):** Table columns are fixed across all 14 vendor blocks (`table-layout: fixed`) guaranteeing exact vertical column matching regardless of item title lengths.
 - **Single-Line Descriptions with Ellipsis:** Keterangan fields are strictly kept to a single line with `white-space: nowrap; text-overflow: ellipsis;` and native browser hover tooltips.
 - **2-Column Broadcast Camera Grid (`.broadcast-grid`):** Arranges CAM 1 & CAM 2 on the top row, and CAM 3 & CAM 4 on the bottom row to eliminate vertical scrolling.
