@@ -748,6 +748,16 @@
             <button class="filter-pill" data-filter="Panitia">Panitia</button>
             <button class="filter-pill" data-filter="UNNES">Auditorium UNNES</button>
           </div>
+
+          <!-- Secondary Status Quick Filters -->
+          <div class="filter-pills-scroll status-filter-pills" id="status-filter-group">
+            <span class="filter-group-label">Filter Checklist:</span>
+            <button class="status-pill active" data-status-filter="all">Semua Status</button>
+            <button class="status-pill" data-status-filter="loading-pending">📦 Belum Loading</button>
+            <button class="status-pill" data-status-filter="loading-ready">📦 Siap Loading</button>
+            <button class="status-pill" data-status-filter="packing-pending">🧳 Belum Packing</button>
+            <button class="status-pill" data-status-filter="packing-ready">🧳 Sudah Packing</button>
+          </div>
         </div>
 
         <!-- Realtime Cloud Sync Command Center -->
@@ -756,10 +766,14 @@
             <div class="sync-status-indicator">
               <span class="status-pulse-dot" id="sync-status-dot"></span>
               <span class="sync-status-text" id="sync-status-text">🟡 Memeriksa Koneksi Database...</span>
+              <span class="presence-badge" id="presence-badge">👥 <strong id="online-crew-count">1</strong> Kru Aktif</span>
             </div>
             <div class="sync-actions">
+              <button class="btn btn-sm btn-outline" id="btn-copy-summary" title="Salin Ringkasan Progress Checklist">
+                📋 Salin Ringkasan
+              </button>
               <button class="btn btn-sm btn-secondary" id="btn-open-cloud-config" title="Konfigurasi Database Cloud Supabase">
-                ⚡ Setup Cloud Realtime
+                ⚡ Setup Cloud
               </button>
             </div>
           </div>
@@ -1342,6 +1356,9 @@
       </button>
     </div>
   </nav>
+
+  <!-- Toast Notification Container (Live Realtime Event Broadcast) -->
+  <div id="toast-container" class="toast-container" aria-live="polite" aria-atomic="true"></div>
 
   <!-- Script -->
   <script src="app.js"></script>

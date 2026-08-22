@@ -3,14 +3,46 @@
  * Client Application Logic:
  * 1. Dual Theme Engine (Dark Slate / Warm Linen)
  * 2. Realtime Cloud Database Sync Engine (Supabase Realtime WebSockets + Offline Cache)
- * 3. Interactive Inventory Checklist (Loading In & Packing Out)
- * 4. Search & Filter Engine
- * 5. Dynamic ScrollSpy Navigation
+ * 3. Realtime Presence & Active Crew Tracking
+ * 4. Interactive Inventory Checklist (Loading In & Packing Out)
+ * 5. Toast Notification System
+ * 6. Multi-dimensional Live Search & Dual Filter Engine (Vendor & Status)
+ * 7. Summary Export / Copy to Clipboard
+ * 8. Dynamic ScrollSpy Navigation
  */
 
 document.addEventListener('DOMContentLoaded', () => {
   // =========================================================================
-  // 1. THEME ENGINE
+  // 1. TOAST NOTIFICATION SYSTEM (Magic Motion & a11y)
+  // =========================================================================
+  const toastContainer = document.getElementById('toast-container');
+
+  function showToast(title, message, type = 'info') {
+    if (!toastContainer) return;
+    const toast = document.createElement('div');
+    toast.className = `toast-item ${type === 'success' ? 'toast-success' : type === 'warning' ? 'toast-warning' : ''}`;
+    
+    const icon = type === 'success' ? '✅' : type === 'warning' ? '⚠️' : '⚡';
+    
+    toast.innerHTML = `
+      <span class="toast-icon">${icon}</span>
+      <div class="toast-content">
+        <span class="toast-title">${title}</span>
+        <span class="toast-msg">${message}</span>
+      </div>
+    `;
+
+    toastContainer.appendChild(toast);
+
+    setTimeout(() => {
+      if (toast.parentNode) {
+        toast.parentNode.removeChild(toast);
+      }
+    }, 4000);
+  }
+
+  // =========================================================================
+  // 2. THEME ENGINE (Dark Mode & Light Mode)
   // =========================================================================
   const themeToggleBtn = document.getElementById('theme-toggle-btn');
   const mobileThemeBtn = document.getElementById('mobile-theme-btn');
@@ -29,6 +61,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const currentTheme = root.getAttribute('data-theme') || 'dark';
     const nextTheme = currentTheme === 'dark' ? 'light' : 'dark';
     setTheme(nextTheme);
+    showToast('Tema Berubah', `Beralih ke mode ${nextTheme === 'dark' ? 'Gelap (Dark Slate)' : 'Terang (Warm Linen)'}`, 'info');
   }
 
   function updateThemeButtons(theme) {
@@ -47,18 +80,22 @@ document.addEventListener('DOMContentLoaded', () => {
   if (mobileThemeBtn) mobileThemeBtn.addEventListener('click', toggleTheme);
 
   // =========================================================================
-  // 2. REALTIME CLOUD DATABASE & INVENTORY SYNC ENGINE (Supabase)
+  // 3. REALTIME CLOUD DATABASE & INVENTORY SYNC ENGINE (Supabase)
   // =========================================================================
   let supabaseClient = null;
   let realtimeChannel = null;
+  let presenceChannel = null;
+
   const syncStatusDot = document.getElementById('sync-status-dot');
   const syncStatusText = document.getElementById('sync-status-text');
+  const onlineCrewCount = document.getElementById('online-crew-count');
   const crewNameInput = document.getElementById('crew-name-input');
   const crewSavedBadge = document.getElementById('crew-saved-badge');
   const loadingCounterDisplay = document.getElementById('loading-counter-display');
   const packingCounterDisplay = document.getElementById('packing-counter-display');
   const loadingProgressBar = document.getElementById('loading-progress-bar');
   const packingProgressBar = document.getElementById('packing-progress-bar');
+  const btnCopySummary = document.getElementById('btn-copy-summary');
 
   // Modal elements
   const cloudConfigModal = document.getElementById('cloud-config-modal');
@@ -83,6 +120,9 @@ document.addEventListener('DOMContentLoaded', () => {
       if (crewSavedBadge) {
         crewSavedBadge.style.opacity = '1';
         setTimeout(() => { crewSavedBadge.style.opacity = '0.7'; }, 1500);
+      }
+      if (presenceChannel && crewName) {
+        presenceChannel.track({ user: crewName, online_at: new Date().toISOString() });
       }
     });
   }
@@ -112,7 +152,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const headerRow = table.querySelector('thead tr');
     if (headerRow && !headerRow.querySelector('.th-sync')) {
       const thCols = headerRow.children;
-      // Target: Nama Barang (0), Jumlah (1), Status (2), [Loading, Packing], Keterangan (3)
       const thLoading = document.createElement('th');
       thLoading.className = 'th-sync';
       thLoading.innerHTML = '📦 Loading In';
@@ -158,7 +197,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const tdLoading = document.createElement('td');
       tdLoading.className = 'sync-td';
       tdLoading.innerHTML = `
-        <button type="button" class="check-toggle-btn btn-loading" data-item="${itemId}" data-type="loading">
+        <button type="button" class="check-toggle-btn btn-loading" data-item="${itemId}" data-type="loading" aria-label="Tandai status loading ${itemName}">
           <span class="check-label">📦 Belum</span>
           <span class="check-meta-tag">-</span>
         </button>
@@ -167,7 +206,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const tdPacking = document.createElement('td');
       tdPacking.className = 'sync-td';
       tdPacking.innerHTML = `
-        <button type="button" class="check-toggle-btn btn-packing" data-item="${itemId}" data-type="packing">
+        <button type="button" class="check-toggle-btn btn-packing" data-item="${itemId}" data-type="packing" aria-label="Tandai status packing ${itemName}">
           <span class="check-label">🧳 Belum</span>
           <span class="check-meta-tag">-</span>
         </button>
@@ -202,7 +241,7 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   // Render Row Buttons UI
-  function renderRowUI(itemId, state, isRemote = false) {
+  function renderRowUI(itemId, state, isRemote = false, remoteName = '') {
     if (!state) return;
     const row = document.querySelector(`tr[data-item-id="${itemId}"]`);
     if (!row) return;
@@ -249,6 +288,9 @@ document.addEventListener('DOMContentLoaded', () => {
       void row.offsetWidth; // trigger reflow
       row.classList.add('remote-updated');
       setTimeout(() => { row.classList.remove('remote-updated'); }, 1400);
+
+      const title = row.getAttribute('data-item-title') || 'Barang';
+      showToast('Sinkronisasi Masuk', `${remoteName || 'Rekan kru'} memperbarui: ${title}`, 'info');
     }
   }
 
@@ -296,6 +338,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Optimistic UI update
     renderRowUI(itemId, currentState, false);
     updateProgressMeters();
+    filterInventory(); // re-filter if status filter is active
 
     // Push to Supabase if connected
     if (supabaseClient) {
@@ -327,6 +370,52 @@ document.addEventListener('DOMContentLoaded', () => {
         setSyncStatus('connected', '🟢 Terhubung Cloud (Live)');
       }
     }
+  }
+
+  // Copy Summary Handler
+  if (btnCopySummary) {
+    btnCopySummary.addEventListener('click', () => {
+      let loadedCount = 0;
+      let packedCount = 0;
+      const total = totalInventoryCount || 65;
+
+      const loadedList = [];
+      const pendingLoadList = [];
+
+      vendorBlocks.forEach((block) => {
+        const vendor = block.getAttribute('data-vendor') || '';
+        const rows = block.querySelectorAll('tbody tr');
+        rows.forEach((row) => {
+          const id = row.getAttribute('data-item-id');
+          const title = row.getAttribute('data-item-title') || '';
+          const state = inventoryState[id];
+          if (state?.loaded) {
+            loadedCount++;
+            loadedList.push(`- [x] (${vendor}) ${title} - [Oleh: ${state.loaded_by || 'Crew'}]`);
+          } else {
+            pendingLoadList.push(`- [ ] (${vendor}) ${title}`);
+          }
+          if (state?.packed) packedCount++;
+        });
+      });
+
+      const summaryText = `📊 *RINGKASAN LOGISTIK IP26 - MULTIMEDIA & BROADCAST*\n` +
+        `🕒 Update: ${new Date().toLocaleTimeString()} WIB\n\n` +
+        `📦 *Loading In*: ${loadedCount} / ${total} (${Math.round((loadedCount / total) * 100)}%)\n` +
+        `🧳 *Packing Out*: ${packedCount} / ${total} (${Math.round((packedCount / total) * 100)}%)\n\n` +
+        `⚠️ *Barang Belum Siap Loading (${pendingLoadList.length})*:\n` +
+        (pendingLoadList.slice(0, 10).join('\n') || 'Semua barang sudah terpasang!') +
+        (pendingLoadList.length > 10 ? `\n...dan ${pendingLoadList.length - 10} barang lainnya.` : '') +
+        `\n\n🌐 Cek live portal: https://zzdree.github.io/ip26-production/`;
+
+      navigator.clipboard.writeText(summaryText)
+        .then(() => {
+          showToast('Ringkasan Disalin', 'Teks laporan logistik berhasil disalin ke clipboard!', 'success');
+        })
+        .catch(() => {
+          showToast('Gagal Menyalin', 'Izin clipboard ditolak peramban.', 'warning');
+        });
+    });
   }
 
   // Initialize Supabase Client & Realtime WebSocket
@@ -361,6 +450,7 @@ document.addEventListener('DOMContentLoaded', () => {
               }
             });
             updateProgressMeters();
+            filterInventory();
           }
           setSyncStatus('connected', '🟢 Terhubung Cloud (Realtime Multi-HP)');
         })
@@ -391,8 +481,9 @@ document.addEventListener('DOMContentLoaded', () => {
               };
               inventoryState[row.item_id] = updatedState;
               localStorage.setItem(`ip26_inv_${row.item_id}`, JSON.stringify(updatedState));
-              renderRowUI(row.item_id, updatedState, true);
+              renderRowUI(row.item_id, updatedState, true, row.loaded_by || row.packed_by);
               updateProgressMeters();
+              filterInventory();
             }
           }
         )
@@ -401,6 +492,27 @@ document.addEventListener('DOMContentLoaded', () => {
             setSyncStatus('connected', '🟢 Terhubung Cloud (Realtime Multi-HP)');
           } else if (status === 'CHANNEL_ERROR' || status === 'TIMED_OUT') {
             setSyncStatus('offline', '🟡 Gangguan Koneksi (Mode Offline Lokal)');
+          }
+        });
+
+      // 3. Presence Channel for Online Crew Counting
+      if (presenceChannel) {
+        supabaseClient.removeChannel(presenceChannel);
+      }
+
+      presenceChannel = supabaseClient.channel('ip26_crew_presence');
+      presenceChannel
+        .on('presence', { event: 'sync' }, () => {
+          const state = presenceChannel.presenceState();
+          const userCount = Object.keys(state).length || 1;
+          if (onlineCrewCount) onlineCrewCount.textContent = userCount;
+        })
+        .subscribe(async (status) => {
+          if (status === 'SUBSCRIBED') {
+            await presenceChannel.track({
+              user: getEffectiveCrewName(),
+              online_at: new Date().toISOString()
+            });
           }
         });
 
@@ -456,6 +568,7 @@ document.addEventListener('DOMContentLoaded', () => {
         localStorage.setItem('ip26_sb_url', url);
         localStorage.setItem('ip26_sb_key', key);
         initSupabase(url, key);
+        showToast('Terkoneksi', 'Kredensial database Supabase tersimpan!', 'success');
       }
       if (cloudConfigModal) cloudConfigModal.style.display = 'none';
     });
@@ -470,21 +583,27 @@ document.addEventListener('DOMContentLoaded', () => {
       if (supabaseClient && realtimeChannel) {
         supabaseClient.removeChannel(realtimeChannel);
       }
+      if (supabaseClient && presenceChannel) {
+        supabaseClient.removeChannel(presenceChannel);
+      }
       supabaseClient = null;
       setSyncStatus('offline', '🟡 Mode Offline (Penyimpanan Lokal)');
       if (cloudConfigModal) cloudConfigModal.style.display = 'none';
+      showToast('Terputus', 'Beralih ke mode offline lokal.', 'warning');
     });
   }
 
   // =========================================================================
-  // 3. LIVE SEARCH & FILTER ENGINE
+  // 4. LIVE MULTI-DIMENSIONAL SEARCH & DUAL FILTER ENGINE
   // =========================================================================
   const searchInput = document.getElementById('inv-search-input');
   const clearSearchBtn = document.getElementById('clear-search-btn');
   const filterPills = document.querySelectorAll('.filter-pill');
+  const statusPills = document.querySelectorAll('.status-pill');
   const countDisplay = document.getElementById('inv-count-display');
 
-  let currentFilter = 'all';
+  let currentVendorFilter = 'all';
+  let currentStatusFilter = 'all';
   let searchQuery = '';
 
   function filterInventory() {
@@ -493,16 +612,27 @@ document.addEventListener('DOMContentLoaded', () => {
 
     vendorBlocks.forEach((block) => {
       const vendorName = block.getAttribute('data-vendor') || '';
-      const matchesVendor = currentFilter === 'all' || vendorName.toLowerCase() === currentFilter.toLowerCase();
+      const matchesVendor = currentVendorFilter === 'all' || vendorName.toLowerCase() === currentVendorFilter.toLowerCase();
       
       const rows = block.querySelectorAll('tbody tr');
       let blockVisibleRows = 0;
 
       rows.forEach((row) => {
+        const itemId = row.getAttribute('data-item-id');
+        const state = inventoryState[itemId] || { loaded: false, packed: false };
         const rowText = row.innerText.toLowerCase();
+        
+        // 1. Text match
         const matchesSearch = query === '' || rowText.includes(query);
 
-        if (matchesVendor && matchesSearch) {
+        // 2. Status match
+        let matchesStatus = true;
+        if (currentStatusFilter === 'loading-pending') matchesStatus = !state.loaded;
+        else if (currentStatusFilter === 'loading-ready') matchesStatus = state.loaded;
+        else if (currentStatusFilter === 'packing-pending') matchesStatus = !state.packed;
+        else if (currentStatusFilter === 'packing-ready') matchesStatus = state.packed;
+
+        if (matchesVendor && matchesSearch && matchesStatus) {
           row.style.display = '';
           blockVisibleRows++;
           visibleCount++;
@@ -548,7 +678,16 @@ document.addEventListener('DOMContentLoaded', () => {
     pill.addEventListener('click', () => {
       filterPills.forEach((p) => p.classList.remove('active'));
       pill.classList.add('active');
-      currentFilter = pill.getAttribute('data-filter') || 'all';
+      currentVendorFilter = pill.getAttribute('data-filter') || 'all';
+      filterInventory();
+    });
+  });
+
+  statusPills.forEach((pill) => {
+    pill.addEventListener('click', () => {
+      statusPills.forEach((p) => p.classList.remove('active'));
+      pill.classList.add('active');
+      currentStatusFilter = pill.getAttribute('data-status-filter') || 'all';
       filterInventory();
     });
   });
@@ -557,7 +696,7 @@ document.addEventListener('DOMContentLoaded', () => {
   filterInventory();
 
   // =========================================================================
-  // 4. SCROLLSPY NAVIGATION
+  // 5. SCROLLSPY NAVIGATION
   // =========================================================================
   const sections = document.querySelectorAll('section[id], header[id]');
   const desktopLinks = document.querySelectorAll('.desktop-nav .nav-link');
