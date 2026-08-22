@@ -23,30 +23,32 @@ The visual language is inspired by high-end professional broadcast control rooms
 
 ## 2. Color Palette & Roles (Dual Theme Specification)
 
-### A. Dark Mode Palette — *Precision Dark Slate & Charcoal* (Default)
+### A. Dark Mode Palette — *Pure Industrial Grey & Studio Slate* (Default)
 | Color Role | Token Name | Hex Code | Visual Character & Functional Usage |
 | :--- | :--- | :---: | :--- |
-| **Canvas Background** | `--bg-primary` | `#0f1115` | Ultra-deep slate black; reduces glare in dark control booths. |
-| **Surface Background** | `--bg-surface` | `#161920` | Subtle raised elevation for cards, specs, and tables. |
-| **Surface Elevated** | `--bg-surface-elevated` | `#1e222d` | Higher elevation for headers, modals, and sticky navs. |
-| **Border / Stroke** | `--border-subtle` | `#282e3d` | Technical gridlines and card contours. |
-| **Border Strong** | `--border-strong` | `#3d465c` | Highlighted borders on active/hover states. |
-| **Text Primary** | `--text-primary` | `#f0f3f8` | High-contrast crisp white for primary headlines and data. |
-| **Text Muted** | `--text-muted` | `#94a3b8` | Neutral cool slate for descriptions and labels. |
-| **Accent Primary** | `--accent-cyan` | `#00d2ff` | High-visibility technical cyan for signal paths & active states. |
+| **Canvas Background** | `--bg-primary` | `#181a1f` | Pure neutral studio grey; sleek, glare-free, and eye-friendly. |
+| **Surface Background** | `--bg-surface` | `#22252c` | Balanced dark grey elevation for cards, spec bins, and tables. |
+| **Surface Elevated** | `--bg-surface-elevated` | `#2a2d36` | Elevated pure grey for sticky headers, dialogs, and modals. |
+| **Surface Hover** | `--bg-surface-hover` | `#333742` | Interactive hover tone with tactile contrast. |
+| **Border / Stroke** | `--border-subtle` | `#363b47` | Technical hairline divider contours. |
+| **Border Strong** | `--border-strong` | `#4f5667` | Focused card borders and active elements. |
+| **Text Primary** | `--text-primary` | `#f3f4f7` | Crisp studio white for headers and primary telemetry. |
+| **Text Muted** | `--text-muted` | `#9ea6b8` | Neutral cool grey for auxiliary metadata. |
+| **Accent Primary** | `--accent-cyan` | `#00d2ff` | High-visibility technical cyan for active states & signal paths. |
 | **Accent Secondary** | `--accent-amber` | `#f59e0b` | Warning indicators for missing gear & standby units. |
 | **Accent Success** | `--accent-emerald` | `#10b981` | Status badges for verified & deployed devices (`✅`). |
 
-### B. Light Mode Palette — *Architectural Warm White & Linen*
+### B. Light Mode Palette — *Pure Warm White & Editorial Linen*
 | Color Role | Token Name | Hex Code | Visual Character & Functional Usage |
 | :--- | :--- | :---: | :--- |
-| **Canvas Background** | `--bg-primary` | `#fbf9f5` | Warm alabaster linen; soft on the eyes during daylight setup. |
-| **Surface Background** | `--bg-surface` | `#ffffff` | Pure white surface cards for clean visual segmentation. |
-| **Surface Elevated** | `--bg-surface-elevated` | `#f3efe6` | Warm cream elevation for sticky navigation and headers. |
-| **Border / Stroke** | `--border-subtle` | `#e4ded4` | Warm architectural divider lines. |
-| **Border Strong** | `--border-strong` | `#cbbfaf` | Focused card borders and interactive focus rings. |
-| **Text Primary** | `--text-primary` | `#191c21` | Deep obsidian charcoal with maximum legibility. |
-| **Text Muted** | `--text-muted` | `#64748b` | Balanced slate grey for auxiliary metadata. |
+| **Canvas Background** | `--bg-primary` | `#fcfbf8` | Pure warm white canvas; soft, elegant, and daylight-ready. |
+| **Surface Background** | `--bg-surface` | `#ffffff` | Pure white crisp surface cards. |
+| **Surface Elevated** | `--bg-surface-elevated` | `#f5f2eb` | Warm cream elevation for sticky headers, badges, and filters. |
+| **Surface Hover** | `--bg-surface-hover` | `#eee9de` | Tactile warm cream hover state. |
+| **Border / Stroke** | `--border-subtle` | `#e8e2d7` | Soft warm hairline dividers. |
+| **Border Strong** | `--border-strong` | `#d1c7b7` | Focused borders and outline rings. |
+| **Text Primary** | `--text-primary` | `#1a1815` | Deep espresso charcoal with maximum typography legibility. |
+| **Text Muted** | `--text-muted` | `#6a655d` | Warm stone grey for descriptions and sub-labels. |
 | **Accent Primary** | `--accent-cyan` | `#0284c7` | Deep sky blue for interactive links and signal arrows. |
 | **Accent Secondary** | `--accent-amber` | `#d97706` | Rich amber for warning badges and alerts. |
 | **Accent Success** | `--accent-emerald` | `#059669` | Crisp forest green for verified items. |

@@ -43,27 +43,27 @@
 }
 
 /* --------------------------------------------------------------------------
-   A. DARK THEME PALETTE (Default: Precision Dark Slate & Charcoal)
+   A. DARK THEME PALETTE (Pure Industrial Grey & Studio Slate)
    -------------------------------------------------------------------------- */
 [data-theme="dark"] {
-  --bg-primary: #0d0f13;
-  --bg-secondary: #13161d;
-  --bg-surface: #181c24;
-  --bg-surface-elevated: #1f2430;
-  --bg-surface-hover: #262c3a;
+  --bg-primary: #181a1f;
+  --bg-secondary: #1e2027;
+  --bg-surface: #242731;
+  --bg-surface-elevated: #2c303c;
+  --bg-surface-hover: #353a49;
 
-  --border-subtle: #262c3b;
-  --border-strong: #3b445b;
+  --border-subtle: #383d4c;
+  --border-strong: #4f566a;
   --border-focus: #00d2ff;
 
-  --text-primary: #f1f5f9;
-  --text-secondary: #cbd5e1;
-  --text-muted: #94a3b8;
-  --text-inverse: #0f1115;
+  --text-primary: #f4f6fa;
+  --text-secondary: #cacedb;
+  --text-muted: #959cb0;
+  --text-inverse: #181a1f;
 
   --accent-cyan: #00d2ff;
   --accent-cyan-subtle: rgba(0, 210, 255, 0.12);
-  --accent-cyan-glow: rgba(0, 210, 255, 0.3);
+  --accent-cyan-glow: rgba(0, 210, 255, 0.25);
 
   --accent-blue: #3b82f6;
   --accent-purple: #a855f7;
@@ -72,31 +72,31 @@
   --accent-emerald: #10b981;
   --accent-emerald-subtle: rgba(16, 185, 129, 0.15);
 
-  --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.4);
-  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.5);
-  --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.6);
-  --shadow-glow: 0 0 20px rgba(0, 210, 255, 0.15);
+  --shadow-sm: 0 2px 6px rgba(0, 0, 0, 0.25);
+  --shadow-md: 0 6px 16px rgba(0, 0, 0, 0.35);
+  --shadow-lg: 0 12px 32px rgba(0, 0, 0, 0.45);
+  --shadow-glow: 0 0 24px rgba(0, 210, 255, 0.15);
 
-  --grid-line-color: rgba(255, 255, 255, 0.03);
+  --grid-line-color: rgba(255, 255, 255, 0.04);
 }
 
 /* --------------------------------------------------------------------------
-   B. LIGHT THEME PALETTE (Architectural Warm White & Linen)
+   B. LIGHT THEME PALETTE (Pure Warm White & Architectural Linen)
    -------------------------------------------------------------------------- */
 [data-theme="light"] {
-  --bg-primary: #fbf9f5;
-  --bg-secondary: #f4efe6;
+  --bg-primary: #fcfbf8;
+  --bg-secondary: #f6f3eb;
   --bg-surface: #ffffff;
-  --bg-surface-elevated: #efeae0;
-  --bg-surface-hover: #e8e2d4;
+  --bg-surface-elevated: #f4f0e6;
+  --bg-surface-hover: #ebe5d8;
 
-  --border-subtle: #e5dfd5;
-  --border-strong: #cdbead;
+  --border-subtle: #e6dfd3;
+  --border-strong: #cfc1ae;
   --border-focus: #0284c7;
 
-  --text-primary: #181b20;
-  --text-secondary: #334155;
-  --text-muted: #64748b;
+  --text-primary: #1a1715;
+  --text-secondary: #3c3732;
+  --text-muted: #6e675f;
   --text-inverse: #ffffff;
 
   --accent-cyan: #0284c7;
@@ -110,12 +110,12 @@
   --accent-emerald: #059669;
   --accent-emerald-subtle: rgba(5, 150, 105, 0.12);
 
-  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.06);
-  --shadow-md: 0 4px 10px rgba(0, 0, 0, 0.08);
-  --shadow-lg: 0 10px 24px rgba(0, 0, 0, 0.1);
-  --shadow-glow: 0 0 20px rgba(2, 132, 199, 0.12);
+  --shadow-sm: 0 2px 6px rgba(45, 35, 20, 0.04);
+  --shadow-md: 0 6px 16px rgba(45, 35, 20, 0.07);
+  --shadow-lg: 0 12px 32px rgba(45, 35, 20, 0.1);
+  --shadow-glow: 0 0 24px rgba(2, 132, 199, 0.12);
 
-  --grid-line-color: rgba(0, 0, 0, 0.03);
+  --grid-line-color: rgba(45, 35, 20, 0.03);
 }
 
 /* --------------------------------------------------------------------------
@@ -209,9 +209,9 @@ code {
   position: sticky;
   top: 0;
   z-index: 1000;
-  background: rgba(13, 15, 19, 0.85);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
+  background: rgba(24, 26, 31, 0.88);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
   border-bottom: 1px solid var(--border-subtle);
   height: var(--header-height);
   display: flex;
@@ -220,7 +220,7 @@ code {
 }
 
 [data-theme="light"] .desktop-header {
-  background: rgba(251, 249, 245, 0.88);
+  background: rgba(252, 251, 248, 0.92);
 }
 
 .nav-container {
@@ -1409,7 +1409,7 @@ code {
   left: 0;
   right: 0;
   z-index: 1000;
-  background: rgba(13, 15, 19, 0.92);
+  background: rgba(24, 26, 31, 0.92);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
   border-top: 1px solid var(--border-subtle);
@@ -1417,7 +1417,7 @@ code {
 }
 
 [data-theme="light"] .mobile-bottom-dock {
-  background: rgba(251, 249, 245, 0.94);
+  background: rgba(252, 251, 248, 0.95);
 }
 
 .dock-container {
