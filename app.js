@@ -49,19 +49,22 @@ document.addEventListener('DOMContentLoaded', () => {
   const root = document.documentElement;
 
   const storedTheme = localStorage.getItem('ip26_theme') || 'dark';
-  setTheme(storedTheme);
+  setTheme(storedTheme, false);
 
-  function setTheme(theme) {
+  function setTheme(theme, doRenderMermaid = true) {
     root.setAttribute('data-theme', theme);
     localStorage.setItem('ip26_theme', theme);
     updateThemeButtons(theme);
+    if (doRenderMermaid && typeof renderAllMermaid === 'function') {
+      renderAllMermaid();
+    }
   }
 
   function toggleTheme() {
     const currentTheme = root.getAttribute('data-theme') || 'dark';
     const nextTheme = currentTheme === 'dark' ? 'light' : 'dark';
-    setTheme(nextTheme);
-    showToast('Tema Berubah', `Beralih ke mode ${nextTheme === 'dark' ? 'Gelap (Dark Slate)' : 'Terang (Warm Linen)'}`, 'info');
+    setTheme(nextTheme, true);
+    showToast('Tema Berubah', `Beralih ke mode ${nextTheme === 'dark' ? 'Gelap (Pure Neutral Grey)' : 'Terang (Pure Warm White)'}`, 'info');
   }
 
   function updateThemeButtons(theme) {
@@ -888,21 +891,68 @@ document.addEventListener('DOMContentLoaded', () => {
   // =========================================================================
   // 7. INITIALIZE MERMAID FLOWCHARTS (DARK/LIGHT ADAPTIVE)
   // =========================================================================
-  if (window.mermaid) {
+  // =========================================================================
+  // 7. INITIALIZE & DYNAMIC MERMAID ENGINE (TRANSPARENT & THEME-ADAPTIVE)
+  // =========================================================================
+  let mermaidRenderCounter = 0;
+
+  async function renderAllMermaid() {
+    if (!window.mermaid) return;
+    const isDark = (document.documentElement.getAttribute('data-theme') || 'dark') === 'dark';
+
     try {
-      const isDark = (document.documentElement.getAttribute('data-theme') || 'dark') === 'dark';
       window.mermaid.initialize({
-        startOnLoad: true,
-        theme: isDark ? 'dark' : 'default',
+        startOnLoad: false,
+        theme: 'base',
         securityLevel: 'loose',
+        themeVariables: {
+          darkMode: isDark,
+          background: 'transparent',
+          mainBkg: isDark ? 'rgba(255, 255, 255, 0.05)' : 'rgba(0, 0, 0, 0.03)',
+          nodeBorder: isDark ? '#484848' : '#d0c7b8',
+          nodeTextColor: isDark ? '#f5f5f5' : '#1c1917',
+          lineColor: isDark ? '#00d2ff' : '#0284c7',
+          textColor: isDark ? '#f5f5f5' : '#1c1917',
+          primaryColor: isDark ? 'rgba(255, 255, 255, 0.05)' : 'rgba(0, 0, 0, 0.03)',
+          primaryTextColor: isDark ? '#f5f5f5' : '#1c1917',
+          primaryBorderColor: isDark ? '#484848' : '#d0c7b8',
+          clusterBkg: isDark ? 'rgba(255, 255, 255, 0.02)' : 'rgba(0, 0, 0, 0.02)',
+          clusterBorder: isDark ? '#333333' : '#e5dfd3',
+          titleColor: isDark ? '#f5f5f5' : '#1c1917',
+          edgeLabelBackground: isDark ? '#1f1f1f' : '#ffffff'
+        },
         flowchart: {
           useMaxWidth: true,
           htmlLabels: true,
           curve: 'basis'
         }
       });
+
+      const mermaidNodes = document.querySelectorAll('.mermaid');
+      for (let i = 0; i < mermaidNodes.length; i++) {
+        const node = mermaidNodes[i];
+        if (!node.getAttribute('data-mermaid-src')) {
+          node.setAttribute('data-mermaid-src', node.textContent.trim());
+        }
+        const rawCode = node.getAttribute('data-mermaid-src');
+        if (!rawCode) continue;
+
+        mermaidRenderCounter++;
+        const renderId = `mermaid-svg-${i}-${mermaidRenderCounter}`;
+        try {
+          const { svg } = await window.mermaid.render(renderId, rawCode);
+          node.innerHTML = svg;
+        } catch (renderErr) {
+          console.warn(`Mermaid render failed for diagram ${i}:`, renderErr);
+        }
+      }
     } catch (err) {
-      console.warn('Mermaid initialization info:', err);
+      console.warn('Mermaid engine initialization warning:', err);
     }
   }
+
+  // Initial render on boot
+  setTimeout(() => {
+    renderAllMermaid();
+  }, 50);
 });

@@ -43,23 +43,23 @@
 }
 
 /* --------------------------------------------------------------------------
-   A. DARK THEME PALETTE (Pure Industrial Grey & Studio Slate)
+   A. DARK THEME PALETTE (Pure Neutral Grey)
    -------------------------------------------------------------------------- */
 [data-theme="dark"] {
-  --bg-primary: #181a1f;
-  --bg-secondary: #1e2027;
-  --bg-surface: #242731;
-  --bg-surface-elevated: #2c303c;
-  --bg-surface-hover: #353a49;
+  --bg-primary: #121212;
+  --bg-secondary: #181818;
+  --bg-surface: #1f1f1f;
+  --bg-surface-elevated: #262626;
+  --bg-surface-hover: #303030;
 
-  --border-subtle: #383d4c;
-  --border-strong: #4f566a;
+  --border-subtle: #333333;
+  --border-strong: #484848;
   --border-focus: #00d2ff;
 
-  --text-primary: #f4f6fa;
-  --text-secondary: #cacedb;
-  --text-muted: #959cb0;
-  --text-inverse: #181a1f;
+  --text-primary: #f5f5f5;
+  --text-secondary: #cccccc;
+  --text-muted: #8e8e8e;
+  --text-inverse: #121212;
 
   --accent-cyan: #00d2ff;
   --accent-cyan-subtle: rgba(0, 210, 255, 0.12);
@@ -72,31 +72,31 @@
   --accent-emerald: #10b981;
   --accent-emerald-subtle: rgba(16, 185, 129, 0.15);
 
-  --shadow-sm: 0 2px 6px rgba(0, 0, 0, 0.25);
-  --shadow-md: 0 6px 16px rgba(0, 0, 0, 0.35);
-  --shadow-lg: 0 12px 32px rgba(0, 0, 0, 0.45);
+  --shadow-sm: 0 2px 6px rgba(0, 0, 0, 0.35);
+  --shadow-md: 0 6px 16px rgba(0, 0, 0, 0.45);
+  --shadow-lg: 0 12px 32px rgba(0, 0, 0, 0.6);
   --shadow-glow: 0 0 24px rgba(0, 210, 255, 0.15);
 
   --grid-line-color: rgba(255, 255, 255, 0.04);
 }
 
 /* --------------------------------------------------------------------------
-   B. LIGHT THEME PALETTE (Pure Warm White & Architectural Linen)
+   B. LIGHT THEME PALETTE (Warm Linen & Pure Warm White)
    -------------------------------------------------------------------------- */
 [data-theme="light"] {
-  --bg-primary: #fcfbf8;
-  --bg-secondary: #f6f3eb;
+  --bg-primary: #fdfbf7;
+  --bg-secondary: #f7f4ec;
   --bg-surface: #ffffff;
-  --bg-surface-elevated: #f4f0e6;
+  --bg-surface-elevated: #f3efe6;
   --bg-surface-hover: #ebe5d8;
 
-  --border-subtle: #e6dfd3;
-  --border-strong: #cfc1ae;
+  --border-subtle: #e5dfd3;
+  --border-strong: #d0c7b8;
   --border-focus: #0284c7;
 
-  --text-primary: #1a1715;
-  --text-secondary: #3c3732;
-  --text-muted: #6e675f;
+  --text-primary: #1c1917;
+  --text-secondary: #44403c;
+  --text-muted: #78716c;
   --text-inverse: #ffffff;
 
   --accent-cyan: #0284c7;
@@ -830,6 +830,7 @@ code {
   margin-top: var(--space-4);
   margin-bottom: var(--space-4);
   overflow: hidden;
+  transition: background var(--transition-normal), border-color var(--transition-normal);
 }
 
 .mermaid-title {
@@ -844,8 +845,8 @@ code {
 }
 
 .mermaid {
-  background: var(--bg-surface-elevated);
-  border: 1px solid var(--border-subtle);
+  background: transparent !important;
+  border: 1px dashed var(--border-subtle);
   border-radius: var(--radius-lg);
   padding: var(--space-4);
   overflow-x: auto;
@@ -856,8 +857,89 @@ code {
 }
 
 .mermaid svg {
+  background: transparent !important;
   max-width: 100% !important;
   height: auto !important;
+}
+
+/* Mermaid SVG Transparency & Dynamic Theme Adaptations */
+[data-theme="dark"] .mermaid svg g.node rect,
+[data-theme="dark"] .mermaid svg g.node circle,
+[data-theme="dark"] .mermaid svg g.node ellipse,
+[data-theme="dark"] .mermaid svg g.node polygon,
+[data-theme="dark"] .mermaid svg g.node path {
+  fill: rgba(255, 255, 255, 0.05) !important;
+  stroke: var(--border-strong) !important;
+}
+
+[data-theme="dark"] .mermaid svg .nodeLabel,
+[data-theme="dark"] .mermaid svg text,
+[data-theme="dark"] .mermaid svg span,
+[data-theme="dark"] .mermaid svg div {
+  fill: #f5f5f5 !important;
+  color: #f5f5f5 !important;
+}
+
+[data-theme="dark"] .mermaid svg .flowchart-link,
+[data-theme="dark"] .mermaid svg .edgePaths path,
+[data-theme="dark"] .mermaid svg path.flowchart-link {
+  stroke: var(--accent-cyan) !important;
+}
+
+[data-theme="dark"] .mermaid svg marker path,
+[data-theme="dark"] .mermaid svg .marker {
+  fill: var(--accent-cyan) !important;
+  stroke: var(--accent-cyan) !important;
+}
+
+[data-theme="dark"] .mermaid svg .cluster rect {
+  fill: rgba(255, 255, 255, 0.02) !important;
+  stroke: var(--border-subtle) !important;
+}
+
+[data-theme="dark"] .mermaid svg .edgeLabel {
+  background-color: var(--bg-surface) !important;
+  color: var(--text-secondary) !important;
+}
+
+/* Light Theme Mermaid */
+[data-theme="light"] .mermaid svg g.node rect,
+[data-theme="light"] .mermaid svg g.node circle,
+[data-theme="light"] .mermaid svg g.node ellipse,
+[data-theme="light"] .mermaid svg g.node polygon,
+[data-theme="light"] .mermaid svg g.node path {
+  fill: rgba(0, 0, 0, 0.03) !important;
+  stroke: var(--border-strong) !important;
+}
+
+[data-theme="light"] .mermaid svg .nodeLabel,
+[data-theme="light"] .mermaid svg text,
+[data-theme="light"] .mermaid svg span,
+[data-theme="light"] .mermaid svg div {
+  fill: #1c1917 !important;
+  color: #1c1917 !important;
+}
+
+[data-theme="light"] .mermaid svg .flowchart-link,
+[data-theme="light"] .mermaid svg .edgePaths path,
+[data-theme="light"] .mermaid svg path.flowchart-link {
+  stroke: var(--accent-cyan) !important;
+}
+
+[data-theme="light"] .mermaid svg marker path,
+[data-theme="light"] .mermaid svg .marker {
+  fill: var(--accent-cyan) !important;
+  stroke: var(--accent-cyan) !important;
+}
+
+[data-theme="light"] .mermaid svg .cluster rect {
+  fill: rgba(0, 0, 0, 0.015) !important;
+  stroke: var(--border-subtle) !important;
+}
+
+[data-theme="light"] .mermaid svg .edgeLabel {
+  background-color: var(--bg-surface) !important;
+  color: var(--text-secondary) !important;
 }
 
 /* Callout Box */

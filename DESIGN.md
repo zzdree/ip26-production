@@ -24,18 +24,18 @@ The visual language is inspired by high-end professional broadcast control rooms
 
 ## 2. Color Palette & Roles (Dual Theme Specification)
 
-### A. Dark Mode Palette — *Pure Industrial Grey & Studio Slate* (Default)
+### A. Dark Mode Palette — *Pure Neutral Grey* (Default)
 | Color Role | Token Name | Hex Code | Visual Character & Functional Usage |
 | :--- | :--- | :---: | :--- |
-| **Canvas Background** | `--bg-primary` | `#181a1f` | Pure neutral studio slate grey; sleek, glare-free, and eye-friendly in low light. |
-| **Surface Background** | `--bg-surface` | `#242731` | Balanced dark grey elevation for cards, spec bins, and inventory tables. |
-| **Surface Elevated** | `--bg-surface-elevated` | `#2c303c` | Elevated pure grey for sticky headers, dialogs, modals, and flowcharts. |
-| **Surface Hover** | `--bg-surface-hover` | `#353a49` | Interactive hover tone with tactile contrast. |
-| **Border / Stroke** | `--border-subtle` | `#383d4c` | Technical hairline divider contours. |
-| **Border Strong** | `--border-strong` | `#4f566a` | Focused card borders, modal strokes, and active elements. |
-| **Text Primary** | `--text-primary` | `#f4f6fa` | Crisp studio white for headers and primary telemetry. |
-| **Text Secondary** | `--text-secondary` | `#cacedb` | Clean neutral grey for descriptions and documentation. |
-| **Text Muted** | `--text-muted` | `#959cb0` | Auxiliary metadata, timestamps, and subtitles. |
+| **Canvas Background** | `--bg-primary` | `#121212` | Pure neutral dark grey canvas; zero blue tint, glare-free, and eye-friendly. |
+| **Surface Background** | `--bg-surface` | `#1f1f1f` | Balanced dark grey elevation for cards, spec bins, and inventory tables. |
+| **Surface Elevated** | `--bg-surface-elevated` | `#262626` | Elevated neutral grey for sticky headers, dialogs, and controls. |
+| **Surface Hover** | `--bg-surface-hover` | `#303030` | Interactive hover tone with tactile contrast. |
+| **Border / Stroke** | `--border-subtle` | `#333333` | Technical hairline divider contours. |
+| **Border Strong** | `--border-strong` | `#484848` | Focused card borders, modal strokes, and active elements. |
+| **Text Primary** | `--text-primary` | `#f5f5f5` | Crisp pure white for headers and primary telemetry. |
+| **Text Secondary** | `--text-secondary` | `#cccccc` | Clean neutral light grey for descriptions and documentation. |
+| **Text Muted** | `--text-muted` | `#8e8e8e` | Auxiliary metadata, timestamps, and subtitles. |
 | **Accent Primary** | `--accent-cyan` | `#00d2ff` | High-visibility technical cyan for active states, live indicators & signal paths. |
 | **Accent Secondary** | `--accent-amber` | `#f59e0b` | Warning indicators for missing laptops & standby gear. |
 | **Accent Success** | `--accent-emerald` | `#10b981` | Status badges for verified & deployed devices (`✅ Ready`). |
@@ -43,15 +43,15 @@ The visual language is inspired by high-end professional broadcast control rooms
 ### B. Light Mode Palette — *Pure Warm White & Editorial Linen*
 | Color Role | Token Name | Hex Code | Visual Character & Functional Usage |
 | :--- | :--- | :---: | :--- |
-| **Canvas Background** | `--bg-primary` | `#fcfbf8` | Pure warm white linen canvas; soft, elegant, and daylight-ready. |
+| **Canvas Background** | `--bg-primary` | `#fdfbf7` | Pure warm white linen canvas; soft, elegant, and daylight-ready. |
 | **Surface Background** | `--bg-surface` | `#ffffff` | Pure white crisp surface cards. |
-| **Surface Elevated** | `--bg-surface-elevated` | `#f4f0e6` | Warm cream elevation for sticky headers, badges, and filters. |
-| **Surface Hover** | `--bg-surface-hover` | `#eae3d2` | Tactile warm cream hover state. |
-| **Border / Stroke** | `--border-subtle` | `#e6dfd3` | Soft warm hairline dividers. |
-| **Border Strong** | `--border-strong` | `#cfc1ae` | Focused borders and outline rings. |
-| **Text Primary** | `--text-primary` | `#1a1715` | Deep espresso charcoal with maximum typography legibility. |
-| **Text Secondary** | `--text-secondary` | `#3c3732` | Warm charcoal for body text and instructions. |
-| **Text Muted** | `--text-muted` | `#6e675f` | Warm stone grey for descriptions and sub-labels. |
+| **Surface Elevated** | `--bg-surface-elevated` | `#f3efe6` | Warm cream elevation for sticky headers, badges, and filters. |
+| **Surface Hover** | `--bg-surface-hover` | `#ebe5d8` | Tactile warm cream hover state. |
+| **Border / Stroke** | `--border-subtle` | `#e5dfd3` | Soft warm hairline dividers. |
+| **Border Strong** | `--border-strong` | `#d0c7b8` | Focused borders and outline rings. |
+| **Text Primary** | `--text-primary` | `#1c1917` | Deep warm charcoal with maximum typography legibility. |
+| **Text Secondary** | `--text-secondary` | `#44403c` | Warm charcoal for body text and instructions. |
+| **Text Muted** | `--text-muted` | `#78716c` | Warm stone grey for descriptions and sub-labels. |
 | **Accent Primary** | `--accent-cyan` | `#0284c7` | Deep sky blue for interactive links and signal arrows. |
 | **Accent Secondary** | `--accent-amber` | `#d97706` | Rich amber for warning badges and alerts. |
 | **Accent Success** | `--accent-emerald` | `#059669` | Crisp forest green for verified items. |
@@ -77,22 +77,28 @@ The visual language is inspired by high-end professional broadcast control rooms
 - **Dual Progress Gauges:** Dynamic percentage bars tracking independent **Loading In (Pemasangan)** and **Packing Out (Pengemasan)** completion rates.
 - **Quick Action Buttons:** "Salin Progres" summary clipboard exporter, "Koneksi Cloud" config modal launcher, and "Reset Checklist" dialog.
 
-### C. Interactive Diagrams & Mermaid Engine
+### C. Interactive Diagrams & Transparent Adaptive Mermaid Engine
 - **Master Signal Board:** 4-stage interactive high-level hardware pipeline (Camera $\rightarrow$ Switcher $\rightarrow$ LED Processors $\rightarrow$ Stage & Stream).
-- **Mermaid.js Architecture Flowcharts:** Theme-adaptive SVG rendering with zoomable horizontal scroll containers for:
-  1. *Bagan Struktur Komando & Hierarki Tim*
-  2. *Master Architecture Signal Flow (5 Sub-Graphs)*
-  3. *Sub-Flowchart 1: Broadcast Camera & Wireless Links*
-  4. *Sub-Flowchart 2: Video Distribution & LED Mapping*
-  5. *Sub-Flowchart 3: Audio Routing & Live Streaming*
-  6. *Sub-Flowchart 4: Stage Time Keeper System*
-  7. *Sub-Flowchart 5: Electrical & Power Distribution System*
+- **Dynamic Transparent Flowcharts (Mermaid.js):** 
+  - **Transparent Node Boxes:** Node containers have transparent / ultra-subtle tinted fills (`rgba(255,255,255,0.05)` dark / `rgba(0,0,0,0.03)` light) preventing solid blocky white/black rectangles.
+  - **Auto-Adaptive Lines & Typography:**
+    - *Dark Mode:* Pure light text (`#f5f5f5`) and cyan/grey connecting vector lines.
+    - *Light Mode:* Deep charcoal text (`#1c1917`) and sky-blue connecting vector lines.
+  - **Instant Re-rendering on Theme Toggle:** Automatically captures raw diagram definitions and re-renders SVG vector graphs in real-time when the theme switcher is clicked without requiring page reload.
+  - Flowcharts rendered:
+    1. *Bagan Struktur Komando & Hierarki Tim*
+    2. *Master Architecture Signal Flow (5 Sub-Graphs)*
+    3. *Sub-Flowchart 1: Broadcast Camera & Wireless Links*
+    4. *Sub-Flowchart 2: Video Distribution & LED Mapping*
+    5. *Sub-Flowchart 3: Audio Routing & Live Streaming*
+    6. *Sub-Flowchart 4: Stage Time Keeper System*
+    7. *Sub-Flowchart 5: Electrical & Power Distribution System*
 
 ### D. Cards, Hardware Bins & Tables
 - Subtly rounded corners (`border-radius: 14px`).
 - 1px hairline technical borders (`1px solid var(--border-subtle)`).
 - Micro-lift hover animation (`transform: translateY(-2px)`) with 200ms cubic-bezier transition.
-- Double-action checkboxes for inventory tracking (`[v] Pasang` and `[v] Kemas`) with crew tag timestamps.
+- **Direct Tactile Checkboxes:** Streamlined 32×32px responsive checkboxes with SVG checkmarks (`✓`) directly synchronized to Supabase Cloud with crew timestamps.
 
 ### E. Modals & Dialogs
 - **Cloud Database Configuration Modal:** Supabase Project URL & Anon Key credentials management.
