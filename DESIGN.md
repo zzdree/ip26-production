@@ -38,3 +38,7 @@ Container max 1100px; whitespace kertas sebagai pemisah utama; grid auto-fit unt
 ## 6. Revisi v16.3
 - Badge personel Panitia/Pelayan pada cam-sub dan kolom operator workstation
 - Dual theme light warm pastel / dark lembut + aurora blobs hue-loop 40s
+
+## 6. Revisi v16.3
+- Badge personel Panitia/Pelayan pada cam-sub dan kolom operator workstation
+- Dual theme light warm pastel / dark lembut + aurora blobs hue-loop 40s

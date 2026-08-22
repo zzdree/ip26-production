@@ -33,3 +33,9 @@ Konsol produksi siaran & pelacak inventaris yang tampil seperti **production cal
 - Status personel Panitia/Pelayan tampil di kartu kamera dan tabel workstation
 - Target output event ditambahkan di masthead
 - Nama item disesuaikan persis source: Cable, Tape, HP Iphone 15
+
+## 5. Audit Source (v16.3)
+- 119 item / 13 peminjam terverifikasi identik dengan ip26_pro2.txt
+- Status personel Panitia/Pelayan tampil di kartu kamera dan tabel workstation
+- Target output event ditambahkan di masthead
+- Nama item disesuaikan persis source: Cable, Tape, HP Iphone 15
