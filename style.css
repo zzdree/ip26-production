@@ -422,47 +422,41 @@ section[id] {
   color: var(--cyan);
 }
 
-/* 5 Operational Axioms Grid */
-.axioms-panel {
-  background: var(--bg-inset);
-  border: 1px solid var(--border-subtle);
-  border-radius: var(--radius-md);
-  padding: 14px 16px;
-}
-
-.axioms-panel-title {
-  font-family: var(--font-display);
-  font-size: 12px;
-  font-weight: 700;
-  color: var(--purple);
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  margin-bottom: 10px;
-}
-
-.axioms-flex-grid {
+/* Mission Control Stats Grid */
+.mission-stats-panel {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 8px;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 10px;
 }
 
-.axiom-card-item {
-  background: var(--bg-surface);
+.stat-mini-card {
+  background: var(--bg-inset);
   border: 1px solid var(--border-card);
-  border-radius: var(--radius-sm);
-  padding: 8px 10px;
+  border-radius: var(--radius-md);
+  padding: 12px 14px;
   display: flex;
-  align-items: center;
-  gap: 8px;
-  font-size: 12px;
-  color: var(--text-main);
+  flex-direction: column;
+  gap: 4px;
+  transition: transform var(--trans-fast), border-color var(--trans-fast);
 }
 
-.axiom-idx {
+.stat-mini-card:hover {
+  transform: translateY(-2px);
+  border-color: var(--cyan);
+}
+
+.stat-mini-num {
   font-family: var(--font-mono);
+  font-size: 20px;
   font-weight: 800;
-  color: var(--purple);
+  color: var(--text-main);
+  line-height: 1.1;
+}
+
+.stat-mini-label {
   font-size: 11px;
+  color: var(--text-muted);
+  font-weight: 600;
 }
 
 /* ==========================================================================

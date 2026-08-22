@@ -74,23 +74,15 @@
 └───────────────────────┘             └───────────────────────┘             └───────────────────────┘
 ```
 
-### 3. Prinsip & Klasifikasi Peran: Panitia vs Pelayan
-Berdasarkan ketentuan operasional resmi Ibadah Perdana 2026:
-- 📌 **Prinsip Hubungan Peran:**
-  1. *Panitia bisa menjadi pelayan* (contoh: anggota panitia yang bertugas sebagai PIC/operator di lapangan).
-  2. *Pelayan belum tentu panitia* (contoh: rekan yang melayani khusus kebutuhan teknis lapangan).
-  3. *PIC ada yang menjadi panitia* (contoh: Alex, Wilfred, Rania, Jennifer, Filia, Tim Acara).
-  4. *PIC yang bukan panitia berarti pelayan* (contoh: Andreas, Kiel 1, Nia, Ferdy, Nico, Joel, Jordan, Yosua).
-  5. *PIC dan Pelayan itu sama* (seluruh PIC lapangan menjalankan fungsi pelayanan teknis).
-
-- **🏛️ Panitia (Committee):**
-  - **Media Engineer:** Richard *(Leader)*, Wilfred, Alex, Rania
-  - **Creative Engineer:** Jennifer *(Leader)*, Filia, Felani, Wike
-  - **Divisi Acara:** Tim Acara
-- **✨ Pelayan (Ministry Servant / Field Operator):**
-  - **System Engineer:** Andreas *(Leader)*
-  - **Broadcast/Doc Crew:** Kiel 1, Nia, Ferdy, Nico, Joel
-  - **Audio Crew:** Jordan, Yosua
+### 3. Klasifikasi Tim & Personel
+* **🏛️ Panitia (Committee):**
+  * **Media Engineer:** Richard *(Leader)*, Wilfred, Alex, Rania
+  * **Creative Engineer:** Jennifer *(Leader)*, Filia, Felani, Wike
+  * **Divisi Acara:** Tim Acara
+* **✨ Pelayan (Ministry Servant / Field Operator):**
+  * **System Engineer:** Andreas *(Leader)*
+  * **Broadcast & Doc Crew:** Kiel 1, Nia, Ferdy, Nico, Joel
+  * **Audio FOH & Live Crew:** Jordan, Yosua
 
 ---
 

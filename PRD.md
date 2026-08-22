@@ -23,17 +23,7 @@
 
 ---
 
-### 3. Lima Aksioma Fungsional (Panitia vs Pelayan)
-Sistem menegaskan pemisahan dan kesetaraan fungsional:
-1. **Panitia bisa menjadi pelayan.**
-2. **Pelayan belum tentu panitia.**
-3. **PIC ada yang menjadi panitia.**
-4. **PIC yang bukan panitia berarti pelayan.**
-5. **PIC dan Pelayan berkedudukan setara dalam eksekusi teknis lapangan.**
-
----
-
-### 4. Struktur Tim & Pembagian Divisi
+### 3. Struktur Tim & Pembagian Divisi
 * **System Engineer (Pelayan)**:
   * *Leader*: Andreas (Arsitektur sistem, routing sinyal, switcher, OBS, kelistrikan, dan audio sub-mixing).
 * **Media Engineer (Panitia)**:
@@ -45,12 +35,12 @@ Sistem menegaskan pemisahan dan kesetaraan fungsional:
 
 ---
 
-### 5. Rincian Modul Single-Page (5 Seksi Lengkap)
+### 4. Rincian Modul Single-Page (5 Seksi Lengkap)
 
 #### A. Seksi 1: Hero & Operational Overview (`#secOverview`)
 * Informasi Event, Lokasi Auditorium UNNES, dan Tanggal 17 September 2026.
 * Live Countdown Timer presisi detik & Master Clock WIB real-time.
-* Panel 5 Aksioma Operasional Panitia vs Pelayan.
+* **Mission Control Telemetry Stats**: Ringkasan 119 Item Inventaris, 8 Rig Kamera, 11 Workstation Media, dan 3 Sesi Rundown.
 * **Panduan Status Indikator**: `✅` (Terverifikasi & Aktif), `⚠️` (Sebagian / Pending), `☑️` (Standby / Storage).
 * **Simulasi Tata Panggung & Multi-Screen LED (Auditorium UNNES)**:
   * LED Left & Right: Lirik Lagu, Sambutan Bu Grace, dan Presentasi (ProPresenter 1 - Rania).
