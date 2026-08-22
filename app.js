@@ -76,6 +76,8 @@ let state={},filterL='All',query='',unretOnly=false;
 
 document.addEventListener('DOMContentLoaded',()=>{
   tick();setInterval(tick,1000);
+  refreshThemeIcon();refreshPaletteBtn();
+  refreshThemeIcon();refreshPaletteBtn();
   loadState();renderTabs();renderGrid();updateProg();
   initSupabase();spy();
   document.addEventListener('keydown',e=>{
@@ -212,3 +214,54 @@ function fallback(t){
   document.body.removeChild(ta);
 }
 function toast(){const t=document.getElementById('toast');t.style.display='block';setTimeout(()=>t.style.display='none',2200);}
+
+/* THEME + ACCENT */
+const THEMES=['light','dark'];
+const ACCENTS=[
+ {k:'terra',n:'Terracotta'},
+ {k:'sage',n:'Sage'},
+ {k:'blush',n:'Blush'},
+ {k:'lav',n:'Lavender'},
+ {k:'honey',n:'Honey'},
+ {k:'ocean',n:'Dusty Blue'}
+];
+function getTheme(){
+  const s=localStorage.getItem('ip26_theme');
+  if(s==='dark'||s==='light')return s;
+  return window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';
+}
+function setTheme(t){
+  document.documentElement.setAttribute('data-theme',t);
+  localStorage.setItem('ip26_theme',t);
+  refreshThemeIcon();
+}
+function toggleTheme(){setTheme(getTheme()==='dark'?'light':'dark');}
+function refreshThemeIcon(){
+  const i=document.getElementById('themeIcon');
+  if(i)i.textContent=getTheme()==='dark'?'☀️':'🌙';
+  const b=document.getElementById('btnTheme');
+  if(b)b.title=getTheme()==='dark'?'Ke mode terang':'Ke mode gelap';
+}
+function getAccent(){
+  return localStorage.getItem('ip26_accent')||'terra';
+}
+function setAccent(k){
+  if(!ACCENTS.some(a=>a.k===k))k='terra';
+  document.documentElement.setAttribute('data-accent',k);
+  localStorage.setItem('ip26_accent',k);
+  refreshPaletteBtn();
+}
+function cycleAccent(){
+  const cur=getAccent();
+  const idx=Math.max(0,ACCENTS.findIndex(a=>a.k===cur));
+  setAccent(ACCENTS[(idx+1)%ACCENTS.length].k);
+}
+function refreshPaletteBtn(){
+  const b=document.getElementById('btnPalette');
+  if(!b)return;
+  const a=ACCENTS.find(x=>x.k===getAccent())||ACCENTS[0];
+  b.title=a.n+' (klik untuk ganti)';
+}
+// apply saved prefs immediately
+setTheme(getTheme());
+setAccent(getAccent());

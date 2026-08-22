@@ -28,7 +28,9 @@
       <a href="#secRun" class="nav-link-item" id="navRun" onclick="jump('accRun');return false;">Rundown</a>
     </nav>
     <div class="header-right">
-      <div class="telemetry-chip"><span class="live-pulse-dot"></span><span>Supabase</span></div>
+      <button class="ctrl-btn" id="btnPalette" onclick="cycleAccent()" title="Ganti warna pastel" aria-label="Ganti warna pastel"><span class="palette-dots"><i></i><i></i><i></i></span></button>
+      <button class="ctrl-btn" id="btnTheme" onclick="toggleTheme()" title="Mode gelap / terang" aria-label="Mode gelap terang"><span id="themeIcon">🌙</span></button>
+      <div class="telemetry-chip chip-supabase"><span class="live-pulse-dot"></span><span>Supabase</span></div>
       <div class="telemetry-chip"><span class="clock-text" id="clockWIB">--:--:-- WIB</span></div>
     </div>
   </div>
