@@ -32,6 +32,7 @@ The portal provides instant, frictionless, mobile-optimized access to master sig
 | **FR-07** | **Workstation & Operator Matrix** | Status matrix displaying operator names, assigned hardware, and warnings for unallocated units. | P1 |
 | **FR-08** | **Rundown & Screen Mapping Matrix** | Sequential timeline covering Pre-Ibadah, Main Ibadah, and Post-Ibadah media targets. | P1 |
 | **FR-09** | **Proprietary License & Policy Notice** | Expanded operational governance policy embedded in the footer. | P2 |
+| **FR-10** | **Realtime Cloud Inventory Sync** | Multi-device bi-directional inventory checklist synchronization using Supabase PostgreSQL + Realtime WebSockets CDC, tracking independent 'Loading In' (pemasangan) and 'Packing Out' (pengemasan) statuses with crew avatars and timestamps. | P0 |
 
 ---
 

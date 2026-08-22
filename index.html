@@ -13,6 +13,9 @@
   
   <!-- Stylesheet -->
   <link rel="stylesheet" href="style.css" />
+
+  <!-- Supabase JS Client for Realtime Database Sync -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
 <body>
 
@@ -744,6 +747,93 @@
             <button class="filter-pill" data-filter="Jennifer">Jennifer</button>
             <button class="filter-pill" data-filter="Panitia">Panitia</button>
             <button class="filter-pill" data-filter="UNNES">Auditorium UNNES</button>
+          </div>
+        </div>
+
+        <!-- Realtime Cloud Sync Command Center -->
+        <div class="cloud-sync-card" id="cloud-sync-card">
+          <div class="cloud-sync-header">
+            <div class="sync-status-indicator">
+              <span class="status-pulse-dot" id="sync-status-dot"></span>
+              <span class="sync-status-text" id="sync-status-text">🟡 Memeriksa Koneksi Database...</span>
+            </div>
+            <div class="sync-actions">
+              <button class="btn btn-sm btn-secondary" id="btn-open-cloud-config" title="Konfigurasi Database Cloud Supabase">
+                ⚡ Setup Cloud Realtime
+              </button>
+            </div>
+          </div>
+
+          <div class="cloud-sync-body">
+            <!-- Crew Identity Bar -->
+            <div class="crew-identity-bar">
+              <label for="crew-name-input" class="crew-label">👤 Nama / Panggilan Anda:</label>
+              <div class="crew-input-group">
+                <input type="text" id="crew-name-input" class="crew-name-input" placeholder="Masukkan nama Anda (misal: Andreas, Jordan, Wilfred)..." />
+                <span class="crew-saved-badge" id="crew-saved-badge">✓ Tersimpan di Perangkat</span>
+              </div>
+            </div>
+
+            <!-- Live Dual Progress Meters -->
+            <div class="sync-progress-grid">
+              <div class="progress-box progress-loading">
+                <div class="progress-header">
+                  <span class="progress-title">📦 Status Loading In (Pemasangan)</span>
+                  <span class="progress-counter" id="loading-counter-display">0 / 65 (0%)</span>
+                </div>
+                <div class="progress-bar-track">
+                  <div class="progress-bar-fill fill-loading" id="loading-progress-bar" style="width: 0%;"></div>
+                </div>
+              </div>
+
+              <div class="progress-box progress-packing">
+                <div class="progress-header">
+                  <span class="progress-title">🧳 Status Packing Out (Pengemasan)</span>
+                  <span class="progress-counter" id="packing-counter-display">0 / 65 (0%)</span>
+                </div>
+                <div class="progress-bar-track">
+                  <div class="progress-bar-fill fill-packing" id="packing-progress-bar" style="width: 0%;"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Cloud Config Modal -->
+        <div class="modal-overlay" id="cloud-config-modal" style="display: none;">
+          <div class="modal-card">
+            <div class="modal-header">
+              <h3 class="modal-title">⚡ Konfigurasi Realtime Cloud Database (Supabase)</h3>
+              <button class="modal-close-btn" id="btn-close-modal" aria-label="Close modal">✕</button>
+            </div>
+            <div class="modal-body">
+              <p class="modal-desc">
+                Hubungkan portal ke cloud database Supabase agar centang <strong>Loading</strong> dan <strong>Packing</strong> langsung tersinkronisasi instan di HP seluruh crew secara bersamaan.
+              </p>
+              
+              <div class="form-group">
+                <label for="supabase-url-input">Supabase Project URL:</label>
+                <input type="url" id="supabase-url-input" class="form-input" placeholder="https://your-project.supabase.co" />
+              </div>
+
+              <div class="form-group">
+                <label for="supabase-key-input">Supabase Anon Public Key:</label>
+                <input type="password" id="supabase-key-input" class="form-input" placeholder="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..." />
+              </div>
+
+              <div class="modal-notice">
+                <strong>💡 Cara Penggunaan / Setup Cepat:</strong>
+                <ol>
+                  <li>Jalankan skrip <code>supabase-schema.sql</code> di SQL Editor project Supabase kamu.</li>
+                  <li>Salin <strong>Project URL</strong> dan <strong>anon key</strong> ke kolom di atas.</li>
+                  <li>Klik <strong>Simpan & Hubungkan</strong>. Semua HP crew yang membuka link ini akan otomatis tersinkron.</li>
+                </ol>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button class="btn btn-secondary" id="btn-disconnect-cloud">Pakai Mode Lokal (Offline)</button>
+              <button class="btn btn-primary" id="btn-save-cloud-config">Simpan & Hubungkan</button>
+            </div>
           </div>
         </div>
 
