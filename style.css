@@ -863,19 +863,32 @@ code {
 }
 
 /* Mermaid SVG Transparency & Dynamic Theme Adaptations */
+.mermaid svg g.node rect,
+.mermaid svg g.node circle,
+.mermaid svg g.node ellipse,
+.mermaid svg g.node polygon,
+.mermaid svg g.node path,
+.mermaid svg .label-container,
+.mermaid svg .basic.label-container {
+  fill: transparent !important;
+}
+
 [data-theme="dark"] .mermaid svg g.node rect,
 [data-theme="dark"] .mermaid svg g.node circle,
 [data-theme="dark"] .mermaid svg g.node ellipse,
 [data-theme="dark"] .mermaid svg g.node polygon,
-[data-theme="dark"] .mermaid svg g.node path {
-  fill: rgba(255, 255, 255, 0.05) !important;
+[data-theme="dark"] .mermaid svg g.node path,
+[data-theme="dark"] .mermaid svg .label-container {
+  fill: rgba(255, 255, 255, 0.04) !important;
   stroke: var(--border-strong) !important;
 }
 
 [data-theme="dark"] .mermaid svg .nodeLabel,
 [data-theme="dark"] .mermaid svg text,
 [data-theme="dark"] .mermaid svg span,
-[data-theme="dark"] .mermaid svg div {
+[data-theme="dark"] .mermaid svg div,
+[data-theme="dark"] .mermaid svg tspan,
+[data-theme="dark"] .mermaid svg p {
   fill: #f5f5f5 !important;
   color: #f5f5f5 !important;
 }
@@ -897,8 +910,22 @@ code {
   stroke: var(--border-subtle) !important;
 }
 
-[data-theme="dark"] .mermaid svg .edgeLabel {
+[data-theme="dark"] .mermaid svg .cluster text,
+[data-theme="dark"] .mermaid svg .cluster span {
+  fill: var(--accent-cyan) !important;
+  color: var(--accent-cyan) !important;
+}
+
+[data-theme="dark"] .mermaid svg .edgeLabel,
+[data-theme="dark"] .mermaid svg .edgeLabel rect {
   background-color: var(--bg-surface) !important;
+  fill: var(--bg-surface) !important;
+  color: var(--text-secondary) !important;
+}
+
+[data-theme="dark"] .mermaid svg .edgeLabel text,
+[data-theme="dark"] .mermaid svg .edgeLabel span {
+  fill: var(--text-secondary) !important;
   color: var(--text-secondary) !important;
 }
 
@@ -907,7 +934,8 @@ code {
 [data-theme="light"] .mermaid svg g.node circle,
 [data-theme="light"] .mermaid svg g.node ellipse,
 [data-theme="light"] .mermaid svg g.node polygon,
-[data-theme="light"] .mermaid svg g.node path {
+[data-theme="light"] .mermaid svg g.node path,
+[data-theme="light"] .mermaid svg .label-container {
   fill: rgba(0, 0, 0, 0.03) !important;
   stroke: var(--border-strong) !important;
 }
@@ -915,7 +943,9 @@ code {
 [data-theme="light"] .mermaid svg .nodeLabel,
 [data-theme="light"] .mermaid svg text,
 [data-theme="light"] .mermaid svg span,
-[data-theme="light"] .mermaid svg div {
+[data-theme="light"] .mermaid svg div,
+[data-theme="light"] .mermaid svg tspan,
+[data-theme="light"] .mermaid svg p {
   fill: #1c1917 !important;
   color: #1c1917 !important;
 }
@@ -937,8 +967,22 @@ code {
   stroke: var(--border-subtle) !important;
 }
 
-[data-theme="light"] .mermaid svg .edgeLabel {
+[data-theme="light"] .mermaid svg .cluster text,
+[data-theme="light"] .mermaid svg .cluster span {
+  fill: var(--accent-cyan) !important;
+  color: var(--accent-cyan) !important;
+}
+
+[data-theme="light"] .mermaid svg .edgeLabel,
+[data-theme="light"] .mermaid svg .edgeLabel rect {
   background-color: var(--bg-surface) !important;
+  fill: var(--bg-surface) !important;
+  color: var(--text-secondary) !important;
+}
+
+[data-theme="light"] .mermaid svg .edgeLabel text,
+[data-theme="light"] .mermaid svg .edgeLabel span {
+  fill: var(--text-secondary) !important;
   color: var(--text-secondary) !important;
 }
 
@@ -1100,17 +1144,37 @@ code {
    8. SUBSYSTEMS DEEP-DIVE CARDS
    -------------------------------------------------------------------------- */
 .subsystems-grid {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-6);
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--space-5);
+  align-items: stretch;
+}
+
+@media (max-width: 960px) {
+  .subsystems-grid {
+    grid-template-columns: 1fr;
+  }
 }
 
 .subsystem-card {
   background: var(--bg-surface);
   border: 1px solid var(--border-subtle);
   border-radius: var(--radius-lg);
-  padding: var(--space-6);
+  padding: var(--space-5);
   box-shadow: var(--shadow-sm);
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.subsystem-card:last-child:nth-child(odd) {
+  grid-column: 1 / -1;
+}
+
+.subsystem-body {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
 }
 
 .subsystem-header {

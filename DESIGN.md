@@ -94,10 +94,11 @@ The visual language is inspired by high-end professional broadcast control rooms
     6. *Sub-Flowchart 4: Stage Time Keeper System*
     7. *Sub-Flowchart 5: Electrical & Power Distribution System*
 
-### D. Cards, Hardware Bins & Tables
+### D. Cards, Hardware Bins & 2-Column Subsystem Grid
 - Subtly rounded corners (`border-radius: 14px`).
 - 1px hairline technical borders (`1px solid var(--border-subtle)`).
 - Micro-lift hover animation (`transform: translateY(-2px)`) with 200ms cubic-bezier transition.
+- **2-Column Responsive Subsystem Grid (`.subsystems-grid`):** Displays the 5 deep-dive technical chains side-by-side in a 2-column grid on desktop/tablets (collapsing cleanly on mobile) paired with horizontal `flowchart LR` diagrams to drastically eliminate vertical scrolling fatigue.
 - **Direct Tactile Checkboxes:** Streamlined 32×32px responsive checkboxes with SVG checkmarks (`✓`) directly synchronized to Supabase Cloud with crew timestamps.
 
 ### E. Modals & Dialogs

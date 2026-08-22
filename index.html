@@ -579,16 +579,15 @@ flowchart LR
             <div class="subsystem-body">
               <div class="mermaid-container">
                 <pre class="mermaid">
-flowchart TD
-    SW_OUT[Program / Aux Output Switcher Cinetreak V1] -->|HDMI 1M GIA| SPL4[HDMI Splitter 4CH UKK/GKJ]
+flowchart LR
+    SW_OUT[Switcher Cinetreak V1] -->|HDMI 1M| SPL4[Splitter 4CH]
     
-    SPL4 -->|HDMI 1.5M Andreas| CAP_OWL1[HDMI Capture OWL] --> P1_IN[Laptop ProPresenter 1 Rania]
-    SPL4 -->|HDMI 1.5M Andreas| CAP_ABON[HDMI Capture ABON] --> RES_IN1[Input 1: Resolume Arena Andreas]
-    
-    P2_OUT[Laptop ProPresenter 2 Filia] -->|HDMI 1.5M Andreas| CAP_OWL2[HDMI Capture OWL] --> RES_IN2[Input 2: Resolume Arena Andreas]
+    SPL4 -->|Capture OWL| P1_IN[ProPresenter 1 Rania]
+    SPL4 -->|Capture ABON| RES_IN1[Resolume In 1]
+    P2_OUT[ProPresenter 2 Filia] -->|Capture OWL| RES_IN2[Resolume In 2]
 
-    P1_IN -->|HDMI 20M UNNES| NOV1[Novastar Processor 1] --> LED_SIDE[LED Screen Left, Right & Back]
-    RES_IN1 & RES_IN2 --> RES_OUT[Output Resolume] -->|HDMI 15M GKJ| CAP_GKJ[HDMI Capture GKJ] --> PC_UN[PC UNNES Passthrough] --> NOV2[Novastar Processor 2] --> LED_MID[LED Screen Center Stage]
+    P1_IN -->|HDMI 20M| NOV1[Novastar 1] --> LED_SIDE[LED Left/Right/Back]
+    RES_IN1 & RES_IN2 --> RES_OUT[Resolume Andreas] -->|HDMI 15M| PC_UN[PC UNNES] --> NOV2[Novastar 2] --> LED_MID[LED Center Main]
                 </pre>
               </div>
               <div class="tech-route-box">
@@ -619,19 +618,17 @@ flowchart TD
             <div class="subsystem-body">
               <div class="mermaid-container">
                 <pre class="mermaid">
-flowchart TD
-    STAGE_SRC[Vokal, Musik, & Panggung] --> QL5_MAIN[Master Digital Mixer Yamaha QL5 UNNES]
-    RES_AUDIO[Laptop Resolume Playback] -->|USB-C DAC Hanason/Oraimo| AUD_20M[Kabel Audio 20M UNNES] --> QL5_MAIN
+flowchart LR
+    STAGE_SRC[Stage Mics & Musik] --> QL5_MAIN[Yamaha QL5 UNNES]
+    RES_AUDIO[Resolume Playback] -->|USB-C DAC + Audio 20M| QL5_MAIN
     
-    QL5_MAIN -.->|Jaringan WiFi UNNES-ID| VM1_APP[Virtual Mixer 1 Laptop Andreas]
-    QL5_MAIN -.->|Jaringan WiFi UNNES-ID| VM2_APP[Virtual Mixer 2 iPad Jennifer]
+    QL5_MAIN -.->|WiFi UNNES-ID| VM_REMOTE[VM Laptop & iPad Jennifer]
+    QL5_MAIN -->|XLR 10M + XLR 3M| CT80S_IN[NewBaxs CT80S GIA]
     
-    QL5_MAIN -->|XLR 10M 2X UKK + XLR 3M 2X GIA| CT80S_IN[Mixer NewBaxs CT80S GIA]
+    CT80S_IN -->|USB Data Cable| OBS_IN[OBS Studio Stream]
+    SW_CAM[Switcher Video Feed] -->|USB Cable| OBS_IN
     
-    CT80S_IN -->|USB A to C Data GIA + Extender 2M Andreas| OBS_IN[Workstation OBS Studio]
-    SW_CAM[Switcher Cinetreak V1 Video Feed] -->|USB A to C Data Andreas| OBS_IN
-    
-    OBS_IN --> STREAM_OUT[🚀 YouTube / Online Live Stream]
+    OBS_IN --> STREAM_OUT[🚀 YouTube Live]
                 </pre>
               </div>
               <div class="tech-route-box">
@@ -695,16 +692,16 @@ flowchart LR
             <div class="subsystem-body">
               <div class="mermaid-container">
                 <pre class="mermaid">
-flowchart TD
-    SOURCE[⚡ Sumber Daya Listrik Auditorium UNNES] --> MAIN_PANEL[Panel Utama Distribusi]
+flowchart LR
+    SOURCE[⚡ Daya UNNES] --> MAIN_PANEL[Panel Utama]
     
-    MAIN_PANEL --> T1[Terminal Cable XCH Andreas<br/><b>Meja Broadcast & Streaming</b>]
-    MAIN_PANEL --> T2[Terminal Cable XCH UKK<br/><b>Meja Visual & Switcher</b>]
-    MAIN_PANEL --> T3[Terminal Cable XCH Panitia<br/><b>Area FOH Audio & Panggung</b>]
+    MAIN_PANEL --> T1[Terminal Andreas<br/><b>Broadcast & OBS</b>]
+    MAIN_PANEL --> T2[Terminal UKK<br/><b>Visual & Switcher</b>]
+    MAIN_PANEL --> T3[Terminal Panitia<br/><b>Audio & Stage</b>]
 
-    T1 --> D_BROADCAST[Laptop OBS, Charger Kamera, DAC, Extender, Aksesoris]
-    T2 --> D_VISUAL[Switcher Cinetreak, Splitter 4CH, TV Kezia, ProPresenter 1 & 2, Resolume]
-    T3 --> D_AUDIO[Mixer NewBaxs CT80S, Virtual Mixer 1, TV Stage Darrel, Stand Wireless RX]
+    T1 --> D_BROADCAST[Laptop OBS, Charger Cam, DAC]
+    T2 --> D_VISUAL[Cinetreak, Splitter, ProPresenter, Resolume]
+    T3 --> D_AUDIO[CT80S, VM1, TV Stage, Stand Wireless]
                 </pre>
               </div>
               <div class="tech-route-box">

@@ -908,19 +908,41 @@ document.addEventListener('DOMContentLoaded', () => {
         themeVariables: {
           darkMode: isDark,
           background: 'transparent',
-          mainBkg: isDark ? 'rgba(255, 255, 255, 0.05)' : 'rgba(0, 0, 0, 0.03)',
+          mainBkg: 'transparent',
+          nodeBkg: 'transparent',
           nodeBorder: isDark ? '#484848' : '#d0c7b8',
           nodeTextColor: isDark ? '#f5f5f5' : '#1c1917',
           lineColor: isDark ? '#00d2ff' : '#0284c7',
           textColor: isDark ? '#f5f5f5' : '#1c1917',
-          primaryColor: isDark ? 'rgba(255, 255, 255, 0.05)' : 'rgba(0, 0, 0, 0.03)',
+          primaryColor: 'transparent',
           primaryTextColor: isDark ? '#f5f5f5' : '#1c1917',
           primaryBorderColor: isDark ? '#484848' : '#d0c7b8',
-          clusterBkg: isDark ? 'rgba(255, 255, 255, 0.02)' : 'rgba(0, 0, 0, 0.02)',
+          clusterBkg: 'transparent',
           clusterBorder: isDark ? '#333333' : '#e5dfd3',
           titleColor: isDark ? '#f5f5f5' : '#1c1917',
           edgeLabelBackground: isDark ? '#1f1f1f' : '#ffffff'
         },
+        themeCSS: `
+          .node rect, .node circle, .node ellipse, .node polygon, .node path, .label-container, .basic.label-container {
+            fill: ${isDark ? 'rgba(255, 255, 255, 0.04)' : 'rgba(0, 0, 0, 0.03)'} !important;
+            stroke: ${isDark ? '#484848' : '#d0c7b8'} !important;
+          }
+          .cluster rect {
+            fill: transparent !important;
+            stroke: ${isDark ? '#333333' : '#e5dfd3'} !important;
+          }
+          .edgeLabel {
+            background-color: ${isDark ? '#1f1f1f' : '#ffffff'} !important;
+            color: ${isDark ? '#cccccc' : '#44403c'} !important;
+          }
+          .flowchart-link, .edgePaths path, path.flowchart-link {
+            stroke: ${isDark ? '#00d2ff' : '#0284c7'} !important;
+          }
+          .node .label, .nodeLabel, text, tspan, p, span, div {
+            fill: ${isDark ? '#f5f5f5' : '#1c1917'} !important;
+            color: ${isDark ? '#f5f5f5' : '#1c1917'} !important;
+          }
+        `,
         flowchart: {
           useMaxWidth: true,
           htmlLabels: true,
