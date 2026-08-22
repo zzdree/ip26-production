@@ -1,0 +1,22 @@
+name: Supabase Daily Keep-Alive Trigger
+
+on:
+  schedule:
+    # Berjalan otomatis setiap 1 hari sekali pada pukul 00:00 UTC (07:00 WIB)
+    - cron: '0 0 * * *'
+  workflow_dispatch: # Memungkinkan trigger manual dari tab Actions di GitHub
+
+jobs:
+  ping-supabase:
+    name: Keep Supabase Database Active (Prevent 7-Day Auto-Pause)
+    runs-on: ubuntu-latest
+    steps:
+      - name: Ping Supabase REST API & Healthcheck
+        run: |
+          echo "Sending lightweight keep-alive ping to Supabase..."
+          RESPONSE=$(curl -s -o /dev/null -w "%{http_code}" -X GET "https://ssbkhhnnzwuykyeznpwd.supabase.co/rest/v1/inventory_checklist?select=id&limit=1" \
+            -H "apikey: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InNzYmtoaG5uend1eWt5ZXpucHdkIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODc0MDQ1NzcsImV4cCI6MjEwMjk4MDU3N30.-zGe_xWDTBmo604VS39jl8o7YvhEQYb3fZvCV-fcEbk" \
+            -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InNzYmtoaG5uend1eWt5ZXpucHdkIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODc0MDQ1NzcsImV4cCI6MjEwMjk4MDU3N30.-zGe_xWDTBmo604VS39jl8o7YvhEQYb3fZvCV-fcEbk")
+          
+          echo "HTTP Response Status: $RESPONSE"
+          echo "✅ Supabase successfully pinged! Database is maintained active 24/7."

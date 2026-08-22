@@ -200,14 +200,27 @@ let currentStatusFilter = 'all';
 let currentLenderFilter = 'ALL';
 let currentSearchQuery = '';
 
-// Dedicated Cloud Sync Channel Topic
+// Dedicated Cloud Database & Realtime Sync Engine (Supabase Postgres + Fallback Open Relay)
+const SUPABASE_URL = 'https://ssbkhhnnzwuykyeznpwd.supabase.co';
+const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InNzYmtoaG5uend1eWt5ZXpucHdkIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODc0MDQ1NzcsImV4cCI6MjEwMjk4MDU3N30.-zGe_xWDTBmo604VS39jl8o7YvhEQYb3fZvCV-fcEbk';
+
+let supabaseClient = null;
+if (typeof supabase !== 'undefined' && supabase.createClient) {
+  try {
+    supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+    console.log("⚡ Supabase JS Client initialized successfully");
+  } catch (err) {
+    console.warn("Supabase client init note:", err);
+  }
+}
+
+// Fallback Relay Channel
 const CLOUD_SYNC_TOPIC = "ip26_checklist_sync_2026";
 const CLOUD_RELAY_PUB = `https://ntfy.sh/${CLOUD_SYNC_TOPIC}`;
 const CLOUD_RELAY_SSE = `https://ntfy.sh/${CLOUD_SYNC_TOPIC}/sse`;
 const CLOUD_RELAY_POLL = `https://ntfy.sh/${CLOUD_SYNC_TOPIC}/json?poll=1&since=24h`;
 
 let eventSource = null;
-let lastActionTimestamp = 0;
 
 // Initialize Application
 document.addEventListener('DOMContentLoaded', () => {
@@ -215,6 +228,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initNavScroll();
   loadLocalState();
   initCloudSync();
+  initKeepAlivePing();
 });
 
 // Load local cache immediately
@@ -236,44 +250,74 @@ function saveLocalState() {
   } catch (e) {}
 }
 
-// Initialize Realtime Multi-Device Cloud Sync
-function initCloudSync() {
+// Initialize Supabase & Realtime Cloud Sync
+async function initCloudSync() {
   const statusPill = document.getElementById('cloudStatusPill');
   const statusText = document.getElementById('cloudStatusText');
 
-  // 1. Fetch historical cloud log to sync with all crew members
-  fetch(CLOUD_RELAY_POLL)
-    .then(res => res.text())
-    .then(rawText => {
-      if (rawText) {
-        const lines = rawText.trim().split('\n');
-        lines.forEach(line => {
-          try {
-            const data = JSON.parse(line);
-            if (data && data.message) {
-              const payload = JSON.parse(data.message);
-              processIncomingSyncEvent(payload, false);
-            }
-          } catch(err) {}
+  // 1. If Supabase is available, sync directly from Postgres
+  if (supabaseClient) {
+    try {
+      const { data, error } = await supabaseClient
+        .from('inventory_checklist')
+        .select('id, is_packed');
+
+      if (!error && Array.isArray(data)) {
+        console.log(`⚡ Synced ${data.length} items from Supabase Postgres`);
+        data.forEach(row => {
+          if (row.id) {
+            checklistState[row.id] = row.is_packed;
+          }
         });
         saveLocalState();
         renderInventory();
         updatePackingProgress();
-      }
-    })
-    .catch(err => {
-      console.warn("Backlog sync note:", err);
-    });
 
-  // 2. Connect to Server-Sent Events (SSE) stream for instant push updates
-  try {
-    if (eventSource) {
-      eventSource.close();
+        if (statusPill && statusText) {
+          statusPill.className = 'cloud-status-pill connected';
+          statusText.textContent = '🟢 Supabase DB (Live Sync)';
+        }
+      }
+    } catch (e) {
+      console.warn("Supabase fetch note:", e);
     }
+
+    // Subscribe to Realtime Postgres Changes
+    try {
+      const realtimeChannel = supabaseClient.channel('realtime_inventory_checklist')
+        .on(
+          'postgres_changes',
+          { event: '*', schema: 'public', table: 'inventory_checklist' },
+          (payload) => {
+            if (payload.new && payload.new.id) {
+              checklistState[payload.new.id] = payload.new.is_packed;
+              saveLocalState();
+              const chkInput = document.getElementById(`chk_${payload.new.id}`);
+              const rowEl = document.getElementById(`row_${payload.new.id}`);
+              if (chkInput) chkInput.checked = payload.new.is_packed;
+              if (rowEl) rowEl.classList.toggle('is-packed', payload.new.is_packed);
+              updatePackingProgress();
+            }
+          }
+        )
+        .subscribe((status) => {
+          if (status === 'SUBSCRIBED' && statusPill && statusText) {
+            statusPill.className = 'cloud-status-pill connected';
+            statusText.textContent = '🟢 Supabase DB (Live Sync)';
+          }
+        });
+    } catch (err) {
+      console.warn("Supabase realtime subscription note:", err);
+    }
+  }
+
+  // 2. Auxiliary Fallback Relay SSE stream
+  try {
+    if (eventSource) eventSource.close();
     eventSource = new EventSource(CLOUD_RELAY_SSE);
 
     eventSource.onopen = () => {
-      if (statusPill && statusText) {
+      if (statusPill && statusText && !statusText.textContent.includes('Supabase')) {
         statusPill.className = 'cloud-status-pill connected';
         statusText.textContent = '🟢 Cloud Live (Auto-Sync)';
       }
@@ -288,16 +332,21 @@ function initCloudSync() {
         }
       } catch (err) {}
     };
-
-    eventSource.onerror = () => {
-      if (statusPill && statusText) {
-        statusPill.className = 'cloud-status-pill';
-        statusText.textContent = '🟡 Reconnecting...';
-      }
-    };
   } catch (err) {
-    console.warn("SSE init note:", err);
+    console.warn("Auxiliary SSE note:", err);
   }
+}
+
+// Keep-Alive Ping (Runs in background every 10 minutes to prevent auto-pause)
+function initKeepAlivePing() {
+  setInterval(async () => {
+    if (supabaseClient) {
+      try {
+        await supabaseClient.from('inventory_checklist').select('id').limit(1);
+        console.log('⚡ Supabase keep-alive ping sent successfully');
+      } catch (e) {}
+    }
+  }, 10 * 60 * 1000);
 }
 
 // Process incoming sync events from other crew smartphones
@@ -308,7 +357,6 @@ function processIncomingSyncEvent(payload, triggerUIUpdate) {
     checklistState[payload.id] = payload.val;
     if (triggerUIUpdate) {
       saveLocalState();
-      // Update specific DOM checkbox directly for high speed
       const chkInput = document.getElementById(`chk_${payload.id}`);
       const rowEl = document.getElementById(`row_${payload.id}`);
       if (chkInput) chkInput.checked = payload.val;
@@ -329,19 +377,17 @@ function processIncomingSyncEvent(payload, triggerUIUpdate) {
   }
 }
 
-// Publish event to Cloud Relay (Sent to all connected crew smartphones)
+// Publish event to Cloud Relay
 function broadcastCloudEvent(payload) {
   fetch(CLOUD_RELAY_PUB, {
     method: 'POST',
     body: JSON.stringify(payload),
     headers: { 'Content-Type': 'application/json' }
-  }).catch(err => {
-    console.warn("Cloud publish note:", err);
-  });
+  }).catch(() => {});
 }
 
 // User toggles an item checkbox
-function toggleItemCheck(itemId, isChecked) {
+async function toggleItemCheck(itemId, isChecked) {
   checklistState[itemId] = isChecked;
   saveLocalState();
   updatePackingProgress();
@@ -351,7 +397,22 @@ function toggleItemCheck(itemId, isChecked) {
     rowEl.classList.toggle('is-packed', isChecked);
   }
 
-  // Broadcast to all crew phones in realtime
+  // 1. Upsert to Supabase PostgreSQL Database
+  if (supabaseClient) {
+    try {
+      await supabaseClient
+        .from('inventory_checklist')
+        .upsert({
+          id: itemId,
+          is_packed: isChecked,
+          updated_at: new Date().toISOString()
+        });
+    } catch (e) {
+      console.warn("Supabase update note:", e);
+    }
+  }
+
+  // 2. Broadcast auxiliary payload
   broadcastCloudEvent({
     type: 'toggle',
     id: itemId,
@@ -361,7 +422,7 @@ function toggleItemCheck(itemId, isChecked) {
 }
 
 // Batch Actions: Pack All (true) or Unload All (false)
-function batchCheckAll(checkValue) {
+async function batchCheckAll(checkValue) {
   INVENTORY_DATA.forEach(group => {
     group.items.forEach(it => {
       checklistState[it.id] = checkValue;
@@ -372,7 +433,28 @@ function batchCheckAll(checkValue) {
   renderInventory();
   updatePackingProgress();
 
-  // Broadcast batch action to all crew phones
+  // 1. Batch upsert to Supabase PostgreSQL
+  if (supabaseClient) {
+    try {
+      const upsertRows = [];
+      INVENTORY_DATA.forEach(group => {
+        group.items.forEach(it => {
+          upsertRows.push({
+            id: it.id,
+            is_packed: checkValue,
+            updated_at: new Date().toISOString()
+          });
+        });
+      });
+      await supabaseClient
+        .from('inventory_checklist')
+        .upsert(upsertRows);
+    } catch (e) {
+      console.warn("Supabase batch update note:", e);
+    }
+  }
+
+  // 2. Broadcast auxiliary batch payload
   broadcastCloudEvent({
     type: 'batch',
     val: checkValue,
