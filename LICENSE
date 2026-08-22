@@ -1,14 +1,87 @@
-PROPRIETARY & CONFIDENTIAL
+================================================================================
+          PROPRIETARY, CONFIDENTIAL & INTERNAL OPERATIONAL LICENSE
+================================================================================
+
+EVENT: Ibadah Perdana UKK UNNES 2026
+VENUE: Gedung Auditorium Universitas Negeri Semarang (UNNES)
+ORGANIZER: Panitia Ibadah Perdana UKK UNNES 2026
+TECHNICAL LEAD: System Engineer & Media Production Team
 
 Copyright (c) 2026 Panitia Ibadah Perdana UKK UNNES & Technical Production Team.
+All Rights Reserved.
 
-All rights reserved.
+--------------------------------------------------------------------------------
+1. DEFINITIONS & SCOPE OF PROTECTED ASSETS
+--------------------------------------------------------------------------------
+This repository and all associated documentation, files, diagrams, specifications, 
+and configurations (collectively referred to as "Technical Materials") comprise 
+proprietary operational and technical guidelines designed specifically for the 
+execution of Ibadah Perdana UKK UNNES 2026.
 
-This repository, including but not limited to its system architecture, signal flow diagrams, 
-technical routing specifications, equipment inventory lists, and rundown media mappings, 
-is strictly private and intended exclusively for authorized members of the UKK UNNES 
-Production and Technical Crew.
+Protected Technical Materials include, but are not limited to:
+a. Broadcast, Camera Acquisition, and Wireless Video Transmission System Schematics.
+b. Master Signal Flow, Video Switching, HDMI Splitter, and Multi-Screen LED Mapping Protocols.
+c. Audio Sub-Mixing, Digital Routing (Yamaha QL5 & NewBaxs CT80S), and FOH Remote Architecture.
+d. Stage Time Keeper and Independent Stage Monitoring Workflows.
+e. Electrical and Power Distribution Safety and Ground-Loop Prevention Topologies.
+f. Master Inventory, Equipment Tracking, Ownership Attribution, and Storage Allocations.
+g. Rundown Sequences, Media Asset Target Displays, and Operator Responsibility Matrices.
 
-Unauthorized copying, distribution, modification, public display, or commercial exploitation 
-of any part of this repository without express written permission from the copyright holders 
-is strictly prohibited.
+--------------------------------------------------------------------------------
+2. GRANT OF INTERNAL ACCESS & AUTHORIZED USE
+--------------------------------------------------------------------------------
+Access to and use of these Technical Materials is strictly limited to authorized 
+members of:
+a. Panitia Ibadah Perdana UKK UNNES 2026 (Organizing Committee).
+b. System Engineers, Media Engineers, and Creative Engineers.
+c. Assigned Camera Operators, Audio Technicians, Visual/Lyrics Operators, and Stage Crews.
+d. Authorized volunteers and technical servants acting under the direct supervision 
+   of the Production Lead / System Engineer.
+
+Authorized personnel are granted a non-exclusive, non-transferable, revocable right 
+to consult, review, and execute these materials solely for the preparation, rehearsal, 
+live production, and post-event decommissioning of Ibadah Perdana UKK UNNES 2026.
+
+--------------------------------------------------------------------------------
+3. RESTRICTIONS & PROHIBITED ACTIONS
+--------------------------------------------------------------------------------
+Except as expressly authorized in writing by the System Engineer or Production Lead, 
+any party possessing or accessing this repository is strictly prohibited from:
+a. Copying, publishing, distributing, licensing, sublicensing, or transmitting 
+   these Technical Materials to external parties or unauthorized public forums.
+b. Making public mirrors, forks, or derivative works without explicit written 
+   consent from the technical leadership.
+c. Utilizing these proprietary system schematics, wiring plans, or operational 
+   blueprints for non-affiliated commercial productions or unauthorized third-party events.
+d. Altering equipment attribution records, inventory tracking labels, or safety 
+   guidelines without proper technical review and authorization.
+
+--------------------------------------------------------------------------------
+4. EQUIPMENT RESPONSIBILITY, SAFETY & INTEGRITY
+--------------------------------------------------------------------------------
+a. All hardware, cameras, lenses, converters, splitters, mixers, transmitters, and 
+   laptops listed within the inventory records are loaned in good faith from 
+   respective vendors, churches (GIA Deliksari, GKJ Ngaliyan), campus organizations 
+   (UKK UNNES), venue facilities (Auditorium UNNES), and personal contributors.
+b. Handlers, operators, and technical crews are required to exercise the highest 
+   standards of operational care, electrical safety protocols, and physical security 
+   during setup, live operation, and teardown ("usung-usung").
+c. Any equipment anomaly, signal degradation, physical defect, or missing item must 
+   be immediately reported to the System Engineer (Andreas) and Media Lead (Richard).
+
+--------------------------------------------------------------------------------
+5. MODIFICATIONS, GOVERNANCE & AMENDMENTS
+--------------------------------------------------------------------------------
+The Production Lead / System Engineer reserves the full authority to modify, 
+expand, amend, or revoke technical pipelines, routing topologies, operator 
+allocations, and inventory statuses at any time prior to or during the event to 
+ensure operational excellence and maximum system stability.
+
+--------------------------------------------------------------------------------
+6. DISCLAIMER OF EXTERNAL WARRANTY
+--------------------------------------------------------------------------------
+THESE TECHNICAL MATERIALS ARE PROVIDED "AS IS" EXCLUSIVELY FOR INTERNAL EVENT 
+EXECUTION. THE PRODUCTION TEAM MAKES NO WARRANTIES REGARDING APPLICABILITY FOR 
+EXTERNAL PRODUCTION ENVIRONMENTS OUTSIDE THE SPECIFIC CONTEXT OF AUDITORIUM UNNES 
+AND IBADAH PERDANA UKK UNNES 2026.
+================================================================================

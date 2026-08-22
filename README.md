@@ -557,16 +557,47 @@ flowchart TD
 
 ---
 
-## 🔒 License
+## 🔒 License & Operational Policy
 
 ```text
-PROPRIETARY & CONFIDENTIAL
+================================================================================
+          PROPRIETARY, CONFIDENTIAL & INTERNAL OPERATIONAL LICENSE
+================================================================================
+
+EVENT: Ibadah Perdana UKK UNNES 2026
+VENUE: Gedung Auditorium Universitas Negeri Semarang (UNNES)
+ORGANIZER: Panitia Ibadah Perdana UKK UNNES 2026
+TECHNICAL LEAD: System Engineer & Media Production Team
+
 Copyright (c) 2026 Panitia Ibadah Perdana UKK UNNES & Technical Production Team.
+All Rights Reserved.
 
-All rights reserved.
+1. DEFINITIONS & SCOPE
+   This repository and all associated documentation, files, diagrams, specifications, 
+   and configurations comprise proprietary operational and technical guidelines 
+   designed specifically for the execution of Ibadah Perdana UKK UNNES 2026.
 
-This repository, including but not limited to its system architecture, signal flow diagrams, 
-technical routing specifications, equipment inventory lists, and rundown media mappings, 
-is strictly private and intended exclusively for authorized members of the UKK UNNES 
-Production and Technical Crew.
+2. AUTHORIZED USE & INTERNAL ACCESS
+   Access to and use of these Technical Materials is strictly limited to authorized 
+   members of Panitia Ibadah Perdana UKK UNNES 2026, System Engineers, Media Engineers, 
+   Creative Engineers, Camera/Audio/Visual Operators, and authorized technical servants.
+
+3. RESTRICTIONS
+   Unauthorized duplication, public mirroring, fork publication, external transmission, 
+   or commercial utilization of these routing topologies, system schematics, or 
+   equipment records without prior written consent from the Technical Leadership 
+   is strictly prohibited.
+
+4. EQUIPMENT RESPONSIBILITY & INTEGRITY
+   All listed equipment represents valuable assets loaned in trust from OWL, ABON, 
+   Andreas, GIA Deliksari, GKJ Ngaliyan, UKK UNNES, Auditorium UNNES, and personal 
+   contributors. All handlers and operators are bound to maintain electrical safety 
+   protocols and standard operational procedures throughout setup, event, and teardown.
+
+5. GOVERNANCE
+   The System Engineer / Production Lead reserves all rights to update, modify, 
+   or adapt these operational guidelines to ensure maximum stability during live production.
+================================================================================
 ```
+Lihat dokumen lengkap pada file [LICENSE](./LICENSE).
+
