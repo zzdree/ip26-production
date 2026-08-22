@@ -46,6 +46,7 @@ The portal provides instant, frictionless, mobile-optimized access to master sig
 2. **Accessibility (a11y):** WCAG 2.1 AA compliant contrast ratios in both dark and light modes; keyboard accessible navigation (`Tab`, `Escape` modals, `Skip-to-content` link); clean hairline default borders with high-visibility focused outlines strictly on active/hovered elements. Bottom-right floating toasts with auto-dismiss and stack animation.
 3. **Responsiveness:** Fluid scaling across ultra-compact mobile (320px), standard tablets (768px), compact laptop viewports (1024px), and wide monitors (1440px+).
 4. **Zero-Build Architecture:** Pure Vanilla HTML5, CSS3, and modern ES6+ JavaScript for maximum longevity, independence from build tool obsolescence, and instant execution via standard web browsers.
+5. **Database Availability & Anti-Pause Automation:** Automated GitHub Actions cron trigger (`supabase-keep-alive.yml`) pinging the Supabase REST API twice daily (`0 0,12 * * *`) to ensure the cloud database remains continuously active and never paused by Supabase free-tier 7-day inactivity policies.
 
 ---
 
