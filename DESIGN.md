@@ -1,120 +1,111 @@
 # 🎨 DESIGN SYSTEM SPECIFICATION (DESIGN.md)
-## IP26 Broadcast Command Suite — Minimalist Studio Edition
+## IP26 Broadcast Command Suite — Genesis Light Studio Edition
 
 ---
 
 ### 1. Filosofi & Visi Desain
-Sistem desain **IP26 Broadcast Command Suite (Minimalist Studio Edition)** dirancang dengan filosofi **"Clarity over Clutter, Function over Fluff"** yang terinspirasi dari standar desain alat pengembang dan ruang kontrol modern (*Raycast, Linear, & Apple Pro Tools*).
+Sistem desain **IP26 Broadcast Command Suite (Genesis Light Studio Edition)** dirancang berdasarkan standar desain editorial modern dari **DesignMD (`chef/genesis`)**, Linear Studio, dan Apple Pro Developer Tools.
 
 * **Prinsip Utama**:
-  1. **Task-Oriented Modularity**: Membagi informasi kompleks menjadi 4 modul terfokus (*Inventaris, Kamera, Routing, Rundown*) agar kru di lapangan tidak mengalami kelelahan visual (*visual fatigue*).
-  2. **High-Contrast Readability**: Memastikan seluruh teks teknis terbaca dengan kontras sempurna baik di monitor workstation indoor maupun layar HP di bawah pencahayaan dinamis panggung.
-  3. **Zero-Lag 144Hz Performance**: Menghilangkan efek blur berat (*backdrop-filter*) dan animasi kontinu yang menguras baterai HP/laptop. Menggunakan *hardware-accelerated compositing* murni.
-  4. **Frictionless Interaction**: Input pencarian ter-*debounce* 35ms, centang checkbox berkecepatan 0ms (*optimistic UI*), dan tombol *1-Click Copy Brief* untuk koordinasi kilat.
+  1. **Clarity & High Contrast**: Menggunakan warna dasar *Soft Slate Light* (`#F8FAFC`) dengan kartu *Pure White* (`#FFFFFF`) untuk kenyamanan mata maksimal di lingkungan kerja terang atau panggung.
+  2. **Task-Oriented 4-Tab Modularity**: Membagi informasi produksi menjadi 4 modul independen (*Inventaris & Packing, Rig Kamera, Routing Sinyal, Rundown & Tim*) untuk menghilangkan *visual overload*.
+  3. **Zero-Lag 144Hz Architecture**: Bebas dari kalkulasi blur berat (`backdrop-filter`) dan bebas dari animasi kontinu yang membebani GPU/CPU perangkat.
+  4. **Frictionless Field Usability**: Checkbox berkecepatan 0ms (*optimistic UI*), *search filter* ter-*debounce* 35ms, dan tombol *1-Click Copy Brief*.
 
 ---
 
-### 2. Hierarki Warna & Permukaan (Obsidian Dark Palette)
+### 2. Hierarki Permukaan & Palet Warna (Genesis Light Palette)
 
 ```
 ┌────────────────────────────────────────────────────────────────────────┐
-│ LEVEL 0: Canvas Base (#0c0d12)                                        │
+│ LEVEL 0: Canvas Base (#F8FAFC - Soft Slate Light)                      │
 │   ┌──────────────────────────────────────────────────────────────────┐ │
-│   │ LEVEL 1: Header & Nav Containers (#10121a)                       │ │
+│   │ LEVEL 1: Header & Navigation Containers (#FFFFFF - Pure White)   │ │
 │   │   ┌────────────────────────────────────────────────────────────┐ │ │
-│   │   │ LEVEL 2: Cards & Group Panels (#151822 / Hover: #1b1f2c)   │ │ │
+│   │   │ LEVEL 2: Cards & Modul (#FFFFFF + Border: #E2E8F0)         │ │ │
 │   │   │   ┌──────────────────────────────────────────────────────┐ │ │ │
-│   │   │   │ LEVEL -1: Inset / Search Cavities (#090a0e)          │ │ │ │
+│   │   │   │ LEVEL -1: Input & Sub-list Cavities (#F1F5F9)        │ │ │ │
 │   │   │   └──────────────────────────────────────────────────────┘ │ │ │
 │   │   └────────────────────────────────────────────────────────────┘ │ │
 │   └──────────────────────────────────────────────────────────────────┘ │
 └────────────────────────────────────────────────────────────────────────┘
 ```
 
-#### Palet Warna Utama:
-| Token CSS | Hex / RGBA | Penggunaan / Konteks |
+#### Palet Warna Permukaan (Surface Tokens):
+| Token CSS | Nilai Hex | Fungsi / Konteks |
 | :--- | :--- | :--- |
-| `--bg-canvas` | `#0c0d12` | Warna latar belakang dasar halaman |
-| `--bg-header` | `#10121a` | Latar header sticky & footer |
-| `--bg-card` | `#151822` | Kartu inventaris, spek rig, dan tabel |
-| `--bg-card-hover` | `#1b1f2c` | Status hover interaktif pada kartu |
-| `--bg-inset` | `#090a0e` | Kotak input pencarian & sub-list detail |
-| `--border` | `rgba(255, 255, 255, 0.08)` | Hairline border presisi 1px |
-| `--border-hover` | `rgba(255, 255, 255, 0.18)` | Highlight border saat elemen disentuh/hover |
+| `--bg-canvas` | `#F8FAFC` | Latar belakang kanvas aplikasi (Slate 50) |
+| `--bg-header` | `#FFFFFF` | Latar header sticky & footer |
+| `--bg-card` | `#FFFFFF` | Latar kartu inventaris, spek rig, dan tabel |
+| `--bg-card-hover` | `#FCFDFE` | Status hover interaktif pada kartu |
+| `--bg-inset` | `#F1F5F9` | Kotak pencarian, tag filter, dan sub-detail |
+| `--border` | `#E2E8F0` | Hairline border presisi 1px (Slate 200) |
+| `--border-hover` | `#CBD5E1` | Highlight border saat hover |
+| `--border-focus` | `#4F46E5` | Fokus aktif pada kotak input |
 
-#### Palet Aksen Fungsional (Luminescent Accents):
-| Aksen | Hex Code | Background Soft | Fungsi & Semantik |
+#### Palet Aksen Fungsional (Luminescent & Semantic Accents):
+| Aksen | Hex Code | Soft Background | Semantik & Penggunaan |
 | :--- | :--- | :--- | :--- |
-| **Cyan (Primary)** | `#00e5ff` | `rgba(0, 229, 255, 0.10)` | Brand IP26, active tab, counter badge, telemetry |
-| **Emerald (Success)** | `#00f59b` | `rgba(0, 245, 155, 0.10)` | Status terverifikasi (✅), item packed, Supabase DB live |
-| **Amber (Warning)** | `#ffb800` | `rgba(255, 184, 0, 0.10)` | Status parsial (⚠️), item belum kembali, catatan teknis |
-| **Purple (Creative)** | `#c084fc` | `rgba(192, 132, 252, 0.10)` | Rig dokumentasi, badge Panitia struktural |
-| **Coral (Danger)** | `#ff4757` | `rgba(255, 71, 87, 0.10)` | Tombol reset checklist & peringatan krusial |
+| **Primary Indigo** | `#4F46E5` | `rgba(79, 70, 229, 0.08)` | Brand IP26, active tab, counter badge, telemetry |
+| **Emerald Green** | `#059669` | `rgba(5, 150, 105, 0.08)` | Status terverifikasi (✅), item packed, Supabase DB live |
+| **Warm Amber** | `#D97706` | `rgba(217, 119, 6, 0.08)` | Status parsial (⚠️), item belum kembali, tips panggung |
+| **Purple Creative** | `#7C3AED` | `rgba(124, 58, 237, 0.08)` | Rig kamera dokumentasi, badge Panitia struktural |
+| **Coral Red** | `#DC2626` | `rgba(220, 38, 38, 0.08)` | Tombol reset checklist & tindakan krusial |
 
 ---
 
-### 3. Sistem Tipografi
+### 3. Tipografi Presisi (Typography Tokens)
 
-Menggunakan kombinasi 3 font modern yang dimuat secara asinkron via Google Fonts:
+Memadukan 3 font modern dengan keterbacaan tinggi:
 
 1. **`Space Grotesk` (Display & Headings)**:
-   * Karakter: Modern, geometris, tegas.
-   * Digunakan pada: Judul halaman, logo badge `IP26`, judul kartu spek kamera, dan counter progres packing.
-   * `letter-spacing: -0.02em; font-weight: 700 / 800;`
+   * Karakter: Modern, presisi, geometris.
+   * Digunakan pada: Judul halaman, logo badge `IP26`, judul rig kamera, dan angka counter.
+   * `letter-spacing: -0.02em; font-weight: 700 / 800; color: #0F172A;`
 2. **`Plus Jakarta Sans` (Body & Interface)**:
-   * Karakter: Sangat mudah dibaca pada berbagai ukuran layar (*clean x-height*).
-   * Digunakan pada: Teks umum, label checkbox, nama peminjam, deskripsi tugas, dan tombol.
-   * `font-weight: 400 / 500 / 600 / 700;`
-3. **`JetBrains Mono` (Data & Telemetry)**:
+   * Karakter: Bersih dan mudah dibaca pada layar kecil maupun besar.
+   * Digunakan pada: Teks utama, label checkbox, nama peminjam, deskripsi tugas, dan tombol.
+   * `font-weight: 500 / 600 / 700; color: #0F172A / #475569;`
+3. **`JetBrains Mono` (Technical Data)**:
    * Karakter: Monospace teknis berjarak tetap.
-   * Digunakan pada: Jam digital WIB, jumlah unit (`2 Unit`, `1 Pack`), kode jalur sinyal, dan ID barang.
+   * Digunakan pada: Jam digital WIB, jumlah unit (`2 Unit`, `1 Pack`), jalur kabel, dan ID barang.
    * `font-weight: 500 / 700;`
 
 ---
 
-### 4. Komponen Antarmuka (UI Components)
+### 4. Komponen Antarmuka & UX
 
-#### A. Header & View Switcher (Navigasi Tab)
+#### A. Header & View Switcher (Navigasi 4-Tab)
 * **Top Bar**:
-  * Brand Badge `IP26` di kiri.
-  * Status Pill `🟢 Supabase DB (Live Sync)` di kanan dengan indikator hijau aktif.
-  * Live Digital Clock (WIB) dengan format `HH:MM:SS WIB`.
-  * Tautan ikon GitHub.
+  * Brand Badge `IP26` di kiri dengan warna *Indigo Soft*.
+  * Status Pill `🟢 Supabase DB (Live Sync)` di kanan dengan *Emerald indicator*.
+  * Jam digital presisi WIB format `HH:MM:SS WIB`.
+  * Tautan GitHub.
 * **4-Tab Navigation**:
   * `[ 📦 Inventaris & Packing (119) ]`
   * `[ 🎥 Rig Kamera & Operator ]`
   * `[ 🔀 Routing Sinyal & Media ]`
   * `[ ⏱️ Rundown & Tim Produksi ]`
-  * Tombol aktif ditandai dengan garis bawah cyan (`border-bottom: 2px solid #00e5ff`) dan teks menyala.
 
 #### B. Packing Progress & Controls Card
-* **Headline Counter**: Menampilkan rasio dan persentase barang yang telah di-*packing* secara real-time.
-* **Progress Track**: Track `7px` dengan gradien halus `linear-gradient(90deg, #00e5ff, #00f59b)`.
+* **Headline Counter**: Menampilkan rasio barang ter-packing secara real-time.
+* **Progress Track**: Track `8px` dengan gradien halus `linear-gradient(90deg, #4F46E5, #059669)`.
 * **Action Buttons**:
   * *Tandai Semua Selesai* (Emerald Soft).
   * *Reset Checklist* (Coral Soft).
-  * *Tampilkan Hanya Belum Kembali* (Toggle Amber).
+  * *Tampilkan Hanya Belum Kembali* (Amber Toggle).
 
-#### C. Filter & Search Controls
-* **Search Input Cavity**: Input bulat dengan ikon kaca pembesar dan tombol reset `×` otomatis saat ada karakter.
-* **Lender Filter Pills**: Scrollable row peminjam (*Semua, OWL, Andreas, UKK UNNES, GIA, GKJ, Kiel 1, Joel, Darrel, Kezia, Jennifer, Lio, ABON, Panitia*).
-* **Status Filter Chips**: Pilihan status (*Semua, Terpakai, Parsial, Standby*).
+#### C. Custom Checkbox Inventaris
+* Menggunakan kotak putih bersih dengan border `#CBD5E1` yang berubah menjadi hijau emerald `#059669` dengan ikon SVG centang putih saat tercentang.
+* Teks item tercentang otomatis diberi efek *line-through* dan warna redup (`#64748B`).
 
-#### D. Custom Checkbox Inventaris
-* Menggunakan elemen SVG *check mark* yang tersembunyi secara *default* dan muncul instan dengan latar emerald saat *checked*.
-* Teks item yang sudah tercentang otomatis diberi efek *line-through* dan warna redup (`--text-dim`) agar kru langsung tahu barang mana saja yang belum selesai.
-
-#### E. Camera Spec Cards & 1-Click Copy
-* Kartu dengan kepala rincian operator & fungsi panggung.
-* Tombol **"📋 Salin Rincian"** di setiap kartu yang langsung menyalin *briefing text* ke clipboard perangkat dan berubah menjadi **"Tersalin! ✅"** selama 2 detik.
-
-#### F. Clean Signal Tables
-* Tabel datar dengan baris zebra minimalis, border 1px halus, dan pill status badge untuk menunjukkan alur Sumber ➔ Kabel ➔ Tujuan.
+#### D. Camera Spec Cards & 1-Click Copy Brief
+* Kartu putih rapi dengan kepala rincian operator & fungsi panggung.
+* Tombol **"📋 Salin Rincian"** menyalin *briefing text* langsung ke clipboard dan berubah menjadi **"Tersalin! ✅"** selama 2 detik.
 
 ---
 
-### 5. Respon & Interaksi Realtime (UX Guidelines)
-* **Optimistic Local Update**: Setiap perubahan checkbox langsung di-render pada frame berikutnya tanpa menunggu respon jaringan.
-* **Supabase WebSockets**: Mengirimkan perubahan ke tabel PostgreSQL dan memancarkan (*broadcast*) ke semua perangkat kru yang aktif.
-* **Debounced Search**: Menunggu 35ms setelah ketikan terakhir pengguna sebelum me-reka ulang kartu untuk mencegah stuttering pada komputer desktop maupun HP.
-* **Mobile-Responsive Breakpoint**: Pada layar di bawah `768px`, padding kontainer menyusut rapi dan kartu beralih ke tata letak 1-kolom yang nyaman dioperasikan dengan satu jempol.
+### 5. Integrasi Database & Real-Time Sync
+* **Database**: Supabase PostgreSQL (`ssbkhhnnzwuykyeznpwd.supabase.co`).
+* **Realtime Protocol**: WebSockets via `@supabase/supabase-js` (`postgres_changes` on `inventory_checklist`).
+* **Keep-Alive Cron**: GitHub Actions Daily Workflow (`0 0 * * *`) via `.github/workflows/supabase-keep-alive.yml` untuk mencegah 7-day auto-pause.
