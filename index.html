@@ -766,7 +766,7 @@ flowchart LR
         </div>
 
         <h3 class="subsection-title">🎥 A. Rantai Kamera Broadcast (Terkoneksi Switcher)</h3>
-        <div class="cameras-grid">
+        <div class="cameras-grid broadcast-grid">
           
           <!-- CAM 1 Card -->
           <div class="cam-card">
@@ -1034,6 +1034,12 @@ flowchart LR
               <span class="presence-badge" id="presence-badge">👥 <strong id="online-crew-count">1</strong> Kru Aktif</span>
             </div>
             <div class="sync-actions">
+              <button class="btn btn-sm btn-outline" id="btn-batch-check-all" title="Centang Semua Barang Inventaris">
+                ✅ Centang Semua
+              </button>
+              <button class="btn btn-sm btn-outline" id="btn-batch-uncheck-all" title="Hapus Centang Barang (Reset)">
+                ⬜ Uncentang Semua
+              </button>
               <button class="btn btn-sm btn-outline" id="btn-copy-summary" title="Salin Ringkasan Progress Checklist">
                 📋 Salin Ringkasan
               </button>
@@ -1044,15 +1050,6 @@ flowchart LR
           </div>
 
           <div class="cloud-sync-body">
-            <!-- Crew Identity Bar -->
-            <div class="crew-identity-bar">
-              <label for="crew-name-input" class="crew-label">👤 Nama / Panggilan Anda:</label>
-              <div class="crew-input-group">
-                <input type="text" id="crew-name-input" class="crew-name-input" placeholder="Masukkan nama Anda (misal: Andreas, Jordan, Wilfred)..." />
-                <span class="crew-saved-badge" id="crew-saved-badge">✓ Tersimpan di Perangkat</span>
-              </div>
-            </div>
-
             <!-- Live Dual Progress Meters -->
             <div class="sync-progress-grid">
               <div class="progress-box progress-loading">
@@ -1641,6 +1638,27 @@ All Rights Reserved.
       </div>
       <div class="modal-footer">
         <button class="btn btn-primary" id="btn-dismiss-license">Saya Mengerti & Setuju</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Batch Action Modal (Centang / Uncentang Semua) -->
+  <div id="batch-action-modal" class="modal-backdrop" aria-hidden="true">
+    <div class="modal-card">
+      <div class="modal-header">
+        <h3 class="modal-title" id="batch-modal-title">⚡ Aksi Massal Checklist Inventaris</h3>
+        <button class="modal-close-btn" id="btn-close-batch-modal" aria-label="Tutup Modal">&times;</button>
+      </div>
+      <div class="modal-body">
+        <p id="batch-modal-desc" style="margin-bottom: var(--space-4); color: var(--text-secondary); font-size: 0.9rem;">
+          Pilih target aksi massal untuk seluruh barang inventaris:
+        </p>
+        <div id="batch-options-container" style="display: flex; flex-direction: column; gap: var(--space-3);">
+          <!-- Dynamic action buttons injected via app.js -->
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-outline" id="btn-cancel-batch-modal">Batal</button>
       </div>
     </div>
   </div>

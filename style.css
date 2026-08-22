@@ -529,31 +529,31 @@ code {
 .badge-cyan {
   background: var(--accent-cyan-subtle);
   color: var(--accent-cyan);
-  border: 1px solid rgba(0, 210, 255, 0.3);
+  border: 1px solid transparent;
 }
 
 .badge-blue {
   background: rgba(59, 130, 246, 0.15);
   color: #60a5fa;
-  border: 1px solid rgba(59, 130, 246, 0.3);
+  border: 1px solid transparent;
 }
 
 .badge-purple {
   background: rgba(168, 85, 247, 0.15);
   color: #c084fc;
-  border: 1px solid rgba(168, 85, 247, 0.3);
+  border: 1px solid transparent;
 }
 
 .badge-emerald {
   background: var(--accent-emerald-subtle);
   color: var(--accent-emerald);
-  border: 1px solid rgba(16, 185, 129, 0.3);
+  border: 1px solid transparent;
 }
 
 .badge-amber {
   background: var(--accent-amber-subtle);
   color: var(--accent-amber);
-  border: 1px solid rgba(245, 158, 11, 0.3);
+  border: 1px solid transparent;
 }
 
 .badge-slate {
@@ -725,17 +725,23 @@ code {
   box-shadow: var(--shadow-sm);
   display: flex;
   flex-direction: column;
-  transition: transform var(--transition-fast), border-color var(--transition-fast);
+  transition: transform var(--transition-fast), border-color var(--transition-fast), box-shadow var(--transition-fast);
 }
 
-.team-card:hover {
+.team-card:hover, .team-card:active {
   transform: translateY(-2px);
-  border-color: var(--border-strong);
+  border-color: var(--accent-cyan);
+  box-shadow: 0 0 0 2px var(--accent-cyan-subtle), var(--shadow-md);
 }
 
 .card-highlight {
-  border-color: rgba(0, 210, 255, 0.4);
-  background: linear-gradient(180deg, var(--bg-surface) 0%, rgba(0, 210, 255, 0.03) 100%);
+  border: 1px solid var(--border-subtle);
+  background: var(--bg-surface);
+}
+
+.card-highlight:hover, .card-highlight:active {
+  border-color: var(--accent-cyan);
+  box-shadow: 0 0 0 2px var(--accent-cyan-subtle), var(--shadow-glow);
 }
 
 .team-card-header {
@@ -1021,7 +1027,7 @@ code {
   transition: all var(--transition-fast);
 }
 
-.callout:hover, .callout:focus-within {
+.callout:hover, .callout:active {
   border-color: var(--accent-cyan);
   box-shadow: 0 0 0 2px var(--accent-cyan-subtle);
 }
@@ -1077,8 +1083,9 @@ code {
   transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
 }
 
-.flow-stage:hover, .flow-stage:focus-within {
-  border-color: var(--border-strong);
+.flow-stage:hover, .flow-stage:active {
+  border-color: var(--accent-cyan);
+  box-shadow: 0 0 0 2px var(--accent-cyan-subtle);
 }
 
 .flow-stage-title {
@@ -1217,7 +1224,7 @@ code {
   transition: transform var(--transition-fast), border-color var(--transition-fast), box-shadow var(--transition-fast);
 }
 
-.subsystem-card:hover, .subsystem-card:focus-within {
+.subsystem-card:hover, .subsystem-card:active {
   border-color: var(--accent-cyan);
   box-shadow: 0 0 0 2px var(--accent-cyan-subtle), var(--shadow-md);
   transform: translateY(-2px);
@@ -1252,7 +1259,7 @@ code {
   align-items: center;
   justify-content: center;
   border-radius: var(--radius-md);
-  border: 1px solid rgba(0, 210, 255, 0.3);
+  border: 1px solid var(--border-subtle);
 }
 
 .subsystem-title {
@@ -1306,8 +1313,22 @@ code {
    -------------------------------------------------------------------------- */
 .cameras-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: var(--space-6);
+}
+
+.broadcast-grid {
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.doc-grid {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+@media (max-width: 900px) {
+  .broadcast-grid,
+  .doc-grid {
+    grid-template-columns: 1fr;
+  }
 }
 
 .cam-card {
@@ -1318,12 +1339,13 @@ code {
   box-shadow: var(--shadow-sm);
   display: flex;
   flex-direction: column;
-  transition: transform var(--transition-fast), border-color var(--transition-fast);
+  transition: transform var(--transition-fast), border-color var(--transition-fast), box-shadow var(--transition-fast);
 }
 
-.cam-card:hover {
+.cam-card:hover, .cam-card:active {
   transform: translateY(-2px);
-  border-color: var(--border-strong);
+  border-color: var(--accent-cyan);
+  box-shadow: 0 0 0 2px var(--accent-cyan-subtle), var(--shadow-md);
 }
 
 .cam-card-badge {
@@ -1374,7 +1396,7 @@ code {
   border-radius: var(--radius-sm);
   background: var(--accent-emerald-subtle);
   color: var(--accent-emerald);
-  border: 1px solid rgba(16, 185, 129, 0.3);
+  border: 1px solid transparent;
 }
 
 /* --------------------------------------------------------------------------
@@ -1595,8 +1617,13 @@ code {
 }
 
 .phase-active {
-  border-color: rgba(0, 210, 255, 0.4);
-  background: linear-gradient(180deg, var(--bg-surface) 0%, rgba(0, 210, 255, 0.02) 100%);
+  border-color: var(--border-subtle);
+  background: var(--bg-surface);
+}
+
+.phase-active:hover, .phase-active:active {
+  border-color: var(--accent-cyan);
+  box-shadow: 0 0 0 2px var(--accent-cyan-subtle), var(--shadow-glow);
 }
 
 .phase-header {
@@ -2031,7 +2058,7 @@ code {
   background: var(--accent-cyan);
   border-color: var(--accent-cyan);
   color: #000;
-  box-shadow: 0 0 12px rgba(0, 210, 255, 0.4);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
 }
 
 .inv-checkbox-btn.check-loading.checked .check-svg {
@@ -2043,7 +2070,7 @@ code {
   background: var(--accent-emerald);
   border-color: var(--accent-emerald);
   color: #fff;
-  box-shadow: 0 0 12px rgba(16, 185, 129, 0.4);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
 }
 
 .inv-checkbox-btn.check-packing.checked .check-svg {
@@ -2220,7 +2247,7 @@ tr.remote-updated {
   font-size: 0.78rem;
   background: rgba(16, 185, 129, 0.12);
   color: var(--accent-emerald);
-  border: 1px solid rgba(16, 185, 129, 0.3);
+  border: 1px solid var(--border-subtle);
   padding: 3px 8px;
   border-radius: var(--radius-full);
   display: inline-flex;

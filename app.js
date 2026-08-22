@@ -92,13 +92,21 @@ document.addEventListener('DOMContentLoaded', () => {
   const syncStatusDot = document.getElementById('sync-status-dot');
   const syncStatusText = document.getElementById('sync-status-text');
   const onlineCrewCount = document.getElementById('online-crew-count');
-  const crewNameInput = document.getElementById('crew-name-input');
-  const crewSavedBadge = document.getElementById('crew-saved-badge');
   const loadingCounterDisplay = document.getElementById('loading-counter-display');
   const packingCounterDisplay = document.getElementById('packing-counter-display');
   const loadingProgressBar = document.getElementById('loading-progress-bar');
   const packingProgressBar = document.getElementById('packing-progress-bar');
   const btnCopySummary = document.getElementById('btn-copy-summary');
+
+  // Batch Action Elements
+  const btnBatchCheckAll = document.getElementById('btn-batch-check-all');
+  const btnBatchUncheckAll = document.getElementById('btn-batch-uncheck-all');
+  const batchActionModal = document.getElementById('batch-action-modal');
+  const btnCloseBatchModal = document.getElementById('btn-close-batch-modal');
+  const btnCancelBatchModal = document.getElementById('btn-cancel-batch-modal');
+  const batchModalTitle = document.getElementById('batch-modal-title');
+  const batchModalDesc = document.getElementById('batch-modal-desc');
+  const batchOptionsContainer = document.getElementById('batch-options-container');
 
   // Modal elements
   const cloudConfigModal = document.getElementById('cloud-config-modal');
@@ -113,25 +121,8 @@ document.addEventListener('DOMContentLoaded', () => {
   const inventoryState = {}; // { itemId: { loaded, loaded_by, loaded_at, packed, packed_by, packed_at } }
   let totalInventoryCount = 0;
 
-  // Load Crew Name
-  let crewName = localStorage.getItem('ip26_crew_name') || '';
-  if (crewNameInput) {
-    crewNameInput.value = crewName;
-    crewNameInput.addEventListener('input', (e) => {
-      crewName = e.target.value.trim();
-      localStorage.setItem('ip26_crew_name', crewName);
-      if (crewSavedBadge) {
-        crewSavedBadge.style.opacity = '1';
-        setTimeout(() => { crewSavedBadge.style.opacity = '0.7'; }, 1500);
-      }
-      if (presenceChannel && crewName) {
-        presenceChannel.track({ user: crewName, online_at: new Date().toISOString() });
-      }
-    });
-  }
-
   function getEffectiveCrewName() {
-    return crewName || 'Crew';
+    return 'Crew';
   }
 
   // Generate deterministic ID
@@ -570,6 +561,183 @@ document.addEventListener('DOMContentLoaded', () => {
       if (cloudConfigModal) cloudConfigModal.style.display = 'none';
       showToast('Terputus', 'Koneksi database Supabase dinonaktifkan.', 'warning');
     });
+  }
+
+  // Batch Action Handlers
+  function openBatchModal(isCheckAll) {
+    if (!batchActionModal || !batchOptionsContainer) return;
+
+    if (isCheckAll) {
+      if (batchModalTitle) batchModalTitle.innerHTML = '✅ Centang Semua Barang Inventaris';
+      if (batchModalDesc) batchModalDesc.textContent = 'Pilih target centang yang ingin diterapkan untuk seluruh 154 item:';
+      batchOptionsContainer.innerHTML = `
+        <button type="button" class="btn btn-primary" id="btn-batch-act-load" style="width: 100%; justify-content: flex-start; text-align: left; padding: var(--space-3) var(--space-4);">
+          📦 <strong>Centang Semua Pasang (Loading In)</strong>
+        </button>
+        <button type="button" class="btn btn-primary" id="btn-batch-act-pack" style="width: 100%; justify-content: flex-start; text-align: left; padding: var(--space-3) var(--space-4);">
+          🧳 <strong>Centang Semua Kemas (Packing Out)</strong>
+        </button>
+        <button type="button" class="btn btn-secondary" id="btn-batch-act-both" style="width: 100%; justify-content: flex-start; text-align: left; padding: var(--space-3) var(--space-4);">
+          ⚡ <strong>Centang Semua Pasang & Kemas (100% Selesai)</strong>
+        </button>
+      `;
+
+      document.getElementById('btn-batch-act-load')?.addEventListener('click', () => {
+        batchActionModal.style.display = 'none';
+        batchSetAll('check-loading');
+      });
+      document.getElementById('btn-batch-act-pack')?.addEventListener('click', () => {
+        batchActionModal.style.display = 'none';
+        batchSetAll('check-packing');
+      });
+      document.getElementById('btn-batch-act-both')?.addEventListener('click', () => {
+        batchActionModal.style.display = 'none';
+        batchSetAll('check-all');
+      });
+    } else {
+      if (batchModalTitle) batchModalTitle.innerHTML = '⬜ Uncentang / Reset Status Checklist';
+      if (batchModalDesc) batchModalDesc.textContent = 'Pilih target checklist yang ingin dikosongkan (reset) untuk seluruh item:';
+      batchOptionsContainer.innerHTML = `
+        <button type="button" class="btn btn-outline" id="btn-batch-act-unload" style="width: 100%; justify-content: flex-start; text-align: left; padding: var(--space-3) var(--space-4);">
+          📦 <strong>Kosongkan Centang Pasang (Loading In)</strong>
+        </button>
+        <button type="button" class="btn btn-outline" id="btn-batch-act-unpack" style="width: 100%; justify-content: flex-start; text-align: left; padding: var(--space-3) var(--space-4);">
+          🧳 <strong>Kosongkan Centang Kemas (Packing Out)</strong>
+        </button>
+        <button type="button" class="btn btn-outline" id="btn-batch-act-unboth" style="width: 100%; justify-content: flex-start; text-align: left; padding: var(--space-3) var(--space-4); border-color: rgba(239, 68, 68, 0.4); color: #f87171;">
+          ⚠️ <strong>Kosongkan Semua (Reset Total Pasang & Kemas)</strong>
+        </button>
+      `;
+
+      document.getElementById('btn-batch-act-unload')?.addEventListener('click', () => {
+        batchActionModal.style.display = 'none';
+        batchSetAll('uncheck-loading');
+      });
+      document.getElementById('btn-batch-act-unpack')?.addEventListener('click', () => {
+        batchActionModal.style.display = 'none';
+        batchSetAll('uncheck-packing');
+      });
+      document.getElementById('btn-batch-act-unboth')?.addEventListener('click', () => {
+        batchActionModal.style.display = 'none';
+        batchSetAll('uncheck-all');
+      });
+    }
+
+    batchActionModal.style.display = 'flex';
+  }
+
+  if (btnBatchCheckAll) {
+    btnBatchCheckAll.addEventListener('click', () => openBatchModal(true));
+  }
+
+  if (btnBatchUncheckAll) {
+    btnBatchUncheckAll.addEventListener('click', () => openBatchModal(false));
+  }
+
+  if (btnCloseBatchModal) {
+    btnCloseBatchModal.addEventListener('click', () => {
+      if (batchActionModal) batchActionModal.style.display = 'none';
+    });
+  }
+
+  if (btnCancelBatchModal) {
+    btnCancelBatchModal.addEventListener('click', () => {
+      if (batchActionModal) batchActionModal.style.display = 'none';
+    });
+  }
+
+  async function batchSetAll(actionType) {
+    const now = new Date().toISOString();
+    const rowsToUpsert = [];
+
+    vendorBlocks.forEach((block) => {
+      const vendor = block.getAttribute('data-vendor') || '';
+      const rows = block.querySelectorAll('tbody tr');
+      rows.forEach((row) => {
+        const itemId = row.getAttribute('data-item-id');
+        const itemName = row.getAttribute('data-item-title') || '';
+        if (!itemId) return;
+
+        const currentState = inventoryState[itemId] || { loaded: false, packed: false };
+
+        if (actionType === 'check-loading') {
+          currentState.loaded = true;
+          currentState.loaded_by = 'Crew';
+          currentState.loaded_at = now;
+        } else if (actionType === 'check-packing') {
+          currentState.packed = true;
+          currentState.packed_by = 'Crew';
+          currentState.packed_at = now;
+        } else if (actionType === 'check-all') {
+          currentState.loaded = true;
+          currentState.loaded_by = 'Crew';
+          currentState.loaded_at = now;
+          currentState.packed = true;
+          currentState.packed_by = 'Crew';
+          currentState.packed_at = now;
+        } else if (actionType === 'uncheck-loading') {
+          currentState.loaded = false;
+          currentState.loaded_by = '';
+          currentState.loaded_at = null;
+        } else if (actionType === 'uncheck-packing') {
+          currentState.packed = false;
+          currentState.packed_by = '';
+          currentState.packed_at = null;
+        } else if (actionType === 'uncheck-all') {
+          currentState.loaded = false;
+          currentState.loaded_by = '';
+          currentState.loaded_at = null;
+          currentState.packed = false;
+          currentState.packed_by = '';
+          currentState.packed_at = null;
+        }
+
+        inventoryState[itemId] = currentState;
+        renderRowUI(itemId, currentState, false);
+
+        rowsToUpsert.push({
+          item_id: itemId,
+          vendor: vendor,
+          item_name: itemName,
+          loaded: currentState.loaded,
+          loaded_by: currentState.loaded_by,
+          loaded_at: currentState.loaded_at,
+          packed: currentState.packed,
+          packed_by: currentState.packed_by,
+          packed_at: currentState.packed_at,
+          updated_at: now
+        });
+      });
+    });
+
+    updateProgressMeters();
+    filterInventory();
+
+    const actionNames = {
+      'check-loading': 'Semua barang berhasil ditandai Pasang (Loading In)!',
+      'check-packing': 'Semua barang berhasil ditandai Kemas (Packing Out)!',
+      'check-all': 'Semua barang ditandai Pasang & Kemas 100%!',
+      'uncheck-loading': 'Status Pasang berhasil dikosongkan!',
+      'uncheck-packing': 'Status Kemas berhasil dikosongkan!',
+      'uncheck-all': 'Seluruh status checklist berhasil di-reset!'
+    };
+
+    showToast('Aksi Massal Selesai', actionNames[actionType] || 'Checklist inventaris diperbarui.', 'success');
+
+    if (supabaseClient && rowsToUpsert.length > 0) {
+      setSyncStatus('syncing', '🔵 Menyinkronkan aksi massal ke Supabase Cloud...');
+      try {
+        const chunkSize = 80;
+        for (let i = 0; i < rowsToUpsert.length; i += chunkSize) {
+          const chunk = rowsToUpsert.slice(i, i + chunkSize);
+          await supabaseClient.from('inventory_items').upsert(chunk, { onConflict: 'item_id' });
+        }
+        setSyncStatus('connected', '🟢 Terhubung Supabase Cloud (Live Multi-Device)');
+      } catch (err) {
+        console.error('Supabase batch error:', err);
+        setSyncStatus('connected', '🟢 Terhubung Supabase Cloud (Live Multi-Device)');
+      }
+    }
   }
 
   // License Modal Listeners

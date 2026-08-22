@@ -73,9 +73,13 @@ The visual language is inspired by high-end professional broadcast control rooms
 - **Mobile Navigation Dock (Bottom):** Fixed `bottom: 0`, elevated dock design with safe-area padding (`env(safe-area-inset-bottom)`), 5 key icon tabs (Beranda, Tim, Sinyal, Kamera, Alat), active indicator pill with subtle glow.
 
 ### B. Realtime Cloud Synchronization Bar & Telemetry
-- **Crew Identity Input:** Live inline name selector with auto-save badge and presence tracking.
+- **Anonymous Crew Operations:** Fully streamlined for internal broadcast crew access without friction or personal name input requirements.
 - **Dual Progress Gauges:** Dynamic percentage bars tracking independent **Loading In (Pemasangan)** and **Packing Out (Pengemasan)** completion rates.
-- **Quick Action Buttons:** "Salin Progres" summary clipboard exporter, "Koneksi Cloud" config modal launcher, and "Reset Checklist" dialog.
+- **Quick Action & Batch Buttons:**
+  - `✅ Centang Semua`: Opens mass checklist modal with options for Loading In, Packing Out, or 100% full check.
+  - `⬜ Uncentang Semua`: Opens reset modal with granular uncheck options (Loading In, Packing Out, or complete reset).
+  - `📋 Salin Ringkasan`: Formatted WhatsApp-ready Markdown logistics summary exporter.
+  - `⚡ Setup Cloud`: Supabase cloud configuration modal.
 
 ### C. Interactive Diagrams & Transparent Adaptive Mermaid Engine
 - **Master Signal Board:** 4-stage interactive high-level hardware pipeline (Camera $\rightarrow$ Switcher $\rightarrow$ LED Processors $\rightarrow$ Stage & Stream).
@@ -96,14 +100,17 @@ The visual language is inspired by high-end professional broadcast control rooms
     7. *Sub-Flowchart 5: Sub-Sistem Stage Time Keeper (`flowchart LR`)*
     8. *Sub-Flowchart 6: Sub-Sistem Distribusi Daya & Grounding (`flowchart LR`)*
 
-### D. Cards, Hardware Bins & 2-Column Subsystem Grid
+### D. Cards, Camera Grids & 2-Column Subsystem Grid
 - Subtly rounded corners (`border-radius: 14px`).
-- **Hairline Default Resting State:** 1px hairline technical borders (`1px solid var(--border-subtle)`) across all cards, callouts, telemetry blocks, and camera spec bins with zero intrusive static borders.
+- **Hairline Default Resting State:** 1px hairline technical borders (`1px solid var(--border-subtle)`) across all cards, callouts, telemetry blocks, and camera spec bins with zero intrusive static outlines.
 - **Dynamic Interactive Outlines:** Prominently highlights with a **2.5px glowing cyan outline (`0 0 0 2px var(--accent-cyan-subtle), var(--shadow-glow)`)** and micro-lift (`translateY(-2px)`) ONLY on hover (`:hover`), active/click (`:active`), or keyboard focus (`:focus-visible`).
-- **2-Column Responsive Subsystem Grid (`.subsystems-grid`):** Displays the 5 deep-dive technical chains side-by-side in a 2-column grid on desktop/tablets (collapsing cleanly on mobile) paired with horizontal `flowchart LR` diagrams to drastically eliminate vertical scrolling fatigue.
+- **2-Column Broadcast Camera Grid (`.broadcast-grid`):** Arranges CAM 1 & CAM 2 on the top row, and CAM 3 & CAM 4 on the bottom row to eliminate vertical scrolling.
+- **3-Column Documentation Camera Grid (`.doc-grid`):** Arranges CAM PHO, CAM VID, and CAM HP in a balanced 3-column desktop layout.
+- **2-Column Responsive Subsystem Grid (`.subsystems-grid`):** Displays the 6 deep-dive technical chains in a 2-column grid on desktop/tablets paired with horizontal `flowchart LR` diagrams.
 - **Direct Tactile Checkboxes:** Streamlined 32×32px responsive checkboxes with SVG checkmarks (`✓`) directly synchronized to Supabase Cloud with crew timestamps.
 
 ### E. Modals & Dialogs
+- **Batch Action Modal (`#batch-action-modal`):** Dynamic selection modal for mass-checking or resetting inventory checklist states with Supabase chunked upserting.
 - **Cloud Database Configuration Modal:** Supabase Project URL & Anon Key credentials management.
 - **5-Clause ASCII Legal & Operational License Modal:** Verbatim governance modal with monospace readability and accessible keyboard dismissal (Escape key).
 
