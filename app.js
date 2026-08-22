@@ -617,31 +617,29 @@ function renderInventory() {
   }
 }
 
-// Scroll Spy for Top Desktop Navbar Tabs & Mobile Dock
+// Ultra-Fast IntersectionObserver Scroll Spy (0ms main-thread scroll overhead)
 function initNavScroll() {
   const sections = document.querySelectorAll('.content-section');
   const desktopLinks = document.querySelectorAll('.desktop-nav-tabs .tab-link');
   const dockLinks = document.querySelectorAll('.mobile-dock-bottom .dock-btn');
 
-  window.addEventListener('scroll', () => {
-    let current = '';
-    const scrollPos = window.scrollY + 160;
-
-    sections.forEach(section => {
-      const sectionTop = section.offsetTop;
-      const sectionHeight = section.offsetHeight;
-      if (scrollPos >= sectionTop && scrollPos < sectionTop + sectionHeight) {
-        current = section.getAttribute('id');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const id = entry.target.getAttribute('id');
+        if (id) {
+          desktopLinks.forEach(link => {
+            link.classList.toggle('active', link.getAttribute('href') === `#${id}`);
+          });
+          dockLinks.forEach(link => {
+            link.classList.toggle('active', link.getAttribute('href') === `#${id}`);
+          });
+        }
       }
     });
-
-    if (current) {
-      desktopLinks.forEach(link => {
-        link.classList.toggle('active', link.getAttribute('href') === `#${current}`);
-      });
-      dockLinks.forEach(link => {
-        link.classList.toggle('active', link.getAttribute('href') === `#${current}`);
-      });
-    }
+  }, {
+    rootMargin: '-20% 0px -70% 0px'
   });
+
+  sections.forEach(section => observer.observe(section));
 }
