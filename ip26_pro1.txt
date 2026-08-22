@@ -4,20 +4,26 @@ Event : Ibadah Perdana UKK UNNES 2026
 Venue : Gedung Auditorium Universitas Negeri Semarang
 Production : Panitia Ibadah Perdana 2026
 
-*System Engineer*
+*System Engineer (Pelayan)*
 - Andreas (Leader)
 
-*Media Engineer*
+*Media Engineer (Panitia)*
 - Richard (Leader)
 - Wilfred
 - Alex
 - Rania
 
-*Creative Engineer*
+*Creative Engineer (Panitia)*
 - Jennifer (Leader)
 - Filia
 - Felani
 - Wike
+
+x Panitia bisa menjadi pelayan
+x Pelayan belum tentu panitia
+x PIC ada yang menjadi panitia
+x PIC yang bukan panitia berarti pelayan
+x PIC dan Pelayan itu sama
 
 *Broadcast Camera System*
 
