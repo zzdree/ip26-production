@@ -37,6 +37,7 @@
 - [💻 Media System Device & Alokasi Operator](#-media-system-device--alokasi-operator)
 - [📦 Master Inventory & Equipment Loan Directory](#-master-inventory--equipment-loan-directory)
 - [📋 Rundown Konten & Tampilan Layar](#-rundown-konten--tampilan-layar)
+- [🎨 Analisis Mendalam UI/UX: Easeout Dark Mode Design System](#-analisis-mendalam-uiux-easeout-dark-mode-design-system)
 - [📜 Hak Cipta & Lisensi](#-hak-cipta--lisensi)
 
 ---
@@ -494,6 +495,75 @@ Distribusi penayangan konten multimedia per 3 sesi acara:
 
 ### 3. Post Ibadah (Close Gate)
 - **Usung-Usung & De-rigging:** Loading barang, checklist packing kembali, dan pengembalian gear.
+
+---
+
+## 🎨 Analisis Mendalam UI/UX: Easeout Dark Mode Design System
+*Disarikan dan dibedah dari referensi desain terkemuka [Easeout.co — 25 Dark Mode UI Design Examples](https://www.easeout.co/blog/2020-05-13-25-dark-mode-ui-design-examples/).*
+
+```
+┌──────────────────────────────────────────────────────────────────────────────────┐
+│                   EASEOUT DARK MODE UI/UX ARCHITECTURAL CORE                     │
+├──────────────────────────────────────────────────────────────────────────────────┤
+│ 1. LAYERED DARK GREY ELEVATION  │ Menggantikan True Black (#000) dgn 4 level abu │
+│ 2. GEOMETRIC CANVAS GRID & GLOW │ Grid subtle 24px + ambient radial glow halos   │
+│ 3. TOP-EDGE LIGHT HIGHLIGHT     │ Efek inset 0 1px 0 rgba(255,255,255,0.08)      │
+│ 4. VIBRANT NEON ACCENT INDICATOR│ Neon Cyan, Emerald, Purple pada titik fokus    │
+│ 5. MONOSPACE TELEMETRY ACCURACY │ Tipografi JetBrains Mono untuk metrik teknis   │
+│ 6. SOFT VOLUMETRIC DEPTH        │ Bayangan ganda (diffuse + direct) bertingkat    │
+└──────────────────────────────────────────────────────────────────────────────────┘
+```
+
+### 1. Bedah Prinsip Desain dari 25 Contoh Unggulan Easeout
+Berdasarkan studi atas portofolio *DStudio, Alexander Plyuto, Victa Wille (Unix Dark Mode), Valery Pevnev (Podcast & Webinar Admin), Prakhar Neel Sharma (Energy Monitor & Firststep)*, dan desainer teratas pada Easeout:
+
+1. **Bukan Sekadar Invert Warna Hitam:** 
+   - Desain Dark Mode modern tidak menggunakan `#000000` absolut pada seluruh permukaan karena menciptakan kontras kasar (*halation effect*) yang melelahkan mata.
+   - Menggunakan spektrum **Pure Dark Neutral Grey** bertingkat untuk menciptakan persepsi kedalaman visual 3D yang elegan.
+2. **Pencahayaan Permukaan (Bevel & Top-Edge Glint):**
+   - Setiap kartu interaktif memiliki aksen garis cahaya atas tipis (`inset 0 1px 0 rgba(255, 255, 255, 0.08)`), memberikan ilusi kartu fisik premium di bawah pencahayaan ambient redup.
+3. **Pemanfaatan Background Grid & Mesh Atmospheric Glow:**
+   - Kanvas dasar tidak pernah flat membosankan. Diberikan tekstur teknis berupa **Subtle Dot/Square Grid** dipadukan dengan **Ambient Radial Glow** di belakang elemen penting (seperti kartu kamera, meteran packing, dan stasiun audio).
+4. **Warna Aksen Berpendar (Luminescent Accents):**
+   - Warna aksen cerah berdaya pendar tinggi (*Electric Cyan `#00e5ff`*, *Neon Emerald `#00f59b`*, *Ultraviolet `#a855f7`*, *Amber `#ffb800`*, *Coral `#ff3b5c`*) digunakan secara terukur pada badge status, active tabs, progress bar, dan tombol aksi tanpa mendominasi seluruh layar.
+5. **Tipografi Berkontras Tinggi & Monospace Telemetri:**
+   - Memadukan font display modern ber-tracking rapat (*Plus Jakarta Sans* & *Space Grotesk*) untuk judul/headline dengan font monospace teknis (*JetBrains Mono*) untuk angka persentase, kode item, dan ID rig siaran.
+
+---
+
+### 2. Token Desain & Palet Warna Easeout untuk IP26
+
+| Kategori Token | Nilai Hex / RGBA | Peran & Penggunaan dalam UI |
+| :--- | :--- | :--- |
+| **Canvas Base (Level 0)** | `#0c0d10` | Latar belakang dasar aplikasi dengan overlay pola grid geometris. |
+| **Surface Raised (Level 1)** | `#12141a` | Kontainer section, header panel, dan callout box. |
+| **Surface Card (Level 2)** | `#181b22` | Kartu modul, rig kamera, card checklist item, dan baris stasiun kerja. |
+| **Surface Overlay (Level 3)** | `#202430` | State aktif, hover card, floating dock menu, dan modal window. |
+| **Border Subtle** | `rgba(255, 255, 255, 0.07)` | Garis batas pemisah presisi 1px antar kartu. |
+| **Border Active / Glow** | `rgba(0, 229, 255, 0.35)` | Garis batas menyala saat elemen dipilih atau disentuh. |
+| **Accent Electric Cyan** | `#00e5ff` | Status aktif siaran, tombol live, tabs indikator, badge tech. |
+| **Accent Neon Emerald** | `#00f59b` | Status terverifikasi `✅`, progres packing 100%, status online sync. |
+| **Accent Ultraviolet** | `#a855f7` | Penanda struktural **🏛️ Panitia**, Creative Lead, dan timeline tag. |
+| **Accent Cyber Amber** | `#ffb800` | Indikator `⚠️` pending hardware, rasio pemakaian inventaris. |
+| **Accent Pulse Coral** | `#ff3b5c` | Indikator live countdown, item belum kembali, tombol reset. |
+
+---
+
+### 3. Hierarki Elevasi & Bayangan Volumetrik (Depth Map)
+
+```css
+/* Level 1 - Section & Static Containers */
+box-shadow: 0 4px 20px rgba(0, 0, 0, 0.35);
+
+/* Level 2 - Interactive Cards with Top-Edge Glint */
+box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08),
+            0 8px 24px rgba(0, 0, 0, 0.45);
+
+/* Level 3 - Hover Lift & Ambient Glow */
+box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.15),
+            0 14px 36px rgba(0, 0, 0, 0.6),
+            0 0 24px rgba(0, 229, 255, 0.18);
+```
 
 ---
 

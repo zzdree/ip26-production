@@ -80,7 +80,23 @@
 
 ---
 
-## 4. UI & Performance Specs
-- **Theme:** Pure Neutral Dark Grey (`#111214`, `#17181c`, `#1e1f25`, `#252730`). Zero blue hue.
-- **Navigation:** Desktop sticky tab bar + Mobile bottom dock.
-- **Performance:** 60-144 FPS zero-jank scrolling, `IntersectionObserver` scroll-spy, hardware-accelerated single-pass CSS, and single-pass DOM string injection.
+## 4. UI/UX Design System Specifications (Easeout Dark Mode Architecture)
+- **Reference Standard:** [Easeout.co 25 Dark Mode UI Examples](https://www.easeout.co/blog/2020-05-13-25-dark-mode-ui-design-examples/) (Skeuomorphic depth, DStudio dashboard widgets, Unix dark monospace readouts, Valery Pevnev atmospheric glows).
+- **Surface Elevation Hierarchy:**
+  - **Canvas Base (L0):** `#0c0d10` with subtle geometric dot/square technical grid pattern (`radial-gradient(rgba(255,255,255,0.05) 1px, transparent 1px)` at 24px spacing) and ambient glowing radial overlays.
+  - **Raised Containers (L1):** `#12141a` with 1px border `rgba(255,255,255,0.07)`.
+  - **Interactive Cards (L2):** `#181b22` with top-edge glint highlight (`inset 0 1px 0 rgba(255,255,255,0.08)`) and dual-stage volumetric drop shadow (`0 8px 24px rgba(0,0,0,0.45)`).
+  - **Active / Floating Docks (L3):** `#202430` with neon cyan rim halo (`0 0 20px rgba(0,229,255,0.18)`).
+- **Luminescent Accent Palette:**
+  - **Electric Cyan (`#00e5ff`):** Broadcast telemetry, live buttons, system highlights, active tab line.
+  - **Neon Emerald (`#00f59b`):** 100% verified status `✅`, packing meter completion, cloud sync green pulse.
+  - **Ultraviolet (`#a855f7`):** Structural badge **🏛️ Panitia**, Creative Lead, and timeline tags.
+  - **Cyber Amber (`#ffb800`):** Pending hardware alerts `⚠️`, inventory usage ratio tags.
+  - **Pulse Coral (`#ff3b5c`):** Live indicators, items unreturned filter, quick reset actions.
+- **Typography & Data Readability:**
+  - Headlines: `Plus Jakarta Sans` & `Space Grotesk` with tight tracking (`-0.02em`).
+  - Monospace Telemetry: `JetBrains Mono` for percentages, checklist IDs, and cable specifications.
+- **Navigation & Mobile Dock:**
+  - Glassmorphic top sticky navbar + Mobile bottom dock with `backdrop-filter: blur(20px)` and active glowing indicators.
+- **Rendering Performance:**
+  - Zero-jank 60–144 FPS rendering, single-pass DOM injection, hardware-accelerated CSS transforms, and offline caching.
