@@ -137,6 +137,99 @@
             <div class="axiom-card-item"><span class="axiom-idx">05</span><span>PIC dan Pelayan berkedudukan setara.</span></div>
           </div>
         </div>
+
+        <!-- Status Indicator Legend -->
+        <div class="legend-bar-wrapper">
+          <span style="font-weight: 800; color: var(--text-main); font-size: 11px; text-transform: uppercase;">Panduan Status:</span>
+          <div class="legend-item">
+            <span style="color: var(--emerald); font-weight: 700;">✅ Terverifikasi & Aktif</span>
+            <span class="text-dim">(Terpasang di sistem/routing utama)</span>
+          </div>
+          <div class="legend-item">
+            <span style="color: var(--amber); font-weight: 700;">⚠️ Sebagian / Pending</span>
+            <span class="text-dim">(Rasio pemakaian / Workstation belum ada)</span>
+          </div>
+          <div class="legend-item">
+            <span style="color: var(--purple); font-weight: 700;">☑️ Standby / Storage</span>
+            <span class="text-dim">(Unit cadangan di storage)</span>
+          </div>
+        </div>
+
+        <!-- Interactive Stage & Hall Multi-Screen Schematic -->
+        <div class="stage-schematic-grid">
+          <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px;">
+            <div style="font-family: var(--font-display); font-size: 13px; font-weight: 700; color: var(--text-main);">
+              🏛️ Simulasi Tata Panggung & Multi-Screen LED (Auditorium UNNES)
+            </div>
+            <span class="text-dim" style="font-size: 11px; font-family: var(--font-mono);">Novastar Video Matrix &bull; Multi-Output</span>
+          </div>
+
+          <!-- Multi-Screen LED Cluster -->
+          <div class="stage-screen-cluster">
+            <div class="screen-box">
+              <span class="screen-box-title">LED LEFT</span>
+              <span class="screen-box-feed">ProPresenter 1 (Rania)</span>
+              <span style="font-size: 10px; color: var(--text-dim);">Lirik & Sambutan</span>
+            </div>
+            <div class="screen-box main-center">
+              <span class="screen-box-title" style="color: var(--cyan);">LED CENTER (MAIN)</span>
+              <span class="screen-box-feed">Resolume Arena (Andreas)</span>
+              <span style="font-size: 10px; color: var(--text-dim);">Live Multi-Cam + PPT + Video</span>
+            </div>
+            <div class="screen-box">
+              <span class="screen-box-title">LED RIGHT</span>
+              <span class="screen-box-feed">ProPresenter 1 (Rania)</span>
+              <span style="font-size: 10px; color: var(--text-dim);">Lirik & Sambutan</span>
+            </div>
+            <div class="screen-box">
+              <span class="screen-box-title">LED BACK STAGE</span>
+              <span class="screen-box-feed">ProPresenter 1 (Rania)</span>
+              <span style="font-size: 10px; color: var(--text-dim);">Background Panggung</span>
+            </div>
+          </div>
+
+          <!-- Stage Platform & Front Timekeeper -->
+          <div class="stage-platform-area">
+            <span style="font-size: 11.5px; font-weight: 700; color: var(--text-muted);">PANGGUNG UTAMA (Pembicara &bull; WL &bull; Singers &bull; Band &bull; Tim Acara)</span>
+            <div class="stage-timekeeper-pill">
+              <span>⏱️ Stage Timekeeper: TV Darrel (ProPresenter 3 - Acara)</span>
+            </div>
+          </div>
+
+          <!-- Camera Positions Mapping Row -->
+          <div style="text-align: center;">
+            <div style="font-size: 11px; font-weight: 700; color: var(--text-dim); text-transform: uppercase; margin-bottom: 8px;">
+              Posisi Rigging Kamera Lapangan:
+            </div>
+            <div class="camera-positions-row">
+              <a href="#secCameras" class="cam-pos-badge panitia-crew">🎥 CAM 1: Alex (FOH Wide / Wireless)</a>
+              <a href="#secCameras" class="cam-pos-badge pelayan-crew">🎥 CAM 2: Kiel 1 (Stage Mobile / Wireless)</a>
+              <a href="#secCameras" class="cam-pos-badge pelayan-crew">🎥 CAM 3: Nia (Left Stage / Wired)</a>
+              <a href="#secCameras" class="cam-pos-badge pelayan-crew">🎥 CAM 4: Ferdy (Right Stage / Wired)</a>
+              <a href="#secCameras" class="cam-pos-badge pelayan-crew">📸 CAM PHO: Nico (Stills)</a>
+              <a href="#secCameras" class="cam-pos-badge pelayan-crew">🎬 CAM VID: Joel (Gimbal)</a>
+              <a href="#secCameras" class="cam-pos-badge panitia-crew">📱 CAM HP: Jennifer (Socmed)</a>
+            </div>
+          </div>
+
+          <!-- FOH Control Booth -->
+          <div class="foh-control-booth">
+            <div class="foh-title-row">
+              <strong style="font-size: 12px; color: var(--cyan);">🎛️ FOH Media & Sound Control Center (Auditorium Back Area)</strong>
+              <span style="font-size: 11px; color: var(--emerald);">✅ 11 Stasiun Kerja Terkoordinasi</span>
+            </div>
+            <div class="foh-operators-tags">
+              <span class="foh-tag">Andreas (System / Stream / Resolume)</span>
+              <span class="foh-tag">Richard (Media Leader)</span>
+              <span class="foh-tag">Wilfred (Switcher Cinetreak)</span>
+              <span class="foh-tag">Rania (ProPresenter 1)</span>
+              <span class="foh-tag">Filia (ProPresenter 2)</span>
+              <span class="foh-tag">Jennifer (Creative Leader)</span>
+              <span class="foh-tag">Jordan & Yosua (Audio FOH Yamaha QL5)</span>
+            </div>
+          </div>
+
+        </div>
       </div>
     </section>
 
@@ -575,6 +668,13 @@
           </div>
         </div>
 
+        <!-- Splitter Architecture Note Box -->
+        <div class="splitter-note-box">
+          <strong style="color: var(--cyan); font-family: var(--font-display);">⚡ Catatan Arsitektur & Ketersediaan HDMI Splitter:</strong><br/>
+          Tersedia total <strong>3 Unit HDMI Splitter</strong> di lapangan: 
+          1 Unit HDMI Splitter 4CH (GKJ Ngaliyan), 1 Unit HDMI Splitter 4CH (UKK UNNES), dan 1 Unit HDMI Splitter 2CH (GIA Deliksari), semuanya lengkap dengan Power Adaptor SPL masing-masing. Sistem memiliki <strong>2 unit HDMI Splitter aktif cadangan (standby)</strong> untuk *redundancy failover*.
+        </div>
+
         <!-- Media Workstations & Operators Table -->
         <div>
           <h3 style="font-family: var(--font-display); font-size: 14px; font-weight: 700; color: var(--text-main); margin-bottom: 8px;">
@@ -762,56 +862,71 @@
               <td>Andreas (Resolume Arena)</td>
             </tr>
             <tr>
-              <td rowspan="9"><strong>2. Main Ibadah</strong><br/><span class="text-dim">Main Event</span></td>
-              <td>Video Opening & Video Sambutan Bu Grace</td>
-              <td>LED Tengah, Kanan, Kiri</td>
+              <td rowspan="12"><strong>2. Main Ibadah</strong><br/><span class="text-dim">Main Event</span></td>
+              <td>Video Opening</td>
+              <td>LED Tengah (Center)</td>
               <td>Filia (ProPresenter 2)</td>
             </tr>
             <tr>
-              <td>Background Tema & Background Musik</td>
-              <td>LED Tengah & Sound System</td>
-              <td>Filia & Andreas</td>
+              <td>Video Sambutan Bu Grace</td>
+              <td>LED Tengah, Kanan & Kiri</td>
+              <td>Filia (ProPresenter 2)</td>
+            </tr>
+            <tr>
+              <td>Background Tema</td>
+              <td>LED Tengah (Center)</td>
+              <td>Filia (ProPresenter 2)</td>
+            </tr>
+            <tr>
+              <td>Background Lagu / BGM</td>
+              <td>FOH Sound System (Yamaha QL5)</td>
+              <td>Andreas (Resolume) / Jordan & Yosua</td>
             </tr>
             <tr>
               <td>Lirik Lagu Pujian & Penyembahan</td>
-              <td>LED Kanan, Kiri, Center</td>
+              <td>LED Tengah, Kanan & Kiri</td>
               <td>Rania (ProPresenter 1)</td>
             </tr>
             <tr>
               <td>Video Generation</td>
-              <td>LED Tengah, Kanan, Kiri</td>
+              <td>LED Tengah, Kanan & Kiri</td>
               <td>Filia (ProPresenter 2)</td>
             </tr>
             <tr>
-              <td>PPT Pembicara, Ayat, & Quote Khotbah</td>
-              <td>LED Tengah, Kanan, Kiri</td>
+              <td>PPT Pembicara</td>
+              <td>LED Tengah, Kanan & Kiri</td>
               <td>Rania & Filia</td>
             </tr>
             <tr>
-              <td>QRIS Persembahan</td>
-              <td>LED Tengah, Kanan, Kiri</td>
+              <td>Ayat Pembicara</td>
+              <td>LED Tengah, Kanan & Kiri</td>
+              <td>Rania & Filia</td>
+            </tr>
+            <tr>
+              <td>Quote Pembicara</td>
+              <td>LED Tengah, Kanan & Kiri</td>
+              <td>Rania & Filia</td>
+            </tr>
+            <tr>
+              <td>Persembahan (QRIS)</td>
+              <td>LED Tengah, Kanan & Kiri</td>
               <td>Rania (ProPresenter 1)</td>
             </tr>
             <tr>
-              <td>UKK News & Video Pengumuman</td>
-              <td>LED Tengah, Kanan, Kiri</td>
+              <td>UKK News (Warta Jemaat)</td>
+              <td>LED Tengah, Kanan & Kiri</td>
               <td>Filia (ProPresenter 2)</td>
             </tr>
             <tr>
               <td>Pokok Doa Syafaat</td>
-              <td>LED Tengah, Kanan, Kiri</td>
+              <td>LED Tengah, Kanan & Kiri</td>
               <td>Rania (ProPresenter 1)</td>
             </tr>
             <tr>
-              <td>Timekeeper Countdown Timer</td>
-              <td>TV Monitor Panggung (Darrel)</td>
-              <td>Divisi Acara</td>
-            </tr>
-            <tr>
               <td><strong>3. Post-Ibadah</strong><br/><span class="text-dim">Close Gate</span></td>
-              <td>Usung-usung, Re-packing Manifest, & Serah Terima Pinjaman</td>
-              <td>All Gear Return to 13 Lenders</td>
-              <td>Seluruh Tim Engineering</td>
+              <td>Usung-Usung, De-rigging, Re-packing 119 Manifest, & Serah Terima Pinjaman</td>
+              <td>Loading Area & Storage 13 Peminjam</td>
+              <td>Seluruh Tim Engineering (Panitia & Pelayan)</td>
             </tr>
           </tbody>
         </table>
