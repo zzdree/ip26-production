@@ -924,8 +924,17 @@ document.addEventListener('DOMContentLoaded', () => {
         },
         themeCSS: `
           .node rect, .node circle, .node ellipse, .node polygon, .node path, .label-container, .basic.label-container {
-            fill: ${isDark ? 'rgba(255, 255, 255, 0.04)' : 'rgba(0, 0, 0, 0.03)'} !important;
-            stroke: ${isDark ? '#484848' : '#d0c7b8'} !important;
+            fill: ${isDark ? 'rgba(255, 255, 255, 0.03)' : 'rgba(0, 0, 0, 0.02)'} !important;
+            stroke: ${isDark ? '#333333' : '#e5dfd3'} !important;
+            stroke-width: 1px !important;
+            transition: stroke 0.2s ease, stroke-width 0.2s ease, filter 0.2s ease;
+          }
+          .node:hover rect, .node:hover circle, .node:hover ellipse, .node:hover polygon, .node:hover path, .node:hover .label-container,
+          .node:active rect, .node:active circle, .node:active ellipse, .node:active polygon, .node:active path, .node:active .label-container {
+            stroke: #00d2ff !important;
+            stroke-width: 2.5px !important;
+            filter: drop-shadow(0 0 8px #00d2ff) !important;
+            cursor: pointer;
           }
           .cluster rect {
             fill: transparent !important;
