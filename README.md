@@ -6,10 +6,12 @@
 ![Venue](https://img.shields.io/badge/Venue-Auditorium%20UNNES-orange?style=for-the-badge&logo=google-maps&logoColor=white)
 ![Production](https://img.shields.io/badge/Production-Panitia%20%26%20Pelayan%20Media%202026-purple?style=for-the-badge)
 ![Status](https://img.shields.io/badge/System%20Status-Ready%20%2F%20Verified%20100%25-success?style=for-the-badge)
+[![Live Dashboard](https://img.shields.io/badge/Live%20Website-Dashboard%20Online-emerald?style=for-the-badge&logo=github&logoColor=white)](https://zzdree.github.io/ip26-production/)
 ![License](https://img.shields.io/badge/License-Internal%20Crew%20Only-red?style=for-the-badge)
 
 <p align="center">
   <b>Dokumen Resmi Arsitektur Teknis, Routing Sinyal Siaran, Struktur Panitia vs Pelayan, Alokasi Workstation, Inventaris Gear, dan Rundown Konten Multimedia</b><br/>
+  🌐 <b>Live Production Dashboard:</b> <a href="https://zzdree.github.io/ip26-production/">https://zzdree.github.io/ip26-production/</a>
 </p>
 
 </div>
@@ -495,5 +497,6 @@ Dokumen dan konfigurasi teknis ini dilindungi di bawah lisensi **Internal Operat
 
 <div align="center">
   <b>Panitia Ibadah Perdana UKK UNNES 2026 & Tim Pelayan Multimedia</b><br/>
+  🌐 <b>Live Production Dashboard:</b> <a href="https://zzdree.github.io/ip26-production/">https://zzdree.github.io/ip26-production/</a>
   <i>Divisi Media, Broadcast & Multimedia Production</i>
 </div>
