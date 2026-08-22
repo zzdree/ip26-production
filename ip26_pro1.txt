@@ -13,7 +13,7 @@ x Centang Hijau merupakan terverifikasi
 - CAM 1 (WIRELESS + FIXED) - Sony ZVE10 (Kiel 1) + Lens 18-105MM (OWL) + Battery (Kiel 1) + Memory Card 64GB (Kiel 1) + Tripod Camera Big (OWL) + HDMI to Micro HDMI Cable 30CM (OWL) + Hollyland Pyro S Transmitter (OWL) + Battery WIR (OWL) + Hollyland Pyro S Receiver (OWL) + Battery WIR (OWL) + Stand Lighting Small (UKK) + HDMI Cable 1,5M (UKK) + Cinetreak Cinelive V1 (OWL) + Power Adaptor MIX (OWL) - (Alex) ✅
 - CAM 2 (WIRELESS + MOBILE) - Sony ZV-E10 (OWL) + Lens 18-105MM (OWL) + Battery (OWL) + Memory Card 32GB (OWL) + HDMI to Micro HDMI Cable 30CM (OWL) + Hollyland Pyro H Transmitter (OWL) + Battery WIR (OWL) + Hollyland Pyro H Receiver (OWL) + Battery WIR (OWL) + Stand Lighting Small (UKK) + HDMI Cable 1,5M (UKK) + Cinetreak Cinelive V1 (OWL) + Power Adaptor MIX (OWL) - (Kiel 1) ✅
 - CAM 3 (WIRED + FIXED) - Sony A6000 (OWL) + Lens 18-105MM (OWL) + Battery (OWL) + Memory Card 32GB (OWL) + Tripod Camera Big (GIA) + Micro HDMI to HDMI Converter (OWL) + HDMI Cable 10M (GKJ) + Cinetreak Cinelive V1 (OWL) + Power Adaptor MIX (OWL) - (Nia) ✅
-- CAM 4 (WIRED + FIXED) - Sony A6000 (OWL) + Lens 16-50MM (Kiel 1) + Battery (OWL) + Memory Card 32GB (OWL) + Tripod Camera Big (UKK) + Micro HDMI to HDMI Converter (OWL) + HDMI Cable 10M (UKK) + Cinetreak Cinelive V1 (OWL) + Power Adaptor MIX (OWL) - (Ferdy) ✅
+- CAM 4 (WIRED + FIXED) - Sony A6000 (OWL) + Lens 16-50MM Kit (Kiel 1) + Battery (OWL) + Memory Card 32GB (OWL) + Tripod Camera Big (UKK) + Micro HDMI to HDMI Converter (OWL) + HDMI Cable 10M (UKK) + Cinetreak Cinelive V1 (OWL) + Power Adaptor MIX (OWL) - (Ferdy) ✅
 - BACKUP - Micro HDMI to HDMI Converter X2 (Panitia)
 
 *Broadcast Camera System - PIC*
@@ -29,7 +29,7 @@ x WIRING/ROUTING Dengan keterangan barang siapa dan operatornya
 x Centang Hijau merupakan terverifikasi
 
 - PHO Sony A6400 (OWL) + Sony 50MM (OWL) + Battery X2 (OWL)+ Memory Card 32GB (OWL) - (Nico) ✅
-- VID Sony A6600 (Joel) + Zeiss 24-70MM (Joel) + Battery X2 (Joel) + Memory Card 64GB (Joel) + Gimbal DJI Ronin RS3 (Joel) - (Joel) ✅
+- VID Sony A6600 (Joel) + Lens 24-70MM Zeiss (Joel) + Battery X2 (Joel) + Memory Card 64GB (Joel) + Gimbal DJI Ronin RS3 (Joel) - (Joel) ✅
 - HP Iphone 15 (Jennifer) - (Jennifer) ✅
 
 *Documentation Camera System - PIC*

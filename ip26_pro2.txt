@@ -39,7 +39,7 @@ x Berikut sudah dikategorikan barang dipinjam dari siapa saja dan apa saja
 - USB A to USB B Data Cable (1 Unit) ☑️
 - USB A to USB Micro B Data Cable (2 Unit) ☑️
 - USB A to USB C Data Cable (1 Unit) ✅
-- USB A to USB C Charge Cable (1 Unit) ✅
+- USB A to USB C Charge Cable (1 Unit) ☑️
 - USB C to USB C Charge Cable (1 Unit) ☑️
 - USB A to USB A Extender 30CM (2 Unit) ☑️
 - USB A to USB A Extender 2M (1 Unit) ✅
@@ -49,7 +49,7 @@ x Berikut sudah dikategorikan barang dipinjam dari siapa saja dan apa saja
 - USB A Splitter 3CH (1 Unit) ☑️
 - USB A Splitter 4CH (1 Unit) ☑️
 - USB C DAC Hanason AB17X (1 Unit) ✅
-- USB C DAC Oraimo OAA310 (1 Unit) ✅
+- USB C DAC Oraimo OAA310 (1 Unit) ☑️
 - In Ear Monitor QKZ Hi7T (1 Pack) ☑️
 - In Ear Monitor KZ EDX Pro (1 Pack) ☑️
 - Fastdrive Vgen SSD 128GB (1 Pack) ☑️
@@ -98,7 +98,7 @@ x Berikut sudah dikategorikan barang dipinjam dari siapa saja dan apa saja
 - Power Adaptor SPL (1 Pack) ☑️
 
 *Peminjaman dari UKK UNNES*
-- XLR Female to Male Cable 10M (3 Unit) ✅
+- XLR Female to Male Cable 10M (3 Unit) ⚠️ 2/3
 - Stand Lighting Small (4 Unit) ⚠️ 2/4
 - Tripod Camera Big (1 Unit) ✅
 - HDMI to Mini HDMI Cable 2,5M (1 Unit) ☑️
@@ -121,10 +121,10 @@ x Berikut sudah dikategorikan barang dipinjam dari siapa saja dan apa saja
 - Power Adaptor TV (1 Pack) ✅
 - Memory Card 8GB (1 Unit) ☑️
 
-*Peminjaman dari Kiel*
+*Peminjaman dari Kiel 1*
 - Sony ZVE10 (1 Unit) ✅
-- Sony Kit 16-50MM (1 Unit) ✅
-- Sony Manual 50MM (1 Unit) ☑️
+- Lens 16-50MM Kit (1 Unit) ✅
+- Lens 50MM Fix (1 Unit) ☑️
 - Battery (2 Unit) ✅
 - Charger (1 Pack) ✅
 - Memory Card 64GB (1 Unit) ✅
@@ -132,7 +132,7 @@ x Berikut sudah dikategorikan barang dipinjam dari siapa saja dan apa saja
 
 *Peminjaman dari Joel*
 - Sony A6600 (1 Unit) ✅
-- Lens 24-70MM (1 Unit) ✅
+- Lens 24-70MM Zeiss (1 Unit) ✅
 - Battery (2 Unit) ✅
 - Charger (1 Pack) ✅
 - Memory Card 64GB (1 Unit) ✅
