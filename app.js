@@ -696,15 +696,28 @@ document.addEventListener('DOMContentLoaded', () => {
   filterInventory();
 
   // =========================================================================
-  // 5. SCROLLSPY NAVIGATION
+  // 5. SCROLL PROGRESS & SCROLLSPY NAVIGATION
   // =========================================================================
+  const scrollProgressBar = document.getElementById('scroll-progress-bar');
   const sections = document.querySelectorAll('section[id], header[id]');
   const desktopLinks = document.querySelectorAll('.desktop-nav .nav-link');
   const mobileDockItems = document.querySelectorAll('.mobile-bottom-dock .dock-item[data-nav]');
 
-  function onScroll() {
-    const scrollPos = window.scrollY + 120;
+  let isTicking = false;
 
+  function updateScrollMetrics() {
+    const scrollY = window.scrollY || window.pageYOffset;
+    const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+    
+    // 1. Update Scroll Progress Bar
+    if (scrollProgressBar && docHeight > 0) {
+      const progress = Math.min(100, Math.max(0, (scrollY / docHeight) * 100));
+      scrollProgressBar.style.width = `${progress}%`;
+      scrollProgressBar.setAttribute('aria-valuenow', Math.round(progress));
+    }
+
+    // 2. Update ScrollSpy Active Links
+    const scrollPos = scrollY + 120;
     sections.forEach((section) => {
       const top = section.offsetTop;
       const height = section.offsetHeight;
@@ -728,7 +741,143 @@ document.addEventListener('DOMContentLoaded', () => {
         });
       }
     });
+
+    isTicking = false;
+  }
+
+  function onScroll() {
+    if (!isTicking) {
+      window.requestAnimationFrame(updateScrollMetrics);
+      isTicking = true;
+    }
   }
 
   window.addEventListener('scroll', onScroll, { passive: true });
+  updateScrollMetrics();
+
+  // Keyboard Navigation & Escape key accessibility for Modals
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && cloudConfigModal && cloudConfigModal.style.display === 'flex') {
+      cloudConfigModal.style.display = 'none';
+      if (btnOpenCloudConfig) btnOpenCloudConfig.focus();
+    }
+  });
+
+  // =========================================================================
+  // 6. HERO AMBIENT 3D WAVE & PARTICLE TELEMETRY SIMULATION
+  // =========================================================================
+  const canvas = document.getElementById('hero-ambient-canvas');
+  if (canvas) {
+    const ctx = canvas.getContext('2d');
+    let width = 0;
+    let height = 0;
+    let mouseX = 0;
+    let mouseY = 0;
+    let targetMouseX = 0;
+    let targetMouseY = 0;
+    let animFrameId = null;
+
+    function resizeCanvas() {
+      if (!canvas) return;
+      const rect = canvas.parentElement ? canvas.parentElement.getBoundingClientRect() : { width: window.innerWidth, height: 400 };
+      width = canvas.width = rect.width;
+      height = canvas.height = rect.height;
+    }
+
+    window.addEventListener('resize', resizeCanvas, { passive: true });
+    resizeCanvas();
+
+    window.addEventListener('mousemove', (e) => {
+      targetMouseX = (e.clientX / window.innerWidth) * 2 - 1;
+      targetMouseY = (e.clientY / window.innerHeight) * 2 - 1;
+    }, { passive: true });
+
+    // Generate Particle Nodes
+    const particles = [];
+    const particleCount = 28;
+    for (let i = 0; i < particleCount; i++) {
+      particles.push({
+        x: Math.random() * (width || 800),
+        y: Math.random() * (height || 400),
+        vx: (Math.random() - 0.5) * 0.4,
+        vy: (Math.random() - 0.5) * 0.4,
+        size: Math.random() * 2 + 1.2,
+        phase: Math.random() * Math.PI * 2
+      });
+    }
+
+    let time = 0;
+
+    function renderAmbientMesh() {
+      time += 0.015;
+      mouseX += (targetMouseX - mouseX) * 0.05;
+      mouseY += (targetMouseY - mouseY) * 0.05;
+
+      ctx.clearRect(0, 0, width, height);
+
+      const isDark = (document.documentElement.getAttribute('data-theme') || 'dark') === 'dark';
+      const waveColor = isDark ? 'rgba(0, 210, 255, 0.08)' : 'rgba(2, 132, 199, 0.06)';
+      const nodeColor = isDark ? 'rgba(0, 210, 255, 0.4)' : 'rgba(2, 132, 199, 0.35)';
+      const lineColor = isDark ? 'rgba(0, 210, 255, 0.05)' : 'rgba(2, 132, 199, 0.04)';
+
+      // 1. Draw Simulated 3D Broadcast Wave Grid
+      ctx.beginPath();
+      ctx.lineWidth = 1.2;
+      ctx.strokeStyle = waveColor;
+
+      const lines = 6;
+      for (let l = 0; l < lines; l++) {
+        ctx.beginPath();
+        const baseOffsetY = (height * 0.45) + (l * 18);
+        for (let x = 0; x <= width; x += 15) {
+          const freq1 = Math.sin(x * 0.006 + time + l * 0.4) * 22;
+          const freq2 = Math.cos(x * 0.012 - time * 0.8 + l) * 12;
+          const mouseInfluence = Math.sin(x * 0.004 + mouseX * 2) * 16 * mouseY;
+          const y = baseOffsetY + freq1 + freq2 + mouseInfluence;
+          if (x === 0) ctx.moveTo(x, y);
+          else ctx.lineTo(x, y);
+        }
+        ctx.stroke();
+      }
+
+      // 2. Update & Connect Particle Telemetry Nodes
+      for (let i = 0; i < particles.length; i++) {
+        const p = particles[i];
+        p.x += p.vx;
+        p.y += p.vy;
+
+        if (p.x < 0) p.x = width;
+        if (p.x > width) p.x = 0;
+        if (p.y < 0) p.y = height;
+        if (p.y > height) p.y = 0;
+
+        // Draw particle node
+        ctx.beginPath();
+        ctx.fillStyle = nodeColor;
+        ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+        ctx.fill();
+
+        // Connect nearby nodes
+        for (let j = i + 1; j < particles.length; j++) {
+          const p2 = particles[j];
+          const dx = p.x - p2.x;
+          const dy = p.y - p2.y;
+          const dist = Math.sqrt(dx * dx + dy * dy);
+
+          if (dist < 110) {
+            ctx.beginPath();
+            ctx.strokeStyle = lineColor;
+            ctx.lineWidth = (1 - dist / 110);
+            ctx.moveTo(p.x, p.y);
+            ctx.lineTo(p2.x, p2.y);
+            ctx.stroke();
+          }
+        }
+      }
+
+      animFrameId = requestAnimationFrame(renderAmbientMesh);
+    }
+
+    renderAmbientMesh();
+  }
 });

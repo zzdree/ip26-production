@@ -5,12 +5,58 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
   <title>IP26 Live Broadcast & Multimedia Production Portal | UKK UNNES</title>
   <meta name="description" content="Portal teknis resmi & master pipeline produksi multimedia, broadcast, camera routing, audio submixing, dan manajemen inventaris Ibadah Perdana UKK UNNES 2026." />
+  <meta name="keywords" content="IP26, UKK UNNES, Broadcast Pipeline, Live Production, Resolume Arena, ProPresenter, Audio Submixing, Sony FX3, Sony A6000, MCR" />
+  <meta name="author" content="Andreas Restuawanta Christwara" />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://zzdree.github.io/ip26-production/" />
+
+  <!-- Open Graph / Facebook / WhatsApp -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://zzdree.github.io/ip26-production/" />
+  <meta property="og:site_name" content="IP26 Production Portal" />
+  <meta property="og:title" content="IP26 Live Broadcast & Multimedia Production Portal | UKK UNNES" />
+  <meta property="og:description" content="Pusat komando dan dokumentasi teknis live broadcast, video switching, LED mapping, audio submixing, dan sinkronisasi realtime inventaris logistik." />
+  <meta property="og:locale" content="id_ID" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="IP26 Live Broadcast & Multimedia Production Portal" />
+  <meta name="twitter:description" content="Master Pipeline & Technical Guide Ibadah Perdana UKK UNNES 2026." />
+
+  <!-- Performance & DNS Preconnects -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="dns-prefetch" href="https://ssbkhhnnzwuykyeznpwd.supabase.co" />
+  <link rel="dns-prefetch" href="https://cdn.jsdelivr.net" />
   
-  <!-- Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Outfit:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+  <!-- Modern Google Fonts with display=swap for high Web Vitals -->
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Outfit:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet" />
   
+  <!-- JSON-LD Structured Data Schema -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BroadcastEvent",
+    "name": "Ibadah Perdana UKK UNNES 2026 - Live Multimedia Production",
+    "description": "Technical production and live broadcast pipeline for UKK UNNES 2026.",
+    "location": {
+      "@type": "Place",
+      "name": "Auditorium UNNES",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Semarang",
+        "addressRegion": "Jawa Tengah",
+        "addressCountry": "ID"
+      }
+    },
+    "organizer": {
+      "@type": "Organization",
+      "name": "UKK UNNES Technical Production Team",
+      "url": "https://zzdree.github.io/ip26-production/"
+    }
+  }
+  </script>
+
   <!-- Stylesheet -->
   <link rel="stylesheet" href="style.css" />
 
@@ -19,38 +65,49 @@
 </head>
 <body>
 
+  <!-- Accessibility Skip Link -->
+  <a href="#main-content" class="skip-link">Lewati ke Konten Utama</a>
+
   <!-- ========================================================================= -->
   <!-- 1. DESKTOP TOP NAVBAR -->
   <!-- ========================================================================= -->
-  <header class="desktop-header" id="desktop-header">
+  <header class="desktop-header" id="desktop-header" role="banner">
+    <!-- Top Reading / Scroll Progress Bar -->
+    <div id="scroll-progress-bar" class="scroll-progress-bar" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" aria-label="Reading progress"></div>
+
     <div class="nav-container">
-      <a href="#hero" class="brand-logo" aria-label="IP26 Production Home">
-        <span class="brand-badge">IP26</span>
+      <a href="#hero" class="brand-logo" aria-label="IP26 Production Portal Home">
+        <div class="brand-badge-wrap">
+          <span class="brand-badge">IP26</span>
+          <span class="brand-live-dot" title="Live MCR Command"></span>
+        </div>
         <div class="brand-text">
           <span class="brand-title">PRODUCTION PORTAL</span>
           <span class="brand-sub">UKK UNNES 2026</span>
         </div>
       </a>
 
-      <nav class="desktop-nav" aria-label="Main Navigation">
+      <nav class="desktop-nav" aria-label="Navigasi Utama">
         <ul class="nav-links">
-          <li><a href="#structure" class="nav-link">Tim & PIC</a></li>
-          <li><a href="#flowcharts" class="nav-link">Flowchart Master</a></li>
-          <li><a href="#subsystems" class="nav-link">Sub-Sistem</a></li>
-          <li><a href="#cameras" class="nav-link">Kamera</a></li>
-          <li><a href="#workstations" class="nav-link">Workstation</a></li>
-          <li><a href="#inventory" class="nav-link">Inventaris</a></li>
-          <li><a href="#rundown" class="nav-link">Rundown</a></li>
+          <li><a href="#structure" class="nav-link"><span>👥</span> Tim & PIC</a></li>
+          <li><a href="#flowcharts" class="nav-link"><span>🗺️</span> Flowchart</a></li>
+          <li><a href="#subsystems" class="nav-link"><span>⚡</span> Sub-Sistem</a></li>
+          <li><a href="#cameras" class="nav-link"><span>🎥</span> Kamera</a></li>
+          <li><a href="#workstations" class="nav-link"><span>💻</span> Workstation</a></li>
+          <li><a href="#inventory" class="nav-link"><span>📦</span> Inventaris</a></li>
+          <li><a href="#rundown" class="nav-link"><span>📋</span> Rundown</a></li>
         </ul>
       </nav>
 
       <div class="nav-actions">
-        <button id="theme-toggle-btn" class="theme-toggle-btn" aria-label="Ganti Mode Tampilan (Dark / Light)">
+        <button id="theme-toggle-btn" class="theme-toggle-btn" aria-label="Ganti Mode Tema (Dark / Light)" title="Ganti Mode Tampilan">
           <span class="theme-icon dark-icon">🌙</span>
           <span class="theme-icon light-icon">☀️</span>
           <span class="theme-label">Mode</span>
         </button>
-        <a href="#inventory" class="btn btn-sm btn-primary">🔍 Cari Barang</a>
+        <a href="#inventory" class="btn btn-sm btn-primary nav-cta-btn" aria-label="Menuju ke Live Checklist Inventaris">
+          <span class="btn-icon">⚡</span> Checklist Live
+        </a>
       </div>
     </div>
   </header>
@@ -58,9 +115,10 @@
   <!-- ========================================================================= -->
   <!-- 2. HERO SECTION -->
   <!-- ========================================================================= -->
-  <main>
+  <main id="main-content" role="main">
     <section class="hero-section" id="hero">
       <div class="hero-bg-grid"></div>
+      <canvas id="hero-ambient-canvas" class="hero-ambient-canvas" aria-hidden="true"></canvas>
       <div class="container hero-content">
         <div class="hero-badges">
           <span class="badge badge-cyan"><span class="pulse-dot"></span> LIVE PRODUCTION SYSTEM</span>
