@@ -1466,6 +1466,20 @@ a:hover {
   border: 1px solid rgba(168, 85, 247, 0.35);
 }
 
+.badge-panitia {
+  background: rgba(168, 85, 247, 0.15);
+  color: #c084fc;
+  border: 1px solid rgba(168, 85, 247, 0.4);
+  font-weight: 700;
+}
+
+.badge-pelayan {
+  background: rgba(0, 229, 255, 0.12);
+  color: #38bdf8;
+  border: 1px solid rgba(0, 229, 255, 0.35);
+  font-weight: 700;
+}
+
 /* Site Footer */
 .site-footer-centered {
   border-top: 1px solid var(--border-subtle);

@@ -4,13 +4,13 @@
 
 ![Event](https://img.shields.io/badge/Event-Ibadah%20Perdana%20UKK%20UNNES%202026-blue?style=for-the-badge&logo=eventstore&logoColor=white)
 ![Venue](https://img.shields.io/badge/Venue-Auditorium%20UNNES-orange?style=for-the-badge&logo=google-maps&logoColor=white)
-![Production](https://img.shields.io/badge/Production-Panitia%20Ibadah%20Perdana%202026-purple?style=for-the-badge)
+![Production](https://img.shields.io/badge/Production-Panitia%20%26%20Pelayan%20Media%202026-purple?style=for-the-badge)
 ![Status](https://img.shields.io/badge/System%20Status-Ready%20%2F%20Verified%20100%25-success?style=for-the-badge)
 [![Live Dashboard](https://img.shields.io/badge/Live%20Website-Dashboard%20Online-emerald?style=for-the-badge&logo=github&logoColor=white)](https://zzdree.github.io/ip26-production/)
 ![License](https://img.shields.io/badge/License-Internal%20Crew%20Only-red?style=for-the-badge)
 
 <p align="center">
-  <b>Dokumen Resmi Arsitektur Teknis, Routing Sinyal Siaran, Struktur Tim Engineer, Alokasi Workstation, Inventaris Gear, dan Rundown Konten Multimedia</b><br/>
+  <b>Dokumen Resmi Arsitektur Teknis, Routing Sinyal Siaran, Struktur Panitia vs Pelayan, Alokasi Workstation, Inventaris Gear, dan Rundown Konten Multimedia</b><br/>
   🌐 <b>Live Production Dashboard:</b> <a href="https://zzdree.github.io/ip26-production/">https://zzdree.github.io/ip26-production/</a>
 </p>
 
@@ -20,9 +20,10 @@
 
 ## 📑 Daftar Isi
 
-- [📌 Informasi Acara & Struktur Tim](#-informasi-acara--struktur-tim)
+- [📌 Informasi Acara & Struktur Personel](#-informasi-acara--struktur-personel)
   - [1. Ringkasan Acara](#1-ringkasan-acara)
-  - [2. Struktur Tim Produksi & Engineering](#2-struktur-tim-produksi--engineering)
+  - [2. Struktur Tim Engineering](#2-struktur-tim-engineering)
+  - [3. Klasifikasi Peran: Panitia vs Pelayan](#3-klasifikasi-peran-panitia-vs-pelayan)
 - [🧭 Panduan Status Indikator](#-panduan-status-indikator)
 - [🎥 Sistem Kamera (Camera Systems)](#-sistem-kamera-camera-systems)
   - [1. Broadcast Camera System](#1-broadcast-camera-system)
@@ -40,7 +41,7 @@
 
 ---
 
-## 📌 Informasi Acara & Struktur Tim
+## 📌 Informasi Acara & Struktur Personel
 
 ### 1. Ringkasan Acara
 
@@ -48,10 +49,10 @@
 | :--- | :--- |
 | **Nama Acara** | Ibadah Perdana UKK UNNES 2026 |
 | **Lokasi** | Gedung Auditorium Universitas Negeri Semarang (UNNES) |
-| **Pelaksana Produksi** | Panitia Ibadah Perdana 2026 |
+| **Pelaksana Produksi** | Panitia Ibadah Perdana 2026 & Tim Pelayan Divisi Multimedia |
 | **Target Output** | Multi-Screen LED (Center, Left, Right, Back Stage), Live Streaming OBS, dan FOH Sound System |
 
-### 2. Struktur Tim Produksi & Engineering
+### 2. Struktur Tim Engineering
 
 ```
                              ┌───────────────────────────────────┐
@@ -71,11 +72,14 @@
 └───────────────────┘                 └───────────────────┘                 └───────────────────┘
 ```
 
+### 3. Klasifikasi Peran: Panitia vs Pelayan
+Dalam pembagian tugas teknis di lapangan, personel diklasifikasikan secara tegas menjadi dua kategori:
+- **🏛️ Panitia (Committee):** Personel yang tergabung dalam struktur kepanitiaan resmi Ibadah Perdana 2026 (seperti Tim Acara, System Lead, Media Lead, Creative Lead).
+- **✨ Pelayan (Ministry Servant / Field Operator):** Rekan-rekan yang melayani secara khusus untuk mendukung kebutuhan operasional lapangan sebagai operator teknis kamera, audio console, visual display, dan multimedia siaran yang bukan merupakan bagian panitia struktural.
+
 ---
 
 ## 🧭 Panduan Status Indikator
-
-Setiap item dan jalur routing dalam dokumen ini diklasifikasikan menggunakan indikator status standar:
 
 | Simbol | Status | Definisi Operasional |
 | :---: | :--- | :--- |
@@ -118,13 +122,13 @@ flowchart TD
     CAM4 --> CONV4 --> SWITCHER
 ```
 
-| ID Kamera | Konfigurasi Rig & Kepemilikan Barang | PIC Operator | Tipe Jalur | Status |
-| :--- | :--- | :--- | :---: | :---: |
-| **CAM 1** | Sony ZVE10 (Kiel 1) + Lens 18-105MM (OWL) + Battery (Kiel 1) + Memory Card 64GB (Kiel 1) + Tripod Camera Big (OWL) + HDMI to Micro HDMI Cable 30CM (OWL) + Hollyland Pyro S Transmitter (OWL) + Battery WIR (OWL) + Hollyland Pyro S Receiver (OWL) + Battery WIR (OWL) + Stand Lighting Small (UKK) + HDMI Cable 1,5M (UKK) + Cinetreak Cinelive V1 (OWL) + Power Adaptor MIX (OWL) | **Alex** | Wireless + Fixed | `✅` |
-| **CAM 2** | Sony ZV-E10 (OWL) + Lens 18-105MM (OWL) + Battery (OWL) + Memory Card 32GB (OWL) + HDMI to Micro HDMI Cable 30CM (OWL) + Hollyland Pyro H Transmitter (OWL) + Battery WIR (OWL) + Hollyland Pyro H Receiver (OWL) + Battery WIR (OWL) + Stand Lighting Small (UKK) + HDMI Cable 1,5M (UKK) + Cinetreak Cinelive V1 (OWL) + Power Adaptor MIX (OWL) | **Kiel 1** | Wireless + Mobile | `✅` |
-| **CAM 3** | Sony A6000 (OWL) + Lens 18-105MM (OWL) + Battery (OWL) + Memory Card 32GB (OWL) + Tripod Camera Big (GIA) + Micro HDMI to HDMI Converter (OWL) + HDMI Cable 10M (GKJ) + Cinetreak Cinelive V1 (OWL) + Power Adaptor MIX (OWL) | **Nia** | Wired + Fixed | `✅` |
-| **CAM 4** | Sony A6000 (OWL) + Lens 16-50MM Kit (Kiel 1) + Battery (OWL) + Memory Card 32GB (OWL) + Tripod Camera Big (UKK) + Micro HDMI to HDMI Converter (OWL) + HDMI Cable 10M (UKK) + Cinetreak Cinelive V1 (OWL) + Power Adaptor MIX (OWL) | **Ferdy** | Wired + Fixed | `✅` |
-| **BACKUP**| Micro HDMI to HDMI Converter X2 (Panitia) | — | Backup Line | `☑️` |
+| ID Kamera | Konfigurasi Rig & Kepemilikan Barang | PIC Operator | Status Personel | Tipe Jalur | Status |
+| :--- | :--- | :--- | :---: | :---: | :---: |
+| **CAM 1** | Sony ZVE10 (Kiel 1) + Lens 18-105MM (OWL) + Battery (Kiel 1) + Memory Card 64GB (Kiel 1) + Tripod Camera Big (OWL) + HDMI to Micro HDMI Cable 30CM (OWL) + Hollyland Pyro S Transmitter (OWL) + Battery WIR (OWL) + Hollyland Pyro S Receiver (OWL) + Battery WIR (OWL) + Stand Lighting Small (UKK) + HDMI Cable 1,5M (UKK) + Cinetreak Cinelive V1 (OWL) + Power Adaptor MIX (OWL) | **Alex** | ✨ Pelayan | Wireless + Fixed | `✅` |
+| **CAM 2** | Sony ZV-E10 (OWL) + Lens 18-105MM (OWL) + Battery (OWL) + Memory Card 32GB (OWL) + HDMI to Micro HDMI Cable 30CM (OWL) + Hollyland Pyro H Transmitter (OWL) + Battery WIR (OWL) + Hollyland Pyro H Receiver (OWL) + Battery WIR (OWL) + Stand Lighting Small (UKK) + HDMI Cable 1,5M (UKK) + Cinetreak Cinelive V1 (OWL) + Power Adaptor MIX (OWL) | **Kiel 1** | ✨ Pelayan | Wireless + Mobile | `✅` |
+| **CAM 3** | Sony A6000 (OWL) + Lens 18-105MM (OWL) + Battery (OWL) + Memory Card 32GB (OWL) + Tripod Camera Big (GIA) + Micro HDMI to HDMI Converter (OWL) + HDMI Cable 10M (GKJ) + Cinetreak Cinelive V1 (OWL) + Power Adaptor MIX (OWL) | **Nia** | ✨ Pelayan | Wired + Fixed | `✅` |
+| **CAM 4** | Sony A6000 (OWL) + Lens 16-50MM Kit (Kiel 1) + Battery (OWL) + Memory Card 32GB (OWL) + Tripod Camera Big (UKK) + Micro HDMI to HDMI Converter (OWL) + HDMI Cable 10M (UKK) + Cinetreak Cinelive V1 (OWL) + Power Adaptor MIX (OWL) | **Ferdy** | ✨ Pelayan | Wired + Fixed | `✅` |
+| **BACKUP**| Micro HDMI to HDMI Converter X2 (Panitia) | — | — | Backup Line | `☑️` |
 
 ---
 
@@ -150,11 +154,11 @@ flowchart LR
     HP --> SOCMED
 ```
 
-| Unit Kamera | Konfigurasi Rig & Kepemilikan Barang | PIC Operator | Peran Produksi | Status |
-| :--- | :--- | :--- | :--- | :---: |
-| **CAM PHO** | Sony A6400 (OWL) + Sony 50MM (OWL) + Battery X2 (OWL) + Memory Card 32GB (OWL) | **Nico** | Foto Dokumentasi & Liputan | `✅` |
-| **CAM VID** | Sony A6600 (Joel) + Lens 24-70MM Zeiss (Joel) + Battery X2 (Joel) + Memory Card 64GB (Joel) + Gimbal DJI Ronin RS3 (Joel) | **Joel** | Video Cinematic & Aftermovie | `✅` |
-| **CAM HP** | HP Iphone 15 (Jennifer) | **Jennifer** | Instant Reels, Social Media & Story | `✅` |
+| Unit Kamera | Konfigurasi Rig & Kepemilikan Barang | PIC Operator | Status Personel | Peran Produksi | Status |
+| :--- | :--- | :--- | :---: | :--- | :---: |
+| **CAM PHO** | Sony A6400 (OWL) + Sony 50MM (OWL) + Battery X2 (OWL) + Memory Card 32GB (OWL) | **Nico** | ✨ Pelayan | Foto Dokumentasi & Liputan | `✅` |
+| **CAM VID** | Sony A6600 (Joel) + Lens 24-70MM Zeiss (Joel) + Battery X2 (Joel) + Memory Card 64GB (Joel) + Gimbal DJI Ronin RS3 (Joel) | **Joel** | ✨ Pelayan | Video Cinematic & Aftermovie | `✅` |
+| **CAM HP** | HP Iphone 15 (Jennifer) | **Jennifer** | 🏛️ Panitia | Instant Reels, Social Media & Story | `✅` |
 
 ---
 
@@ -233,7 +237,7 @@ flowchart TD
 
 ### 4. Time Keeper System
 *Terpisah secara sistem dari Broadcast System dan Engine System.*
-- `Terminal Cable XCH (UKK) + Laptop (Pro Presenter 3) + Power Adaptor LTP (Pro Presenter 3) + HDMI to HDMI Cable 1.5M (Lio) + Television (Darrel) + Power Adaptor TV (Darrel)` — `✅` *(Operator: Tim Acara)*
+- `Terminal Cable XCH (UKK) + Laptop (Pro Presenter 3) + Power Adaptor LTP (Pro Presenter 3) + HDMI to HDMI Cable 1.5M (Lio) + Television (Darrel) + Power Adaptor TV (Darrel)` — `✅` *(Operator: Tim Acara - 🏛️ Panitia)*
 
 ---
 
@@ -248,19 +252,19 @@ Terdapat total **3 Unit HDMI Splitter**:
 
 ## 💻 Media System Device & Alokasi Operator
 
-| Perangkat / Posisi | Hardware & Kepemilikan Barang | Operator (PIC) | Status Kesiapan |
-| :--- | :--- | :--- | :---: |
-| **Mixer 1 (FOH Console)** | Yamaha QL5 (UNNES) | Jordan / Yosua | `✅` Terpasang |
-| **Mixer 2 (Sub-Mixer Stream)**| NewBaxs CT80S (GIA) | Andreas | `✅` Terpasang |
-| **Virtual Mixer 1** | Laptop + Power Adaptor LTP (Andreas) | Jordan / Yosua | `✅` Terpasang |
-| **Virtual Mixer 2** | iPad (Jennifer) | Jordan / Yosua | `✅` Terpasang |
-| **Resolume Arena** | Laptop + Power Adaptor LTP (Bayu) | Andreas | `✅` Terpasang |
-| **Pro Presenter 1 (LED L/R/Back)**| Laptop + Power Adaptor LTP *(Belum Ada)* | Rania | `⚠️` Belum Ada |
-| **Pro Presenter 2 (Lirik & Ayat)** | Laptop + Power Adaptor LTP *(Belum Ada)* | Filia | `⚠️` Belum Ada |
-| **Pro Presenter 3 + Television** | Laptop X + Power Adaptor LTP *(Belum Ada)* + TV + Power Adaptor TV (Darrel) | Acara (Tim Acara) | `⚠️` Belum Ada |
-| **Switcher + Television** | Cinetreak Cinelive V1 + Power Adaptor MIX (OWL) + TV + Power Adaptor TV (Kezia) | Wilfred | `✅` Terpasang |
-| **OBS Studio (Live Stream)** | Laptop X + Power Adaptor LTP *(Belum Ada)* | Andreas | `⚠️` Belum Ada |
-| **Backup Workstation** | Laptop + Power Adaptor LTP (Kiel 1) | Kiel 1 | `✅` Standby |
+| Perangkat / Posisi | Hardware & Kepemilikan Barang | Operator (PIC) | Status Personel | Status Kesiapan |
+| :--- | :--- | :--- | :---: | :---: |
+| **Mixer 1 (FOH Console)** | Yamaha QL5 (UNNES) | Jordan / Yosua | ✨ Pelayan | `✅` Terpasang |
+| **Mixer 2 (Sub-Mixer Stream)**| NewBaxs CT80S (GIA) | Andreas | 🏛️ Panitia | `✅` Terpasang |
+| **Virtual Mixer 1** | Laptop + Power Adaptor LTP (Andreas) | Jordan / Yosua | ✨ Pelayan | `✅` Terpasang |
+| **Virtual Mixer 2** | iPad (Jennifer) | Jordan / Yosua | ✨ Pelayan | `✅` Terpasang |
+| **Resolume Arena** | Laptop + Power Adaptor LTP (Bayu) | Andreas | 🏛️ Panitia | `✅` Terpasang |
+| **Pro Presenter 1 (LED L/R/Back)**| Laptop + Power Adaptor LTP *(Belum Ada)* | Rania | ✨ Pelayan | `⚠️` Belum Ada |
+| **Pro Presenter 2 (Lirik & Ayat)** | Laptop + Power Adaptor LTP *(Belum Ada)* | Filia | ✨ Pelayan | `⚠️` Belum Ada |
+| **Pro Presenter 3 + Television** | Laptop X + Power Adaptor LTP *(Belum Ada)* + TV + Power Adaptor TV (Darrel) | Acara (Tim Acara) | 🏛️ Panitia | `⚠️` Belum Ada |
+| **Switcher + Television** | Cinetreak Cinelive V1 + Power Adaptor MIX (OWL) + TV + Power Adaptor TV (Kezia) | Wilfred | ✨ Pelayan | `✅` Terpasang |
+| **OBS Studio (Live Stream)** | Laptop X + Power Adaptor LTP *(Belum Ada)* | Andreas | 🏛️ Panitia | `⚠️` Belum Ada |
+| **Backup Workstation** | Laptop + Power Adaptor LTP (Kiel 1) | Kiel 1 | ✨ Pelayan | `✅` Standby |
 
 ---
 
@@ -440,6 +444,6 @@ Dokumen dan konfigurasi teknis ini dilindungi di bawah lisensi **Internal Operat
 ---
 
 <div align="center">
-  <b>Panitia Ibadah Perdana UKK UNNES 2026</b><br/>
+  <b>Panitia Ibadah Perdana UKK UNNES 2026 & Tim Pelayan Multimedia</b><br/>
   <i>Divisi Media, Broadcast & Multimedia Production</i>
 </div>

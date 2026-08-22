@@ -12,7 +12,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&family=Space+Grotesk:wght@600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
   
   <!-- Ultra-Fast Pure Dark Grey Stylesheet -->
-  <link rel="stylesheet" href="style.css?v=20260822_v4">
+  <link rel="stylesheet" href="style.css?v=20260822_v5">
 </head>
 <body class="app-body">
 
@@ -164,6 +164,7 @@
             <div class="team-lead-row">
               <span class="lead-tag">Leader</span>
               <strong class="lead-name">Andreas</strong>
+              <span class="badge badge-panitia" style="margin-left: auto;">🏛️ Panitia</span>
             </div>
             <p class="team-desc">Arsitektur jaringan siaran, routing video multi-layar, audio routing, dan integrasi cloud suite.</p>
           </div>
@@ -174,11 +175,12 @@
             <div class="team-lead-row">
               <span class="lead-tag">Leader</span>
               <strong class="lead-name">Richard</strong>
+              <span class="badge badge-panitia" style="margin-left: auto;">🏛️ Panitia</span>
             </div>
             <div class="team-members-wrap">
-              <span class="member-pill">Wilfred</span>
-              <span class="member-pill">Alex</span>
-              <span class="member-pill">Rania</span>
+              <span class="member-pill">Wilfred <small class="text-cyan">(✨ Pelayan)</small></span>
+              <span class="member-pill">Alex <small class="text-cyan">(✨ Pelayan)</small></span>
+              <span class="member-pill">Rania <small class="text-cyan">(✨ Pelayan)</small></span>
             </div>
           </div>
 
@@ -188,12 +190,25 @@
             <div class="team-lead-row">
               <span class="lead-tag">Leader</span>
               <strong class="lead-name">Jennifer</strong>
+              <span class="badge badge-panitia" style="margin-left: auto;">🏛️ Panitia</span>
             </div>
             <div class="team-members-wrap">
-              <span class="member-pill">Filia</span>
-              <span class="member-pill">Felani</span>
-              <span class="member-pill">Wike</span>
+              <span class="member-pill">Filia <small class="text-cyan">(✨ Pelayan)</small></span>
+              <span class="member-pill">Felani <small class="text-cyan">(✨ Pelayan)</small></span>
+              <span class="member-pill">Wike <small class="text-cyan">(✨ Pelayan)</small></span>
             </div>
+          </div>
+        </div>
+
+        <!-- Role Classification Callout -->
+        <div class="callout-banner mt-3" style="border-left-color: var(--neon-purple);">
+          <span class="callout-ico">🏛️</span>
+          <div>
+            <strong style="color: #fff; display: block; margin-bottom: 2px;">Klasifikasi Penugasan PIC: Panitia vs Pelayan</strong>
+            <span style="font-size: 12.5px; color: var(--text-muted); line-height: 1.5; display: block;">
+              • <strong style="color: #c084fc;">🏛️ Panitia (Committee):</strong> Personel struktural panitia resmi Ibadah Perdana 2026 yang merangkap koordinasi teknis & kepanitiaan.<br/>
+              • <strong style="color: var(--neon-cyan);">✨ Pelayan (Ministry Servant):</strong> Rekan-rekan yang melayani khusus sebagai operator teknis lapangan (Kamera, Audio FOH, Display Lirik, Switcher) yang bukan panitia struktural.
+            </span>
           </div>
         </div>
       </section>
@@ -392,6 +407,7 @@
                 <div class="rig-operator-box">
                   <span class="op-label">OPERATOR</span>
                   <span class="op-val text-success">Alex ✅</span>
+                  <span class="badge badge-pelayan" style="display: inline-block; margin-top: 2px;">✨ Pelayan</span>
                 </div>
               </div>
               <div class="rig-spec-list">
@@ -402,7 +418,7 @@
                 <div class="rig-spec-row"><span class="rk">Receiver RX:</span><span class="rv">Hollyland Pyro S RX + Stand Small (UKK) + HDMI 1,5M (UKK) ➔ Switcher</span></div>
               </div>
               <div class="rig-action-row">
-                <button class="btn-copy-rig" onclick="copyText('CAM 1: Sony ZVE10 + Lens 18-105MM + Hollyland Pyro S TX/RX + Tripod OWL - Alex', this)">
+                <button class="btn-copy-rig" onclick="copyText('CAM 1: Sony ZVE10 + Lens 18-105MM + Hollyland Pyro S TX/RX + Tripod OWL - Alex (Pelayan)', this)">
                   <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
                   <span>Salin Rig Config</span>
                 </button>
@@ -423,6 +439,7 @@
                 <div class="rig-operator-box">
                   <span class="op-label">OPERATOR</span>
                   <span class="op-val text-success">Kiel 1 ✅</span>
+                  <span class="badge badge-pelayan" style="display: inline-block; margin-top: 2px;">✨ Pelayan</span>
                 </div>
               </div>
               <div class="rig-spec-list">
@@ -433,7 +450,7 @@
                 <div class="rig-spec-row"><span class="rk">Receiver RX:</span><span class="rv">Hollyland Pyro H RX + Stand Small (UKK) + HDMI 1,5M (UKK) ➔ Switcher</span></div>
               </div>
               <div class="rig-action-row">
-                <button class="btn-copy-rig" onclick="copyText('CAM 2: Sony ZV-E10 + Lens 18-105MM + Hollyland Pyro H TX/RX - Kiel 1', this)">
+                <button class="btn-copy-rig" onclick="copyText('CAM 2: Sony ZV-E10 + Lens 18-105MM + Hollyland Pyro H TX/RX - Kiel 1 (Pelayan)', this)">
                   <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
                   <span>Salin Rig Config</span>
                 </button>
@@ -454,6 +471,7 @@
                 <div class="rig-operator-box">
                   <span class="op-label">OPERATOR</span>
                   <span class="op-val text-success">Nia ✅</span>
+                  <span class="badge badge-pelayan" style="display: inline-block; margin-top: 2px;">✨ Pelayan</span>
                 </div>
               </div>
               <div class="rig-spec-list">
@@ -464,7 +482,7 @@
                 <div class="rig-spec-row"><span class="rk">Jalur Kabel:</span><span class="rv">HDMI Cable 10M (GKJ) ➔ Cinetreak Switcher (OWL)</span></div>
               </div>
               <div class="rig-action-row">
-                <button class="btn-copy-rig" onclick="copyText('CAM 3: Sony A6000 + Lens 18-105MM + HDMI 10M GKJ + Tripod GIA - Nia', this)">
+                <button class="btn-copy-rig" onclick="copyText('CAM 3: Sony A6000 + Lens 18-105MM + HDMI 10M GKJ + Tripod GIA - Nia (Pelayan)', this)">
                   <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
                   <span>Salin Rig Config</span>
                 </button>
@@ -485,6 +503,7 @@
                 <div class="rig-operator-box">
                   <span class="op-label">OPERATOR</span>
                   <span class="op-val text-success">Ferdy ✅</span>
+                  <span class="badge badge-pelayan" style="display: inline-block; margin-top: 2px;">✨ Pelayan</span>
                 </div>
               </div>
               <div class="rig-spec-list">
@@ -495,7 +514,7 @@
                 <div class="rig-spec-row"><span class="rk">Jalur Kabel:</span><span class="rv">HDMI Cable 10M (UKK) ➔ Cinetreak Switcher (OWL)</span></div>
               </div>
               <div class="rig-action-row">
-                <button class="btn-copy-rig" onclick="copyText('CAM 4: Sony A6000 + Lens 16-50MM + HDMI 10M UKK + Tripod UKK - Ferdy', this)">
+                <button class="btn-copy-rig" onclick="copyText('CAM 4: Sony A6000 + Lens 16-50MM + HDMI 10M UKK + Tripod UKK - Ferdy (Pelayan)', this)">
                   <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
                   <span>Salin Rig Config</span>
                 </button>
@@ -525,6 +544,7 @@
                 <div class="rig-operator-box">
                   <span class="op-label">PIC FOTO</span>
                   <span class="op-val text-success">Nico ✅</span>
+                  <span class="badge badge-pelayan" style="display: inline-block; margin-top: 2px;">✨ Pelayan</span>
                 </div>
               </div>
               <div class="rig-spec-list">
@@ -545,6 +565,7 @@
                 <div class="rig-operator-box">
                   <span class="op-label">PIC VIDEO</span>
                   <span class="op-val text-success">Joel ✅</span>
+                  <span class="badge badge-pelayan" style="display: inline-block; margin-top: 2px;">✨ Pelayan</span>
                 </div>
               </div>
               <div class="rig-spec-list">
@@ -565,6 +586,7 @@
                 <div class="rig-operator-box">
                   <span class="op-label">PIC MEDSOS</span>
                   <span class="op-val text-success">Jennifer ✅</span>
+                  <span class="badge badge-panitia" style="display: inline-block; margin-top: 2px;">🏛️ Panitia</span>
                 </div>
               </div>
               <div class="rig-spec-list">
@@ -725,6 +747,7 @@ Terminal Cable XCH (Andreas) + Terminal Cable XCH (UKK) + Terminal Cable XCH (Pa
                 <th>Workstation / Posisi</th>
                 <th>Perangkat Keras & Kepemilikan</th>
                 <th>Operator Bertugas (PIC)</th>
+                <th style="width: 140px; text-align: center;">Status Personel</th>
                 <th style="width: 150px; text-align: center;">Status Kesiapan</th>
               </tr>
             </thead>
@@ -733,66 +756,77 @@ Terminal Cable XCH (Andreas) + Terminal Cable XCH (UKK) + Terminal Cable XCH (Pa
                 <td><strong>Mixer 1 (FOH Audio Console)</strong></td>
                 <td>Yamaha QL5 (UNNES)</td>
                 <td>Jordan / Yosua</td>
+                <td class="text-center"><span class="badge badge-pelayan">✨ Pelayan</span></td>
                 <td class="text-center"><span class="badge badge-success">✅ Terpasang</span></td>
               </tr>
               <tr>
                 <td><strong>Mixer 2 (Sub-Mixer Stream)</strong></td>
                 <td>NewBaxs CT80S (GIA)</td>
                 <td>Andreas</td>
+                <td class="text-center"><span class="badge badge-panitia">🏛️ Panitia</span></td>
                 <td class="text-center"><span class="badge badge-success">✅ Terpasang</span></td>
               </tr>
               <tr>
                 <td><strong>Virtual Mixer 1</strong></td>
                 <td>Laptop + Power Adaptor LTP (Andreas)</td>
                 <td>Jordan / Yosua</td>
+                <td class="text-center"><span class="badge badge-pelayan">✨ Pelayan</span></td>
                 <td class="text-center"><span class="badge badge-success">✅ Terpasang</span></td>
               </tr>
               <tr>
                 <td><strong>Virtual Mixer 2</strong></td>
                 <td>iPad (Jennifer)</td>
                 <td>Jordan / Yosua</td>
+                <td class="text-center"><span class="badge badge-pelayan">✨ Pelayan</span></td>
                 <td class="text-center"><span class="badge badge-success">✅ Terpasang</span></td>
               </tr>
               <tr>
                 <td><strong>Resolume Arena (Visual Mapping)</strong></td>
                 <td>Laptop + Power Adaptor LTP (Bayu)</td>
                 <td>Andreas</td>
+                <td class="text-center"><span class="badge badge-panitia">🏛️ Panitia</span></td>
                 <td class="text-center"><span class="badge badge-success">✅ Terpasang</span></td>
               </tr>
               <tr class="row-warning-pro">
                 <td><strong>Pro Presenter 1 (LED L/R/Back)</strong></td>
                 <td>Laptop + Power Adaptor LTP <em>(Belum Ada)</em></td>
                 <td>Rania</td>
+                <td class="text-center"><span class="badge badge-pelayan">✨ Pelayan</span></td>
                 <td class="text-center"><span class="badge badge-warning">⚠️ Belum Ada</span></td>
               </tr>
               <tr class="row-warning-pro">
                 <td><strong>Pro Presenter 2 (Lirik & Ayat)</strong></td>
                 <td>Laptop + Power Adaptor LTP <em>(Belum Ada)</em></td>
                 <td>Filia</td>
+                <td class="text-center"><span class="badge badge-pelayan">✨ Pelayan</span></td>
                 <td class="text-center"><span class="badge badge-warning">⚠️ Belum Ada</span></td>
               </tr>
               <tr class="row-warning-pro">
                 <td><strong>Pro Presenter 3 + TV (Timer)</strong></td>
                 <td>Laptop X <em>(Belum Ada)</em> + TV & Adaptor (Darrel)</td>
-                <td>Acara</td>
+                <td>Acara (Tim Acara)</td>
+                <td class="text-center"><span class="badge badge-panitia">🏛️ Panitia</span></td>
                 <td class="text-center"><span class="badge badge-warning">⚠️ Belum Ada</span></td>
               </tr>
               <tr>
                 <td><strong>Switcher + TV Multiview</strong></td>
                 <td>Cinetreak Cinelive V1 (OWL) + TV & Adaptor (Kezia)</td>
                 <td>Wilfred</td>
+                <td class="text-center"><span class="badge badge-pelayan">✨ Pelayan</span></td>
                 <td class="text-center"><span class="badge badge-success">✅ Terpasang</span></td>
               </tr>
               <tr class="row-warning-pro">
                 <td><strong>OBS Studio (Live Streaming)</strong></td>
                 <td>Laptop X + Power Adaptor LTP <em>(Belum Ada)</em></td>
                 <td>Andreas</td>
+                <td class="text-center"><span class="badge badge-panitia">🏛️ Panitia</span></td>
                 <td class="text-center"><span class="badge badge-warning">⚠️ Belum Ada</span></td>
               </tr>
               <tr>
                 <td><strong>Backup Workstation</strong></td>
                 <td>Laptop + Power Adaptor LTP (Kiel 1)</td>
                 <td>Kiel 1</td>
+                <td class="text-center"><span class="badge badge-pelayan">✨ Pelayan</span></td>
                 <td class="text-center"><span class="badge badge-standby">☑️ Standby</span></td>
               </tr>
             </tbody>
@@ -1007,6 +1041,6 @@ Terminal Cable XCH (Andreas) + Terminal Cable XCH (UKK) + Terminal Cable XCH (Pa
     </a>
   </nav>
 
-  <script src="app.js?v=20260822_v4"></script>
+  <script src="app.js?v=20260822_v5"></script>
 </body>
 </html>
