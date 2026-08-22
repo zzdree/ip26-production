@@ -89,11 +89,12 @@ The visual language is inspired by high-end professional broadcast control rooms
   - Flowcharts rendered:
     1. *Bagan Struktur Komando & Hierarki Tim*
     2. *Master Architecture Signal Flow (5 Sub-Graphs)*
-    3. *Sub-Flowchart 1: Broadcast Camera & Wireless Links (`flowchart LR`)*
-    4. *Sub-Flowchart 2: Video Distribution & LED Mapping (`flowchart LR`)*
-    5. *Sub-Flowchart 3: Audio Routing & Live Streaming (`flowchart LR`)*
-    6. *Sub-Flowchart 4: Stage Time Keeper System (`flowchart LR`)*
-    7. *Sub-Flowchart 5: Electrical & Power Distribution System (`flowchart LR`)*
+    3. *Sub-Flowchart 1: Sub-Sistem Kamera Wireless — CAM 1 & CAM 2 (`flowchart LR`)*
+    4. *Sub-Flowchart 2: Sub-Sistem Kamera Kabel / Wired — CAM 3 & CAM 4 (`flowchart LR`)*
+    5. *Sub-Flowchart 3: Sub-Sistem Distribusi Video & Pemetaan LED (`flowchart LR`)*
+    6. *Sub-Flowchart 4: Sub-Sistem Audio Sub-Mixing & Streaming (`flowchart LR`)*
+    7. *Sub-Flowchart 5: Sub-Sistem Stage Time Keeper (`flowchart LR`)*
+    8. *Sub-Flowchart 6: Sub-Sistem Distribusi Daya & Grounding (`flowchart LR`)*
 
 ### D. Cards, Hardware Bins & 2-Column Subsystem Grid
 - Subtly rounded corners (`border-radius: 14px`).

@@ -500,20 +500,20 @@ flowchart TB
       <div class="container">
         <div class="section-header">
           <span class="section-tag">DEEP-DIVE</span>
-          <h2 class="section-title">5 Rantai Sub-Sistem Teknis</h2>
+          <h2 class="section-title">6 Rantai Sub-Sistem Teknis</h2>
           <p class="section-subtitle">Rincian perkabelan, konverter, transmitter, dan spesifikasi sinyal per divisi.</p>
         </div>
 
         <!-- Subsystem Accordion / Cards -->
         <div class="subsystems-grid">
           
-          <!-- Subsystem 1: Cameras -->
+          <!-- Subsystem 1: Wireless Cameras -->
           <div class="subsystem-card">
             <div class="subsystem-header">
               <span class="subsystem-num">01</span>
               <div>
-                <h3 class="subsystem-title">Sub-Sistem Akuisisi Kamera & Wireless</h3>
-                <span class="subsystem-sub">CAM 1 s.d. CAM 4 & Transmission Links</span>
+                <h3 class="subsystem-title">Sub-Sistem Kamera Wireless (CAM 1 & CAM 2)</h3>
+                <span class="subsystem-sub">Sony ZV-E10 ➔ Hollyland Pyro S & H ➔ Ch 1 & 2</span>
               </div>
             </div>
             <div class="subsystem-body">
@@ -531,7 +531,37 @@ flowchart LR
         TX2 -.->|Wireless 5GHz| RX2[Hollyland Pyro H RX]
         RX2 -->|HDMI 1.5M UKK| SW_IN2[Ch 2 Switcher]
     end
+                </pre>
+              </div>
+              <div class="tech-route-box">
+                <div class="route-item">
+                  <span class="route-tag">CAM 1 (Alex)</span>
+                  <code>Sony ZVE10 (Kiel 1) + Lensa 18-105 + Hollyland Pyro S TX ➔ [Wireless 5GHz] ➔ Pyro S RX + HDMI 1.5M UKK ➔ Ch 1 Switcher</code>
+                </div>
+                <div class="route-item">
+                  <span class="route-tag">CAM 2 (Kiel 1)</span>
+                  <code>Sony ZV-E10 (OWL) + Lensa 18-105 + Hollyland Pyro H TX ➔ [Wireless 5GHz] ➔ Pyro H RX + HDMI 1.5M UKK ➔ Ch 2 Switcher</code>
+                </div>
+              </div>
+              <p class="subsystem-desc">
+                <strong>Penjelasan:</strong> Mengombinasikan 2 kamera nirkabel berlatensi rendah untuk mobilitas jemaat dan panggung. Receiver nirkabel ditempatkan di atas Stand Lighting UKK agar bebas hambatan garis pandang (*line-of-sight*).
+              </p>
+            </div>
+          </div>
 
+          <!-- Subsystem 2: Wired Cameras -->
+          <div class="subsystem-card">
+            <div class="subsystem-header">
+              <span class="subsystem-num">02</span>
+              <div>
+                <h3 class="subsystem-title">Sub-Sistem Kamera Kabel / Wired (CAM 3 & CAM 4)</h3>
+                <span class="subsystem-sub">Sony A6000 ➔ HDMI 10M GKJ & UKK ➔ Ch 3 & 4</span>
+              </div>
+            </div>
+            <div class="subsystem-body">
+              <div class="mermaid-container">
+                <pre class="mermaid">
+flowchart LR
     subgraph CAM_3["CAM 3 (Steady Wired) — Nia"]
         C3[Sony A6000 OWL<br/>+ Lens 18-105 OWL] -->|Micro HDMI Conv| CAB3[HDMI Cable 10M GKJ]
         CAB3 --> SW_IN3[Ch 3 Switcher]
@@ -545,14 +575,6 @@ flowchart LR
               </div>
               <div class="tech-route-box">
                 <div class="route-item">
-                  <span class="route-tag">CAM 1 (Alex)</span>
-                  <code>Sony ZVE10 (Kiel 1) + Lensa 18-105 + Hollyland Pyro S TX ➔ [Wireless 5GHz] ➔ Pyro S RX + HDMI 1.5M UKK ➔ Ch 1 Switcher</code>
-                </div>
-                <div class="route-item">
-                  <span class="route-tag">CAM 2 (Kiel 1)</span>
-                  <code>Sony ZV-E10 (OWL) + Lensa 18-105 + Hollyland Pyro H TX ➔ [Wireless 5GHz] ➔ Pyro H RX + HDMI 1.5M UKK ➔ Ch 2 Switcher</code>
-                </div>
-                <div class="route-item">
                   <span class="route-tag">CAM 3 (Nia)</span>
                   <code>Sony A6000 (OWL) + Lensa 18-105 + Micro HDMI Conv + HDMI Cable 10M GKJ ➔ Ch 3 Switcher</code>
                 </div>
@@ -562,15 +584,15 @@ flowchart LR
                 </div>
               </div>
               <p class="subsystem-desc">
-                <strong>Penjelasan:</strong> Mengombinasikan 2 kamera nirkabel berlatensi rendah untuk mobilitas jemaat/panggung dan 2 kamera kabel solid 10M untuk bidikan stabil sayap kiri/kanan. Receiver nirkabel ditempatkan di atas Stand Lighting UKK agar bebas hambatan garis pandang (*line-of-sight*).
+                <strong>Penjelasan:</strong> Menggunakan 2 unit Sony A6000 dengan jalur kabel HDMI solid 10M untuk menangkap bidikan stabil sudut sayap kiri dan sayap kanan aula FOH tanpa resiko gangguan frekuensi radio.
               </p>
             </div>
           </div>
 
-          <!-- Subsystem 2: Video & LED -->
+          <!-- Subsystem 3: Video & LED -->
           <div class="subsystem-card">
             <div class="subsystem-header">
-              <span class="subsystem-num">02</span>
+              <span class="subsystem-num">03</span>
               <div>
                 <h3 class="subsystem-title">Sub-Sistem Distribusi Video & Pemetaan LED</h3>
                 <span class="subsystem-sub">ProPresenter 1 & 2 ➔ Resolume Arena ➔ Novastar</span>
@@ -606,10 +628,10 @@ flowchart LR
             </div>
           </div>
 
-          <!-- Subsystem 3: Audio & Streaming -->
+          <!-- Subsystem 4: Audio & Streaming -->
           <div class="subsystem-card">
             <div class="subsystem-header">
-              <span class="subsystem-num">03</span>
+              <span class="subsystem-num">04</span>
               <div>
                 <h3 class="subsystem-title">Sub-Sistem Audio Sub-Mixing & Streaming</h3>
                 <span class="subsystem-sub">Yamaha QL5 ➔ NewBaxs CT80S ➔ OBS Studio</span>
@@ -651,10 +673,10 @@ flowchart LR
             </div>
           </div>
 
-          <!-- Subsystem 4: Time Keeper -->
+          <!-- Subsystem 5: Time Keeper -->
           <div class="subsystem-card">
             <div class="subsystem-header">
-              <span class="subsystem-num">04</span>
+              <span class="subsystem-num">05</span>
               <div>
                 <h3 class="subsystem-title">Sub-Sistem Stage Time Keeper</h3>
                 <span class="subsystem-sub">Independen Countdown & Run-time Display</span>
@@ -680,10 +702,10 @@ flowchart LR
             </div>
           </div>
 
-          <!-- Subsystem 5: Electrical -->
+          <!-- Subsystem 6: Electrical -->
           <div class="subsystem-card">
             <div class="subsystem-header">
-              <span class="subsystem-num">05</span>
+              <span class="subsystem-num">06</span>
               <div>
                 <h3 class="subsystem-title">Sub-Sistem Distribusi Daya & Grounding</h3>
                 <span class="subsystem-sub">Isolasi 3 Jalur Terminal Daya</span>
