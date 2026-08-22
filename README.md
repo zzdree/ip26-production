@@ -6,10 +6,12 @@
 ![Venue](https://img.shields.io/badge/Venue-Auditorium%20UNNES-orange?style=for-the-badge&logo=google-maps&logoColor=white)
 ![Production](https://img.shields.io/badge/Production-Divisi%20Media%20%26%20Multimedia-purple?style=for-the-badge)
 ![Status](https://img.shields.io/badge/System%20Status-Ready%20%2F%20Verified%2095%25-success?style=for-the-badge)
+[![Live Dashboard](https://img.shields.io/badge/Live%20Website-Dashboard%20Online-emerald?style=for-the-badge&logo=vercel&logoColor=white)](https://zzdree.github.io/ip26-production/)
 ![License](https://img.shields.io/badge/License-Internal%20Crew%20Only-red?style=for-the-badge)
 
 <p align="center">
-  <b>Dokumen Resmi Arsitektur Teknis, Routing Sinyal Siaran, Alokasi Workstation, Inventaris Gear, dan Rundown Konten Multimedia</b>
+  <b>Dokumen Resmi Arsitektur Teknis, Routing Sinyal Siaran, Alokasi Workstation, Inventaris Gear, dan Rundown Konten Multimedia</b><br/>
+  🌐 <b>Live Production Dashboard:</b> <a href="https://zzdree.github.io/ip26-production/">https://zzdree.github.io/ip26-production/</a>
 </p>
 
 </div>
