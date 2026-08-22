@@ -1,4 +1,4 @@
-# DESIGN.md — Production Call Sheet (v16.0)
+# DESIGN.md — Production Call Sheet (v16.3)
 
 **Theme:** Light Editorial "Technical Rider" — dokumen produksi cetak yang hidup di web
 **Dial:** ENERGY 2 / RHYTHM 3 / MOTION 1
@@ -34,3 +34,7 @@ Kertas hangat seperti call sheet yang dicetak pagi hari sebelum event. Ruling ga
 
 ## 5. Layout
 Container max 1100px; whitespace kertas sebagai pemisah utama; grid auto-fit untuk kartu; komposisi bervariasi per seksi (masthead asimetris, roster 3 kolom, tabel penuh, grid checklist).
+
+## 6. Revisi v16.3
+- Badge personel Panitia/Pelayan pada cam-sub dan kolom operator workstation
+- Dual theme light warm pastel / dark lembut + aurora blobs hue-loop 40s

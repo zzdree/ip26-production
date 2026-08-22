@@ -1,4 +1,4 @@
-# PRD — IP26 Production Call Sheet (v16.0)
+# PRD — IP26 Production Call Sheet (v16.3)
 
 **Event:** Ibadah Perdana UKK UNNES 2026 · Auditorium UNNES · 17 September 2026
 **Arsitektur:** Single-page responsive, light editorial theme, top-nav desktop + bottom-dock mobile
@@ -27,3 +27,9 @@ Konsol produksi siaran & pelacak inventaris yang tampil seperti **production cal
 ## 4. Batasan
 - Baris `x` pada source = konteks agent, tidak masuk UI
 - Tanpa em dash pada teks UI; kontras AA; tap target ≥44px
+
+## 5. Audit Source (v16.3)
+- 119 item / 13 peminjam terverifikasi identik dengan ip26_pro2.txt
+- Status personel Panitia/Pelayan tampil di kartu kamera dan tabel workstation
+- Target output event ditambahkan di masthead
+- Nama item disesuaikan persis source: Cable, Tape, HP Iphone 15

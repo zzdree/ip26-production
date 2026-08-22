@@ -35,7 +35,7 @@ const INV=[
  ['Terminal Cable 4CH','3 Unit','partial','Distribusi listrik'],['Terminal Cable 3CH','2 Unit','partial','Distribusi listrik'],['Terminal Cable 2CH','1 Unit','partial','Distribusi listrik'],
  ['Terminal Cable XCH','X Unit','used','Master line listrik'],['Terminal T','8 Unit','partial','Terminal T listrik'],
  ['Addon Box','1 Pack','standby','Toolkit produksi'],['Jack Box','1 Pack','standby','Adaptor audio'],['Screw Box','1 Pack','standby','Hardware rigging'],
- ['Ties Box','1 Pack','standby','Manajemen kabel'],['Tool Box','2 Pack','standby','Peralatan maintenance'],['Cable Pack','1 Pack','standby','Kabel cadangan'],['Tape Pack (Gaffer)','1 Pack','standby','Gaffer stage']]],
+ ['Ties Box','1 Pack','standby','Manajemen kabel'],['Tool Box','2 Pack','standby','Peralatan maintenance'],['Cable','1 Pack','standby','Kabel cadangan'],['Tape','1 Pack','standby','Gaffer stage']]],
 ['gia','GIA Deliksari',[
  ['Mixer NewBaxs CT80S','1 Unit','used','Mixer 2 streaming sub-mix'],['XLR Female to Male 3M','2 Unit','used','FOH ke CT80S'],
  ['USB A to USB C Data Cable','1 Unit','used','CT80S audio out'],['Tripod Camera Big','1 Unit','used','Mount CAM 3'],
@@ -65,7 +65,7 @@ const INV=[
  ['Battery','2 Unit','used','Power CAM VID'],['Charger','1 Pack','used','Charging'],
  ['Memory Card 64GB','1 Unit','used','CAM VID storage'],['Gimbal DJI Ronin RS3','1 Unit','used','Stabilizer CAM VID']]],
 ['kezia','Kezia',[['Television','1 Unit','used','Multiview switcher'],['Power Adaptor TV','1 Pack','used','Power TV multiview']]],
-['jennifer','Jennifer',[['HP iPhone 15 Pro','1 Unit','used','Social media story'],['TAB iPad','1 Unit','used','Virtual Mixer 2 control']]],
+['jennifer','Jennifer',[['HP Iphone 15','1 Unit','used','Social media story'],['TAB iPad','1 Unit','used','Virtual Mixer 2 control']]],
 ['panitia','Panitia',[['HDMI to Micro HDMI Converter','2 Unit','used','Backup konverter video'],['Terminal Cable XCH','X Unit','used','Master line listrik']]]
 ];
 // flatten with ids
