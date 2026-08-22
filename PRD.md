@@ -1,64 +1,97 @@
-# 📄 Product Requirements Document (PRD) — v2.0 Dark Mode UI Redesign
-## Ibadah Perdana UKK UNNES 2026 — Production & Media Landing Page
+# 📄 Product Requirements Document (PRD) — v3.0 Master Refactor
+## IP26 Broadcast Command Suite — Ibadah Perdana UKK UNNES 2026
 
 ---
 
-## 1. Executive Summary & Design Pivot
-- **Product Name:** IP26 Production Command & Media Dashboard
-- **Design Inspiration & Benchmark:** [Easeout 25 Dark Mode UI Design Examples](https://www.easeout.co/blog/2020-05-13-25-dark-mode-ui-design-examples/) (Featuring modern dark dashboard patterns, subtle skeuomorphic depth, neon/ambient glowing accents, layered surfaces, and touch-first mobile ergonomics).
-- **Target Audience:** Crew Produksi, Operator Broadcast & Sound, Tim Multimedia UKK UNNES, dan Panitia Lapangan.
-- **Tujuan Utama:** Mentransformasikan antarmuka menjadi dashboard siaran modern kelas profesional (*Broadcast Control Suite*), responsif optimal di desktop layar lebar dan smartphone crew, dengan visual yang tajam, kedalaman permukaan multi-layer, serta memuat 100% informasi teknis dari `ip26_pro1.txt`, `ip26_pro2.txt`, dan `README.md`.
+## 1. Executive Summary & Refactor Thesis
+- **Product Name:** IP26 Master Broadcast Control & Media Suite
+- **Aesthetic Direction:** **Authentic Dribbble Dark Mode Dashboard & Broadcast Control Room** (Directly inspired by the 25 curated UI examples from [Easeout](https://www.easeout.co/blog/2020-05-13-25-dark-mode-ui-design-examples/), featuring *DStudio Dashboard*, *Alexander Plyuto Skeuomorph Dark Banking*, *Valery Pevnev Podcast & Webinar Suite*, and *Quan Ha Ladder Dark UI*).
+- **Core Architecture:**
+  - **App-Like Dashboard Layout:** Integrated Sidebar Console (Left Rail / Mobile Collapsible Drawer) + Main Cockpit Grid.
+  - **Layered Obsidian Surfaces:** Deep space navy base (`#070B14`), elevated card hulls (`#0F172A` / `#14223E`), and inset cavities (`#04070D`).
+  - **Luminous Neon Contrasts:** Electric Cyan (`#00E5FF`), Vivid Emerald (`#00E676`), Radiant Amber (`#FFAB00`), and Royal Violet (`#7C4DFF`).
+  - **Tactile Micro-Interactions:** Skeuomorphic switchers, glowing telemetry radars, live WIB digital clock, interactive signal flow nodes, one-click rig copy tools, and instant multi-facet inventory filtering.
+- **Completeness Guarantee:** 100% of data from `ip26_pro1.txt`, `ip26_pro2.txt`, and `README.md` is preserved and rendered with highest fidelity.
 
 ---
 
-## 2. Design System & Aesthetic Architecture (Easeout Dark Mode UI Standards)
+## 2. Layout & Spatial Architecture
 
-### A. Color Palette & Surface Tokens
-Mengadopsi hierarki kontras multi-layer tanpa menggunakan hitam pekat murni `#000000`:
-- **Canvas Base Background:** `#090D16` (Deep Obsidian Blue-Black)
-- **Primary Elevated Surface (Cards):** `#111827` dengan 1px hairline border `rgba(255, 255, 255, 0.08)` dan inner glow `inset 0 1px 0 rgba(255, 255, 255, 0.06)`.
-- **Secondary Elevated Surface (Controls & Inset):** `#1A243B` / `#0D1322`
-- **Card Hover State:** `#16213B` dengan border flare `rgba(56, 189, 248, 0.4)` dan box-shadow `0 12px 32px rgba(0, 0, 0, 0.6)`.
-
-### B. High-Contrast Accent Lights
-- **Electric Cyan (`#00D2FF` / `#38BDF8`):** Sinyal video switcher, tab aktif, dan metrik siaran.
-- **Radiant Emerald (`#10B981` / `#00F298`):** Status terverifikasi/aktif `✅`, dengan *pulsing live dot*.
-- **Vibrant Amber (`#F59E0B` / `#FFB020`):** Status perhatian/sebagian `⚠️` dan notifikasi kritis laptop pending.
-- **Royal Indigo/Violet (`#8B5CF6`):** Status standby/cadangan `☑️` dan kategori gear.
-
-### C. Typography Hierarchy
-- **Header & Metric Display:** `Space Grotesk` (Modern, bold, tech-forward geometric).
-- **Body & Operations Text:** `Plus Jakarta Sans` (Tingkat keterbacaan tinggi dalam kondisi redup/gelap).
-- **Technical Monospace:** `JetBrains Mono` (Untuk jalur kabel, port, dan skema routing).
+```
+┌────────────────────────────────────────────────────────────────────────────────────────┐
+│ TOP LIVE TELEMETRY STATUS BAR (Live Time WIB | Venue | Pending Hardware Alert)         │
+├──────────────────────┬─────────────────────────────────────────────────────────────────┤
+│ SIDEBAR CONSOLE      │ MAIN COCKPIT DASHBOARD VIEW                                      │
+│ (Desktop Fixed 260px │ 1. HERO METRIC DECK                                             │
+│ / Mobile Bottom Dock)│    - 4 Widget Cards: Cameras, Workstations, Lenders, PICs       │
+│                      │    - Visual Progress Bars & Verification Ratios                 │
+│ • Brand Identity     ├─────────────────────────────────────────────────────────────────┤
+│ • Telemetry Status   │ 2. LIVE SIGNAL TOPOLOGY MATRIX                                  │
+│ • Nav Links (Icons)  │    - 4-Stage Interactive Routing: Cam ➔ Switcher ➔ Engine ➔ LED │
+│ • Quick Filters      ├─────────────────────────────────────────────────────────────────┤
+│ • Pending Laptops    │ 3. CAMERA RIG SPECIFICATION CARDS                               │
+│   Action Card        │    - Broadcast Rig Cards (CAM 1-4) with Copy Config Buttons     │
+│ • Github / License   │    - Documentation Rig Cards (PHO, VID, HP)                     │
+│                      ├─────────────────────────────────────────────────────────────────┤
+│                      │ 4. ENGINE ROUTING CONSOLE                                       │
+│                      │    - Video, Audio, Time Keeper, and Electrical Matrices         │
+│                      ├─────────────────────────────────────────────────────────────────┤
+│                      │ 5. WORKSTATION MATRIX & OPERATOR ALLOCATION                     │
+│                      │    - 10 Console Stations + Backup with PIC & Hardware Status    │
+│                      ├─────────────────────────────────────────────────────────────────┤
+│                      │ 6. MASTER INVENTORY DIRECTORY                                   │
+│                      │    - Live Search, Status Filters (✅ ⚠️ ☑️), 13 Lender Filter  │
+│                      ├─────────────────────────────────────────────────────────────────┤
+│                      │ 7. MULTIMEDIA EVENT RUNDOWN (Pre, Main, Post Sesi)              │
+│                      ├─────────────────────────────────────────────────────────────────┤
+│                      │ 8. FOOTER & CREW LICENSE                                        │
+└──────────────────────┴─────────────────────────────────────────────────────────────────┘
+```
 
 ---
 
-## 3. Responsive Layout Strategy (Desktop vs Mobile)
+## 3. Design System Tokens (Easeout Dark Mode Benchmark)
 
-| Komponen | Tampilan Desktop (>= 1024px) | Tampilan Mobile (< 768px) |
+### A. Color Palette
+- `--bg-canvas`: `#060A12` (Deep Obsidian Blue)
+- `--bg-sidebar`: `#090F1C` (Dark Console Rail)
+- `--bg-surface`: `#0E1729` (Primary UI Surface)
+- `--bg-card`: `#13203A` (Elevated Card Base)
+- `--bg-card-hover`: `#18294B` (Interactive Card State)
+- `--bg-inset`: `#030509` (Sunken Search & Terminals)
+- `--border-subtle`: `rgba(255, 255, 255, 0.08)`
+- `--border-card`: `rgba(255, 255, 255, 0.12)`
+- `--border-active`: `rgba(0, 229, 255, 0.4)`
+
+### B. High-Contrast Accents & Glows
+- `--neon-cyan`: `#00E5FF` (`box-shadow: 0 0 20px rgba(0, 229, 255, 0.35)`)
+- `--neon-emerald`: `#00E676` (`box-shadow: 0 0 20px rgba(0, 230, 118, 0.35)`)
+- `--neon-amber`: `#FFAB00` (`box-shadow: 0 0 20px rgba(255, 171, 0, 0.35)`)
+- `--neon-purple`: `#7C4DFF` (`box-shadow: 0 0 20px rgba(124, 77, 255, 0.35)`)
+
+### C. Typography
+- **Headings & Metrics:** `Space Grotesk` (Weight 700 / 800)
+- **Body & Controls:** `Plus Jakarta Sans` (Weight 500 / 600 / 700)
+- **Code & Wiring Chains:** `JetBrains Mono` (Weight 500 / 600)
+
+---
+
+## 4. Responsive Adaptation Matrix (Desktop vs Mobile)
+
+| Fitur / Komponen | Desktop (>= 1024px) | Tablet & Mobile (< 768px) |
 | :--- | :--- | :--- |
-| **Hero & Metrics** | 4-kolom kartu metrik dengan visual glow, judul besar 48px | 2x2 grid metrik ringkas, header mobile-optimized, spacing sentuh nyaman |
-| **Navigasi** | Sticky top bar dengan link navigasi penuh dan tombol aksi GitHub | Sticky header dengan horizontal swipe nav menu + auto-active scroll spy |
-| **Kamera & Rig Cards** | 2-kolom & 3-kolom grid dengan spec card berkedalaman tinggi | 1-kolom kartu rig penuh dengan pill status yang jelas dan mudah di-tap |
-| **Routing Tables** | Full table layout dengan highlight alur sinyal dan status | Horizontal responsive table container dengan sticky header & status badges |
-| **Inventaris Alat** | Toolbar lebar dengan search bar, chip status horizontal, dan lender pills | Sticky search bar, swipeable status chips, accordion/card layout yang ringan |
-| **Rundown Tampilan** | 3-kolom card berjejer (*Pre, Main, Post*) | Stacked step-by-step rundown cards dengan destination tags berwarna |
+| **Navigasi** | Sidebar kiri fixed 260px dengan quick-action & status | Header sticky + Floating bottom app bar sentuh responsif |
+| **Hero & Metrik** | 4-kolom widget cards dengan radial ambient glow & mini charts | 2x2 grid metrik compact dengan tap-to-focus |
+| **Topologi Sinyal** | 4-kolom horizontal signal pipeline | Vertical stacked pipeline dengan konektor neon |
+| **Kamera & Rig** | 2-kolom kartu rig interaktif dengan tombol salin | 1-kolom kartu layar penuh dengan quick copy |
+| **Inventaris** | Toolbar lebar dengan live search, chip status, dan pill lender | Sticky mobile search cavity, horizontal swipe status chips & lender list |
+| **Tabel Routing** | Tabel konsol dengan hover highlighting | Card-mode table wrapper dengan scroll indikator |
 
 ---
 
-## 4. DFII (Design Feasibility & Impact Index) Scoring
-- **Aesthetic Impact:** 5.0 / 5 (Mengikuti acuan Easeout Dark Mode UI modern)
-- **Context Fit:** 5.0 / 5 (Sangat ergonomis untuk kru broadcast di ruang kontrol & panggung)
-- **Implementation Feasibility:** 5.0 / 5 (Zero-dependency vanilla HTML/CSS/JS yang super efisien)
-- **Performance Safety:** 5.0 / 5 (Load time instan, CSS murni tanpa overhead framework)
-- **Consistency Risk:** 1.0 / 5
-- **Total DFII Score:** `(5.0 + 5.0 + 5.0 + 5.0) - 1.0 = 19.0 / 15` (Kategori: **Elite / Exceptional**)
-
----
-
-## 5. Rencana Eksekusi Teknis
-1. [x] Update `PRD.md` dengan spesifikasi Easeout Dark Mode.
-2. [ ] Redesign `style.css` dengan token warna modern, elevated glassmorphism, glow effects, dan breakpoint responsive menyeluruh.
-3. [ ] Perbarui `index.html` dengan struktur layout dashboard kontrol siaran yang diperkaya.
-4. [ ] Sempurnakan `app.js` dengan performa search/filter instan, interaksi tab yang halus, dan mobile touch events.
-5. [ ] Verifikasi dan deploy ke GitHub Pages (`zzdree.github.io/ip26-production`).
+## 5. Rencana Eksekusi Refactor
+1. [x] Update `PRD.md` ke Versi 3.0.
+2. [ ] Rombak `index.html` dengan arsitektur App-Layout (Sidebar Console + Main Cockpit View).
+3. [ ] Tulis ulang `style.css` dengan token desain Easeout Dark Mode, card shadows, glowing gradients, dan mobile bottom dock.
+4. [ ] Sempurnakan `app.js` dengan live telemetry clock, topology visual highlighter, copy utility, dan instant inventory filtering.
+5. [ ] Verifikasi dan deploy ke GitHub Pages (`https://zzdree.github.io/ip26-production/`).

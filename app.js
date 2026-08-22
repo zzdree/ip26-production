@@ -1,9 +1,9 @@
 /**
- * IP26 PRODUCTION COMMAND DASHBOARD — JAVASCRIPT LOGIC
- * Features: Live Telemetry Clock, Copy-to-Clipboard, Inventory Search & Filtering, Responsive Tabs
+ * IP26 BROADCAST COMMAND SUITE — LOGIC ENGINE
+ * Complete functionality: Live Telemetry, Filtering, One-Click Rig Copy, Navigation Sync
  */
 
-// Master Inventory Data Store (100% extracted from ip26_pro2.txt)
+// Master Inventory Catalog (100% Extracted from ip26_pro2.txt)
 const INVENTORY_DATA = [
   {
     lender: "OWL",
@@ -191,22 +191,20 @@ const INVENTORY_DATA = [
   }
 ];
 
-// Calculate Total Items
 const TOTAL_ITEMS_COUNT = INVENTORY_DATA.reduce((acc, g) => acc + g.items.length, 0);
 
-// Current Filtering State
+// Global Filter States
 let currentStatusFilter = 'all';
 let currentLenderFilter = 'ALL';
 let currentSearchQuery = '';
 
-// DOM Initialization
 document.addEventListener('DOMContentLoaded', () => {
   renderInventory();
   initLiveClock();
   initNavScroll();
 });
 
-// Live WIB Clock
+// Live Digital Clock
 function initLiveClock() {
   const clockEl = document.getElementById('liveClock');
   if (!clockEl) return;
@@ -222,7 +220,7 @@ function initLiveClock() {
   setInterval(update, 1000);
 }
 
-// Copy-to-Clipboard Utility
+// Copy Text Helper
 function copyText(text, btnElement) {
   if (!navigator.clipboard) {
     const textArea = document.createElement('textarea');
@@ -240,8 +238,8 @@ function copyText(text, btnElement) {
   if (btnElement) {
     const originalHTML = btnElement.innerHTML;
     btnElement.innerHTML = `<span>Tersalin! ✅</span>`;
-    btnElement.style.borderColor = 'var(--accent-emerald)';
-    btnElement.style.color = 'var(--accent-emerald)';
+    btnElement.style.borderColor = 'var(--neon-emerald)';
+    btnElement.style.color = 'var(--neon-emerald)';
     setTimeout(() => {
       btnElement.innerHTML = originalHTML;
       btnElement.style.borderColor = '';
@@ -250,7 +248,14 @@ function copyText(text, btnElement) {
   }
 }
 
-// Switch Camera Tabs
+// Navigation active toggle
+function setActiveNav(element) {
+  const links = document.querySelectorAll('.sidebar-link');
+  links.forEach(l => l.classList.remove('active'));
+  if (element) element.classList.add('active');
+}
+
+// Camera Tab Switcher
 function switchCameraTab(tabName) {
   document.getElementById('tabBtnBroadcast').classList.toggle('active', tabName === 'broadcast');
   document.getElementById('tabBtnDoc').classList.toggle('active', tabName === 'documentation');
@@ -259,7 +264,7 @@ function switchCameraTab(tabName) {
   document.getElementById('tabDoc').classList.toggle('active', tabName === 'documentation');
 }
 
-// Switch Routing Tabs
+// Routing Tab Switcher
 function switchRoutingTab(tabName) {
   const tabs = ['video', 'audio', 'timekeeper', 'electric'];
   tabs.forEach(t => {
@@ -270,42 +275,32 @@ function switchRoutingTab(tabName) {
   });
 }
 
-// Filter Status
+// Status filter
 function setFilterStatus(status, element) {
   currentStatusFilter = status;
-  
-  const chips = document.querySelectorAll('.status-chips-row .status-chip');
+  const chips = document.querySelectorAll('.status-chips-bar .status-chip');
   chips.forEach(c => c.classList.remove('active'));
-  if (element) {
-    element.classList.add('active');
-  }
-
+  if (element) element.classList.add('active');
   renderInventory();
 }
 
-// Filter Lender
+// Lender filter
 function setLenderFilter(lender, element) {
   currentLenderFilter = lender;
-
-  const pills = document.querySelectorAll('.lender-pill-group .pill-btn');
+  const pills = document.querySelectorAll('.lender-chips-wrap .lender-pill');
   pills.forEach(p => p.classList.remove('active'));
-  if (element) {
-    element.classList.add('active');
-  }
-
+  if (element) element.classList.add('active');
   renderInventory();
 }
 
-// Live Search Input Handler
+// Live Search Filter
 function filterInventory() {
   const input = document.getElementById('inventorySearch');
   const clearBtn = document.getElementById('clearSearchBtn');
   currentSearchQuery = input.value.toLowerCase().trim();
-  
   if (clearBtn) {
     clearBtn.style.display = currentSearchQuery ? 'block' : 'none';
   }
-
   renderInventory();
 }
 
@@ -319,7 +314,7 @@ function clearSearch() {
   renderInventory();
 }
 
-// Render Filtered Inventory Grid
+// Render Inventory Catalog Cards
 function renderInventory() {
   const container = document.getElementById('inventoryGrid');
   const countBadge = document.getElementById('invCountBadge');
@@ -329,19 +324,15 @@ function renderInventory() {
   let matchCount = 0;
 
   INVENTORY_DATA.forEach(group => {
-    // Lender filter
     if (currentLenderFilter !== 'ALL' && group.lender !== currentLenderFilter) {
       return;
     }
 
-    // Filter individual items
     const matchedItems = group.items.filter(item => {
-      // Status filter
       if (currentStatusFilter !== 'all' && item.status !== currentStatusFilter) {
         return false;
       }
 
-      // Search query
       if (currentSearchQuery) {
         const matchName = item.name.toLowerCase().includes(currentSearchQuery);
         const matchLender = group.lender.toLowerCase().includes(currentSearchQuery);
@@ -377,7 +368,7 @@ function renderInventory() {
         if (it.status === 'standby') badgeClass = 'badge-standby';
 
         li.innerHTML = `
-          <span class="inv-item-name">${it.name} (${it.qty})</span>
+          <span>${it.name} <strong style="color:var(--text-dim);font-weight:normal;">(${it.qty})</strong></span>
           <span class="badge ${badgeClass}">${it.symbol}</span>
         `;
         ul.appendChild(li);
@@ -395,21 +386,22 @@ function renderInventory() {
 
   if (matchCount === 0) {
     container.innerHTML = `
-      <div class="callout-box" style="grid-column: 1 / -1; justify-content: center; text-align: center; padding: 36px;">
+      <div class="cockpit-callout" style="grid-column: 1 / -1; justify-content: center; text-align: center; padding: 40px;">
         <div>
-          <strong>Pencarian Tidak Ditemukan</strong>
+          <strong style="color:#fff; font-size:16px;">Pencarian Tidak Ditemukan</strong>
           <p class="text-muted mt-1">Tidak ada item inventaris yang sesuai dengan filter atau kata kunci "${currentSearchQuery}".</p>
-          <button class="btn-console mt-2" onclick="clearSearch(); setFilterStatus('all', document.querySelector('.status-chip')); setLenderFilter('ALL', document.querySelector('.pill-btn'));">Reset Semua Filter</button>
+          <button class="btn-copy-rig mt-3" style="padding: 8px 16px;" onclick="clearSearch(); setFilterStatus('all', document.querySelector('.status-chip')); setLenderFilter('ALL', document.querySelector('.lender-pill'));">Reset Semua Filter</button>
         </div>
       </div>
     `;
   }
 }
 
-// Smooth Navigation Scroll Spy
+// Scroll Spy for Sidebar & Mobile Dock
 function initNavScroll() {
-  const sections = document.querySelectorAll('section[id], header[id]');
-  const navLinks = document.querySelectorAll('.nav-link');
+  const sections = document.querySelectorAll('.cockpit-section');
+  const sidebarLinks = document.querySelectorAll('.sidebar-link');
+  const dockLinks = document.querySelectorAll('.dock-item');
 
   window.addEventListener('scroll', () => {
     let current = '';
@@ -423,11 +415,13 @@ function initNavScroll() {
       }
     });
 
-    navLinks.forEach(link => {
-      link.classList.remove('active');
-      if (link.getAttribute('href') === `#${current}`) {
-        link.classList.add('active');
-      }
-    });
+    if (current) {
+      sidebarLinks.forEach(link => {
+        link.classList.toggle('active', link.getAttribute('href') === `#${current}`);
+      });
+      dockLinks.forEach(link => {
+        link.classList.toggle('active', link.getAttribute('href') === `#${current}`);
+      });
+    }
   });
 }
