@@ -158,7 +158,7 @@ x Dibagi menjadi 3 sesi, Pre, Main, dan Post
 - Playlist (Lagu Rohani) (Sound System)
 - Loop Video (Profile UKK, After Movie IP25, After Movie IN25) (LED Tengah)
 
-*Main Ibadah (Main Event)
+*Main Ibadah (Main Event)*
 - Video Opening (LED Tengah)
 - Video Sambutan Bu Grace (LED Tengah Kanan Kiri)
 - Background Tema (LED Tengah)
@@ -172,5 +172,5 @@ x Dibagi menjadi 3 sesi, Pre, Main, dan Post
 - UKK News (LED Tengah Kanan Kiri)
 - Pokok Doa (LED Tengah Kanan Kiri)
 
-Post Ibadah (Close Gate)
+*Post Ibadah (Close Gate)*
 - Usung-Usung
