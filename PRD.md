@@ -1,41 +1,41 @@
-# 📄 Product Requirements Document (PRD) — v4.0 Dark Grey Master Edition
+# 📄 Product Requirements Document (PRD) — v5.0 Pure Dark Grey Single-Page Master
 ## IP26 Broadcast Command Suite — Ibadah Perdana UKK UNNES 2026
 
 ---
 
 ## 1. Executive Summary & Design Pivot
 - **Product Name:** IP26 Master Broadcast Control & Media Suite
-- **Aesthetic Benchmark:** **Charcoal & Graphite Dark Grey UI** (Berdasarkan kajian mendalam [REVIEW.md](file:///C:/ANDREAS/ip26-production/REVIEW.md) dan 25 studi kasus [Easeout.co](https://www.easeout.co/blog/2020-05-13-25-dark-mode-ui-design-examples/), dengan adaptasi spesifik palet **Dark Grey / Anthracite Slate** menggantikan dark blue).
-- **Core Visual Philosophy:**
-  - **Dark Grey / Matte Anthracite Stacking:** Latar kanvas arang gelap pekat (`#0D0E12` - `#12141A`), bilah navigasi grafit (`#14161D`), permukaan kartu berlapis abu-abu gelap terangkat (`#1A1D26` & `#20232E`), serta rongga cekung sunken (`#090A0D`).
-  - **Luminous Neon Contrasting Signaling:** Aksen berfrekuensi tinggi (Electric Cyan `#00E5FF`, Vivid Emerald `#00E676`, Radiant Amber `#FFAB00`, Royal Violet `#A855F7`) yang menyala kontras di atas latar belakang abu-abu arang.
-  - **Neumorphic & Skeuomorphic Depth:** Tombol taktil timbul (*embossed dual drop shadow*), kolom pencarian sunken inset, dan garis tepi presisi (*hairline glass borders*).
-  - **Layout App-Shell Adaptif:** Sidebar konsol tetap di desktop (260px) + Floating Bottom App Dock di smartphone + Cockpit interaktif di area utama.
+- **Aesthetic Direction:** **Pure Dark Grey / Neutral Charcoal Single-Page Broadcast Center** (Berdasarkan kajian [REVIEW.md](file:///C:/ANDREAS/ip26-production/REVIEW.md) dan prinsip `frontend-design`: *Industrial Utilitarian Dark Grey Cockpit*).
+- **Core Structural Mandate:**
+  - **Color Palette (Zero Blue):** Palet murni abu-abu gelap netral arang / grafit (`#121214`, `#18191D`, `#202127`, `#282A32`, `#0C0D0F`) tanpa saturasi warna biru.
+  - **Centered Single-Page Layout:** Halaman tunggal (*single page vertical scroll*) dengan konten terpusat rapi di tengah layar (`max-width: 1200px; margin: 0 auto;`).
+  - **Dual Navigation Strategy:**
+    - **Desktop (>= 768px):** Sticky Top Navigation Bar di bagian atas dengan tombol-tombol tab segmented untuk berganti/lompat seksi dengan halus.
+    - **Mobile (< 768px):** Floating Bottom Navigation Dock di bagian bawah yang ergonomis untuk jangkauan ibu jari (*thumb-friendly*).
+  - **Luminous Neon Contrasting Signals:** Aksen neon kontras tinggi (Electric Cyan `#00E5FF`, Vivid Emerald `#00E676`, Radiant Amber `#FFAB00`, Royal Violet `#A855F7`) yang menyala tegas di atas abu-abu arang.
 - **Completeness Guarantee:** 100% data teknis (7 kamera siaran & dokumentasi, 10 workstation + backup, 13 mitra peminjam, 84 item inventaris, 3 sesi rundown multimedia) terintegrasi penuh.
 
 ---
 
-## 2. Design System Tokens: Charcoal / Dark Grey Palette
+## 2. Design System Tokens: Pure Dark Grey (Zero-Blue)
 
-### A. Surface Architecture (Dark Grey Tones)
-- `--bg-canvas`: `#0D0E12` (Base Dark Charcoal Grey)
-- `--bg-canvas-grad`: `radial-gradient(at 15% 0%, #171A22 0px, transparent 60%), radial-gradient(at 85% 10%, #151820 0px, transparent 60%), #0D0E12`
-- `--bg-sidebar`: `#13151C` (Matte Graphite Grey)
-- `--bg-surface`: `#181B24` (Elevated Neutral Grey Surface)
-- `--bg-card`: `#1E222D` (Primary Layered Card Hull)
-- `--bg-card-hover`: `#252A38` (Active Raised Card State)
-- `--bg-inset`: `#090A0D` (Sunken Search Bar & Monospace Terminals)
-- `--bg-glass`: `rgba(24, 27, 36, 0.88)`
+### A. Surface Color Hierarchy
+- `--bg-canvas`: `#121214` (Pure Dark Charcoal Canvas)
+- `--bg-surface`: `#18191D` (Matte Dark Grey Elevated Surface)
+- `--bg-card`: `#202127` (Layered Graphite Card Container)
+- `--bg-card-hover`: `#282A32` (Active Raised Dark Grey Card)
+- `--bg-inset`: `#0C0D0F` (Sunken Search Cavity & Terminal Codes)
+- `--bg-glass`: `rgba(24, 25, 29, 0.88)` (Frosted Glass with Neutral Tint)
 
-### B. Borders & Shadows
+### B. Borders & Depth
 - `--border-subtle`: `rgba(255, 255, 255, 0.08)`
 - `--border-card`: `rgba(255, 255, 255, 0.12)`
 - `--border-card-hover`: `rgba(0, 229, 255, 0.45)`
-- `--shadow-card`: `0 8px 28px rgba(0, 0, 0, 0.75), inset 0 1px 0 rgba(255, 255, 255, 0.09)`
-- `--shadow-card-hover`: `0 18px 44px rgba(0, 0, 0, 0.9), 0 0 24px rgba(0, 229, 255, 0.18), inset 0 1px 0 rgba(255, 255, 255, 0.16)`
+- `--shadow-card`: `0 8px 24px rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.08)`
+- `--shadow-card-hover`: `0 16px 36px rgba(0, 0, 0, 0.8), 0 0 20px rgba(0, 229, 255, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.14)`
 - `--shadow-inset`: `inset 0 2px 8px rgba(0, 0, 0, 0.85)`
 
-### C. Luminous Neon Accents
+### C. Luminous Signal Accents
 - `--neon-cyan`: `#00E5FF` (Routing video & navigasi aktif)
 - `--neon-emerald`: `#00E676` (Verifikasi aktif `✅` & live clock)
 - `--neon-amber`: `#FFAB00` (Peringatan pengadaan laptop pending `⚠️`)
@@ -44,66 +44,38 @@
 ### D. Typography Hierarchy
 - **Headings & Metrics:** `Space Grotesk` (Weight 700 / 800)
 - **Body & Controls:** `Plus Jakarta Sans` (Weight 500 / 600 / 700)
-- **Code & Telemetry Data:** `JetBrains Mono` (Weight 500 / 600)
+- **Code & Wiring Data:** `JetBrains Mono` (Weight 500 / 600)
 
 ---
 
-## 3. Spatial Layout & User Journey
+## 3. Layout & User Experience Architecture
 
 ```
-┌────────────────────────────────────────────────────────────────────────────────────────┐
-│ TOP GLOBAL TELEMETRY BAR (Live WIB Clock | Venue: Aud UNNES | Alert 4 Laptop Pending)  │
-├──────────────────────┬─────────────────────────────────────────────────────────────────┤
-│ LEFT APP SIDEBAR     │ MAIN COCKPIT DASHBOARD VIEW (Dark Grey Theme)                   │
-│ (Desktop Fixed 260px │ 1. HERO METRIC DECK (4 Widget Cards with Charcoal Glow Corners) │
-│ / Mobile Bottom Dock)│ 2. LIVE SIGNAL TOPOLOGY (4-Stage Pipeline: Cam ➔ Sw ➔ Eng ➔ LED)│
-│ • Brand Identity     │ 3. CAMERA RIG CONSOLE (Broadcast Cards + Salin Rig Tool)        │
-│ • Meteran 95.4%      │ 4. MATRIX ROUTING & AUDIO ENGINE (Yamaha QL5 FOH, NewBaxs)      │
-│ • Nav Links & Icons  │ 5. WORKSTATION MATRIX & OPERATOR PIC ALLOCATION                 │
-│ • Emergency Alert    │ 6. MASTER INVENTORY EXPLORER (Live Search, Status & 13 Mitra)   │
-│ • GitHub Link        │ 7. MULTIMEDIA EVENT RUNDOWN (Pre, Main, Post Sesi)              │
-│                      │ 8. COCKPIT FOOTER & OPERATIONAL CREW LICENSE                    │
-└──────────────────────┴─────────────────────────────────────────────────────────────────┘
+┌─────────────────────────────────────────────────────────────────────────────┐
+│ TOP GLOBAL TELEMETRY BAR (Live WIB Clock | Venue | Pending Laptop Alert)    │
+├─────────────────────────────────────────────────────────────────────────────┤
+│ DESKTOP STICKY TOP NAVBAR (Brand + Tab Navigation Links + GitHub Repo Link) │
+├─────────────────────────────────────────────────────────────────────────────┤
+│ CENTERED MAIN CONTAINER (max-width: 1200px; margin: 0 auto;)                │
+│                                                                             │
+│ 1. HERO SECTION & 4 METRIC WIDGET CARDS (Kamera, Stasiun, Mitra, PIC)      │
+│ 2. INTERACTIVE SIGNAL TOPOLOGY (4-Stage Pipeline: Cam ➔ Sw ➔ Eng ➔ Output)  │
+│ 3. CAMERA RIG CONSOLE (Broadcast CAM 1-4 with Copy Tool + Dok PHO/VID/HP)   │
+│ 4. MATRIX ROUTING & AUDIO ENGINE (Yamaha QL5 FOH, NewBaxs CT80S, Timer)     │
+│ 5. WORKSTATION MATRIX & OPERATOR ALLOCATION (10 Stasiun + Status Kesiapan)  │
+│ 6. MASTER INVENTORY CATALOG (Live Search + Status Filter + 13 Mitra Pills)  │
+│ 7. MULTIMEDIA EVENT RUNDOWN (Pre-Ibadah, Main Ibadah, Post-Ibadah)          │
+│ 8. SITE FOOTER & INTERNAL CREW OPERATIONAL LICENSE                          │
+├─────────────────────────────────────────────────────────────────────────────┤
+│ MOBILE FLOATING BOTTOM DOCK (Icons: Ikhtisar, Topo, Kamera, Routing, Inv)  │
+└─────────────────────────────────────────────────────────────────────────────┘
 ```
 
 ---
 
-## 4. Feature Specifications & Requirements
-
-### 1. Telemetry Top Bar
-- Jam digital real-time **WIB** berdetik setiap detik.
-- Live radar dot berdenyut (*breathing green pulse*).
-- Bar notifikasi peringatan status 4 unit laptop pending.
-
-### 2. Metric Dashboard Widgets (Dark Grey Style)
-- 4 Widget Utama: Kamera Rig (7), Workstation (10), Sumber Alat (13), Operator Bertugas (11).
-- Disertai bar kemajuan mini (*progress bar*) beraksen neon dan sudut kartu berpendar lembut (*ambient corner glow*).
-
-### 3. Interactive Signal Topology Pipeline
-- Visualisasi 4 pilar: **Input Kamera (1-4) ➔ Switcher Cinetreak & Splitter ➔ Media Engine (OBS, Resolume, ProPresenter) ➔ Proyeksi Layar LED**.
-
-### 4. Camera System Console
-- 4 Kartu Rig Siaran (*CAM 1, CAM 2, CAM 3, CAM 4*) dengan tombol **"Salin Rig Config"** 1-klik untuk kemudahan koordinasi kru.
-- 3 Kartu Rig Dokumentasi (*CAM PHO, CAM VID, CAM HP Jennifer*).
-
-### 5. Routing & Audio Matrix Console
-- Tab bergaya *segmented switch* memisahkan Routing Video, Routing Audio Engine FOH/Stream, Skema Time Keeper Panggung, dan Distribusi Listrik.
-
-### 6. Workstation & PIC Allocation Matrix
-- Tabel konsol 10 stasiun kerja + workstation cadangan dengan baris highlight kuning pada laptop yang berstatus *Belum Ada*.
-
-### 7. Master Storage & Inventory Directory
-- Pencarian cerdas instan dengan kolom cekung sunken inset.
-- Chip pemfilter status kesiapan (`Semua`, `✅ Aktif`, `⚠️ Perhatian`, `☑️ Standby`).
-- Baris filter horizontal 13 mitra peminjam dengan badge penghitung barang otomatis.
-
-### 8. Multimedia Event Rundown
-- Kartu rangkaian 3 fase acara (*Pre-Ibadah, Main Ibadah, Post-Ibadah*) dengan label output layar LED dan FOH Sound System.
-
----
-
-## 5. Rencana Eksekusi & Validasi
-1. [x] Perbarui `PRD.md` ke Versi 4.0 Dark Grey Master Edition.
-2. [ ] Rombak `style.css` secara menyeluruh dengan skema warna **Dark Grey / Charcoal / Graphite** murni (menghilangkan nuansa dark blue).
-3. [ ] Sinkronkan `index.html` dan `app.js` dengan token dark grey dan cache-busting version `?v=20260822_darkgrey`.
-4. [ ] Commit & Push ke GitHub serta verifikasi GitHub Pages build status.
+## 4. Execution Roadmap
+1. [x] Update `PRD.md` to v5.0.
+2. [ ] Overhaul `index.html` to single-page centered structure with sticky top nav on desktop and bottom dock on mobile.
+3. [ ] Rewrite `style.css` with 100% pure neutral dark grey tokens (zero blue hue) and centered container layout.
+4. [ ] Verify `app.js` functionality (live clock, copy-to-clipboard, responsive scroll spy).
+5. [ ] Commit, push, and verify live build at `https://zzdree.github.io/ip26-production/`.

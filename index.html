@@ -11,118 +11,81 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&family=Space+Grotesk:wght@500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
   
-  <!-- Easeout Dark Mode Master Stylesheet (Dark Grey / Charcoal Edition) -->
-  <link rel="stylesheet" href="style.css?v=20260822_darkgrey">
+  <!-- Pure Dark Grey Master Stylesheet -->
+  <link rel="stylesheet" href="style.css?v=20260822_puredarkgrey">
 </head>
 <body class="app-body">
 
-  <!-- Top Global Telemetry Banner -->
+  <!-- Top Global Telemetry Status Bar -->
   <aside class="telemetry-bar">
-    <div class="telemetry-inner">
+    <div class="telemetry-container">
       <div class="telemetry-left">
-        <span class="live-pill"><span class="pulse-dot"></span> LIVE COMMAND SUITE</span>
+        <span class="live-pill"><span class="pulse-dot"></span> LIVE SUITE</span>
         <span class="telemetry-clock" id="liveClock">--:--:-- WIB</span>
         <span class="telemetry-sep">•</span>
         <span class="telemetry-venue">Auditorium UNNES</span>
       </div>
       <div class="telemetry-right">
         <span class="badge badge-warning">PENGADAAN PENDING</span>
-        <span class="telemetry-alert-text">4 Unit Laptop (ProPresenter 1, 2, 3 & OBS) masih menunggu alokasi.</span>
+        <span class="telemetry-alert-text">4 Unit Laptop (ProPresenter 1, 2, 3 & OBS) menunggu alokasi.</span>
         <a href="#workstations" class="telemetry-link">Periksa Status &rarr;</a>
       </div>
     </div>
   </aside>
 
-  <!-- Main App Shell (Sidebar + Main Cockpit) -->
-  <div class="app-shell">
-
-    <!-- Left Sidebar Console (Easeout App Layout) -->
-    <aside class="app-sidebar" id="appSidebar">
-      <div class="sidebar-header">
-        <div class="sidebar-brand">
-          <div class="brand-badge-icon">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><polygon points="23 7 16 12 23 17 23 7"></polygon><rect x="1" y="5" width="15" height="14" rx="2" ry="2"></rect></svg>
-          </div>
-          <div class="brand-meta">
-            <span class="brand-name">IP26 COMMAND</span>
-            <span class="brand-tag">MEDIA PRODUCTION</span>
-          </div>
+  <!-- Sticky Top Desktop Navigation Bar (Tab Switcher on Top) -->
+  <header class="top-nav-header" id="topNav">
+    <div class="nav-container">
+      <a href="#top" class="nav-brand">
+        <div class="brand-badge-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><polygon points="23 7 16 12 23 17 23 7"></polygon><rect x="1" y="5" width="15" height="14" rx="2" ry="2"></rect></svg>
         </div>
-      </div>
-
-      <!-- Live Production Status Widget in Sidebar -->
-      <div class="sidebar-status-box">
-        <div class="status-box-header">
-          <span class="status-title">STATUS PRODUKSI</span>
-          <span class="status-rate text-success">95.4%</span>
+        <div class="brand-meta">
+          <span class="brand-name">IP26 COMMAND</span>
+          <span class="brand-tag">MEDIA SYSTEM</span>
         </div>
-        <div class="status-bar-track">
-          <div class="status-bar-fill" style="width: 95.4%;"></div>
-        </div>
-        <span class="status-caption">58/61 Komponen Terverifikasi ✅</span>
-      </div>
+      </a>
 
-      <!-- Navigation Links with Icons -->
-      <nav class="sidebar-nav">
-        <div class="nav-section-label">KONSOL UTAMA</div>
-        <a href="#overview" class="sidebar-link active" onclick="setActiveNav(this)">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg>
-          <span>Ikhtisar Sistem</span>
-        </a>
-        <a href="#topology" class="sidebar-link" onclick="setActiveNav(this)">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"></circle><circle cx="6" cy="12" r="3"></circle><circle cx="18" cy="19" r="3"></circle><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line></svg>
-          <span>Topologi Sinyal</span>
-        </a>
-        <a href="#cameras" class="sidebar-link" onclick="setActiveNav(this)">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14.5 4h-5L7 7H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3l-2.5-3z"></path><circle cx="12" cy="13" r="3"></circle></svg>
-          <span>Kamera & Rig</span>
-        </a>
-        <a href="#routing" class="sidebar-link" onclick="setActiveNav(this)">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline></svg>
-          <span>Matrix Routing</span>
-        </a>
-        <a href="#workstations" class="sidebar-link" onclick="setActiveNav(this)">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect><line x1="8" y1="21" x2="16" y2="21"></line><line x1="12" y1="17" x2="12" y2="21"></line></svg>
-          <span>Workstations & PIC</span>
-        </a>
-        <a href="#inventory" class="sidebar-link" onclick="setActiveNav(this)">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline><line x1="12" y1="22.08" x2="12" y2="12"></line></svg>
-          <span>Katalog Inventaris</span>
-        </a>
-        <a href="#rundown" class="sidebar-link" onclick="setActiveNav(this)">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
-          <span>Rundown Tayang</span>
-        </a>
+      <!-- Desktop Tab Links -->
+      <nav class="desktop-nav-tabs" id="desktopNav">
+        <a href="#overview" class="tab-link active">Ikhtisar</a>
+        <a href="#topology" class="tab-link">Topologi</a>
+        <a href="#cameras" class="tab-link">Kamera</a>
+        <a href="#routing" class="tab-link">Routing</a>
+        <a href="#workstations" class="tab-link">Workstation</a>
+        <a href="#inventory" class="tab-link">Inventaris</a>
+        <a href="#rundown" class="tab-link">Rundown</a>
       </nav>
 
-      <!-- Sidebar Footer Action -->
-      <div class="sidebar-footer">
-        <a href="https://github.com/zzdree/ip26-production" target="_blank" rel="noopener noreferrer" class="btn-sidebar-github">
+      <div class="nav-actions">
+        <a href="https://github.com/zzdree/ip26-production" target="_blank" rel="noopener noreferrer" class="btn-github-link">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
-          <span>GitHub Repository</span>
+          <span>GitHub</span>
         </a>
       </div>
-    </aside>
+    </div>
+  </header>
 
-    <!-- Main Cockpit Area -->
-    <main class="cockpit-main">
+  <!-- Centered Single Page Main Content Wrapper -->
+  <main class="page-main-centered" id="top">
+    <div class="site-container">
 
       <!-- HERO SECTION -->
-      <section class="cockpit-section hero-cockpit" id="overview">
+      <section class="content-section hero-section" id="overview">
         <div class="hero-top-row">
           <div class="hero-tag-glow">
             <span class="tag-radar"></span>
             <span>UKK UNNES BROADCAST ENGINE 2026</span>
           </div>
-          <span class="badge badge-tech font-mono">SPEC V3.0 MASTER</span>
+          <span class="badge badge-tech font-mono">SPEC V5.0 MASTER</span>
         </div>
 
-        <h1 class="cockpit-h1">Ibadah Perdana UKK UNNES 2026</h1>
-        <p class="cockpit-subtitle">
+        <h1 class="hero-h1">Ibadah Perdana UKK UNNES 2026</h1>
+        <p class="hero-subtitle">
           Pusat kendali teknis terintegrasi: arsitektur routing multi-kamera siaran, tata suara FOH & streaming, alokasi operator stasiun kerja, katalog 13 mitra inventaris, dan alur tayang multimedia.
         </p>
 
-        <!-- Metric Widgets Grid (Easeout DStudio Style) -->
+        <!-- Metric Widgets Grid (Pure Dark Grey Cards) -->
         <div class="widgets-grid">
           
           <div class="widget-box widget-cyan">
@@ -179,7 +142,7 @@
         </div>
 
         <!-- Operational Status Ribbon -->
-        <div class="legend-cockpit mt-4">
+        <div class="legend-box mt-4">
           <span class="legend-header">INDIKATOR KESIAPAN:</span>
           <div class="legend-items">
             <span class="legend-pill"><span class="badge badge-success">✅ Aktif / Terpasang</span> Jalur utama siaran</span>
@@ -190,11 +153,11 @@
       </section>
 
       <!-- TOPOLOGY SECTION -->
-      <section class="cockpit-section" id="topology">
-        <div class="cockpit-section-head">
+      <section class="content-section" id="topology">
+        <div class="section-head-box">
           <div>
             <span class="section-badge-tag">SIGNAL TOPOLOGY</span>
-            <h2 class="cockpit-h2">Diagram Topologi Sinyal Siaran</h2>
+            <h2 class="section-h2">Diagram Topologi Sinyal Siaran</h2>
             <p class="section-desc">Arsitektur alur sinyal video siaran mulai dari kamera, switcher, splitter distribusi, hingga penayangan di layar LED.</p>
           </div>
         </div>
@@ -346,33 +309,33 @@
       </section>
 
       <!-- CAMERA SYSTEM SECTION -->
-      <section class="cockpit-section" id="cameras">
-        <div class="cockpit-section-head">
+      <section class="content-section" id="cameras">
+        <div class="section-head-box">
           <div>
             <span class="section-badge-tag">OPTICAL & RIG</span>
-            <h2 class="cockpit-h2">Sistem Kamera Siaran & Dokumentasi</h2>
+            <h2 class="section-h2">Sistem Kamera Siaran & Dokumentasi</h2>
             <p class="section-desc">Spesifikasi komplit seluruh kamera, konfigurasi optik, transmisi sinyal, dan alokasi operator.</p>
           </div>
         </div>
 
         <!-- Segmented Controls -->
-        <div class="cockpit-segmented">
-          <button class="cockpit-seg-btn active" onclick="switchCameraTab('broadcast')" id="tabBtnBroadcast">
+        <div class="segmented-wrapper">
+          <button class="seg-tab-btn active" onclick="switchCameraTab('broadcast')" id="tabBtnBroadcast">
             <span>🎥 Kamera Siaran / Broadcast (4 Unit)</span>
           </button>
-          <button class="cockpit-seg-btn" onclick="switchCameraTab('documentation')" id="tabBtnDoc">
+          <button class="seg-tab-btn" onclick="switchCameraTab('documentation')" id="tabBtnDoc">
             <span>📸 Kamera Dokumentasi & Medsos (3 Unit)</span>
           </button>
         </div>
 
         <!-- Broadcast Tab Panel -->
         <div class="tab-panel active" id="tabBroadcast">
-          <div class="rig-deck">
+          <div class="rig-deck-2">
 
             <!-- CAM 1 Card -->
-            <div class="pro-rig-box">
-              <div class="rig-box-glow"></div>
-              <div class="pro-rig-top">
+            <div class="rig-card-box">
+              <div class="rig-card-glow"></div>
+              <div class="rig-card-top">
                 <div>
                   <div class="rig-id-row">
                     <span class="rig-id text-cyan">CAM 1</span>
@@ -401,9 +364,9 @@
             </div>
 
             <!-- CAM 2 Card -->
-            <div class="pro-rig-box">
-              <div class="rig-box-glow"></div>
-              <div class="pro-rig-top">
+            <div class="rig-card-box">
+              <div class="rig-card-glow"></div>
+              <div class="rig-card-top">
                 <div>
                   <div class="rig-id-row">
                     <span class="rig-id text-cyan">CAM 2</span>
@@ -432,9 +395,9 @@
             </div>
 
             <!-- CAM 3 Card -->
-            <div class="pro-rig-box">
-              <div class="rig-box-glow"></div>
-              <div class="pro-rig-top">
+            <div class="rig-card-box">
+              <div class="rig-card-glow"></div>
+              <div class="rig-card-top">
                 <div>
                   <div class="rig-id-row">
                     <span class="rig-id text-cyan">CAM 3</span>
@@ -463,9 +426,9 @@
             </div>
 
             <!-- CAM 4 Card -->
-            <div class="pro-rig-box">
-              <div class="rig-box-glow"></div>
-              <div class="pro-rig-top">
+            <div class="rig-card-box">
+              <div class="rig-card-glow"></div>
+              <div class="rig-card-top">
                 <div>
                   <div class="rig-id-row">
                     <span class="rig-id text-cyan">CAM 4</span>
@@ -494,7 +457,7 @@
             </div>
           </div>
 
-          <div class="cockpit-callout mt-4">
+          <div class="callout-banner mt-4">
             <span class="callout-ico">🛡️</span>
             <div>
               <strong>Cadangan Terverifikasi:</strong> Micro HDMI to HDMI Converter X2 (Panitia) berada di meja kontrol dalam status siap pakai.
@@ -506,9 +469,9 @@
         <div class="tab-panel" id="tabDoc">
           <div class="rig-deck-3">
 
-            <div class="pro-rig-box">
-              <div class="rig-box-glow"></div>
-              <div class="pro-rig-top">
+            <div class="rig-card-box">
+              <div class="rig-card-glow"></div>
+              <div class="rig-card-top">
                 <div>
                   <span class="rig-id text-purple">CAM PHO</span>
                   <h3 class="rig-name">Sony A6400 Foto</h3>
@@ -526,9 +489,9 @@
               </div>
             </div>
 
-            <div class="pro-rig-box">
-              <div class="rig-box-glow"></div>
-              <div class="pro-rig-top">
+            <div class="rig-card-box">
+              <div class="rig-card-glow"></div>
+              <div class="rig-card-top">
                 <div>
                   <span class="rig-id text-purple">CAM VID</span>
                   <h3 class="rig-name">Sony A6600 Video</h3>
@@ -546,9 +509,9 @@
               </div>
             </div>
 
-            <div class="pro-rig-box">
-              <div class="rig-box-glow"></div>
-              <div class="pro-rig-top">
+            <div class="rig-card-box">
+              <div class="rig-card-glow"></div>
+              <div class="rig-card-top">
                 <div>
                   <span class="rig-id text-purple">CAM HP</span>
                   <h3 class="rig-name">iPhone 15 Media</h3>
@@ -569,26 +532,26 @@
       </section>
 
       <!-- ROUTING MATRIX SECTION -->
-      <section class="cockpit-section" id="routing">
-        <div class="cockpit-section-head">
+      <section class="content-section" id="routing">
+        <div class="section-head-box">
           <div>
             <span class="section-badge-tag">SIGNAL WIRING</span>
-            <h2 class="cockpit-h2">Matrix Routing Sinyal & Audio Engine</h2>
+            <h2 class="section-h2">Matrix Routing Sinyal & Audio Engine</h2>
             <p class="section-desc">Daftar koneksi perkabelan, adaptor, dan konverter pada sistem video, audio, kelistrikan, dan time keeper.</p>
           </div>
         </div>
 
-        <div class="cockpit-segmented">
-          <button class="cockpit-seg-btn active" onclick="switchRoutingTab('video')" id="tabBtnVideo">🖥️ Routing Video & Siaran</button>
-          <button class="cockpit-seg-btn" onclick="switchRoutingTab('audio')" id="tabBtnAudio">🔊 Routing Audio Engine</button>
-          <button class="cockpit-seg-btn" onclick="switchRoutingTab('timekeeper')" id="tabBtnTime">⏱️ Time Keeper System</button>
-          <button class="cockpit-seg-btn" onclick="switchRoutingTab('electric')" id="tabBtnElectric">⚡ Electrical Routing</button>
+        <div class="segmented-wrapper">
+          <button class="seg-tab-btn active" onclick="switchRoutingTab('video')" id="tabBtnVideo">🖥️ Routing Video & Siaran</button>
+          <button class="seg-tab-btn" onclick="switchRoutingTab('audio')" id="tabBtnAudio">🔊 Routing Audio Engine</button>
+          <button class="seg-tab-btn" onclick="switchRoutingTab('timekeeper')" id="tabBtnTime">⏱️ Time Keeper System</button>
+          <button class="seg-tab-btn" onclick="switchRoutingTab('electric')" id="tabBtnElectric">⚡ Electrical Routing</button>
         </div>
 
         <!-- Video Tab -->
         <div class="tab-panel active" id="tabVideo">
-          <div class="cockpit-table-wrap">
-            <table class="cockpit-table">
+          <div class="custom-table-wrap">
+            <table class="darkgrey-table">
               <thead>
                 <tr>
                   <th>Jalur Alur Sinyal</th>
@@ -634,8 +597,8 @@
 
         <!-- Audio Tab -->
         <div class="tab-panel" id="tabAudio">
-          <div class="cockpit-table-wrap">
-            <table class="cockpit-table">
+          <div class="custom-table-wrap">
+            <table class="darkgrey-table">
               <thead>
                 <tr>
                   <th>Jalur Audio</th>
@@ -694,17 +657,17 @@ Terminal Cable XCH (Andreas) + Terminal Cable XCH (UKK) + Terminal Cable XCH (Pa
       </section>
 
       <!-- WORKSTATION & PIC SECTION -->
-      <section class="cockpit-section" id="workstations">
-        <div class="cockpit-section-head">
+      <section class="content-section" id="workstations">
+        <div class="section-head-box">
           <div>
             <span class="section-badge-tag">COMMAND DESK</span>
-            <h2 class="cockpit-h2">Matriks Workstation & Alokasi Operator</h2>
+            <h2 class="section-h2">Matriks Workstation & Alokasi Operator</h2>
             <p class="section-desc">Distribusi stasiun kerja operator media siaran, alokasi hardware, dan penanggung jawab teknis.</p>
           </div>
         </div>
 
-        <div class="cockpit-table-wrap">
-          <table class="cockpit-table">
+        <div class="custom-table-wrap">
+          <table class="darkgrey-table">
             <thead>
               <tr>
                 <th>Workstation / Posisi</th>
@@ -786,11 +749,11 @@ Terminal Cable XCH (Andreas) + Terminal Cable XCH (UKK) + Terminal Cable XCH (Pa
       </section>
 
       <!-- INVENTORY SECTION -->
-      <section class="cockpit-section" id="inventory">
-        <div class="cockpit-section-head">
+      <section class="content-section" id="inventory">
+        <div class="section-head-box">
           <div>
             <span class="section-badge-tag">MASTER STORAGE</span>
-            <h2 class="cockpit-h2">Direktori Inventaris & Peminjaman Alat</h2>
+            <h2 class="section-h2">Direktori Inventaris & Peminjaman Alat</h2>
             <p class="section-desc">Katalog lengkap 84 item peralatan dari 13 pihak peminjam dengan pencarian dan filter instan.</p>
           </div>
           <div class="inv-live-badge" id="invCountBadge">Memuat data...</div>
@@ -839,18 +802,18 @@ Terminal Cable XCH (Andreas) + Terminal Cable XCH (UKK) + Terminal Cable XCH (Pa
       </section>
 
       <!-- RUNDOWN SECTION -->
-      <section class="cockpit-section" id="rundown">
-        <div class="cockpit-section-head">
+      <section class="content-section" id="rundown">
+        <div class="section-head-box">
           <div>
             <span class="section-badge-tag">EVENT TIMELINE</span>
-            <h2 class="cockpit-h2">Rundown Konten & Tampilan Layar</h2>
+            <h2 class="section-h2">Rundown Konten & Tampilan Layar</h2>
             <p class="section-desc">Jadwal distribusi penayangan materi multimedia pada Sound System FOH dan Multi-Screen LED Auditorium.</p>
           </div>
         </div>
 
-        <div class="rundown-grid">
+        <div class="rundown-deck-3">
 
-          <div class="rundown-card">
+          <div class="rundown-card-box">
             <div class="card-glow-edge cyan"></div>
             <div class="rundown-card-top">
               <div>
@@ -871,7 +834,7 @@ Terminal Cable XCH (Andreas) + Terminal Cable XCH (UKK) + Terminal Cable XCH (Pa
             </ul>
           </div>
 
-          <div class="rundown-card">
+          <div class="rundown-card-box">
             <div class="card-glow-edge emerald"></div>
             <div class="rundown-card-top">
               <div>
@@ -896,7 +859,7 @@ Terminal Cable XCH (Andreas) + Terminal Cable XCH (UKK) + Terminal Cable XCH (Pa
             </ul>
           </div>
 
-          <div class="rundown-card">
+          <div class="rundown-card-box">
             <div class="card-glow-edge purple"></div>
             <div class="rundown-card-top">
               <div>
@@ -919,42 +882,46 @@ Terminal Cable XCH (Andreas) + Terminal Cable XCH (UKK) + Terminal Cable XCH (Pa
         </div>
       </section>
 
-      <!-- COCKPIT FOOTER -->
-      <footer class="cockpit-footer">
-        <div class="footer-grid">
+      <!-- SITE FOOTER -->
+      <footer class="site-footer-centered">
+        <div class="footer-inner">
           <div>
             <span class="footer-brand">Ibadah Perdana UKK UNNES 2026</span>
             <p class="footer-copy">Hak Cipta &copy; 2026 Panitia Ibadah Perdana UKK UNNES — Divisi Media, Broadcast & Multimedia Production. Seluruh skema teknis dilindungi lisensi operasional internal.</p>
           </div>
-          <div class="footer-links">
-            <a href="#overview" class="footer-btn">Kembali ke Atas &uarr;</a>
-            <a href="https://github.com/zzdree/ip26-production" target="_blank" rel="noopener noreferrer" class="footer-btn">GitHub Repository</a>
+          <div class="footer-actions">
+            <a href="#top" class="footer-link">Kembali ke Atas &uarr;</a>
+            <a href="https://github.com/zzdree/ip26-production" target="_blank" rel="noopener noreferrer" class="footer-link">GitHub Repository</a>
           </div>
         </div>
       </footer>
-    </main>
-  </div>
+    </div>
+  </main>
 
-  <!-- Mobile Floating App Dock (Easeout Mobile Experience) -->
-  <nav class="mobile-dock" aria-label="Navigasi Mobile">
-    <a href="#overview" class="dock-item active">
+  <!-- Mobile Floating Navigation Dock (Easeout Mobile Bottom Dock) -->
+  <nav class="mobile-dock-bottom" aria-label="Navigasi Mobile">
+    <a href="#overview" class="dock-btn active">
       <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg>
       <span>Ikhtisar</span>
     </a>
-    <a href="#cameras" class="dock-item">
+    <a href="#topology" class="dock-btn">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"></circle><circle cx="6" cy="12" r="3"></circle><circle cx="18" cy="19" r="3"></circle><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line></svg>
+      <span>Topologi</span>
+    </a>
+    <a href="#cameras" class="dock-btn">
       <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14.5 4h-5L7 7H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3l-2.5-3z"></path><circle cx="12" cy="13" r="3"></circle></svg>
       <span>Kamera</span>
     </a>
-    <a href="#routing" class="dock-item">
+    <a href="#routing" class="dock-btn">
       <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline></svg>
       <span>Routing</span>
     </a>
-    <a href="#inventory" class="dock-item">
+    <a href="#inventory" class="dock-btn">
       <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path></svg>
       <span>Inventaris</span>
     </a>
   </nav>
 
-  <script src="app.js?v=20260822_darkgrey"></script>
+  <script src="app.js?v=20260822_puredarkgrey"></script>
 </body>
 </html>

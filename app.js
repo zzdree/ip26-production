@@ -1,6 +1,6 @@
 /**
  * IP26 BROADCAST COMMAND SUITE — LOGIC ENGINE
- * Complete functionality: Live Telemetry, Filtering, One-Click Rig Copy, Navigation Sync
+ * Pure Dark Grey Edition: Live Telemetry, Filtering, One-Click Rig Copy, Centered Scroll Navigation
  */
 
 // Master Inventory Catalog (100% Extracted from ip26_pro2.txt)
@@ -248,13 +248,6 @@ function copyText(text, btnElement) {
   }
 }
 
-// Navigation active toggle
-function setActiveNav(element) {
-  const links = document.querySelectorAll('.sidebar-link');
-  links.forEach(l => l.classList.remove('active'));
-  if (element) element.classList.add('active');
-}
-
 // Camera Tab Switcher
 function switchCameraTab(tabName) {
   document.getElementById('tabBtnBroadcast').classList.toggle('active', tabName === 'broadcast');
@@ -386,7 +379,7 @@ function renderInventory() {
 
   if (matchCount === 0) {
     container.innerHTML = `
-      <div class="cockpit-callout" style="grid-column: 1 / -1; justify-content: center; text-align: center; padding: 40px;">
+      <div class="callout-banner" style="grid-column: 1 / -1; justify-content: center; text-align: center; padding: 40px;">
         <div>
           <strong style="color:#fff; font-size:16px;">Pencarian Tidak Ditemukan</strong>
           <p class="text-muted mt-1">Tidak ada item inventaris yang sesuai dengan filter atau kata kunci "${currentSearchQuery}".</p>
@@ -397,15 +390,15 @@ function renderInventory() {
   }
 }
 
-// Scroll Spy for Sidebar & Mobile Dock
+// Scroll Spy for Top Desktop Navbar Tabs & Mobile Dock
 function initNavScroll() {
-  const sections = document.querySelectorAll('.cockpit-section');
-  const sidebarLinks = document.querySelectorAll('.sidebar-link');
-  const dockLinks = document.querySelectorAll('.dock-item');
+  const sections = document.querySelectorAll('.content-section');
+  const desktopLinks = document.querySelectorAll('.desktop-nav-tabs .tab-link');
+  const dockLinks = document.querySelectorAll('.mobile-dock-bottom .dock-btn');
 
   window.addEventListener('scroll', () => {
     let current = '';
-    const scrollPos = window.scrollY + 140;
+    const scrollPos = window.scrollY + 160;
 
     sections.forEach(section => {
       const sectionTop = section.offsetTop;
@@ -416,7 +409,7 @@ function initNavScroll() {
     });
 
     if (current) {
-      sidebarLinks.forEach(link => {
+      desktopLinks.forEach(link => {
         link.classList.toggle('active', link.getAttribute('href') === `#${current}`);
       });
       dockLinks.forEach(link => {
