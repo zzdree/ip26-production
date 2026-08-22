@@ -49,9 +49,16 @@ Sistem menegaskan pemisahan dan kesetaraan fungsional:
 
 #### A. Seksi 1: Hero & Operational Overview (`#secOverview`)
 * Informasi Event, Lokasi Auditorium UNNES, dan Tanggal 17 September 2026.
-* Live Countdown Timer presisi detik.
-* Jam Master WIB real-time.
-* Panel 5 Aksioma Operasional.
+* Live Countdown Timer presisi detik & Master Clock WIB real-time.
+* Panel 5 Aksioma Operasional Panitia vs Pelayan.
+* **Panduan Status Indikator**: `✅` (Terverifikasi & Aktif), `⚠️` (Sebagian / Pending), `☑️` (Standby / Storage).
+* **Simulasi Tata Panggung & Multi-Screen LED (Auditorium UNNES)**:
+  * LED Left & Right: Lirik Lagu, Sambutan Bu Grace, dan Presentasi (ProPresenter 1 - Rania).
+  * LED Center (Main): Live Multi-Cam Switcher + PPT + Video Playback (Resolume Arena - Andreas).
+  * LED Back Stage: Background panggung (ProPresenter 1).
+  * Panggung Utama & Stage Timekeeper: TV Monitor Panggung (Darrel) untuk MC/Pembicara (ProPresenter 3 - Acara).
+  * Pemetaan 7 Posisi Kamera (CAM 1 FOH, CAM 2 Mobile, CAM 3 Left, CAM 4 Right, CAM PHO, CAM VID, CAM HP).
+  * Area FOH Media & Sound Control Center (11 Workstation).
 
 #### B. Seksi 2: Master Inventaris & Packing Manifest (`#secInventory`)
 * **119 Item dari 13 Peminjam**:
