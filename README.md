@@ -74,8 +74,10 @@
 
 ### 3. Klasifikasi Peran: Panitia vs Pelayan
 Dalam pembagian tugas teknis di lapangan, personel diklasifikasikan secara tegas menjadi dua kategori:
-- **🏛️ Panitia (Committee):** Personel yang tergabung dalam struktur kepanitiaan resmi Ibadah Perdana 2026 (seperti Tim Acara, System Lead, Media Lead, Creative Lead).
-- **✨ Pelayan (Ministry Servant / Field Operator):** Rekan-rekan yang melayani secara khusus untuk mendukung kebutuhan operasional lapangan sebagai operator teknis kamera, audio console, visual display, dan multimedia siaran yang bukan merupakan bagian panitia struktural.
+- **🏛️ Panitia (Committee):** Seluruh personel yang terdaftar dalam struktur kepanitiaan inti (System Engineer, Media Engineer, Creative Engineer, dan Divisi Acara).
+  - *Daftar Panitia:* **Andreas** *(System Lead)*, **Richard** *(Media Lead)*, **Wilfred**, **Alex**, **Rania**, **Jennifer** *(Creative Lead)*, **Filia**, **Felani**, **Wike**, dan **Tim Acara**.
+- **✨ Pelayan (Ministry Servant / Field Operator):** Personel atau PIC operator teknis di lapangan yang bukan merupakan anggota panitia struktural (melayani khusus sebagai operator teknis kamera, audio, dan workstation).
+  - *Daftar Pelayan:* **Kiel 1** *(CAM 2 & Backup Workstation)*, **Nia** *(CAM 3)*, **Ferdy** *(CAM 4)*, **Nico** *(CAM PHO)*, **Joel** *(CAM VID)*, **Jordan** *(Mixer 1 & Virtual Mixers)*, dan **Yosua** *(Mixer 1 & Virtual Mixers)*.
 
 ---
 
@@ -124,7 +126,7 @@ flowchart TD
 
 | ID Kamera | Konfigurasi Rig & Kepemilikan Barang | PIC Operator | Status Personel | Tipe Jalur | Status |
 | :--- | :--- | :--- | :---: | :---: | :---: |
-| **CAM 1** | Sony ZVE10 (Kiel 1) + Lens 18-105MM (OWL) + Battery (Kiel 1) + Memory Card 64GB (Kiel 1) + Tripod Camera Big (OWL) + HDMI to Micro HDMI Cable 30CM (OWL) + Hollyland Pyro S Transmitter (OWL) + Battery WIR (OWL) + Hollyland Pyro S Receiver (OWL) + Battery WIR (OWL) + Stand Lighting Small (UKK) + HDMI Cable 1,5M (UKK) + Cinetreak Cinelive V1 (OWL) + Power Adaptor MIX (OWL) | **Alex** | ✨ Pelayan | Wireless + Fixed | `✅` |
+| **CAM 1** | Sony ZVE10 (Kiel 1) + Lens 18-105MM (OWL) + Battery (Kiel 1) + Memory Card 64GB (Kiel 1) + Tripod Camera Big (OWL) + HDMI to Micro HDMI Cable 30CM (OWL) + Hollyland Pyro S Transmitter (OWL) + Battery WIR (OWL) + Hollyland Pyro S Receiver (OWL) + Battery WIR (OWL) + Stand Lighting Small (UKK) + HDMI Cable 1,5M (UKK) + Cinetreak Cinelive V1 (OWL) + Power Adaptor MIX (OWL) | **Alex** | 🏛️ Panitia | Wireless + Fixed | `✅` |
 | **CAM 2** | Sony ZV-E10 (OWL) + Lens 18-105MM (OWL) + Battery (OWL) + Memory Card 32GB (OWL) + HDMI to Micro HDMI Cable 30CM (OWL) + Hollyland Pyro H Transmitter (OWL) + Battery WIR (OWL) + Hollyland Pyro H Receiver (OWL) + Battery WIR (OWL) + Stand Lighting Small (UKK) + HDMI Cable 1,5M (UKK) + Cinetreak Cinelive V1 (OWL) + Power Adaptor MIX (OWL) | **Kiel 1** | ✨ Pelayan | Wireless + Mobile | `✅` |
 | **CAM 3** | Sony A6000 (OWL) + Lens 18-105MM (OWL) + Battery (OWL) + Memory Card 32GB (OWL) + Tripod Camera Big (GIA) + Micro HDMI to HDMI Converter (OWL) + HDMI Cable 10M (GKJ) + Cinetreak Cinelive V1 (OWL) + Power Adaptor MIX (OWL) | **Nia** | ✨ Pelayan | Wired + Fixed | `✅` |
 | **CAM 4** | Sony A6000 (OWL) + Lens 16-50MM Kit (Kiel 1) + Battery (OWL) + Memory Card 32GB (OWL) + Tripod Camera Big (UKK) + Micro HDMI to HDMI Converter (OWL) + HDMI Cable 10M (UKK) + Cinetreak Cinelive V1 (OWL) + Power Adaptor MIX (OWL) | **Ferdy** | ✨ Pelayan | Wired + Fixed | `✅` |
@@ -259,10 +261,10 @@ Terdapat total **3 Unit HDMI Splitter**:
 | **Virtual Mixer 1** | Laptop + Power Adaptor LTP (Andreas) | Jordan / Yosua | ✨ Pelayan | `✅` Terpasang |
 | **Virtual Mixer 2** | iPad (Jennifer) | Jordan / Yosua | ✨ Pelayan | `✅` Terpasang |
 | **Resolume Arena** | Laptop + Power Adaptor LTP (Bayu) | Andreas | 🏛️ Panitia | `✅` Terpasang |
-| **Pro Presenter 1 (LED L/R/Back)**| Laptop + Power Adaptor LTP *(Belum Ada)* | Rania | ✨ Pelayan | `⚠️` Belum Ada |
-| **Pro Presenter 2 (Lirik & Ayat)** | Laptop + Power Adaptor LTP *(Belum Ada)* | Filia | ✨ Pelayan | `⚠️` Belum Ada |
+| **Pro Presenter 1 (LED L/R/Back)**| Laptop + Power Adaptor LTP *(Belum Ada)* | Rania | 🏛️ Panitia | `⚠️` Belum Ada |
+| **Pro Presenter 2 (Lirik & Ayat)** | Laptop + Power Adaptor LTP *(Belum Ada)* | Filia | 🏛️ Panitia | `⚠️` Belum Ada |
 | **Pro Presenter 3 + Television** | Laptop X + Power Adaptor LTP *(Belum Ada)* + TV + Power Adaptor TV (Darrel) | Acara (Tim Acara) | 🏛️ Panitia | `⚠️` Belum Ada |
-| **Switcher + Television** | Cinetreak Cinelive V1 + Power Adaptor MIX (OWL) + TV + Power Adaptor TV (Kezia) | Wilfred | ✨ Pelayan | `✅` Terpasang |
+| **Switcher + Television** | Cinetreak Cinelive V1 + Power Adaptor MIX (OWL) + TV + Power Adaptor TV (Kezia) | Wilfred | 🏛️ Panitia | `✅` Terpasang |
 | **OBS Studio (Live Stream)** | Laptop X + Power Adaptor LTP *(Belum Ada)* | Andreas | 🏛️ Panitia | `⚠️` Belum Ada |
 | **Backup Workstation** | Laptop + Power Adaptor LTP (Kiel 1) | Kiel 1 | ✨ Pelayan | `✅` Standby |
 

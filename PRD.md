@@ -9,19 +9,19 @@
 - **Venue:** Gedung Auditorium Universitas Negeri Semarang (UNNES)
 - **Production Hierarchy:**
   - **System Engineer:** Andreas (Leader) — *🏛️ Panitia*
-  - **Media Engineer:** Richard (Leader) — *🏛️ Panitia*, Wilfred (*✨ Pelayan*), Alex (*✨ Pelayan*), Rania (*✨ Pelayan*)
-  - **Creative Engineer:** Jennifer (Leader) — *🏛️ Panitia*, Filia (*✨ Pelayan*), Felani (*✨ Pelayan*), Wike (*✨ Pelayan*)
+  - **Media Engineer:** Richard (Leader) — *🏛️ Panitia*, Wilfred (*🏛️ Panitia*), Alex (*🏛️ Panitia*), Rania (*🏛️ Panitia*)
+  - **Creative Engineer:** Jennifer (Leader) — *🏛️ Panitia*, Filia (*🏛️ Panitia*), Felani (*🏛️ Panitia*), Wike (*🏛️ Panitia*)
 
 ### 1.1 Klasifikasi Status Personel PIC
-- **🏛️ Panitia (Committee):** Personel yang memegang jabatan struktural kepanitiaan resmi Ibadah Perdana 2026 (seperti Tim Acara, System Lead, Media Lead, Creative Lead).
-- **✨ Pelayan (Ministry Servant / Field Operator):** Personel yang melayani khusus sebagai operator teknis lapangan (Kamera, Sound Mixer, Visual Display, Lighting) dan bukan panitia struktural.
+- **🏛️ Panitia (Committee):** Seluruh personel terdaftar dalam struktur kepanitiaan inti (System Engineer, Media Engineer, Creative Engineer, dan Divisi Acara) yaitu: Andreas, Richard, Wilfred, Alex, Rania, Jennifer, Filia, Felani, Wike, dan Tim Acara.
+- **✨ Pelayan (Ministry Servant / Field Operator):** Personel yang melayani khusus sebagai operator teknis lapangan yang bukan merupakan bagian panitia struktural yaitu: Kiel 1, Nia, Ferdy, Nico, Joel, Jordan, dan Yosua.
 
 ---
 
 ## 2. Core Modules & System Architecture
 
 ### A. Broadcast Camera System (Integrated with Engine System)
-- **CAM 1 (Wireless + Fixed):** Sony ZVE10 (Kiel 1) + Hollyland Pyro S (OWL) ➔ Operator: **Alex** (*✨ Pelayan*) `✅`
+- **CAM 1 (Wireless + Fixed):** Sony ZVE10 (Kiel 1) + Hollyland Pyro S (OWL) ➔ Operator: **Alex** (*🏛️ Panitia*) `✅`
 - **CAM 2 (Wireless + Mobile):** Sony ZV-E10 (OWL) + Hollyland Pyro H (OWL) ➔ Operator: **Kiel 1** (*✨ Pelayan*) `✅`
 - **CAM 3 (Wired + Fixed):** Sony A6000 (OWL) + Lens 18-105mm (OWL) + HDMI 10M (GKJ) ➔ Operator: **Nia** (*✨ Pelayan*) `✅`
 - **CAM 4 (Wired + Fixed):** Sony A6000 (OWL) + Lens 16-50mm Kit (Kiel 1) + HDMI 10M (UKK) ➔ Operator: **Ferdy** (*✨ Pelayan*) `✅`
@@ -43,10 +43,10 @@
 - Virtual Mixer 1: Jordan / Yosua (*✨ Pelayan*) `✅`
 - Virtual Mixer 2: Jordan / Yosua (*✨ Pelayan*) `✅`
 - Resolume Arena: Andreas (*🏛️ Panitia*) `✅`
-- Pro Presenter 1: Rania (*✨ Pelayan*) `⚠️` (Laptop Belum Ada)
-- Pro Presenter 2: Filia (*✨ Pelayan*) `⚠️` (Laptop Belum Ada)
+- Pro Presenter 1: Rania (*🏛️ Panitia*) `⚠️` (Laptop Belum Ada)
+- Pro Presenter 2: Filia (*🏛️ Panitia*) `⚠️` (Laptop Belum Ada)
 - Pro Presenter 3 + TV: Tim Acara (*🏛️ Panitia*) `⚠️` (Laptop Belum Ada)
-- Switcher + TV: Wilfred (*✨ Pelayan*) `✅`
+- Switcher + TV: Wilfred (*🏛️ Panitia*) `✅`
 - OBS Studio: Andreas (*🏛️ Panitia*) `⚠️` (Laptop Belum Ada)
 - Backup Workstation: Kiel 1 (*✨ Pelayan*) `✅`
 
