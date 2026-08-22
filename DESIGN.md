@@ -1,37 +1,36 @@
-# DESIGN.md — Siaran Mission Control (v15.0)
+# DESIGN.md — Production Call Sheet (v16.0)
 
-**Dial:** ENERGY 2 / RHYTHM 3 / MOTION 2
-**Aesthetic:** OB-Van Telemetry Console (bukan clone produk komersial)
-**Inspiration:** Konsol teknik siaran nyata (Cinetreak, tally light, source grid)
+**Theme:** Light Editorial "Technical Rider" — dokumen produksi cetak yang hidup di web
+**Dial:** ENERGY 2 / RHYTHM 3 / MOTION 1
 
-## 1. Visual Theme & Atmosphere
-Konsol operasional siaran yang padat dan terfokus. Charcoal pekat sebagai substrate, aksen amber terang sebagai sinyal tunggal. Status ditunjukkan via *tally light semantics* (hijau/amber/ungu/merah) yang konsisten di seluruh modul — ini adalah motif identitas, bukan dekorasi.
+## 1. Atmosphere
+Kertas hangat seperti call sheet yang dicetak pagi hari sebelum event. Ruling garis hitam tipis memandu mata, merah sinyal menandai hal penting (countdown, PGM, aksi utama). Terbaca sempurna di lokasi terang.
 
-## 2. Color Palette & Roles
-- **Charcoal Base** `#0E0F12` — background utama (substrate gelap, bukan hitam murni agar nyaman di layar)
-- **Slate Surface** `#16181D` — panel/kartu modul
-- **Inset** `#0B0C0F` — baris ter-recessed, search, table
-- **Hairline** `rgba(255,255,255,.08)` — batas presisi 1px
-- **Signal Amber** `#F5A524` — aksen tunggal: tombol aktif, highlight, countdown (focus point)
-- **Verified Green** `#34D399` — barang terverifikasi aktif ✅ / checklist selesai
-- **Caution Amber-Status** `#FBBF24` — sebagian / pending ⚠️
-- **Standby Purple** `#A78BFA` — standby / backup ☑️ (diredam, bukan dominan)
-- **On-Air Red** `#F43F5E` — PGM tally / switcher live
+## 2. Palet & Peran
+- **Paper** `#F7F4EE` — latar utama
+- **Card White** `#FFFFFF` — panel/kartu
+- **Inset Cream** `#EFEBE2` — baris recessed, tabel head
+- **Ink** `#17181A` — teks utama
+- **Ink Soft** `#5A5D63` — teks sekunder
+- **Rule** `#17181A` (1px) dan `rgba(23,24,26,.12)` (hairline) — garis struktur
+- **Signal Red** `#D93A2B` — aksen tunggal: masthead rule, countdown, PGM, tombol aktif, badge operator
+- **Verified Green** `#1B7F4D` / soft `rgba(27,127,77,.12)` — ✅ aktif/terverifikasi/checklist done
+- **Caution Amber** `#B45309` / soft `rgba(180,83,9,.14)` — ⚠️ sebagian/pending
+- **Standby Purple** `#6D4FA3` / soft `rgba(109,79,163,.12)` — ☑️ standby
 
-## 3. Typography
-- **Space Grotesk** (display + angka telemetry): terlihat teknis tapi punya karakter, bukan Inter/Roboto.
-- **Plus Jakarta Sans** (body/labels): keterbacaan tinggi.
-- **JetBrains Mono** (ID teknis: port, kabel, jam, channel): sebagai identitas "telemetry".
-- Heading modul 15px/700; body 13px; telemetry 28-32px mono.
+## 3. Tipografi
+- **Libre Franklin** (400/600/700/800): display + body. Judul besar uppercase condensed-feel dengan letter-spacing ketat; section header bergaya koran.
+- **IBM Plex Mono** (500/700): angka, jam, countdown, ID teknis, badge status.
 
-## 4. Component Stylings
-- **Buttons:** sudut kecil (6px), amber solid untuk primary aktif, outline hairline untuk secondary. Tidak semua pill.
-- **Cards/Modules:** sudut 12px, border hairline, collapsible accordion. Hover border sedikit terang.
-- **Inputs:** inset bg, border fokus amber, mono placeholder.
-- **Tally Badges:** dot + label, warna status semantik.
+## 4. Komponen
+- **Masthead**: judul raksasa + double rule bawah (2px+1px) khas koran.
+- **Section header**: nomor mono dalam kotak tinta + judul uppercase + rule panjang.
+- **Accordion**: kartu putih border ink hairline; chevron berputar; konten padding lega.
+- **Tabel**: head cream uppercase mono kecil, ruling tipis antar baris, hover lembut.
+- **Checklist row**: checkbox hijau saat done + strikethrough ink soft.
+- **Switcher bus**: tombol putih border ink; PGM aktif = merah penuh teks putih; PVW aktif = hijau.
+- **Dock mobile**: putih blur, ikon+label, aktif merah.
+- **Badge operator**: outline merah tipis uppercase mono.
 
-## 5. Layout Principles
-- Top nav (desktop) + bottom dock (mobile) dengan ikon + label thumb-zone.
-- Hero: countdown besar sebagai focal point tunggal per layar.
-- Grid modul auto-fit, dense tapi bernapas. Whitespace sebagai pemisah antar section.
-- RHYTHM 3: komposisi bervariasi (hero asimetris, grid kamera, tabel routing, kartu roster).
+## 5. Layout
+Container max 1100px; whitespace kertas sebagai pemisah utama; grid auto-fit untuk kartu; komposisi bervariasi per seksi (masthead asimetris, roster 3 kolom, tabel penuh, grid checklist).
