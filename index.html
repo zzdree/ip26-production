@@ -1,0 +1,680 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Dashboard Resmi & Blueprint Teknis Produksi Media Ibadah Perdana UKK UNNES 2026. Routing sinyal siaran, audio, inventaris alat, dan rundown acara.">
+  <title>Ibadah Perdana UKK UNNES 2026 — Production & Media System</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&family=Space+Grotesk:wght@500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Top Announcement Bar -->
+  <aside class="alert-bar" aria-label="Notifikasi Kritis">
+    <div class="container alert-content">
+      <span class="badge badge-warning">PENTING</span>
+      <span>Pengadaan <strong>4 Unit Laptop</strong> (ProPresenter 1, 2, 3, & OBS Studio) masih berstatus <em>Pending</em>.</span>
+      <a href="#workstations" class="alert-link">Lihat Status &rarr;</a>
+    </div>
+  </aside>
+
+  <!-- Header & Hero Navigation -->
+  <header class="site-header" id="top">
+    <div class="container header-container">
+      <div class="brand">
+        <div class="brand-icon">🎬</div>
+        <div class="brand-text">
+          <span class="brand-title">IP26 PRODUCTION</span>
+          <span class="brand-sub">UKK UNNES MEDIA SYSTEM</span>
+        </div>
+      </div>
+      <nav class="nav-menu" id="navMenu">
+        <a href="#overview" class="nav-link active">Ikhtisar</a>
+        <a href="#cameras" class="nav-link">Kamera</a>
+        <a href="#routing" class="nav-link">Routing</a>
+        <a href="#workstations" class="nav-link">Workstation</a>
+        <a href="#inventory" class="nav-link">Inventaris</a>
+        <a href="#rundown" class="nav-link">Rundown</a>
+      </nav>
+      <div class="header-actions">
+        <a href="https://github.com/zzdree/ip26-production" target="_blank" rel="noopener noreferrer" class="btn btn-outline">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+          <span>GitHub</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero-section" id="overview">
+    <div class="container hero-content">
+      <div class="hero-tag">
+        <span class="status-dot"></span> LIVE PRODUCTION BLUEPRINT
+      </div>
+      <h1 class="hero-title">Ibadah Perdana UKK UNNES 2026</h1>
+      <p class="hero-desc">
+        Pusat kendali teknis terintegrasi: arsitektur routing siaran multi-kamera, sistem tata suara, alokasi operator, direktori inventaris 13 mitra peminjaman, dan alur tayangan multimedia.
+      </p>
+
+      <!-- Event Meta Bar -->
+      <div class="meta-grid">
+        <div class="meta-card">
+          <span class="meta-label">LOKASI & VENUE</span>
+          <span class="meta-val">Auditorium UNNES</span>
+        </div>
+        <div class="meta-card">
+          <span class="meta-label">PELAKSANA</span>
+          <span class="meta-val">Divisi Media & Produksi</span>
+        </div>
+        <div class="meta-card">
+          <span class="meta-label">STATUS SISTEM</span>
+          <span class="meta-val text-success">95%+ Terverifikasi ✅</span>
+        </div>
+        <div class="meta-card">
+          <span class="meta-label">AKSES DOKUMEN</span>
+          <span class="meta-val text-accent">Internal Crew License</span>
+        </div>
+      </div>
+
+      <!-- Quick Metrics Counters -->
+      <div class="stats-row">
+        <div class="stat-box">
+          <span class="stat-number">7</span>
+          <span class="stat-title">Total Kamera</span>
+          <span class="stat-desc">4 Siaran + 3 Dokumentasi</span>
+        </div>
+        <div class="stat-box">
+          <span class="stat-number">10</span>
+          <span class="stat-title">Workstations</span>
+          <span class="stat-desc">Audio, Video, ProPresenter</span>
+        </div>
+        <div class="stat-box">
+          <span class="stat-number">13</span>
+          <span class="stat-title">Sumber Alat</span>
+          <span class="stat-desc">Mitra & Peminjam Gear</span>
+        </div>
+        <div class="stat-box">
+          <span class="stat-number">11</span>
+          <span class="stat-title">Operator PIC</span>
+          <span class="stat-desc">Tim Teknis Bertugas</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Status Legend -->
+  <section class="section-legend">
+    <div class="container legend-bar">
+      <span class="legend-header">LEGENDA STATUS:</span>
+      <div class="legend-item"><span class="badge badge-success">✅ Aktif / Terverifikasi</span> Terpasang & siap digunakan di sistem</div>
+      <div class="legend-item"><span class="badge badge-warning">⚠️ Sebagian / Pending</span> Sebagian terpakai / Memerlukan pengadaan</div>
+      <div class="legend-item"><span class="badge badge-standby">☑️ Standby / Cadangan</span> Tersedia di inventory (cadangan)</div>
+    </div>
+  </section>
+
+  <main class="main-content">
+
+    <!-- CAMERA SECTION -->
+    <section class="section-block" id="cameras">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-badge">CAMERA DIVISION</div>
+          <h2 class="section-title">Sistem Kamera Siaran & Dokumentasi</h2>
+          <p class="section-subtitle">Konfigurasi rig, transmisi video nirkabel/kabel, dan alokasi operator kamera.</p>
+        </div>
+
+        <!-- Camera Tabs Switcher -->
+        <div class="tab-controls" role="tablist">
+          <button class="tab-btn active" onclick="switchCameraTab('broadcast')" id="tabBtnBroadcast">🎥 Broadcast Cameras (4 Unit)</button>
+          <button class="tab-btn" onclick="switchCameraTab('documentation')" id="tabBtnDoc">📸 Documentation Cameras (3 Unit)</button>
+        </div>
+
+        <!-- Broadcast Cameras Tab -->
+        <div class="tab-panel active" id="tabBroadcast">
+          <div class="card-grid-2">
+
+            <!-- CAM 1 -->
+            <article class="rig-card">
+              <div class="rig-header">
+                <div class="rig-title-wrap">
+                  <span class="rig-id">CAM 1</span>
+                  <span class="badge badge-tech">Wireless + Fixed</span>
+                </div>
+                <span class="pic-pill">PIC: Alex ✅</span>
+              </div>
+              <div class="rig-body">
+                <div class="spec-row">
+                  <span class="spec-k">Kamera & Lensa</span>
+                  <span class="spec-v">Sony ZVE10 (Kiel 1) + Lens 18-105MM (OWL)</span>
+                </div>
+                <div class="spec-row">
+                  <span class="spec-k">Power & Memori</span>
+                  <span class="spec-v">Battery (Kiel 1) + SD Card 64GB (Kiel 1)</span>
+                </div>
+                <div class="spec-row">
+                  <span class="spec-k">Support Rig</span>
+                  <span class="spec-v">Tripod Camera Big (OWL)</span>
+                </div>
+                <div class="spec-row">
+                  <span class="spec-k">Transmisi Video</span>
+                  <span class="spec-v">Hollyland Pyro S TX + 2x Bat WIR (OWL) ➔ Micro HDMI Cable 30CM (OWL)</span>
+                </div>
+                <div class="spec-row">
+                  <span class="spec-k">Receiver Sisi Switcher</span>
+                  <span class="spec-v">Hollyland Pyro S RX + Stand Small (UKK) + HDMI 1,5M (UKK) ➔ Switcher OWL</span>
+                </div>
+              </div>
+            </article>
+
+            <!-- CAM 2 -->
+            <article class="rig-card">
+              <div class="rig-header">
+                <div class="rig-title-wrap">
+                  <span class="rig-id">CAM 2</span>
+                  <span class="badge badge-tech">Wireless + Mobile</span>
+                </div>
+                <span class="pic-pill">PIC: Kiel 1 ✅</span>
+              </div>
+              <div class="rig-body">
+                <div class="spec-row">
+                  <span class="spec-k">Kamera & Lensa</span>
+                  <span class="spec-v">Sony ZV-E10 (OWL) + Lens 18-105MM (OWL)</span>
+                </div>
+                <div class="spec-row">
+                  <span class="spec-k">Power & Memori</span>
+                  <span class="spec-v">Battery (OWL) + SD Card 32GB (OWL)</span>
+                </div>
+                <div class="spec-row">
+                  <span class="spec-k">Support Rig</span>
+                  <span class="spec-v">Mobile Operator Handheld</span>
+                </div>
+                <div class="spec-row">
+                  <span class="spec-k">Transmisi Video</span>
+                  <span class="spec-v">Hollyland Pyro H TX + 2x Bat WIR (OWL) ➔ Micro HDMI Cable 30CM (OWL)</span>
+                </div>
+                <div class="spec-row">
+                  <span class="spec-k">Receiver Sisi Switcher</span>
+                  <span class="spec-v">Hollyland Pyro H RX + Stand Small (UKK) + HDMI 1,5M (UKK) ➔ Switcher OWL</span>
+                </div>
+              </div>
+            </article>
+
+            <!-- CAM 3 -->
+            <article class="rig-card">
+              <div class="rig-header">
+                <div class="rig-title-wrap">
+                  <span class="rig-id">CAM 3</span>
+                  <span class="badge badge-tech">Wired + Fixed</span>
+                </div>
+                <span class="pic-pill">PIC: Nia ✅</span>
+              </div>
+              <div class="rig-body">
+                <div class="spec-row">
+                  <span class="spec-k">Kamera & Lensa</span>
+                  <span class="spec-v">Sony A6000 (OWL) + Lens 18-105MM (OWL)</span>
+                </div>
+                <div class="spec-row">
+                  <span class="spec-k">Power & Memori</span>
+                  <span class="spec-v">Battery (OWL) + SD Card 32GB (OWL)</span>
+                </div>
+                <div class="spec-row">
+                  <span class="spec-k">Support Rig</span>
+                  <span class="spec-v">Tripod Camera Big (GIA)</span>
+                </div>
+                <div class="spec-row">
+                  <span class="spec-k">Kabel & Jalur</span>
+                  <span class="spec-v">Micro HDMI to HDMI Conv (OWL) + HDMI Cable 10M (GKJ) ➔ Switcher OWL</span>
+                </div>
+              </div>
+            </article>
+
+            <!-- CAM 4 -->
+            <article class="rig-card">
+              <div class="rig-header">
+                <div class="rig-title-wrap">
+                  <span class="rig-id">CAM 4</span>
+                  <span class="badge badge-tech">Wired + Fixed</span>
+                </div>
+                <span class="pic-pill">PIC: Ferdy ✅</span>
+              </div>
+              <div class="rig-body">
+                <div class="spec-row">
+                  <span class="spec-k">Kamera & Lensa</span>
+                  <span class="spec-v">Sony A6000 (OWL) + Lens 16-50MM Kit (Kiel 1)</span>
+                </div>
+                <div class="spec-row">
+                  <span class="spec-k">Power & Memori</span>
+                  <span class="spec-v">Battery (OWL) + SD Card 32GB (OWL)</span>
+                </div>
+                <div class="spec-row">
+                  <span class="spec-k">Support Rig</span>
+                  <span class="spec-v">Tripod Camera Big (UKK)</span>
+                </div>
+                <div class="spec-row">
+                  <span class="spec-k">Kabel & Jalur</span>
+                  <span class="spec-v">Micro HDMI to HDMI Conv (OWL) + HDMI Cable 10M (UKK) ➔ Switcher OWL</span>
+                </div>
+              </div>
+            </article>
+          </div>
+
+          <!-- Backup Notice -->
+          <div class="note-box mt-4">
+            <strong>Cadangan (Backup Parts):</strong> Micro HDMI to HDMI Converter X2 (Panitia) dalam kondisi siap pakai.
+          </div>
+        </div>
+
+        <!-- Documentation Cameras Tab -->
+        <div class="tab-panel" id="tabDoc">
+          <div class="card-grid-3">
+
+            <!-- PHO -->
+            <article class="rig-card">
+              <div class="rig-header">
+                <span class="rig-id">CAM PHO (Foto)</span>
+                <span class="pic-pill">PIC: Nico ✅</span>
+              </div>
+              <div class="rig-body">
+                <div class="spec-row"><span class="spec-k">Kamera</span><span class="spec-v">Sony A6400 (OWL)</span></div>
+                <div class="spec-row"><span class="spec-k">Lensa</span><span class="spec-v">Sony 50MM Fix (OWL)</span></div>
+                <div class="spec-row"><span class="spec-k">Power</span><span class="spec-v">Battery X2 (OWL)</span></div>
+                <div class="spec-row"><span class="spec-k">Storage</span><span class="spec-v">SD Card 32GB (OWL)</span></div>
+              </div>
+            </article>
+
+            <!-- VID -->
+            <article class="rig-card">
+              <div class="rig-header">
+                <span class="rig-id">CAM VID (Video)</span>
+                <span class="pic-pill">PIC: Joel ✅</span>
+              </div>
+              <div class="rig-body">
+                <div class="spec-row"><span class="spec-k">Kamera</span><span class="spec-v">Sony A6600 (Joel)</span></div>
+                <div class="spec-row"><span class="spec-k">Lensa</span><span class="spec-v">Lens 24-70MM Zeiss (Joel)</span></div>
+                <div class="spec-row"><span class="spec-k">Stabilizer</span><span class="spec-v">Gimbal DJI Ronin RS3 (Joel)</span></div>
+                <div class="spec-row"><span class="spec-k">Power & SD</span><span class="spec-v">Battery X2 + SD Card 64GB (Joel)</span></div>
+              </div>
+            </article>
+
+            <!-- HP -->
+            <article class="rig-card">
+              <div class="rig-header">
+                <span class="rig-id">CAM HP (Socmed)</span>
+                <span class="pic-pill">PIC: Jennifer ✅</span>
+              </div>
+              <div class="rig-body">
+                <div class="spec-row"><span class="spec-k">Perangkat</span><span class="spec-v">Apple iPhone 15 (Jennifer)</span></div>
+                <div class="spec-row"><span class="spec-k">Fokus</span><span class="spec-v">IG Story, Reels, Liputan Cepat</span></div>
+                <div class="spec-row"><span class="spec-k">Sistem</span><span class="spec-v">Independen (Direct Upload)</span></div>
+              </div>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ROUTING & ENGINE SECTION -->
+    <section class="section-block bg-subtle" id="routing">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-badge">SIGNAL FLOW ARCHITECTURE</div>
+          <h2 class="section-title">Arsitektur Sinyal & Engine System</h2>
+          <p class="section-subtitle">Skema distribusi video, tata suara digital/analog, kelistrikan, dan time keeper panggung.</p>
+        </div>
+
+        <!-- Routing Sub-Tabs -->
+        <div class="tab-controls" role="tablist">
+          <button class="tab-btn active" onclick="switchRoutingTab('video')" id="tabBtnVideo">🖥️ Video & Broadcast Routing</button>
+          <button class="tab-btn" onclick="switchRoutingTab('audio')" id="tabBtnAudio">🔊 Audio Engine Routing</button>
+          <button class="tab-btn" onclick="switchRoutingTab('timekeeper')" id="tabBtnTime">⏱️ Time Keeper System</button>
+          <button class="tab-btn" onclick="switchRoutingTab('electric')" id="tabBtnElectric">⚡ Electrical Routing</button>
+        </div>
+
+        <!-- Video Tab -->
+        <div class="tab-panel active" id="tabVideo">
+          <div class="table-responsive">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Jalur Alur Sinyal</th>
+                  <th>Konfigurasi Kabel, Konverter & Perangkat Keras</th>
+                  <th style="width: 100px; text-align: center;">Status</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>Switcher ➔ TV Multiview</strong></td>
+                  <td>Terminal Cable XCH (UKK) + Cinetreak Cinelive V1 (OWL) + Adaptor MIX (OWL) + HDMI to HDMI 1M (GIA) + Television (Kezia) + Adaptor TV (Kezia)</td>
+                  <td class="text-center"><span class="badge badge-success">✅ Siap</span></td>
+                </tr>
+                <tr>
+                  <td><strong>Switcher ➔ Splitter</strong></td>
+                  <td>Terminal Cable XCH (UKK) + Cinetreak Cinelive V1 (OWL) + Adaptor MIX (OWL) + HDMI to HDMI 1M (GIA) + HDMI Splitter 4CH (UKK) + Adaptor SPL (UKK)</td>
+                  <td class="text-center"><span class="badge badge-success">✅ Siap</span></td>
+                </tr>
+                <tr>
+                  <td><strong>Switcher ➔ OBS Studio</strong></td>
+                  <td>Terminal Cable XCH (UKK) + Cinetreak Cinelive V1 (OWL) + Adaptor MIX (OWL) + USB A to C Data Cable (Andreas) + Laptop OBS + Adaptor LTP</td>
+                  <td class="text-center"><span class="badge badge-success">✅ Siap</span></td>
+                </tr>
+                <tr>
+                  <td><strong>Splitter ➔ PRO 1 ➔ LED Samping</strong></td>
+                  <td>HDMI Splitter 4CH (UKK) + Adaptor SPL + HDMI 1,5M (Andreas) + HDMI Capture (OWL) + Laptop ProPresenter 1 + HDMI 20M (UNNES) + Novastar Processor (UNNES) + LED Left Right Back</td>
+                  <td class="text-center"><span class="badge badge-success">✅ Siap</span></td>
+                </tr>
+                <tr>
+                  <td><strong>PRO 2 ➔ Resolume Arena</strong></td>
+                  <td>Laptop ProPresenter 2 + Adaptor LTP + HDMI 1,5M (Andreas) + HDMI Capture (OWL) + Laptop Resolume Arena (Bayu) + Adaptor LTP</td>
+                  <td class="text-center"><span class="badge badge-success">✅ Siap</span></td>
+                </tr>
+                <tr>
+                  <td><strong>Splitter ➔ Resolume ➔ LED Center</strong></td>
+                  <td>HDMI Splitter 4CH (UKK) + HDMI 1,5M (Andreas) + HDMI Capture (ABON) + Laptop Resolume + HDMI 15M (GKJ) + HDMI Capture (GKJ) + PC UNNES + Novastar + LED Center</td>
+                  <td class="text-center"><span class="badge badge-success">✅ Siap</span></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="note-box mt-3">
+            <strong>Cadangan Splitter:</strong> GKJ 4-Channel Splitter (1 Unit) ☑️ dan GIA 2-Channel Splitter (1 Unit) ☑️ standby lengkap dengan adaptor.
+          </div>
+        </div>
+
+        <!-- Audio Tab -->
+        <div class="tab-panel" id="tabAudio">
+          <div class="table-responsive">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Jalur Audio</th>
+                  <th>Konfigurasi Wiring & Antarmuka</th>
+                  <th style="width: 100px; text-align: center;">Status</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>Mixer 1 (FOH) ➔ Mixer 2 ➔ OBS</strong></td>
+                  <td>Mixer Yamaha QL5 (UNNES) + XLR 10M 2X (UKK) + XLR 3M 2X (GIA) + Mixer NewBaxs CT80S (GIA) + USB Extender 2M (Andreas) + USB A to C Data (GIA) + Laptop OBS</td>
+                  <td class="text-center"><span class="badge badge-success">✅ Siap</span></td>
+                </tr>
+                <tr>
+                  <td><strong>Resolume ➔ DAC ➔ Mixer 1</strong></td>
+                  <td>Laptop Resolume Arena + Adaptor LTP + USB C DAC Hanason AB17X (Andreas) + Audio Cable 20M (UNNES) + Mixer Yamaha QL5 (UNNES)</td>
+                  <td class="text-center"><span class="badge badge-success">✅ Siap</span></td>
+                </tr>
+                <tr>
+                  <td><strong>Mixer 1 ➔ Virtual Mixer 1</strong></td>
+                  <td>Mixer Yamaha QL5 (UNNES) + WiFi (UNNES-ID) + Laptop Virtual Mixer 1 (Andreas)</td>
+                  <td class="text-center"><span class="badge badge-success">✅ Siap</span></td>
+                </tr>
+                <tr>
+                  <td><strong>Mixer 1 ➔ Virtual Mixer 2</strong></td>
+                  <td>Mixer Yamaha QL5 (UNNES) + WiFi (UNNES-ID) + iPad Virtual Mixer 2 (Jennifer)</td>
+                  <td class="text-center"><span class="badge badge-success">✅ Siap</span></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Time Keeper Tab -->
+        <div class="tab-panel" id="tabTime">
+          <div class="spec-card">
+            <h3>⏱️ Skema Time Keeper Panggung</h3>
+            <p>Sistem visual hitung mundur terpisah dari alur broadcast untuk memandu pembicara, pemusik, dan liturgos:</p>
+            <div class="code-flow">
+              Terminal Cable XCH (UKK) ➔ Laptop ProPresenter 3 ➔ Adaptor LTP ➔ HDMI to HDMI Cable 1.5M (Lio) ➔ Television (Darrel) + Adaptor TV (Darrel)
+            </div>
+            <p class="mt-2 text-muted">Operator: <strong>Tim Acara</strong></p>
+          </div>
+        </div>
+
+        <!-- Electrical Tab -->
+        <div class="tab-panel" id="tabElectric">
+          <div class="spec-card">
+            <h3>⚡ Distribusi Catu Daya (Electrical Routing)</h3>
+            <p>Pasokan listrik terpusat untuk workstation media, switcher, mixer, TV, dan laptop operator:</p>
+            <div class="code-flow">
+              Terminal Cable XCH (Andreas) + Terminal Cable XCH (UKK) + Terminal Cable XCH (Panitia)
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- WORKSTATION & PIC MATRIX -->
+    <section class="section-block" id="workstations">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-badge">OPERATIONS</div>
+          <h2 class="section-title">Matriks Workstation & Alokasi Operator</h2>
+          <p class="section-subtitle">Daftar stasiun kerja media produksi, alokasi hardware, dan penanggung jawab operator.</p>
+        </div>
+
+        <div class="table-responsive">
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>Workstation / Posisi</th>
+                <th>Perangkat Keras & Kepemilikan</th>
+                <th>Operator (PIC)</th>
+                <th style="width: 140px; text-align: center;">Status Kesiapan</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Mixer 1 (FOH Audio)</strong></td>
+                <td>Yamaha QL5 (UNNES)</td>
+                <td>Jordan / Yosua</td>
+                <td class="text-center"><span class="badge badge-success">✅ Terpasang</span></td>
+              </tr>
+              <tr>
+                <td><strong>Mixer 2 (Stream Audio)</strong></td>
+                <td>NewBaxs CT80S (GIA)</td>
+                <td>Andreas</td>
+                <td class="text-center"><span class="badge badge-success">✅ Terpasang</span></td>
+              </tr>
+              <tr>
+                <td><strong>Virtual Mixer 1</strong></td>
+                <td>Laptop + Power Adaptor LTP (Andreas)</td>
+                <td>Jordan / Yosua</td>
+                <td class="text-center"><span class="badge badge-success">✅ Terpasang</span></td>
+              </tr>
+              <tr>
+                <td><strong>Virtual Mixer 2</strong></td>
+                <td>iPad (Jennifer)</td>
+                <td>Jordan / Yosua</td>
+                <td class="text-center"><span class="badge badge-success">✅ Terpasang</span></td>
+              </tr>
+              <tr>
+                <td><strong>Resolume Arena (Visual)</strong></td>
+                <td>Laptop + Power Adaptor LTP (Bayu)</td>
+                <td>Andreas</td>
+                <td class="text-center"><span class="badge badge-success">✅ Terpasang</span></td>
+              </tr>
+              <tr class="row-warning">
+                <td><strong>Pro Presenter 1 (LED L/R/Back)</strong></td>
+                <td>Laptop + Power Adaptor LTP <em>(Belum Ada)</em></td>
+                <td>Rania</td>
+                <td class="text-center"><span class="badge badge-warning">⚠️ Belum Ada</span></td>
+              </tr>
+              <tr class="row-warning">
+                <td><strong>Pro Presenter 2 (Lirik & Ayat)</strong></td>
+                <td>Laptop + Power Adaptor LTP <em>(Belum Ada)</em></td>
+                <td>Filia</td>
+                <td class="text-center"><span class="badge badge-warning">⚠️ Belum Ada</span></td>
+              </tr>
+              <tr class="row-warning">
+                <td><strong>Pro Presenter 3 + TV (Timer)</strong></td>
+                <td>Laptop X <em>(Belum Ada)</em> + TV & Adaptor (Darrel)</td>
+                <td>Acara</td>
+                <td class="text-center"><span class="badge badge-warning">⚠️ Belum Ada</span></td>
+              </tr>
+              <tr>
+                <td><strong>Switcher + TV Multiview</strong></td>
+                <td>Cinetreak Cinelive V1 (OWL) + TV & Adaptor (Kezia)</td>
+                <td>Wilfred</td>
+                <td class="text-center"><span class="badge badge-success">✅ Terpasang</span></td>
+              </tr>
+              <tr class="row-warning">
+                <td><strong>OBS Studio (Live Stream)</strong></td>
+                <td>Laptop X + Power Adaptor LTP <em>(Belum Ada)</em></td>
+                <td>Andreas</td>
+                <td class="text-center"><span class="badge badge-warning">⚠️ Belum Ada</span></td>
+              </tr>
+              <tr>
+                <td><strong>Backup Workstation</strong></td>
+                <td>Laptop + Power Adaptor LTP (Kiel 1)</td>
+                <td>Kiel 1</td>
+                <td class="text-center"><span class="badge badge-success">✅ Standby</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- INVENTORY & LOAN DIRECTORY -->
+    <section class="section-block bg-subtle" id="inventory">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-badge">MASTER STORAGE</div>
+          <h2 class="section-title">Direktori Inventaris & Peminjaman Alat</h2>
+          <p class="section-subtitle">Katalog lengkap peralatan dari 13 pihak peminjam dengan fitur pencarian dan filter instan.</p>
+        </div>
+
+        <!-- Live Search & Filter Bar -->
+        <div class="inventory-toolbar">
+          <div class="search-wrap">
+            <svg class="search-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+            <input type="text" id="inventorySearch" placeholder="Cari nama alat, kabel, adaptor, atau pemilik..." onkeyup="filterInventory()">
+          </div>
+          <div class="filter-chips">
+            <button class="chip active" onclick="setFilterStatus('all', this)">Semua Status</button>
+            <button class="chip" onclick="setFilterStatus('active', this)">✅ Aktif / Terpakai</button>
+            <button class="chip" onclick="setFilterStatus('partial', this)">⚠️ Sebagian / Perhatian</button>
+            <button class="chip" onclick="setFilterStatus('standby', this)">☑️ Standby / Cadangan</button>
+          </div>
+        </div>
+
+        <!-- Lender Filter Select -->
+        <div class="lender-bar mt-2">
+          <span class="lender-label">Filter Peminjam:</span>
+          <div class="lender-pills" id="lenderPills">
+            <button class="lender-pill active" onclick="setLenderFilter('ALL', this)">Semua (13 Pihak)</button>
+            <button class="lender-pill" onclick="setLenderFilter('OWL', this)">OWL</button>
+            <button class="lender-pill" onclick="setLenderFilter('ABON', this)">ABON</button>
+            <button class="lender-pill" onclick="setLenderFilter('Andreas', this)">Andreas</button>
+            <button class="lender-pill" onclick="setLenderFilter('GIA Deliksari', this)">GIA Deliksari</button>
+            <button class="lender-pill" onclick="setLenderFilter('GKJ Ngaliyan', this)">GKJ Ngaliyan</button>
+            <button class="lender-pill" onclick="setLenderFilter('UKK UNNES', this)">UKK UNNES</button>
+            <button class="lender-pill" onclick="setLenderFilter('Lio', this)">Lio</button>
+            <button class="lender-pill" onclick="setLenderFilter('Darrel', this)">Darrel</button>
+            <button class="lender-pill" onclick="setLenderFilter('Kiel 1', this)">Kiel 1</button>
+            <button class="lender-pill" onclick="setLenderFilter('Joel', this)">Joel</button>
+            <button class="lender-pill" onclick="setLenderFilter('Kezia', this)">Kezia</button>
+            <button class="lender-pill" onclick="setLenderFilter('Jennifer', this)">Jennifer</button>
+            <button class="lender-pill" onclick="setLenderFilter('Panitia', this)">Panitia</button>
+          </div>
+        </div>
+
+        <!-- Inventory List Container -->
+        <div class="inventory-grid" id="inventoryGrid">
+          <!-- Dynamically populated via app.js -->
+        </div>
+      </div>
+    </section>
+
+    <!-- EVENT RUNDOWN SECTION -->
+    <section class="section-block" id="rundown">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-badge">PROGRAM SCHEDULE</div>
+          <h2 class="section-title">Rundown Konten & Tampilan Layar</h2>
+          <p class="section-subtitle">Distribusi penayangan materi multimedia pada Sound System dan Multi-Screen LED.</p>
+        </div>
+
+        <div class="rundown-grid">
+
+          <!-- Pre Ibadah -->
+          <div class="rundown-card">
+            <div class="rundown-header phase-pre">
+              <span class="phase-title">1. Pre Ibadah (Open Gate)</span>
+              <span class="phase-badge">Persiapan & Pembukaan</span>
+            </div>
+            <ul class="rundown-list">
+              <li>
+                <span class="item-name">Playlist Lagu Rohani</span>
+                <span class="dest-badge">Sound System FOH</span>
+              </li>
+              <li>
+                <span class="item-name">Loop Video (Profile UKK, After Movie IP25 & IN25)</span>
+                <span class="dest-badge">LED Tengah</span>
+              </li>
+            </ul>
+          </div>
+
+          <!-- Main Ibadah -->
+          <div class="rundown-card">
+            <div class="rundown-header phase-main">
+              <span class="phase-title">2. Main Ibadah (Main Event)</span>
+              <span class="phase-badge">Rangkaian Acara Utama</span>
+            </div>
+            <ul class="rundown-list">
+              <li><span class="item-name">Video Opening</span><span class="dest-badge">LED Tengah</span></li>
+              <li><span class="item-name">Video Sambutan Bu Grace</span><span class="dest-badge">LED Tengah & Samping</span></li>
+              <li><span class="item-name">Background Tema</span><span class="dest-badge">LED Tengah</span></li>
+              <li><span class="item-name">Background Lagu</span><span class="dest-badge">Sound System FOH</span></li>
+              <li><span class="item-name">Lirik Lagu (Praise & Worship)</span><span class="dest-badge">LED Tengah & Samping</span></li>
+              <li><span class="item-name">Video Generation</span><span class="dest-badge">LED Tengah & Samping</span></li>
+              <li><span class="item-name">PPT Pembicara</span><span class="dest-badge">LED Tengah & Samping</span></li>
+              <li><span class="item-name">Ayat Pembicara</span><span class="dest-badge">LED Tengah & Samping</span></li>
+              <li><span class="item-name">Quote Pembicara</span><span class="dest-badge">LED Tengah & Samping</span></li>
+              <li><span class="item-name">Persembahan (QRIS Display)</span><span class="dest-badge">LED Tengah & Samping</span></li>
+              <li><span class="item-name">UKK News</span><span class="dest-badge">LED Tengah & Samping</span></li>
+              <li><span class="item-name">Pokok Doa</span><span class="dest-badge">LED Tengah & Samping</span></li>
+            </ul>
+          </div>
+
+          <!-- Post Ibadah -->
+          <div class="rundown-card">
+            <div class="rundown-header phase-post">
+              <span class="phase-title">3. Post Ibadah (Close Gate)</span>
+              <span class="phase-badge">De-rigging & Packing</span>
+            </div>
+            <ul class="rundown-list">
+              <li>
+                <span class="item-name">Usung-Usung & De-rigging Gear</span>
+                <span class="dest-badge">Pembersihan & Packing</span>
+              </li>
+              <li>
+                <span class="item-name">Rekonsiliasi & Pengembalian Gear</span>
+                <span class="dest-badge">Pengecekan 13 Peminjam</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="container footer-content">
+      <div class="footer-left">
+        <span class="footer-brand">Ibadah Perdana UKK UNNES 2026</span>
+        <p class="footer-copy">Hak Cipta &copy; 2026 Panitia Ibadah Perdana UKK UNNES — Divisi Media & Multimedia. Dilindungi di bawah lisensi operasional internal.</p>
+      </div>
+      <div class="footer-links">
+        <a href="#top">Kembali ke Atas &uarr;</a>
+        <a href="https://github.com/zzdree/ip26-production" target="_blank" rel="noopener noreferrer">GitHub Repository</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
