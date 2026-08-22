@@ -397,15 +397,61 @@ Terdapat total **3 Unit HDMI Splitter**:
 </details>
 
 <details>
-<summary><b>7. Peminjaman Personal & Panitia</b></summary>
+<summary><b>7. Peminjaman dari Lio (1 Item)</b></summary>
 
-- **Lio:** HDMI Cable 1,5M (1 Unit) `✅`
-- **Darrel:** Television (1 Unit) `✅` + Power Adaptor TV (1 Pack) `✅` + Memory Card 8GB (1 Unit) `☑️`
-- **Kiel 1:** Sony ZVE10 (1 Unit) `✅` + Lens 16-50MM Kit (1 Unit) `✅` + Lens 50MM Fix (1 Unit) `☑️` + Battery (2 Unit) `✅` + Charger (1 Pack) `✅` + Memory Card 64GB (1 Unit) `✅` + Memory Card 128GB (1 Unit) `☑️`
-- **Joel:** Sony A6600 (1 Unit) `✅` + Lens 24-70MM Zeiss (1 Unit) `✅` + Battery (2 Unit) `✅` + Charger (1 Pack) `✅` + Memory Card 64GB (1 Unit) `✅` + Gimbal DJI Ronin RS3 (1 Unit) `✅`
-- **Kezia:** Television (1 Unit) `✅` + Power Adaptor TV (1 Pack) `✅`
-- **Jennifer:** HP iPhone 15 (1 Unit) `✅` + TAB iPad (1 Unit) `✅`
-- **Panitia:** HDMI to Micro HDMI Converter (2 Unit) `✅` + Terminal Cable XCH (X Unit) `✅`
+- HDMI Cable 1,5M (1 Unit) `✅`
+</details>
+
+<details>
+<summary><b>8. Peminjaman dari Darrel (3 Item)</b></summary>
+
+- Television (1 Unit) `✅`
+- Power Adaptor TV (1 Pack) `✅`
+- Memory Card 8GB (1 Unit) `☑️`
+</details>
+
+<details>
+<summary><b>9. Peminjaman dari Kiel 1 (7 Item)</b></summary>
+
+- Sony ZVE10 (1 Unit) `✅`
+- Lens 16-50MM Kit (1 Unit) `✅`
+- Lens 50MM Fix (1 Unit) `☑️`
+- Battery (2 Unit) `✅`
+- Charger (1 Pack) `✅`
+- Memory Card 64GB (1 Unit) `✅`
+- Memory Card 128GB (1 Unit) `☑️`
+</details>
+
+<details>
+<summary><b>10. Peminjaman dari Joel (6 Item)</b></summary>
+
+- Sony A6600 (1 Unit) `✅`
+- Lens 24-70MM Zeiss (1 Unit) `✅`
+- Battery (2 Unit) `✅`
+- Charger (1 Pack) `✅`
+- Memory Card 64GB (1 Unit) `✅`
+- Gimbal DJI Ronin RS3 (1 Unit) `✅`
+</details>
+
+<details>
+<summary><b>11. Peminjaman dari Kezia (2 Item)</b></summary>
+
+- Television (1 Unit) `✅`
+- Power Adaptor TV (1 Pack) `✅`
+</details>
+
+<details>
+<summary><b>12. Peminjaman dari Jennifer (2 Item)</b></summary>
+
+- HP Iphone 15 (1 Unit) `✅`
+- TAB iPad (1 Unit) `✅`
+</details>
+
+<details>
+<summary><b>13. Peminjaman dari Panitia (2 Item)</b></summary>
+
+- HDMI to Micro HDMI Converter (2 Unit) `✅`
+- Terminal Cable XCH (X Unit) `✅`
 </details>
 
 ---

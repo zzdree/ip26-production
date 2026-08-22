@@ -3,7 +3,7 @@
  * Zero Setup & Zero Login Multi-Device Realtime Synchronization via Open Cloud Relay + SSE Stream
  */
 
-// Master Inventory Dataset (84 Items across 13 Lenders)
+// Master Inventory Dataset (119 Items across 13 Lenders)
 const INVENTORY_DATA = [
   {
     lender: "OWL",
@@ -12,7 +12,7 @@ const INVENTORY_DATA = [
       { id: "owl_2", name: "Sony A6400", qty: "1 Unit", status: "active", symbol: "✅" },
       { id: "owl_3", name: "Sony ZV-E10", qty: "1 Unit", status: "active", symbol: "✅" },
       { id: "owl_4", name: "Lens 18-105MM", qty: "3 Unit", status: "active", symbol: "✅" },
-      { id: "owl_5", name: "Lens 50MM Fix", qty: "1 Unit", status: "active", symbol: "✅" },
+      { id: "owl_5", name: "Lens 50MM", qty: "1 Unit", status: "active", symbol: "✅" },
       { id: "owl_6", name: "Battery", qty: "8 Unit", status: "active", symbol: "✅" },
       { id: "owl_7", name: "Charger", qty: "1 Pack", status: "active", symbol: "✅" },
       { id: "owl_8", name: "Memory Card 32GB", qty: "4 Unit", status: "active", symbol: "✅" },

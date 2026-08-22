@@ -50,6 +50,21 @@
 - OBS Studio: Andreas (*🏛️ Panitia*) `⚠️` (Laptop Belum Ada)
 - Backup Workstation: Kiel 1 (*✨ Pelayan*) `✅`
 
+### E. Master Inventory Directory (119 Items across 13 Lenders)
+- **1. OWL (17 items):** Cameras (A6000 x2, A6400, ZV-E10), Lenses (18-105mm x3, 50mm), Batteries (x8), SD 32GB (x4), Switcher Cinelive V1, Pyro H & Pyro S TX/RX, Battery WIR (x4), Tripod, HDMI-Micro Converters & Cables, HDMI Capture (x2).
+- **2. ABON (1 item):** HDMI Capture (2 Unit, 1/2 used).
+- **3. Andreas (49 items):** Peripherals, USB adaptors, DAC Hanason AB17X / Oraimo, IEMs, Storage drives, HDMI/VGA cables, Electrical power strips (4CH x3, 3CH x2, 2CH, XCH, Terminal T x8), Tool & Jack boxes.
+- **4. GIA Deliksari (7 items):** Mixer NewBaxs CT80S, XLR 3M (x2), USB-C cable, Tripod, HDMI Splitter 2CH + Adaptor, HDMI 1M (x2).
+- **5. GKJ Ngaliyan (8 items):** Stand lighting, HDMI cables (15M, 10M, 5M, 1.5M), HDMI Capture, HDMI Splitter 4CH + Adaptor.
+- **6. UKK UNNES (14 items):** XLR 10M (x3), Stands (x4), Tripod, HDMI cables (10M, 1.5M x4, 15M, 2.5M Mini), HDMI Splitter 4CH + Adaptor, VGA cables & converters, Power cables, Terminal XCH.
+- **7. Lio (1 item):** HDMI 1.5M (x1).
+- **8. Darrel (3 items):** TV + Adaptor, SD 8GB.
+- **9. Kiel 1 (7 items):** Sony ZVE10, Lenses (16-50mm, 50mm Fix), Battery (x2), Charger, SD 64GB & 128GB.
+- **10. Joel (6 items):** Sony A6600, Lens 24-70mm Zeiss, Battery (x2), Charger, SD 64GB, Gimbal DJI Ronin RS3.
+- **11. Kezia (2 items):** TV + Adaptor.
+- **12. Jennifer (2 items):** iPhone 15, TAB iPad.
+- **13. Panitia (2 items):** HDMI to Micro HDMI Converter (x2), Terminal Cable XCH.
+
 ---
 
 ## 3. Realtime Multi-Device Cloud Checklist & Persistence
