@@ -2,6 +2,7 @@
 
 <div align="center">
 
+[![Live Web Portal](https://img.shields.io/badge/Live%20Portal-GitHub%20Pages-brightgreen?style=for-the-badge&logo=githubpages&logoColor=white)](https://zzdree.github.io/ip26-production/)
 [![Event](https://img.shields.io/badge/Event-IP26%20UKK%20UNNES-007ACC?style=for-the-badge&logo=eventstore&logoColor=white)](#)
 [![Venue](https://img.shields.io/badge/Venue-Auditorium%20UNNES-critical?style=for-the-badge&logo=googlemaps&logoColor=white)](#)
 [![Status](https://img.shields.io/badge/Status-Production%20Ready-success?style=for-the-badge&logo=checkmarx&logoColor=white)](#)
@@ -28,6 +29,7 @@
 
 | Atribut | Keterangan |
 | :--- | :--- |
+| **Live Web Portal** | 🌐 [https://zzdree.github.io/ip26-production/](https://zzdree.github.io/ip26-production/) |
 | **Event** | Ibadah Perdana UKK UNNES 2026 |
 | **Venue** | Gedung Auditorium Universitas Negeri Semarang (UNNES) |
 | **Organizer / Production** | Panitia Ibadah Perdana 2026 |
