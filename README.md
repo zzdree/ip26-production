@@ -52,32 +52,44 @@
 | **Pelaksana Produksi** | Panitia Ibadah Perdana 2026 & Tim Pelayan Divisi Multimedia |
 | **Target Output** | Multi-Screen LED (Center, Left, Right, Back Stage), Live Streaming OBS, dan FOH Sound System |
 
-### 2. Struktur Tim Engineering
+### 2. Struktur Tim Engineering & Klasifikasi Peran
 
 ```
                              ┌───────────────────────────────────┐
-                             │    PANITIA IBADAH PERDANA 2026    │
+                             │    IBADAH PERDANA UNNES 2026      │
                              └─────────────────┬─────────────────┘
                                                │
          ┌─────────────────────────────────────┼─────────────────────────────────────┐
          │                                     │                                     │
          ▼                                     ▼                                     ▼
-┌───────────────────┐                 ┌───────────────────┐                 ┌───────────────────┐
-│  SYSTEM ENGINEER  │                 │  MEDIA ENGINEER   │                 │ CREATIVE ENGINEER │
-├───────────────────┤                 ├───────────────────┤                 ├───────────────────┤
-│ • Andreas (Leader)│                 │ • Richard (Leader)│                 │ • Jennifer(Leader)│
-│                   │                 │ • Wilfred         │                 │ • Filia           │
-│                   │                 │ • Alex            │                 │ • Felani          │
-│                   │                 │ • Rania           │                 │ • Wike            │
-└───────────────────┘                 └───────────────────┘                 └───────────────────┘
+┌───────────────────────┐             ┌───────────────────────┐             ┌───────────────────────┐
+│ SYSTEM ENGINEER       │             │ MEDIA ENGINEER        │             │ CREATIVE ENGINEER     │
+│ (Pelayan)             │             │ (Panitia)             │             │ (Panitia)             │
+├───────────────────────┤             ├───────────────────────┤             ├───────────────────────┤
+│ • Andreas (Leader)    │             │ • Richard (Leader)    │             │ • Jennifer (Leader)   │
+│                       │             │ • Wilfred             │             │ • Filia               │
+│                       │             │ • Alex                │             │ • Felani              │
+│                       │             │ • Rania               │             │ • Wike                │
+└───────────────────────┘             └───────────────────────┘             └───────────────────────┘
 ```
 
-### 3. Klasifikasi Peran: Panitia vs Pelayan
-Dalam pembagian tugas teknis di lapangan, personel diklasifikasikan secara tegas menjadi dua kategori:
-- **🏛️ Panitia (Committee):** Seluruh personel yang terdaftar dalam struktur kepanitiaan inti (System Engineer, Media Engineer, Creative Engineer, dan Divisi Acara).
-  - *Daftar Panitia:* **Andreas** *(System Lead)*, **Richard** *(Media Lead)*, **Wilfred**, **Alex**, **Rania**, **Jennifer** *(Creative Lead)*, **Filia**, **Felani**, **Wike**, dan **Tim Acara**.
-- **✨ Pelayan (Ministry Servant / Field Operator):** Personel atau PIC operator teknis di lapangan yang bukan merupakan anggota panitia struktural (melayani khusus sebagai operator teknis kamera, audio, dan workstation).
-  - *Daftar Pelayan:* **Kiel 1** *(CAM 2 & Backup Workstation)*, **Nia** *(CAM 3)*, **Ferdy** *(CAM 4)*, **Nico** *(CAM PHO)*, **Joel** *(CAM VID)*, **Jordan** *(Mixer 1 & Virtual Mixers)*, dan **Yosua** *(Mixer 1 & Virtual Mixers)*.
+### 3. Prinsip & Klasifikasi Peran: Panitia vs Pelayan
+Berdasarkan ketentuan operasional resmi Ibadah Perdana 2026:
+- 📌 **Prinsip Hubungan Peran:**
+  1. *Panitia bisa menjadi pelayan* (contoh: anggota panitia yang bertugas sebagai PIC/operator di lapangan).
+  2. *Pelayan belum tentu panitia* (contoh: rekan yang melayani khusus kebutuhan teknis lapangan).
+  3. *PIC ada yang menjadi panitia* (contoh: Alex, Wilfred, Rania, Jennifer, Filia, Tim Acara).
+  4. *PIC yang bukan panitia berarti pelayan* (contoh: Andreas, Kiel 1, Nia, Ferdy, Nico, Joel, Jordan, Yosua).
+  5. *PIC dan Pelayan itu sama* (seluruh PIC lapangan menjalankan fungsi pelayanan teknis).
+
+- **🏛️ Panitia (Committee):**
+  - **Media Engineer:** Richard *(Leader)*, Wilfred, Alex, Rania
+  - **Creative Engineer:** Jennifer *(Leader)*, Filia, Felani, Wike
+  - **Divisi Acara:** Tim Acara
+- **✨ Pelayan (Ministry Servant / Field Operator):**
+  - **System Engineer:** Andreas *(Leader)*
+  - **Broadcast/Doc Crew:** Kiel 1, Nia, Ferdy, Nico, Joel
+  - **Audio Crew:** Jordan, Yosua
 
 ---
 
@@ -257,15 +269,15 @@ Terdapat total **3 Unit HDMI Splitter**:
 | Perangkat / Posisi | Hardware & Kepemilikan Barang | Operator (PIC) | Status Personel | Status Kesiapan |
 | :--- | :--- | :--- | :---: | :---: |
 | **Mixer 1 (FOH Console)** | Yamaha QL5 (UNNES) | Jordan / Yosua | ✨ Pelayan | `✅` Terpasang |
-| **Mixer 2 (Sub-Mixer Stream)**| NewBaxs CT80S (GIA) | Andreas | 🏛️ Panitia | `✅` Terpasang |
+| **Mixer 2 (Sub-Mixer Stream)**| NewBaxs CT80S (GIA) | Andreas | ✨ Pelayan | `✅` Terpasang |
 | **Virtual Mixer 1** | Laptop + Power Adaptor LTP (Andreas) | Jordan / Yosua | ✨ Pelayan | `✅` Terpasang |
 | **Virtual Mixer 2** | iPad (Jennifer) | Jordan / Yosua | ✨ Pelayan | `✅` Terpasang |
-| **Resolume Arena** | Laptop + Power Adaptor LTP (Bayu) | Andreas | 🏛️ Panitia | `✅` Terpasang |
+| **Resolume Arena** | Laptop + Power Adaptor LTP (Bayu) | Andreas | ✨ Pelayan | `✅` Terpasang |
 | **Pro Presenter 1 (LED L/R/Back)**| Laptop + Power Adaptor LTP *(Belum Ada)* | Rania | 🏛️ Panitia | `⚠️` Belum Ada |
 | **Pro Presenter 2 (Lirik & Ayat)** | Laptop + Power Adaptor LTP *(Belum Ada)* | Filia | 🏛️ Panitia | `⚠️` Belum Ada |
 | **Pro Presenter 3 + Television** | Laptop X + Power Adaptor LTP *(Belum Ada)* + TV + Power Adaptor TV (Darrel) | Acara (Tim Acara) | 🏛️ Panitia | `⚠️` Belum Ada |
 | **Switcher + Television** | Cinetreak Cinelive V1 + Power Adaptor MIX (OWL) + TV + Power Adaptor TV (Kezia) | Wilfred | 🏛️ Panitia | `✅` Terpasang |
-| **OBS Studio (Live Stream)** | Laptop X + Power Adaptor LTP *(Belum Ada)* | Andreas | 🏛️ Panitia | `⚠️` Belum Ada |
+| **OBS Studio (Live Stream)** | Laptop X + Power Adaptor LTP *(Belum Ada)* | Andreas | ✨ Pelayan | `⚠️` Belum Ada |
 | **Backup Workstation** | Laptop + Power Adaptor LTP (Kiel 1) | Kiel 1 | ✨ Pelayan | `✅` Standby |
 
 ---

@@ -7,14 +7,20 @@
 - **Product Name:** IP26 Master Broadcast Control & Realtime Production Suite
 - **Event:** Ibadah Perdana UKK UNNES 2026
 - **Venue:** Gedung Auditorium Universitas Negeri Semarang (UNNES)
-- **Production Hierarchy:**
-  - **System Engineer:** Andreas (Leader) — *🏛️ Panitia*
-  - **Media Engineer:** Richard (Leader) — *🏛️ Panitia*, Wilfred (*🏛️ Panitia*), Alex (*🏛️ Panitia*), Rania (*🏛️ Panitia*)
-  - **Creative Engineer:** Jennifer (Leader) — *🏛️ Panitia*, Filia (*🏛️ Panitia*), Felani (*🏛️ Panitia*), Wike (*🏛️ Panitia*)
+- **Production Hierarchy & Peran:**
+  - **System Engineer (Pelayan):** Andreas (Leader) — *✨ Pelayan*
+  - **Media Engineer (Panitia):** Richard (Leader) — *🏛️ Panitia*, Wilfred (*🏛️ Panitia*), Alex (*🏛️ Panitia*), Rania (*🏛️ Panitia*)
+  - **Creative Engineer (Panitia):** Jennifer (Leader) — *🏛️ Panitia*, Filia (*🏛️ Panitia*), Felani (*🏛️ Panitia*), Wike (*🏛️ Panitia*)
 
-### 1.1 Klasifikasi Status Personel PIC
-- **🏛️ Panitia (Committee):** Seluruh personel terdaftar dalam struktur kepanitiaan inti (System Engineer, Media Engineer, Creative Engineer, dan Divisi Acara) yaitu: Andreas, Richard, Wilfred, Alex, Rania, Jennifer, Filia, Felani, Wike, dan Tim Acara.
-- **✨ Pelayan (Ministry Servant / Field Operator):** Personel yang melayani khusus sebagai operator teknis lapangan yang bukan merupakan bagian panitia struktural yaitu: Kiel 1, Nia, Ferdy, Nico, Joel, Jordan, dan Yosua.
+### 1.1 Prinsip & Klasifikasi Status Personel PIC
+- **Prinsip Operasional:**
+  1. *Panitia bisa menjadi pelayan*
+  2. *Pelayan belum tentu panitia*
+  3. *PIC ada yang menjadi panitia*
+  4. *PIC yang bukan panitia berarti pelayan*
+  5. *PIC dan Pelayan itu sama*
+- **🏛️ Panitia (Committee):** Richard, Wilfred, Alex, Rania, Jennifer, Filia, Felani, Wike, dan Tim Acara.
+- **✨ Pelayan (Ministry Servant / Field Operator):** Andreas, Kiel 1, Nia, Ferdy, Nico, Joel, Jordan, dan Yosua.
 
 ---
 
@@ -39,15 +45,15 @@
 
 ### D. Workstation & PIC Allocation
 - Mixer 1 (FOH): Jordan / Yosua (*✨ Pelayan*) `✅`
-- Mixer 2 (Sub-Mixer): Andreas (*🏛️ Panitia*) `✅`
+- Mixer 2 (Sub-Mixer): Andreas (*✨ Pelayan*) `✅`
 - Virtual Mixer 1: Jordan / Yosua (*✨ Pelayan*) `✅`
 - Virtual Mixer 2: Jordan / Yosua (*✨ Pelayan*) `✅`
-- Resolume Arena: Andreas (*🏛️ Panitia*) `✅`
+- Resolume Arena: Andreas (*✨ Pelayan*) `✅`
 - Pro Presenter 1: Rania (*🏛️ Panitia*) `⚠️` (Laptop Belum Ada)
 - Pro Presenter 2: Filia (*🏛️ Panitia*) `⚠️` (Laptop Belum Ada)
 - Pro Presenter 3 + TV: Tim Acara (*🏛️ Panitia*) `⚠️` (Laptop Belum Ada)
 - Switcher + TV: Wilfred (*🏛️ Panitia*) `✅`
-- OBS Studio: Andreas (*🏛️ Panitia*) `⚠️` (Laptop Belum Ada)
+- OBS Studio: Andreas (*✨ Pelayan*) `⚠️` (Laptop Belum Ada)
 - Backup Workstation: Kiel 1 (*✨ Pelayan*) `✅`
 
 ### E. Master Inventory Directory (119 Items across 13 Lenders)
