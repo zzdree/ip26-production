@@ -33,12 +33,23 @@ create policy "Allow public read access"
   using (true);
 
 drop policy if exists "Allow public insert/update access" on public.inventory_items;
-create policy "Allow public insert/update access" 
+drop policy if exists "Allow public insert access" on public.inventory_items;
+drop policy if exists "Allow public update access" on public.inventory_items;
+
+create policy "Allow public insert access" 
   on public.inventory_items 
-  for all 
+  for insert 
+  to anon, authenticated 
+  with check (true);
+
+create policy "Allow public update access" 
+  on public.inventory_items 
+  for update 
   to anon, authenticated 
   using (true) 
   with check (true);
+
+-- Note: DELETE is strictly restricted to service_role to prevent accidental inventory loss
 
 -- 5. Enable Realtime Replication for table
 alter publication supabase_realtime add table public.inventory_items;
