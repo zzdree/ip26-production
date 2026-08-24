@@ -506,86 +506,16 @@ document.addEventListener('DOMContentLoaded', () => {
   // Always initialize Supabase automatically
   initSupabase(DEFAULT_SUPABASE_URL, DEFAULT_SUPABASE_KEY);
 
-  // Batch Action Handlers
-  function openBatchModal(isCheckAll) {
-    if (!batchActionModal || !batchOptionsContainer) return;
-
-    if (isCheckAll) {
-      if (batchModalTitle) batchModalTitle.innerHTML = '✓ Ceklis Semua Barang Inventaris';
-      if (batchModalDesc) batchModalDesc.textContent = 'Pilih target status yang ingin diterapkan untuk seluruh 154 item:';
-      batchOptionsContainer.innerHTML = `
-        <button type="button" class="btn btn-primary" id="btn-batch-act-load" style="width: 100%; justify-content: flex-start; text-align: left; padding: var(--space-3) var(--space-4);">
-          📦 <strong>Tandai Semua Pasang (Loading In)</strong>
-        </button>
-        <button type="button" class="btn btn-primary" id="btn-batch-act-pack" style="width: 100%; justify-content: flex-start; text-align: left; padding: var(--space-3) var(--space-4);">
-          🧳 <strong>Tandai Semua Kemas (Packing Out)</strong>
-        </button>
-        <button type="button" class="btn btn-secondary" id="btn-batch-act-both" style="width: 100%; justify-content: flex-start; text-align: left; padding: var(--space-3) var(--space-4);">
-          ⚡ <strong>Tandai Selesai Total (Pasang & Kemas 100%)</strong>
-        </button>
-      `;
-
-      document.getElementById('btn-batch-act-load')?.addEventListener('click', () => {
-        batchActionModal.style.display = 'none';
-        batchSetAll('check-loading');
-      });
-      document.getElementById('btn-batch-act-pack')?.addEventListener('click', () => {
-        batchActionModal.style.display = 'none';
-        batchSetAll('check-packing');
-      });
-      document.getElementById('btn-batch-act-both')?.addEventListener('click', () => {
-        batchActionModal.style.display = 'none';
-        batchSetAll('check-all');
-      });
-    } else {
-      if (batchModalTitle) batchModalTitle.innerHTML = '↺ Reset Status Ceklis Inventaris';
-      if (batchModalDesc) batchModalDesc.textContent = 'Pilih status ceklis yang ingin dikosongkan (reset) untuk seluruh item:';
-      batchOptionsContainer.innerHTML = `
-        <button type="button" class="btn btn-outline" id="btn-batch-act-unload" style="width: 100%; justify-content: flex-start; text-align: left; padding: var(--space-3) var(--space-4);">
-          📦 <strong>Kosongkan Status Pasang (Loading In)</strong>
-        </button>
-        <button type="button" class="btn btn-outline" id="btn-batch-act-unpack" style="width: 100%; justify-content: flex-start; text-align: left; padding: var(--space-3) var(--space-4);">
-          🧳 <strong>Kosongkan Status Kemas (Packing Out)</strong>
-        </button>
-        <button type="button" class="btn btn-outline" id="btn-batch-act-unboth" style="width: 100%; justify-content: flex-start; text-align: left; padding: var(--space-3) var(--space-4); border-color: rgba(239, 68, 68, 0.4); color: #f87171;">
-          ⚠️ <strong>Reset Total (Kosongkan Pasang & Kemas)</strong>
-        </button>
-      `;
-
-      document.getElementById('btn-batch-act-unload')?.addEventListener('click', () => {
-        batchActionModal.style.display = 'none';
-        batchSetAll('uncheck-loading');
-      });
-      document.getElementById('btn-batch-act-unpack')?.addEventListener('click', () => {
-        batchActionModal.style.display = 'none';
-        batchSetAll('uncheck-packing');
-      });
-      document.getElementById('btn-batch-act-unboth')?.addEventListener('click', () => {
-        batchActionModal.style.display = 'none';
-        batchSetAll('uncheck-all');
-      });
-    }
-
-    batchActionModal.style.display = 'flex';
-  }
-
+  // Direct Batch Action Handlers (Auto-executing with timed toast, no intrusive blocking popups)
   if (btnBatchCheckAll) {
-    btnBatchCheckAll.addEventListener('click', () => openBatchModal(true));
-  }
-
-  if (btnBatchUncheckAll) {
-    btnBatchUncheckAll.addEventListener('click', () => openBatchModal(false));
-  }
-
-  if (btnCloseBatchModal) {
-    btnCloseBatchModal.addEventListener('click', () => {
-      if (batchActionModal) batchActionModal.style.display = 'none';
+    btnBatchCheckAll.addEventListener('click', () => {
+      batchSetAll('check-all');
     });
   }
 
-  if (btnCancelBatchModal) {
-    btnCancelBatchModal.addEventListener('click', () => {
-      if (batchActionModal) batchActionModal.style.display = 'none';
+  if (btnBatchUncheckAll) {
+    btnBatchUncheckAll.addEventListener('click', () => {
+      batchSetAll('uncheck-all');
     });
   }
 

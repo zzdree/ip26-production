@@ -18,1289 +18,575 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700;800&display=swap" rel="stylesheet">
   
+  <!-- Main Stylesheet (Exact Same Design System) -->
+  <link rel="stylesheet" href="style.css">
+  
   <!-- Supabase JS CDN -->
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.39.8/dist/umd/supabase.min.js"></script>
 
   <style>
-    /* =========================================================================
-       1. VARIABLES & PALETTES
-       ========================================================================= */
-    :root {
-      --font-main: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
-      --font-mono: 'JetBrains Mono', monospace;
-
-      --bg-base: #0f1115;
-      --bg-surface: #17191f;
-      --bg-card: #1f222b;
-      --bg-card-hover: #262a35;
-      --border-color: #2e323e;
-      --border-subtle: #252833;
-
-      --text-main: #f3f4f6;
-      --text-muted: #9ca3af;
-      --text-dim: #6b7280;
-
-      --accent-cyan: #00d2ff;
-      --accent-cyan-subtle: rgba(0, 210, 255, 0.12);
-      --accent-emerald: #10b981;
-      --accent-emerald-subtle: rgba(16, 185, 129, 0.14);
-      --accent-amber: #f59e0b;
-      --accent-amber-subtle: rgba(245, 158, 11, 0.14);
-      --accent-rose: #f43f5e;
-
-      --radius-sm: 8px;
-      --radius-md: 12px;
-      --radius-lg: 16px;
-      --radius-full: 9999px;
-
-      --shadow-card: 0 4px 16px rgba(0, 0, 0, 0.35);
-      --touch-target: 48px;
-    }
-
-    [data-theme="light"] {
-      --bg-base: #f4f5f8;
-      --bg-surface: #ffffff;
-      --bg-card: #ffffff;
-      --bg-card-hover: #f9fafb;
-      --border-color: #e5e7eb;
-      --border-subtle: #f3f4f6;
-
-      --text-main: #111827;
-      --text-muted: #4b5563;
-      --text-dim: #9ca3af;
-
-      --accent-cyan: #0284c7;
-      --accent-cyan-subtle: rgba(2, 132, 199, 0.1);
-      --accent-emerald: #059669;
-      --accent-emerald-subtle: rgba(5, 150, 105, 0.12);
-      --accent-amber: #d97706;
-      --accent-amber-subtle: rgba(217, 119, 6, 0.12);
-
-      --shadow-card: 0 2px 10px rgba(0, 0, 0, 0.06);
-    }
-
-    *, *::before, *::after {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-      -webkit-tap-highlight-color: transparent;
-    }
-
-    html, body {
-      width: 100%;
-      min-height: 100%;
-      font-family: var(--font-main);
-      background-color: var(--bg-base);
-      color: var(--text-main);
-      line-height: 1.5;
-      overflow-x: hidden;
-      touch-action: manipulation;
-    }
-
-    /* =========================================================================
-       2. DESKTOP BLOCKER / REJECTION OVERLAY (Mobile-First Protection)
-       ========================================================================= */
-    #desktop-blocker {
-      display: none;
+    /* Desktop Rejection Lock Screen - Simple, Pure Black & Error Alert */
+    #desktop-lock-screen {
+      display: flex;
       position: fixed;
       inset: 0;
       z-index: 99999;
-      background: radial-gradient(circle at top center, #1b202c 0%, #0d0f13 100%);
-      color: var(--text-main);
-      flex-direction: column;
+      background: #000000;
       align-items: center;
       justify-content: center;
-      padding: 32px;
+      padding: 24px;
       text-align: center;
     }
 
-    .desktop-card {
-      max-width: 520px;
-      background: rgba(23, 25, 31, 0.95);
-      border: 1px solid var(--border-color);
-      border-radius: var(--radius-lg);
-      padding: 36px 32px;
-      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 18px;
-    }
-
-    .desktop-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      font-family: var(--font-mono);
-      font-size: 0.8rem;
-      font-weight: 700;
-      color: var(--accent-amber);
-      background: var(--accent-amber-subtle);
-      border: 1px solid var(--accent-amber);
-      padding: 4px 12px;
-      border-radius: var(--radius-full);
-    }
-
-    .desktop-title {
-      font-size: 1.6rem;
-      font-weight: 800;
-      color: var(--text-main);
-      line-height: 1.25;
-    }
-
-    .desktop-desc {
-      font-size: 0.92rem;
-      color: var(--text-muted);
-      line-height: 1.6;
-    }
-
-    .qr-container {
-      background: #ffffff;
-      padding: 14px;
-      border-radius: var(--radius-md);
-      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 8px;
-      margin: 8px 0;
-    }
-
-    .qr-container img {
-      width: 180px;
-      height: 180px;
-      display: block;
-    }
-
-    .qr-label {
-      font-size: 0.75rem;
-      font-family: var(--font-mono);
-      font-weight: 700;
-      color: #111827;
-    }
-
-    .desktop-actions {
-      display: flex;
-      flex-direction: column;
+    .desktop-error-box {
+      max-width: 440px;
       width: 100%;
-      gap: 10px;
-    }
-
-    .btn-desktop {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-      padding: 12px 20px;
-      font-size: 0.88rem;
-      font-weight: 700;
-      border-radius: var(--radius-md);
-      cursor: pointer;
-      text-decoration: none;
-      transition: all 0.2s ease;
-      border: none;
-      font-family: var(--font-main);
-    }
-
-    .btn-desktop-primary {
-      background: var(--accent-cyan);
-      color: #000000;
-    }
-
-    .btn-desktop-primary:hover {
-      filter: brightness(1.15);
-      transform: translateY(-1px);
-    }
-
-    .btn-desktop-outline {
-      background: transparent;
-      color: var(--text-main);
-      border: 1px solid var(--border-color);
-    }
-
-    .btn-desktop-outline:hover {
-      background: var(--bg-card-hover);
-      border-color: var(--accent-cyan);
-    }
-
-    /* Active when viewport >= 769px */
-    @media (min-width: 769px) {
-      body.enforce-mobile-lock #desktop-blocker {
-        display: flex;
-      }
-      body.enforce-mobile-lock #app-wrapper {
-        display: none;
-      }
-    }
-
-    /* Embedded mobile simulator on desktop */
-    body.simulator-mode {
-      background: #090a0d !important;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      min-height: 100vh;
-      padding: 24px;
-    }
-
-    body.simulator-mode #desktop-blocker {
-      display: none !important;
-    }
-
-    body.simulator-mode #app-wrapper {
-      display: flex !important;
-      width: 412px;
-      height: 890px;
-      max-height: 94vh;
-      border-radius: 36px;
-      border: 8px solid #2a2e3b;
-      box-shadow: 0 25px 70px rgba(0, 0, 0, 0.8), 0 0 0 2px rgba(0, 210, 255, 0.3);
-      overflow: hidden;
-      position: relative;
-    }
-
-    /* =========================================================================
-       3. MOBILE APPLICATION LAYOUT
-       ========================================================================= */
-    #app-wrapper {
-      width: 100%;
-      max-width: 100vw;
-      min-height: 100vh;
+      background: #0d0e12;
+      border: 1px solid #ef4444;
+      border-radius: 16px;
+      padding: 32px 24px;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.8), 0 0 24px rgba(239, 68, 68, 0.15);
       display: flex;
       flex-direction: column;
-      position: relative;
-      background-color: var(--bg-base);
-    }
-
-    /* Top Sticky Header */
-    .app-header {
-      position: sticky;
-      top: 0;
-      z-index: 100;
-      background: rgba(23, 25, 31, 0.94);
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
-      border-bottom: 1px solid var(--border-color);
-      padding: 10px 14px;
-      display: flex;
       align-items: center;
-      justify-content: space-between;
-      gap: 10px;
+      gap: 12px;
     }
 
-    [data-theme="light"] .app-header {
-      background: rgba(255, 255, 255, 0.95);
+    .desktop-error-icon {
+      font-size: 2.8rem;
+      line-height: 1;
+      margin-bottom: 4px;
     }
 
-    .brand-section {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      text-decoration: none;
-      color: inherit;
-    }
-
-    .brand-pill {
-      font-family: var(--font-mono);
+    .desktop-error-title {
+      font-size: 1.3rem;
       font-weight: 800;
-      font-size: 0.8rem;
-      background: linear-gradient(135deg, #00d2ff 0%, #0070f3 100%);
-      color: #000;
-      padding: 3px 8px;
-      border-radius: var(--radius-sm);
-      letter-spacing: 0.05em;
-    }
-
-    .brand-title {
-      display: flex;
-      flex-direction: column;
-    }
-
-    .brand-main {
-      font-size: 0.92rem;
-      font-weight: 800;
-      letter-spacing: 0.02em;
-      color: var(--text-main);
-      line-height: 1.15;
-    }
-
-    .brand-sub {
-      font-size: 0.65rem;
-      color: var(--accent-cyan);
-      font-weight: 700;
-      font-family: var(--font-mono);
-    }
-
-    .header-controls {
-      display: flex;
-      align-items: center;
-      gap: 6px;
-    }
-
-    .crew-selector-btn {
-      display: flex;
-      align-items: center;
-      gap: 5px;
-      background: var(--bg-card);
-      border: 1px solid var(--border-color);
-      color: var(--text-main);
-      padding: 6px 10px;
-      border-radius: var(--radius-full);
-      font-size: 0.76rem;
-      font-weight: 700;
-      cursor: pointer;
-      font-family: var(--font-main);
-    }
-
-    .crew-avatar {
-      font-size: 0.85rem;
-    }
-
-    .icon-btn {
-      width: 36px;
-      height: 36px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background: var(--bg-card);
-      border: 1px solid var(--border-color);
-      color: var(--text-main);
-      border-radius: var(--radius-sm);
-      cursor: pointer;
-      font-size: 0.95rem;
-      transition: all 0.2s ease;
-    }
-
-    .icon-btn:active {
-      transform: scale(0.92);
-      border-color: var(--accent-cyan);
-    }
-
-    /* =========================================================================
-       4. TACTICAL REALTIME HUD & PROGRESS METER
-       ========================================================================= */
-    .tactical-hud {
-      background: var(--bg-surface);
-      border-bottom: 1px solid var(--border-color);
-      padding: 12px 14px;
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-    }
-
-    .sync-indicator-bar {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      font-size: 0.72rem;
-      font-family: var(--font-mono);
-    }
-
-    .sync-status {
-      display: flex;
-      align-items: center;
-      gap: 6px;
-      color: var(--text-muted);
-    }
-
-    .pulse-dot {
-      width: 8px;
-      height: 8px;
-      border-radius: 50%;
-      background: var(--accent-emerald);
-      box-shadow: 0 0 8px var(--accent-emerald);
-      animation: pulse-glow 2s infinite ease-in-out;
-    }
-
-    @keyframes pulse-glow {
-      0%, 100% { opacity: 1; transform: scale(1); }
-      50% { opacity: 0.4; transform: scale(0.85); }
-    }
-
-    .crew-online-badge {
-      display: flex;
-      align-items: center;
-      gap: 4px;
-      background: var(--accent-cyan-subtle);
-      color: var(--accent-cyan);
-      padding: 2px 8px;
-      border-radius: var(--radius-full);
-      font-weight: 700;
-    }
-
-    /* Dual Progress Meters */
-    .hud-meters-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 10px;
-    }
-
-    .meter-card {
-      background: var(--bg-card);
-      border: 1px solid var(--border-color);
-      border-radius: var(--radius-md);
-      padding: 8px 10px;
-      display: flex;
-      flex-direction: column;
-      gap: 6px;
-    }
-
-    .meter-header {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      font-size: 0.74rem;
-      font-weight: 700;
-    }
-
-    .meter-title {
-      display: flex;
-      align-items: center;
-      gap: 4px;
-    }
-
-    .meter-count {
-      font-family: var(--font-mono);
-      font-size: 0.74rem;
-      color: var(--accent-cyan);
-    }
-
-    .meter-bar-track {
-      width: 100%;
-      height: 6px;
-      background: rgba(255, 255, 255, 0.08);
-      border-radius: var(--radius-full);
-      overflow: hidden;
-    }
-
-    [data-theme="light"] .meter-bar-track {
-      background: #e5e7eb;
-    }
-
-    .meter-bar-fill {
-      height: 100%;
-      width: 0%;
-      border-radius: var(--radius-full);
-      transition: width 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-    }
-
-    .fill-load {
-      background: linear-gradient(90deg, #10b981 0%, #00d2ff 100%);
-    }
-
-    .fill-pack {
-      background: linear-gradient(90deg, #f59e0b 0%, #ec4899 100%);
-    }
-
-    /* Fast Action Chips Bar */
-    .quick-actions-row {
-      display: flex;
-      gap: 6px;
-      overflow-x: auto;
-      padding-bottom: 2px;
-      scrollbar-width: none;
-    }
-
-    .quick-actions-row::-webkit-scrollbar {
-      display: none;
-    }
-
-    .hud-action-btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 5px;
-      padding: 6px 10px;
-      background: var(--bg-card);
-      border: 1px solid var(--border-color);
-      border-radius: var(--radius-sm);
-      color: var(--text-main);
-      font-size: 0.74rem;
-      font-weight: 600;
-      cursor: pointer;
-      white-space: nowrap;
-      flex-shrink: 0;
-    }
-
-    .hud-action-btn:active {
-      border-color: var(--accent-cyan);
-      background: var(--bg-card-hover);
-    }
-
-    /* =========================================================================
-       5. SEARCH & VENDOR FILTER CHIPS
-       ========================================================================= */
-    .filter-wrapper {
-      padding: 10px 14px 4px 14px;
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-    }
-
-    .search-input-box {
-      position: relative;
-      width: 100%;
-    }
-
-    .search-icon {
-      position: absolute;
-      left: 12px;
-      top: 50%;
-      transform: translateY(-50%);
-      font-size: 0.9rem;
-      color: var(--text-dim);
-      pointer-events: none;
-    }
-
-    .search-input {
-      width: 100%;
-      background: var(--bg-card);
-      border: 1px solid var(--border-color);
-      border-radius: var(--radius-md);
-      color: var(--text-main);
-      padding: 10px 36px 10px 34px;
-      font-size: 0.88rem;
-      font-family: var(--font-main);
-      outline: none;
-      transition: all 0.2s ease;
-    }
-
-    .search-input:focus {
-      border-color: var(--accent-cyan);
-      box-shadow: 0 0 0 2px var(--accent-cyan-subtle);
-    }
-
-    .clear-search-btn {
-      position: absolute;
-      right: 10px;
-      top: 50%;
-      transform: translateY(-50%);
-      background: transparent;
-      border: none;
-      color: var(--text-dim);
-      font-size: 1rem;
-      cursor: pointer;
-      display: none;
-    }
-
-    /* Status Filters */
-    .status-chips-scroll {
-      display: flex;
-      gap: 6px;
-      overflow-x: auto;
-      padding-bottom: 2px;
-      scrollbar-width: none;
-    }
-
-    .status-chips-scroll::-webkit-scrollbar {
-      display: none;
-    }
-
-    .filter-pill {
-      padding: 6px 11px;
-      background: var(--bg-card);
-      border: 1px solid var(--border-color);
-      border-radius: var(--radius-full);
-      color: var(--text-muted);
-      font-size: 0.74rem;
-      font-weight: 600;
-      white-space: nowrap;
-      cursor: pointer;
-      transition: all 0.15s ease;
-      flex-shrink: 0;
-    }
-
-    .filter-pill.active {
-      background: var(--text-main);
-      color: var(--bg-base);
-      border-color: var(--text-main);
-      font-weight: 800;
-    }
-
-    /* Vendor Filter Chips */
-    .vendor-chips-scroll {
-      display: flex;
-      gap: 6px;
-      overflow-x: auto;
-      padding-bottom: 4px;
-      scrollbar-width: none;
-    }
-
-    .vendor-chips-scroll::-webkit-scrollbar {
-      display: none;
-    }
-
-    .vendor-chip {
-      padding: 4px 9px;
-      background: var(--bg-surface);
-      border: 1px solid var(--border-subtle);
-      border-radius: var(--radius-sm);
-      color: var(--text-dim);
-      font-size: 0.72rem;
-      font-weight: 600;
-      white-space: nowrap;
-      cursor: pointer;
-      transition: all 0.15s ease;
-      flex-shrink: 0;
-    }
-
-    .vendor-chip.active {
-      background: var(--accent-cyan-subtle);
-      color: var(--accent-cyan);
-      border-color: var(--accent-cyan);
-      font-weight: 700;
-    }
-
-    /* =========================================================================
-       6. INVENTORY ITEMS LIST (TACTILE THUMB CARDS)
-       ========================================================================= */
-    .items-container {
-      flex: 1;
-      padding: 10px 14px 90px 14px;
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-    }
-
-    .vendor-section-divider {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 8px 4px 4px 4px;
-      border-bottom: 1px dashed var(--border-color);
-      margin-top: 6px;
-    }
-
-    .vendor-section-title {
-      font-family: var(--font-mono);
-      font-size: 0.76rem;
-      font-weight: 800;
-      color: var(--accent-cyan);
-      letter-spacing: 0.04em;
-    }
-
-    .vendor-section-count {
-      font-size: 0.7rem;
-      color: var(--text-dim);
-      font-family: var(--font-mono);
-    }
-
-    /* Item Card */
-    .satset-card {
-      background: var(--bg-card);
-      border: 1px solid var(--border-color);
-      border-radius: var(--radius-md);
-      padding: 12px 14px;
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-      box-shadow: var(--shadow-card);
-      position: relative;
-      transition: transform 0.15s ease, border-color 0.2s ease;
-    }
-
-    .satset-card.is-fully-done {
-      border-color: var(--accent-emerald);
-      background: rgba(16, 185, 129, 0.04);
-    }
-
-    .card-top-row {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 8px;
-    }
-
-    .card-badges {
-      display: flex;
-      align-items: center;
-      gap: 6px;
-    }
-
-    .badge-vendor {
-      font-family: var(--font-mono);
-      font-size: 0.68rem;
-      font-weight: 700;
-      background: rgba(255, 255, 255, 0.08);
-      color: var(--text-muted);
-      padding: 2px 7px;
-      border-radius: var(--radius-sm);
-    }
-
-    .badge-qty {
-      font-family: var(--font-mono);
-      font-size: 0.68rem;
-      font-weight: 700;
-      background: var(--accent-cyan-subtle);
-      color: var(--accent-cyan);
-      padding: 2px 7px;
-      border-radius: var(--radius-sm);
-    }
-
-    .badge-status-icon {
-      font-size: 0.85rem;
-    }
-
-    .card-body {
-      display: flex;
-      flex-direction: column;
-      gap: 2px;
-    }
-
-    .item-name {
-      font-size: 0.98rem;
-      font-weight: 700;
-      color: var(--text-main);
-      line-height: 1.3;
+      color: #f87171;
       letter-spacing: -0.01em;
     }
 
-    .item-usage {
-      font-size: 0.78rem;
-      color: var(--text-muted);
-      line-height: 1.35;
-    }
-
-    /* Dual Large Thumb Buttons */
-    .card-actions-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 8px;
-      margin-top: 2px;
-    }
-
-    .btn-tactile {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      gap: 2px;
-      height: var(--touch-target);
-      background: var(--bg-surface);
-      border: 1.5px solid var(--border-color);
-      border-radius: var(--radius-sm);
-      color: var(--text-muted);
-      font-family: var(--font-main);
-      cursor: pointer;
-      transition: all 0.15s cubic-bezier(0.16, 1, 0.3, 1);
-      position: relative;
-      overflow: hidden;
-    }
-
-    .btn-tactile:active {
-      transform: scale(0.96);
-    }
-
-    .btn-tactile-main {
-      display: flex;
-      align-items: center;
-      gap: 5px;
-      font-size: 0.82rem;
-      font-weight: 700;
-    }
-
-    .btn-tactile-meta {
-      font-size: 0.65rem;
-      font-family: var(--font-mono);
-      color: var(--text-dim);
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      max-width: 92%;
-    }
-
-    /* Checked State: PASANG (Emerald) */
-    .btn-tactile.btn-load.checked {
-      background: var(--accent-emerald-subtle);
-      border-color: var(--accent-emerald);
-      color: var(--accent-emerald);
-    }
-
-    .btn-tactile.btn-load.checked .btn-tactile-meta {
-      color: var(--accent-emerald);
-      font-weight: 600;
-    }
-
-    /* Checked State: KEMAS (Amber/Blue) */
-    .btn-tactile.btn-pack.checked {
-      background: var(--accent-amber-subtle);
-      border-color: var(--accent-amber);
-      color: var(--accent-amber);
-    }
-
-    .btn-tactile.btn-pack.checked .btn-tactile-meta {
-      color: var(--accent-amber);
-      font-weight: 600;
-    }
-
-    /* Empty state */
-    .empty-state {
-      text-align: center;
-      padding: 48px 24px;
-      color: var(--text-dim);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 8px;
-    }
-
-    .empty-state-icon {
-      font-size: 2.2rem;
-    }
-
-    /* =========================================================================
-       7. BOTTOM DOCK ACTION BAR
-       ========================================================================= */
-    .bottom-bar {
-      position: fixed;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      background: rgba(23, 25, 31, 0.96);
-      backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
-      border-top: 1px solid var(--border-color);
-      padding: 10px 14px calc(10px + env(safe-area-inset-bottom, 6px)) 14px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 8px;
-      z-index: 100;
-    }
-
-    [data-theme="light"] .bottom-bar {
-      background: rgba(255, 255, 255, 0.96);
-    }
-
-    .btn-bottom-primary {
-      flex: 1;
-      height: 44px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 6px;
-      background: linear-gradient(135deg, #00d2ff 0%, #0070f3 100%);
-      color: #000;
-      border: none;
-      border-radius: var(--radius-md);
-      font-weight: 800;
-      font-size: 0.86rem;
-      cursor: pointer;
-    }
-
-    .btn-bottom-primary:active {
-      transform: scale(0.97);
-    }
-
-    .btn-bottom-secondary {
-      height: 44px;
-      padding: 0 14px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 5px;
-      background: var(--bg-card);
-      border: 1px solid var(--border-color);
-      color: var(--text-main);
-      border-radius: var(--radius-md);
-      font-weight: 700;
-      font-size: 0.82rem;
-      cursor: pointer;
-      text-decoration: none;
-    }
-
-    .btn-bottom-secondary:active {
-      transform: scale(0.97);
-    }
-
-    /* =========================================================================
-       8. MODAL DIALOGS & POPUPS (BOTTOM-RIGHT DESKTOP & BOTTOM-SHEET MOBILE)
-       ========================================================================= */
-    .modal-backdrop {
-      display: none;
-      position: fixed;
-      inset: 0;
-      background: rgba(0, 0, 0, 0.55);
-      backdrop-filter: blur(6px);
-      -webkit-backdrop-filter: blur(6px);
-      z-index: 2000;
-      align-items: flex-end;
-      justify-content: flex-end;
-      padding: 24px;
-    }
-
-    .modal-sheet {
-      width: 100%;
-      max-width: 440px;
-      background: var(--bg-surface);
-      border: 1px solid var(--border-color);
-      border-radius: var(--radius-xl);
-      padding: 20px 20px calc(20px + env(safe-area-inset-bottom, 0px)) 20px;
-      display: flex;
-      flex-direction: column;
-      gap: 16px;
-      box-shadow: 0 24px 56px -12px rgba(0, 0, 0, 0.65), 0 0 0 1px rgba(0, 210, 255, 0.15);
-      animation: modal-corner-slide 0.28s cubic-bezier(0.16, 1, 0.3, 1);
-    }
-
-    @keyframes modal-corner-slide {
-      from {
-        opacity: 0;
-        transform: translateY(20px) scale(0.96);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0) scale(1);
-      }
+    .desktop-error-desc {
+      font-size: 0.9rem;
+      color: #a1a1aa;
+      line-height: 1.5;
+      margin-bottom: 8px;
     }
 
     @media (max-width: 768px) {
-      .modal-backdrop {
-        align-items: flex-end;
-        justify-content: center;
-        padding: 0;
-        background: rgba(0, 0, 0, 0.72);
-      }
-
-      .modal-sheet {
-        max-width: 100%;
-        border-radius: 20px 20px 0 0;
-        border-left: none;
-        border-right: none;
-        border-bottom: none;
-        padding: 20px 18px calc(24px + env(safe-area-inset-bottom, 8px)) 18px;
-        box-shadow: 0 -10px 40px rgba(0, 0, 0, 0.6);
-        animation: sheet-up 0.28s cubic-bezier(0.16, 1, 0.3, 1);
+      #desktop-lock-screen {
+        display: none !important;
       }
     }
 
-    @keyframes sheet-up {
-      from {
-        opacity: 0;
-        transform: translateY(100%);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
+    /* Mobile Page Optimizations */
+    .satset-page-header {
+      padding: var(--space-4) 0 var(--space-2) 0;
     }
 
-    .sheet-header {
+    .satset-hero-card {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-lg);
+      padding: var(--space-4);
+      margin-bottom: var(--space-4);
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-3);
+    }
+
+    .satset-title-row {
       display: flex;
       align-items: center;
       justify-content: space-between;
+      gap: var(--space-2);
     }
 
-    .sheet-title {
-      font-size: 1.1rem;
+    .satset-title {
+      font-size: 1.25rem;
       font-weight: 800;
-      color: var(--text-main);
-    }
-
-    .sheet-close-btn {
-      width: 32px;
-      height: 32px;
-      border-radius: 50%;
-      background: var(--bg-card);
-      border: 1px solid var(--border-color);
-      color: var(--text-muted);
-      font-size: 1.1rem;
+      letter-spacing: -0.02em;
+      color: var(--text-primary);
       display: flex;
       align-items: center;
-      justify-content: center;
-      cursor: pointer;
-      transition: all var(--transition-fast);
+      gap: 6px;
     }
 
-    .sheet-close-btn:hover,
-    .sheet-close-btn:active {
-      color: var(--text-main);
-      border-color: var(--accent-cyan);
-      background: var(--accent-cyan-subtle);
-    }
-
-    .crew-list-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 8px;
-    }
-
-    .crew-pill-choice {
-      padding: 10px 12px;
-      background: var(--bg-card);
-      border: 1.5px solid var(--border-color);
-      border-radius: var(--radius-md);
-      color: var(--text-main);
-      font-weight: 700;
-      font-size: 0.85rem;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      cursor: pointer;
-      transition: all var(--transition-fast);
-    }
-
-    .crew-pill-choice:hover {
-      border-color: var(--accent-cyan);
-    }
-
-    .crew-pill-choice.selected {
-      border-color: var(--accent-cyan);
-      background: var(--accent-cyan-subtle);
-      color: var(--accent-cyan);
-    }
-
-    /* Toast */
-    .toast-container {
-      position: fixed;
-      z-index: 3000;
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-      pointer-events: none;
-      bottom: calc(72px + env(safe-area-inset-bottom, 8px));
-      left: 14px;
-      right: 14px;
-    }
-
-    @media (min-width: 769px) {
-      .toast-container {
-        bottom: 24px;
-        right: 24px;
-        left: auto;
-        max-width: 360px;
-        width: 360px;
-      }
-    }
-
-    .toast-pill {
-      background: var(--bg-surface);
-      border: 1px solid var(--border-color);
-      border-left: 4px solid var(--accent-cyan);
-      padding: 10px 14px;
-      border-radius: var(--radius-md);
-      box-shadow: 0 12px 32px rgba(0, 0, 0, 0.45);
-      display: flex;
-      align-items: center;
-      gap: 10px;
+    .satset-subtitle {
       font-size: 0.82rem;
-      font-weight: 600;
-      color: var(--text-main);
-      animation: toast-in 0.25s ease, toast-out 0.3s ease 3.5s forwards;
-    }
-
-    @keyframes toast-in {
-      from { opacity: 0; transform: translateY(-10px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    @keyframes toast-out {
-      to { opacity: 0; transform: translateY(-10px); }
+      color: var(--text-secondary);
+      line-height: 1.4;
     }
   </style>
 </head>
-<body class="enforce-mobile-lock">
+<body>
 
-  <!-- =========================================================================
-       DESKTOP REJECTION / LOCK SCREEN (Mobile-Only Protection)
-       ========================================================================= -->
-  <div id="desktop-blocker">
-    <div class="desktop-card">
-      <span class="desktop-badge">📱 SMARTPHONE ACCESS ONLY</span>
-      <h1 class="desktop-title">SATSET Lapangan Khusus Mobile</h1>
-      <p class="desktop-desc">
-        Halaman operasional <strong>SATSET</strong> dirancang khusus untuk mempermudah kru lapangan mencentang barang saat <em>Loading In</em> & <em>Packing Out</em> langsung via genggaman smartphone di venue Auditorium UNNES.
+  <!-- Desktop Error Blocker (>768px) -->
+  <div id="desktop-lock-screen">
+    <div class="desktop-error-box">
+      <div class="desktop-error-icon">🚫</div>
+      <h2 class="desktop-error-title">Akses Ditolak (Khusus Smartphone)</h2>
+      <p class="desktop-error-desc">
+        Halaman <strong>SATSET</strong> dirancang khusus untuk operasional centang checklist barang di smartphone saat Hari H. Silakan buka tautan ini melalui browser HP Anda.
       </p>
-
-      <div class="qr-container">
-        <!-- Live dynamic QR Code -->
-        <img id="dynamic-qr" src="https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=https://zzdree.github.io/ip26-production/satset.html" alt="QR Code SATSET Mobile">
-        <span class="qr-label">Scan untuk buka di HP kru</span>
-      </div>
-
-      <div class="desktop-actions">
-        <button id="btn-simulate-mobile" class="btn-desktop btn-desktop-primary">
-          📱 Buka Simulator Mobile di Desktop
-        </button>
-        <a href="index.html" class="btn-desktop btn-desktop-outline">
-          ⬅️ Kembali ke Portal Lengkap IP26
-        </a>
-      </div>
-    </div>
-  </div>
-
-  <!-- =========================================================================
-       MOBILE FIELD OPS ROOT
-       ========================================================================= -->
-  <div id="app-wrapper">
-
-    <!-- Sticky Header -->
-    <header class="app-header">
-      <a href="index.html" class="brand-section" title="Kembali ke Portal Utama">
-        <span class="brand-pill">⚡ SATSET</span>
-        <div class="brand-title">
-          <span class="brand-main">INVENTARIS HARI H</span>
-          <span class="brand-sub">UKK UNNES 2026</span>
-        </div>
+      <a href="index.html" class="btn btn-primary" style="margin-top: 6px;">
+        ← Buka Master Portal Utama
       </a>
+    </div>
+  </div>
 
-      <div class="header-controls">
-        <button id="btn-change-crew" class="crew-selector-btn" title="Ganti Nama Kru">
-          <span class="crew-avatar">👤</span>
-          <span id="header-crew-name">Andreas</span>
-        </button>
+  <!-- Toast Container -->
+  <div id="toast-container" class="toast-container" aria-live="polite"></div>
 
-        <button id="btn-theme-toggle" class="icon-btn" title="Ganti Mode Tampilan (Dark / Light)">
-          <span class="theme-icon">🌙</span>
-        </button>
-
-        <a href="index.html" class="icon-btn" title="Portal Lengkap">
-          <span>🌐</span>
+  <!-- Header Navigation -->
+  <header class="desktop-header">
+    <div class="nav-container">
+      <div class="brand-logo">
+        <span class="brand-badge">IP26</span>
+        <div class="brand-text">
+          <span class="brand-title">IP26 LIVE PRODUCTION</span>
+          <span class="brand-sub">⚡ SATSET HARI H LAPANGAN</span>
+        </div>
+      </div>
+      
+      <div class="nav-actions">
+        <a href="index.html" class="btn btn-sm btn-outline" title="Kembali ke Portal Master">
+          🌐 Portal Utama
         </a>
-      </div>
-    </header>
-
-    <!-- Tactical Realtime HUD -->
-    <section class="tactical-hud">
-      <div class="sync-indicator-bar">
-        <div class="sync-status">
-          <span class="pulse-dot" id="sync-dot"></span>
-          <span id="sync-text">🟢 Terhubung Supabase Realtime</span>
-        </div>
-        <div class="crew-online-badge">
-          <span>👥</span> <span id="online-count">1</span> Kru Online
-        </div>
-      </div>
-
-      <!-- Dual Progress Meters -->
-      <div class="hud-meters-grid">
-        <div class="meter-card">
-          <div class="meter-header">
-            <span class="meter-title">📦 Pasang (In)</span>
-            <span class="meter-count" id="meter-load-txt">0/0 (0%)</span>
-          </div>
-          <div class="meter-bar-track">
-            <div class="meter-bar-fill fill-load" id="bar-load-fill"></div>
-          </div>
-        </div>
-
-        <div class="meter-card">
-          <div class="meter-header">
-            <span class="meter-title">🧳 Kemas (Out)</span>
-            <span class="meter-count" id="meter-pack-txt">0/0 (0%)</span>
-          </div>
-          <div class="meter-bar-track">
-            <div class="meter-bar-fill fill-pack" id="bar-pack-fill"></div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Fast Action Chips -->
-      <div class="quick-actions-row">
-        <button class="hud-action-btn" id="btn-batch-modal-open">
-          <span>⚡</span> Aksi Massal
-        </button>
-        <button class="hud-action-btn" id="btn-copy-summary-fast">
-          <span>📋</span> Salin Ringkasan
-        </button>
-        <button class="hud-action-btn" id="btn-force-refresh">
-          <span>🔄</span> Sinkron Ulang
-        </button>
-      </div>
-    </section>
-
-    <!-- Search & Filter Area -->
-    <div class="filter-wrapper">
-      <div class="search-input-box">
-        <span class="search-icon">🔍</span>
-        <input type="text" id="satset-search-input" class="search-input" placeholder="Cari nama barang, kamera, kabel, HDMI..." autocomplete="off">
-        <button id="btn-clear-search" class="clear-search-btn">✕</button>
-      </div>
-
-      <!-- Status Filter Chips -->
-      <div class="status-chips-scroll">
-        <button class="filter-pill active" data-status="all">Semua Barang (<span id="count-all">0</span>)</button>
-        <button class="filter-pill" data-status="unloaded">❌ Belum Pasang (<span id="count-unloaded">0</span>)</button>
-        <button class="filter-pill" data-status="loaded">✅ Terpasang (<span id="count-loaded">0</span>)</button>
-        <button class="filter-pill" data-status="unpacked">❌ Belum Kemas (<span id="count-unpacked">0</span>)</button>
-        <button class="filter-pill" data-status="packed">🧳 Terkemas (<span id="count-packed">0</span>)</button>
-      </div>
-
-      <!-- Vendor Filter Chips -->
-      <div class="vendor-chips-scroll" id="vendor-chips-container">
-        <button class="vendor-chip active" data-vendor="all">Semua Vendor</button>
-        <!-- Injected via JavaScript -->
-      </div>
-    </div>
-
-    <!-- Inventory Cards List Container -->
-    <main class="items-container" id="inventory-cards-container">
-      <!-- Injected Dynamically via satset.js -->
-    </main>
-
-    <!-- Bottom Dock Floating Bar -->
-    <footer class="bottom-bar">
-      <button class="btn-bottom-primary" id="btn-quick-check-all">
-        <span>⚡</span> Tandai Pasang Terpilih
-      </button>
-      <a href="index.html#inventory" class="btn-bottom-secondary" title="Buka Tabel Lengkap">
-        <span>📊 Tabel</span>
-      </a>
-    </footer>
-
-  </div>
-
-  <!-- =========================================================================
-       MODAL: PILIH KRU
-       ========================================================================= -->
-  <div id="crew-modal" class="modal-backdrop">
-    <div class="modal-sheet">
-      <div class="sheet-header">
-        <h3 class="sheet-title">👤 Pilih Identitas Kru Lapangan</h3>
-        <button class="sheet-close-btn" id="btn-close-crew-modal">✕</button>
-      </div>
-      <p style="font-size: 0.82rem; color: var(--text-muted);">
-        Nama yang dipilih akan tercatat otomatis saat Anda mencentang Pasang / Kemas:
-      </p>
-      <div class="crew-list-grid" id="crew-choices-grid">
-        <button class="crew-pill-choice selected" data-name="Andreas"><span>👑</span> Andreas</button>
-        <button class="crew-pill-choice" data-name="Kiel 1"><span>🎥</span> Kiel 1</button>
-        <button class="crew-pill-choice" data-name="Darrel"><span>📺</span> Darrel</button>
-        <button class="crew-pill-choice" data-name="Joel"><span>📹</span> Joel</button>
-        <button class="crew-pill-choice" data-name="Kezia"><span>💻</span> Kezia</button>
-        <button class="crew-pill-choice" data-name="Jennifer"><span>📱</span> Jennifer</button>
-        <button class="crew-pill-choice" data-name="Lio"><span>⏱️</span> Lio</button>
-        <button class="crew-pill-choice" data-name="Kru Lapangan"><span>🛠️</span> Kru Lapangan</button>
-      </div>
-    </div>
-  </div>
-
-  <!-- =========================================================================
-       MODAL: AKSI MASSAL
-       ========================================================================= -->
-  <div id="batch-modal" class="modal-backdrop">
-    <div class="modal-sheet">
-      <div class="sheet-header">
-        <h3 class="sheet-title">⚡ Aksi Massal Checklist</h3>
-        <button class="sheet-close-btn" id="btn-close-batch-modal">✕</button>
-      </div>
-      <div style="display: flex; flex-direction: column; gap: 8px;">
-        <button class="btn-desktop btn-desktop-primary" id="act-check-all-load" style="width:100%; justify-content: flex-start;">
-          📦 Tandai Semua PASANG (Loading In)
-        </button>
-        <button class="btn-desktop btn-desktop-primary" id="act-check-all-pack" style="width:100%; justify-content: flex-start;">
-          🧳 Tandai Semua KEMAS (Packing Out)
-        </button>
-        <button class="btn-desktop btn-desktop-outline" id="act-reset-all" style="width:100%; justify-content: flex-start; color: var(--accent-rose);">
-          ⚠️ Reset / Bersihkan Semua Centang
+        <button id="theme-toggle-btn" class="theme-toggle-btn" aria-label="Ganti Tema">
+          <span class="theme-icon">🌓</span>
         </button>
       </div>
     </div>
-  </div>
+  </header>
 
-  <!-- Toast Notification Container -->
-  <div id="toast-box" class="toast-container"></div>
+  <!-- Main Content Wrapper -->
+  <main class="main-content">
+    <div class="container">
+      
+      <!-- SATSET Header Card -->
+      <div class="satset-page-header">
+        <div class="satset-hero-card">
+          <div class="satset-title-row">
+            <h1 class="satset-title">⚡ SATSET CHECKLIST</h1>
+            <span class="presence-badge" id="online-crew-badge">
+              <span class="sync-dot dot-live"></span> <span id="online-crew-count">1</span> Kru Online
+            </span>
+          </div>
+          <p class="satset-subtitle">
+            Fitur cepat centang inventaris pasang (Loading In) & kemas (Packing Out) saat Hari H, tersinkronisasi realtime ke seluruh perangkat kru.
+          </p>
 
-  <!-- Script Logic -->
-  <script src="satset.js"></script>
+          <!-- Crew Identity Bar -->
+          <div class="crew-identity-bar" style="margin-top: 4px;">
+            <div class="crew-input-wrapper">
+              <span class="crew-label">Nama Kru:</span>
+              <input type="text" id="crew-name-input" class="crew-name-input" placeholder="Masukkan nama Anda (cth: Andreas, Dika)" maxlength="24">
+            </div>
+            <div class="sync-status" id="cloud-sync-status">
+              <span class="sync-dot dot-connected" id="sync-status-dot"></span>
+              <span class="sync-text" id="sync-status-text">🟢 Terhubung Cloud</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Inventory Progress & Actions Section -->
+      <section class="section" id="inventory-section" style="padding-top: 0;">
+        <div class="cloud-sync-card">
+          <div class="cloud-sync-header">
+            <div>
+              <h2 class="cloud-sync-title">📦 Progress Inventaris Lapangan</h2>
+              <p class="cloud-sync-desc">Klik checkbox untuk menandai barang terpasang atau terkemas.</p>
+            </div>
+            <div class="cloud-sync-actions">
+              <button class="btn btn-sm btn-outline" id="btn-batch-check-all" title="Tandai Semua Barang Pasang & Kemas">
+                ✓ Tandai Semua
+              </button>
+              <button class="btn btn-sm btn-outline" id="btn-batch-uncheck-all" title="Reset Status Ceklis Inventaris">
+                ↺ Reset Ceklis
+              </button>
+              <button class="btn btn-sm btn-primary" id="btn-copy-summary" title="Salin Ringkasan Progress Checklist untuk WhatsApp">
+                📋 Salin WA
+              </button>
+            </div>
+          </div>
+
+          <div class="cloud-sync-body">
+            <!-- Live Dual Progress Meters -->
+            <div class="sync-progress-grid">
+              <div class="progress-box progress-loading">
+                <div class="progress-header">
+                  <span class="progress-title">📦 Status Pasang (Loading In)</span>
+                  <span class="progress-counter" id="loading-counter-display">0 / 65 (0%)</span>
+                </div>
+                <div class="progress-bar-track">
+                  <div class="progress-bar-fill fill-loading" id="loading-progress-bar" style="width: 0%;"></div>
+                </div>
+              </div>
+
+              <div class="progress-box progress-packing">
+                <div class="progress-header">
+                  <span class="progress-title">🧳 Status Kemas (Packing Out)</span>
+                  <span class="progress-counter" id="packing-counter-display">0 / 65 (0%)</span>
+                </div>
+                <div class="progress-bar-track">
+                  <div class="progress-bar-fill fill-packing" id="packing-progress-bar" style="width: 0%;"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Search and Filter Bar -->
+        <div class="inv-filter-section">
+          <div class="search-input-wrapper">
+            <span class="search-icon">🔍</span>
+            <input type="text" id="inv-search-input" class="inv-search-input" placeholder="Cari nama barang, kabel, kamera, audio, vendor..." autocomplete="off">
+            <button id="clear-search-btn" class="clear-search-btn" title="Bersihkan Pencarian">×</button>
+          </div>
+
+          <!-- Status Filter Chips -->
+          <div class="status-filter-pills">
+            <button class="status-pill active" data-status-filter="all">Semua Status</button>
+            <button class="status-pill" data-status-filter="unloaded">⏳ Belum Pasang</button>
+            <button class="status-pill" data-status-filter="loaded">📦 Terpasang</button>
+            <button class="status-pill" data-status-filter="unpacked">⏳ Belum Kemas</button>
+            <button class="status-pill" data-status-filter="packed">🧳 Terkemas</button>
+          </div>
+        </div>
+
+        <!-- Inventory Summary Bar -->
+        <div class="inventory-summary-bar">
+          <span>Menampilkan <strong id="inv-count-display">154</strong> entri barang</span>
+          <span class="legend-badges">
+            <span class="badge badge-emerald">✅ Siap / Terpasang</span>
+            <span class="badge badge-amber">⚠️ Perhatian</span>
+          </span>
+        </div>
+
+        <!-- Inventory Tables Container (Identical to Main Portal) -->
+        <div id="inventory-tables-container" class="inventory-tables-wrapper">
+
+          <!-- 1. OWL -->
+          <div class="vendor-block" data-vendor="OWL">
+            <h3 class="vendor-title"><span class="vendor-dot"></span> 1. Peminjaman dari OWL</h3>
+            <div class="table-responsive">
+              <table class="data-table inv-table">
+                <thead>
+                  <tr><th>Nama Barang</th><th>Jumlah</th><th>Status</th><th>Keterangan Penggunaan</th></tr>
+                </thead>
+                <tbody>
+                  <tr data-name="Sony A6000"><td>Sony A6000</td><td>2 Unit</td><td><span class="badge badge-emerald">✅</span></td><td>CAM 3 & CAM 4 Broadcast</td></tr>
+                  <tr data-name="Sony A6400"><td>Sony A6400</td><td>1 Unit</td><td><span class="badge badge-emerald">✅</span></td><td>CAM PHO Dokumentasi Foto</td></tr>
+                  <tr data-name="Sony ZV-E10"><td>Sony ZV-E10</td><td>1 Unit</td><td><span class="badge badge-emerald">✅</span></td><td>CAM 2 Broadcast Wireless</td></tr>
+                  <tr data-name="Lens 18-105MM"><td>Lens 18-105MM</td><td>3 Unit</td><td><span class="badge badge-emerald">✅</span></td><td>CAM 1, CAM 2, & CAM 3</td></tr>
+                  <tr data-name="Lens 50MM"><td>Lens 50MM</td><td>1 Unit</td><td><span class="badge badge-emerald">✅</span></td><td>CAM PHO Dokumentasi Foto</td></tr>
+                  <tr data-name="Battery Kamera"><td>Battery Kamera</td><td>8 Unit</td><td><span class="badge badge-emerald">✅</span></td><td>5 Unit terpakai aktif, 3 Unit standby</td></tr>
+                  <tr data-name="Charger Kamera"><td>Charger Kamera</td><td>1 Pack</td><td><span class="badge badge-emerald">✅</span></td><td>Charging station baterai kamera</td></tr>
+                  <tr data-name="Memory Card 32GB"><td>Memory Card 32GB</td><td>4 Unit</td><td><span class="badge badge-emerald">✅</span></td><td>CAM 2, CAM 3, CAM 4, CAM PHO</td></tr>
+                  <tr data-name="Cinetreak Cinelive V1"><td>Cinetreak Cinelive V1</td><td>1 Pack</td><td><span class="badge badge-emerald">✅</span></td><td>Video Switcher Master Broadcast</td></tr>
+                  <tr data-name="Power Adaptor MIX"><td>Power Adaptor MIX</td><td>1 Unit</td><td><span class="badge badge-emerald">✅</span></td><td>Power Switcher Cinetreak</td></tr>
+                  <tr data-name="Hollyland Pyro H"><td>Hollyland Pyro H</td><td>1 Pack</td><td><span class="badge badge-emerald">✅</span></td><td>TX & RX Wireless CAM 2 Mobile</td></tr>
+                  <tr data-name="Hollyland Pyro S"><td>Hollyland Pyro S</td><td>1 Pack</td><td><span class="badge badge-emerald">✅</span></td><td>TX & RX Wireless CAM 1 Steady</td></tr>
+                  <tr data-name="Battery WIR"><td>Battery WIR</td><td>4 Unit</td><td><span class="badge badge-emerald">✅</span></td><td>2 Unit Pyro S, 2 Unit Pyro H</td></tr>
+                  <tr data-name="Tripod Camera Big"><td>Tripod Camera Big</td><td>1 Unit</td><td><span class="badge badge-emerald">✅</span></td><td>Tripod CAM 1 Broadcast</td></tr>
+                  <tr data-name="HDMI to Micro HDMI Converter"><td>HDMI to Micro HDMI Converter</td><td>2 Unit</td><td><span class="badge badge-emerald">✅</span></td><td>Converter CAM 3 & CAM 4</td></tr>
+                  <tr data-name="HDMI to Micro HDMI Cable 30CM"><td>HDMI to Micro HDMI Cable 30CM</td><td>2 Unit</td><td><span class="badge badge-emerald">✅</span></td><td>CAM 1 & CAM 2 ke Hollyland TX</td></tr>
+                  <tr data-name="HDMI Capture"><td>HDMI Capture</td><td>2 Unit</td><td><span class="badge badge-emerald">✅</span></td><td>1x Input ProPresenter 1, 1x Input Resolume</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- 2. ABON -->
+          <div class="vendor-block" data-vendor="ABON">
+            <h3 class="vendor-title"><span class="vendor-dot"></span> 2. Peminjaman dari ABON</h3>
+            <div class="table-responsive">
+              <table class="data-table inv-table">
+                <thead>
+                  <tr><th>Nama Barang</th><th>Jumlah</th><th>Status</th><th>Keterangan Penggunaan</th></tr>
+                </thead>
+                <tbody>
+                  <tr data-name="HDMI Capture"><td>HDMI Capture</td><td>2 Unit</td><td><span class="badge badge-amber">⚠️ 1/2</span></td><td>1 Unit terpakai di Resolume (Splitter ➔ RES), 1 standby</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- 3. Andreas -->
+          <div class="vendor-block" data-vendor="Andreas">
+            <h3 class="vendor-title"><span class="vendor-dot"></span> 3. Peminjaman dari Andreas</h3>
+            <div class="table-responsive">
+              <table class="data-table inv-table">
+                <thead>
+                  <tr><th>Nama Barang</th><th>Jumlah</th><th>Status</th><th>Keterangan Penggunaan</th></tr>
+                </thead>
+                <tbody>
+                  <tr data-name="Fan Cooler"><td>Fan Cooler</td><td>1 Unit</td><td><span class="badge badge-slate">☑️</span></td><td>Pendingin laptop / workstation</td></tr>
+                  <tr data-name="Mouse Pad"><td>Mouse Pad</td><td>1 Unit</td><td><span class="badge badge-slate">☑️</span></td><td>Perlengkapan meja operator</td></tr>
+                  <tr data-name="Keyboard External"><td>Keyboard External</td><td>1 Unit</td><td><span class="badge badge-slate">☑️</span></td><td>Kontrol tambahan</td></tr>
+                  <tr data-name="Mouse External"><td>Mouse External</td><td>1 Unit</td><td><span class="badge badge-slate">☑️</span></td><td>Kontrol navigasi switcher / visual</td></tr>
+                  <tr data-name="Powerbank"><td>Powerbank</td><td>1 Unit</td><td><span class="badge badge-slate">☑️</span></td><td>Daya darurat aksesoris</td></tr>
+                  <tr data-name="Power Adaptor USB A"><td>Power Adaptor USB A</td><td>9 Unit</td><td><span class="badge badge-slate">☑️</span></td><td>Charger aksesoris / transmitter</td></tr>
+                  <tr data-name="Power Adaptor USB A x C"><td>Power Adaptor USB A x C</td><td>1 Unit</td><td><span class="badge badge-slate">☑️</span></td><td>Charger cepat dual-port</td></tr>
+                  <tr data-name="Power Adaptor USB C"><td>Power Adaptor USB C</td><td>1 Unit</td><td><span class="badge badge-slate">☑️</span></td><td>Charger perangkat Type-C</td></tr>
+                  <tr data-name="USB A to USB B Data Cable"><td>USB A to USB B Data Cable</td><td>1 Unit</td><td><span class="badge badge-slate">☑️</span></td><td>Cadangan koneksi audio/printer</td></tr>
+                  <tr data-name="USB A to USB Micro B Data Cable"><td>USB A to USB Micro B Data Cable</td><td>2 Unit</td><td><span class="badge badge-slate">☑️</span></td><td>Cadangan koneksi perangkat legacy</td></tr>
+                  <tr data-name="USB A to USB C Data Cable"><td>USB A to USB C Data Cable</td><td>1 Unit</td><td><span class="badge badge-emerald">✅</span></td><td>Switcher Cinetreak ➔ Laptop OBS Studio</td></tr>
+                  <tr data-name="USB A to USB C Charge Cable"><td>USB A to USB C Charge Cable</td><td>1 Unit</td><td><span class="badge badge-slate">☑️</span></td><td>Pengisian daya Type-C</td></tr>
+                  <tr data-name="USB C to USB C Charge Cable"><td>USB C to USB C Charge Cable</td><td>1 Unit</td><td><span class="badge badge-slate">☑️</span></td><td>Pengisian daya Type-C</td></tr>
+                  <tr data-name="USB A to USB A Extender 30CM"><td>USB A to USB A Extender 30CM</td><td>2 Unit</td><td><span class="badge badge-slate">☑️</span></td><td>Sambungan pendek port USB</td></tr>
+                  <tr data-name="USB A to USB A Extender 2M"><td>USB A to USB A Extender 2M</td><td>1 Unit</td><td><span class="badge badge-emerald">✅</span></td><td>Mixer NewBaxs CT80S ➔ Laptop OBS Studio</td></tr>
+                  <tr data-name="USB A to USB C Male Converter"><td>USB A to USB C Male Converter</td><td>4 Unit</td><td><span class="badge badge-slate">☑️</span></td><td>Converter port USB-C</td></tr>
+                  <tr data-name="USB A to USB C Female Converter"><td>USB A to USB C Female Converter</td><td>2 Unit</td><td><span class="badge badge-slate">☑️</span></td><td>Adapter USB-C</td></tr>
+                  <tr data-name="USB A to Mini USB Cable"><td>USB A to Mini USB Cable</td><td>1 Unit</td><td><span class="badge badge-slate">☑️</span></td><td>Cadangan kabel mini-USB</td></tr>
+                  <tr data-name="USB A Splitter 3CH"><td>USB A Splitter 3CH</td><td>1 Unit</td><td><span class="badge badge-slate">☑️</span></td><td>Ekspansi port USB</td></tr>
+                  <tr data-name="USB A Splitter 4CH"><td>USB A Splitter 4CH</td><td>1 Unit</td><td><span class="badge badge-slate">☑️</span></td><td>Ekspansi port USB</td></tr>
+                  <tr data-name="USB C DAC Hanason AB17X"><td>USB C DAC Hanason AB17X</td><td>1 Unit</td><td><span class="badge badge-emerald">✅</span></td><td>Audio DAC Laptop Resolume ➔ Mixer Yamaha QL5</td></tr>
+                  <tr data-name="USB C DAC Oraimo OAA310"><td>USB C DAC Oraimo OAA310</td><td>1 Unit</td><td><span class="badge badge-slate">☑️</span></td><td>Cadangan Audio DAC</td></tr>
+                  <tr data-name="In Ear Monitor QKZ Hi7T"><td>In Ear Monitor QKZ Hi7T</td><td>1 Pack</td><td><span class="badge badge-slate">☑️</span></td><td>Monitoring audio operator</td></tr>
+                  <tr data-name="In Ear Monitor KZ EDX Pro"><td>In Ear Monitor KZ EDX Pro</td><td>1 Pack</td><td><span class="badge badge-slate">☑️</span></td><td>Monitoring audio operator</td></tr>
+                  <tr data-name="Fastdrive Vgen SSD 128GB"><td>Fastdrive Vgen SSD 128GB</td><td>1 Pack</td><td><span class="badge badge-slate">☑️</span></td><td>Penyimpanan cepat materi visual</td></tr>
+                  <tr data-name="Fastdrive Toshiba HDD 1TB"><td>Fastdrive Toshiba HDD 1TB</td><td>1 Pack</td><td><span class="badge badge-slate">☑️</span></td><td>Penyimpanan arsip video & asset besar</td></tr>
+                  <tr data-name="Flashdrive Toshiba 8GB"><td>Flashdrive Toshiba 8GB</td><td>1 Unit</td><td><span class="badge badge-slate">☑️</span></td><td>Transfer materi presentasi</td></tr>
+                  <tr data-name="Flashdrive Sandisk 16GB"><td>Flashdrive Sandisk 16GB</td><td>1 Unit</td><td><span class="badge badge-slate">☑️</span></td><td>Transfer materi presentasi</td></tr>
+                  <tr data-name="Flashdrive Toshiba 32GB"><td>Flashdrive Toshiba 32GB</td><td>1 Unit</td><td><span class="badge badge-slate">☑️</span></td><td>Backup materi video / audio</td></tr>
+                  <tr data-name="Flashdrive Toshiba 64GB"><td>Flashdrive Toshiba 64GB</td><td>1 Unit</td><td><span class="badge badge-slate">☑️</span></td><td>Backup master file & rundown</td></tr>
+                  <tr data-name="HDMI to Mini HDMI Converter"><td>HDMI to Mini HDMI Converter</td><td>1 Unit</td><td><span class="badge badge-slate">☑️</span></td><td>Cadangan konverter video</td></tr>
+                  <tr data-name="Mini HDMI to Mini HDMI Cable 1,5M"><td>Mini HDMI to Mini HDMI Cable 1,5M</td><td>1 Unit</td><td><span class="badge badge-slate">☑️</span></td><td>Cadangan kabel video</td></tr>
+                  <tr data-name="HDMI to HDMI Cable 1,5M"><td>HDMI to HDMI Cable 1,5M</td><td>3 Unit</td><td><span class="badge badge-emerald">✅</span></td><td>1x Splitter ➔ PRO1, 1x PRO2 ➔ RES, 1x Splitter ➔ RES</td></tr>
+                  <tr data-name="VGA to HDMI Converter"><td>VGA to HDMI Converter</td><td>3 Unit</td><td><span class="badge badge-slate">☑️</span></td><td>Cadangan display legacy</td></tr>
+                  <tr data-name="VGA to VGA Cable 1,5M"><td>VGA to VGA Cable 1,5M</td><td>1 Unit</td><td><span class="badge badge-slate">☑️</span></td><td>Cadangan kabel monitor</td></tr>
+                  <tr data-name="Power Cable 3PIN"><td>Power Cable 3PIN</td><td>3 Unit</td><td><span class="badge badge-amber">⚠️</span></td><td>Kabel power PC / Monitor / Mixer</td></tr>
+                  <tr data-name="Power Cable 2PIN"><td>Power Cable 2PIN</td><td>1 Unit</td><td><span class="badge badge-amber">⚠️</span></td><td>Kabel power adaptor TV / Device</td></tr>
+                  <tr data-name="Terminal Cable 4CH"><td>Terminal Cable 4CH</td><td>3 Unit</td><td><span class="badge badge-amber">⚠️</span></td><td>Distribusi colokan meja teknis</td></tr>
+                  <tr data-name="Terminal Cable 3CH"><td>Terminal Cable 3CH</td><td>2 Unit</td><td><span class="badge badge-amber">⚠️</span></td><td>Distribusi colokan meja teknis</td></tr>
+                  <tr data-name="Terminal Cable 2CH"><td>Terminal Cable 2CH</td><td>1 Unit</td><td><span class="badge badge-amber">⚠️</span></td><td>Distribusi colokan meja teknis</td></tr>
+                  <tr data-name="Terminal Cable XCH"><td>Terminal Cable XCH</td><td>X Unit</td><td><span class="badge badge-emerald">✅</span></td><td>Terminal utama meja kontrol</td></tr>
+                  <tr data-name="Terminal T"><td>Terminal T</td><td>8 Unit</td><td><span class="badge badge-amber">⚠️</span></td><td>Percabangan colokan listrik</td></tr>
+                  <tr data-name="Addon Box"><td>Addon Box</td><td>1 Pack</td><td><span class="badge badge-slate">☑️</span></td><td>Perlengkapan & tools tambahan</td></tr>
+                  <tr data-name="Jack Box"><td>Jack Box</td><td>1 Pack</td><td><span class="badge badge-slate">☑️</span></td><td>Kumpulan jack audio & converter</td></tr>
+                  <tr data-name="Screw Box"><td>Screw Box</td><td>1 Pack</td><td><span class="badge badge-slate">☑️</span></td><td>Baut rigging & plate kamera/tripod</td></tr>
+                  <tr data-name="Ties Box"><td>Ties Box</td><td>1 Pack</td><td><span class="badge badge-slate">☑️</span></td><td>Cable ties untuk manajemen kabel</td></tr>
+                  <tr data-name="Tool Box"><td>Tool Box</td><td>2 Pack</td><td><span class="badge badge-slate">☑️</span></td><td>Obeng, tang, gunting, tespen, multimeter</td></tr>
+                  <tr data-name="Cable Box"><td>Cable Box</td><td>1 Pack</td><td><span class="badge badge-slate">☑️</span></td><td>Wadah manajemen cadangan kabel</td></tr>
+                  <tr data-name="Tape Box"><td>Tape Box</td><td>1 Pack</td><td><span class="badge badge-slate">☑️</span></td><td>Lakban kain, isolasi hitam, double tape</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- 4. GIA Deliksari -->
+          <div class="vendor-block" data-vendor="GIA">
+            <h3 class="vendor-title"><span class="vendor-dot"></span> 4. Peminjaman dari GIA Deliksari</h3>
+            <div class="table-responsive">
+              <table class="data-table inv-table">
+                <thead>
+                  <tr><th>Nama Barang</th><th>Jumlah</th><th>Status</th><th>Keterangan Penggunaan</th></tr>
+                </thead>
+                <tbody>
+                  <tr data-name="Mixer NewBaxs CT80S"><td>Mixer NewBaxs CT80S</td><td>1 Unit</td><td><span class="badge badge-emerald">✅</span></td><td>Mixer 2 (Sub-Mix Audio Streaming ke OBS)</td></tr>
+                  <tr data-name="XLR Female to Male Cable 3M"><td>XLR Female to Male Cable 3M</td><td>2 Unit</td><td><span class="badge badge-emerald">✅</span></td><td>Output Yamaha QL5 ➔ Input Mixer NewBaxs CT80S</td></tr>
+                  <tr data-name="USB A to USB C Data Cable"><td>USB A to USB C Data Cable</td><td>1 Unit</td><td><span class="badge badge-emerald">✅</span></td><td>Mixer NewBaxs CT80S ➔ Laptop OBS Studio</td></tr>
+                  <tr data-name="Tripod Camera Big"><td>Tripod Camera Big</td><td>1 Unit</td><td><span class="badge badge-emerald">✅</span></td><td>Tripod CAM 3 Broadcast</td></tr>
+                  <tr data-name="HDMI Splitter 2CH"><td>HDMI Splitter 2CH</td><td>1 Unit</td><td><span class="badge badge-slate">☑️</span></td><td>Cadangan Video Splitter</td></tr>
+                  <tr data-name="Power Adaptor SPL"><td>Power Adaptor SPL</td><td>1 Pack</td><td><span class="badge badge-slate">☑️</span></td><td>Power Adaptor Splitter GIA</td></tr>
+                  <tr data-name="HDMI to HDMI Cable 1M"><td>HDMI to HDMI Cable 1M</td><td>2 Unit</td><td><span class="badge badge-emerald">✅</span></td><td>1x Switcher ➔ TV Multiview, 1x Switcher ➔ Splitter 4CH</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- 5. GKJ Ngaliyan -->
+          <div class="vendor-block" data-vendor="GKJ">
+            <h3 class="vendor-title"><span class="vendor-dot"></span> 5. Peminjaman dari GKJ Ngaliyan</h3>
+            <div class="table-responsive">
+              <table class="data-table inv-table">
+                <thead>
+                  <tr><th>Nama Barang</th><th>Jumlah</th><th>Status</th><th>Keterangan Penggunaan</th></tr>
+                </thead>
+                <tbody>
+                  <tr data-name="Stand Lighting Small"><td>Stand Lighting Small</td><td>1 Unit</td><td><span class="badge badge-slate">☑️</span></td><td>Cadangan stand wireless receiver</td></tr>
+                  <tr data-name="HDMI Cable 15M"><td>HDMI Cable 15M</td><td>1 Unit</td><td><span class="badge badge-emerald">✅</span></td><td>Output Laptop Resolume ➔ HDMI Capture PC UNNES</td></tr>
+                  <tr data-name="HDMI Cable 10M"><td>HDMI Cable 10M</td><td>1 Unit</td><td><span class="badge badge-emerald">✅</span></td><td>CAM 3 Wired ➔ Switcher Cinetreak</td></tr>
+                  <tr data-name="HDMI Cable 5M"><td>HDMI Cable 5M</td><td>1 Unit</td><td><span class="badge badge-slate">☑️</span></td><td>Cadangan kabel HDMI jarak menengah</td></tr>
+                  <tr data-name="HDMI Cable 1,5M"><td>HDMI Cable 1,5M</td><td>1 Unit</td><td><span class="badge badge-slate">☑️</span></td><td>Cadangan kabel patch HDMI</td></tr>
+                  <tr data-name="HDMI Capture"><td>HDMI Capture</td><td>1 Unit</td><td><span class="badge badge-emerald">✅</span></td><td>Input ke PC UNNES dari Laptop Resolume</td></tr>
+                  <tr data-name="HDMI Splitter 4CH"><td>HDMI Splitter 4CH</td><td>1 Unit</td><td><span class="badge badge-slate">☑️</span></td><td>Cadangan HDMI Splitter 4 Channel</td></tr>
+                  <tr data-name="Power Adaptor SPL"><td>Power Adaptor SPL</td><td>1 Pack</td><td><span class="badge badge-slate">☑️</span></td><td>Power Adaptor Splitter GKJ</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- 6. GBIS Kalisari -->
+          <div class="vendor-block" data-vendor="GBIS">
+            <h3 class="vendor-title"><span class="vendor-dot"></span> 6. Peminjaman dari GBIS Kalisari</h3>
+            <div class="table-responsive">
+              <table class="data-table inv-table">
+                <thead>
+                  <tr><th>Nama Barang</th><th>Jumlah</th><th>Status</th><th>Keterangan Penggunaan</th></tr>
+                </thead>
+                <tbody>
+                  <tr data-name="HDMI Cable 15M"><td>HDMI Cable 15M</td><td>1 Unit</td><td><span class="badge badge-emerald">✅</span></td><td>Output Splitter 4CH ➔ Projector Tengah</td></tr>
+                  <tr data-name="HDMI Cable 10M"><td>HDMI Cable 10M</td><td>1 Unit</td><td><span class="badge badge-emerald">✅</span></td><td>CAM 4 Wired ➔ Switcher Cinetreak</td></tr>
+                  <tr data-name="HDMI Cable 5M"><td>HDMI Cable 5M</td><td>1 Unit</td><td><span class="badge badge-slate">☑️</span></td><td>Cadangan kabel video</td></tr>
+                  <tr data-name="HDMI Cable 1,5M"><td>HDMI Cable 1,5M</td><td>1 Unit</td><td><span class="badge badge-slate">☑️</span></td><td>Cadangan kabel patch HDMI</td></tr>
+                  <tr data-name="HDMI Splitter 4CH"><td>HDMI Splitter 4CH</td><td>1 Unit</td><td><span class="badge badge-emerald">✅</span></td><td>Distribusi output visual ke proyektor</td></tr>
+                  <tr data-name="Power Adaptor SPL"><td>Power Adaptor SPL</td><td>1 Pack</td><td><span class="badge badge-emerald">✅</span></td><td>Power Splitter GBIS</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- 7. GBI Graha Kemenangan -->
+          <div class="vendor-block" data-vendor="GBI Graha">
+            <h3 class="vendor-title"><span class="vendor-dot"></span> 7. Peminjaman dari GBI Graha Kemenangan</h3>
+            <div class="table-responsive">
+              <table class="data-table inv-table">
+                <thead>
+                  <tr><th>Nama Barang</th><th>Jumlah</th><th>Status</th><th>Keterangan Penggunaan</th></tr>
+                </thead>
+                <tbody>
+                  <tr data-name="Intercom Hollyland Solidcom C1 Pro"><td>Intercom Hollyland Solidcom C1 Pro (4 Unit)</td><td>1 Pack</td><td><span class="badge badge-emerald">✅</span></td><td>Komunikasi kru switcher & operator</td></tr>
+                  <tr data-name="Battery Intercom"><td>Battery Intercom</td><td>8 Unit</td><td><span class="badge badge-emerald">✅</span></td><td>4 terpakai, 4 charging backup</td></tr>
+                  <tr data-name="Charger Intercom"><td>Charger Intercom</td><td>1 Pack</td><td><span class="badge badge-emerald">✅</span></td><td>Charging dock baterai intercom</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- 8. GKI Peterongan -->
+          <div class="vendor-block" data-vendor="GKI Peterongan">
+            <h3 class="vendor-title"><span class="vendor-dot"></span> 8. Peminjaman dari GKI Peterongan</h3>
+            <div class="table-responsive">
+              <table class="data-table inv-table">
+                <thead>
+                  <tr><th>Nama Barang</th><th>Jumlah</th><th>Status</th><th>Keterangan Penggunaan</th></tr>
+                </thead>
+                <tbody>
+                  <tr data-name="Intercom Hollyland Solidcom C1 Pro"><td>Intercom Hollyland Solidcom C1 Pro (4 Unit)</td><td>1 Pack</td><td><span class="badge badge-emerald">✅</span></td><td>Komunikasi kru kamera lapangan</td></tr>
+                  <tr data-name="Battery Intercom"><td>Battery Intercom</td><td>8 Unit</td><td><span class="badge badge-emerald">✅</span></td><td>4 terpakai, 4 charging backup</td></tr>
+                  <tr data-name="Charger Intercom"><td>Charger Intercom</td><td>1 Pack</td><td><span class="badge badge-emerald">✅</span></td><td>Charging dock baterai intercom</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- 9. Dika -->
+          <div class="vendor-block" data-vendor="Dika">
+            <h3 class="vendor-title"><span class="vendor-dot"></span> 9. Peminjaman dari Dika</h3>
+            <div class="table-responsive">
+              <table class="data-table inv-table">
+                <thead>
+                  <tr><th>Nama Barang</th><th>Jumlah</th><th>Status</th><th>Keterangan Penggunaan</th></tr>
+                </thead>
+                <tbody>
+                  <tr data-name="Sony A7II"><td>Sony A7II</td><td>1 Unit</td><td><span class="badge badge-emerald">✅</span></td><td>CAM 1 Broadcast Steady</td></tr>
+                  <tr data-name="Lens 28-70MM"><td>Lens 28-70MM</td><td>1 Unit</td><td><span class="badge badge-emerald">✅</span></td><td>Lensa CAM 1</td></tr>
+                  <tr data-name="Battery Kamera"><td>Battery Kamera</td><td>3 Unit</td><td><span class="badge badge-emerald">✅</span></td><td>Baterai CAM 1</td></tr>
+                  <tr data-name="Charger Kamera"><td>Charger Kamera</td><td>1 Pack</td><td><span class="badge badge-emerald">✅</span></td><td>Charger baterai CAM 1</td></tr>
+                  <tr data-name="Tripod Camera Small"><td>Tripod Camera Small</td><td>1 Unit</td><td><span class="badge badge-emerald">✅</span></td><td>Tripod CAM 2 Mobile</td></tr>
+                  <tr data-name="Power Adaptor CAM"><td>Power Adaptor CAM</td><td>1 Unit</td><td><span class="badge badge-emerald">✅</span></td><td>Dummy power adaptor kamera</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- 10. Alfa -->
+          <div class="vendor-block" data-vendor="Alfa">
+            <h3 class="vendor-title"><span class="vendor-dot"></span> 10. Peminjaman dari Alfa</h3>
+            <div class="table-responsive">
+              <table class="data-table inv-table">
+                <thead>
+                  <tr><th>Nama Barang</th><th>Jumlah</th><th>Status</th><th>Keterangan Penggunaan</th></tr>
+                </thead>
+                <tbody>
+                  <tr data-name="Tripod Camera Big"><td>Tripod Camera Big</td><td>1 Unit</td><td><span class="badge badge-emerald">✅</span></td><td>Tripod CAM 4 Broadcast</td></tr>
+                  <tr data-name="Power Adaptor CAM"><td>Power Adaptor CAM</td><td>2 Unit</td><td><span class="badge badge-emerald">✅</span></td><td>Dummy power adaptor kamera</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- 11. Ezra -->
+          <div class="vendor-block" data-vendor="Ezra">
+            <h3 class="vendor-title"><span class="vendor-dot"></span> 11. Peminjaman dari Ezra</h3>
+            <div class="table-responsive">
+              <table class="data-table inv-table">
+                <thead>
+                  <tr><th>Nama Barang</th><th>Jumlah</th><th>Status</th><th>Keterangan Penggunaan</th></tr>
+                </thead>
+                <tbody>
+                  <tr data-name="TV Coocaa 32 Inch"><td>TV Coocaa 32 Inch</td><td>1 Unit</td><td><span class="badge badge-emerald">✅</span></td><td>Multiview Monitor Switcher Master</td></tr>
+                  <tr data-name="Remote TV"><td>Remote TV</td><td>1 Unit</td><td><span class="badge badge-emerald">✅</span></td><td>Kontrol TV Multiview</td></tr>
+                  <tr data-name="Kaki TV"><td>Kaki TV</td><td>2 Unit</td><td><span class="badge badge-emerald">✅</span></td><td>Stand TV Multiview</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- 12. GBI Gajah Mada -->
+          <div class="vendor-block" data-vendor="GBI Gajah Mada">
+            <h3 class="vendor-title"><span class="vendor-dot"></span> 12. Peminjaman dari GBI Gajah Mada</h3>
+            <div class="table-responsive">
+              <table class="data-table inv-table">
+                <thead>
+                  <tr><th>Nama Barang</th><th>Jumlah</th><th>Status</th><th>Keterangan Penggunaan</th></tr>
+                </thead>
+                <tbody>
+                  <tr data-name="Stand Lighting Big"><td>Stand Lighting Big</td><td>2 Unit</td><td><span class="badge badge-emerald">✅</span></td><td>Stand Wireless Video Receiver</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- 13. Pelayanan Media Semarang -->
+          <div class="vendor-block" data-vendor="Pelayanan Media Semarang">
+            <h3 class="vendor-title"><span class="vendor-dot"></span> 13. Peminjaman dari Pelayanan Media Semarang</h3>
+            <div class="table-responsive">
+              <table class="data-table inv-table">
+                <thead>
+                  <tr><th>Nama Barang</th><th>Jumlah</th><th>Status</th><th>Keterangan Penggunaan</th></tr>
+                </thead>
+                <tbody>
+                  <tr data-name="Kabel Roll 50M"><td>Kabel Roll 50M</td><td>1 Unit</td><td><span class="badge badge-emerald">✅</span></td><td>Distribusi daya utama panggung</td></tr>
+                  <tr data-name="Kabel Roll 25M"><td>Kabel Roll 25M</td><td>1 Unit</td><td><span class="badge distinction badge-emerald">✅</span></td><td>Distribusi daya meja switcher</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- 14. UKK UNNES -->
+          <div class="vendor-block" data-vendor="UKK UNNES">
+            <h3 class="vendor-title"><span class="vendor-dot"></span> 14. Inventaris Internal UKK UNNES</h3>
+            <div class="table-responsive">
+              <table class="data-table inv-table">
+                <thead>
+                  <tr><th>Nama Barang</th><th>Jumlah</th><th>Status</th><th>Keterangan Penggunaan</th></tr>
+                </thead>
+                <tbody>
+                  <tr data-name="HT Baofeng"><td>HT Baofeng</td><td>8 Unit</td><td><span class="badge badge-emerald">✅</span></td><td>Radio komunikasi tim logistik & usher</td></tr>
+                  <tr data-name="Charger HT"><td>Charger HT</td><td>2 Pack</td><td><span class="badge badge-emerald">✅</span></td><td>Stasiun isi ulang daya HT</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- Footer -->
+      <footer class="footer" style="margin-top: var(--space-8); padding-bottom: var(--space-8);">
+        <p class="footer-meta">
+          <strong>IP26 TACTICAL SATSET CHECKLIST</strong> &bull; Unit Kegiatan Kristen UNNES &bull; Realtime Multi-Device Sync
+        </p>
+      </footer>
+
+    </div>
+  </main>
+
+  <!-- Main Application Script (Shares app.js engine for sync, check, and live presence) -->
+  <script src="app.js"></script>
 </body>
 </html>
