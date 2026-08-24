@@ -77,6 +77,11 @@ document.addEventListener('DOMContentLoaded', () => {
       const icon = mobileThemeBtn.querySelector('.theme-dock-icon');
       if (icon) icon.textContent = isDark ? '🌙' : '☀️';
     }
+    const drawerThemeToggle = document.getElementById('drawer-theme-toggle');
+    if (drawerThemeToggle) {
+      const drawerLabel = drawerThemeToggle.querySelector('.drawer-theme-label');
+      if (drawerLabel) drawerLabel.textContent = isDark ? 'Mode Terang (Linen)' : 'Mode Gelap (Slate)';
+    }
   }
 
   if (themeToggleBtn) themeToggleBtn.addEventListener('click', toggleTheme);
@@ -862,9 +867,74 @@ document.addEventListener('DOMContentLoaded', () => {
   window.addEventListener('scroll', onScroll, { passive: true });
   updateScrollMetrics();
 
-  // Keyboard Navigation & Escape key accessibility for Modals
+  // =========================================================================
+  // 5.5. MOBILE NAVIGATION DRAWER CONTROLLER
+  // =========================================================================
+  const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
+  const dockMenuBtn = document.getElementById('dock-menu-btn');
+  const mobileNavDrawer = document.getElementById('mobile-nav-drawer');
+  const mobileDrawerBackdrop = document.getElementById('mobile-drawer-backdrop');
+  const drawerCloseBtn = document.getElementById('drawer-close-btn');
+  const drawerThemeToggle = document.getElementById('drawer-theme-toggle');
+  const drawerBatchBtn = document.getElementById('drawer-batch-btn');
+  const drawerNavLinks = document.querySelectorAll('.drawer-nav-link');
+
+  function openMobileDrawer() {
+    if (mobileNavDrawer && mobileDrawerBackdrop) {
+      mobileNavDrawer.classList.add('active');
+      mobileDrawerBackdrop.classList.add('active');
+      mobileNavDrawer.setAttribute('aria-hidden', 'false');
+      mobileDrawerBackdrop.setAttribute('aria-hidden', 'false');
+      if (mobileMenuToggle) mobileMenuToggle.setAttribute('aria-expanded', 'true');
+      document.body.style.overflow = 'hidden';
+    }
+  }
+
+  function closeMobileDrawer() {
+    if (mobileNavDrawer && mobileDrawerBackdrop) {
+      mobileNavDrawer.classList.remove('active');
+      mobileDrawerBackdrop.classList.remove('active');
+      mobileNavDrawer.setAttribute('aria-hidden', 'true');
+      mobileDrawerBackdrop.setAttribute('aria-hidden', 'true');
+      if (mobileMenuToggle) mobileMenuToggle.setAttribute('aria-expanded', 'false');
+      document.body.style.overflow = '';
+    }
+  }
+
+  if (mobileMenuToggle) mobileMenuToggle.addEventListener('click', openMobileDrawer);
+  if (dockMenuBtn) dockMenuBtn.addEventListener('click', openMobileDrawer);
+  if (drawerCloseBtn) drawerCloseBtn.addEventListener('click', closeMobileDrawer);
+  if (mobileDrawerBackdrop) mobileDrawerBackdrop.addEventListener('click', closeMobileDrawer);
+
+  drawerNavLinks.forEach((link) => {
+    link.addEventListener('click', () => {
+      closeMobileDrawer();
+    });
+  });
+
+  if (drawerThemeToggle) {
+    drawerThemeToggle.addEventListener('click', () => {
+      toggleTheme();
+    });
+  }
+
+  if (drawerBatchBtn) {
+    drawerBatchBtn.addEventListener('click', () => {
+      closeMobileDrawer();
+      if (typeof openBatchModal === 'function') {
+        openBatchModal(true);
+      }
+    });
+  }
+
+  // Keyboard Navigation & Escape key accessibility for Modals & Mobile Drawer
   document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape') {
+      if (mobileNavDrawer && mobileNavDrawer.classList.contains('active')) {
+        closeMobileDrawer();
+        if (mobileMenuToggle) mobileMenuToggle.focus();
+        return;
+      }
       if (cloudConfigModal && cloudConfigModal.style.display === 'flex') {
         cloudConfigModal.style.display = 'none';
         if (btnOpenCloudConfig) btnOpenCloudConfig.focus();
@@ -872,6 +942,9 @@ document.addEventListener('DOMContentLoaded', () => {
       if (licenseModal && licenseModal.style.display === 'flex') {
         licenseModal.style.display = 'none';
         if (btnOpenLicense) btnOpenLicense.focus();
+      }
+      if (batchActionModal && batchActionModal.style.display === 'flex') {
+        batchActionModal.style.display = 'none';
       }
     }
   });

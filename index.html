@@ -120,6 +120,11 @@
         <a href="#inventory" class="btn btn-sm btn-primary nav-cta-btn" aria-label="Menuju ke Live Checklist Inventaris">
           <span class="btn-icon">⚡</span> Checklist Live
         </a>
+        <button id="mobile-menu-toggle" class="mobile-menu-toggle-btn" aria-label="Buka Menu Navigasi Lengkap" aria-expanded="false" aria-controls="mobile-nav-drawer">
+          <span class="hamburger-bar"></span>
+          <span class="hamburger-bar"></span>
+          <span class="hamburger-bar"></span>
+        </button>
       </div>
     </div>
   </header>
@@ -1638,30 +1643,166 @@ All Rights Reserved.
       </a>
       <a href="#structure" class="dock-item" data-nav="structure">
         <span class="dock-icon">👥</span>
-        <span class="dock-label">Tim</span>
+        <span class="dock-label">PIC</span>
       </a>
       <a href="#flowcharts" class="dock-item" data-nav="flowcharts">
         <span class="dock-icon">🗺️</span>
-        <span class="dock-label">Sinyal</span>
-      </a>
-      <a href="#cameras" class="dock-item" data-nav="cameras">
-        <span class="dock-icon">🎥</span>
-        <span class="dock-label">Kamera</span>
+        <span class="dock-label">Alur</span>
       </a>
       <a href="#inventory" class="dock-item" data-nav="inventory">
         <span class="dock-icon">📦</span>
-        <span class="dock-label">Barang</span>
+        <span class="dock-label">Logistik</span>
       </a>
       <a href="#rundown" class="dock-item" data-nav="rundown">
         <span class="dock-icon">📋</span>
         <span class="dock-label">Rundown</span>
       </a>
-      <button id="mobile-theme-btn" class="dock-item dock-btn" aria-label="Toggle Theme">
-        <span class="dock-icon theme-dock-icon">🌙</span>
-        <span class="dock-label">Mode</span>
+      <button id="dock-menu-btn" class="dock-item dock-btn" aria-label="Buka Seluruh Menu Navigasi" aria-haspopup="true">
+        <span class="dock-icon">☰</span>
+        <span class="dock-label">Menu</span>
       </button>
     </div>
   </nav>
+
+  <!-- ========================================================================= -->
+  <!-- 12. MOBILE NAVIGATION DRAWER & BACKDROP -->
+  <!-- ========================================================================= -->
+  <div id="mobile-drawer-backdrop" class="mobile-drawer-backdrop" aria-hidden="true"></div>
+  <aside id="mobile-nav-drawer" class="mobile-nav-drawer" aria-label="Menu Navigasi Mobile" aria-hidden="true">
+    <div class="drawer-header">
+      <div class="drawer-brand">
+        <span class="brand-badge">IP26</span>
+        <div class="drawer-brand-text">
+          <span class="drawer-title">COMMAND PORTAL</span>
+          <span class="drawer-sub">UKK UNNES 2026</span>
+        </div>
+      </div>
+      <button id="drawer-close-btn" class="drawer-close-btn" aria-label="Tutup Menu Navigasi">&times;</button>
+    </div>
+
+    <div class="drawer-content">
+      <div class="drawer-section-label">NAVIGASI UTAMA</div>
+      <ul class="drawer-nav-list">
+        <li>
+          <a href="#hero" class="drawer-nav-link">
+            <span class="drawer-link-icon">🏠</span>
+            <div class="drawer-link-text">
+              <strong>Beranda & Ringkasan</strong>
+              <small>Overview & Telemetri Produksi</small>
+            </div>
+            <span class="drawer-link-badge">Top</span>
+          </a>
+        </li>
+        <li>
+          <a href="#structure" class="drawer-nav-link">
+            <span class="drawer-link-icon">👥</span>
+            <div class="drawer-link-text">
+              <strong>Struktur Tim & PIC</strong>
+              <small>Direktori Penanggung Jawab</small>
+            </div>
+            <span class="drawer-link-badge">PIC</span>
+          </a>
+        </li>
+        <li>
+          <a href="#flowcharts" class="drawer-nav-link">
+            <span class="drawer-link-icon">🗺️</span>
+            <div class="drawer-link-text">
+              <strong>Master Signal Flowchart</strong>
+              <small>Diagram Interaktif Alur Sinyal</small>
+            </div>
+            <span class="drawer-link-badge">Alur</span>
+          </a>
+        </li>
+        <li>
+          <a href="#subsystems" class="drawer-nav-link">
+            <span class="drawer-link-icon">⚡</span>
+            <div class="drawer-link-text">
+              <strong>6 Sub-Sistem Master</strong>
+              <small>Audio, LED, Switcher, OBS, Kamera, Intercom</small>
+            </div>
+            <span class="drawer-link-badge">Sub</span>
+          </a>
+        </li>
+        <li>
+          <a href="#cameras" class="drawer-nav-link">
+            <span class="drawer-link-icon">🎥</span>
+            <div class="drawer-link-text">
+              <strong>Alokasi Kamera & Operator</strong>
+              <small>4 Broadcast + 3 Dokumentasi</small>
+            </div>
+            <span class="drawer-link-badge">Kamera</span>
+          </a>
+        </li>
+        <li>
+          <a href="#workstations" class="drawer-nav-link">
+            <span class="drawer-link-icon">💻</span>
+            <div class="drawer-link-text">
+              <strong>Workstations & Device Control</strong>
+              <small>11 Unit Laptop, Switcher, & Console</small>
+            </div>
+            <span class="drawer-link-badge">Device</span>
+          </a>
+        </li>
+        <li>
+          <a href="#inventory" class="drawer-nav-link highlight">
+            <span class="drawer-link-icon">📦</span>
+            <div class="drawer-link-text">
+              <strong>Checklist Inventaris Realtime</strong>
+              <small>Dual Phase: Pasang & Kemas</small>
+            </div>
+            <span class="drawer-link-badge pulse">Live</span>
+          </a>
+        </li>
+        <li>
+          <a href="#rundown" class="drawer-nav-link">
+            <span class="drawer-link-icon">📋</span>
+            <div class="drawer-link-text">
+              <strong>Rundown Acara & Cue Sheet</strong>
+              <small>Timeline, Durasi, & Status Segment</small>
+            </div>
+            <span class="drawer-link-badge">Rundown</span>
+          </a>
+        </li>
+        <li>
+          <a href="#frequencies" class="drawer-nav-link">
+            <span class="drawer-link-icon">📶</span>
+            <div class="drawer-link-text">
+              <strong>Alokasi Frekuensi Wireless</strong>
+              <small>Pyro TX/RX & Mic Frequencies</small>
+            </div>
+            <span class="drawer-link-badge">RF</span>
+          </a>
+        </li>
+        <li>
+          <a href="#rules" class="drawer-nav-link">
+            <span class="drawer-link-icon">📜</span>
+            <div class="drawer-link-text">
+              <strong>Golden Rules & SOP Produksi</strong>
+              <small>Prosedur Keamanan & Kabel Listrik</small>
+            </div>
+            <span class="drawer-link-badge">SOP</span>
+          </a>
+        </li>
+      </ul>
+
+      <div class="drawer-section-label">PENGATURAN & AKSI</div>
+      <div class="drawer-quick-actions">
+        <button id="drawer-theme-toggle" class="drawer-action-btn" aria-label="Ganti Mode Tema">
+          <span class="theme-icon dark-icon">🌙</span>
+          <span class="theme-icon light-icon">☀️</span>
+          <span class="drawer-theme-label">Ganti Mode Tampilan</span>
+        </button>
+        <button id="drawer-batch-btn" class="drawer-action-btn" aria-label="Aksi Massal Checklist">
+          <span>⚡</span>
+          <span>Aksi Massal Checklist</span>
+        </button>
+      </div>
+
+      <div class="drawer-footer-note">
+        <span>🔒 Private Internal System &bull; UKK UNNES 2026</span>
+      </div>
+    </div>
+  </aside>
 
   <!-- Toast Notification Container (Live Realtime Event Broadcast) -->
   <div id="toast-container" class="toast-container" aria-live="polite" aria-atomic="true"></div>
