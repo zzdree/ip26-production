@@ -913,38 +913,75 @@
     }
 
     /* =========================================================================
-       8. MODAL DIALOGS
+       8. MODAL DIALOGS & POPUPS (BOTTOM-RIGHT DESKTOP & BOTTOM-SHEET MOBILE)
        ========================================================================= */
     .modal-backdrop {
       display: none;
       position: fixed;
       inset: 0;
-      background: rgba(0, 0, 0, 0.75);
+      background: rgba(0, 0, 0, 0.55);
       backdrop-filter: blur(6px);
       -webkit-backdrop-filter: blur(6px);
       z-index: 2000;
       align-items: flex-end;
-      justify-content: center;
-      padding: 0;
+      justify-content: flex-end;
+      padding: 24px;
     }
 
     .modal-sheet {
       width: 100%;
-      max-width: 480px;
+      max-width: 440px;
       background: var(--bg-surface);
-      border-top: 1px solid var(--border-color);
-      border-radius: 20px 20px 0 0;
-      padding: 20px 18px calc(24px + env(safe-area-inset-bottom, 8px)) 18px;
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-xl);
+      padding: 20px 20px calc(20px + env(safe-area-inset-bottom, 0px)) 20px;
       display: flex;
       flex-direction: column;
       gap: 16px;
-      box-shadow: 0 -10px 40px rgba(0, 0, 0, 0.5);
-      animation: sheet-up 0.28s cubic-bezier(0.16, 1, 0.3, 1);
+      box-shadow: 0 24px 56px -12px rgba(0, 0, 0, 0.65), 0 0 0 1px rgba(0, 210, 255, 0.15);
+      animation: modal-corner-slide 0.28s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    @keyframes modal-corner-slide {
+      from {
+        opacity: 0;
+        transform: translateY(20px) scale(0.96);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+    }
+
+    @media (max-width: 768px) {
+      .modal-backdrop {
+        align-items: flex-end;
+        justify-content: center;
+        padding: 0;
+        background: rgba(0, 0, 0, 0.72);
+      }
+
+      .modal-sheet {
+        max-width: 100%;
+        border-radius: 20px 20px 0 0;
+        border-left: none;
+        border-right: none;
+        border-bottom: none;
+        padding: 20px 18px calc(24px + env(safe-area-inset-bottom, 8px)) 18px;
+        box-shadow: 0 -10px 40px rgba(0, 0, 0, 0.6);
+        animation: sheet-up 0.28s cubic-bezier(0.16, 1, 0.3, 1);
+      }
     }
 
     @keyframes sheet-up {
-      from { transform: translateY(100%); }
-      to { transform: translateY(0); }
+      from {
+        opacity: 0;
+        transform: translateY(100%);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
 
     .sheet-header {
@@ -971,6 +1008,14 @@
       align-items: center;
       justify-content: center;
       cursor: pointer;
+      transition: all var(--transition-fast);
+    }
+
+    .sheet-close-btn:hover,
+    .sheet-close-btn:active {
+      color: var(--text-main);
+      border-color: var(--accent-cyan);
+      background: var(--accent-cyan-subtle);
     }
 
     .crew-list-grid {
@@ -991,6 +1036,11 @@
       align-items: center;
       gap: 8px;
       cursor: pointer;
+      transition: all var(--transition-fast);
+    }
+
+    .crew-pill-choice:hover {
+      border-color: var(--accent-cyan);
     }
 
     .crew-pill-choice.selected {
@@ -1002,14 +1052,24 @@
     /* Toast */
     .toast-container {
       position: fixed;
-      top: 68px;
-      left: 14px;
-      right: 14px;
       z-index: 3000;
       display: flex;
       flex-direction: column;
       gap: 8px;
       pointer-events: none;
+      bottom: calc(72px + env(safe-area-inset-bottom, 8px));
+      left: 14px;
+      right: 14px;
+    }
+
+    @media (min-width: 769px) {
+      .toast-container {
+        bottom: 24px;
+        right: 24px;
+        left: auto;
+        max-width: 360px;
+        width: 360px;
+      }
     }
 
     .toast-pill {
@@ -1018,7 +1078,7 @@
       border-left: 4px solid var(--accent-cyan);
       padding: 10px 14px;
       border-radius: var(--radius-md);
-      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+      box-shadow: 0 12px 32px rgba(0, 0, 0, 0.45);
       display: flex;
       align-items: center;
       gap: 10px;
