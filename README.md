@@ -2,7 +2,8 @@
 
 <div align="center">
 
-[![Live Web Portal](https://img.shields.io/badge/Live%20Portal-GitHub%20Pages-brightgreen?style=for-the-badge&logo=githubpages&logoColor=white)](https://zzdree.github.io/ip26-production/)
+[![Live Web Portal](https://img.shields.io/badge/Live%20Portal-Master%20Command-brightgreen?style=for-the-badge&logo=githubpages&logoColor=white)](https://zzdree.github.io/ip26-production/)
+[![Live SATSET Mobile](https://img.shields.io/badge/Live%20Mobile-⚡%20SATSET%20Checklist-orange?style=for-the-badge&logo=fastapi&logoColor=white)](https://zzdree.github.io/ip26-production/satset.html)
 [![Event](https://img.shields.io/badge/Event-IP26%20UKK%20UNNES-007ACC?style=for-the-badge&logo=eventstore&logoColor=white)](#)
 [![Venue](https://img.shields.io/badge/Venue-Auditorium%20UNNES-critical?style=for-the-badge&logo=googlemaps&logoColor=white)](#)
 [![Status](https://img.shields.io/badge/Status-Production%20Ready-success?style=for-the-badge&logo=checkmarx&logoColor=white)](#)
@@ -25,11 +26,15 @@
 
 ---
 
-## 📌 Repository Overview
+## 📌 Repository Live Deployments & Overview
+
+| Akses Web | URL Live | Keterangan & Peruntukan |
+| :--- | :--- | :--- |
+| 🌐 **Master Command Portal** | [https://zzdree.github.io/ip26-production/](https://zzdree.github.io/ip26-production/) | Portal lengkap seluruh arsitektur sistem, 8 diagram sinyal, tabel detail 154 logistik, device matrix, & rundown. |
+| ⚡ **SATSET Lapangan (Mobile)** | [https://zzdree.github.io/ip26-production/satset.html](https://zzdree.github.io/ip26-production/satset.html) | Mode khusus smartphone kru hari H. Kartu taktis berbasis nama barang untuk centang cepat *Pasang (Loading-In)* & *Kemas (Packing-Out)*. |
 
 | Atribut | Keterangan |
 | :--- | :--- |
-| **Live Web Portal** | 🌐 [https://zzdree.github.io/ip26-production/](https://zzdree.github.io/ip26-production/) |
 | **Event** | Ibadah Perdana UKK UNNES 2026 |
 | **Venue** | Gedung Auditorium Universitas Negeri Semarang (UNNES) |
 | **Organizer / Production** | Panitia Ibadah Perdana 2026 |
@@ -41,16 +46,22 @@
 
 ---
 
-## 💻 Web Command Portal Architecture & Features
+## 💻 Web Command Portal Architecture & Dual-Mode Operations
 
 Portal web interaktif ini dibangun sebagai pusat komando operasional seluruh tim produksi di lapangan:
 
+### 1. 🌐 Master Command Portal (`/index.html`)
 - **Zero-Build Architecture:** Dibangun murni menggunakan **Vanilla HTML5, Modern CSS3, dan ES6+ JavaScript** tanpa ketergantungan framework/build tool berat.
-- **Zero-Config Realtime Cloud Sync (Supabase PostgreSQL):** Sinkronisasi checklist inventaris antar-perangkat kru secara instan via WebSockets Realtime CDC tanpa perlu login atau input nama manual (*anonymous crew collaboration*).
-- **Dual Checklist Workflow:** Pelacakan independen untuk fase `[v] Pasang` (Loading-In / Setup) dan `[v] Kemas` (Packing-Out / Usung-usung) per item inventaris.
-- **Batch Action Controls:** Modal pintas "✓ Ceklis Semua" dan "↺ Reset Ceklis" untuk otomasi massal status loading/unloading.
-- **Universal Focus-Ring Reset & Clean Aesthetics:** Aturan `*:focus:not(:focus-visible)` menghilangkan outline tebal pasca-klik mouse, menghasilkan tampilan bersih dengan aksen glow cyan hanya pada hover atau navigasi keyboard.
 - **Dynamic Transparent Mermaid 10.9.1 Engine:** 8 diagram alur sinyal adaptif tema (Dark/Light) yang di-cache secara kebal (*immutable*) bebas error.
+- **Mobile Responsive Drawer & Dock:** Tata letak responsif penuh untuk ponsel pintar (S24 FE, iPhone, dll) dilengkapi backdrop drawer navigasi dan bottom dock.
+- **Tabel Detail 154 Logistik:** Inventaris lengkap terbagi dalam 14 vendor peminjaman dengan status dan jalur penggunaan teknis.
+
+### 2. ⚡ SATSET Lapangan Khusus Mobile (`/satset.html`)
+- **Touch-First Tactile Cards:** Setiap barang ditampilkan dalam kartu individual berbasis nama barang dengan 2 tombol sentuh besar (48px) untuk **📦 PASANG (Loading-In)** dan **🧳 KEMAS (Packing-Out)**.
+- **Desktop Access Rejection Guard:** Akses dari layar desktop (> 768px) otomatis diblokir dengan tampilan edukatif + **Live QR Code** untuk di-scan kru ke smartphone mereka, serta tombol *Simulator Frame Mobile*.
+- **Realtime Multi-Device Sync (Supabase PostgreSQL):** Perubahan centang oleh satu kru langsung tersinkronisasi instan ke seluruh layar HP kru lain via WebSockets CDC tanpa refresh.
+- **Live Presence & Crew Identity:** Menampilkan jumlah kru online secara langsung dan merekam identitas kru (Andreas, Kiel 1, Darrel, Joel, Kezia, Jennifer, Lio, dll) beserta cap waktu (*timestamp*) pada setiap centangan.
+- **Instant WhatsApp Report:** Tombol "📋 Salin Ringkasan" untuk mengekspor status pasang/kemas ke format teks siap kirim ke grup WhatsApp.
 - **Anti-Pause Supabase Keep-Alive:** Otomasi GitHub Actions cron (`0 0,12 * * *`) 2x sehari untuk mencegah database Supabase tertidur (*pause*) akibat aturan inaktivitas 7 hari.
 
 ---
