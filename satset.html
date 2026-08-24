@@ -1,0 +1,1246 @@
+<!DOCTYPE html>
+<html lang="id" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <meta name="theme-color" content="#121418">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="description" content="IP26 SATSET Lapangan - Realtime Tactical Mobile Inventory Checklist & Field Operations Portal UKK UNNES 2026">
+  
+  <title>⚡ SATSET Lapangan - Checklist Inventaris Hari H | IP26 UKK UNNES</title>
+  
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700;800&display=swap" rel="stylesheet">
+  
+  <!-- Supabase JS CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.39.8/dist/umd/supabase.min.js"></script>
+
+  <style>
+    /* =========================================================================
+       1. VARIABLES & PALETTES
+       ========================================================================= */
+    :root {
+      --font-main: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+
+      --bg-base: #0f1115;
+      --bg-surface: #17191f;
+      --bg-card: #1f222b;
+      --bg-card-hover: #262a35;
+      --border-color: #2e323e;
+      --border-subtle: #252833;
+
+      --text-main: #f3f4f6;
+      --text-muted: #9ca3af;
+      --text-dim: #6b7280;
+
+      --accent-cyan: #00d2ff;
+      --accent-cyan-subtle: rgba(0, 210, 255, 0.12);
+      --accent-emerald: #10b981;
+      --accent-emerald-subtle: rgba(16, 185, 129, 0.14);
+      --accent-amber: #f59e0b;
+      --accent-amber-subtle: rgba(245, 158, 11, 0.14);
+      --accent-rose: #f43f5e;
+
+      --radius-sm: 8px;
+      --radius-md: 12px;
+      --radius-lg: 16px;
+      --radius-full: 9999px;
+
+      --shadow-card: 0 4px 16px rgba(0, 0, 0, 0.35);
+      --touch-target: 48px;
+    }
+
+    [data-theme="light"] {
+      --bg-base: #f4f5f8;
+      --bg-surface: #ffffff;
+      --bg-card: #ffffff;
+      --bg-card-hover: #f9fafb;
+      --border-color: #e5e7eb;
+      --border-subtle: #f3f4f6;
+
+      --text-main: #111827;
+      --text-muted: #4b5563;
+      --text-dim: #9ca3af;
+
+      --accent-cyan: #0284c7;
+      --accent-cyan-subtle: rgba(2, 132, 199, 0.1);
+      --accent-emerald: #059669;
+      --accent-emerald-subtle: rgba(5, 150, 105, 0.12);
+      --accent-amber: #d97706;
+      --accent-amber-subtle: rgba(217, 119, 6, 0.12);
+
+      --shadow-card: 0 2px 10px rgba(0, 0, 0, 0.06);
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    html, body {
+      width: 100%;
+      min-height: 100%;
+      font-family: var(--font-main);
+      background-color: var(--bg-base);
+      color: var(--text-main);
+      line-height: 1.5;
+      overflow-x: hidden;
+      touch-action: manipulation;
+    }
+
+    /* =========================================================================
+       2. DESKTOP BLOCKER / REJECTION OVERLAY (Mobile-First Protection)
+       ========================================================================= */
+    #desktop-blocker {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 99999;
+      background: radial-gradient(circle at top center, #1b202c 0%, #0d0f13 100%);
+      color: var(--text-main);
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 32px;
+      text-align: center;
+    }
+
+    .desktop-card {
+      max-width: 520px;
+      background: rgba(23, 25, 31, 0.95);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-lg);
+      padding: 36px 32px;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 18px;
+    }
+
+    .desktop-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-family: var(--font-mono);
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: var(--accent-amber);
+      background: var(--accent-amber-subtle);
+      border: 1px solid var(--accent-amber);
+      padding: 4px 12px;
+      border-radius: var(--radius-full);
+    }
+
+    .desktop-title {
+      font-size: 1.6rem;
+      font-weight: 800;
+      color: var(--text-main);
+      line-height: 1.25;
+    }
+
+    .desktop-desc {
+      font-size: 0.92rem;
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+
+    .qr-container {
+      background: #ffffff;
+      padding: 14px;
+      border-radius: var(--radius-md);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      margin: 8px 0;
+    }
+
+    .qr-container img {
+      width: 180px;
+      height: 180px;
+      display: block;
+    }
+
+    .qr-label {
+      font-size: 0.75rem;
+      font-family: var(--font-mono);
+      font-weight: 700;
+      color: #111827;
+    }
+
+    .desktop-actions {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      gap: 10px;
+    }
+
+    .btn-desktop {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 12px 20px;
+      font-size: 0.88rem;
+      font-weight: 700;
+      border-radius: var(--radius-md);
+      cursor: pointer;
+      text-decoration: none;
+      transition: all 0.2s ease;
+      border: none;
+      font-family: var(--font-main);
+    }
+
+    .btn-desktop-primary {
+      background: var(--accent-cyan);
+      color: #000000;
+    }
+
+    .btn-desktop-primary:hover {
+      filter: brightness(1.15);
+      transform: translateY(-1px);
+    }
+
+    .btn-desktop-outline {
+      background: transparent;
+      color: var(--text-main);
+      border: 1px solid var(--border-color);
+    }
+
+    .btn-desktop-outline:hover {
+      background: var(--bg-card-hover);
+      border-color: var(--accent-cyan);
+    }
+
+    /* Active when viewport >= 769px */
+    @media (min-width: 769px) {
+      body.enforce-mobile-lock #desktop-blocker {
+        display: flex;
+      }
+      body.enforce-mobile-lock #app-wrapper {
+        display: none;
+      }
+    }
+
+    /* Embedded mobile simulator on desktop */
+    body.simulator-mode {
+      background: #090a0d !important;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      padding: 24px;
+    }
+
+    body.simulator-mode #desktop-blocker {
+      display: none !important;
+    }
+
+    body.simulator-mode #app-wrapper {
+      display: flex !important;
+      width: 412px;
+      height: 890px;
+      max-height: 94vh;
+      border-radius: 36px;
+      border: 8px solid #2a2e3b;
+      box-shadow: 0 25px 70px rgba(0, 0, 0, 0.8), 0 0 0 2px rgba(0, 210, 255, 0.3);
+      overflow: hidden;
+      position: relative;
+    }
+
+    /* =========================================================================
+       3. MOBILE APPLICATION LAYOUT
+       ========================================================================= */
+    #app-wrapper {
+      width: 100%;
+      max-width: 100vw;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      background-color: var(--bg-base);
+    }
+
+    /* Top Sticky Header */
+    .app-header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(23, 25, 31, 0.94);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border-color);
+      padding: 10px 14px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+    }
+
+    [data-theme="light"] .app-header {
+      background: rgba(255, 255, 255, 0.95);
+    }
+
+    .brand-section {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .brand-pill {
+      font-family: var(--font-mono);
+      font-weight: 800;
+      font-size: 0.8rem;
+      background: linear-gradient(135deg, #00d2ff 0%, #0070f3 100%);
+      color: #000;
+      padding: 3px 8px;
+      border-radius: var(--radius-sm);
+      letter-spacing: 0.05em;
+    }
+
+    .brand-title {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .brand-main {
+      font-size: 0.92rem;
+      font-weight: 800;
+      letter-spacing: 0.02em;
+      color: var(--text-main);
+      line-height: 1.15;
+    }
+
+    .brand-sub {
+      font-size: 0.65rem;
+      color: var(--accent-cyan);
+      font-weight: 700;
+      font-family: var(--font-mono);
+    }
+
+    .header-controls {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .crew-selector-btn {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      color: var(--text-main);
+      padding: 6px 10px;
+      border-radius: var(--radius-full);
+      font-size: 0.76rem;
+      font-weight: 700;
+      cursor: pointer;
+      font-family: var(--font-main);
+    }
+
+    .crew-avatar {
+      font-size: 0.85rem;
+    }
+
+    .icon-btn {
+      width: 36px;
+      height: 36px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      color: var(--text-main);
+      border-radius: var(--radius-sm);
+      cursor: pointer;
+      font-size: 0.95rem;
+      transition: all 0.2s ease;
+    }
+
+    .icon-btn:active {
+      transform: scale(0.92);
+      border-color: var(--accent-cyan);
+    }
+
+    /* =========================================================================
+       4. TACTICAL REALTIME HUD & PROGRESS METER
+       ========================================================================= */
+    .tactical-hud {
+      background: var(--bg-surface);
+      border-bottom: 1px solid var(--border-color);
+      padding: 12px 14px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .sync-indicator-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 0.72rem;
+      font-family: var(--font-mono);
+    }
+
+    .sync-status {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      color: var(--text-muted);
+    }
+
+    .pulse-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--accent-emerald);
+      box-shadow: 0 0 8px var(--accent-emerald);
+      animation: pulse-glow 2s infinite ease-in-out;
+    }
+
+    @keyframes pulse-glow {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.4; transform: scale(0.85); }
+    }
+
+    .crew-online-badge {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      background: var(--accent-cyan-subtle);
+      color: var(--accent-cyan);
+      padding: 2px 8px;
+      border-radius: var(--radius-full);
+      font-weight: 700;
+    }
+
+    /* Dual Progress Meters */
+    .hud-meters-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+
+    .meter-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-md);
+      padding: 8px 10px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .meter-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 0.74rem;
+      font-weight: 700;
+    }
+
+    .meter-title {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .meter-count {
+      font-family: var(--font-mono);
+      font-size: 0.74rem;
+      color: var(--accent-cyan);
+    }
+
+    .meter-bar-track {
+      width: 100%;
+      height: 6px;
+      background: rgba(255, 255, 255, 0.08);
+      border-radius: var(--radius-full);
+      overflow: hidden;
+    }
+
+    [data-theme="light"] .meter-bar-track {
+      background: #e5e7eb;
+    }
+
+    .meter-bar-fill {
+      height: 100%;
+      width: 0%;
+      border-radius: var(--radius-full);
+      transition: width 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .fill-load {
+      background: linear-gradient(90deg, #10b981 0%, #00d2ff 100%);
+    }
+
+    .fill-pack {
+      background: linear-gradient(90deg, #f59e0b 0%, #ec4899 100%);
+    }
+
+    /* Fast Action Chips Bar */
+    .quick-actions-row {
+      display: flex;
+      gap: 6px;
+      overflow-x: auto;
+      padding-bottom: 2px;
+      scrollbar-width: none;
+    }
+
+    .quick-actions-row::-webkit-scrollbar {
+      display: none;
+    }
+
+    .hud-action-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      padding: 6px 10px;
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-sm);
+      color: var(--text-main);
+      font-size: 0.74rem;
+      font-weight: 600;
+      cursor: pointer;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    .hud-action-btn:active {
+      border-color: var(--accent-cyan);
+      background: var(--bg-card-hover);
+    }
+
+    /* =========================================================================
+       5. SEARCH & VENDOR FILTER CHIPS
+       ========================================================================= */
+    .filter-wrapper {
+      padding: 10px 14px 4px 14px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .search-input-box {
+      position: relative;
+      width: 100%;
+    }
+
+    .search-icon {
+      position: absolute;
+      left: 12px;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 0.9rem;
+      color: var(--text-dim);
+      pointer-events: none;
+    }
+
+    .search-input {
+      width: 100%;
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-md);
+      color: var(--text-main);
+      padding: 10px 36px 10px 34px;
+      font-size: 0.88rem;
+      font-family: var(--font-main);
+      outline: none;
+      transition: all 0.2s ease;
+    }
+
+    .search-input:focus {
+      border-color: var(--accent-cyan);
+      box-shadow: 0 0 0 2px var(--accent-cyan-subtle);
+    }
+
+    .clear-search-btn {
+      position: absolute;
+      right: 10px;
+      top: 50%;
+      transform: translateY(-50%);
+      background: transparent;
+      border: none;
+      color: var(--text-dim);
+      font-size: 1rem;
+      cursor: pointer;
+      display: none;
+    }
+
+    /* Status Filters */
+    .status-chips-scroll {
+      display: flex;
+      gap: 6px;
+      overflow-x: auto;
+      padding-bottom: 2px;
+      scrollbar-width: none;
+    }
+
+    .status-chips-scroll::-webkit-scrollbar {
+      display: none;
+    }
+
+    .filter-pill {
+      padding: 6px 11px;
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-full);
+      color: var(--text-muted);
+      font-size: 0.74rem;
+      font-weight: 600;
+      white-space: nowrap;
+      cursor: pointer;
+      transition: all 0.15s ease;
+      flex-shrink: 0;
+    }
+
+    .filter-pill.active {
+      background: var(--text-main);
+      color: var(--bg-base);
+      border-color: var(--text-main);
+      font-weight: 800;
+    }
+
+    /* Vendor Filter Chips */
+    .vendor-chips-scroll {
+      display: flex;
+      gap: 6px;
+      overflow-x: auto;
+      padding-bottom: 4px;
+      scrollbar-width: none;
+    }
+
+    .vendor-chips-scroll::-webkit-scrollbar {
+      display: none;
+    }
+
+    .vendor-chip {
+      padding: 4px 9px;
+      background: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-sm);
+      color: var(--text-dim);
+      font-size: 0.72rem;
+      font-weight: 600;
+      white-space: nowrap;
+      cursor: pointer;
+      transition: all 0.15s ease;
+      flex-shrink: 0;
+    }
+
+    .vendor-chip.active {
+      background: var(--accent-cyan-subtle);
+      color: var(--accent-cyan);
+      border-color: var(--accent-cyan);
+      font-weight: 700;
+    }
+
+    /* =========================================================================
+       6. INVENTORY ITEMS LIST (TACTILE THUMB CARDS)
+       ========================================================================= */
+    .items-container {
+      flex: 1;
+      padding: 10px 14px 90px 14px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .vendor-section-divider {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 8px 4px 4px 4px;
+      border-bottom: 1px dashed var(--border-color);
+      margin-top: 6px;
+    }
+
+    .vendor-section-title {
+      font-family: var(--font-mono);
+      font-size: 0.76rem;
+      font-weight: 800;
+      color: var(--accent-cyan);
+      letter-spacing: 0.04em;
+    }
+
+    .vendor-section-count {
+      font-size: 0.7rem;
+      color: var(--text-dim);
+      font-family: var(--font-mono);
+    }
+
+    /* Item Card */
+    .satset-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-md);
+      padding: 12px 14px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      box-shadow: var(--shadow-card);
+      position: relative;
+      transition: transform 0.15s ease, border-color 0.2s ease;
+    }
+
+    .satset-card.is-fully-done {
+      border-color: var(--accent-emerald);
+      background: rgba(16, 185, 129, 0.04);
+    }
+
+    .card-top-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+    }
+
+    .card-badges {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .badge-vendor {
+      font-family: var(--font-mono);
+      font-size: 0.68rem;
+      font-weight: 700;
+      background: rgba(255, 255, 255, 0.08);
+      color: var(--text-muted);
+      padding: 2px 7px;
+      border-radius: var(--radius-sm);
+    }
+
+    .badge-qty {
+      font-family: var(--font-mono);
+      font-size: 0.68rem;
+      font-weight: 700;
+      background: var(--accent-cyan-subtle);
+      color: var(--accent-cyan);
+      padding: 2px 7px;
+      border-radius: var(--radius-sm);
+    }
+
+    .badge-status-icon {
+      font-size: 0.85rem;
+    }
+
+    .card-body {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .item-name {
+      font-size: 0.98rem;
+      font-weight: 700;
+      color: var(--text-main);
+      line-height: 1.3;
+      letter-spacing: -0.01em;
+    }
+
+    .item-usage {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      line-height: 1.35;
+    }
+
+    /* Dual Large Thumb Buttons */
+    .card-actions-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+      margin-top: 2px;
+    }
+
+    .btn-tactile {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 2px;
+      height: var(--touch-target);
+      background: var(--bg-surface);
+      border: 1.5px solid var(--border-color);
+      border-radius: var(--radius-sm);
+      color: var(--text-muted);
+      font-family: var(--font-main);
+      cursor: pointer;
+      transition: all 0.15s cubic-bezier(0.16, 1, 0.3, 1);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .btn-tactile:active {
+      transform: scale(0.96);
+    }
+
+    .btn-tactile-main {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      font-size: 0.82rem;
+      font-weight: 700;
+    }
+
+    .btn-tactile-meta {
+      font-size: 0.65rem;
+      font-family: var(--font-mono);
+      color: var(--text-dim);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      max-width: 92%;
+    }
+
+    /* Checked State: PASANG (Emerald) */
+    .btn-tactile.btn-load.checked {
+      background: var(--accent-emerald-subtle);
+      border-color: var(--accent-emerald);
+      color: var(--accent-emerald);
+    }
+
+    .btn-tactile.btn-load.checked .btn-tactile-meta {
+      color: var(--accent-emerald);
+      font-weight: 600;
+    }
+
+    /* Checked State: KEMAS (Amber/Blue) */
+    .btn-tactile.btn-pack.checked {
+      background: var(--accent-amber-subtle);
+      border-color: var(--accent-amber);
+      color: var(--accent-amber);
+    }
+
+    .btn-tactile.btn-pack.checked .btn-tactile-meta {
+      color: var(--accent-amber);
+      font-weight: 600;
+    }
+
+    /* Empty state */
+    .empty-state {
+      text-align: center;
+      padding: 48px 24px;
+      color: var(--text-dim);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .empty-state-icon {
+      font-size: 2.2rem;
+    }
+
+    /* =========================================================================
+       7. BOTTOM DOCK ACTION BAR
+       ========================================================================= */
+    .bottom-bar {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: rgba(23, 25, 31, 0.96);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-top: 1px solid var(--border-color);
+      padding: 10px 14px calc(10px + env(safe-area-inset-bottom, 6px)) 14px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      z-index: 100;
+    }
+
+    [data-theme="light"] .bottom-bar {
+      background: rgba(255, 255, 255, 0.96);
+    }
+
+    .btn-bottom-primary {
+      flex: 1;
+      height: 44px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      background: linear-gradient(135deg, #00d2ff 0%, #0070f3 100%);
+      color: #000;
+      border: none;
+      border-radius: var(--radius-md);
+      font-weight: 800;
+      font-size: 0.86rem;
+      cursor: pointer;
+    }
+
+    .btn-bottom-primary:active {
+      transform: scale(0.97);
+    }
+
+    .btn-bottom-secondary {
+      height: 44px;
+      padding: 0 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 5px;
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      color: var(--text-main);
+      border-radius: var(--radius-md);
+      font-weight: 700;
+      font-size: 0.82rem;
+      cursor: pointer;
+      text-decoration: none;
+    }
+
+    .btn-bottom-secondary:active {
+      transform: scale(0.97);
+    }
+
+    /* =========================================================================
+       8. MODAL DIALOGS
+       ========================================================================= */
+    .modal-backdrop {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.75);
+      backdrop-filter: blur(6px);
+      -webkit-backdrop-filter: blur(6px);
+      z-index: 2000;
+      align-items: flex-end;
+      justify-content: center;
+      padding: 0;
+    }
+
+    .modal-sheet {
+      width: 100%;
+      max-width: 480px;
+      background: var(--bg-surface);
+      border-top: 1px solid var(--border-color);
+      border-radius: 20px 20px 0 0;
+      padding: 20px 18px calc(24px + env(safe-area-inset-bottom, 8px)) 18px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      box-shadow: 0 -10px 40px rgba(0, 0, 0, 0.5);
+      animation: sheet-up 0.28s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    @keyframes sheet-up {
+      from { transform: translateY(100%); }
+      to { transform: translateY(0); }
+    }
+
+    .sheet-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .sheet-title {
+      font-size: 1.1rem;
+      font-weight: 800;
+      color: var(--text-main);
+    }
+
+    .sheet-close-btn {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      color: var(--text-muted);
+      font-size: 1.1rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+    }
+
+    .crew-list-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+    }
+
+    .crew-pill-choice {
+      padding: 10px 12px;
+      background: var(--bg-card);
+      border: 1.5px solid var(--border-color);
+      border-radius: var(--radius-md);
+      color: var(--text-main);
+      font-weight: 700;
+      font-size: 0.85rem;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      cursor: pointer;
+    }
+
+    .crew-pill-choice.selected {
+      border-color: var(--accent-cyan);
+      background: var(--accent-cyan-subtle);
+      color: var(--accent-cyan);
+    }
+
+    /* Toast */
+    .toast-container {
+      position: fixed;
+      top: 68px;
+      left: 14px;
+      right: 14px;
+      z-index: 3000;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      pointer-events: none;
+    }
+
+    .toast-pill {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-color);
+      border-left: 4px solid var(--accent-cyan);
+      padding: 10px 14px;
+      border-radius: var(--radius-md);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: var(--text-main);
+      animation: toast-in 0.25s ease, toast-out 0.3s ease 3.5s forwards;
+    }
+
+    @keyframes toast-in {
+      from { opacity: 0; transform: translateY(-10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes toast-out {
+      to { opacity: 0; transform: translateY(-10px); }
+    }
+  </style>
+</head>
+<body class="enforce-mobile-lock">
+
+  <!-- =========================================================================
+       DESKTOP REJECTION / LOCK SCREEN (Mobile-Only Protection)
+       ========================================================================= -->
+  <div id="desktop-blocker">
+    <div class="desktop-card">
+      <span class="desktop-badge">📱 SMARTPHONE ACCESS ONLY</span>
+      <h1 class="desktop-title">SATSET Lapangan Khusus Mobile</h1>
+      <p class="desktop-desc">
+        Halaman operasional <strong>SATSET</strong> dirancang khusus untuk mempermudah kru lapangan mencentang barang saat <em>Loading In</em> & <em>Packing Out</em> langsung via genggaman smartphone di venue Auditorium UNNES.
+      </p>
+
+      <div class="qr-container">
+        <!-- Live dynamic QR Code -->
+        <img id="dynamic-qr" src="https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=https://zzdree.github.io/ip26-production/satset.html" alt="QR Code SATSET Mobile">
+        <span class="qr-label">Scan untuk buka di HP kru</span>
+      </div>
+
+      <div class="desktop-actions">
+        <button id="btn-simulate-mobile" class="btn-desktop btn-desktop-primary">
+          📱 Buka Simulator Mobile di Desktop
+        </button>
+        <a href="index.html" class="btn-desktop btn-desktop-outline">
+          ⬅️ Kembali ke Portal Lengkap IP26
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- =========================================================================
+       MOBILE FIELD OPS ROOT
+       ========================================================================= -->
+  <div id="app-wrapper">
+
+    <!-- Sticky Header -->
+    <header class="app-header">
+      <a href="index.html" class="brand-section" title="Kembali ke Portal Utama">
+        <span class="brand-pill">⚡ SATSET</span>
+        <div class="brand-title">
+          <span class="brand-main">INVENTARIS HARI H</span>
+          <span class="brand-sub">UKK UNNES 2026</span>
+        </div>
+      </a>
+
+      <div class="header-controls">
+        <button id="btn-change-crew" class="crew-selector-btn" title="Ganti Nama Kru">
+          <span class="crew-avatar">👤</span>
+          <span id="header-crew-name">Andreas</span>
+        </button>
+
+        <button id="btn-theme-toggle" class="icon-btn" title="Ganti Mode Tampilan (Dark / Light)">
+          <span class="theme-icon">🌙</span>
+        </button>
+
+        <a href="index.html" class="icon-btn" title="Portal Lengkap">
+          <span>🌐</span>
+        </a>
+      </div>
+    </header>
+
+    <!-- Tactical Realtime HUD -->
+    <section class="tactical-hud">
+      <div class="sync-indicator-bar">
+        <div class="sync-status">
+          <span class="pulse-dot" id="sync-dot"></span>
+          <span id="sync-text">🟢 Terhubung Supabase Realtime</span>
+        </div>
+        <div class="crew-online-badge">
+          <span>👥</span> <span id="online-count">1</span> Kru Online
+        </div>
+      </div>
+
+      <!-- Dual Progress Meters -->
+      <div class="hud-meters-grid">
+        <div class="meter-card">
+          <div class="meter-header">
+            <span class="meter-title">📦 Pasang (In)</span>
+            <span class="meter-count" id="meter-load-txt">0/0 (0%)</span>
+          </div>
+          <div class="meter-bar-track">
+            <div class="meter-bar-fill fill-load" id="bar-load-fill"></div>
+          </div>
+        </div>
+
+        <div class="meter-card">
+          <div class="meter-header">
+            <span class="meter-title">🧳 Kemas (Out)</span>
+            <span class="meter-count" id="meter-pack-txt">0/0 (0%)</span>
+          </div>
+          <div class="meter-bar-track">
+            <div class="meter-bar-fill fill-pack" id="bar-pack-fill"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Fast Action Chips -->
+      <div class="quick-actions-row">
+        <button class="hud-action-btn" id="btn-batch-modal-open">
+          <span>⚡</span> Aksi Massal
+        </button>
+        <button class="hud-action-btn" id="btn-copy-summary-fast">
+          <span>📋</span> Salin Ringkasan
+        </button>
+        <button class="hud-action-btn" id="btn-force-refresh">
+          <span>🔄</span> Sinkron Ulang
+        </button>
+      </div>
+    </section>
+
+    <!-- Search & Filter Area -->
+    <div class="filter-wrapper">
+      <div class="search-input-box">
+        <span class="search-icon">🔍</span>
+        <input type="text" id="satset-search-input" class="search-input" placeholder="Cari nama barang, kamera, kabel, HDMI..." autocomplete="off">
+        <button id="btn-clear-search" class="clear-search-btn">✕</button>
+      </div>
+
+      <!-- Status Filter Chips -->
+      <div class="status-chips-scroll">
+        <button class="filter-pill active" data-status="all">Semua Barang (<span id="count-all">0</span>)</button>
+        <button class="filter-pill" data-status="unloaded">❌ Belum Pasang (<span id="count-unloaded">0</span>)</button>
+        <button class="filter-pill" data-status="loaded">✅ Terpasang (<span id="count-loaded">0</span>)</button>
+        <button class="filter-pill" data-status="unpacked">❌ Belum Kemas (<span id="count-unpacked">0</span>)</button>
+        <button class="filter-pill" data-status="packed">🧳 Terkemas (<span id="count-packed">0</span>)</button>
+      </div>
+
+      <!-- Vendor Filter Chips -->
+      <div class="vendor-chips-scroll" id="vendor-chips-container">
+        <button class="vendor-chip active" data-vendor="all">Semua Vendor</button>
+        <!-- Injected via JavaScript -->
+      </div>
+    </div>
+
+    <!-- Inventory Cards List Container -->
+    <main class="items-container" id="inventory-cards-container">
+      <!-- Injected Dynamically via satset.js -->
+    </main>
+
+    <!-- Bottom Dock Floating Bar -->
+    <footer class="bottom-bar">
+      <button class="btn-bottom-primary" id="btn-quick-check-all">
+        <span>⚡</span> Tandai Pasang Terpilih
+      </button>
+      <a href="index.html#inventory" class="btn-bottom-secondary" title="Buka Tabel Lengkap">
+        <span>📊 Tabel</span>
+      </a>
+    </footer>
+
+  </div>
+
+  <!-- =========================================================================
+       MODAL: PILIH KRU
+       ========================================================================= -->
+  <div id="crew-modal" class="modal-backdrop">
+    <div class="modal-sheet">
+      <div class="sheet-header">
+        <h3 class="sheet-title">👤 Pilih Identitas Kru Lapangan</h3>
+        <button class="sheet-close-btn" id="btn-close-crew-modal">✕</button>
+      </div>
+      <p style="font-size: 0.82rem; color: var(--text-muted);">
+        Nama yang dipilih akan tercatat otomatis saat Anda mencentang Pasang / Kemas:
+      </p>
+      <div class="crew-list-grid" id="crew-choices-grid">
+        <button class="crew-pill-choice selected" data-name="Andreas"><span>👑</span> Andreas</button>
+        <button class="crew-pill-choice" data-name="Kiel 1"><span>🎥</span> Kiel 1</button>
+        <button class="crew-pill-choice" data-name="Darrel"><span>📺</span> Darrel</button>
+        <button class="crew-pill-choice" data-name="Joel"><span>📹</span> Joel</button>
+        <button class="crew-pill-choice" data-name="Kezia"><span>💻</span> Kezia</button>
+        <button class="crew-pill-choice" data-name="Jennifer"><span>📱</span> Jennifer</button>
+        <button class="crew-pill-choice" data-name="Lio"><span>⏱️</span> Lio</button>
+        <button class="crew-pill-choice" data-name="Kru Lapangan"><span>🛠️</span> Kru Lapangan</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- =========================================================================
+       MODAL: AKSI MASSAL
+       ========================================================================= -->
+  <div id="batch-modal" class="modal-backdrop">
+    <div class="modal-sheet">
+      <div class="sheet-header">
+        <h3 class="sheet-title">⚡ Aksi Massal Checklist</h3>
+        <button class="sheet-close-btn" id="btn-close-batch-modal">✕</button>
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 8px;">
+        <button class="btn-desktop btn-desktop-primary" id="act-check-all-load" style="width:100%; justify-content: flex-start;">
+          📦 Tandai Semua PASANG (Loading In)
+        </button>
+        <button class="btn-desktop btn-desktop-primary" id="act-check-all-pack" style="width:100%; justify-content: flex-start;">
+          🧳 Tandai Semua KEMAS (Packing Out)
+        </button>
+        <button class="btn-desktop btn-desktop-outline" id="act-reset-all" style="width:100%; justify-content: flex-start; color: var(--accent-rose);">
+          ⚠️ Reset / Bersihkan Semua Centang
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Notification Container -->
+  <div id="toast-box" class="toast-container"></div>
+
+  <!-- Script Logic -->
+  <script src="satset.js"></script>
+</body>
+</html>
