@@ -30,7 +30,7 @@
 
 | Akses Web | URL Live | Keterangan & Peruntukan |
 | :--- | :--- | :--- |
-| 🌐 **Master Command Portal** | [https://zzdree.github.io/ip26-production/](https://zzdree.github.io/ip26-production/) | Portal lengkap seluruh arsitektur sistem, 8 diagram sinyal, tabel detail 158 logistik, device matrix, & rundown. |
+| 🌐 **Master Command Portal** | [https://zzdree.github.io/ip26-production/](https://zzdree.github.io/ip26-production/) | Portal lengkap seluruh arsitektur sistem, 8 diagram sinyal, tabel detail 150 logistik, device matrix, & rundown. |
 | ⚡ **SATSET Lapangan (Mobile)** | [https://zzdree.github.io/ip26-production/satset.html](https://zzdree.github.io/ip26-production/satset.html) | Mode khusus smartphone kru hari H. Kartu taktis berbasis nama barang untuk centang cepat *Pasang (Loading-In)* & *Kemas (Packing-Out)*. |
 
 | Atribut | Keterangan |
@@ -622,27 +622,9 @@ flowchart LR
 
 ---
 
-### 19. Fasilitas & Perangkat Gedung Auditorium UNNES
-| Nama Barang / Fasilitas | Status | Keterangan Penggunaan |
-| :--- | :---: | :--- |
-| Mixer Yamaha QL5 | ✅ | Master Digital Console Audio FOH |
-| WiFi UNNES-ID | ✅ | Jaringan kontrol nirkabel Virtual Mixer 1, 2, & 3 |
-| Audio Cable 20M | ✅ | Jalur audio ProPresenter 1 $\rightarrow$ Mixer Yamaha QL5 |
-| HDMI Cable 20M | ✅ | Laptop OBS Studio $\rightarrow$ Novastar Video Processor 1 |
-| Novastar Video Processor 1 & 2 | ✅ | Processor pemetaan resolusi LED Kiri/Kanan/Belakang & Tengah |
-| PC UNNES | ✅ | PC passthrough display input Resolume $\rightarrow$ Novastar 2 |
-| LED Center Screen | ✅ | Layar LED panggung utama tengah |
-| LED Left, Right, & Back Screens | ✅ | Layar LED panggung sayap kiri, kanan, dan belakang |
-
----
-
 ## 📋 Rundown & Visual Screen Mapping Matrix
 
-| Sesi Acara | Item Materi / Konten | Output Target Layar & Audio | Penanggung Jawab |
-| :--- | :--- | :--- | :--- |
-| **Pre-Ibadah**<br>*(Open Gate)* | • Playlist (Lagu Rohani)<br>• Loop Video (Profile UKK, After Movie IP25, After Movie IN25) | Sound System FOH (Yamaha QL5)<br>LED Tengah | Media Engineer & FOH Team |
-| **Main Ibadah**<br>*(Main Event)* | • Video Opening<br>• Video Sambutan Bu Grace<br>• Background Tema<br>• Background Lagu<br>• Lirik Lagu<br>• Video Generation<br>• PPT Pembicara<br>• Ayat Pembicara<br>• Quote Pembicara<br>• Persembahan (QRIS)<br>• UKK News<br>• Pokok Doa | LED Tengah<br>LED Tengah, Kanan, Kiri<br>LED Tengah<br>Sound System FOH (Yamaha QL5)<br>LED Tengah, Kanan, Kiri<br>LED Tengah, Kanan, Kiri<br>LED Tengah, Kanan, Kiri<br>LED Tengah, Kanan, Kiri<br>LED Tengah, Kanan, Kiri<br>LED Tengah, Kanan, Kiri<br>LED Tengah, Kanan, Kiri<br>LED Tengah, Kanan, Kiri | Operator ProPresenter 1 & 2,<br>Resolume Arena, Switcher,<br>serta Audio Engineer |
-| **Post-Ibadah**<br>*(Close Gate)* | • Usung-Usung & Rolling Kabel Sistem<br>• Re-Check Inventory & Safe Storage Packing | Area Auditorium UNNES | Seluruh Tim Teknis, Pelayan,<br>dan Panitia Produksi |
+> *Catatan: Data materi rundown sedang dalam proses pembaruan oleh tim acara dan akan disinkronisasikan kembali begitu data final diterima.*
 
 ---
 

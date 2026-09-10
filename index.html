@@ -107,7 +107,6 @@
           <li><a href="#cameras" class="nav-link"><span>🎥</span> Kamera</a></li>
           <li><a href="#workstations" class="nav-link"><span>💻</span> Device</a></li>
           <li><a href="#inventory" class="nav-link"><span>📦</span> Logistik</a></li>
-          <li><a href="#rundown" class="nav-link"><span>📋</span> Rundown</a></li>
         </ul>
       </nav>
 
@@ -144,7 +143,7 @@
         </h1>
         
         <p class="hero-desc">
-          Pusat komando dan dokumentasi arsitektur terintegrasi: akuisisi kamera multi-angle, video switching, LED screen mapping (Resolume & ProPresenter), sub-mixing audio FOH/Streaming, serta tracking inventaris 18 sumber logistik (158 item).
+          Pusat komando dan dokumentasi arsitektur terintegrasi: akuisisi kamera multi-angle, video switching, LED screen mapping (Resolume & ProPresenter), sub-mixing audio FOH/Streaming, serta tracking inventaris 18 sumber logistik (150 item).
         </p>
 
         <!-- Quick Stats Telemetry -->
@@ -1024,7 +1023,7 @@ flowchart LR
         <div class="section-header">
           <span class="section-tag">LOGISTIK & ASSET</span>
           <h2 class="section-title">Master Inventory & Tracking Peralatan</h2>
-          <p class="section-subtitle">Daftar inventaris lengkap 18 vendor/peminjam + Fasilitas Gedung (19 kategori, total 158 barang) dengan pencarian cerdas dan filter real-time.</p>
+          <p class="section-subtitle">Daftar inventaris lengkap 18 vendor/peminjam (total 150 barang) dengan pencarian cerdas dan filter real-time.</p>
         </div>
 
         <!-- Inventory Search & Filter Controls -->
@@ -1096,7 +1095,7 @@ flowchart LR
               <div class="progress-box progress-loading">
                 <div class="progress-header">
                   <span class="progress-title">📦 Status Loading In (Pemasangan)</span>
-                  <span class="progress-counter" id="loading-counter-display">0 / 158 (0%)</span>
+                  <span class="progress-counter" id="loading-counter-display">0 / 150 (0%)</span>
                 </div>
                 <div class="progress-bar-track">
                   <div class="progress-bar-fill fill-loading" id="loading-progress-bar" style="width: 0%;"></div>
@@ -1106,7 +1105,7 @@ flowchart LR
               <div class="progress-box progress-packing">
                 <div class="progress-header">
                   <span class="progress-title">🧳 Status Packing Out (Pengemasan)</span>
-                  <span class="progress-counter" id="packing-counter-display">0 / 158 (0%)</span>
+                  <span class="progress-counter" id="packing-counter-display">0 / 150 (0%)</span>
                 </div>
                 <div class="progress-bar-track">
                   <div class="progress-bar-fill fill-packing" id="packing-progress-bar" style="width: 0%;"></div>
@@ -1118,7 +1117,7 @@ flowchart LR
 
         <!-- Inventory Stats -->
         <div class="inventory-summary-bar">
-          <span>Menampilkan <strong id="inv-count-display">158</strong> entri barang</span>
+          <span>Menampilkan <strong id="inv-count-display">150</strong> entri barang</span>
           <span class="legend-badges">
             <span class="badge badge-emerald">✅ Aktif Terpasang</span>
             <span class="badge badge-amber">⚠️ Sebagian / Perhatian</span>
@@ -1529,110 +1528,6 @@ flowchart LR
               </table>
             </div>
           </div>
-
-          <!-- 19. UNNES -->
-          <div class="vendor-block" data-vendor="UNNES">
-            <h3 class="vendor-title"><span class="vendor-dot"></span> 19. Fasilitas Gedung Auditorium UNNES</h3>
-            <div class="table-responsive">
-              <table class="data-table inv-table">
-                <thead>
-                  <tr><th>Nama Barang / Fasilitas</th><th>Jumlah</th><th>Status</th><th>Keterangan Penggunaan</th></tr>
-                </thead>
-                <tbody>
-                  <tr data-name="Mixer Yamaha QL5"><td>Mixer Yamaha QL5</td><td>1 Unit</td><td><span class="badge badge-emerald">✅</span></td><td>Master Digital Console Audio FOH</td></tr>
-                  <tr data-name="WiFi UNNES-ID"><td>WiFi UNNES-ID</td><td>1 System</td><td><span class="badge badge-emerald">✅</span></td><td>Jaringan kontrol nirkabel Virtual Mixer 1, 2, & 3</td></tr>
-                  <tr data-name="Audio Cable 20M"><td>Audio Cable 20M</td><td>1 Line</td><td><span class="badge badge-emerald">✅</span></td><td>Jalur audio ProPresenter 1 ➔ Mixer Yamaha QL5</td></tr>
-                  <tr data-name="HDMI Cable 20M"><td>HDMI Cable 20M</td><td>1 Line</td><td><span class="badge badge-emerald">✅</span></td><td>Laptop OBS Studio ➔ Novastar Processor 1</td></tr>
-                  <tr data-name="Novastar Video Processor 1 & 2"><td>Novastar Video Processor 1 & 2</td><td>2 Unit</td><td><span class="badge badge-emerald">✅</span></td><td>Processor resolusi LED Kiri/Kanan/Belakang & Tengah</td></tr>
-                  <tr data-name="PC UNNES"><td>PC UNNES</td><td>1 Unit</td><td><span class="badge badge-emerald">✅</span></td><td>PC passthrough display input Resolume ➔ Novastar 2</td></tr>
-                  <tr data-name="LED Center Screen"><td>LED Center Screen</td><td>1 Display</td><td><span class="badge badge-emerald">✅</span></td><td>Layar LED panggung utama tengah</td></tr>
-                  <tr data-name="LED Left, Right, & Back Screens"><td>LED Left, Right, & Back Screens</td><td>3 Displays</td><td><span class="badge badge-emerald">✅</span></td><td>Layar LED panggung sayap kiri, kanan, dan belakang</td></tr>
-                </tbody>
-              </table>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ========================================================================= -->
-    <!-- 9. RUNDOWN & SCREEN MAPPING MATRIX -->
-    <!-- ========================================================================= -->
-    <section class="section" id="rundown">
-      <div class="container">
-        <div class="section-header">
-          <span class="section-tag">JADWAL & MATERI</span>
-          <h2 class="section-title">Rundown & Pemetaan Layar Multimedia</h2>
-          <p class="section-subtitle">Alokasi penayangan asset visual dan audio pada sesi Pre-Ibadah, Main Ibadah, dan Pasca Acara.</p>
-        </div>
-
-        <div class="rundown-timeline">
-          
-          <!-- Pre-Ibadah -->
-          <div class="timeline-phase">
-            <div class="phase-header">
-              <span class="phase-badge">SESI 1 • OPEN GATE</span>
-              <h3 class="phase-title">Pre-Ibadah</h3>
-            </div>
-            <div class="phase-content">
-              <div class="timeline-item">
-                <div class="timeline-dot"></div>
-                <div class="timeline-box">
-                  <strong>🎵 Playlist Lagu Rohani</strong>
-                  <span class="timeline-target">🔊 Target: Sound System FOH (Yamaha QL5)</span>
-                </div>
-              </div>
-              <div class="timeline-item">
-                <div class="timeline-dot"></div>
-                <div class="timeline-box">
-                  <strong>🎞️ Loop Video Profile UKK, After Movie IP25 & IN25</strong>
-                  <span class="timeline-target">🖥️ Target: Layar LED Tengah Main Stage</span>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- Main Ibadah -->
-          <div class="timeline-phase phase-active">
-            <div class="phase-header">
-              <span class="phase-badge badge-cyan">SESI 2 • MAIN EVENT</span>
-              <h3 class="phase-title">Main Ibadah</h3>
-            </div>
-            <div class="phase-content">
-              <div class="timeline-grid">
-                <div class="timeline-box"><strong>🎬 Video Opening Ibadah</strong><span>Target: LED Tengah</span></div>
-                <div class="timeline-box"><strong>🎥 Video Sambutan Pembina (Bu Grace)</strong><span>Target: LED Tengah, Kiri, Kanan, Belakang</span></div>
-                <div class="timeline-box"><strong>🖼️ Background Tema Ibadah</strong><span>Target: LED Tengah</span></div>
-                <div class="timeline-box"><strong>🎶 Background Musik / Pujian</strong><span>Target: FOH Audio System (Yamaha QL5)</span></div>
-                <div class="timeline-box"><strong>📖 Lirik Lagu Pujian & Penyembahan</strong><span>Target: LED Tengah, Kiri, Kanan, Belakang</span></div>
-                <div class="timeline-box"><strong>✨ Video Generation & Backgrounds</strong><span>Target: LED Tengah, Kiri, Kanan, Belakang</span></div>
-                <div class="timeline-box"><strong>📊 Slide PPT Pembicara Firman</strong><span>Target: LED Tengah, Kiri, Kanan, Belakang</span></div>
-                <div class="timeline-box"><strong>📜 Ayat Firman Pembicara</strong><span>Target: LED Tengah, Kiri, Kanan, Belakang</span></div>
-                <div class="timeline-box"><strong>💬 Quote / Poin Khotbah</strong><span>Target: LED Tengah, Kiri, Kanan, Belakang</span></div>
-                <div class="timeline-box"><strong>💳 Slide Persembahan (Barcode QRIS)</strong><span>Target: LED Tengah, Kiri, Kanan, Belakang</span></div>
-                <div class="timeline-box"><strong>📢 Video & Slide UKK News</strong><span>Target: LED Tengah, Kiri, Kanan, Belakang</span></div>
-                <div class="timeline-box"><strong>🙏 Slide Pokok Doa Syafaat</strong><span>Target: LED Tengah, Kiri, Kanan, Belakang</span></div>
-              </div>
-            </div>
-          </div>
-
-          <!-- Post-Ibadah -->
-          <div class="timeline-phase">
-            <div class="phase-header">
-              <span class="phase-badge">SESI 3 • CLOSE GATE</span>
-              <h3 class="phase-title">Post-Ibadah (Usung-usung)</h3>
-            </div>
-            <div class="phase-content">
-              <div class="timeline-item">
-                <div class="timeline-dot"></div>
-                <div class="timeline-box">
-                  <strong>📦 Rolling Kabel Sistem, De-rigging Kamera & Packing Inventaris</strong>
-                  <span class="timeline-target">👥 Penanggung Jawab: Seluruh Tim Teknis, Pelayan, & Panitia</span>
-                </div>
-              </div>
-            </div>
-          </div>
-
         </div>
       </div>
     </section>
@@ -1764,10 +1659,6 @@ All Rights Reserved.
         <span class="dock-icon">📦</span>
         <span class="dock-label">Logistik</span>
       </a>
-      <a href="#rundown" class="dock-item" data-nav="rundown">
-        <span class="dock-icon">📋</span>
-        <span class="dock-label">Rundown</span>
-      </a>
       <button id="dock-menu-btn" class="dock-item dock-btn" aria-label="Buka Seluruh Menu Navigasi" aria-haspopup="true">
         <span class="dock-icon">☰</span>
         <span class="dock-label">Menu</span>
@@ -1875,16 +1766,6 @@ All Rights Reserved.
               <small>Dual Phase: Pasang & Kemas</small>
             </div>
             <span class="drawer-link-badge pulse">Live</span>
-          </a>
-        </li>
-        <li>
-          <a href="#rundown" class="drawer-nav-link">
-            <span class="drawer-link-icon">📋</span>
-            <div class="drawer-link-text">
-              <strong>Rundown Acara & Cue Sheet</strong>
-              <small>Timeline, Durasi, & Status Segment</small>
-            </div>
-            <span class="drawer-link-badge">Rundown</span>
           </a>
         </li>
         <li>

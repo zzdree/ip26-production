@@ -375,7 +375,7 @@ document.addEventListener('DOMContentLoaded', () => {
     btnCopySummary.addEventListener('click', () => {
       let loadedCount = 0;
       let packedCount = 0;
-      const total = totalInventoryCount || 158;
+      const total = totalInventoryCount || 150;
 
       const loadedList = [];
       const pendingLoadList = [];
