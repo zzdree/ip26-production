@@ -28,14 +28,14 @@
 
 ---
 
-## 📌 Repository Live Deployments & Overview
+## 📌 Repository Live Deployments & Quick Access Links
 
-| Akses Web | URL Live | Keterangan & Peruntukan |
-| :--- | :--- | :--- |
-| 🌐 **Master Command Portal** | [https://zzdree.github.io/ip26-production/](https://zzdree.github.io/ip26-production/) | Portal lengkap seluruh arsitektur sistem, 8 diagram sinyal, tabel detail 150 logistik, device matrix, & rundown. |
-| ⚡ **SATSET Lapangan (Mobile)** | [https://zzdree.github.io/ip26-production/satset.html](https://zzdree.github.io/ip26-production/satset.html) | Mode khusus smartphone kru hari H. Kartu taktis berbasis nama barang untuk centang cepat *Pasang (Loading-In)* & *Kemas (Packing-Out)*. |
-| 🎛️ **Switcher Cinelive V1 Simulator** | [https://zzdree.github.io/ip26-production/switcher.html](https://zzdree.github.io/ip26-production/switcher.html) | Simulator hardware Cinetreak Cinelive V1 lengkap: 4 kamera, 5.5" multiview canvas, PGM/PVW glowing tally, T-Bar fader, CUT/AUTO, PIP & FTB. |
-| 🎶 **ProPresenter Live Simulator** | [https://zzdree.github.io/ip26-production/presenter.html](https://zzdree.github.io/ip26-production/presenter.html) | Simulator ProPresenter 7 dengan 14 lagu dari `Assets/Lyrics/Statics`, YouTube backing track player sinkron, slides 1-2 baris, dan output dual screen. |
+| Layanan / Modul | URL Live (GitHub Pages) | File Lokal / Direktori | Deskripsi & Fungsi |
+| :--- | :--- | :--- | :--- |
+| 🌐 **Master Command Portal** | [https://zzdree.github.io/ip26-production/](https://zzdree.github.io/ip26-production/) | [`index.html`](./index.html) | Portal komando lengkap: arsitektur sistem, 8 diagram sinyal, tabel 150 logistik, device matrix, & rundown. |
+| ⚡ **SATSET Lapangan (Mobile)** | [https://zzdree.github.io/ip26-production/satset.html](https://zzdree.github.io/ip26-production/satset.html) | [`satset.html`](./satset.html) | Mode taktis smartphone kru hari H: centang cepat pemasangan (*Loading-In*) & pengemasan (*Packing-Out*). |
+| 🎛️ **Switcher Cinelive V1** | [https://zzdree.github.io/ip26-production/switcher/](https://zzdree.github.io/ip26-production/switcher/) atau [switcher.html](https://zzdree.github.io/ip26-production/switcher.html) | [`switcher.html`](./switcher.html) & [`switcher/`](./switcher/index.html) | Simulator hardware Cinetreak Cinelive V1: 4 kamera, multiview 5.5", T-Bar manual fader, PGM/PVW glowing tally, CUT/AUTO, PIP, FTB. |
+| 🎶 **ProPresenter Live Simulator** | [https://zzdree.github.io/ip26-production/presenter/](https://zzdree.github.io/ip26-production/presenter/) atau [presenter.html](https://zzdree.github.io/ip26-production/presenter.html) | [`presenter.html`](./presenter.html) & [`presenter/`](./presenter/index.html) | Simulator ProPresenter 7: 14 lagu dari `Assets/Lyrics/Statics`, pemutar YouTube backing track sinkron, slides 1-2 baris, LED & stream monitor. |
 
 | Atribut | Keterangan |
 | :--- | :--- |
@@ -648,7 +648,8 @@ flowchart LR
 
 Sebagai media pelatihan operator kamera & switcher MCR sebelum gladi resik di Auditorium UNNES, portal ini menyediakan simulator hardware interaktif **Cinetreak Cinelive V1** berbasis Web Audio & HTML5 Canvas 60 FPS:
 
-- **Halaman Langsung:** [`switcher.html`](./switcher.html) atau path `/switcher` (`switcher/index.html`).
+- **Live URL:** [https://zzdree.github.io/ip26-production/switcher/](https://zzdree.github.io/ip26-production/switcher/) atau [https://zzdree.github.io/ip26-production/switcher.html](https://zzdree.github.io/ip26-production/switcher.html)
+- **File Lokal:** [`switcher.html`](./switcher.html) & [`switcher/index.html`](./switcher/index.html)
 - **4 Rantai Kamera IP26:**
   - **CAM 1:** Sony A6000 Wired (Stage Center Wide)
   - **CAM 2:** Sony ZV-E10 Wireless Pyro S (Worship Leader Close-up)
@@ -670,7 +671,8 @@ Sebagai media pelatihan operator kamera & switcher MCR sebelum gladi resik di Au
 
 Simulator live projection & broadcast lower-third terintegrasi untuk melatih operator multimedia dalam menyelaraskan lirik lagu ibadah secara presisi:
 
-- **Halaman Langsung:** [`presenter.html`](./presenter.html) atau path `/presenter` (`presenter/index.html`).
+- **Live URL:** [https://zzdree.github.io/ip26-production/presenter/](https://zzdree.github.io/ip26-production/presenter/) atau [https://zzdree.github.io/ip26-production/presenter.html](https://zzdree.github.io/ip26-production/presenter.html)
+- **File Lokal:** [`presenter.html`](./presenter.html) & [`presenter/index.html`](./presenter/index.html)
 - **Sumber Data Lirik:** Diparse langsung dari direktori master `X:\IP26\Assets\Lyrics\Statics` (14 lagu ibadah lengkap).
 - **Format Tampilan Slide:** Sesuai standar ProPresenter 7, setiap slide menampilkan **1–2 baris lirik** dengan tipografi broadcast kontras tinggi untuk menjaga keterbacaan jemaat dan penonton live stream.
 - **YouTube Backing Track Terintegrasi:** Setiap lagu dalam songlist dilengkapi embedded YouTube player resmi/rekaman asli lagu terkait untuk latihan tempo dan sinkronisasi pergantian slide oleh operator.
