@@ -47,7 +47,10 @@ The portal provides instant, frictionless, mobile-optimized access to master sig
 3. **Diagram Engine Resilience (Mermaid.js 10.9.1):** Zero-error asynchronous vector rendering with race-condition prevention (`startOnLoad: false` declared in document `<head>`) and immutable source-code caching (`data-mermaid-src`), ensuring seamless real-time graph re-rendering during dynamic Dark/Light theme switching.
 4. **Responsiveness & Smooth Micro-Interactions:** Fluid scaling across ultra-compact mobile (320px), standard tablets (768px), compact laptop viewports (1024px), and wide monitors (1440px+). Clean hairline default borders (`1px solid var(--border-subtle)`) with smooth hover micro-lifts across all cards, inventory rows, and the 3-phase Rundown schedule blocks (Pre-Ibadah, Main Ibadah, Post-Ibadah).
 5. **Zero-Build Architecture:** Pure Vanilla HTML5, CSS3, and modern ES6+ JavaScript for maximum longevity, independence from build tool obsolescence, and instant execution via standard web browsers.
-6. **Database Availability & Anti-Pause Automation:** Automated GitHub Actions cron trigger (`supabase-keep-alive.yml`) pinging the Supabase REST API twice daily (`0 0,12 * * *`) to ensure the cloud database remains continuously active and never paused by Supabase free-tier 7-day inactivity policies.
+6. **3-Layer Cloud-Only Architecture & Anti-Pause Automation:**
+   - **Layer 1 (Primary Cloud DB):** Supabase PostgreSQL database with CDC WebSockets for live state persistence across all crew smartphones. Automated GitHub Actions cron trigger (`supabase-keep-alive.yml`) pings the REST API twice daily (`0 0,12 * * *`) to prevent free-tier 7-day inactivity pause.
+   - **Layer 2 (Realtime Cloud Relay):** Zero-setup `ntfy.sh` Server-Sent Events (SSE) Pub/Sub relay (`https://ntfy.sh/ip26_checklist_sync_2026`) providing instant sub-second broadcast redundancy across all crew phones.
+   - **Layer 3 (Automated Cloud Snapshot Backup):** GitHub Actions workflow (`db-backup.yml`) executing twice daily and on-demand to fetch deterministic full JSON snapshots from Supabase and commit them to `backup/inventory_backup.json` in the Git repository.
 
 ---
 

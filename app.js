@@ -340,9 +340,21 @@ document.addEventListener('DOMContentLoaded', () => {
     updateProgressMeters();
     filterInventory(); // re-filter if status filter is active
 
-    // Direct Push to Supabase Cloud
+    // 1. Layer 2: Broadcast to ntfy.sh Cloud Relay (instant SSE push to all crew devices)
+    broadcastNtfyEvent({
+      type: 'item_toggle',
+      itemId: itemId,
+      vendor: vendor,
+      itemName: itemName,
+      state: currentState,
+      crew: by,
+      sender: by,
+      ts: Date.now()
+    });
+
+    // 2. Layer 1: Push to Supabase Cloud Database
     if (supabaseClient) {
-      setSyncStatus('syncing', '🔵 Menyinkronkan ke Supabase Cloud...');
+      setSyncStatus('syncing', '🔵 Menyinkronkan ke Cloud (Supabase + ntfy)...');
       try {
         const { error } = await supabaseClient
           .from('inventory_items')
@@ -362,10 +374,10 @@ document.addEventListener('DOMContentLoaded', () => {
         if (error) {
           console.warn('Supabase upsert warning:', error.message);
         }
-        setSyncStatus('connected', '🟢 Terhubung Supabase Cloud (Live Multi-Device)');
+        setSyncStatus('connected', '🟢 Cloud Live (Supabase + ntfy.sh)');
       } catch (err) {
         console.error('Supabase sync error:', err);
-        setSyncStatus('connected', '🟢 Terhubung Supabase Cloud (Live Multi-Device)');
+        setSyncStatus('connected', '🟢 Cloud Live (Supabase + ntfy.sh)');
       }
     }
   }
@@ -503,9 +515,9 @@ document.addEventListener('DOMContentLoaded', () => {
         )
         .subscribe((status) => {
           if (status === 'SUBSCRIBED') {
-            setSyncStatus('connected', '🟢 Terhubung Supabase Cloud (Live Multi-Device)');
+            setSyncStatus('connected', '🟢 Cloud Live (Layer 1: Supabase + Layer 2: ntfy.sh)');
           } else if (status === 'CHANNEL_ERROR' || status === 'TIMED_OUT') {
-            setSyncStatus('offline', '🟡 Menunggu Koneksi Internet...');
+            setSyncStatus('syncing', '🟡 Menghubungkan Cloud (ntfy Relay Aktif)...');
           }
         });
 
@@ -532,7 +544,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     } catch (e) {
       console.error('Failed to init Supabase:', e);
-      setSyncStatus('offline', '🟡 Mode Offline (Penyimpanan Lokal)');
+      setSyncStatus('syncing', '🟡 Menghubungkan Cloud (ntfy Relay Aktif)...');
     }
   }
 
@@ -548,50 +560,114 @@ document.addEventListener('DOMContentLoaded', () => {
   const DEFAULT_SUPABASE_URL = 'https://ssbkhhnnzwuykyeznpwd.supabase.co';
   const DEFAULT_SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InNzYmtoaG5uend1eWt5ZXpucHdkIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODc0MDQ1NzcsImV4cCI6MjEwMjk4MDU3N30.-zGe_xWDTBmo604VS39jl8o7YvhEQYb3fZvCV-fcEbk';
 
-  // Always initialize Supabase automatically
-  initSupabase(DEFAULT_SUPABASE_URL, DEFAULT_SUPABASE_KEY);
+  // =========================================================================
+  // CLOUD LAYER 2: ntfy.sh Realtime Cloud Relay (SSE Pub/Sub Zero-Setup)
+  // =========================================================================
+  const NTFY_TOPIC = "ip26_checklist_sync_2026";
+  const NTFY_PUB_URL = `https://ntfy.sh/${NTFY_TOPIC}`;
+  const NTFY_SSE_URL = `https://ntfy.sh/${NTFY_TOPIC}/sse`;
 
-  // Direct Batch Action Handlers (Auto-executing with inline feedback on SATSET, timed toast on desktop)
-  if (btnBatchCheckAll) {
-    btnBatchCheckAll.addEventListener('click', () => {
-      batchSetAll(isSatsetPage ? 'check-loading' : 'check-all');
-    });
+  let ntfyEventSource = null;
+  let isNtfyConnected = false;
+
+  function initNtfyRelay() {
+    try {
+      if (ntfyEventSource) {
+        ntfyEventSource.close();
+      }
+
+      ntfyEventSource = new EventSource(NTFY_SSE_URL);
+
+      ntfyEventSource.onopen = () => {
+        isNtfyConnected = true;
+        console.log('[ntfy.sh] Cloud Relay Layer 2 connected (SSE stream active)');
+      };
+
+      ntfyEventSource.onmessage = (event) => {
+        try {
+          const raw = JSON.parse(event.data);
+          if (raw && raw.message) {
+            const payload = JSON.parse(raw.message);
+            handleNtfyIncomingEvent(payload);
+          }
+        } catch (err) {}
+      };
+
+      ntfyEventSource.onerror = () => {
+        isNtfyConnected = false;
+      };
+    } catch (err) {
+      console.warn('[ntfy.sh] Relay initialization note:', err);
+    }
   }
 
-  if (btnBatchUncheckAll) {
-    btnBatchUncheckAll.addEventListener('click', () => {
-      batchSetAll(isSatsetPage ? 'uncheck-loading' : 'uncheck-all');
-    });
+  function broadcastNtfyEvent(payload) {
+    try {
+      fetch(NTFY_PUB_URL, {
+        method: 'POST',
+        body: JSON.stringify(payload),
+        headers: { 'Content-Type': 'application/json' }
+      }).catch((err) => {
+        console.warn('[ntfy.sh] Broadcast note:', err);
+      });
+    } catch (err) {
+      console.warn('[ntfy.sh] Broadcast failed:', err);
+    }
   }
 
-  async function batchSetAll(actionType) {
+  function handleNtfyIncomingEvent(payload) {
+    if (!payload || !payload.type) return;
+
+    // Ignore self-echo within 3.5s
+    const selfName = getEffectiveCrewName();
+    if (payload.sender === selfName && (Date.now() - (payload.ts || 0) < 3500)) {
+      return;
+    }
+
+    if (payload.type === 'item_toggle' && payload.itemId && payload.state) {
+      const current = inventoryState[payload.itemId];
+      if (!current || current.loaded !== payload.state.loaded || current.packed !== payload.state.packed) {
+        inventoryState[payload.itemId] = {
+          ...current,
+          ...payload.state
+        };
+        persistLocalState();
+        renderRowUI(payload.itemId, inventoryState[payload.itemId], true, payload.crew || 'Cloud Relay');
+        updateProgressMeters();
+        filterInventory();
+      }
+    } else if (payload.type === 'batch' && payload.actionType) {
+      applyBatchLocalState(payload.actionType, payload.crew || 'Cloud Relay');
+      showToast('Aksi Massal Cloud', `Aksi massal diterima dari ${payload.crew || 'rekan kru'} via Cloud Relay!`, 'info');
+    }
+  }
+
+  function applyBatchLocalState(actionType, actorName) {
     const now = new Date().toISOString();
-    const rowsToUpsert = [];
+    const by = actorName || getEffectiveCrewName();
 
     vendorBlocks.forEach((block) => {
-      const vendor = block.getAttribute('data-vendor') || '';
       const rows = block.querySelectorAll('tbody tr');
       rows.forEach((row) => {
         const itemId = row.getAttribute('data-item-id');
-        const itemName = row.getAttribute('data-item-title') || '';
         if (!itemId) return;
 
         const currentState = inventoryState[itemId] || { loaded: false, packed: false };
 
         if (actionType === 'check-loading') {
           currentState.loaded = true;
-          currentState.loaded_by = getEffectiveCrewName();
+          currentState.loaded_by = by;
           currentState.loaded_at = now;
         } else if (actionType === 'check-packing') {
           currentState.packed = true;
-          currentState.packed_by = getEffectiveCrewName();
+          currentState.packed_by = by;
           currentState.packed_at = now;
         } else if (actionType === 'check-all') {
           currentState.loaded = true;
-          currentState.loaded_by = getEffectiveCrewName();
+          currentState.loaded_by = by;
           currentState.loaded_at = now;
           currentState.packed = true;
-          currentState.packed_by = getEffectiveCrewName();
+          currentState.packed_by = by;
           currentState.packed_at = now;
         } else if (actionType === 'uncheck-loading') {
           currentState.loaded = false;
@@ -612,25 +688,69 @@ document.addEventListener('DOMContentLoaded', () => {
 
         inventoryState[itemId] = currentState;
         renderRowUI(itemId, currentState, false);
-
-        rowsToUpsert.push({
-          item_id: itemId,
-          vendor: vendor,
-          item_name: itemName,
-          loaded: currentState.loaded,
-          loaded_by: currentState.loaded_by,
-          loaded_at: currentState.loaded_at,
-          packed: currentState.packed,
-          packed_by: currentState.packed_by,
-          packed_at: currentState.packed_at,
-          updated_at: now
-        });
       });
     });
 
     persistLocalState();
     updateProgressMeters();
     filterInventory();
+  }
+
+  // Always initialize Cloud Layers automatically
+  initSupabase(DEFAULT_SUPABASE_URL, DEFAULT_SUPABASE_KEY);
+  initNtfyRelay();
+
+  // Direct Batch Action Handlers (Auto-executing with inline feedback on SATSET, timed toast on desktop)
+  if (btnBatchCheckAll) {
+    btnBatchCheckAll.addEventListener('click', () => {
+      batchSetAll(isSatsetPage ? 'check-loading' : 'check-all');
+    });
+  }
+
+  if (btnBatchUncheckAll) {
+    btnBatchUncheckAll.addEventListener('click', () => {
+      batchSetAll(isSatsetPage ? 'uncheck-loading' : 'uncheck-all');
+    });
+  }
+
+  async function batchSetAll(actionType) {
+    applyBatchLocalState(actionType, getEffectiveCrewName());
+
+    // Layer 2: Broadcast to ntfy.sh Cloud Relay
+    broadcastNtfyEvent({
+      type: 'batch',
+      actionType: actionType,
+      crew: getEffectiveCrewName(),
+      sender: getEffectiveCrewName(),
+      ts: Date.now()
+    });
+
+    const rowsToUpsert = [];
+    vendorBlocks.forEach((block) => {
+      const vendor = block.getAttribute('data-vendor') || '';
+      const rows = block.querySelectorAll('tbody tr');
+      rows.forEach((row) => {
+        const itemId = row.getAttribute('data-item-id');
+        const itemName = row.getAttribute('data-item-title') || '';
+        if (!itemId) return;
+
+        const currentState = inventoryState[itemId];
+        if (currentState) {
+          rowsToUpsert.push({
+            item_id: itemId,
+            vendor: vendor,
+            item_name: itemName,
+            loaded: currentState.loaded,
+            loaded_by: currentState.loaded_by,
+            loaded_at: currentState.loaded_at,
+            packed: currentState.packed,
+            packed_by: currentState.packed_by,
+            packed_at: currentState.packed_at,
+            updated_at: new Date().toISOString()
+          });
+        }
+      });
+    });
 
     const actionNames = {
       'check-loading': 'Semua barang berhasil ditandai Pasang (Loading In)!',
@@ -653,17 +773,17 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     if (supabaseClient && rowsToUpsert.length > 0) {
-      setSyncStatus('syncing', '🔵 Menyinkronkan aksi massal ke Supabase Cloud...');
+      setSyncStatus('syncing', '🔵 Menyinkronkan aksi massal ke Cloud...');
       try {
         const chunkSize = 80;
         for (let i = 0; i < rowsToUpsert.length; i += chunkSize) {
           const chunk = rowsToUpsert.slice(i, i + chunkSize);
           await supabaseClient.from('inventory_items').upsert(chunk, { onConflict: 'item_id' });
         }
-        setSyncStatus('connected', '🟢 Terhubung Supabase Cloud (Live Multi-Device)');
+        setSyncStatus('connected', '🟢 Cloud Live (Layer 1: Supabase + Layer 2: ntfy.sh)');
       } catch (err) {
         console.error('Supabase batch error:', err);
-        setSyncStatus('connected', '🟢 Terhubung Supabase Cloud (Live Multi-Device)');
+        setSyncStatus('connected', '🟢 Cloud Live (Layer 1: Supabase + Layer 2: ntfy.sh)');
       }
     }
   }

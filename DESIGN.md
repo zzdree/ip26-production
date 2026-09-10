@@ -73,7 +73,10 @@ The visual language is inspired by high-end professional broadcast control rooms
 - **Mobile Navigation Dock (Bottom):** Fixed `bottom: 0`, elevated dock design with safe-area padding (`env(safe-area-inset-bottom)`), 5 key icon tabs (Beranda, Tim, Sinyal, Kamera, Alat), active indicator pill with subtle glow.
 
 ### B. Realtime Cloud Synchronization Bar & Telemetry
-- **Anonymous Crew Operations & Zero-Config Connection:** Fully streamlined for internal broadcast crew access without friction or manual configuration modals. Automatically connects to Supabase PostgreSQL Realtime CDC backend.
+- **3-Layer Cloud-Only Synchronization & Zero-Config Telemetry:** Fully streamlined for internal broadcast crew access without friction or manual configuration modals. Operates across 3 resilient cloud layers:
+  1. *Layer 1 (Primary Cloud DB):* Supabase PostgreSQL Realtime CDC backend for authoritative data persistence and presence tracking.
+  2. *Layer 2 (Realtime Cloud Relay):* `ntfy.sh` Server-Sent Events (SSE) Pub/Sub relay for zero-latency cross-smartphone live broadcast.
+  3. *Layer 3 (Cloud Snapshot Backup):* Automated GitHub Actions cron workflow snapshotting data to `backup/inventory_backup.json`.
 - **Dual Progress Gauges:** Dynamic percentage bars tracking independent **Loading In (Pemasangan)** and **Packing Out (Pengemasan)** completion rates.
 - **Quick Action & Batch Buttons:**
   - `✓ Ceklis Semua`: Opens mass checklist modal with options for Loading In, Packing Out, or 100% full check.
