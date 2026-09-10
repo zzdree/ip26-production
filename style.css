@@ -2960,10 +2960,7 @@ tr.remote-updated {
 }
 
 
-/* --------------------------------------------------------------------------
-   14. SATSET MASTER TABLE STYLES (5 Columns: Nama, Jumlah, Status, Pasang, Keterangan)
-   Tampilan identik dengan Master Portal, 1 centang (Pasang/Loading).
-   -------------------------------------------------------------------------- */
+/* Satset Checklist Page Layout */
 body.satset-page {
   min-width: 1280px !important;
   background-color: var(--bg-primary);
@@ -2976,192 +2973,12 @@ body.satset-page .container {
   padding-right: var(--space-6) !important;
 }
 
-body.satset-page .satset-hero-card,
-body.satset-page .cloud-sync-card,
-body.satset-page .vendor-block {
+body.satset-page .satset-hero-card {
   padding: var(--space-5) var(--space-6) !important;
   margin-bottom: var(--space-5) !important;
   border-radius: var(--radius-lg) !important;
   background: var(--bg-surface);
   border: 1px solid var(--border-subtle);
   box-shadow: var(--shadow-sm);
-}
-
-body.satset-page .vendor-title {
-  font-size: 1.15rem !important;
-  font-weight: 700 !important;
-  color: var(--text-primary);
-  margin-bottom: var(--space-3) !important;
-  display: flex;
-  align-items: center;
-  gap: var(--space-2);
-}
-
-.satset-responsive {
-  width: 100% !important;
-  border-radius: var(--radius-md);
-  border: 1px solid var(--border-subtle);
-  box-shadow: var(--shadow-sm);
-  background: var(--bg-surface);
-  margin-bottom: var(--space-2);
-  overflow-x: auto;
-}
-
-.data-table.inv-table-satset {
-  width: 100% !important;
-  min-width: 960px !important;
-  table-layout: fixed !important;
-  border-collapse: collapse;
-  font-size: 0.9rem;
-}
-
-.data-table.inv-table-satset th {
-  background: var(--bg-surface-elevated);
-  font-family: var(--font-mono);
-  font-size: 0.75rem;
-  font-weight: 700;
-  color: var(--text-muted);
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  padding: var(--space-3) var(--space-4) !important;
-  border-bottom: 1px solid var(--border-subtle);
-  box-sizing: border-box;
-}
-
-.data-table.inv-table-satset td {
-  padding: var(--space-3) var(--space-4) !important;
-  border-bottom: 1px solid var(--border-subtle);
-  vertical-align: middle;
-  box-sizing: border-box;
-}
-
-/* Col 1: Nama Barang (26%) */
-.data-table.inv-table-satset th.col-nama,
-.data-table.inv-table-satset td.col-nama {
-  width: 26% !important;
-  text-align: left;
-  font-weight: 600;
-  color: var(--text-primary);
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
-/* Col 2: Jumlah (11%) */
-.data-table.inv-table-satset th.col-qty,
-.data-table.inv-table-satset td.col-qty {
-  width: 11% !important;
-  text-align: center;
-  font-family: var(--font-mono);
-  font-size: 0.82rem;
-  color: var(--text-secondary);
-  white-space: nowrap;
-}
-
-/* Col 3: Status (8%) */
-.data-table.inv-table-satset th.col-status,
-.data-table.inv-table-satset td.col-status {
-  width: 8% !important;
-  text-align: center;
-  white-space: nowrap;
-}
-
-/* Col 4: Centang Pasang (80px) */
-.data-table.inv-table-satset th.col-ceklist,
-.data-table.inv-table-satset td.col-ceklist {
-  width: 80px !important;
-  min-width: 80px !important;
-  max-width: 80px !important;
-  text-align: center;
-  padding: 6px 4px !important;
-  white-space: nowrap;
-}
-
-/* Col 5: Keterangan Penggunaan (47%) */
-.data-table.inv-table-satset th.col-desc,
-.data-table.inv-table-satset td.col-desc {
-  width: 47% !important;
-  color: var(--text-secondary);
-  font-size: 0.84rem;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
-.data-table.inv-table-satset tbody tr {
-  transition: background 160ms cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-.data-table.inv-table-satset tbody tr:hover {
-  background: var(--bg-surface-hover);
-}
-
-.data-table.inv-table-satset tbody tr:last-child td {
-  border-bottom: none;
-}
-
-/* Row Highlight when checked (matching Pasang cyan glow) */
-.data-table.inv-table-satset tr.is-loaded {
-  background: rgba(0, 210, 255, 0.08) !important;
-}
-
-.data-table.inv-table-satset tr.is-loaded td.col-nama {
-  color: var(--accent-cyan) !important;
-}
-
-/* Touch-optimized tactile checkbox button matching page utama */
-.data-table.inv-table-satset .inv-checkbox-btn {
-  width: 32px !important;
-  height: 32px !important;
-  min-width: 32px !important;
-  max-width: 32px !important;
-  border-radius: var(--radius-sm);
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  font-family: var(--font-mono);
-  border: 1.5px solid var(--border-subtle);
-  background: var(--bg-surface-elevated);
-  cursor: pointer;
-  padding: 0;
-  margin: 0 auto;
-  position: relative;
-  transition: all 180ms cubic-bezier(0.16, 1, 0.3, 1);
-  user-select: none;
-  -webkit-tap-highlight-color: transparent;
-}
-
-.data-table.inv-table-satset .inv-checkbox-btn:hover {
-  border-color: var(--border-strong);
-  background: var(--bg-surface-hover);
-  transform: scale(1.08);
-}
-
-.data-table.inv-table-satset .inv-checkbox-btn:active {
-  transform: scale(0.92);
-}
-
-.data-table.inv-table-satset .inv-checkbox-btn .check-svg {
-  width: 18px;
-  height: 18px;
-  stroke: currentColor;
-  stroke-width: 3;
-  fill: none;
-  stroke-linecap: round;
-  stroke-linejoin: round;
-  transform: scale(0);
-  transition: transform 160ms cubic-bezier(0.34, 1.56, 0.64, 1);
-}
-
-/* Checked state: match Pasang (Loading) button cyan style from main page */
-.data-table.inv-table-satset .inv-checkbox-btn.checked {
-  background: var(--accent-cyan) !important;
-  border-color: var(--accent-cyan) !important;
-  color: #000 !important;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2) !important;
-}
-
-.data-table.inv-table-satset .inv-checkbox-btn.checked .check-svg {
-  transform: scale(1);
 }
 

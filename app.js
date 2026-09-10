@@ -12,8 +12,8 @@
  */
 
 document.addEventListener('DOMContentLoaded', () => {
-  // Check if running on SATSET mobile checklist view
-  const isSatsetPage = window.location.pathname.includes('satset') || Boolean(document.querySelector('.inv-table-satset'));
+  // Check if running on SATSET checklist view
+  const isSatsetPage = window.location.pathname.includes('satset') || document.body.classList.contains('satset-page') || Boolean(document.querySelector('.inv-table-satset'));
 
   // =========================================================================
   // 1. TOAST NOTIFICATION SYSTEM (Magic Motion & a11y)
@@ -554,13 +554,13 @@ document.addEventListener('DOMContentLoaded', () => {
   // Direct Batch Action Handlers (Auto-executing with inline feedback on SATSET, timed toast on desktop)
   if (btnBatchCheckAll) {
     btnBatchCheckAll.addEventListener('click', () => {
-      batchSetAll(isSatsetPage ? 'check-loading' : 'check-all');
+      batchSetAll('check-all');
     });
   }
 
   if (btnBatchUncheckAll) {
     btnBatchUncheckAll.addEventListener('click', () => {
-      batchSetAll(isSatsetPage ? 'uncheck-loading' : 'uncheck-all');
+      batchSetAll('uncheck-all');
     });
   }
 
