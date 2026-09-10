@@ -14,58 +14,64 @@ document.addEventListener('DOMContentLoaded', () => {
       vendor: "OWL",
       title: "1. Peminjaman dari OWL",
       items: [
-        { name: "Sony A6000", qty: "2 Unit", status: "✅", usage: "CAM 3 & CAM 4 Broadcast" },
-        { name: "Sony A6400", qty: "1 Unit", status: "✅", usage: "CAM PHO Dokumentasi Foto" },
-        { name: "Sony ZV-E10", qty: "1 Unit", status: "✅", usage: "CAM 2 Broadcast Wireless" },
-        { name: "Lens 18-105MM", qty: "3 Unit", status: "✅", usage: "CAM 1, CAM 2, & CAM 3" },
-        { name: "Lens 50MM", qty: "1 Unit", status: "✅", usage: "CAM PHO Dokumentasi Foto" },
-        { name: "Battery Kamera", qty: "8 Unit", status: "✅", usage: "5 Unit terpakai aktif, 3 Unit standby" },
-        { name: "Charger Kamera", qty: "1 Pack", status: "✅", usage: "Charging station baterai kamera" },
-        { name: "Memory Card 32GB", qty: "4 Unit", status: "✅", usage: "CAM 2, CAM 3, CAM 4, CAM PHO" },
+        { name: "Sony A6000", qty: "2 Unit", status: "✅", usage: "1x CAM 1 Wired, 1x CAM 3 Wireless" },
+        { name: "Sony A6400", qty: "1 Unit", status: "✅", usage: "CAM 5 Photo Dokumentasi" },
+        { name: "Sony ZV-E10", qty: "1 Unit", status: "✅", usage: "CAM 6 Video Dokumentasi" },
+        { name: "Lens 18-105MM", qty: "3 Unit", status: "✅", usage: "1x CAM 1, 1x CAM 2, 1x CAM 3" },
+        { name: "Lens 50MM", qty: "1 Unit", status: "✅", usage: "CAM 5 Photo Dokumentasi" },
+        { name: "Lens 16-50MM Kit", qty: "2 Unit", status: "☑️", usage: "Cadangan lensa kit" },
+        { name: "Battery", qty: "8 Unit", status: "✅", usage: "8 Unit aktif terpakai (CAM 1, 3, 5, 6 @ 2 unit)" },
+        { name: "Charger", qty: "1 Pack", status: "✅", usage: "Station pengisian daya baterai kamera" },
+        { name: "Memory Card 32GB", qty: "4 Unit", status: "✅", usage: "4 Unit aktif terpakai (CAM 1, 3, 5, 6)" },
         { name: "Cinetreak Cinelive V1", qty: "1 Pack", status: "✅", usage: "Video Switcher Master Broadcast" },
-        { name: "Power Adaptor MIX", qty: "1 Unit", status: "✅", usage: "Power Switcher Cinetreak" },
-        { name: "Hollyland Pyro H", qty: "1 Pack", status: "✅", usage: "TX & RX Wireless CAM 2 Mobile" },
-        { name: "Hollyland Pyro S", qty: "1 Pack", status: "✅", usage: "TX & RX Wireless CAM 1 Steady" },
+        { name: "Power Adaptor MIX", qty: "1 Unit", status: "✅", usage: "Power Switcher Cinetreak Cinelive V1" },
+        { name: "Hollyland Pyro H", qty: "1 Pack", status: "✅", usage: "TX & RX Wireless CAM 3 Mobile" },
+        { name: "Hollyland Pyro S", qty: "1 Pack", status: "✅", usage: "TX & RX Wireless CAM 2 Mobile" },
         { name: "Battery WIR", qty: "4 Unit", status: "✅", usage: "2 Unit Pyro S, 2 Unit Pyro H" },
         { name: "Tripod Camera Big", qty: "1 Unit", status: "✅", usage: "Tripod CAM 1 Broadcast" },
-        { name: "HDMI to Micro HDMI Converter", qty: "2 Unit", status: "✅", usage: "Converter CAM 3 & CAM 4" },
-        { name: "HDMI to Micro HDMI Cable 30CM", qty: "2 Unit", status: "✅", usage: "CAM 1 & CAM 2 ke Hollyland TX" },
-        { name: "HDMI Capture", qty: "2 Unit", status: "✅", usage: "1x Input ProPresenter 1, 1x Input Resolume" }
+        { name: "HDMI to Micro HDMI Converter", qty: "2 Unit", status: "✅", usage: "1x CAM 1 Wired, 1x CAM 4 Wired" },
+        { name: "HDMI to Micro HDMI Cable 30CM", qty: "2 Unit", status: "✅", usage: "1x CAM 2 ke Pyro S TX, 1x CAM 3 ke Pyro H TX" },
+        { name: "HDMI Capture", qty: "2 Unit", status: "⚠️ 1/2", usage: "1 Unit di Resolume (dari ProPresenter 2), 1 Unit standby" }
       ]
     },
     {
       vendor: "ABON",
       title: "2. Peminjaman dari ABON",
       items: [
-        { name: "HDMI Capture", qty: "2 Unit", status: "⚠️ 1/2", usage: "1 Unit terpakai di Resolume (Splitter ➔ RES), 1 standby" }
+        { name: "Lens 35MM", qty: "1 Unit", status: "✅", usage: "CAM 6 Video Dokumentasi" },
+        { name: "HDMI Capture", qty: "2 Unit", status: "✅", usage: "1x Splitter ➔ OBS, 1x Splitter ➔ Resolume" }
       ]
     },
     {
       vendor: "Andreas",
       title: "3. Peminjaman dari Andreas",
       items: [
-        { name: "Fan Cooler", qty: "1 Unit", status: "☑️", usage: "Pendingin laptop / workstation" },
-        { name: "Mouse Pad", qty: "1 Unit", status: "☑️", usage: "Perlengkapan meja operator" },
-        { name: "Keyboard External", qty: "1 Unit", status: "☑️", usage: "Kontrol tambahan" },
-        { name: "Mouse External", qty: "1 Unit", status: "☑️", usage: "Kontrol navigasi switcher / visual" },
+        { name: "Laptop", qty: "1 Unit", status: "✅", usage: "Workstation OBS Studio & Live Streaming" },
+        { name: "Power Adaptor LTP", qty: "1 Unit", status: "✅", usage: "Adaptor Laptop OBS Studio" },
+        { name: "Fan Cooler", qty: "1 Unit", status: "✅", usage: "Pendingin Laptop OBS Studio" },
+        { name: "Mouse Pad", qty: "1 Unit", status: "✅", usage: "Alas mouse meja Resolume Arena" },
+        { name: "Keyboard Ext", qty: "1 Unit", status: "☑️", usage: "Keyboard eksternal cadangan" },
+        { name: "Mouse Ext", qty: "1 Unit", status: "✅", usage: "Mouse eksternal meja Resolume Arena" },
         { name: "Powerbank", qty: "1 Unit", status: "☑️", usage: "Daya darurat aksesoris" },
-        { name: "Power Adaptor USB A", qty: "9 Unit", status: "☑️", usage: "Charger aksesoris / transmitter" },
+        { name: "Fan Desk", qty: "1 Pack", status: "✅", usage: "Kipas meja operator Resolume Arena" },
+        { name: "Light Desk", qty: "1 Pack", status: "✅", usage: "Lampu kerja meja Resolume Arena" },
+        { name: "Power Adaptor USB A", qty: "9 Unit", status: "⚠️ 2/9", usage: "1x Meja Resolume, 1x Meja OBS, 7x standby" },
         { name: "Power Adaptor USB A x C", qty: "1 Unit", status: "☑️", usage: "Charger cepat dual-port" },
         { name: "Power Adaptor USB C", qty: "1 Unit", status: "☑️", usage: "Charger perangkat Type-C" },
         { name: "USB A to USB B Data Cable", qty: "1 Unit", status: "☑️", usage: "Cadangan koneksi audio/printer" },
         { name: "USB A to USB Micro B Data Cable", qty: "2 Unit", status: "☑️", usage: "Cadangan koneksi perangkat legacy" },
-        { name: "USB A to USB C Data Cable", qty: "1 Unit", status: "✅", usage: "Switcher Cinetreak ➔ Laptop OBS Studio" },
-        { name: "USB A to USB C Charge Cable", qty: "1 Unit", status: "☑️", usage: "Pengisian daya Type-C" },
+        { name: "USB A to USB C Data Cable", qty: "1 Unit", status: "✅", usage: "Switcher Cinetreak ➔ Laptop ProPresenter 1" },
+        { name: "USB A to USB C Charge Cable", qty: "3 Unit", status: "⚠️ 2/3", usage: "1x Meja Resolume, 1x Meja OBS, 1x standby" },
         { name: "USB C to USB C Charge Cable", qty: "1 Unit", status: "☑️", usage: "Pengisian daya Type-C" },
-        { name: "USB A to USB A Extender 30CM", qty: "2 Unit", status: "☑️", usage: "Sambungan pendek port USB" },
-        { name: "USB A to USB A Extender 2M", qty: "1 Unit", status: "✅", usage: "Mixer NewBaxs CT80S ➔ Laptop OBS Studio" },
+        { name: "USB A to USB A Extender 30CM", qty: "2 Unit", status: "☑️", usage: "Sambungan pendek USB" },
+        { name: "USB A to USB A Extender 2M", qty: "1 Unit", status: "☑️", usage: "Sambungan panjang USB" },
         { name: "USB A to USB C Male Converter", qty: "4 Unit", status: "☑️", usage: "Converter port USB-C" },
-        { name: "USB A to USB C Female Converter", qty: "2 Unit", status: "☑️", usage: "Adapter USB-C" },
-        { name: "USB A to Mini USB Cable", qty: "1 Unit", status: "☑️", usage: "Cadangan kabel mini-USB" },
+        { name: "USB A to USB C Female Converter", qty: "2 Unit", status: "✅", usage: "1x Meja Resolume, 1x Meja OBS" },
+        { name: "USB A to Mini USB Cable", qty: "1 Unit", status: "☑️", usage: "Cadangan koneksi mini-USB" },
         { name: "USB A Splitter 3CH", qty: "1 Unit", status: "☑️", usage: "Ekspansi port USB" },
         { name: "USB A Splitter 4CH", qty: "1 Unit", status: "☑️", usage: "Ekspansi port USB" },
-        { name: "USB C DAC Hanason AB17X", qty: "1 Unit", status: "✅", usage: "Audio DAC Laptop Resolume ➔ Mixer Yamaha QL5" },
-        { name: "USB C DAC Oraimo OAA310", qty: "1 Unit", status: "☑️", usage: "Cadangan Audio DAC" },
+        { name: "USB C DAC Hanason AB17X", qty: "1 Unit", status: "✅", usage: "Audio DAC Laptop ProPresenter 1 ➔ Mixer Yamaha QL5" },
+        { name: "USB C DAC Oraimo OAA310", qty: "1 Unit", status: "✅", usage: "Cadangan terverifikasi Audio DAC" },
         { name: "In Ear Monitor QKZ Hi7T", qty: "1 Pack", status: "☑️", usage: "Monitoring audio operator" },
         { name: "In Ear Monitor KZ EDX Pro", qty: "1 Pack", status: "☑️", usage: "Monitoring audio operator" },
         { name: "Fastdrive Vgen SSD 128GB", qty: "1 Pack", status: "☑️", usage: "Penyimpanan cepat materi visual" },
@@ -76,23 +82,23 @@ document.addEventListener('DOMContentLoaded', () => {
         { name: "Flashdrive Toshiba 64GB", qty: "1 Unit", status: "☑️", usage: "Backup master file rundown" },
         { name: "HDMI to Mini HDMI Converter", qty: "1 Unit", status: "☑️", usage: "Cadangan konverter video" },
         { name: "Mini HDMI to Mini HDMI Cable 1,5M", qty: "1 Unit", status: "☑️", usage: "Cadangan kabel video" },
-        { name: "HDMI to HDMI Cable 1,5M", qty: "3 Unit", status: "✅", usage: "1x Splitter ➔ PRO1, 1x PRO2 ➔ RES, 1x Splitter ➔ RES" },
+        { name: "HDMI to HDMI Cable 1,5M", qty: "3 Unit", status: "✅", usage: "1x Splitter ➔ OBS, 1x Splitter ➔ RES, 1x Pro2 ➔ RES" },
         { name: "VGA to HDMI Converter", qty: "3 Unit", status: "☑️", usage: "Cadangan display legacy" },
-        { name: "VGA to VGA Cable 1,5M", qty: "1 Unit", status: "☑️", usage: "Cadangan kabel monitor" },
-        { name: "Power Cable 3PIN", qty: "3 Unit", status: "⚠️", usage: "Kabel power PC / Monitor / Mixer" },
-        { name: "Power Cable 2PIN", qty: "1 Unit", status: "⚠️", usage: "Kabel power adaptor TV / Device" },
-        { name: "Terminal Cable 4CH", qty: "3 Unit", status: "⚠️", usage: "Distribusi colokan meja teknis" },
-        { name: "Terminal Cable 3CH", qty: "2 Unit", status: "⚠️", usage: "Distribusi colokan meja teknis" },
-        { name: "Terminal Cable 2CH", qty: "1 Unit", status: "⚠️", usage: "Distribusi colokan meja teknis" },
-        { name: "Terminal Cable XCH", qty: "X Unit", status: "✅", usage: "Terminal utama meja kontrol" },
-        { name: "Terminal T", qty: "8 Unit", status: "⚠️", usage: "Percabangan colokan listrik" },
+        { name: "VGA to VGA Cable 1,5M", qty: "1 Unit", status: "☑️", usage: "Cadangan monitor" },
+        { name: "Power Cable 3PIN", qty: "3 Unit", status: "☑️", usage: "Kabel power PC / Monitor / Mixer" },
+        { name: "Power Cable 2PIN", qty: "1 Unit", status: "☑️", usage: "Kabel power adaptor TV / Device" },
+        { name: "Terminal Cable 4CH", qty: "3 Unit", status: "☑️", usage: "Distribusi colokan meja teknis" },
+        { name: "Terminal Cable 3CH", qty: "2 Unit", status: "☑️", usage: "Distribusi colokan meja teknis" },
+        { name: "Terminal Cable 2CH", qty: "1 Unit", status: "☑️", usage: "Distribusi colokan meja teknis" },
+        { name: "Terminal Cable XCH", qty: "X Unit", status: "✅", usage: "Distribusi listrik jalur utama Andreas" },
+        { name: "Terminal T", qty: "8 Unit", status: "☑️", usage: "Percabangan colokan listrik" },
         { name: "Addon Box", qty: "1 Pack", status: "☑️", usage: "Perlengkapan & tools tambahan" },
         { name: "Jack Box", qty: "1 Pack", status: "☑️", usage: "Kumpulan jack audio & converter" },
         { name: "Screw Box", qty: "1 Pack", status: "☑️", usage: "Baut rigging & plate kamera/tripod" },
         { name: "Ties Box", qty: "1 Pack", status: "☑️", usage: "Cable ties untuk manajemen kabel" },
         { name: "Tool Box", qty: "2 Pack", status: "☑️", usage: "Obeng, tang, gunting, tespen, multimeter" },
-        { name: "Cable Box", qty: "1 Pack", status: "☑️", usage: "Wadah manajemen cadangan kabel" },
-        { name: "Tape Box", qty: "1 Pack", status: "☑️", usage: "Lakban kain, isolasi hitam, double tape" }
+        { name: "Cable", qty: "1 Pack", status: "☑️", usage: "Wadah cadangan perkabelan" },
+        { name: "Tape", qty: "1 Pack", status: "☑️", usage: "Lakban kain, isolasi hitam, double tape" }
       ]
     },
     {
@@ -100,122 +106,176 @@ document.addEventListener('DOMContentLoaded', () => {
       title: "4. Peminjaman dari GIA Deliksari",
       items: [
         { name: "Mixer NewBaxs CT80S", qty: "1 Unit", status: "✅", usage: "Mixer 2 (Sub-Mix Audio Streaming ke OBS)" },
-        { name: "XLR Female to Male Cable 3M", qty: "2 Unit", status: "✅", usage: "Output Yamaha QL5 ➔ Input Mixer NewBaxs CT80S" },
+        { name: "Power Adaptor MIX", qty: "1 Pack", status: "✅", usage: "Power Adaptor Mixer NewBaxs CT80S" },
+        { name: "Soundcard TaffStudio", qty: "1 Unit", status: "☑️", usage: "Cadangan soundcard audio" },
+        { name: "TRS 3.5 Male to TRS 3.5 Female 3M", qty: "5 Unit", status: "☑️", usage: "Cadangan kabel audio aux" },
+        { name: "XLR Female to Male Cable 3M", qty: "2 Unit", status: "☑️", usage: "Cadangan kabel audio balance" },
         { name: "USB A to USB C Data Cable", qty: "1 Unit", status: "✅", usage: "Mixer NewBaxs CT80S ➔ Laptop OBS Studio" },
         { name: "Tripod Camera Big", qty: "1 Unit", status: "✅", usage: "Tripod CAM 3 Broadcast" },
-        { name: "HDMI Splitter 2CH", qty: "1 Unit", status: "☑️", usage: "Cadangan Video Splitter" },
+        { name: "HDMI Splitter 2CH", qty: "1 Unit", status: "☑️", usage: "Cadangan Video Splitter 2 Channel" },
         { name: "Power Adaptor SPL", qty: "1 Pack", status: "☑️", usage: "Power Adaptor Splitter GIA" },
-        { name: "HDMI to HDMI Cable 1M", qty: "2 Unit", status: "✅", usage: "1x Switcher ➔ TV Multiview, 1x Switcher ➔ Splitter 4CH" }
+        { name: "HDMI to HDMI Cable 1,5M", qty: "3 Unit", status: "⚠️ 2/3", usage: "1x Switcher ➔ Monitor Armageddon, 1x Pro1 ➔ Splitter, 1x standby" }
       ]
     },
     {
       vendor: "GKJ",
       title: "5. Peminjaman dari GKJ Ngaliyan",
       items: [
-        { name: "Stand Lighting Small", qty: "1 Unit", status: "☑️", usage: "Cadangan stand wireless receiver" },
+        { name: "Stand Lighting Small", qty: "1 Unit", status: "☑️", usage: "Cadangan stand wireless receiver / lighting" },
         { name: "HDMI Cable 15M", qty: "1 Unit", status: "✅", usage: "Output Laptop Resolume ➔ HDMI Capture PC UNNES" },
-        { name: "HDMI Cable 10M", qty: "1 Unit", status: "✅", usage: "CAM 3 Wired ➔ Switcher Cinetreak" },
+        { name: "HDMI Cable 10M", qty: "1 Unit", status: "✅", usage: "CAM 1 Wired ➔ Switcher Cinetreak" },
         { name: "HDMI Cable 5M", qty: "1 Unit", status: "☑️", usage: "Cadangan kabel HDMI jarak menengah" },
         { name: "HDMI Cable 1,5M", qty: "1 Unit", status: "☑️", usage: "Cadangan kabel patch HDMI" },
         { name: "HDMI Capture", qty: "1 Unit", status: "✅", usage: "Input ke PC UNNES dari Laptop Resolume" },
-        { name: "HDMI Splitter 4CH", qty: "1 Unit", status: "☑️", usage: "Cadangan HDMI Splitter 4 Channel" },
-        { name: "Power Adaptor SPL", qty: "1 Pack", status: "☑️", usage: "Power Adaptor Splitter GKJ" }
+        { name: "HDMI Splitter 4CH", qty: "1 Unit", status: "✅", usage: "Splitter CAM 1 Wired (Active Booster)" },
+        { name: "Power Adaptor SPL", qty: "1 Pack", status: "✅", usage: "Power Adaptor Splitter GKJ" }
       ]
     },
     {
       vendor: "UKK",
       title: "6. Peminjaman dari UKK UNNES",
       items: [
-        { name: "XLR Female to Male Cable 10M", qty: "3 Unit", status: "⚠️ 2/3", usage: "2 Unit Yamaha QL5 ➔ CT80S, 1 Unit standby" },
-        { name: "Stand Lighting Small", qty: "4 Unit", status: "⚠️ 2/4", usage: "1x Holder RX Pyro S, 1x Holder RX Pyro H, 2x standby" },
+        { name: "XLR Female to Male Cable 10M", qty: "3 Unit", status: "☑️", usage: "Cadangan kabel audio balance" },
+        { name: "Stand Lighting Small", qty: "4 Unit", status: "⚠️ 2/4", usage: "1x Holder RX Pyro S (CAM 2), 1x Holder RX Pyro H (CAM 3), 2x standby" },
         { name: "Tripod Camera Big", qty: "1 Unit", status: "✅", usage: "Tripod CAM 4 Broadcast" },
         { name: "HDMI to Mini HDMI Cable 2,5M", qty: "1 Unit", status: "☑️", usage: "Cadangan kabel video" },
-        { name: "HDMI Cable 15M", qty: "1 Unit", status: "☑️", usage: "Cadangan kabel HDMI panjang" },
+        { name: "HDMI Cable 15M", qty: "1 Unit", status: "✅", usage: "CAM 1 Wired ➔ Splitter GKJ" },
         { name: "HDMI Cable 10M", qty: "1 Unit", status: "✅", usage: "CAM 4 Wired ➔ Switcher Cinetreak" },
-        { name: "HDMI Cable 1,5M", qty: "4 Unit", status: "⚠️ 2/4", usage: "1x Pyro S RX ➔ Switcher, 1x Pyro H RX ➔ Switcher, 2 standby" },
-        { name: "HDMI Splitter 4CH", qty: "1 Unit", status: "✅", usage: "Splitter Utama Distribusi Sinyal Switcher" },
+        { name: "HDMI Cable 1,5M", qty: "3 Unit", status: "⚠️ 2/3", usage: "1x Pyro S RX ➔ Switcher, 1x Pyro H RX ➔ Switcher, 1x standby" },
+        { name: "HDMI Splitter 4CH", qty: "1 Unit", status: "✅", usage: "Splitter Utama Distribusi ProPresenter 1 ➔ OBS & RES" },
         { name: "Power Adaptor SPL", qty: "1 Pack", status: "✅", usage: "Power Adaptor Splitter UKK" },
         { name: "VGA to VGA Cable 1,5M", qty: "1 Unit", status: "☑️", usage: "Cadangan kabel monitor" },
         { name: "VGA to VGA Cable 2,5M", qty: "1 Unit", status: "☑️", usage: "Cadangan kabel monitor" },
         { name: "VGA to HDMI Converter", qty: "2 Unit", status: "☑️", usage: "Cadangan converter display" },
         { name: "Power Cable XPIN", qty: "X Unit", status: "☑️", usage: "Cadangan kabel power" },
-        { name: "Terminal Cable XCH", qty: "X Unit", status: "✅", usage: "Distribusi listrik panggung & FOH" }
+        { name: "Terminal Cable XCH", qty: "X Unit", status: "✅", usage: "Distribusi listrik jalur UKK" }
+      ]
+    },
+    {
+      vendor: "Jordan",
+      title: "7. Peminjaman dari Jordan",
+      items: [
+        { name: "MacBook Pro", qty: "1 Unit", status: "✅", usage: "Workstation Virtual Mixer 1" },
+        { name: "Power Adaptor MAC", qty: "1 Pack", status: "✅", usage: "Power Adaptor MacBook Virtual Mixer 1" },
+        { name: "Sony A6000", qty: "1 Unit", status: "✅", usage: "CAM 4 Broadcast Wired" },
+        { name: "Lens 16-50MM Kit", qty: "1 Unit", status: "✅", usage: "Lensa CAM 4 Broadcast" },
+        { name: "Battery", qty: "2 Unit", status: "✅", usage: "Baterai CAM 4 Broadcast" },
+        { name: "Charger", qty: "1 Pack", status: "✅", usage: "Charger baterai kamera" },
+        { name: "Memory Card 32GB", qty: "1 Unit", status: "✅", usage: "SD Card CAM 4 Broadcast" },
+        { name: "Card Reader", qty: "1 Pack", status: "☑️", usage: "Card reader cadangan" },
+        { name: "XLR Cable 30M", qty: "1 Unit", status: "✅", usage: "Output Yamaha QL5 ➔ Input Mixer NewBaxs CT80S" },
+        { name: "HDMI Capture", qty: "1 Unit", status: "☑️", usage: "Cadangan video capture" },
+        { name: "USB A to USB B Cable", qty: "1 Unit", status: "☑️", usage: "Cadangan koneksi perangkat" },
+        { name: "Monitor Armageddon", qty: "1 Unit", status: "✅", usage: "Monitor Multiview Switcher Cinetreak" },
+        { name: "Power Adaptor MON", qty: "1 Pack", status: "✅", usage: "Power Adaptor Monitor Armageddon" },
+        { name: "Smoke Fogger 900W", qty: "1 Unit", status: "✅", usage: "Mesin asap panggung (Stage Effects)" },
+        { name: "Liquid SMO", qty: "1 Pack", status: "✅", usage: "Cairan asap smoke machine" },
+        { name: "Remote SMO", qty: "1 Unit", status: "✅", usage: "Remote pemicu mesin asap" },
+        { name: "XLR Cable SMO", qty: "1 Unit", status: "✅", usage: "Kabel kontrol XLR mesin asap" },
+        { name: "Power Cable SMO", qty: "1 Pack", status: "✅", usage: "Kabel power mesin asap" }
+      ]
+    },
+    {
+      vendor: "Kiel",
+      title: "8. Peminjaman dari Kiel",
+      items: [
+        { name: "Sony ZV-E10", qty: "1 Unit", status: "✅", usage: "CAM 2 Broadcast Wireless" },
+        { name: "Lens 16-50MM Kit", qty: "1 Unit", status: "☑️", usage: "Cadangan lensa kit" },
+        { name: "Lens 50MM Fix", qty: "1 Unit", status: "☑️", usage: "Cadangan lensa portrait/low-light" },
+        { name: "Battery", qty: "2 Unit", status: "✅", usage: "Baterai CAM 2 Broadcast" },
+        { name: "Charger", qty: "1 Pack", status: "✅", usage: "Charger baterai kamera" },
+        { name: "Memory Card 64GB", qty: "1 Unit", status: "✅", usage: "SD Card CAM 2 Broadcast" },
+        { name: "Memory Card 128GB", qty: "1 Unit", status: "☑️", usage: "Cadangan storage resolusi tinggi" },
+        { name: "Card Reader USB A", qty: "1 Unit", status: "☑️", usage: "Card reader transfer data" }
+      ]
+    },
+    {
+      vendor: "Nico",
+      title: "9. Peminjaman dari Nico",
+      items: [
+        { name: "Laptop", qty: "1 Unit", status: "✅", usage: "Workstation ProPresenter 1 (Operator: Rania)" },
+        { name: "Power Adaptor LTP", qty: "1 Unit", status: "✅", usage: "Power Adaptor Laptop ProPresenter 1" },
+        { name: "Fan Cooler", qty: "1 Unit", status: "✅", usage: "Pendingin Laptop Resolume Arena" },
+        { name: "Mouse Ext", qty: "1 Unit", status: "✅", usage: "Mouse eksternal operator" },
+        { name: "Card Reader USB A", qty: "1 Unit", status: "☑️", usage: "Card reader USB-A" },
+        { name: "Card Reader USB C", qty: "1 Unit", status: "☑️", usage: "Card reader USB-C" }
       ]
     },
     {
       vendor: "Lio",
-      title: "7. Peminjaman dari Lio",
+      title: "10. Peminjaman dari Lio",
       items: [
-        { name: "HDMI Cable 1,5M", qty: "1 Unit", status: "✅", usage: "Laptop ProPresenter 3 ➔ Television Time Keeper" }
+        { name: "HDMI Cable 1,5M", qty: "1 Unit", status: "☑️", usage: "Cadangan kabel patch HDMI" }
       ]
     },
     {
       vendor: "Darrel",
-      title: "8. Peminjaman dari Darrel",
+      title: "11. Peminjaman dari Darrel",
       items: [
-        { name: "Television", qty: "1 Unit", status: "✅", usage: "Monitor Stage Time Keeper" },
-        { name: "Power Adaptor TV", qty: "1 Pack", status: "✅", usage: "Power Adaptor TV Time Keeper" },
         { name: "Memory Card 8GB", qty: "1 Unit", status: "☑️", usage: "Penyimpanan file cadangan" }
-      ]
-    },
-    {
-      vendor: "Kiel 1",
-      title: "9. Peminjaman dari Kiel 1",
-      items: [
-        { name: "Sony ZVE10", qty: "1 Unit", status: "✅", usage: "CAM 1 Broadcast Wireless" },
-        { name: "Lens 16-50MM Kit", qty: "1 Unit", status: "✅", usage: "CAM 4 Broadcast Wired" },
-        { name: "Lens 50MM Fix", qty: "1 Unit", status: "☑️", usage: "Cadangan lensa portrait/low-light" },
-        { name: "Battery Kamera", qty: "2 Unit", status: "✅", usage: "1 Unit di CAM 1, 1 Unit standby" },
-        { name: "Charger Kamera", qty: "1 Pack", status: "✅", usage: "Pengisian daya baterai" },
-        { name: "Memory Card 64GB", qty: "1 Unit", status: "✅", usage: "CAM 1 Broadcast" },
-        { name: "Memory Card 128GB", qty: "1 Unit", status: "☑️", usage: "Cadangan storage resolusi tinggi" },
-        { name: "Laptop + Adaptor LTP", qty: "1 Unit", status: "✅", usage: "Laptop Cadangan Operasional (Backup Workstation)" }
-      ]
-    },
-    {
-      vendor: "Joel",
-      title: "10. Peminjaman dari Joel",
-      items: [
-        { name: "Sony A6600", qty: "1 Unit", status: "✅", usage: "CAM VID Dokumentasi Video" },
-        { name: "Lens 24-70MM Zeiss", qty: "1 Unit", status: "✅", usage: "Lensa utama CAM VID Dokumentasi" },
-        { name: "Battery Kamera", qty: "2 Unit", status: "✅", usage: "Baterai CAM VID Dokumentasi" },
-        { name: "Charger Kamera", qty: "1 Pack", status: "✅", usage: "Pengisian daya baterai" },
-        { name: "Memory Card 64GB", qty: "1 Unit", status: "✅", usage: "CAM VID Dokumentasi Video" },
-        { name: "Gimbal DJI Ronin RS3", qty: "1 Unit", status: "✅", usage: "Stabilizer pergerakan dinamis CAM VID" }
-      ]
-    },
-    {
-      vendor: "Kezia",
-      title: "11. Peminjaman dari Kezia",
-      items: [
-        { name: "Television", qty: "1 Unit", status: "✅", usage: "Monitor Multiview Switcher Broadcast" },
-        { name: "Power Adaptor TV", qty: "1 Pack", status: "✅", usage: "Power Adaptor TV Multiview" }
       ]
     },
     {
       vendor: "Jennifer",
       title: "12. Peminjaman dari Jennifer",
       items: [
-        { name: "HP Iphone 15", qty: "1 Unit", status: "✅", usage: "CAM HP Dokumentasi Live Reels/Story/Sosmed" },
-        { name: "TAB iPad", qty: "1 Unit", status: "✅", usage: "iPad Virtual Mixer 2 (Remote Audio FOH)" }
+        { name: "HP Iphone 15", qty: "1 Unit", status: "✅", usage: "CAM 7 Dokumentasi Live Story / Reels / Sosmed" },
+        { name: "TAB iPad", qty: "1 Unit", status: "✅", usage: "iPad Virtual Mixer 2 (Operator: Yosua)" }
+      ]
+    },
+    {
+      vendor: "Filia",
+      title: "13. Peminjaman dari Filia",
+      items: [
+        { name: "TAB iPad", qty: "1 Unit", status: "✅", usage: "iPad Monitor Virtual Mixer 1 (FOH Audio)" }
+      ]
+    },
+    {
+      vendor: "Alex",
+      title: "14. Peminjaman dari Alex",
+      items: [
+        { name: "TAB iPad", qty: "1 Unit", status: "✅", usage: "iPad Monitor Virtual Mixer 1 / Cadangan" }
+      ]
+    },
+    {
+      vendor: "Bapak Arif",
+      title: "15. Peminjaman dari Bapak Arif",
+      items: [
+        { name: "TAB iPad", qty: "1 Unit", status: "✅", usage: "iPad Virtual Mixer 3 (Operator: Jordan)" }
+      ]
+    },
+    {
+      vendor: "Bayu",
+      title: "16. Peminjaman dari Bayu",
+      items: [
+        { name: "Laptop", qty: "1 Unit", status: "✅", usage: "Workstation Resolume Arena (Operator: Andreas)" },
+        { name: "Power Adaptor LTP", qty: "1 Unit", status: "✅", usage: "Power Adaptor Laptop Resolume Arena" }
+      ]
+    },
+    {
+      vendor: "Wilfred",
+      title: "17. Peminjaman dari Wilfred",
+      items: [
+        { name: "Laptop", qty: "1 Unit", status: "✅", usage: "Workstation ProPresenter 2 (Operator: Filia)" },
+        { name: "Power Adaptor LTP", qty: "1 Unit", status: "✅", usage: "Power Adaptor Laptop ProPresenter 2" }
       ]
     },
     {
       vendor: "Panitia",
-      title: "13. Peminjaman dari Panitia",
+      title: "18. Peminjaman dari Panitia",
       items: [
-        { name: "HDMI to Micro HDMI Converter", qty: "2 Unit", status: "✅", usage: "Backup Converter CAM 3 & CAM 4" },
-        { name: "Terminal Cable XCH", qty: "X Unit", status: "✅", usage: "Distribusi listrik jalur utama" }
+        { name: "HDMI to Micro HDMI Converter", qty: "2 Unit", status: "✅", usage: "Cadangan terverifikasi port kamera" },
+        { name: "Terminal Cable XCH", qty: "X Unit", status: "✅", usage: "Distribusi listrik jalur utama Panitia" }
       ]
     },
     {
       vendor: "UNNES",
-      title: "14. Fasilitas Gedung Auditorium UNNES",
+      title: "19. Fasilitas Gedung Auditorium UNNES",
       items: [
         { name: "Mixer Yamaha QL5", qty: "1 Unit", status: "✅", usage: "Master Digital Console Audio FOH" },
-        { name: "WiFi UNNES-ID", qty: "1 System", status: "✅", usage: "Jaringan kontrol nirkabel Virtual Mixer 1 & 2" },
-        { name: "Audio Cable 20M", qty: "1 Line", status: "✅", usage: "Jalur audio Resolume BGM ➔ Mixer Yamaha QL5" },
-        { name: "HDMI Cable 20M", qty: "1 Line", status: "✅", usage: "Laptop ProPresenter 1 ➔ Novastar Processor 1" },
+        { name: "WiFi UNNES-ID", qty: "1 System", status: "✅", usage: "Jaringan kontrol nirkabel Virtual Mixer 1, 2, & 3" },
+        { name: "Audio Cable 20M", qty: "1 Line", status: "✅", usage: "Jalur audio ProPresenter 1 ➔ Mixer Yamaha QL5" },
+        { name: "HDMI Cable 20M", qty: "1 Line", status: "✅", usage: "Laptop OBS Studio ➔ Novastar Processor 1" },
         { name: "Novastar Video Processor 1 & 2", qty: "2 Unit", status: "✅", usage: "Processor resolusi LED Kiri/Kanan/Belakang & Tengah" },
         { name: "PC UNNES", qty: "1 Unit", status: "✅", usage: "PC passthrough display input Resolume ➔ Novastar 2" },
         { name: "LED Center Screen", qty: "1 Display", status: "✅", usage: "Layar LED panggung utama tengah" },

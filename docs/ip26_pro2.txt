@@ -1,9 +1,9 @@
-*DATA atau LIST dari Peminjaman atau Inventory atau Storage*
+*DATA Peminjaman*
 
-x Centang Hijau merupakan barang yang dipakai di SYSTEM/WIRING/ROUTING
-x Tanda Seru merupakan barang yang dipakai namun belum semua di SYSTEM/WIRING/ROUTING
-x Centang Ungu merupakan barang yang tidak dipakai di SYSTEM/WIRING/ROUTING atau standby
-x Berikut sudah dikategorikan barang dipinjam dari siapa saja dan apa saja
+x Centang Hijau artinya barang dipakai
+x Tanda Seru artinya barang dipakai tapi belum semua
+x Centang Ungu artinya barang tidak dipakai atau standby
+x Kategori peminjaman berdasarkan dari siapa saja dan apa saja
 
 *Peminjaman dari OWL*
 - Sony A6000 (2 Unit) ✅
@@ -11,6 +11,7 @@ x Berikut sudah dikategorikan barang dipinjam dari siapa saja dan apa saja
 - Sony ZV-E10 (1 Unit) ✅
 - Lens 18-105MM (3 Unit) ✅
 - Lens 50MM (1 Unit) ✅
+- Lens 16-50MM Kit (2 Unit) ☑️
 - Battery (8 Unit) ✅
 - Charger (1 Pack) ✅
 - Memory Card 32GB (4 Unit) ✅
@@ -22,34 +23,39 @@ x Berikut sudah dikategorikan barang dipinjam dari siapa saja dan apa saja
 - Tripod Camera Big (1 Unit) ✅
 - HDMI to Micro HDMI Converter (2 Unit) ✅
 - HDMI to Micro HDMI Cable 30CM (2 Unit) ✅
-- HDMI Capture (2 Unit) ✅
-
-*Peminjaman dari ABON*
 - HDMI Capture (2 Unit) ⚠️ 1/2
 
+*Peminjaman dari ABON*
+- Lens 35MM (1 Unit) ✅
+- HDMI Capture (2 Unit) ✅
+
 *Peminjaman dari Andreas*
-- Fan Cooler (1 Unit) ☑️
-- Mouse Pad (1 Unit) ☑️
+- Laptop ✅
+- Power Adaptor LTP ✅
+- Fan Cooler (1 Unit) ✅
+- Mouse Pad (1 Unit) ✅
 - Keyboard Ext (1 Unit) ☑️
-- Mouse Ext (1 Unit) ☑️
+- Mouse Ext (1 Unit) ✅
 - Powerbank (1 Unit) ☑️
-- Power Adaptor USB A (9 Unit) ☑️
+- Fan Desk (1 Pack) ✅
+- Light Desk (1 Pack) ✅
+- Power Adaptor USB A (9 Unit) ⚠️ 2/9
 - Power Adaptor USB A x C (1 Unit) ☑️
 - Power Adaptor USB C (1 Unit) ☑️
 - USB A to USB B Data Cable (1 Unit) ☑️
 - USB A to USB Micro B Data Cable (2 Unit) ☑️
 - USB A to USB C Data Cable (1 Unit) ✅
-- USB A to USB C Charge Cable (1 Unit) ☑️
+- USB A to USB C Charge Cable (3 Unit) ⚠️ 2/3
 - USB C to USB C Charge Cable (1 Unit) ☑️
 - USB A to USB A Extender 30CM (2 Unit) ☑️
-- USB A to USB A Extender 2M (1 Unit) ✅
+- USB A to USB A Extender 2M (1 Unit) ☑️
 - USB A to USB C Male Converter (4 Unit) ☑️
-- USB A to USB C Female Converter (2 Unit) ☑️
+- USB A to USB C Female Converter (2 Unit) ✅
 - USB A to Mini USB Cable (1 Unit) ☑️
 - USB A Splitter 3CH (1 Unit) ☑️
 - USB A Splitter 4CH (1 Unit) ☑️
 - USB C DAC Hanason AB17X (1 Unit) ✅
-- USB C DAC Oraimo OAA310 (1 Unit) ☑️
+- USB C DAC Oraimo OAA310 (1 Unit) ✅
 - In Ear Monitor QKZ Hi7T (1 Pack) ☑️
 - In Ear Monitor KZ EDX Pro (1 Pack) ☑️
 - Fastdrive Vgen SSD 128GB (1 Pack) ☑️
@@ -63,13 +69,13 @@ x Berikut sudah dikategorikan barang dipinjam dari siapa saja dan apa saja
 - HDMI to HDMI Cable 1,5M (3 Unit) ✅
 - VGA to HDMI Converter (3 Unit) ☑️
 - VGA to VGA Cable 1,5M (1 Unit) ☑️
-- Power Cable 3PIN (3 Unit) ⚠️
-- Power Cable 2PIN (1 Unit) ⚠️
-- Terminal Cable 4CH (3 Unit) ⚠️
-- Terminal Cable 3CH (2 Unit) ⚠️
-- Terminal Cable 2CH (1 Unit) ⚠️
+- Power Cable 3PIN (3 Unit) ☑️
+- Power Cable 2PIN (1 Unit) ☑️
+- Terminal Cable 4CH (3 Unit) ☑️
+- Terminal Cable 3CH (2 Unit) ☑️
+- Terminal Cable 2CH (1 Unit) ☑️
 - Terminal Cable XCH (X Unit) ✅
-- Terminal T (8 Unit) ⚠️
+- Terminal T (8 Unit) ☑️
 - Addon Box (1 Pack) ☑️
 - Jack Box (1 Pack) ☑️
 - Screw Box (1 Pack) ☑️
@@ -79,13 +85,16 @@ x Berikut sudah dikategorikan barang dipinjam dari siapa saja dan apa saja
 - Tape (1 Pack) ☑️
 
 *Peminjaman dari GIA Deliksari*
-- Mixer NewBaxs CT80S ✅
-- XLR Female to Male Cable 3M (2 Unit) ✅
+- Mixer NewBaxs CT80S (1 Unit) ✅
+- Power Adaptor MIX (1 Pack) ✅
+- Soundcard TaffStudio (1 Unit) ☑️
+- TRS 3.5 Male to TRS 3.5 Female 3M (5 Unit) ☑️
+- XLR Female to Male Cable 3M (2 Unit) ☑️
 - USB A to USB C Data Cable (1 Unit) ✅
 - Tripod Camera Big (1 Unit) ✅
 - HDMI Splitter 2CH (1 Unit) ☑️
 - Power Adaptor SPL (1 Pack) ☑️
-- HDMI to HDMI Cable 1M (2 Unit) ✅
+- HDMI to HDMI Cable 1,5M (3 Unit) ⚠️ 2/3
 
 *Peminjaman dari GKJ Ngaliyan*
 - Stand Lighting Small (1 Unit) ☑️
@@ -94,17 +103,17 @@ x Berikut sudah dikategorikan barang dipinjam dari siapa saja dan apa saja
 - HDMI Cable 5M (1 Unit) ☑️
 - HDMI Cable 1,5M (1 Unit) ☑️
 - HDMI Capture (1 Unit) ✅
-- HDMI Splitter 4CH (1 Unit) ☑️
-- Power Adaptor SPL (1 Pack) ☑️
+- HDMI Splitter 4CH (1 Unit) ✅
+- Power Adaptor SPL (1 Pack) ✅
 
 *Peminjaman dari UKK UNNES*
-- XLR Female to Male Cable 10M (3 Unit) ⚠️ 2/3
+- XLR Female to Male Cable 10M (3 Unit) ☑️
 - Stand Lighting Small (4 Unit) ⚠️ 2/4
 - Tripod Camera Big (1 Unit) ✅
 - HDMI to Mini HDMI Cable 2,5M (1 Unit) ☑️
-- HDMI Cable 15M (1 Unit) ☑️
+- HDMI Cable 15M (1 Unit) ✅
 - HDMI Cable 10M (1 Unit) ✅
-- HDMI Cable 1,5M (4 Unit) ⚠️ 2/4
+- HDMI Cable 1,5M (3 Unit) ⚠️ 2/3
 - HDMI Splitter 4CH (1 Unit) ✅
 - Power Adaptor SPL (1 Pack) ✅
 - VGA to VGA Cable 1,5M (1 Unit) ☑️
@@ -113,44 +122,77 @@ x Berikut sudah dikategorikan barang dipinjam dari siapa saja dan apa saja
 - Power Cable XPIN (X Unit) ☑️
 - Terminal Cable XCH (X Unit) ✅
 
-*Peminjaman dari Lio*
-- HDMI Cable 1,5M (1 Unit) ✅
-
-*Peminjaman dari Darrel*
-- Television (1 Unit) ✅
-- Power Adaptor TV (1 Pack) ✅
-- Memory Card 8GB (1 Unit) ☑️
-
-*Peminjaman dari Kiel 1*
-- Sony ZVE10 (1 Unit) ✅
+*Peminjaman dari Jordan*
+- MacBook Pro (1 Unit) ✅
+- Power Adaptor MAC (1 Pack) ✅
+- Sony A6000 (1 Unit) ✅
 - Lens 16-50MM Kit (1 Unit) ✅
+- Battery (2 Unit) ✅
+- Charger (1 Pack) ✅
+- Memory Card 32GB (1 Unit) ✅
+- Card Reader (1 Pack) ☑️
+- XLR Cable 30M (1 Unit) ✅
+- HDMI Capture (1 Unit) ☑️
+- USB A to USB B Cable (1 Unit) ☑️
+- Monitor Armageddon (1 Unit) ✅
+- Power Adaptor MON (1 Pack) ✅
+- Smoke Fogger 900W (1 Unit) ✅
+- Liquid SMO (1 Pack) ✅
+- Remote SMO (1 Unit) ✅
+- XLR Cable SMO (1 Unit) ✅
+- Power Cable SMO (1 Pack) ✅
+
+
+*Peminjaman dari Kiel*
+- Sony ZV-E10 (1 Unit) ✅
+- Lens 16-50MM Kit (1 Unit) ☑️
 - Lens 50MM Fix (1 Unit) ☑️
 - Battery (2 Unit) ✅
 - Charger (1 Pack) ✅
 - Memory Card 64GB (1 Unit) ✅
 - Memory Card 128GB (1 Unit) ☑️
+- Card Reader USB A (1 Unit) ☑️
 
-*Peminjaman dari Joel*
-- Sony A6600 (1 Unit) ✅
-- Lens 24-70MM Zeiss (1 Unit) ✅
-- Battery (2 Unit) ✅
-- Charger (1 Pack) ✅
-- Memory Card 64GB (1 Unit) ✅
-- Gimbal DJI Ronin RS3 (1 Unit) ✅
+*Peminjaman dari Nico*
+- Laptop ✅
+- Power Adaptor LTP ✅
+- Fan Cooler (1 Unit) ✅
+- Mouse Ext (1 Unit) ✅
+- Card Reader USB A (1 Unit) ☑️
+- Card Reader USB C (1 Unit) ☑️
 
-*Peminjaman dari Kezia*
-- Television (1 Unit) ✅
-- Power Adaptor TV (1 Pack) ✅
+*Peminjaman dari Lio*
+- HDMI Cable 1,5M (1 Unit) ☑️
+
+*Peminjaman dari Darrel*
+- Memory Card 8GB (1 Unit) ☑️
 
 *Peminjaman dari Jennifer*
 - HP Iphone 15 (1 Unit) ✅
 - TAB iPad (1 Unit) ✅
 
+*Peminjaman dari Filia*
+- TAB iPad (1 Unit) ✅
+
+*Peminjaman dari Alex*
+- TAB iPad (1 Unit) ✅
+
+*Peminjaman dari Bapak Arif*
+- TAB iPad (1 Unit) ✅
+
+*Peminjaman dari Bayu*
+- Laptop ✅
+- Power Adaptor LTP ✅
+
+*Peminjaman dari Wilfred*
+- Laptop ✅
+- Power Adaptor LTP ✅
+
 *Peminjaman dari Panitia*
 - HDMI to Micro HDMI Converter (2 Unit) ✅
 - Terminal Cable XCH (X Unit) ✅
 
-*DATA atau LIST Materi pada saat event berlangsung*
+*DATA Materi*
 
 x Dibagi menjadi 3 sesi, Pre, Main, dan Post
 

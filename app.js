@@ -669,10 +669,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // 2. Status match
         let matchesStatus = true;
-        if (currentStatusFilter === 'loading-pending') matchesStatus = !state.loaded;
-        else if (currentStatusFilter === 'loading-ready') matchesStatus = state.loaded;
-        else if (currentStatusFilter === 'packing-pending') matchesStatus = !state.packed;
-        else if (currentStatusFilter === 'packing-ready') matchesStatus = state.packed;
+        if (currentStatusFilter === 'loading-pending' || currentStatusFilter === 'unloaded') matchesStatus = !state.loaded;
+        else if (currentStatusFilter === 'loading-ready' || currentStatusFilter === 'loaded') matchesStatus = state.loaded;
+        else if (currentStatusFilter === 'packing-pending' || currentStatusFilter === 'unpacked') matchesStatus = !state.packed;
+        else if (currentStatusFilter === 'packing-ready' || currentStatusFilter === 'packed') matchesStatus = state.packed;
 
         if (matchesVendor && matchesSearch && matchesStatus) {
           row.style.display = '';

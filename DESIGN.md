@@ -93,11 +93,11 @@ The visual language is inspired by high-end professional broadcast control rooms
   - Flowcharts rendered:
     1. *Bagan Struktur Komando & Hierarki Tim*
     2. *Master Architecture Signal Flow (5 Sub-Graphs)*
-    3. *Sub-Flowchart 1: Sub-Sistem Kamera Wireless — CAM 1 & CAM 2 (`flowchart LR`)*
-    4. *Sub-Flowchart 2: Sub-Sistem Kamera Kabel / Wired — CAM 3 & CAM 4 (`flowchart LR`)*
+    3. *Sub-Flowchart 1: Sub-Sistem Kamera Wireless — CAM 2 & CAM 3 (`flowchart LR`)*
+    4. *Sub-Flowchart 2: Sub-Sistem Kamera Kabel / Wired — CAM 1 & CAM 4 (`flowchart LR`)*
     5. *Sub-Flowchart 3: Sub-Sistem Distribusi Video & Pemetaan LED (`flowchart LR`)*
-    6. *Sub-Flowchart 4: Sub-Sistem Audio Sub-Mixing & Streaming (`flowchart LR`)*
-    7. *Sub-Flowchart 5: Sub-Sistem Stage Time Keeper (`flowchart LR`)*
+    6. *Sub-Flowchart 4: Sub-Sistem Audio FOH, Sub-Mixing & Streaming (`flowchart LR`)*
+    7. *Sub-Flowchart 5: Sub-Sistem Efek Panggung (Smoke Fogger 900W) (`flowchart LR`)*
     8. *Sub-Flowchart 6: Sub-Sistem Distribusi Daya & Grounding (`flowchart LR`)*
 
 ### D. Cards, Camera Grids, Fixed Tables & Rundown Matrix
@@ -106,10 +106,10 @@ The visual language is inspired by high-end professional broadcast control rooms
 - **Hairline Default Resting State:** 1px hairline technical borders (`1px solid var(--border-subtle)`) across all cards, callouts, telemetry blocks, camera spec bins, and Rundown phase containers with zero intrusive static outlines.
 - **Dynamic Interactive Outlines:** Prominently highlights with a **2.5px glowing cyan outline (`0 0 0 2px var(--accent-cyan-subtle), var(--shadow-glow)`)** and micro-lift (`translateY(-2px)`) ONLY on hover (`:hover`), active/click (`:active`), or keyboard focus (`:focus-visible`).
 - **3-Phase Rundown Schedule Design (`.timeline-phase` & `.timeline-box`):** Structured into Pre-Ibadah (Open Gate), Main Ibadah (Main Event), and Post-Ibadah (Usung-usung/Close Gate) with consistent hairline resting borders and smooth micro-lift hover animations.
-- **Strict Fixed Column Alignment across 14 Inventory Tables (`.data-table.inv-table`):** Table columns are fixed across all 14 vendor blocks (`table-layout: fixed`) guaranteeing exact vertical column matching regardless of item title lengths.
+- **Strict Fixed Column Alignment across 19 Inventory Tables (`.data-table.inv-table`):** Table columns are fixed across all 18 lender blocks + Auditorium UNNES (19 categories, 158 items: `table-layout: fixed`) guaranteeing exact vertical column matching regardless of item title lengths.
 - **Single-Line Descriptions with Ellipsis:** Keterangan fields are strictly kept to a single line with `white-space: nowrap; text-overflow: ellipsis;` and native browser hover tooltips.
-- **2-Column Broadcast Camera Grid (`.broadcast-grid`):** Arranges CAM 1 & CAM 2 on the top row, and CAM 3 & CAM 4 on the bottom row to eliminate vertical scrolling.
-- **3-Column Documentation Camera Grid (`.doc-grid`):** Arranges CAM PHO, CAM VID, and CAM HP in a balanced 3-column desktop layout.
+- **2-Column Broadcast Camera Grid (`.broadcast-grid`):** Arranges CAM 1 (Alex - Steady Wired) & CAM 2 (Kiel - Mobile Wireless) on the top row, and CAM 3 (Ferdy - Mobile Wireless) & CAM 4 (Nia - Steady Wired) on the bottom row to eliminate vertical scrolling.
+- **3-Column Documentation Camera Grid (`.doc-grid`):** Arranges CAM 5 (Photo - Nico), CAM 6 (Video - Joel), and CAM 7 (Story - Jennifer) in a balanced 3-column desktop layout.
 - **2-Column Responsive Subsystem Grid (`.subsystems-grid`):** Displays the 6 deep-dive technical chains in a 2-column grid on desktop/tablets paired with horizontal `flowchart LR` diagrams.
 - **Direct Tactile Checkboxes:** Streamlined 32×32px responsive checkboxes with SVG checkmarks (`✓`) directly synchronized to Supabase Cloud with crew timestamps.
 
