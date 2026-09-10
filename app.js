@@ -42,50 +42,13 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // =========================================================================
-  // 2. THEME ENGINE (Dark Mode & Light Mode)
+  // 2. THEME ENGINE (Default & Strictly Permanent Dark Mode)
   // =========================================================================
-  const themeToggleBtn = document.getElementById('theme-toggle-btn');
-  const mobileThemeBtn = document.getElementById('mobile-theme-btn');
   const root = document.documentElement;
-
-  const storedTheme = localStorage.getItem('ip26_theme') || 'dark';
-  setTheme(storedTheme, false);
-
-  function setTheme(theme, doRenderMermaid = true) {
-    root.setAttribute('data-theme', theme);
-    localStorage.setItem('ip26_theme', theme);
-    updateThemeButtons(theme);
-    if (doRenderMermaid && typeof renderAllMermaid === 'function') {
-      renderAllMermaid();
-    }
-  }
-
-  function toggleTheme() {
-    const currentTheme = root.getAttribute('data-theme') || 'dark';
-    const nextTheme = currentTheme === 'dark' ? 'light' : 'dark';
-    setTheme(nextTheme, true);
-    showToast('Tema Berubah', `Beralih ke mode ${nextTheme === 'dark' ? 'Gelap (Pure Neutral Grey)' : 'Terang (Pure Warm White)'}`, 'info');
-  }
-
-  function updateThemeButtons(theme) {
-    const isDark = theme === 'dark';
-    if (themeToggleBtn) {
-      const label = themeToggleBtn.querySelector('.theme-label');
-      if (label) label.textContent = isDark ? 'Mode Gelap' : 'Mode Terang';
-    }
-    if (mobileThemeBtn) {
-      const icon = mobileThemeBtn.querySelector('.theme-dock-icon');
-      if (icon) icon.textContent = isDark ? '🌙' : '☀️';
-    }
-    const drawerThemeToggle = document.getElementById('drawer-theme-toggle');
-    if (drawerThemeToggle) {
-      const drawerLabel = drawerThemeToggle.querySelector('.drawer-theme-label');
-      if (drawerLabel) drawerLabel.textContent = isDark ? 'Mode Terang (Linen)' : 'Mode Gelap (Slate)';
-    }
-  }
-
-  if (themeToggleBtn) themeToggleBtn.addEventListener('click', toggleTheme);
-  if (mobileThemeBtn) mobileThemeBtn.addEventListener('click', toggleTheme);
+  root.setAttribute('data-theme', 'dark');
+  try {
+    localStorage.setItem('ip26_theme', 'dark');
+  } catch (_) {}
 
   // =========================================================================
   // 3. REALTIME CLOUD DATABASE & INVENTORY SYNC ENGINE (Supabase)
@@ -174,8 +137,28 @@ document.addEventListener('DOMContentLoaded', () => {
         inventoryState[itemId] = { loaded: false, packed: false };
       }
 
-      // Check if already injected
-      if (row.querySelector('.sync-td')) return;
+      // Check if already injected or pre-rendered in HTML (Compact SATSET)
+      const existingSyncTd = row.querySelector('.sync-td');
+      if (existingSyncTd) {
+        const loadBtn = existingSyncTd.querySelector('.check-loading');
+        const packBtn = existingSyncTd.querySelector('.check-packing');
+        if (loadBtn) {
+          loadBtn.setAttribute('data-item', itemId);
+          loadBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            toggleItemCheck(itemId, 'loading', vendor, itemName);
+          });
+        }
+        if (packBtn) {
+          packBtn.setAttribute('data-item', itemId);
+          packBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            toggleItemCheck(itemId, 'packing', vendor, itemName);
+          });
+        }
+        renderRowUI(itemId, inventoryState[itemId]);
+        return;
+      }
 
       const tdLoading = document.createElement('td');
       tdLoading.className = 'sync-td';
@@ -842,11 +825,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  if (drawerThemeToggle) {
-    drawerThemeToggle.addEventListener('click', () => {
-      toggleTheme();
-    });
-  }
 
   if (drawerBatchBtn) {
     drawerBatchBtn.addEventListener('click', () => {
