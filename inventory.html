@@ -22,7 +22,7 @@
   <link rel="stylesheet" href="style.css" />
   
   <!-- Supabase JS CDN -->
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.39.8/dist/umd/supabase.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.39.8/dist/umd/supabase.min.js"></script>
 
   <style>
     /* Desktop Rejection Lock Screen - Simple, Pure Black & Error Alert */
@@ -127,9 +127,14 @@
       <p class="desktop-error-desc">
         Halaman <strong>Inventaris Lapangan</strong> dirancang khusus untuk operasional centang checklist barang di smartphone kru saat Hari H. Silakan buka tautan ini melalui browser HP Anda atau kembali ke portal utama.
       </p>
-      <a href="index.html" class="btn btn-primary" style="margin-top: 6px;">
-        ← Buka Master Portal Utama
-      </a>
+      <div style="display: flex; gap: 10px; margin-top: 8px; flex-wrap: wrap; justify-content: center;">
+        <a href="index.html" class="btn btn-primary">
+          ← Buka Master Portal Utama
+        </a>
+        <button type="button" id="btn-bypass-desktop-lock" class="btn" style="background: rgba(255, 255, 255, 0.08); border: 1px solid rgba(255, 255, 255, 0.15); color: #cbd5e1; cursor: pointer; border-radius: 8px; padding: 8px 14px; font-size: 0.85rem; font-weight: 600;">
+          Tetap Buka di Desktop (Mode FOH) →
+        </button>
+      </div>
     </div>
   </div>
 
@@ -1967,6 +1972,6 @@
   </footer>
 
   <!-- Application Logic -->
-  <script src="app.js"></script>
+  <script defer src="app.js"></script>
 </body>
 </html>

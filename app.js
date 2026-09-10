@@ -21,6 +21,17 @@ document.addEventListener('DOMContentLoaded', () => {
                           Boolean(document.querySelector('.inv-table-inventory')) || 
                           Boolean(document.querySelector('.inv-table-satset'));
 
+  // Desktop lock screen bypass (for FOH laptops / station monitoring)
+  const btnBypassLock = document.getElementById('btn-bypass-desktop-lock');
+  if (btnBypassLock) {
+    btnBypassLock.addEventListener('click', () => {
+      const lockScreen = document.getElementById('desktop-lock-screen');
+      if (lockScreen) {
+        lockScreen.style.setProperty('display', 'none', 'important');
+      }
+    });
+  }
+
   // =========================================================================
   // 1. TOAST NOTIFICATION SYSTEM (Magic Motion & a11y)
   // Suppressed in Inventory mobile mode for fast, distraction-free checklist operations
@@ -1270,8 +1281,16 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  // Initial render on boot
-  setTimeout(() => {
-    renderAllMermaid();
-  }, 50);
+  // Initial render on boot with polling retry for deferred Mermaid loading
+  function initMermaidWithRetry(retries = 15, delay = 100) {
+    if (window.mermaid) {
+      renderAllMermaid();
+      return;
+    }
+    if (retries > 0) {
+      setTimeout(() => initMermaidWithRetry(retries - 1, delay), delay);
+    }
+  }
+
+  initMermaidWithRetry();
 });
