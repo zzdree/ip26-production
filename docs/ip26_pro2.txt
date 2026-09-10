@@ -30,8 +30,8 @@ x Kategori peminjaman berdasarkan dari siapa saja dan apa saja
 - HDMI Capture (2 Unit) ✅
 
 *Peminjaman dari Andreas*
-- Laptop ✅
-- Power Adaptor LTP ✅
+- Laptop (1 Unit) ✅
+- Power Adaptor LTP (1 Pack) ✅
 - Fan Cooler (1 Unit) ✅
 - Mouse Pad (1 Unit) ✅
 - Keyboard Ext (1 Unit) ☑️
@@ -142,7 +142,6 @@ x Kategori peminjaman berdasarkan dari siapa saja dan apa saja
 - XLR Cable SMO (1 Unit) ✅
 - Power Cable SMO (1 Pack) ✅
 
-
 *Peminjaman dari Kiel*
 - Sony ZV-E10 (1 Unit) ✅
 - Lens 16-50MM Kit (1 Unit) ☑️
@@ -154,8 +153,8 @@ x Kategori peminjaman berdasarkan dari siapa saja dan apa saja
 - Card Reader USB A (1 Unit) ☑️
 
 *Peminjaman dari Nico*
-- Laptop ✅
-- Power Adaptor LTP ✅
+- Laptop (1 Unit) ✅
+- Power Adaptor LTP (1 Pack) ✅
 - Fan Cooler (1 Unit) ✅
 - Mouse Ext (1 Unit) ✅
 - Card Reader USB A (1 Unit) ☑️
@@ -168,7 +167,7 @@ x Kategori peminjaman berdasarkan dari siapa saja dan apa saja
 - Memory Card 8GB (1 Unit) ☑️
 
 *Peminjaman dari Jennifer*
-- HP Iphone 15 (1 Unit) ✅
+- HP iPhone 15 (1 Unit) ✅
 - TAB iPad (1 Unit) ✅
 
 *Peminjaman dari Filia*
@@ -181,12 +180,12 @@ x Kategori peminjaman berdasarkan dari siapa saja dan apa saja
 - TAB iPad (1 Unit) ✅
 
 *Peminjaman dari Bayu*
-- Laptop ✅
-- Power Adaptor LTP ✅
+- Laptop (1 Unit) ✅
+- Power Adaptor LTP (1 Pack) ✅
 
 *Peminjaman dari Wilfred*
-- Laptop ✅
-- Power Adaptor LTP ✅
+- Laptop (1 Unit) ✅
+- Power Adaptor LTP (1 Pack) ✅
 
 *Peminjaman dari Panitia*
 - HDMI to Micro HDMI Converter (2 Unit) ✅

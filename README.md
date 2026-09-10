@@ -572,7 +572,7 @@ flowchart LR
 ### 12. Peminjaman dari Jennifer
 | Nama Barang | Jumlah | Status | Keterangan Penggunaan |
 | :--- | :---: | :---: | :--- |
-| HP Iphone 15 | 1 Unit | ✅ | CAM 7 Dokumentasi Live Story / Reels / Sosmed |
+| HP iPhone 15 | 1 Unit | ✅ | CAM 7 Dokumentasi Live Story / Reels / Sosmed |
 | TAB iPad | 1 Unit | ✅ | iPad Virtual Mixer 2 (Operator: Yosua) |
 
 ---
