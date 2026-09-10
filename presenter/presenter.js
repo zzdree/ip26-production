@@ -27,7 +27,7 @@
     destAudience: true,
     destStage: true,
     destStream: true,
-    theme: 'screen-bg-nebula',
+    theme: 'screen-bg-dark',
     textCase: 'uppercase',
     align: 'center',
     searchQuery: '',
@@ -512,7 +512,7 @@
                 b.style.background = '#000';
                 t.innerHTML = '';
               } else {
-                b.style.background = data.clearBg ? '#000' : 'radial-gradient(circle at 50% 30%, #312e81 0%, #0f172a 70%, #020617 100%)';
+                b.style.background = data.clearBg ? '#000' : '#111113';
                 t.innerHTML = data.lines.map(l => '<div>' + l + '</div>').join('');
               }
             };

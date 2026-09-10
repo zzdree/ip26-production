@@ -1171,9 +1171,13 @@
       }
     });
 
-    // AUX Readout Label on Monitor Top Bar
+    // AUX Readout Label & Dropdown on Monitor Top Bar
     const auxLabel = document.getElementById('label-aux-src');
     const auxDest = document.getElementById('label-aux-dest');
+    const selectAuxRoute = document.getElementById('select-aux-route');
+    if (selectAuxRoute) {
+      selectAuxRoute.value = state.aux;
+    }
     if (auxLabel) {
       if (state.aux === 'MV') {
         auxLabel.textContent = 'MULTIVIEW (MV)';
@@ -1580,7 +1584,14 @@
       });
     });
 
-    // AUX Bus Buttons
+    // AUX Bus Routing: Dropdown & Buttons
+    const selectAuxRoute = document.getElementById('select-aux-route');
+    if (selectAuxRoute) {
+      selectAuxRoute.addEventListener('change', (e) => {
+        selectAUX(e.target.value);
+      });
+    }
+
     document.querySelectorAll('.silicone-btn[data-aux]').forEach((btn) => {
       btn.addEventListener('click', () => {
         selectAUX(btn.dataset.aux);

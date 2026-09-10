@@ -61,8 +61,8 @@
     <div class="brand-group">
       <a href="index.html" style="display:flex; align-items:center; gap:10px; text-decoration:none;">
         <div class="brand-badge-wrap" style="position:relative; display:inline-flex; align-items:center;">
-          <span class="brand-badge" style="background:linear-gradient(135deg, #a855f7, #6366f1); color:#fff; font-weight:800; padding:4px 9px; border-radius:4px; font-family:var(--font-heading);">IP26</span>
-          <span class="brand-live-dot" style="position:absolute; top:-3px; right:-3px; width:9px; height:9px; border-radius:50%; background:#10b981; border:2px solid #10141f; box-shadow:0 0 8px #10b981;" title="Live Lyrics Playout"></span>
+          <span class="brand-badge" style="background:#27272a; color:#f4f4f5; border:1px solid #3f3f46; font-weight:800; padding:4px 9px; border-radius:4px; font-family:var(--font-heading);">IP26</span>
+          <span class="brand-live-dot" style="position:absolute; top:-3px; right:-3px; width:9px; height:9px; border-radius:50%; background:#10b981; border:2px solid #18181a; box-shadow:0 0 8px #10b981;" title="Live Lyrics Playout"></span>
         </div>
         <div class="brand-title" style="display:flex; flex-direction:column;">
           <span style="font-family:var(--font-heading); font-weight:800; font-size:15px; color:#f5f5f5; letter-spacing:0.03em;">PROPRESENTER SIMULATOR</span>
@@ -97,11 +97,11 @@
         <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
         Portal
       </a>
-      <a href="inventory.html" class="header-link" style="border-color:#38bdf8; color:#38bdf8;">
+      <a href="inventory.html" class="header-link">
         <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg>
-        Inventaris Lapangan
+        Inventory
       </a>
-      <a href="switcher.html" class="header-link" style="color:#00d2ff; border-color:#00d2ff;">
+      <a href="switcher.html" class="header-link">
         <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="2.18" ry="2.18"></rect><line x1="7" y1="2" x2="7" y2="22"></line><line x1="17" y1="2" x2="17" y2="22"></line><line x1="2" y1="12" x2="22" y2="12"></line><line x1="2" y1="7" x2="7" y2="7"></line><line x1="2" y1="17" x2="7" y2="17"></line><line x1="17" y1="17" x2="22" y2="17"></line><line x1="17" y1="7" x2="22" y2="7"></line></svg>
         Switcher V1
       </a>
@@ -207,19 +207,6 @@
               Stream (L3)
             </button>
           </div>
-
-          <!-- Quick Output Destination Enable Toggles -->
-          <div class="screen-enable-toggles">
-            <button class="dest-toggle-btn active" id="toggle-dest-audience" title="Toggle Audience Screen Output">
-              AUD <span class="dest-state">ON</span>
-            </button>
-            <button class="dest-toggle-btn active" id="toggle-dest-stage" title="Toggle Stage Display Output">
-              STG <span class="dest-state">ON</span>
-            </button>
-            <button class="dest-toggle-btn active" id="toggle-dest-stream" title="Toggle Stream Output">
-              OBS <span class="dest-state">ON</span>
-            </button>
-          </div>
         </div>
 
         <!-- Unified Viewport Monitor -->
@@ -228,7 +215,7 @@
           <!-- VIEW 1: Auditorium LED Screen -->
           <div class="screen-view view-audience active" id="view-audience">
             <div class="view-osd-badge">AUDIENCE LED CENTER • 1920×1080</div>
-            <div class="preview-screen-box screen-bg-nebula" id="led-preview-screen">
+            <div class="preview-screen-box screen-bg-dark" id="led-preview-screen">
               <div class="live-lyrics-text" id="led-lyrics-text"></div>
             </div>
           </div>
@@ -272,26 +259,11 @@
             <span class="status-indicator-dot dot-live"></span>
             <span class="status-name" id="monitor-active-label">VIEWING: AUDIENCE (LED CENTER)</span>
           </div>
-          <div class="monitor-dest-pills">
-            <span class="feed-pill active" data-switch="audience" title="Switch to Audience view">LED: 1080p</span>
-            <span class="feed-pill" data-switch="stage" title="Switch to Stage view">STAGE: HDMI</span>
-            <span class="feed-pill" data-switch="stream" title="Switch to Stream view">OBS: NDI</span>
-          </div>
         </div>
       </div>
 
       <!-- Settings & Display Customizer -->
       <div class="customizer-section">
-        <div class="setting-row">
-          <label for="select-bg-theme">LED Motion Theme:</label>
-          <select id="select-bg-theme" class="setting-select">
-            <option value="screen-bg-nebula">Midnight Nebula (Blue/Purple)</option>
-            <option value="screen-bg-flare">Golden Flare (Warm Amber)</option>
-            <option value="screen-bg-dark">Pure Dark (Minimalist)</option>
-            <option value="screen-bg-light">Holy Light (Cool Slate)</option>
-          </select>
-        </div>
-
         <div class="setting-row">
           <label for="select-text-case">Text Case:</label>
           <select id="select-text-case" class="setting-select">

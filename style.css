@@ -393,8 +393,33 @@ code {
   transform: translateY(-1px);
 }
 
-.nav-cta-btn {
-  box-shadow: var(--shadow-glow);
+.nav-actions .nav-cta-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: #1e1e22;
+  border: 1px solid #333338;
+  color: #f4f4f5;
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 0.82rem;
+  padding: 6px 13px;
+  border-radius: 6px;
+  text-decoration: none;
+  transition: all 0.15s ease;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25);
+}
+
+.nav-actions .nav-cta-btn:hover {
+  background: #27272c;
+  border-color: #52525b;
+  color: #ffffff;
+  transform: translateY(-1px);
+}
+
+.nav-cta-btn .btn-icon {
+  font-size: 0.95rem;
+  line-height: 1;
 }
 
 [data-theme="dark"] .light-icon { display: none; }
