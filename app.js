@@ -554,13 +554,13 @@ document.addEventListener('DOMContentLoaded', () => {
   // Direct Batch Action Handlers (Auto-executing with inline feedback on SATSET, timed toast on desktop)
   if (btnBatchCheckAll) {
     btnBatchCheckAll.addEventListener('click', () => {
-      batchSetAll('check-all');
+      batchSetAll(isSatsetPage ? 'check-loading' : 'check-all');
     });
   }
 
   if (btnBatchUncheckAll) {
     btnBatchUncheckAll.addEventListener('click', () => {
-      batchSetAll('uncheck-all');
+      batchSetAll(isSatsetPage ? 'uncheck-loading' : 'uncheck-all');
     });
   }
 
