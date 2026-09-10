@@ -46,6 +46,18 @@
 
 ---
 
+## ☁️ 3-Layer Cloud-Only Architecture (Realtime Sync & Automated Backup)
+
+Sistem checklist logistik dan sinkronisasi lapangan beroperasi di atas **100% Cloud-Only Architecture** tanpa ketergantungan server lokal, menjamin keandalan saat hari H:
+
+| Layer | Komponen Cloud | Peran & Mekanisme Lapangan |
+| :---: | :--- | :--- |
+| **Layer 1** | **Supabase Cloud Database** | PostgreSQL Realtime CDC sebagai *single source of truth* untuk 245 barang dari 18 vendor. Dilengkapi keep-alive bot otomatis via cron GitHub Actions (`supabase-keep-alive.yml`) agar database tidak pernah tertidur. |
+| **Layer 2** | **ntfy.sh Cloud Relay** | Zero-setup Server-Sent Events (SSE) Pub/Sub (`ntfy.sh/ip26_checklist_sync_2026`) untuk siaran kilat sub-detik antar smartphone kru di lapangan tanpa perlu akun/login. |
+| **Layer 3** | **GitHub Cloud Snapshot** | GitHub Actions workflow (`db-backup.yml`) yang otomatis mengambil snapshot JSON deterministik berkala dan menyimpannya langsung ke file [`backup/inventory_backup.json`](./backup/inventory_backup.json) di repository. |
+
+---
+
 ## 👥 Struktur Organisasi & Komando Produksi
 
 ```mermaid
