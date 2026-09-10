@@ -12,17 +12,23 @@
  */
 
 document.addEventListener('DOMContentLoaded', () => {
-  // Check if running on SATSET or Database checklist view
-  const isSatsetPage = window.location.pathname.includes('satset') || window.location.pathname.includes('database') || document.body.classList.contains('satset-page') || Boolean(document.querySelector('.inv-table-satset'));
+  // Check if running on Inventory checklist view (Mobile Field Mode)
+  const isInventoryPage = window.location.pathname.includes('inventory') || 
+                          window.location.pathname.includes('database') || 
+                          window.location.pathname.includes('satset') || 
+                          document.body.classList.contains('inventory-page') || 
+                          document.body.classList.contains('satset-page') || 
+                          Boolean(document.querySelector('.inv-table-inventory')) || 
+                          Boolean(document.querySelector('.inv-table-satset'));
 
   // =========================================================================
   // 1. TOAST NOTIFICATION SYSTEM (Magic Motion & a11y)
-  // Suppressed in SATSET mode for fast, distraction-free mobile checklist operations
+  // Suppressed in Inventory mobile mode for fast, distraction-free checklist operations
   // =========================================================================
   const toastContainer = document.getElementById('toast-container');
 
   function showToast(title, message, type = 'info') {
-    if (isSatsetPage || !toastContainer) return;
+    if (isInventoryPage || !toastContainer) return;
     const toast = document.createElement('div');
     toast.className = `toast-item ${type === 'success' ? 'toast-success' : type === 'warning' ? 'toast-warning' : ''}`;
     
@@ -420,7 +426,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
       navigator.clipboard.writeText(summaryText)
         .then(() => {
-          if (isSatsetPage) {
+          if (isInventoryPage) {
             const originalHtml = btnCopySummary.innerHTML;
             btnCopySummary.innerHTML = '✅ Tersalin!';
             setTimeout(() => {
@@ -431,7 +437,7 @@ document.addEventListener('DOMContentLoaded', () => {
           }
         })
         .catch(() => {
-          if (isSatsetPage) {
+          if (isInventoryPage) {
             const originalHtml = btnCopySummary.innerHTML;
             btnCopySummary.innerHTML = '⚠️ Gagal';
             setTimeout(() => {
@@ -700,16 +706,16 @@ document.addEventListener('DOMContentLoaded', () => {
   initSupabase(DEFAULT_SUPABASE_URL, DEFAULT_SUPABASE_KEY);
   initNtfyRelay();
 
-  // Direct Batch Action Handlers (Auto-executing with inline feedback on SATSET, timed toast on desktop)
+  // Direct Batch Action Handlers (Auto-executing with inline feedback on Inventory mobile, timed toast on desktop)
   if (btnBatchCheckAll) {
     btnBatchCheckAll.addEventListener('click', () => {
-      batchSetAll(isSatsetPage ? 'check-loading' : 'check-all');
+      batchSetAll(isInventoryPage ? 'check-loading' : 'check-all');
     });
   }
 
   if (btnBatchUncheckAll) {
     btnBatchUncheckAll.addEventListener('click', () => {
-      batchSetAll(isSatsetPage ? 'uncheck-loading' : 'uncheck-all');
+      batchSetAll(isInventoryPage ? 'uncheck-loading' : 'uncheck-all');
     });
   }
 
@@ -761,7 +767,7 @@ document.addEventListener('DOMContentLoaded', () => {
       'uncheck-all': 'Seluruh status checklist berhasil di-reset!'
     };
 
-    if (isSatsetPage) {
+    if (isInventoryPage) {
       const activeBtn = actionType.startsWith('check') ? btnBatchCheckAll : btnBatchUncheckAll;
       if (activeBtn) {
         const origText = activeBtn.innerHTML;

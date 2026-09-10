@@ -3,7 +3,7 @@
 <div align="center">
 
 [![Live Web Portal](https://img.shields.io/badge/Live%20Portal-Master%20Command-brightgreen?style=for-the-badge&logo=githubpages&logoColor=white)](https://zzdree.github.io/ip26-production/)
-[![Live Database Mobile](https://img.shields.io/badge/Live%20Database-📦%20Database%20Lapangan-orange?style=for-the-badge&logo=fastapi&logoColor=white)](https://zzdree.github.io/ip26-production/database.html)
+[![Live Inventory Mobile](https://img.shields.io/badge/Live%20Inventory-📦%20Inventaris%20Lapangan-orange?style=for-the-badge&logo=fastapi&logoColor=white)](https://zzdree.github.io/ip26-production/inventory.html)
 [![Live Switcher V1](https://img.shields.io/badge/Simulator-🎛️%20Switcher%20Cinelive%20V1-00d2ff?style=for-the-badge)](https://zzdree.github.io/ip26-production/switcher.html)
 [![Live ProPresenter](https://img.shields.io/badge/Simulator-🎶%20ProPresenter%20Live-a855f7?style=for-the-badge)](https://zzdree.github.io/ip26-production/presenter.html)
 [![Event](https://img.shields.io/badge/Event-IP26%20UKK%20UNNES-007ACC?style=for-the-badge&logo=eventstore&logoColor=white)](#)
@@ -33,7 +33,7 @@
 | Layanan / Modul | URL Live (GitHub Pages) | File Lokal / Direktori | Deskripsi & Fungsi |
 | :--- | :--- | :--- | :--- |
 | 🌐 **Master Command Portal** | [https://zzdree.github.io/ip26-production/](https://zzdree.github.io/ip26-production/) | [`index.html`](./index.html) | Portal komando lengkap: arsitektur sistem, 8 diagram sinyal, tabel 150 logistik, device matrix, & rundown. |
-| 📦 **Database Lapangan (Mobile)** | [https://zzdree.github.io/ip26-production/database.html](https://zzdree.github.io/ip26-production/database.html) | [`database.html`](./database.html) & [`database/`](./database/index.html) | Mode taktis smartphone kru hari H: database inventaris, centang cepat pemasangan (*Loading-In*) & pengemasan (*Packing-Out*). |
+| 📦 **Inventaris Lapangan (Mobile)** | [https://zzdree.github.io/ip26-production/inventory.html](https://zzdree.github.io/ip26-production/inventory.html) | [`inventory.html`](./inventory.html) & [`inventory/`](./inventory/index.html) | Mode taktis smartphone kru hari H: checklist inventaris alat & logistik 18 vendor, centang cepat pemasangan (*Loading-In*) & pengemasan (*Packing-Out*). |
 | 🎛️ **Switcher Cinelive V1 (Desktop)** | [https://zzdree.github.io/ip26-production/switcher/](https://zzdree.github.io/ip26-production/switcher/) atau [switcher.html](https://zzdree.github.io/ip26-production/switcher.html) | [`switcher.html`](./switcher.html) & [`switcher/`](./switcher/index.html) | Simulator hardware Cinetreak Cinelive V1 (*Desktop Only*): 4 kamera ISO, LCD 5.5", HDMI 2 AUX Monitor (MV 6-split / ISO / PGM / PVW), T-Bar 10-LED ladder meter, rotary menu encoder OSD, CUT/AUTO, PIP, FTB. |
 | 🎶 **ProPresenter Simulator (Desktop)** | [https://zzdree.github.io/ip26-production/presenter/](https://zzdree.github.io/ip26-production/presenter/) atau [presenter.html](https://zzdree.github.io/ip26-production/presenter.html) | [`presenter.html`](./presenter.html) & [`presenter/`](./presenter/index.html) | Simulator ProPresenter 7 (*Desktop Only*): 3-column layout workstation, 14 lagu dari `Assets/Lyrics/Statics`, pemutar YouTube backing track sinkron, slides 1-2 baris, Stage Display & Audience Monitor. |
 

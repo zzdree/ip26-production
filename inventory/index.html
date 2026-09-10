@@ -6,12 +6,12 @@
   <meta name="theme-color" content="#121418" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-  <meta name="description" content="IP26 Database Lapangan - Realtime Tactical Inventory Checklist & Logistics Field Operations Portal UKK UNNES 2026" />
+  <meta name="description" content="IP26 Inventaris Lapangan - Realtime Tactical Inventory Checklist & Logistics Field Operations Portal UKK UNNES 2026" />
   
-  <title>📦 Database Lapangan - Checklist & Inventaris Realtime | IP26 UKK UNNES</title>
+  <title>📦 Inventaris Lapangan - Checklist & Inventaris Realtime | IP26 UKK UNNES</title>
   
   <!-- Favicon -->
-  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+  <link rel="icon" type="image/svg+xml" href="../favicon.svg" />
   
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -19,7 +19,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700;800&display=swap" rel="stylesheet" />
   
   <!-- Main Stylesheet -->
-  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="../style.css" />
   
   <!-- Supabase JS CDN -->
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.39.8/dist/umd/supabase.min.js"></script>
@@ -117,7 +117,7 @@
     }
   </style>
 </head>
-<body class="satset-page">
+<body class="inventory-page satset-page">
 
   <!-- Desktop Error Blocker (>768px) -->
   <div id="desktop-lock-screen">
@@ -125,9 +125,9 @@
       <div class="desktop-error-icon">🚫</div>
       <h2 class="desktop-error-title">Akses Smartphone (Mode Lapangan)</h2>
       <p class="desktop-error-desc">
-        Halaman <strong>Database Lapangan</strong> dirancang khusus untuk operasional centang checklist barang di smartphone kru saat Hari H. Silakan buka tautan ini melalui browser HP Anda atau kembali ke portal utama.
+        Halaman <strong>Inventaris Lapangan</strong> dirancang khusus untuk operasional centang checklist barang di smartphone kru saat Hari H. Silakan buka tautan ini melalui browser HP Anda atau kembali ke portal utama.
       </p>
-      <a href="index.html" class="btn btn-primary" style="margin-top: 6px;">
+      <a href="../index.html" class="btn btn-primary" style="margin-top: 6px;">
         ← Buka Master Portal Utama
       </a>
     </div>
@@ -140,18 +140,18 @@
         <span class="brand-badge">IP26</span>
         <div class="brand-text">
           <span class="brand-title">IP26 LIVE PRODUCTION</span>
-          <span class="brand-sub">📦 DATABASE LAPANGAN REALTIME</span>
+          <span class="brand-sub">📦 INVENTARIS LAPANGAN REALTIME</span>
         </div>
       </div>
       
       <div class="nav-actions">
-        <a href="switcher.html" class="btn btn-sm btn-outline" style="border-color:#00d2ff; color:#00d2ff;" title="Buka Simulator Switcher Cinelive V1">
+        <a href="../switcher.html" class="btn btn-sm btn-outline" style="border-color:#00d2ff; color:#00d2ff;" title="Buka Simulator Switcher Cinelive V1">
           🎛️ Switcher V1
         </a>
-        <a href="presenter.html" class="btn btn-sm btn-outline" style="border-color:#a855f7; color:#c084fc;" title="Buka Simulator ProPresenter">
+        <a href="../presenter.html" class="btn btn-sm btn-outline" style="border-color:#a855f7; color:#c084fc;" title="Buka Simulator ProPresenter">
           🎶 ProPresenter
         </a>
-        <a href="index.html" class="btn btn-sm btn-outline" title="Kembali ke Portal Master">
+        <a href="../index.html" class="btn btn-sm btn-outline" title="Kembali ke Portal Master">
           🌐 Portal Utama
         </a>
       </div>
@@ -162,17 +162,17 @@
   <main class="main-content">
     <div class="container">
       
-      <!-- Database Header Card -->
+      <!-- Inventory Header Card -->
       <div class="satset-page-header">
         <div class="satset-hero-card">
           <div class="satset-title-row">
-            <h1 class="satset-title">📦 DATABASE INVENTARIS</h1>
+            <h1 class="satset-title">📦 INVENTARIS LAPANGAN</h1>
             <span class="presence-badge">
               <span class="status-pulse-dot connected"></span> Kru Lapangan
             </span>
           </div>
           <p class="satset-subtitle">
-            Database inventaris & checklist taktis pemasangan logistik 18 vendor (150 item) Hari H. Tersinkronisasi cloud realtime multi-perangkat.
+            Inventaris logistik 18 vendor peminjaman (150 item) Hari H. Tersinkronisasi cloud realtime multi-perangkat.
           </p>
         </div>
       </div>
@@ -279,7 +279,7 @@
           <div class="vendor-block" data-vendor="OWL">
             <h3 class="vendor-title"><span class="vendor-dot"></span> 1. Peminjaman dari OWL</h3>
             <div class="satset-responsive">
-              <table class="data-table inv-table inv-table-satset">
+              <table class="data-table inv-table inv-table-inventory inv-table-satset">
                 <thead>
                   <tr>
                     <th class="col-nama">Nama Barang</th>
@@ -459,7 +459,7 @@
           <div class="vendor-block" data-vendor="ABON">
             <h3 class="vendor-title"><span class="vendor-dot"></span> 2. Peminjaman dari ABON</h3>
             <div class="satset-responsive">
-              <table class="data-table inv-table inv-table-satset">
+              <table class="data-table inv-table inv-table-inventory inv-table-satset">
                 <thead>
                   <tr>
                     <th class="col-nama">Nama Barang</th>
@@ -495,7 +495,7 @@
           <div class="vendor-block" data-vendor="Andreas">
             <h3 class="vendor-title"><span class="vendor-dot"></span> 3. Peminjaman dari Andreas</h3>
             <div class="satset-responsive">
-              <table class="data-table inv-table inv-table-satset">
+              <table class="data-table inv-table inv-table-inventory inv-table-satset">
                 <thead>
                   <tr>
                     <th class="col-nama">Nama Barang</th>
@@ -990,7 +990,7 @@
           <div class="vendor-block" data-vendor="GIA">
             <h3 class="vendor-title"><span class="vendor-dot"></span> 4. Peminjaman dari GIA Deliksari</h3>
             <div class="satset-responsive">
-              <table class="data-table inv-table inv-table-satset">
+              <table class="data-table inv-table inv-table-inventory inv-table-satset">
                 <thead>
                   <tr>
                     <th class="col-nama">Nama Barang</th>
@@ -1098,7 +1098,7 @@
           <div class="vendor-block" data-vendor="GKJ">
             <h3 class="vendor-title"><span class="vendor-dot"></span> 5. Peminjaman dari GKJ Ngaliyan</h3>
             <div class="satset-responsive">
-              <table class="data-table inv-table inv-table-satset">
+              <table class="data-table inv-table inv-table-inventory inv-table-satset">
                 <thead>
                   <tr>
                     <th class="col-nama">Nama Barang</th>
@@ -1188,7 +1188,7 @@
           <div class="vendor-block" data-vendor="UKK">
             <h3 class="vendor-title"><span class="vendor-dot"></span> 6. Peminjaman dari UKK UNNES</h3>
             <div class="satset-responsive">
-              <table class="data-table inv-table inv-table-satset">
+              <table class="data-table inv-table inv-table-inventory inv-table-satset">
                 <thead>
                   <tr>
                     <th class="col-nama">Nama Barang</th>
@@ -1332,7 +1332,7 @@
           <div class="vendor-block" data-vendor="Jordan">
             <h3 class="vendor-title"><span class="vendor-dot"></span> 7. Peminjaman dari Jordan</h3>
             <div class="satset-responsive">
-              <table class="data-table inv-table inv-table-satset">
+              <table class="data-table inv-table inv-table-inventory inv-table-satset">
                 <thead>
                   <tr>
                     <th class="col-nama">Nama Barang</th>
@@ -1512,7 +1512,7 @@
           <div class="vendor-block" data-vendor="Kiel">
             <h3 class="vendor-title"><span class="vendor-dot"></span> 8. Peminjaman dari Kiel</h3>
             <div class="satset-responsive">
-              <table class="data-table inv-table inv-table-satset">
+              <table class="data-table inv-table inv-table-inventory inv-table-satset">
                 <thead>
                   <tr>
                     <th class="col-nama">Nama Barang</th>
@@ -1602,7 +1602,7 @@
           <div class="vendor-block" data-vendor="Nico">
             <h3 class="vendor-title"><span class="vendor-dot"></span> 9. Peminjaman dari Nico</h3>
             <div class="satset-responsive">
-              <table class="data-table inv-table inv-table-satset">
+              <table class="data-table inv-table inv-table-inventory inv-table-satset">
                 <thead>
                   <tr>
                     <th class="col-nama">Nama Barang</th>
@@ -1674,7 +1674,7 @@
           <div class="vendor-block" data-vendor="Lio">
             <h3 class="vendor-title"><span class="vendor-dot"></span> 10. Peminjaman dari Lio</h3>
             <div class="satset-responsive">
-              <table class="data-table inv-table inv-table-satset">
+              <table class="data-table inv-table inv-table-inventory inv-table-satset">
                 <thead>
                   <tr>
                     <th class="col-nama">Nama Barang</th>
@@ -1701,7 +1701,7 @@
           <div class="vendor-block" data-vendor="Darrel">
             <h3 class="vendor-title"><span class="vendor-dot"></span> 11. Peminjaman dari Darrel</h3>
             <div class="satset-responsive">
-              <table class="data-table inv-table inv-table-satset">
+              <table class="data-table inv-table inv-table-inventory inv-table-satset">
                 <thead>
                   <tr>
                     <th class="col-nama">Nama Barang</th>
@@ -1728,7 +1728,7 @@
           <div class="vendor-block" data-vendor="Jennifer">
             <h3 class="vendor-title"><span class="vendor-dot"></span> 12. Peminjaman dari Jennifer</h3>
             <div class="satset-responsive">
-              <table class="data-table inv-table inv-table-satset">
+              <table class="data-table inv-table inv-table-inventory inv-table-satset">
                 <thead>
                   <tr>
                     <th class="col-nama">Nama Barang</th>
@@ -1764,7 +1764,7 @@
           <div class="vendor-block" data-vendor="Filia">
             <h3 class="vendor-title"><span class="vendor-dot"></span> 13. Peminjaman dari Filia</h3>
             <div class="satset-responsive">
-              <table class="data-table inv-table inv-table-satset">
+              <table class="data-table inv-table inv-table-inventory inv-table-satset">
                 <thead>
                   <tr>
                     <th class="col-nama">Nama Barang</th>
@@ -1791,7 +1791,7 @@
           <div class="vendor-block" data-vendor="Alex">
             <h3 class="vendor-title"><span class="vendor-dot"></span> 14. Peminjaman dari Alex</h3>
             <div class="satset-responsive">
-              <table class="data-table inv-table inv-table-satset">
+              <table class="data-table inv-table inv-table-inventory inv-table-satset">
                 <thead>
                   <tr>
                     <th class="col-nama">Nama Barang</th>
@@ -1818,7 +1818,7 @@
           <div class="vendor-block" data-vendor="Bapak Arif">
             <h3 class="vendor-title"><span class="vendor-dot"></span> 15. Peminjaman dari Bapak Arif</h3>
             <div class="satset-responsive">
-              <table class="data-table inv-table inv-table-satset">
+              <table class="data-table inv-table inv-table-inventory inv-table-satset">
                 <thead>
                   <tr>
                     <th class="col-nama">Nama Barang</th>
@@ -1845,7 +1845,7 @@
           <div class="vendor-block" data-vendor="Bayu">
             <h3 class="vendor-title"><span class="vendor-dot"></span> 16. Peminjaman dari Bayu</h3>
             <div class="satset-responsive">
-              <table class="data-table inv-table inv-table-satset">
+              <table class="data-table inv-table inv-table-inventory inv-table-satset">
                 <thead>
                   <tr>
                     <th class="col-nama">Nama Barang</th>
@@ -1881,7 +1881,7 @@
           <div class="vendor-block" data-vendor="Wilfred">
             <h3 class="vendor-title"><span class="vendor-dot"></span> 17. Peminjaman dari Wilfred</h3>
             <div class="satset-responsive">
-              <table class="data-table inv-table inv-table-satset">
+              <table class="data-table inv-table inv-table-inventory inv-table-satset">
                 <thead>
                   <tr>
                     <th class="col-nama">Nama Barang</th>
@@ -1917,7 +1917,7 @@
           <div class="vendor-block" data-vendor="Panitia">
             <h3 class="vendor-title"><span class="vendor-dot"></span> 18. Peminjaman dari Panitia</h3>
             <div class="satset-responsive">
-              <table class="data-table inv-table inv-table-satset">
+              <table class="data-table inv-table inv-table-inventory inv-table-satset">
                 <thead>
                   <tr>
                     <th class="col-nama">Nama Barang</th>
@@ -1958,15 +1958,15 @@
   <footer class="desktop-footer" style="padding: var(--space-5) 0 var(--space-6) 0; border-top: 1px solid var(--border-subtle); margin-top: var(--space-6);">
     <div class="container text-center" style="display: flex; flex-direction: column; align-items: center; gap: 8px;">
       <p style="font-size: 0.85rem; color: var(--text-muted); margin: 0;">
-        📦 <strong>IP26 Database Lapangan</strong> &bull; Ibadah Perdana UKK UNNES 2026
+        📦 <strong>IP26 Inventaris Lapangan</strong> &bull; Ibadah Perdana UKK UNNES 2026
       </p>
       <p style="font-size: 0.8rem; color: var(--text-tertiary); margin: 0;">
-        Sinkronisasi Realtime Supabase Cloud &bull; <a href="index.html" style="color: var(--accent-cyan); text-decoration: none;">Buka Portal Utama Master Pipeline &rarr;</a>
+        Sinkronisasi Realtime Supabase Cloud &bull; <a href="../index.html" style="color: var(--accent-cyan); text-decoration: none;">Buka Portal Utama Master Pipeline &rarr;</a>
       </p>
     </div>
   </footer>
 
   <!-- Application Logic -->
-  <script src="app.js"></script>
+  <script src="../app.js"></script>
 </body>
 </html>
