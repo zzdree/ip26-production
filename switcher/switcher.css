@@ -1064,3 +1064,335 @@ body.multiview-fullscreen .mv-container {
   flex: 1;
   grid-template-rows: 1fr 2fr;
 }
+
+/* ==========================================================================
+   AUX BUS STYLING & HARDWARE CINETREAK FEATURES
+   ========================================================================== */
+.bus-label-aux {
+  background: rgba(0, 210, 255, 0.15);
+  color: #00d2ff;
+  border: 1px solid rgba(0, 210, 255, 0.4);
+}
+
+.buttons-grid-aux {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 6px;
+  flex: 1;
+}
+
+.buttons-grid-aux .silicone-btn {
+  aspect-ratio: 1.0;
+  padding: 4px;
+}
+
+.buttons-grid-aux .silicone-btn .btn-num {
+  font-size: 15px;
+}
+
+/* Active AUX Button (Glowing Cyan) */
+.silicone-btn.active-aux {
+  background: linear-gradient(180deg, #00d2ff 0%, #0070f3 100%) !important;
+  border-color: #67e8f9 !important;
+  color: #000 !important;
+  font-weight: 800;
+  box-shadow: 0 0 20px rgba(0, 210, 255, 0.85), inset 0 1px 1px #fff !important;
+  text-shadow: none;
+}
+
+.silicone-btn.active-aux .btn-sub {
+  color: #002233 !important;
+  font-weight: 800;
+}
+
+/* T-Bar With 10-LED Ladder */
+.tbar-with-ladder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  width: 100%;
+}
+
+.tbar-ladder {
+  display: flex;
+  flex-direction: column-reverse;
+  gap: 3px;
+  height: 120px;
+  width: 10px;
+  background: #090c12;
+  padding: 3px 2px;
+  border-radius: 4px;
+  border: 1px solid #1a2233;
+}
+
+.tbar-led {
+  flex: 1;
+  background: #151a24;
+  border-radius: 1px;
+  transition: background 0.05s ease, box-shadow 0.05s ease;
+}
+
+.tbar-led.lit-green {
+  background: #10b981;
+  box-shadow: 0 0 6px #10b981;
+}
+
+.tbar-led.lit-amber {
+  background: #f59e0b;
+  box-shadow: 0 0 6px #f59e0b;
+}
+
+.tbar-led.lit-red {
+  background: #ff3344;
+  box-shadow: 0 0 6px #ff3344;
+}
+
+/* Monitor Top Layout with Dedicated AUX Screen / Status */
+.monitor-top-row-with-aux {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 8px 12px;
+  background: #080a0f;
+  border-bottom: 1px solid #1f2738;
+}
+
+.aux-output-widget {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: #0c1018;
+  border: 1.5px solid rgba(0, 210, 255, 0.45);
+  border-radius: 6px;
+  padding: 4px 8px;
+  box-shadow: 0 0 10px rgba(0, 210, 255, 0.15);
+}
+
+.aux-output-canvas-wrap {
+  width: 64px;
+  height: 36px;
+  background: #000;
+  border-radius: 3px;
+  overflow: hidden;
+  border: 1px solid rgba(0, 210, 255, 0.3);
+}
+
+.aux-output-canvas-wrap canvas {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.aux-output-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.aux-output-title {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 800;
+  color: #00d2ff;
+  letter-spacing: 0.5px;
+}
+
+.aux-output-sub {
+  font-size: 9px;
+  color: #8c97ad;
+}
+
+/* Right of Screen: Cinetreak Hardware Dial & OSD */
+.screen-hardware-dial-group {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.rotary-encoder-dial {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: radial-gradient(circle, #2a3346 0%, #161b26 100%);
+  border: 2px solid #4a5773;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.5), inset 0 1px 1px rgba(255,255,255,0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  position: relative;
+  transition: transform 0.1s ease;
+}
+
+.rotary-knob-notch {
+  width: 3px;
+  height: 7px;
+  background: #00d2ff;
+  border-radius: 1px;
+  position: absolute;
+  top: 3px;
+}
+
+.rotary-encoder-dial:active {
+  transform: scale(0.95);
+  box-shadow: 0 1px 3px rgba(0,0,0,0.8), inset 0 0 4px #00d2ff;
+}
+
+/* ==========================================================================
+   DESKTOP ONLY LOCKOUT SCREEN (< 1024px or portrait)
+   ========================================================================== */
+.desktop-lock-screen {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 9999999;
+  background: radial-gradient(circle at center, #0f131c 0%, #06070a 100%);
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  text-align: center;
+}
+
+.lockout-card {
+  max-width: 480px;
+  width: 100%;
+  background: #121622;
+  border: 2px solid #ef4444;
+  border-radius: 16px;
+  padding: 36px 28px;
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.9), 0 0 30px rgba(239, 68, 68, 0.2);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+}
+
+.lockout-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(239, 68, 68, 0.15);
+  color: #f87171;
+  border: 1px solid rgba(239, 68, 68, 0.35);
+  padding: 4px 12px;
+  border-radius: 9999px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.5px;
+}
+
+.lockout-pulse-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #ef4444;
+  animation: pulse-badge 1.2s infinite;
+}
+
+.lockout-icon {
+  font-size: 3.2rem;
+  line-height: 1;
+}
+
+.lockout-title {
+  font-family: var(--font-heading);
+  font-size: 1.4rem;
+  font-weight: 800;
+  color: #fff;
+  letter-spacing: -0.02em;
+}
+
+.lockout-desc {
+  font-size: 0.92rem;
+  color: #94a3b8;
+  line-height: 1.55;
+  text-align: center;
+}
+
+.lockout-telemetry {
+  background: #080a0f;
+  border: 1px solid #1e2638;
+  border-radius: 8px;
+  padding: 10px 14px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  font-family: var(--font-mono);
+}
+
+.telemetry-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 11px;
+}
+
+.telemetry-lbl {
+  color: #64748b;
+}
+
+.telemetry-val {
+  color: #00d2ff;
+  font-weight: 700;
+}
+
+.telemetry-warn {
+  color: #f87171;
+  font-size: 10px;
+}
+
+.lockout-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+  margin-top: 6px;
+}
+
+.lockout-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 12px 18px;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 700;
+  text-decoration: none;
+  transition: all 0.15s ease;
+}
+
+.lockout-btn-primary {
+  background: linear-gradient(135deg, #00d2ff 0%, #0070f3 100%);
+  color: #000;
+  box-shadow: 0 4px 15px rgba(0, 210, 255, 0.35);
+}
+
+.lockout-btn-primary:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 20px rgba(0, 210, 255, 0.5);
+}
+
+.lockout-btn-secondary {
+  background: #181f2c;
+  color: #cbd5e1;
+  border: 1px solid #2e3b52;
+}
+
+.lockout-btn-secondary:hover {
+  background: #232c3f;
+  color: #fff;
+}
+
+@media (max-width: 1024px), (orientation: portrait) {
+  .desktop-lock-screen {
+    display: flex !important;
+  }
+  .switcher-container, .switcher-header {
+    display: none !important;
+  }
+}
+

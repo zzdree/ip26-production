@@ -563,6 +563,16 @@
         toggleBlackout();
       }
     });
+
+    // Realtime Viewport Resolution Telemetry for Desktop Lockout Screen
+    function updateResolutionReadout() {
+      const resEl = document.getElementById('current-screen-res');
+      if (resEl) {
+        resEl.textContent = `${window.innerWidth} × ${window.innerHeight} px`;
+      }
+    }
+    window.addEventListener('resize', updateResolutionReadout);
+    updateResolutionReadout();
   }
 
   // --- BOOTSTRAP ---

@@ -10,6 +10,7 @@
   const state = {
     pgm: 1,
     pvw: 2,
+    aux: 'MV',          // 'MV' (Multiview Monitor), '1', '2', '3', '4', 'PVW', 'PGM'
     prevPgm: 1,
     transEffect: 'MIX', // 'MIX', 'WIPE_H', 'WIPE_V', 'DIP'
     transRate: 1.0,     // 0.5, 1.0, 1.5, 2.0
@@ -27,6 +28,9 @@
     soundEnabled: true,
     audioLevelL: 0.65,
     audioLevelR: 0.62,
+    liveStreaming: true,
+    recording: true,
+    menuIndex: 0,
     timecode: { h: 1, m: 24, s: 50, f: 0 },
     camConfigs: {
       1: { name: 'CAM 1', desc: 'Sony A6000 Wired (Stage Center Wide)', resolution: '1080p60' },
@@ -104,7 +108,8 @@
     3: document.getElementById('canvas-cam3'),
     4: document.getElementById('canvas-cam4'),
     pvw: document.getElementById('canvas-pvw'),
-    pgm: document.getElementById('canvas-pgm')
+    pgm: document.getElementById('canvas-pgm'),
+    aux: document.getElementById('canvas-aux')
   };
 
   const contexts = {};
@@ -569,6 +574,49 @@
       drawProgramOutput(contexts.pgm, canvases.pgm.width, canvases.pgm.height, t);
     }
 
+    // Draw AUX Output Monitor (HDMI 2 / External Monitor)
+    if (canvases.aux && contexts.aux) {
+      const aw = canvases.aux.width;
+      const ah = canvases.aux.height;
+      contexts.aux.clearRect(0, 0, aw, ah);
+
+      if (state.aux === 'MV') {
+        // Multi-view mode on AUX monitor: Top 4 cams + Bottom PVW/PGM
+        const topH = Math.floor(ah * 0.45);
+        const btmH = ah - topH;
+        const colW = Math.floor(aw / 4);
+
+        // Top 4 cameras
+        for (let i = 1; i <= 4; i++) {
+          contexts.aux.save();
+          contexts.aux.translate((i - 1) * colW, 0);
+          drawCam(i, contexts.aux, colW, topH, t);
+          contexts.aux.restore();
+        }
+
+        // Bottom PVW (left half)
+        contexts.aux.save();
+        contexts.aux.translate(0, topH);
+        drawCam(state.pvw, contexts.aux, Math.floor(aw / 2), btmH, t);
+        contexts.aux.restore();
+
+        // Bottom PGM (right half)
+        contexts.aux.save();
+        contexts.aux.translate(Math.floor(aw / 2), topH);
+        drawProgramOutput(contexts.aux, Math.floor(aw / 2), btmH, t);
+        contexts.aux.restore();
+      } else if (state.aux === 'PGM') {
+        drawProgramOutput(contexts.aux, aw, ah, t);
+      } else if (state.aux === 'PVW') {
+        drawCam(state.pvw, contexts.aux, aw, ah, t);
+      } else {
+        const camNum = parseInt(state.aux, 10);
+        if (camNum >= 1 && camNum <= 4) {
+          drawCam(camNum, contexts.aux, aw, ah, t);
+        }
+      }
+    }
+
     // Animate Audio VU meters
     animateAudioMeters(t);
 
@@ -650,6 +698,35 @@
         btn.classList.remove('active-pvw');
       }
     });
+
+    // AUX Bus Buttons
+    document.querySelectorAll('.silicone-btn[data-aux]').forEach((btn) => {
+      const src = btn.dataset.aux;
+      if (src === state.aux) {
+        btn.classList.add('active-aux');
+      } else {
+        btn.classList.remove('active-aux');
+      }
+    });
+
+    // AUX Readout Label on Monitor Top Bar
+    const auxLabel = document.getElementById('label-aux-src');
+    const auxDest = document.getElementById('label-aux-dest');
+    if (auxLabel) {
+      if (state.aux === 'MV') {
+        auxLabel.textContent = 'MULTIVIEW (MV)';
+        if (auxDest) auxDest.textContent = 'HDMI 2 / MONITOR MEJA';
+      } else if (state.aux === 'PGM') {
+        auxLabel.textContent = `PGM (C${state.pgm})`;
+        if (auxDest) auxDest.textContent = 'HDMI 2 / AUX PROGRAM';
+      } else if (state.aux === 'PVW') {
+        auxLabel.textContent = `PVW (C${state.pvw})`;
+        if (auxDest) auxDest.textContent = 'HDMI 2 / AUX PREVIEW';
+      } else {
+        auxLabel.textContent = `CAM ${state.aux}`;
+        if (auxDest) auxDest.textContent = `HDMI 2 / ISO CAM ${state.aux}`;
+      }
+    }
 
     // Multiview Screen Tallies
     for (let i = 1; i <= 4; i++) {
@@ -753,6 +830,12 @@
     updateUIButtons();
   }
 
+  function selectAUX(source) {
+    playClickSound('click');
+    state.aux = String(source);
+    updateUIButtons();
+  }
+
   // --- T-BAR CONTROLLER ---
   function updateTBarUI(pos) {
     const handle = document.getElementById('tbar-handle');
@@ -765,6 +848,19 @@
     if (readout) {
       readout.textContent = `${Math.round(pos * 100)}%`;
     }
+
+    // Dynamic 10-LED Ladder Bar
+    const leds = document.querySelectorAll('.tbar-led');
+    const activeLeds = Math.round(pos * 10);
+    leds.forEach((led) => {
+      const step = parseInt(led.dataset.step, 10);
+      led.classList.remove('lit-green', 'lit-amber', 'lit-red');
+      if (step <= activeLeds) {
+        if (step <= 6) led.classList.add('lit-green');
+        else if (step <= 8) led.classList.add('lit-amber');
+        else led.classList.add('lit-red');
+      }
+    });
   }
 
   function initTBar() {
@@ -959,12 +1055,89 @@
       });
     });
 
+    // AUX Bus Buttons
+    document.querySelectorAll('.silicone-btn[data-aux]').forEach((btn) => {
+      btn.addEventListener('click', () => {
+        selectAUX(btn.dataset.aux);
+      });
+    });
+
+    // Cinetreak Rotary Encoder Menu Dial & OSD
+    const rotaryDial = document.getElementById('rotary-dial');
+    const menuStatusText = document.getElementById('menu-status-text');
+    const menuOsdList = [
+      'HDMI 2 (AUX): MULTIVIEW DISPLAY',
+      'OUTPUT 1: 1080P60 PGM LIVE',
+      'IN 1: 1080P60 (A6000 WIRED)',
+      'IN 2: 1080P60 (ZV-E10 PYRO S)',
+      'IN 3: 1080P60 (A6000 PYRO H)',
+      'IN 4: 1080P60 (A6000 FOH)',
+      'UVC STREAM: READY (USB-C)',
+      'AUDIO: AFV ENABLED (ANALOG IN)'
+    ];
+    if (rotaryDial) {
+      let dialAngle = 0;
+      rotaryDial.addEventListener('wheel', (e) => {
+        e.preventDefault();
+        playClickSound('click');
+        dialAngle += e.deltaY > 0 ? 30 : -30;
+        rotaryDial.style.transform = `rotate(${dialAngle}deg)`;
+        state.menuIndex = (state.menuIndex + (e.deltaY > 0 ? 1 : menuOsdList.length - 1)) % menuOsdList.length;
+        if (menuStatusText) menuStatusText.textContent = menuOsdList[state.menuIndex];
+      });
+      rotaryDial.addEventListener('click', () => {
+        playClickSound('click');
+        state.menuIndex = (state.menuIndex + 1) % menuOsdList.length;
+        if (menuStatusText) menuStatusText.textContent = menuOsdList[state.menuIndex];
+      });
+    }
+
+    // Hardware LIVE & REC buttons
+    const btnLive = document.getElementById('btn-live-toggle');
+    if (btnLive) {
+      btnLive.addEventListener('click', () => {
+        playClickSound('click');
+        state.liveStreaming = !state.liveStreaming;
+        btnLive.style.opacity = state.liveStreaming ? '1' : '0.35';
+      });
+    }
+
+    const btnRec = document.getElementById('btn-rec-toggle');
+    if (btnRec) {
+      btnRec.addEventListener('click', () => {
+        playClickSound('click');
+        state.recording = !state.recording;
+        btnRec.style.opacity = state.recording ? '1' : '0.35';
+      });
+    }
+
     // Keyboard Shortcuts
     window.addEventListener('keydown', (e) => {
       // Prevent shortcut interference if typing in an input
       if (['INPUT', 'TEXTAREA'].includes(document.activeElement.tagName)) return;
 
       const key = e.key;
+
+      // AUX Bus Routing Shortcuts with Alt
+      if (e.altKey) {
+        if (key.toLowerCase() === 'm') {
+          e.preventDefault();
+          selectAUX('MV');
+          return;
+        } else if (key >= '1' && key <= '4') {
+          e.preventDefault();
+          selectAUX(key);
+          return;
+        } else if (key.toLowerCase() === 'p') {
+          e.preventDefault();
+          selectAUX('PVW');
+          return;
+        } else if (key.toLowerCase() === 'g') {
+          e.preventDefault();
+          selectAUX('PGM');
+          return;
+        }
+      }
 
       if (key >= '1' && key <= '4') {
         const cam = parseInt(key, 10);
@@ -997,6 +1170,16 @@
         updateTBarUI(state.tbarPos);
       }
     });
+
+    // Realtime Viewport Resolution Telemetry for Desktop Lockout Screen
+    function updateResolutionReadout() {
+      const resEl = document.getElementById('current-screen-res');
+      if (resEl) {
+        resEl.textContent = `${window.innerWidth} × ${window.innerHeight} px`;
+      }
+    }
+    window.addEventListener('resize', updateResolutionReadout);
+    updateResolutionReadout();
   }
 
   // --- INITIALIZE ON DOM READY ---

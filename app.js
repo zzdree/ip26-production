@@ -12,8 +12,8 @@
  */
 
 document.addEventListener('DOMContentLoaded', () => {
-  // Check if running on SATSET checklist view
-  const isSatsetPage = window.location.pathname.includes('satset') || document.body.classList.contains('satset-page') || Boolean(document.querySelector('.inv-table-satset'));
+  // Check if running on SATSET or Database checklist view
+  const isSatsetPage = window.location.pathname.includes('satset') || window.location.pathname.includes('database') || document.body.classList.contains('satset-page') || Boolean(document.querySelector('.inv-table-satset'));
 
   // =========================================================================
   // 1. TOAST NOTIFICATION SYSTEM (Magic Motion & a11y)
