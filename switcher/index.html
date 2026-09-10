@@ -231,10 +231,10 @@
       <!-- Control Console Hardware Surface -->
       <section class="console-surface" aria-label="Hardware Control Surface">
         
-        <!-- Left Bank: PGM and PVW Buses -->
+        <!-- Left Bank: Unified Camera Bus & AUX Output Bus -->
         <div class="console-bank">
           <div class="bank-header">
-            <div class="bank-title"><span class="dot"></span> Video Bus Routing</div>
+            <div class="bank-title"><span class="dot"></span> Camera Inputs (Dual Tally: Red=PGM, Green=PVW)</div>
             <span style="font-size:10px; color:#8c97ad; font-family:var(--font-mono);">HDMI 1-4 SYNCED</span>
           </div>
 
@@ -274,48 +274,29 @@
               </div>
             </div>
 
-            <!-- PGM Row -->
+            <!-- Unified CAM Inputs Row (Physical CineLive V1: Red = PGM, Green = PVW) -->
             <div class="bus-row">
-              <div class="bus-label-badge bus-label-pgm">PGM</div>
-              <div class="buttons-grid">
-                <button class="silicone-btn active-pgm" data-pgm="1" title="CAM 1: Stage Center Wide (Hot punch Shift+1)">
+              <div class="bus-label-badge bus-label-cam" title="Cinelive V1 Single Physical Row: Red = PGM Live, Green = PVW Cue">CAM 1-4</div>
+              <div class="buttons-grid buttons-grid-cams">
+                <button class="silicone-btn active-pgm" data-cam="1" title="CAM 1: Stage Center Wide (Klik untuk Cue PVW Hijau / Klik saat PVW aktif atau Shift+1 untuk Cut ke PGM Merah)">
                   <span class="btn-num">1</span>
                   <span class="btn-sub">STG WIDE</span>
+                  <span class="tally-indicator-pill">PGM</span>
                 </button>
-                <button class="silicone-btn" data-pgm="2" title="CAM 2: Worship Leader Close-up (Hot punch Shift+2)">
+                <button class="silicone-btn active-pvw" data-cam="2" title="CAM 2: Worship Leader Close-up (Klik untuk Cue PVW Hijau / Klik saat PVW aktif atau Shift+2 untuk Cut ke PGM Merah)">
                   <span class="btn-num">2</span>
                   <span class="btn-sub">WL CLOSE</span>
+                  <span class="tally-indicator-pill">PVW</span>
                 </button>
-                <button class="silicone-btn" data-pgm="3" title="CAM 3: Congregation Roaming (Hot punch Shift+3)">
+                <button class="silicone-btn" data-cam="3" title="CAM 3: Congregation Roaming (Klik untuk Cue PVW Hijau / Klik saat PVW aktif atau Shift+3 untuk Cut ke PGM Merah)">
                   <span class="btn-num">3</span>
                   <span class="btn-sub">CONGREG</span>
+                  <span class="tally-indicator-pill"></span>
                 </button>
-                <button class="silicone-btn" data-pgm="4" title="CAM 4: Balcony FOH Master (Hot punch Shift+4)">
+                <button class="silicone-btn" data-cam="4" title="CAM 4: Balcony FOH Master (Klik untuk Cue PVW Hijau / Klik saat PVW aktif atau Shift+4 untuk Cut ke PGM Merah)">
                   <span class="btn-num">4</span>
                   <span class="btn-sub">FOH MASTER</span>
-                </button>
-              </div>
-            </div>
-
-            <!-- PVW Row -->
-            <div class="bus-row">
-              <div class="bus-label-badge bus-label-pvw">PVW</div>
-              <div class="buttons-grid">
-                <button class="silicone-btn" data-pvw="1" title="Cue CAM 1 to Preview (Key 1)">
-                  <span class="btn-num">1</span>
-                  <span class="btn-sub">STG WIDE</span>
-                </button>
-                <button class="silicone-btn active-pvw" data-pvw="2" title="Cue CAM 2 to Preview (Key 2)">
-                  <span class="btn-num">2</span>
-                  <span class="btn-sub">WL CLOSE</span>
-                </button>
-                <button class="silicone-btn" data-pvw="3" title="Cue CAM 3 to Preview (Key 3)">
-                  <span class="btn-num">3</span>
-                  <span class="btn-sub">CONGREG</span>
-                </button>
-                <button class="silicone-btn" data-pvw="4" title="Cue CAM 4 to Preview (Key 4)">
-                  <span class="btn-num">4</span>
-                  <span class="btn-sub">FOH MASTER</span>
+                  <span class="tally-indicator-pill"></span>
                 </button>
               </div>
             </div>
@@ -446,8 +427,8 @@
         Hotkeys & Broadcast Controls
       </div>
       <div class="hotkeys-grid">
-        <div class="hotkey-item"><span class="kbd-badge">1</span> - <span class="kbd-badge">4</span> <span>Cue Preview (PVW)</span></div>
-        <div class="hotkey-item"><span class="kbd-badge">Shift + 1-4</span> <span>Hot-punch Program (PGM)</span></div>
+        <div class="hotkey-item"><span class="kbd-badge">1</span> - <span class="kbd-badge">4</span> <span>Cue PVW (Hijau) / Cut jika sudah cued</span></div>
+        <div class="hotkey-item"><span class="kbd-badge">Shift + 1-4</span> <span>Direct Hot-punch PGM (Merah)</span></div>
         <div class="hotkey-item"><span class="kbd-badge">Alt + M</span> <span>Route Multiview to AUX (Monitor Meja)</span></div>
         <div class="hotkey-item"><span class="kbd-badge">Alt + 1-4</span> <span>Route CAM to AUX Output</span></div>
         <div class="hotkey-item"><span class="kbd-badge">Alt + P / G</span> <span>Route PVW / PGM to AUX</span></div>

@@ -23,6 +23,10 @@
     clearText: false,
     clearBg: false,
     blackout: false,
+    activeScreen: 'audience', // 'audience' | 'stage' | 'stream'
+    destAudience: true,
+    destStage: true,
+    destStream: true,
     theme: 'screen-bg-nebula',
     textCase: 'uppercase',
     align: 'center',
@@ -44,7 +48,11 @@
     btnClearText: document.getElementById('btn-clear-text'),
     btnClearBg: document.getElementById('btn-clear-bg'),
     btnBlackout: document.getElementById('btn-blackout'),
-    // Previews
+    // Unified Pro7 Monitor & Previews
+    monitorActiveLabel: document.getElementById('monitor-active-label'),
+    toggleAudience: document.getElementById('toggle-dest-audience'),
+    toggleStage: document.getElementById('toggle-dest-stage'),
+    toggleStream: document.getElementById('toggle-dest-stream'),
     ledScreen: document.getElementById('led-preview-screen'),
     ledText: document.getElementById('led-lyrics-text'),
     ltOverlay: document.getElementById('lt-overlay-box'),
@@ -52,6 +60,9 @@
     ltLine2: document.getElementById('lt-line-2'),
     confCurrent: document.getElementById('conf-current-text'),
     confNext: document.getElementById('conf-next-text'),
+    stageClock: document.getElementById('stage-live-clock'),
+    stageSongLabel: document.getElementById('stage-song-label'),
+    stageSectionTag: document.getElementById('stage-section-tag'),
     // YouTube
     ytIframe: document.getElementById('yt-iframe-player'),
     ytTitle: document.getElementById('yt-song-title'),
@@ -294,7 +305,10 @@
 
     // 1. Auditorium LED Preview
     if (dom.ledScreen && dom.ledText) {
-      if (state.blackout) {
+      if (!state.destAudience) {
+        dom.ledScreen.style.background = '#000000';
+        dom.ledText.innerHTML = '<span style="color:#ef4444; font-family:var(--font-mono); font-size:11px; font-weight:800;">[ AUDIENCE SCREEN DISABLED ]</span>';
+      } else if (state.blackout) {
         dom.ledScreen.style.background = '#000000';
         dom.ledText.innerHTML = '';
       } else {
@@ -313,7 +327,7 @@
 
     // 2. Stream Lower-Third Preview
     if (dom.ltOverlay && dom.ltLine1 && dom.ltLine2) {
-      if (state.blackout || state.clearAll || state.clearText || lines.length === 0) {
+      if (!state.destStream || state.blackout || state.clearAll || state.clearText || lines.length === 0) {
         dom.ltOverlay.style.display = 'none';
       } else {
         dom.ltOverlay.style.display = 'flex';
@@ -323,19 +337,31 @@
     }
 
     // 3. Stage Display / Foldback Confidence Monitor
-    if (dom.confCurrent && dom.confNext) {
-      if (lines.length > 0) {
-        dom.confCurrent.innerHTML = lines
-          .map((l) => `<div>${formatLyricText(l)}</div>`)
-          .join('');
-      } else {
-        dom.confCurrent.innerHTML = '<span style="color:#64748b; font-style:italic;">[ BLANK / INSTRUMENTAL ]</span>';
-      }
+    if (dom.stageSongLabel) {
+      dom.stageSongLabel.textContent = song.title;
+    }
+    if (dom.stageSectionTag) {
+      dom.stageSectionTag.textContent = currentSlide && currentSlide.section ? currentSlide.section : 'VERSE';
+    }
 
-      if (nextSlide && nextSlide.lines && nextSlide.lines.length > 0) {
-        dom.confNext.textContent = nextSlide.lines.join(' / ');
+    if (dom.confCurrent && dom.confNext) {
+      if (!state.destStage) {
+        dom.confCurrent.innerHTML = '<span style="color:#ef4444; font-family:var(--font-mono); font-size:12px; font-weight:800;">[ STAGE DISPLAY DISABLED ]</span>';
+        dom.confNext.textContent = '---';
       } else {
-        dom.confNext.textContent = '(Akhir lagu)';
+        if (lines.length > 0) {
+          dom.confCurrent.innerHTML = lines
+            .map((l) => `<div>${formatLyricText(l)}</div>`)
+            .join('');
+        } else {
+          dom.confCurrent.innerHTML = '<span style="color:#64748b; font-style:italic;">[ BLANK / INSTRUMENTAL ]</span>';
+        }
+
+        if (nextSlide && nextSlide.lines && nextSlide.lines.length > 0) {
+          dom.confNext.textContent = nextSlide.lines.join(' / ');
+        } else {
+          dom.confNext.textContent = '(Akhir lagu)';
+        }
       }
     }
 
@@ -498,8 +524,108 @@
     }
   }
 
+  // --- SCREEN SELECTOR (PROPRESENTER 7 TABS) ---
+  function setScreen(screenName) {
+    state.activeScreen = screenName;
+
+    // Update screen tab buttons
+    document.querySelectorAll('.screen-tab-btn[data-screen]').forEach((btn) => {
+      const isCurrent = btn.dataset.screen === screenName;
+      btn.classList.toggle('active', isCurrent);
+      btn.setAttribute('aria-selected', isCurrent ? 'true' : 'false');
+    });
+
+    // Update screen views inside unified viewport
+    document.querySelectorAll('.screen-view').forEach((view) => {
+      const isCurrent = view.classList.contains(`view-${screenName}`);
+      view.classList.toggle('active', isCurrent);
+    });
+
+    // Update footer feed pills
+    document.querySelectorAll('.feed-pill[data-switch]').forEach((pill) => {
+      pill.classList.toggle('active', pill.dataset.switch === screenName);
+    });
+
+    // Update active screen label
+    if (dom.monitorActiveLabel) {
+      if (screenName === 'audience') {
+        dom.monitorActiveLabel.textContent = 'VIEWING: AUDIENCE (LED CENTER)';
+      } else if (screenName === 'stage') {
+        dom.monitorActiveLabel.textContent = 'VIEWING: STAGE DISPLAY (FOLDBACK)';
+      } else if (screenName === 'stream') {
+        dom.monitorActiveLabel.textContent = 'VIEWING: STREAM LOWER-THIRD (OBS)';
+      }
+    }
+  }
+
+  // --- DESTINATION TOGGLES ---
+  function toggleDestination(dest) {
+    if (dest === 'audience') {
+      state.destAudience = !state.destAudience;
+      if (dom.toggleAudience) {
+        dom.toggleAudience.classList.toggle('active', state.destAudience);
+        const st = dom.toggleAudience.querySelector('.dest-state');
+        if (st) st.textContent = state.destAudience ? 'ON' : 'OFF';
+      }
+    } else if (dest === 'stage') {
+      state.destStage = !state.destStage;
+      if (dom.toggleStage) {
+        dom.toggleStage.classList.toggle('active', state.destStage);
+        const st = dom.toggleStage.querySelector('.dest-state');
+        if (st) st.textContent = state.destStage ? 'ON' : 'OFF';
+      }
+    } else if (dest === 'stream') {
+      state.destStream = !state.destStream;
+      if (dom.toggleStream) {
+        dom.toggleStream.classList.toggle('active', state.destStream);
+        const st = dom.toggleStream.querySelector('.dest-state');
+        if (st) st.textContent = state.destStream ? 'ON' : 'OFF';
+      }
+    }
+    updateLiveOutput();
+  }
+
+  // --- STAGE DISPLAY CLOCK ---
+  function startStageClock() {
+    function updateClock() {
+      const now = new Date();
+      const pad = (n) => String(n).padStart(2, '0');
+      const timeStr = `${pad(now.getHours())}:${pad(now.getMinutes())}:${pad(now.getSeconds())}`;
+      if (dom.stageClock) {
+        dom.stageClock.textContent = timeStr;
+      }
+    }
+    updateClock();
+    setInterval(updateClock, 1000);
+  }
+
   // --- EVENT LISTENERS ---
   function setupEventListeners() {
+    // ProPresenter 7 Output Screen Selector Tabs
+    document.querySelectorAll('.screen-tab-btn[data-screen]').forEach((btn) => {
+      btn.addEventListener('click', () => {
+        setScreen(btn.dataset.screen);
+      });
+    });
+
+    // Destination Output Enable/Disable Toggles
+    if (dom.toggleAudience) {
+      dom.toggleAudience.addEventListener('click', () => toggleDestination('audience'));
+    }
+    if (dom.toggleStage) {
+      dom.toggleStage.addEventListener('click', () => toggleDestination('stage'));
+    }
+    if (dom.toggleStream) {
+      dom.toggleStream.addEventListener('click', () => toggleDestination('stream'));
+    }
+
+    // Monitor Footer Quick Feed Pills
+    document.querySelectorAll('.feed-pill[data-switch]').forEach((pill) => {
+      pill.addEventListener('click', () => {
+        setScreen(pill.dataset.switch);
+      });
+    });
+
     // Prev / Next Buttons
     if (dom.btnPrev) dom.btnPrev.addEventListener('click', prevSlide);
     if (dom.btnNext) dom.btnNext.addEventListener('click', nextSlide);
@@ -543,6 +669,23 @@
       // Don't trigger if search input is focused
       if (document.activeElement === dom.searchInput) return;
 
+      // Alt + 1/2/3 to switch output screen preview
+      if (e.altKey) {
+        if (e.key === '1') {
+          e.preventDefault();
+          setScreen('audience');
+          return;
+        } else if (e.key === '2') {
+          e.preventDefault();
+          setScreen('stage');
+          return;
+        } else if (e.key === '3') {
+          e.preventDefault();
+          setScreen('stream');
+          return;
+        }
+      }
+
       if (e.key === ' ' || e.key === 'PageDown' || e.key === 'ArrowRight') {
         e.preventDefault();
         nextSlide();
@@ -579,6 +722,8 @@
   window.addEventListener('DOMContentLoaded', () => {
     setupEventListeners();
     initData();
+    startStageClock();
+    setScreen('audience');
     console.log('[ProPresenter Simulator Initialized]');
   });
 })();

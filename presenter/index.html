@@ -182,51 +182,100 @@
     <section class="output-column" aria-label="Live Output Previews and Controls">
       
       <div class="output-panel-header">
-        <div class="col-heading">LIVE OUTPUT MONITORS</div>
-        <span style="font-family:var(--font-mono); font-size:10px; color:#10b981;">● SYNC ACTIVE</span>
-      </div>
-
-      <!-- 1. Auditorium LED Screen Output -->
-      <div class="preview-card">
-        <div class="preview-card-title">
-          <span>AUDITORIUM LED CENTER (1920x1080)</span>
-          <span style="color:var(--pp-accent);">RESOLUME FEED</span>
-        </div>
-        <div class="preview-screen-box screen-bg-nebula" id="led-preview-screen">
-          <div class="live-lyrics-text" id="led-lyrics-text"></div>
+        <div class="col-heading">OUTPUT PREVIEW MONITOR</div>
+        <div class="output-header-badges">
+          <span class="sync-live-badge"><span class="pulse-dot"></span> LIVE SYNC</span>
+          <span class="res-tag">1080P60</span>
         </div>
       </div>
 
-      <!-- 2. Stream Lower-Third Preview -->
-      <div class="preview-card">
-        <div class="preview-card-title">
-          <span>YOUTUBE STREAM LOWER-THIRD</span>
-          <span style="color:#f59e0b;">OBS ALPHA</span>
-        </div>
-        <div class="preview-screen-box" style="background:#11141c;">
-          <!-- Simulated Camera Video background behind lower-third -->
-          <div style="position:absolute; inset:0; background:radial-gradient(circle at 50% 40%, #1e293b 0%, #090d16 100%); opacity:0.8;"></div>
-          <div class="lower-third-overlay" id="lt-overlay-box">
-            <div class="lt-line-current" id="lt-line-1"></div>
-            <div class="lt-line-next" id="lt-line-2"></div>
+      <!-- Unified ProPresenter 7 Output Monitor -->
+      <div class="unified-monitor-card">
+        <!-- Pro7 Screen Selector Bar -->
+        <div class="screen-selector-bar">
+          <div class="screen-tabs-group" role="tablist" aria-label="Select Output Screen">
+            <button class="screen-tab-btn active" data-screen="audience" role="tab" aria-selected="true" title="Audience Main LED Screen">
+              <span class="tab-dot dot-audience"></span>
+              Audience (LED)
+            </button>
+            <button class="screen-tab-btn" data-screen="stage" role="tab" aria-selected="false" title="Stage Display Confidence Monitor">
+              <span class="tab-dot dot-stage"></span>
+              Stage Display
+            </button>
+            <button class="screen-tab-btn" data-screen="stream" role="tab" aria-selected="false" title="Stream Broadcast Lower-Third">
+              <span class="tab-dot dot-stream"></span>
+              Stream (L3)
+            </button>
+          </div>
+
+          <!-- Quick Output Destination Enable Toggles -->
+          <div class="screen-enable-toggles">
+            <button class="dest-toggle-btn active" id="toggle-dest-audience" title="Toggle Audience Screen Output">
+              AUD <span class="dest-state">ON</span>
+            </button>
+            <button class="dest-toggle-btn active" id="toggle-dest-stage" title="Toggle Stage Display Output">
+              STG <span class="dest-state">ON</span>
+            </button>
+            <button class="dest-toggle-btn active" id="toggle-dest-stream" title="Toggle Stream Output">
+              OBS <span class="dest-state">ON</span>
+            </button>
           </div>
         </div>
-      </div>
 
-      <!-- 3. Stage Display / Foldback Confidence Monitor -->
-      <div class="preview-card">
-        <div class="preview-card-title">
-          <span>STAGE DISPLAY (FOLDBACK / WL)</span>
-          <span style="color:#10b981;">SINGER MONITOR</span>
-        </div>
-        <div class="confidence-box">
-          <div>
-            <div style="font-family:var(--font-mono); font-size:9px; color:#10b981; font-weight:700; margin-bottom:4px;">CURRENT SLIDE:</div>
-            <div class="confidence-current" id="conf-current-text"></div>
+        <!-- Unified Viewport Monitor -->
+        <div class="unified-viewport" id="unified-output-monitor">
+          
+          <!-- VIEW 1: Auditorium LED Screen -->
+          <div class="screen-view view-audience active" id="view-audience">
+            <div class="view-osd-badge">AUDIENCE LED CENTER • 1920×1080</div>
+            <div class="preview-screen-box screen-bg-nebula" id="led-preview-screen">
+              <div class="live-lyrics-text" id="led-lyrics-text"></div>
+            </div>
           </div>
-          <div class="confidence-next-row">
-            <span class="confidence-next-label">NEXT:</span>
-            <span class="confidence-next-text" id="conf-next-text"></span>
+
+          <!-- VIEW 2: Stage Display / Foldback Confidence Monitor -->
+          <div class="screen-view view-stage" id="view-stage">
+            <div class="confidence-box" id="stage-display-screen">
+              <div class="stage-top-meta">
+                <div class="stage-clock" id="stage-live-clock">00:00:00</div>
+                <div class="stage-song-info" id="stage-song-label">CURRENT SONG</div>
+                <div class="stage-dest-tag">STAGE FOLDBACK</div>
+              </div>
+              <div class="stage-current-wrap">
+                <div class="stage-section-pill" id="stage-section-tag">VERSE 1</div>
+                <div class="confidence-current" id="conf-current-text"></div>
+              </div>
+              <div class="confidence-next-row">
+                <span class="confidence-next-label">NEXT SLIDE:</span>
+                <span class="confidence-next-text" id="conf-next-text"></span>
+              </div>
+            </div>
+          </div>
+
+          <!-- VIEW 3: Stream Lower-Third Preview -->
+          <div class="screen-view view-stream" id="view-stream">
+            <div class="view-osd-badge">YOUTUBE STREAM • OBS ALPHA KEY</div>
+            <div class="preview-screen-box stream-preview-bg" id="stream-preview-screen">
+              <div class="stream-cam-watermark">CAM 1: MASTER STAGE FEED</div>
+              <div class="lower-third-overlay" id="lt-overlay-box">
+                <div class="lt-line-current" id="lt-line-1"></div>
+                <div class="lt-line-next" id="lt-line-2"></div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Monitor Footer Status Bar -->
+        <div class="monitor-footer-bar">
+          <div class="monitor-status-item">
+            <span class="status-indicator-dot dot-live"></span>
+            <span class="status-name" id="monitor-active-label">VIEWING: AUDIENCE (LED CENTER)</span>
+          </div>
+          <div class="monitor-dest-pills">
+            <span class="feed-pill active" data-switch="audience" title="Switch to Audience view">LED: 1080p</span>
+            <span class="feed-pill" data-switch="stage" title="Switch to Stage view">STAGE: HDMI</span>
+            <span class="feed-pill" data-switch="stream" title="Switch to Stream view">OBS: NDI</span>
           </div>
         </div>
       </div>

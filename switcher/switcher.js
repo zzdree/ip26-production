@@ -28,6 +28,8 @@
     soundEnabled: true,
     audioLevelL: 0.65,
     audioLevelR: 0.62,
+    audioMuted: false,
+    afvMode: true,
     liveStreaming: true,
     recording: true,
     menuIndex: 0,
@@ -635,20 +637,60 @@
 
     if (!meterFillL || !meterFillR) return;
 
-    // Simulate natural musical bounce
-    const beat = Math.sin(t * 4.5) * 0.2 + Math.cos(t * 9.0) * 0.15;
-    const base = state.ftb ? 0 : 0.65;
-    const lVal = Math.max(0.05, Math.min(0.98, base + beat));
-    const rVal = Math.max(0.05, Math.min(0.98, base + beat * 0.95 + 0.02));
+    // If Muted or FTB active: shut down meters completely
+    if (state.audioMuted || state.ftb) {
+      meterFillL.style.width = '0%';
+      meterFillR.style.width = '0%';
+      const muteText = state.audioMuted ? 'MUTE' : '-∞ dB';
+      if (readoutL) {
+        readoutL.textContent = muteText;
+        readoutL.style.color = '#ef4444';
+      }
+      if (readoutR) {
+        readoutR.textContent = muteText;
+        readoutR.style.color = '#ef4444';
+      }
+      return;
+    }
+
+    // Audio follows video (AFV): audio base profile corresponds to live PGM camera
+    let camBase = 0.65;
+    if (state.afvMode) {
+      if (state.pgm === 1) camBase = 0.64; // Stage Wide (full band balance)
+      else if (state.pgm === 2) camBase = 0.72; // WL Close-up (lead vocal presence)
+      else if (state.pgm === 3) camBase = 0.46; // Congregation (room ambiance)
+      else if (state.pgm === 4) camBase = 0.66; // Balcony FOH (hall stereo acoustic)
+    }
+
+    // Realistic audio dynamics with musical attack & decay
+    const beat = Math.sin(t * 5.2) * 0.16 + Math.cos(t * 10.4) * 0.09 + Math.sin(t * 1.8) * 0.05;
+    const lVal = Math.max(0.04, Math.min(0.95, camBase + beat));
+    const rVal = Math.max(0.04, Math.min(0.95, camBase + beat * 0.94 + 0.015));
 
     meterFillL.style.width = (lVal * 100).toFixed(1) + '%';
     meterFillR.style.width = (rVal * 100).toFixed(1) + '%';
 
-    const dbL = ((-36 * (1 - lVal))).toFixed(1);
-    const dbR = ((-36 * (1 - rVal))).toFixed(1);
+    // Broadcast dB calculation: 0.95 = 0.0 dB (clip), 0.65 ≈ -11.4 dB (nominal), 0.10 ≈ -32 dB
+    const dbLNum = (lVal - 0.95) * 38;
+    const dbRNum = (rVal - 0.95) * 38;
 
-    if (readoutL) readoutL.textContent = `${dbL} dB`;
-    if (readoutR) readoutR.textContent = `${dbR} dB`;
+    const dbL = dbLNum.toFixed(1);
+    const dbR = dbRNum.toFixed(1);
+
+    function getDbColor(val) {
+      if (val >= -3.0) return '#ff3344'; // Red clip zone
+      if (val >= -12.0) return '#f59e0b'; // Amber presence
+      return '#10b981'; // Green nominal clean
+    }
+
+    if (readoutL) {
+      readoutL.textContent = `${dbL} dB`;
+      readoutL.style.color = getDbColor(dbLNum);
+    }
+    if (readoutR) {
+      readoutR.textContent = `${dbR} dB`;
+      readoutR.style.color = getDbColor(dbRNum);
+    }
   }
 
   // --- TIMECODE GENERATOR ---
@@ -679,24 +721,32 @@
 
   // --- UI UPDATERS ---
   function updateUIButtons() {
-    // PGM Buttons
-    document.querySelectorAll('.silicone-btn[data-pgm]').forEach((btn) => {
-      const cam = parseInt(btn.dataset.pgm, 10);
+    // Unified Physical CineLive V1 Camera Buttons (Single row: Red = PGM, Green = PVW)
+    document.querySelectorAll('.silicone-btn[data-cam]').forEach((btn) => {
+      const cam = parseInt(btn.dataset.cam, 10);
+      btn.classList.remove('active-pgm', 'active-pvw');
+      const pill = btn.querySelector('.tally-indicator-pill');
       if (cam === state.pgm) {
         btn.classList.add('active-pgm');
+        if (pill) pill.textContent = 'PGM';
+      } else if (cam === state.pvw) {
+        btn.classList.add('active-pvw');
+        if (pill) pill.textContent = 'PVW';
       } else {
-        btn.classList.remove('active-pgm');
+        if (pill) pill.textContent = '';
       }
     });
 
-    // PVW Buttons
+    // Backward-compat for PGM / PVW buttons if present
+    document.querySelectorAll('.silicone-btn[data-pgm]').forEach((btn) => {
+      const cam = parseInt(btn.dataset.pgm, 10);
+      if (cam === state.pgm) btn.classList.add('active-pgm');
+      else btn.classList.remove('active-pgm');
+    });
     document.querySelectorAll('.silicone-btn[data-pvw]').forEach((btn) => {
       const cam = parseInt(btn.dataset.pvw, 10);
-      if (cam === state.pvw) {
-        btn.classList.add('active-pvw');
-      } else {
-        btn.classList.remove('active-pvw');
-      }
+      if (cam === state.pvw) btn.classList.add('active-pvw');
+      else btn.classList.remove('active-pvw');
     });
 
     // AUX Bus Buttons
@@ -765,6 +815,19 @@
     if (pipBtn) {
       if (state.pip) pipBtn.classList.add('active');
       else pipBtn.classList.remove('active');
+    }
+
+    // Audio AFV & Mute Toggles
+    const btnAfv = document.getElementById('btn-afv');
+    if (btnAfv) {
+      btnAfv.classList.toggle('active', state.afvMode);
+      btnAfv.innerHTML = `<span>AFV MODE</span> <span style="color:${state.afvMode ? '#10b981' : '#8c97ad'}; font-weight:800;">${state.afvMode ? 'ON' : 'OFF'}</span>`;
+    }
+
+    const btnMute = document.getElementById('btn-audio-mute');
+    if (btnMute) {
+      btnMute.classList.toggle('muted', state.audioMuted);
+      btnMute.innerHTML = `<span>MUTE ALL</span> <span style="color:${state.audioMuted ? '#ef4444' : '#8c97ad'}; font-weight:800;">${state.audioMuted ? 'ON' : 'OFF'}</span>`;
     }
 
     // Auto Transition Button Glow
@@ -929,7 +992,27 @@
 
   // --- EVENT LISTENERS & SETUP ---
   function setupEventListeners() {
-    // PGM Buttons
+    // Unified Physical Camera Buttons (CineLive V1 Front Panel: 1-4)
+    document.querySelectorAll('.silicone-btn[data-cam]').forEach((btn) => {
+      btn.addEventListener('click', (e) => {
+        const cam = parseInt(btn.dataset.cam, 10);
+        if (e.shiftKey) {
+          // Shift + Click executes instant direct Hot-Punch to PGM
+          hotPunchPGM(cam);
+        } else {
+          // Normal Click:
+          // If already cued on PVW (Green), clicking again executes CUT to live PGM
+          if (cam === state.pvw) {
+            triggerCut();
+          } else if (cam !== state.pgm) {
+            // Otherwise cue to Preview (turns Green)
+            selectPVW(cam);
+          }
+        }
+      });
+    });
+
+    // PGM Buttons (backward compatibility)
     document.querySelectorAll('.silicone-btn[data-pgm]').forEach((btn) => {
       btn.addEventListener('click', () => {
         const cam = parseInt(btn.dataset.pgm, 10);
@@ -937,13 +1020,32 @@
       });
     });
 
-    // PVW Buttons
+    // PVW Buttons (backward compatibility)
     document.querySelectorAll('.silicone-btn[data-pvw]').forEach((btn) => {
       btn.addEventListener('click', () => {
         const cam = parseInt(btn.dataset.pvw, 10);
         selectPVW(cam);
       });
     });
+
+    // Audio Controls: AFV & Mute
+    const btnAfv = document.getElementById('btn-afv');
+    if (btnAfv) {
+      btnAfv.addEventListener('click', () => {
+        playClickSound('click');
+        state.afvMode = !state.afvMode;
+        updateUIButtons();
+      });
+    }
+
+    const btnMute = document.getElementById('btn-audio-mute');
+    if (btnMute) {
+      btnMute.addEventListener('click', () => {
+        playClickSound('ftb');
+        state.audioMuted = !state.audioMuted;
+        updateUIButtons();
+      });
+    }
 
     // CUT & AUTO Buttons
     const cutBtn = document.getElementById('btn-cut');
@@ -1144,7 +1246,11 @@
         if (e.shiftKey) {
           hotPunchPGM(cam);
         } else {
-          selectPVW(cam);
+          if (cam === state.pvw) {
+            triggerCut();
+          } else if (cam !== state.pgm) {
+            selectPVW(cam);
+          }
         }
       } else if (key === ' ' || key === 'Spacebar') {
         e.preventDefault();
