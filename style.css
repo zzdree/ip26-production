@@ -2960,7 +2960,7 @@ tr.remote-updated {
 
 
 /* --------------------------------------------------------------------------
-   14. SATSET COMPACT MOBILE TABLE STYLES (3 Columns: Nama, Jumlah, Centang)
+   14. SATSET COMPACT MOBILE TABLE STYLES (4 Columns: Nama, Jumlah, Status, Centang)
    -------------------------------------------------------------------------- */
 body.satset-page {
   overflow-x: hidden !important;
@@ -3011,16 +3011,16 @@ body.satset-page .vendor-title {
 .data-table.inv-table-satset th,
 .data-table.inv-table-satset td {
   min-width: 0 !important;
-  padding: 8px 6px !important;
+  padding: 8px 4px !important;
   vertical-align: middle;
   box-sizing: border-box;
 }
 
 .data-table.inv-table-satset th.col-nama,
 .data-table.inv-table-satset td.col-nama {
-  width: 62% !important;
+  width: 48% !important;
   text-align: left;
-  font-size: 0.84rem;
+  font-size: 0.82rem;
   font-weight: 600;
   line-height: 1.3;
   color: var(--text-primary);
@@ -3031,12 +3031,29 @@ body.satset-page .vendor-title {
 
 .data-table.inv-table-satset th.col-qty,
 .data-table.inv-table-satset td.col-qty {
-  width: 20% !important;
+  width: 18% !important;
   text-align: center;
   font-family: var(--font-mono);
-  font-size: 0.76rem;
+  font-size: 0.74rem;
   color: var(--text-secondary);
+  white-space: normal !important;
+  word-wrap: break-word;
+}
+
+.data-table.inv-table-satset th.col-status,
+.data-table.inv-table-satset td.col-status {
+  width: 16% !important;
+  text-align: center;
+  padding: 4px 2px !important;
   white-space: nowrap;
+}
+
+.data-table.inv-table-satset td.col-status .badge {
+  font-size: 0.7rem !important;
+  padding: 2px 4px !important;
+  white-space: nowrap !important;
+  display: inline-block;
+  line-height: 1.2;
 }
 
 .data-table.inv-table-satset th.col-ceklist,
@@ -3057,10 +3074,10 @@ body.satset-page .vendor-title {
 }
 
 .data-table.inv-table-satset .inv-checkbox-btn {
-  width: 34px !important;
-  height: 34px !important;
-  min-width: 34px !important;
-  max-width: 34px !important;
+  width: 32px !important;
+  height: 32px !important;
+  min-width: 32px !important;
+  max-width: 32px !important;
   border-radius: 8px;
   display: inline-flex;
   align-items: center;
@@ -3083,8 +3100,8 @@ body.satset-page .vendor-title {
 }
 
 .data-table.inv-table-satset .inv-checkbox-btn .check-svg {
-  width: 20px;
-  height: 20px;
+  width: 18px;
+  height: 18px;
   stroke: currentColor;
   stroke-width: 3.2;
   fill: none;
