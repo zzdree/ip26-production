@@ -4,6 +4,8 @@
 
 [![Live Web Portal](https://img.shields.io/badge/Live%20Portal-Master%20Command-brightgreen?style=for-the-badge&logo=githubpages&logoColor=white)](https://zzdree.github.io/ip26-production/)
 [![Live SATSET Mobile](https://img.shields.io/badge/Live%20Mobile-⚡%20SATSET%20Checklist-orange?style=for-the-badge&logo=fastapi&logoColor=white)](https://zzdree.github.io/ip26-production/satset.html)
+[![Live Switcher V1](https://img.shields.io/badge/Simulator-🎛️%20Switcher%20Cinelive%20V1-00d2ff?style=for-the-badge)](https://zzdree.github.io/ip26-production/switcher.html)
+[![Live ProPresenter](https://img.shields.io/badge/Simulator-🎶%20ProPresenter%20Live-a855f7?style=for-the-badge)](https://zzdree.github.io/ip26-production/presenter.html)
 [![Event](https://img.shields.io/badge/Event-IP26%20UKK%20UNNES-007ACC?style=for-the-badge&logo=eventstore&logoColor=white)](#)
 [![Venue](https://img.shields.io/badge/Venue-Auditorium%20Prof.%20Wuryanto%20UNNES-critical?style=for-the-badge&logo=googlemaps&logoColor=white)](#)
 [![Status](https://img.shields.io/badge/Status-100%25%20Synchronized-success?style=for-the-badge&logo=checkmarx&logoColor=white)](#)
@@ -32,6 +34,8 @@
 | :--- | :--- | :--- |
 | 🌐 **Master Command Portal** | [https://zzdree.github.io/ip26-production/](https://zzdree.github.io/ip26-production/) | Portal lengkap seluruh arsitektur sistem, 8 diagram sinyal, tabel detail 150 logistik, device matrix, & rundown. |
 | ⚡ **SATSET Lapangan (Mobile)** | [https://zzdree.github.io/ip26-production/satset.html](https://zzdree.github.io/ip26-production/satset.html) | Mode khusus smartphone kru hari H. Kartu taktis berbasis nama barang untuk centang cepat *Pasang (Loading-In)* & *Kemas (Packing-Out)*. |
+| 🎛️ **Switcher Cinelive V1 Simulator** | [https://zzdree.github.io/ip26-production/switcher.html](https://zzdree.github.io/ip26-production/switcher.html) | Simulator hardware Cinetreak Cinelive V1 lengkap: 4 kamera, 5.5" multiview canvas, PGM/PVW glowing tally, T-Bar fader, CUT/AUTO, PIP & FTB. |
+| 🎶 **ProPresenter Live Simulator** | [https://zzdree.github.io/ip26-production/presenter.html](https://zzdree.github.io/ip26-production/presenter.html) | Simulator ProPresenter 7 dengan 14 lagu dari `Assets/Lyrics/Statics`, YouTube backing track player sinkron, slides 1-2 baris, dan output dual screen. |
 
 | Atribut | Keterangan |
 | :--- | :--- |
@@ -637,6 +641,60 @@ flowchart LR
 ## 📋 Rundown & Visual Screen Mapping Matrix
 
 > *Catatan: Data materi rundown sedang dalam proses pembaruan oleh tim acara dan akan disinkronisasikan kembali begitu data final diterima.*
+
+---
+
+## 🎛️ Simulator Video Switcher Cinetreak Cinelive V1 (`/switcher`)
+
+Sebagai media pelatihan operator kamera & switcher MCR sebelum gladi resik di Auditorium UNNES, portal ini menyediakan simulator hardware interaktif **Cinetreak Cinelive V1** berbasis Web Audio & HTML5 Canvas 60 FPS:
+
+- **Halaman Langsung:** [`switcher.html`](./switcher.html) atau path `/switcher` (`switcher/index.html`).
+- **4 Rantai Kamera IP26:**
+  - **CAM 1:** Sony A6000 Wired (Stage Center Wide)
+  - **CAM 2:** Sony ZV-E10 Wireless Pyro S (Worship Leader Close-up)
+  - **CAM 3:** Sony A6000 Wireless Pyro H (Congregation / Handheld Roaming)
+  - **CAM 4:** Sony A6000 Wired (Balcony / FOH Master Shot)
+- **Fitur Hardware Terintegrasi:**
+  - Layar 5.5-inch TFT LCD Multi-view (6 split view: 4 kamera + PVW Tally Hijau + PGM Tally Merah).
+  - Audio VU meter stereo real-time & timecode generator 60 FPS.
+  - Silicone backlit buttons dengan efek pendaran LED autentik (Merah untuk Program, Hijau untuk Preview).
+  - T-Bar manual fader dengan respons crossfade/wipe proporsional secara real-time.
+  - Efek transisi lengkap (`MIX`, `WIPE H`, `WIPE V`, `DIP`) dan pengatur durasi auto (`0.5s`, `1.0s`, `1.5s`, `2.0s`).
+  - Fitur `PIP` (Picture-in-Picture) multi-posisi & `FTB` (Fade to Black emergency button).
+  - Synthesizer Web Audio API untuk efek suara klik relay hardware.
+  - Shortcut keyboard lengkap (`1-4`, `Shift+1-4`, `Space` untuk CUT, `Enter` untuk AUTO, `F` untuk FTB, `P` untuk PIP, `M` untuk Fullscreen).
+
+---
+
+## 🎶 Simulator ProPresenter Live Lyrics (`/presenter`)
+
+Simulator live projection & broadcast lower-third terintegrasi untuk melatih operator multimedia dalam menyelaraskan lirik lagu ibadah secara presisi:
+
+- **Halaman Langsung:** [`presenter.html`](./presenter.html) atau path `/presenter` (`presenter/index.html`).
+- **Sumber Data Lirik:** Diparse langsung dari direktori master `X:\IP26\Assets\Lyrics\Statics` (14 lagu ibadah lengkap).
+- **Format Tampilan Slide:** Sesuai standar ProPresenter 7, setiap slide menampilkan **1–2 baris lirik** dengan tipografi broadcast kontras tinggi untuk menjaga keterbacaan jemaat dan penonton live stream.
+- **YouTube Backing Track Terintegrasi:** Setiap lagu dalam songlist dilengkapi embedded YouTube player resmi/rekaman asli lagu terkait untuk latihan tempo dan sinkronisasi pergantian slide oleh operator.
+- **Daftar 14 Lagu Terintegrasi:**
+  1. *Ajaib Kau Tuhan* - JPCC Worship (`u4OuBnoEpcc`)
+  2. *Aku Diberkati* - Sound Of Praise (`8HDwaUuxb18`)
+  3. *Bri Syukur* - Viona Paays (`WE0QMkO-bSw`)
+  4. *Dengar Dia Panggil Nama Saya* - Yehuda Singers (`9C3DqiW9aA0`)
+  5. *Di Badai Topan Dunia* - KJ 440 (`o5_tW24XDW8`)
+  6. *I Have Decided To Follow Jesus* - Amy Grant (`BjQ3YYBGAqI`)
+  7. *Ku Berbahagia* - KJ 392 (`1afPkMjn6Js`)
+  8. *Kumenang* - Symphony Worship (`ceBDhQV_fT4`)
+  9. *Kumenang Menang* - Hosana Singers (`8yr_XGBFb30`)
+  10. *KumilikMu* - JPCC Worship Youth (`D81OXqGb40s`)
+  11. *Mengikut Yesus Keputusanku* - KPRI 103 (`7PGGUUr2nFQ`)
+  12. *Nyalakan ApiMu* - GMS Live (`FsIT-wdq4bA`)
+  13. *Oceans (Where Feet May Fail)* - Hillsong UNITED (`1m_sWJQm2fs`)
+  14. *Setinggi-tingginya Langit* - Talenta Singers (`8t_UCR64cKM`)
+- **Tiga Output Monitor Sekaligus:**
+  1. **Auditorium LED Screen (1920x1080):** Output layar tengah auditorium dengan pilihan motion theme background (Midnight Nebula, Golden Flare, Pure Dark, Holy Light).
+  2. **YouTube Stream Lower-Third (OBS Alpha):** Baris ganda transparan dengan drop shadow tebal (baris 1 warna kuning, baris 2 warna putih).
+  3. **Stage Display (Foldback Confidence Monitor):** Teks slide aktif ukuran besar + petunjuk baris lirik berikutnya (*NEXT*) untuk singer & worship leader di panggung.
+- **Quick Action Clear Bar:** `CLEAR ALL` (Esc / F1), `CLEAR TEXT` (F2 / T), `CLEAR BG` (F3 / B), `BLACKOUT` (F5 / O).
+- **Popout Projector:** Fitur popout window mandiri via `BroadcastChannel` tanpa latency untuk dihubungkan langsung ke monitor kedua / LED screen Auditorium UNNES.
 
 ---
 

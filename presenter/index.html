@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ProPresenter Live Lyrics Simulator | IP26 UKK UNNES Broadcast</title>
+  <meta name="description" content="Simulator ProPresenter live lyrics & playout multimedia untuk Ibadah Perdana UKK UNNES 2026. Lengkap dengan YouTube backing track player dan slides 1-2 baris." />
+  
+  <link rel="icon" type="image/svg+xml" href="../favicon.svg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" />
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700;800&family=Outfit:wght@500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="presenter.css" />
+</head>
+<body class="presenter-body">
+
+  <!-- Header Bar -->
+  <header class="presenter-header">
+    <div class="brand-group">
+      <div class="brand-badge">IP26 MULTIMEDIA</div>
+      <div class="brand-title">
+        PROPRESENTER <span>SIMULATOR</span>
+      </div>
+    </div>
+
+    <!-- Quick Action Clear Bar (ProPresenter 7 Style) -->
+    <div class="clear-bar" aria-label="Clear Actions">
+      <button class="clear-btn" id="btn-clear-all" title="Clear All Text & Media (Esc / F1)">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+        CLEAR ALL
+      </button>
+      <button class="clear-btn" id="btn-clear-text" title="Clear Lyrics Text Only (Key T / F2)">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="4 7 4 4 20 4 20 7"></polyline><line x1="9" y1="20" x2="15" y2="20"></line><line x1="12" y1="4" x2="12" y2="20"></line></svg>
+        CLEAR TEXT
+      </button>
+      <button class="clear-btn" id="btn-clear-bg" title="Clear Background Media (Key B / F3)">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><circle cx="8.5" cy="8.5" r="1.5"></circle><polyline points="21 15 16 10 5 21"></polyline></svg>
+        CLEAR BG
+      </button>
+      <button class="clear-btn btn-blackout" id="btn-blackout" title="Emergency Blackout (Key O / F5)">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="10"></circle></svg>
+        BLACKOUT
+      </button>
+    </div>
+
+    <!-- Navigation Links -->
+    <div class="header-actions">
+      <a href="../index.html" class="header-link">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
+        Portal
+      </a>
+      <a href="../satset.html" class="header-link">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg>
+        SATSET
+      </a>
+      <a href="../switcher/index.html" class="header-link" style="color:#00d2ff; border-color:#00d2ff;">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="2.18" ry="2.18"></rect><line x1="7" y1="2" x2="7" y2="22"></line><line x1="17" y1="2" x2="17" y2="22"></line><line x1="2" y1="12" x2="22" y2="12"></line><line x1="2" y1="7" x2="7" y2="7"></line><line x1="2" y1="17" x2="7" y2="17"></line><line x1="17" y1="17" x2="22" y2="17"></line><line x1="17" y1="7" x2="22" y2="7"></line></svg>
+        Switcher V1
+      </a>
+    </div>
+  </header>
+
+  <!-- Main 3-Column Studio Layout -->
+  <main class="presenter-main">
+    
+    <!-- LEFT COLUMN: Library & Embedded YouTube Player -->
+    <section class="library-column" aria-label="Playlist & Songs Library">
+      
+      <div class="library-header">
+        <div class="col-heading">
+          <span>Daftar Lagu IP26</span>
+          <span class="song-count-badge" id="song-count-badge">14 Lagu</span>
+        </div>
+        
+        <div class="search-wrapper">
+          <svg class="search-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+          <input type="text" id="library-search-input" class="library-search" placeholder="Cari judul / lirik..." />
+        </div>
+      </div>
+
+      <!-- Scrollable Song List -->
+      <div class="song-list-scroll" id="song-list-container">
+        <!-- Injected via JavaScript -->
+      </div>
+
+      <!-- Embedded YouTube Video Player Box -->
+      <div class="yt-player-box" aria-label="YouTube Backing Track Player">
+        <div class="yt-header-row">
+          <div class="yt-label">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+            <span>BACKING TRACK</span>
+          </div>
+          <div class="yt-controls-group">
+            <a href="#" target="_blank" rel="noopener" class="yt-mini-btn" id="yt-external-link">Buka di YT ↗</a>
+          </div>
+        </div>
+
+        <div class="yt-frame-wrapper">
+          <iframe id="yt-iframe-player" src="" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+
+        <div class="yt-now-playing-title" id="yt-song-title">Memuat trek...</div>
+      </div>
+
+    </section>
+
+    <!-- CENTER COLUMN: Slides Presentation Deck (1-2 lines per slide) -->
+    <section class="deck-column" aria-label="Slide Deck Presentation">
+      
+      <div class="deck-header">
+        <div class="deck-song-info">
+          <h1 class="deck-song-title" id="deck-song-title">Ajaib Kau Tuhan</h1>
+          <span class="deck-stats" id="deck-song-stats">12 slides • Track #1</span>
+        </div>
+
+        <div class="deck-navigation-bar">
+          <button class="deck-nav-btn" id="btn-prev-slide" title="Slide Sebelumnya (Arrow Left / Page Up)">
+            ← Prev
+          </button>
+          <button class="deck-nav-btn primary" id="btn-next-slide" title="Slide Berikutnya (Spacebar / Arrow Right / Page Down)">
+            Next Slide →
+          </button>
+        </div>
+      </div>
+
+      <!-- Slide Cards Grid -->
+      <div class="slides-grid-scroll" id="slides-deck-container">
+        <!-- Injected via JavaScript -->
+      </div>
+
+    </section>
+
+    <!-- RIGHT COLUMN: Output Previews & Customizer -->
+    <section class="output-column" aria-label="Live Output Previews and Controls">
+      
+      <div class="output-panel-header">
+        <div class="col-heading">LIVE OUTPUT MONITORS</div>
+        <span style="font-family:var(--font-mono); font-size:10px; color:#10b981;">● SYNC ACTIVE</span>
+      </div>
+
+      <!-- 1. Auditorium LED Screen Output -->
+      <div class="preview-card">
+        <div class="preview-card-title">
+          <span>AUDITORIUM LED CENTER (1920x1080)</span>
+          <span style="color:var(--pp-accent);">RESOLUME FEED</span>
+        </div>
+        <div class="preview-screen-box screen-bg-nebula" id="led-preview-screen">
+          <div class="live-lyrics-text" id="led-lyrics-text"></div>
+        </div>
+      </div>
+
+      <!-- 2. Stream Lower-Third Preview -->
+      <div class="preview-card">
+        <div class="preview-card-title">
+          <span>YOUTUBE STREAM LOWER-THIRD</span>
+          <span style="color:#f59e0b;">OBS ALPHA</span>
+        </div>
+        <div class="preview-screen-box" style="background:#11141c;">
+          <!-- Simulated Camera Video background behind lower-third -->
+          <div style="position:absolute; inset:0; background:radial-gradient(circle at 50% 40%, #1e293b 0%, #090d16 100%); opacity:0.8;"></div>
+          <div class="lower-third-overlay" id="lt-overlay-box">
+            <div class="lt-line-current" id="lt-line-1"></div>
+            <div class="lt-line-next" id="lt-line-2"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 3. Stage Display / Foldback Confidence Monitor -->
+      <div class="preview-card">
+        <div class="preview-card-title">
+          <span>STAGE DISPLAY (FOLDBACK / WL)</span>
+          <span style="color:#10b981;">SINGER MONITOR</span>
+        </div>
+        <div class="confidence-box">
+          <div>
+            <div style="font-family:var(--font-mono); font-size:9px; color:#10b981; font-weight:700; margin-bottom:4px;">CURRENT SLIDE:</div>
+            <div class="confidence-current" id="conf-current-text"></div>
+          </div>
+          <div class="confidence-next-row">
+            <span class="confidence-next-label">NEXT:</span>
+            <span class="confidence-next-text" id="conf-next-text"></span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Settings & Display Customizer -->
+      <div class="customizer-section">
+        <div class="setting-row">
+          <label for="select-bg-theme">LED Motion Theme:</label>
+          <select id="select-bg-theme" class="setting-select">
+            <option value="screen-bg-nebula">Midnight Nebula (Blue/Purple)</option>
+            <option value="screen-bg-flare">Golden Flare (Warm Amber)</option>
+            <option value="screen-bg-dark">Pure Dark (Minimalist)</option>
+            <option value="screen-bg-light">Holy Light (Cool Slate)</option>
+          </select>
+        </div>
+
+        <div class="setting-row">
+          <label for="select-text-case">Text Case:</label>
+          <select id="select-text-case" class="setting-select">
+            <option value="uppercase">HURUF BESAR (UPPERCASE)</option>
+            <option value="normal">Normal Case (Sesuai Teks)</option>
+          </select>
+        </div>
+
+        <button class="popout-btn" id="btn-popout-screen" title="Buka jendela layar proyektor mandiri untuk monitor kedua">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+          Buka Layar Proyektor Eksternal
+        </button>
+      </div>
+
+    </section>
+
+  </main>
+
+  <!-- Load Static Songs Data -->
+  <script src="../data/songs.js"></script>
+  <!-- Load ProPresenter Controller Engine -->
+  <script src="presenter.js"></script>
+</body>
+</html>

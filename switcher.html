@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cinetreak Cinelive V1 Switcher Simulator | IP26 UKK UNNES Broadcast</title>
+  <meta name="description" content="Simulator interaktif hardware video switcher Cinetreak Cinelive V1 untuk live production & camera routing Ibadah Perdana UKK UNNES 2026." />
+  
+  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700;800&family=Outfit:wght@500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="switcher/switcher.css" />
+</head>
+<body class="switcher-body">
+
+  <!-- Header Navigation -->
+  <header class="switcher-header">
+    <div class="brand-section">
+      <div class="brand-badge">IP26 MCR</div>
+      <div class="brand-title">
+        CINETREAK CINELIVE V1 <span>SIMULATOR</span>
+      </div>
+    </div>
+
+    <div class="nav-links">
+      <a href="index.html" class="nav-btn">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
+        Master Portal
+      </a>
+      <a href="satset.html" class="nav-btn">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg>
+        SATSET Matrix
+      </a>
+      <a href="presenter.html" class="nav-btn btn-presenter">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18V5l12-2v13"></path><circle cx="6" cy="18" r="3"></circle><circle cx="18" cy="16" r="3"></circle></svg>
+        ProPresenter Live
+      </a>
+      <label class="audio-fx-toggle" title="Bunyi klik tactile hardware saat tombol ditekan">
+        <input type="checkbox" id="audio-sfx-toggle" checked />
+        <span>Audio SFX</span>
+      </label>
+    </div>
+  </header>
+
+  <!-- Main Simulator Container -->
+  <main class="switcher-container">
+    
+    <!-- Physical Cinetreak Chassis -->
+    <div class="cinelive-chassis">
+      <div class="chassis-screws screw-tl"></div>
+      <div class="chassis-screws screw-tr"></div>
+      <div class="chassis-screws screw-bl"></div>
+      <div class="chassis-screws screw-br"></div>
+
+      <!-- 5.5-inch Multi-view Display Screen -->
+      <section class="multiview-monitor-bezel" aria-label="Cinetreak 5.5 inch Multiview Screen">
+        
+        <!-- Screen Top Status Bar -->
+        <div class="monitor-top-bar">
+          <div class="status-left">
+            <span class="brand-label-cinelive">CINELIVE V1</span>
+            <div class="hdmi-status-group">
+              <span class="hdmi-dot">IN 1</span>
+              <span class="hdmi-dot">IN 2</span>
+              <span class="hdmi-dot">IN 3</span>
+              <span class="hdmi-dot">IN 4</span>
+            </div>
+          </div>
+          <div class="status-center">
+            <span style="color:#8c97ad; font-size:10px;">TC</span>
+            <span class="timecode-display" id="timecode-clock">01:24:50:00</span>
+            <span style="color:#8c97ad; font-size:10px;">FHD 60FPS</span>
+          </div>
+          <div class="status-right">
+            <span class="badge-rec">● REC</span>
+            <span class="badge-live">● LIVE</span>
+          </div>
+        </div>
+
+        <!-- 6-Split Multiview Canvas Grid -->
+        <div class="mv-container">
+          
+          <!-- CAM 1 -->
+          <div class="mv-cell tally-pgm" id="cell-cam1">
+            <canvas id="canvas-cam1" width="320" height="180"></canvas>
+            <div class="mv-tally-tag" id="tally-cam1">CAM 1 • PGM</div>
+            <div class="mv-info-tag">STAGE WIDE (A6000 WIRED)</div>
+            <div class="mv-hud-right">1080p60</div>
+          </div>
+
+          <!-- CAM 2 -->
+          <div class="mv-cell tally-pvw" id="cell-cam2">
+            <canvas id="canvas-cam2" width="320" height="180"></canvas>
+            <div class="mv-tally-tag" id="tally-cam2">CAM 2 • PVW</div>
+            <div class="mv-info-tag">WL CLOSE-UP (ZV-E10 PYRO S)</div>
+            <div class="mv-hud-right">1080p60</div>
+          </div>
+
+          <!-- CAM 3 -->
+          <div class="mv-cell" id="cell-cam3">
+            <canvas id="canvas-cam3" width="320" height="180"></canvas>
+            <div class="mv-tally-tag" id="tally-cam3">CAM 3</div>
+            <div class="mv-info-tag">CONGREGATION (A6000 PYRO H)</div>
+            <div class="mv-hud-right">1080p60</div>
+          </div>
+
+          <!-- CAM 4 -->
+          <div class="mv-cell" id="cell-cam4">
+            <canvas id="canvas-cam4" width="320" height="180"></canvas>
+            <div class="mv-tally-tag" id="tally-cam4">CAM 4</div>
+            <div class="mv-info-tag">BALCONY FOH (A6000 WIRED)</div>
+            <div class="mv-hud-right">1080p60</div>
+          </div>
+
+          <!-- LARGE PREVIEW (PVW) -->
+          <div class="mv-cell cell-pvw tally-pvw" id="cell-pvw">
+            <canvas id="canvas-pvw" width="640" height="360"></canvas>
+            <div class="mv-tally-tag" style="background:#10b981; color:#000;">PREVIEW (PVW)</div>
+            <div class="mv-info-tag" id="label-pvw-cam" style="font-weight:700; color:#34d399; font-size:11px;">CAM 2</div>
+            <div class="mv-hud-right" style="color:#10b981;">NEXT BUS</div>
+          </div>
+
+          <!-- LARGE PROGRAM (PGM) -->
+          <div class="mv-cell cell-pgm tally-pgm" id="cell-pgm">
+            <canvas id="canvas-pgm" width="640" height="360"></canvas>
+            <div class="mv-tally-tag" style="background:#ff3344; color:#fff;">PROGRAM (PGM) • ON AIR</div>
+            <div class="mv-info-tag" id="label-pgm-cam" style="font-weight:700; color:#ff8592; font-size:11px;">CAM 1</div>
+            <div class="mv-hud-right" style="color:#ff3344;">UVC OUT LIVE</div>
+          </div>
+
+        </div>
+
+        <!-- Screen Bottom Audio & Tool Bar -->
+        <div class="monitor-bottom-bar">
+          <div class="audio-meters-container">
+            <span class="meter-label">MASTER AUDIO</span>
+            <div class="vu-meter-bar-wrapper">
+              <div class="vu-channel">
+                <span class="vu-channel-name">L</span>
+                <div class="vu-meter-track"><div class="vu-meter-fill" id="meter-fill-l"></div></div>
+                <span class="vu-db-readout" id="meter-db-l">-12.4 dB</span>
+              </div>
+              <div class="vu-channel">
+                <span class="vu-channel-name">R</span>
+                <div class="vu-meter-track"><div class="vu-meter-fill" id="meter-fill-r"></div></div>
+                <span class="vu-db-readout" id="meter-db-r">-11.8 dB</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="monitor-action-tools">
+            <button class="mon-btn" id="btn-mv-fullscreen">⛶ Fullscreen Multi-view (M)</button>
+          </div>
+        </div>
+
+      </section>
+
+      <!-- Control Console Hardware Surface -->
+      <section class="console-surface" aria-label="Hardware Control Surface">
+        
+        <!-- Left Bank: PGM and PVW Buses -->
+        <div class="console-bank">
+          <div class="bank-header">
+            <div class="bank-title"><span class="dot"></span> Video Bus Routing</div>
+            <span style="font-size:10px; color:#8c97ad; font-family:var(--font-mono);">HDMI 1-4 SYNCED</span>
+          </div>
+
+          <div class="bus-row-container">
+            <!-- PGM Row -->
+            <div class="bus-row">
+              <div class="bus-label-badge bus-label-pgm">PGM</div>
+              <div class="buttons-grid">
+                <button class="silicone-btn active-pgm" data-pgm="1" title="CAM 1: Stage Center Wide (Hot punch Shift+1)">
+                  <span class="btn-num">1</span>
+                  <span class="btn-sub">STG WIDE</span>
+                </button>
+                <button class="silicone-btn" data-pgm="2" title="CAM 2: Worship Leader Close-up (Hot punch Shift+2)">
+                  <span class="btn-num">2</span>
+                  <span class="btn-sub">WL CLOSE</span>
+                </button>
+                <button class="silicone-btn" data-pgm="3" title="CAM 3: Congregation Roaming (Hot punch Shift+3)">
+                  <span class="btn-num">3</span>
+                  <span class="btn-sub">CONGREG</span>
+                </button>
+                <button class="silicone-btn" data-pgm="4" title="CAM 4: Balcony FOH Master (Hot punch Shift+4)">
+                  <span class="btn-num">4</span>
+                  <span class="btn-sub">FOH MASTER</span>
+                </button>
+              </div>
+            </div>
+
+            <!-- PVW Row -->
+            <div class="bus-row">
+              <div class="bus-label-badge bus-label-pvw">PVW</div>
+              <div class="buttons-grid">
+                <button class="silicone-btn" data-pvw="1" title="Cue CAM 1 to Preview (Key 1)">
+                  <span class="btn-num">1</span>
+                  <span class="btn-sub">STG WIDE</span>
+                </button>
+                <button class="silicone-btn active-pvw" data-pvw="2" title="Cue CAM 2 to Preview (Key 2)">
+                  <span class="btn-num">2</span>
+                  <span class="btn-sub">WL CLOSE</span>
+                </button>
+                <button class="silicone-btn" data-pvw="3" title="Cue CAM 3 to Preview (Key 3)">
+                  <span class="btn-num">3</span>
+                  <span class="btn-sub">CONGREG</span>
+                </button>
+                <button class="silicone-btn" data-pvw="4" title="Cue CAM 4 to Preview (Key 4)">
+                  <span class="btn-num">4</span>
+                  <span class="btn-sub">FOH MASTER</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Middle Bank: CUT, AUTO, FTB & Physical T-Bar -->
+        <div class="console-bank transition-bank">
+          <div class="bank-header">
+            <div class="bank-title"><span class="dot" style="background:var(--sw-amber);"></span> Transition Control</div>
+            <span style="font-size:10px; color:#8c97ad; font-family:var(--font-mono);">MANUAL / AUTO</span>
+          </div>
+
+          <div class="transition-actions">
+            <button class="cut-btn" id="btn-cut" title="Hard Direct Cut (Spacebar)">CUT</button>
+            <button class="auto-btn" id="btn-auto" title="Timed Auto Transition (Enter)">AUTO</button>
+          </div>
+
+          <button class="ftb-btn" id="btn-ftb" title="Fade to Black (Key F)">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="10"></circle></svg>
+            FTB (FADE TO BLACK)
+          </button>
+
+          <!-- T-Bar Fader Component -->
+          <div class="tbar-component">
+            <div class="tbar-track-container" id="tbar-track">
+              <div class="tbar-slot"></div>
+              <div class="tbar-handle" id="tbar-handle" style="top:0px;" title="T-Bar Manual Transition (Drag or Up/Down arrows)">
+                <div class="tbar-grip"></div>
+                <div class="tbar-grip"></div>
+                <div class="tbar-grip"></div>
+              </div>
+            </div>
+            <div class="tbar-readout" id="tbar-readout">0%</div>
+          </div>
+        </div>
+
+        <!-- Right Bank: Effects, PIP, Rates, Audio -->
+        <div class="console-bank settings-bank">
+          <div class="bank-header">
+            <div class="bank-title"><span class="dot" style="background:#a855f7;"></span> FX & Overlays</div>
+            <span style="font-size:10px; color:#8c97ad; font-family:var(--font-mono);">DVE / PIP</span>
+          </div>
+
+          <!-- Transition Effects -->
+          <div class="control-subgroup">
+            <span class="subgroup-title">Transition Style</span>
+            <div class="subgroup-grid">
+              <button class="option-btn active" data-effect="MIX">MIX</button>
+              <button class="option-btn" data-effect="WIPE_H">WIPE H</button>
+              <button class="option-btn" data-effect="WIPE_V">WIPE V</button>
+              <button class="option-btn" data-effect="DIP">DIP</button>
+            </div>
+          </div>
+
+          <!-- Transition Rate -->
+          <div class="control-subgroup">
+            <span class="subgroup-title">Auto Speed Rate</span>
+            <div class="subgroup-grid">
+              <button class="option-btn" data-rate="0.5">0.5S</button>
+              <button class="option-btn active" data-rate="1.0">1.0S</button>
+              <button class="option-btn" data-rate="1.5">1.5S</button>
+              <button class="option-btn" data-rate="2.0">2.0S</button>
+            </div>
+          </div>
+
+          <!-- PIP Mode Controls -->
+          <div class="control-subgroup">
+            <span class="subgroup-title">Picture in Picture (Key P)</span>
+            <div style="display:grid; grid-template-columns: 1fr 1fr 1fr; gap:6px;">
+              <button class="option-btn" id="btn-pip-toggle">PIP ON/OFF</button>
+              <button class="option-btn" id="btn-pip-src">SRC: C2</button>
+              <button class="option-btn" id="btn-pip-pos">POS: TR</button>
+            </div>
+          </div>
+
+          <!-- Audio Mode Controls -->
+          <div class="control-subgroup">
+            <span class="subgroup-title">Audio Follows Video (AFV)</span>
+            <div class="audio-strip">
+              <button class="audio-toggle-btn active" id="btn-afv">
+                <span>AFV MODE</span> <span style="color:#10b981;">ON</span>
+              </button>
+              <button class="audio-toggle-btn" id="btn-audio-mute">
+                <span>MUTE ALL</span> <span style="color:#8c97ad;">OFF</span>
+              </button>
+            </div>
+          </div>
+
+        </div>
+
+      </section>
+
+    </div>
+
+    <!-- Quick Scenario Presets Bar -->
+    <section class="scenario-presets-bar">
+      <div class="presets-label">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polygon points="10 8 16 12 10 16 10 8"></polygon></svg>
+        <span>IP26 SCENARIO PRESETS:</span>
+      </div>
+      <div class="preset-btn-group">
+        <button class="preset-pill" data-preset="worship">Praise & Worship (C1 Wide / C2 Close)</button>
+        <button class="preset-pill" data-preset="sermon">Khotbah / Sermon (C2 WL + PIP FOH)</button>
+        <button class="preset-pill" data-preset="congregation">Doa & Berkat Jemaat (C3 Roaming)</button>
+        <button class="preset-pill" data-preset="reset" style="border-color:#ef4444; color:#f87171;">Reset Console</button>
+      </div>
+    </section>
+
+    <!-- Keyboard Shortcuts Panel -->
+    <section class="hotkeys-helper">
+      <div class="hotkeys-title">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"></rect><path d="M6 8h.001M10 8h.001M14 8h.001M18 8h.001M6 12h.001M10 12h.001M14 12h.001M18 12h.001M6 16h.001M10 16h8"></path></svg>
+        Hotkeys & Broadcast Controls
+      </div>
+      <div class="hotkeys-grid">
+        <div class="hotkey-item"><span class="kbd-badge">1</span> - <span class="kbd-badge">4</span> <span>Cue Preview (PVW)</span></div>
+        <div class="hotkey-item"><span class="kbd-badge">Shift + 1-4</span> <span>Hot-punch Program (PGM)</span></div>
+        <div class="hotkey-item"><span class="kbd-badge">Space</span> <span>CUT Transition</span></div>
+        <div class="hotkey-item"><span class="kbd-badge">Enter</span> <span>AUTO Transition</span></div>
+        <div class="hotkey-item"><span class="kbd-badge">F</span> <span>Toggle FTB (Fade to Black)</span></div>
+        <div class="hotkey-item"><span class="kbd-badge">P</span> <span>Toggle PIP Overlay</span></div>
+        <div class="hotkey-item"><span class="kbd-badge">↑</span> / <span class="kbd-badge">↓</span> <span>Drag T-Bar Fader</span></div>
+        <div class="hotkey-item"><span class="kbd-badge">M</span> <span>Toggle Fullscreen Multi-view</span></div>
+      </div>
+    </section>
+
+  </main>
+
+  <script src="switcher/switcher.js"></script>
+</body>
+</html>
