@@ -1039,6 +1039,8 @@ code {
   flex-direction: column;
   gap: 2px;
   position: relative;
+  word-break: break-word;
+  overflow-wrap: break-word;
   transition: all var(--transition-fast);
 }
 
@@ -1296,6 +1298,8 @@ code {
 .cam-spec-row {
   display: flex;
   justify-content: space-between;
+  align-items: baseline;
+  gap: var(--space-2);
   font-size: 0.85rem;
   border-bottom: 1px dashed var(--border-subtle);
   padding-bottom: 4px;
@@ -1303,6 +1307,7 @@ code {
 
 .cam-spec-row span {
   color: var(--text-muted);
+  flex-shrink: 0;
 }
 
 .cam-spec-row strong {
@@ -1310,6 +1315,7 @@ code {
   color: var(--text-primary);
   font-size: 0.82rem;
   text-align: right;
+  word-break: break-word;
 }
 
 .cam-status-pill {
@@ -1448,6 +1454,12 @@ code {
   overflow-x: auto;
   padding-bottom: 4px;
   -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.filter-pills-scroll::-webkit-scrollbar {
+  display: none;
 }
 
 .filter-pill {
@@ -1461,6 +1473,7 @@ code {
   color: var(--text-muted);
   cursor: pointer;
   white-space: nowrap;
+  flex-shrink: 0;
   transition: all var(--transition-fast);
 }
 
@@ -1518,6 +1531,7 @@ code {
   height: 8px;
   background: var(--accent-cyan);
   border-radius: 50%;
+  flex-shrink: 0;
 }
 
 /* --------------------------------------------------------------------------
@@ -2222,16 +2236,16 @@ code {
   background: linear-gradient(90deg, #f59e0b, #10b981);
 }
 
-/* Tactile Inventory Checkboxes & Strict Fixed Column Alignment */
-.data-table.inv-table {
+/* Tactile Inventory Checkboxes & Strict Fixed Column Alignment (Master Portal) */
+body:not(.satset-page) .data-table.inv-table {
   table-layout: fixed;
   width: 100%;
   min-width: 820px;
 }
 
 /* Col 1: Nama Barang */
-.data-table.inv-table th:nth-child(1),
-.data-table.inv-table td:nth-child(1) {
+body:not(.satset-page) .data-table.inv-table th:nth-child(1),
+body:not(.satset-page) .data-table.inv-table td:nth-child(1) {
   width: 26%;
   font-weight: 600;
   color: var(--text-primary);
@@ -2241,8 +2255,8 @@ code {
 }
 
 /* Col 2: Jumlah */
-.data-table.inv-table th:nth-child(2),
-.data-table.inv-table td:nth-child(2) {
+body:not(.satset-page) .data-table.inv-table th:nth-child(2),
+body:not(.satset-page) .data-table.inv-table td:nth-child(2) {
   width: 11%;
   font-family: var(--font-mono);
   font-size: 0.82rem;
@@ -2250,16 +2264,16 @@ code {
 }
 
 /* Col 3: Status */
-.data-table.inv-table th:nth-child(3),
-.data-table.inv-table td:nth-child(3) {
+body:not(.satset-page) .data-table.inv-table th:nth-child(3),
+body:not(.satset-page) .data-table.inv-table td:nth-child(3) {
   width: 8%;
   text-align: center;
   white-space: nowrap;
 }
 
-/* Col 4 & 5: Pasang & Kemas Checkboxes */
-.data-table.inv-table th.th-sync,
-.data-table.inv-table td.sync-td {
+/* Col 4 & 5: Pasang & Kemas Checkboxes (Hydrated by JS) */
+body:not(.satset-page) .data-table.inv-table th.th-sync,
+body:not(.satset-page) .data-table.inv-table td.sync-td {
   width: 80px;
   min-width: 80px;
   max-width: 80px;
@@ -2268,9 +2282,20 @@ code {
 }
 
 /* Col 6: Keterangan Penggunaan (Strictly 1 Single Line) */
-.data-table.inv-table th:nth-child(6),
-.data-table.inv-table td:nth-child(6) {
+body:not(.satset-page) .data-table.inv-table th:nth-child(6),
+body:not(.satset-page) .data-table.inv-table td:nth-child(6) {
   width: 39%;
+  color: var(--text-secondary);
+  font-size: 0.84rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Col 4 Fallback before sync columns inserted */
+body:not(.satset-page) .data-table.inv-table th:nth-child(4):last-child,
+body:not(.satset-page) .data-table.inv-table td:nth-child(4):last-child {
+  width: 55%;
   color: var(--text-secondary);
   font-size: 0.84rem;
   white-space: nowrap;
@@ -2414,34 +2439,22 @@ tr.remote-updated {
 @media (max-width: 768px) {
   .modal-overlay,
   .modal-backdrop {
-    align-items: flex-end;
+    align-items: center;
     justify-content: center;
-    padding: 0;
-    background: rgba(0, 0, 0, 0.72);
+    padding: 16px;
+    background: rgba(0, 0, 0, 0.78);
   }
 
   .modal-card {
     max-width: 100%;
-    width: 100%;
-    border-radius: 24px 24px 0 0;
-    border-left: none;
-    border-right: none;
-    border-bottom: none;
-    padding: 20px 18px calc(24px + env(safe-area-inset-bottom, 12px)) 18px;
+    width: min(94vw, 540px);
+    border-radius: var(--radius-xl);
+    border: 1px solid var(--border-subtle);
+    padding: 20px 18px;
     max-height: 85vh;
-    box-shadow: 0 -12px 40px rgba(0, 0, 0, 0.65);
-    animation: modal-sheet-up 0.28s cubic-bezier(0.16, 1, 0.3, 1);
-  }
-}
-
-@keyframes modal-sheet-up {
-  from {
-    opacity: 0;
-    transform: translateY(100%);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
+    box-shadow: 0 16px 48px rgba(0, 0, 0, 0.75);
+    margin: auto;
+    animation: modal-corner-slide 0.25s cubic-bezier(0.16, 1, 0.3, 1);
   }
 }
 
@@ -2558,6 +2571,7 @@ tr.remote-updated {
   text-transform: uppercase;
   letter-spacing: 0.05em;
   white-space: nowrap;
+  flex-shrink: 0;
 }
 
 .status-pill {
@@ -2571,6 +2585,7 @@ tr.remote-updated {
   color: var(--text-muted);
   cursor: pointer;
   white-space: nowrap;
+  flex-shrink: 0;
   transition: all var(--transition-fast);
 }
 
@@ -2856,6 +2871,7 @@ tr.remote-updated {
     flex-shrink: 0;
   }
 
+  .telemetry-data,
   .telemetry-info {
     min-width: 0;
     flex: 1;
@@ -2867,6 +2883,7 @@ tr.remote-updated {
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+    display: block;
   }
 
   .telemetry-value {
@@ -3005,16 +3022,21 @@ tr.remote-updated {
     gap: 10px;
     overflow-x: auto;
     -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+
+  .flowchart-board::-webkit-scrollbar {
+    display: none;
   }
 
   .flow-stage {
     min-width: 200px;
+    flex-shrink: 0;
   }
 
-  .modal-card {
-    width: min(94vw, 540px);
-    max-height: 85vh;
-    margin: auto;
+  .mermaid {
+    justify-content: flex-start !important;
   }
 
   .table-responsive {
@@ -3127,12 +3149,37 @@ tr.remote-updated {
     padding: 4px 8px;
     font-size: 0.72rem;
   }
+
+  .inventory-summary-bar {
+    font-size: 0.78rem;
+    gap: 6px;
+  }
+
+  .legend-badges {
+    flex-wrap: wrap;
+    gap: 4px;
+  }
+
+  .legend-badges .badge {
+    font-size: 0.68rem;
+    padding: 2px 6px;
+  }
 }
 
 @media (max-width: 360px) {
   .container {
     padding-left: 8px;
     padding-right: 8px;
+  }
+
+  .nav-container {
+    padding: 0 6px;
+  }
+
+  .nav-actions .btn {
+    padding: 4px 7px;
+    font-size: 0.72rem;
+    white-space: nowrap;
   }
 
   .brand-badge {
@@ -3142,7 +3189,16 @@ tr.remote-updated {
 
   .brand-title {
     font-size: 0.72rem;
-    max-width: 140px;
+    max-width: 130px;
+  }
+
+  .hero-badges {
+    gap: 4px;
+  }
+
+  .hero-badges .badge {
+    font-size: 0.66rem;
+    padding: 2px 6px;
   }
 
   .telemetry-grid {
@@ -3156,6 +3212,37 @@ tr.remote-updated {
   .sync-actions #btn-copy-summary,
   .sync-actions .btn-full-width {
     grid-column: span 1;
+  }
+
+  .cam-spec-row {
+    font-size: 0.8rem;
+    gap: 4px;
+  }
+
+  body.satset-page .satset-title {
+    font-size: 1.05rem !important;
+  }
+
+  body.satset-page .data-table.inv-table-satset th.col-qty,
+  body.satset-page .data-table.inv-table-satset td.col-qty {
+    width: 60px !important;
+    min-width: 60px !important;
+    max-width: 60px !important;
+    font-size: 0.74rem !important;
+  }
+
+  body.satset-page .data-table.inv-table-satset th.col-ceklist,
+  body.satset-page .data-table.inv-table-satset td.col-ceklist {
+    width: 46px !important;
+    min-width: 46px !important;
+    max-width: 46px !important;
+  }
+
+  body.satset-page .data-table.inv-table-satset .inv-checkbox-btn {
+    width: 32px !important;
+    height: 32px !important;
+    min-width: 32px !important;
+    max-width: 32px !important;
   }
 }
 
