@@ -2960,27 +2960,57 @@ tr.remote-updated {
 
 
 /* --------------------------------------------------------------------------
-   14. SATSET COMPACT MOBILE TABLE STYLES (No Horizontal Slider, 100% Fit)
+   14. SATSET COMPACT MOBILE TABLE STYLES (3 Columns: Nama, Jumlah, Centang)
    -------------------------------------------------------------------------- */
+body.satset-page {
+  overflow-x: hidden !important;
+  max-width: 100vw !important;
+  background-color: var(--bg-primary);
+}
+
+body.satset-page .container {
+  width: 100% !important;
+  max-width: 100% !important;
+  padding-left: 10px !important;
+  padding-right: 10px !important;
+  overflow-x: hidden !important;
+}
+
+body.satset-page .satset-hero-card,
+body.satset-page .cloud-sync-card,
+body.satset-page .vendor-block {
+  padding: 12px 10px !important;
+  margin-bottom: var(--space-3) !important;
+  border-radius: var(--radius-md) !important;
+}
+
+body.satset-page .vendor-title {
+  font-size: 1rem !important;
+  margin-bottom: var(--space-2) !important;
+}
+
 .satset-responsive {
   width: 100% !important;
   max-width: 100% !important;
   overflow-x: hidden !important; /* Strictly no horizontal scrollbar or slider */
-  border-radius: var(--radius-lg);
+  border-radius: var(--radius-md);
   border: 1px solid var(--border-subtle);
   box-shadow: var(--shadow-sm);
   background: var(--bg-surface);
-  margin-bottom: var(--space-4);
+  margin-bottom: var(--space-2);
 }
 
 .data-table.inv-table-satset {
   width: 100% !important;
+  min-width: 0 !important;
+  max-width: 100% !important;
   table-layout: fixed !important;
   border-collapse: collapse;
 }
 
 .data-table.inv-table-satset th,
 .data-table.inv-table-satset td {
+  min-width: 0 !important;
   padding: 8px 6px !important;
   vertical-align: middle;
   box-sizing: border-box;
@@ -2988,11 +3018,11 @@ tr.remote-updated {
 
 .data-table.inv-table-satset th.col-nama,
 .data-table.inv-table-satset td.col-nama {
-  width: 46% !important;
+  width: 62% !important;
   text-align: left;
-  font-size: 0.82rem;
+  font-size: 0.84rem;
   font-weight: 600;
-  line-height: 1.25;
+  line-height: 1.3;
   color: var(--text-primary);
   word-wrap: break-word;
   overflow-wrap: break-word;
@@ -3001,78 +3031,62 @@ tr.remote-updated {
 
 .data-table.inv-table-satset th.col-qty,
 .data-table.inv-table-satset td.col-qty {
-  width: 18% !important;
+  width: 20% !important;
   text-align: center;
   font-family: var(--font-mono);
-  font-size: 0.74rem;
+  font-size: 0.76rem;
   color: var(--text-secondary);
-  white-space: nowrap;
-}
-
-.data-table.inv-table-satset th.col-status,
-.data-table.inv-table-satset td.col-status {
-  width: 12% !important;
-  text-align: center;
-  font-size: 0.82rem;
   white-space: nowrap;
 }
 
 .data-table.inv-table-satset th.col-ceklist,
 .data-table.inv-table-satset td.col-ceklist {
-  width: 24% !important;
+  width: 18% !important;
   text-align: center;
   padding: 4px 2px !important;
   white-space: nowrap;
 }
 
-.satset-check-actions {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 4px;
+/* Subtle Row Highlight when checked */
+.data-table.inv-table-satset tr.is-loaded {
+  background: rgba(16, 185, 129, 0.1) !important;
 }
 
-.satset-check-actions .inv-checkbox-btn {
-  width: 28px;
-  height: 28px;
-  min-width: 28px;
-  max-width: 28px;
-  border-radius: 6px;
+.data-table.inv-table-satset tr.is-loaded td.col-nama {
+  color: #34d399 !important;
+}
+
+.data-table.inv-table-satset .inv-checkbox-btn {
+  width: 34px !important;
+  height: 34px !important;
+  min-width: 34px !important;
+  max-width: 34px !important;
+  border-radius: 8px;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  font-size: 0.72rem;
-  font-weight: 800;
   font-family: var(--font-mono);
   border: 1.5px solid var(--border-subtle);
   background: var(--bg-surface-elevated);
   cursor: pointer;
   padding: 0;
+  margin: 0 auto;
   position: relative;
   transition: all 180ms cubic-bezier(0.16, 1, 0.3, 1);
   user-select: none;
   -webkit-tap-highlight-color: transparent;
 }
 
-.satset-check-actions .inv-checkbox-btn:hover {
+.data-table.inv-table-satset .inv-checkbox-btn:hover {
   border-color: var(--border-strong);
   background: var(--bg-surface-hover);
 }
 
-.satset-check-actions .inv-checkbox-btn .btn-step-tag {
-  color: var(--text-muted);
-  line-height: 1;
-}
-
-.satset-check-actions .inv-checkbox-btn.checked .btn-step-tag {
-  display: none !important;
-}
-
-.satset-check-actions .inv-checkbox-btn .check-svg {
-  width: 16px;
-  height: 16px;
+.data-table.inv-table-satset .inv-checkbox-btn .check-svg {
+  width: 20px;
+  height: 20px;
   stroke: currentColor;
-  stroke-width: 3;
+  stroke-width: 3.2;
   fill: none;
   stroke-linecap: round;
   stroke-linejoin: round;
@@ -3080,20 +3094,14 @@ tr.remote-updated {
   transition: transform 160ms cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
-.satset-check-actions .inv-checkbox-btn.checked .check-svg {
-  transform: scale(1);
-}
-
-.satset-check-actions .inv-checkbox-btn.check-loading.checked {
-  background: var(--accent-cyan) !important;
-  border-color: var(--accent-cyan) !important;
-  color: #000 !important;
-  box-shadow: 0 0 10px var(--accent-cyan-glow);
-}
-
-.satset-check-actions .inv-checkbox-btn.check-packing.checked {
+.data-table.inv-table-satset .inv-checkbox-btn.checked {
   background: var(--accent-emerald) !important;
   border-color: var(--accent-emerald) !important;
   color: #000 !important;
-  box-shadow: 0 0 10px var(--accent-emerald-subtle);
+  box-shadow: 0 0 10px rgba(16, 185, 129, 0.45);
 }
+
+.data-table.inv-table-satset .inv-checkbox-btn.checked .check-svg {
+  transform: scale(1);
+}
+

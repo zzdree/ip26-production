@@ -12,13 +12,17 @@
  */
 
 document.addEventListener('DOMContentLoaded', () => {
+  // Check if running on SATSET mobile checklist view
+  const isSatsetPage = window.location.pathname.includes('satset') || Boolean(document.querySelector('.inv-table-satset'));
+
   // =========================================================================
   // 1. TOAST NOTIFICATION SYSTEM (Magic Motion & a11y)
+  // Suppressed in SATSET mode for fast, distraction-free mobile checklist operations
   // =========================================================================
   const toastContainer = document.getElementById('toast-container');
 
   function showToast(title, message, type = 'info') {
-    if (!toastContainer) return;
+    if (isSatsetPage || !toastContainer) return;
     const toast = document.createElement('div');
     toast.className = `toast-item ${type === 'success' ? 'toast-success' : type === 'warning' ? 'toast-warning' : ''}`;
     
@@ -76,11 +80,47 @@ document.addEventListener('DOMContentLoaded', () => {
   const batchModalDesc = document.getElementById('batch-modal-desc');
   const batchOptionsContainer = document.getElementById('batch-options-container');
 
-  // In-memory state cache
+  // In-memory state cache with offline local persistence fallback
   const inventoryState = {}; // { itemId: { loaded, loaded_by, loaded_at, packed, packed_by, packed_at } }
   let totalInventoryCount = 0;
 
+  try {
+    const cachedState = localStorage.getItem('ip26_inventory_state');
+    if (cachedState) {
+      const parsed = JSON.parse(cachedState);
+      Object.assign(inventoryState, parsed);
+    }
+  } catch (_) {}
+
+  function persistLocalState() {
+    try {
+      localStorage.setItem('ip26_inventory_state', JSON.stringify(inventoryState));
+    } catch (_) {}
+  }
+
+  // Crew Identity Management (Sticky on Device)
+  const crewNameInput = document.getElementById('crew-name-input');
+  if (crewNameInput) {
+    try {
+      const savedCrew = localStorage.getItem('ip26_crew_name');
+      if (savedCrew) crewNameInput.value = savedCrew;
+    } catch (_) {}
+    crewNameInput.addEventListener('input', () => {
+      const val = crewNameInput.value.trim();
+      try {
+        if (val) localStorage.setItem('ip26_crew_name', val);
+      } catch (_) {}
+    });
+  }
+
   function getEffectiveCrewName() {
+    if (crewNameInput && crewNameInput.value.trim()) {
+      return crewNameInput.value.trim();
+    }
+    try {
+      const savedCrew = localStorage.getItem('ip26_crew_name');
+      if (savedCrew) return savedCrew;
+    } catch (_) {}
     return 'Crew';
   }
 
@@ -213,6 +253,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const row = document.querySelector(`tr[data-item-id="${itemId}"]`);
     if (!row) return;
 
+    // Highlight row in SATSET mode when item is loaded/pasang
+    row.classList.toggle('is-loaded', Boolean(state.loaded));
+
     const loadBtn = row.querySelector('.check-loading');
     const packBtn = row.querySelector('.check-packing');
 
@@ -290,6 +333,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     inventoryState[itemId] = currentState;
+    persistLocalState();
 
     // Optimistic UI update
     renderRowUI(itemId, currentState, false);
@@ -331,7 +375,7 @@ document.addEventListener('DOMContentLoaded', () => {
     btnCopySummary.addEventListener('click', () => {
       let loadedCount = 0;
       let packedCount = 0;
-      const total = totalInventoryCount || 65;
+      const total = totalInventoryCount || 158;
 
       const loadedList = [];
       const pendingLoadList = [];
@@ -364,10 +408,26 @@ document.addEventListener('DOMContentLoaded', () => {
 
       navigator.clipboard.writeText(summaryText)
         .then(() => {
-          showToast('Ringkasan Disalin', 'Teks laporan logistik berhasil disalin ke clipboard!', 'success');
+          if (isSatsetPage) {
+            const originalHtml = btnCopySummary.innerHTML;
+            btnCopySummary.innerHTML = '✅ Tersalin!';
+            setTimeout(() => {
+              btnCopySummary.innerHTML = originalHtml;
+            }, 2000);
+          } else {
+            showToast('Ringkasan Disalin', 'Teks laporan logistik berhasil disalin ke clipboard!', 'success');
+          }
         })
         .catch(() => {
-          showToast('Gagal Menyalin', 'Izin clipboard ditolak peramban.', 'warning');
+          if (isSatsetPage) {
+            const originalHtml = btnCopySummary.innerHTML;
+            btnCopySummary.innerHTML = '⚠️ Gagal';
+            setTimeout(() => {
+              btnCopySummary.innerHTML = originalHtml;
+            }, 2000);
+          } else {
+            showToast('Gagal Menyalin', 'Izin clipboard ditolak peramban.', 'warning');
+          }
         });
     });
   }
@@ -402,6 +462,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 renderRowUI(row.item_id, inventoryState[row.item_id]);
               }
             });
+            persistLocalState();
             updateProgressMeters();
             filterInventory();
           }
@@ -433,6 +494,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 packed_at: row.packed_at
               };
               inventoryState[row.item_id] = updatedState;
+              persistLocalState();
               renderRowUI(row.item_id, updatedState, true, row.loaded_by || row.packed_by);
               updateProgressMeters();
               filterInventory();
@@ -489,16 +551,16 @@ document.addEventListener('DOMContentLoaded', () => {
   // Always initialize Supabase automatically
   initSupabase(DEFAULT_SUPABASE_URL, DEFAULT_SUPABASE_KEY);
 
-  // Direct Batch Action Handlers (Auto-executing with timed toast, no intrusive blocking popups)
+  // Direct Batch Action Handlers (Auto-executing with inline feedback on SATSET, timed toast on desktop)
   if (btnBatchCheckAll) {
     btnBatchCheckAll.addEventListener('click', () => {
-      batchSetAll('check-all');
+      batchSetAll(isSatsetPage ? 'check-loading' : 'check-all');
     });
   }
 
   if (btnBatchUncheckAll) {
     btnBatchUncheckAll.addEventListener('click', () => {
-      batchSetAll('uncheck-all');
+      batchSetAll(isSatsetPage ? 'uncheck-loading' : 'uncheck-all');
     });
   }
 
@@ -518,18 +580,18 @@ document.addEventListener('DOMContentLoaded', () => {
 
         if (actionType === 'check-loading') {
           currentState.loaded = true;
-          currentState.loaded_by = 'Crew';
+          currentState.loaded_by = getEffectiveCrewName();
           currentState.loaded_at = now;
         } else if (actionType === 'check-packing') {
           currentState.packed = true;
-          currentState.packed_by = 'Crew';
+          currentState.packed_by = getEffectiveCrewName();
           currentState.packed_at = now;
         } else if (actionType === 'check-all') {
           currentState.loaded = true;
-          currentState.loaded_by = 'Crew';
+          currentState.loaded_by = getEffectiveCrewName();
           currentState.loaded_at = now;
           currentState.packed = true;
-          currentState.packed_by = 'Crew';
+          currentState.packed_by = getEffectiveCrewName();
           currentState.packed_at = now;
         } else if (actionType === 'uncheck-loading') {
           currentState.loaded = false;
@@ -566,6 +628,7 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     });
 
+    persistLocalState();
     updateProgressMeters();
     filterInventory();
 
@@ -578,7 +641,16 @@ document.addEventListener('DOMContentLoaded', () => {
       'uncheck-all': 'Seluruh status checklist berhasil di-reset!'
     };
 
-    showToast('Aksi Massal Selesai', actionNames[actionType] || 'Checklist inventaris diperbarui.', 'success');
+    if (isSatsetPage) {
+      const activeBtn = actionType.startsWith('check') ? btnBatchCheckAll : btnBatchUncheckAll;
+      if (activeBtn) {
+        const origText = activeBtn.innerHTML;
+        activeBtn.innerHTML = actionType.startsWith('check') ? '✓ Tercentang!' : '↺ Ter-reset!';
+        setTimeout(() => { activeBtn.innerHTML = origText; }, 1600);
+      }
+    } else {
+      showToast('Aksi Massal Selesai', actionNames[actionType] || 'Checklist inventaris diperbarui.', 'success');
+    }
 
     if (supabaseClient && rowsToUpsert.length > 0) {
       setSyncStatus('syncing', '🔵 Menyinkronkan aksi massal ke Supabase Cloud...');
