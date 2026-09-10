@@ -1,0 +1,43 @@
+name: Automated Database Backup (Snapshot to Git)
+
+on:
+  schedule:
+    # Runs twice daily at 00:00 and 12:00 UTC
+    - cron: '0 0,12 * * *'
+  workflow_dispatch: # Allows manual trigger anytime from GitHub Actions tab
+
+permissions:
+  contents: write
+
+jobs:
+  backup-db:
+    name: Snapshot Database to Repo
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Run Database Snapshot Script
+        env:
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_KEY: ${{ secrets.SUPABASE_KEY }}
+        run: |
+          node scripts/backup-db.js
+
+      - name: Commit and Push Snapshot
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git add backup/inventory_backup.json
+          if git diff --staged --quiet; then
+            echo "No inventory data changes detected since last backup. Skipping commit."
+          else
+            echo "Changes detected in inventory database! Committing snapshot..."
+            git commit -m "chore(backup): auto-snapshot inventory database [skip ci]"
+            git push
+          fi
