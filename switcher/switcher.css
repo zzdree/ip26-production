@@ -1455,11 +1455,324 @@ body.multiview-fullscreen .mv-container {
   color: #fff;
 }
 
+/* ==========================================================================
+   INTERACTIVE 3D VENUE & CAMERA RIG MODAL (AUDITORIUM UNNES)
+   ========================================================================== */
+.venue-3d-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 999999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+}
+
+.venue-3d-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(4, 6, 10, 0.88);
+  backdrop-filter: blur(10px);
+}
+
+.venue-3d-dialog {
+  position: relative;
+  width: 100%;
+  max-width: 1260px;
+  height: 88vh;
+  max-height: 820px;
+  background: #090c14;
+  border: 1.5px solid #232e44;
+  border-radius: 12px;
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.95), 0 0 50px rgba(0, 210, 255, 0.2);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  z-index: 10;
+}
+
+.venue-3d-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 20px;
+  background: #0f1522;
+  border-bottom: 1px solid #1e283c;
+}
+
+.venue-3d-title-group {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.venue-3d-icon {
+  font-size: 24px;
+}
+
+.venue-3d-title {
+  font-family: var(--font-heading);
+  font-size: 15px;
+  font-weight: 800;
+  color: #fff;
+  letter-spacing: 0.02em;
+}
+
+.venue-3d-subtitle {
+  font-size: 11px;
+  color: #8c97ad;
+  font-family: var(--font-mono);
+}
+
+.venue-3d-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.venue-3d-cam-btn {
+  background: #171e2c;
+  border: 1px solid #2b3850;
+  color: #cbd5e1;
+  padding: 6px 12px;
+  border-radius: 6px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.venue-3d-cam-btn:hover, .venue-3d-cam-btn.active {
+  background: rgba(0, 210, 255, 0.18);
+  border-color: #00d2ff;
+  color: #00d2ff;
+}
+
+.venue-3d-close {
+  background: #1c2436;
+  border: 1px solid #33425f;
+  color: #cbd5e1;
+  width: 32px;
+  height: 32px;
+  border-radius: 6px;
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  margin-left: 6px;
+}
+
+.venue-3d-close:hover {
+  background: #ef4444;
+  border-color: #ef4444;
+  color: #fff;
+}
+
+.venue-3d-body {
+  display: flex;
+  flex: 1;
+  min-height: 0;
+  overflow: hidden;
+}
+
+.venue-3d-canvas-wrap {
+  flex: 1;
+  position: relative;
+  background: #04060a;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.venue-3d-canvas-wrap canvas {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+  cursor: grab;
+}
+
+.venue-3d-canvas-wrap canvas:active {
+  cursor: grabbing;
+}
+
+.venue-3d-overlay-hint {
+  position: absolute;
+  bottom: 12px;
+  left: 14px;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: #00d2ff;
+  background: rgba(5, 7, 12, 0.85);
+  padding: 5px 12px;
+  border-radius: 4px;
+  border: 1px solid rgba(0, 210, 255, 0.3);
+  pointer-events: none;
+}
+
+.venue-3d-sidebar {
+  width: 340px;
+  background: #0c1018;
+  border-left: 1px solid #1c2638;
+  padding: 16px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.sidebar-heading {
+  font-family: var(--font-heading);
+  font-size: 11px;
+  font-weight: 800;
+  color: #94a3b8;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  border-bottom: 1px solid #1e283c;
+  padding-bottom: 4px;
+}
+
+.stage-personnel-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.personnel-card {
+  background: #111622;
+  border: 1px solid #1d273a;
+  border-radius: 6px;
+  padding: 8px 10px;
+}
+
+.personnel-card.card-wl {
+  border-left: 3px solid #10b981;
+}
+
+.personnel-card.card-singers {
+  border-left: 3px solid #38bdf8;
+}
+
+.personnel-card.card-band {
+  border-left: 3px solid #f59e0b;
+}
+
+.personnel-card.card-jemaat {
+  border-left: 3px solid #a855f7;
+}
+
+.personnel-badge {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  font-weight: 700;
+  color: #64748b;
+  letter-spacing: 0.5px;
+}
+
+.personnel-title {
+  font-size: 12px;
+  font-weight: 700;
+  color: #f1f5f9;
+  margin: 2px 0;
+}
+
+.personnel-desc {
+  font-size: 10px;
+  color: #94a3b8;
+  line-height: 1.4;
+}
+
+.cam-status-list {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.cam-status-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: #111622;
+  border: 1px solid #1f2a3f;
+  border-radius: 6px;
+  padding: 8px 10px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.cam-status-item:hover {
+  background: #161e2f;
+  border-color: #38bdf8;
+}
+
+.cam-dot-tally {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.cam-dot-tally.tally-pgm {
+  background: #ff3344;
+  box-shadow: 0 0 8px #ff3344;
+}
+
+.cam-dot-tally.tally-pvw {
+  background: #10b981;
+  box-shadow: 0 0 8px #10b981;
+}
+
+.cam-dot-tally.tally-idle {
+  background: #475569;
+}
+
+.cam-info {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.cam-info strong {
+  font-size: 11px;
+  color: #f8fafc;
+}
+
+.cam-info span {
+  font-size: 9px;
+  color: #64748b;
+}
+
+.cam-mode-tag {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  font-weight: 800;
+  padding: 2px 6px;
+  border-radius: 3px;
+  background: #1a2335;
+  color: #94a3b8;
+}
+
+.cam-status-item.is-pgm .cam-mode-tag {
+  background: #ff3344;
+  color: #fff;
+  box-shadow: 0 0 8px rgba(255, 51, 68, 0.5);
+}
+
+.cam-status-item.is-pvw .cam-mode-tag {
+  background: #10b981;
+  color: #000;
+  box-shadow: 0 0 8px rgba(16, 185, 129, 0.5);
+}
+
 @media (max-width: 1024px), (orientation: portrait) {
   .desktop-lock-screen {
     display: flex !important;
   }
-  .switcher-container, .switcher-header {
+  .switcher-container, .switcher-header, .venue-3d-modal {
     display: none !important;
   }
 }

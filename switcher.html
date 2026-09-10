@@ -84,6 +84,10 @@
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18V5l12-2v13"></path><circle cx="6" cy="18" r="3"></circle><circle cx="18" cy="16" r="3"></circle></svg>
         ProPresenter Live
       </a>
+      <button id="header-btn-venue-3d" class="nav-btn" style="border-color:#00d2ff; color:#00d2ff; cursor:pointer; background:rgba(0, 210, 255, 0.1);" title="Buka Denah 3D Interaktif Stage & Kamera Auditorium UNNES">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline><line x1="12" y1="22.08" x2="12" y2="12"></line></svg>
+        3D Venue Map
+      </button>
       <label class="audio-fx-toggle" title="Bunyi klik tactile hardware saat tombol ditekan">
         <input type="checkbox" id="audio-sfx-toggle" checked />
         <span>Audio SFX</span>
@@ -173,7 +177,7 @@
           <div class="mv-cell tally-pgm" id="cell-cam1">
             <canvas id="canvas-cam1" width="320" height="180"></canvas>
             <div class="mv-tally-tag" id="tally-cam1">CAM 1 • PGM</div>
-            <div class="mv-info-tag">STAGE WIDE (A6000 WIRED)</div>
+            <div class="mv-info-tag">TENGAH FOH ➔ STAGE (A6000 WIRED)</div>
             <div class="mv-hud-right">1080p60</div>
           </div>
 
@@ -181,7 +185,7 @@
           <div class="mv-cell tally-pvw" id="cell-cam2">
             <canvas id="canvas-cam2" width="320" height="180"></canvas>
             <div class="mv-tally-tag" id="tally-cam2">CAM 2 • PVW</div>
-            <div class="mv-info-tag">WL CLOSE-UP (ZV-E10 PYRO S)</div>
+            <div class="mv-info-tag">STAGE MOBILE ➔ 2 WL (ZV-E10 PYRO S)</div>
             <div class="mv-hud-right">1080p60</div>
           </div>
 
@@ -189,7 +193,7 @@
           <div class="mv-cell" id="cell-cam3">
             <canvas id="canvas-cam3" width="320" height="180"></canvas>
             <div class="mv-tally-tag" id="tally-cam3">CAM 3</div>
-            <div class="mv-info-tag">CONGREGATION (A6000 PYRO H)</div>
+            <div class="mv-info-tag">KIRI STAGE ➔ JEMAAT (A6000 PYRO H)</div>
             <div class="mv-hud-right">1080p60</div>
           </div>
 
@@ -197,7 +201,7 @@
           <div class="mv-cell" id="cell-cam4">
             <canvas id="canvas-cam4" width="320" height="180"></canvas>
             <div class="mv-tally-tag" id="tally-cam4">CAM 4</div>
-            <div class="mv-info-tag">BALCONY FOH (A6000 WIRED)</div>
+            <div class="mv-info-tag">KANAN STAGE ➔ 7 MUSISI (A6000 WIRED)</div>
             <div class="mv-hud-right">1080p60</div>
           </div>
 
@@ -222,6 +226,7 @@
           </div>
 
           <div class="monitor-action-tools">
+            <button class="mon-btn" id="btn-venue-3d" title="Buka Denah 3D Interaktif Stage & Kamera Auditorium UNNES">🏛️ 3D Stage & Venue Model</button>
             <button class="mon-btn" id="btn-mv-fullscreen">⛶ Fullscreen Multi-view (M)</button>
           </div>
         </div>
@@ -247,21 +252,21 @@
                   <span class="btn-num">MV</span>
                   <span class="btn-sub">MULTIVIEW</span>
                 </button>
-                <button class="silicone-btn" data-aux="1" title="Route CAM 1 to AUX Output (Alt+1)">
+                <button class="silicone-btn" data-aux="1" title="Route CAM 1 (Tengah FOH ➔ Stage Depan) to AUX (Alt+1)">
                   <span class="btn-num">1</span>
-                  <span class="btn-sub">STG WIDE</span>
+                  <span class="btn-sub">CTR STAGE</span>
                 </button>
-                <button class="silicone-btn" data-aux="2" title="Route CAM 2 to AUX Output (Alt+2)">
+                <button class="silicone-btn" data-aux="2" title="Route CAM 2 (Mobile Roaming ➔ 2 WL) to AUX (Alt+2)">
                   <span class="btn-num">2</span>
-                  <span class="btn-sub">WL CLOSE</span>
+                  <span class="btn-sub">STG MOB</span>
                 </button>
-                <button class="silicone-btn" data-aux="3" title="Route CAM 3 to AUX Output (Alt+3)">
+                <button class="silicone-btn" data-aux="3" title="Route CAM 3 (Kiri Stage ➔ Jemaat UNNES) to AUX (Alt+3)">
                   <span class="btn-num">3</span>
-                  <span class="btn-sub">CONGREG</span>
+                  <span class="btn-sub">JEMAAT</span>
                 </button>
-                <button class="silicone-btn" data-aux="4" title="Route CAM 4 to AUX Output (Alt+4)">
+                <button class="silicone-btn" data-aux="4" title="Route CAM 4 (Kanan Stage ➔ 7 Musisi) to AUX (Alt+4)">
                   <span class="btn-num">4</span>
-                  <span class="btn-sub">FOH MASTER</span>
+                  <span class="btn-sub">MUSIK 7P</span>
                 </button>
                 <button class="silicone-btn" data-aux="PVW" title="Route Preview (PVW) to AUX Output (Alt+P)">
                   <span class="btn-num">PVW</span>
@@ -278,24 +283,24 @@
             <div class="bus-row">
               <div class="bus-label-badge bus-label-cam" title="Cinelive V1 Single Physical Row: Red = PGM Live, Green = PVW Cue">CAM 1-4</div>
               <div class="buttons-grid buttons-grid-cams">
-                <button class="silicone-btn active-pgm" data-cam="1" title="CAM 1: Stage Center Wide (Klik untuk Cue PVW Hijau / Klik saat PVW aktif atau Shift+1 untuk Cut ke PGM Merah)">
+                <button class="silicone-btn active-pgm" data-cam="1" title="CAM 1: Tengah Auditorium FOH ➔ Sorot Stage Depan (Klik untuk Cue PVW Hijau / Shift+1 untuk Cut ke PGM Merah)">
                   <span class="btn-num">1</span>
-                  <span class="btn-sub">STG WIDE</span>
+                  <span class="btn-sub">CTR STAGE</span>
                   <span class="tally-indicator-pill">PGM</span>
                 </button>
-                <button class="silicone-btn active-pvw" data-cam="2" title="CAM 2: Worship Leader Close-up (Klik untuk Cue PVW Hijau / Klik saat PVW aktif atau Shift+2 untuk Cut ke PGM Merah)">
+                <button class="silicone-btn active-pvw" data-cam="2" title="CAM 2: Mobile Roaming ➔ Sorot Stage, 2 WL & 3 Singer (Klik untuk Cue PVW Hijau / Shift+2 untuk Cut ke PGM Merah)">
                   <span class="btn-num">2</span>
-                  <span class="btn-sub">WL CLOSE</span>
+                  <span class="btn-sub">STG MOB</span>
                   <span class="tally-indicator-pill">PVW</span>
                 </button>
-                <button class="silicone-btn" data-cam="3" title="CAM 3: Congregation Roaming (Klik untuk Cue PVW Hijau / Klik saat PVW aktif atau Shift+3 untuk Cut ke PGM Merah)">
+                <button class="silicone-btn" data-cam="3" title="CAM 3: Kiri Stage ➔ Sorot Jemaat Auditorium UNNES (Klik untuk Cue PVW Hijau / Shift+3 untuk Cut ke PGM Merah)">
                   <span class="btn-num">3</span>
-                  <span class="btn-sub">CONGREG</span>
+                  <span class="btn-sub">JEMAAT</span>
                   <span class="tally-indicator-pill"></span>
                 </button>
-                <button class="silicone-btn" data-cam="4" title="CAM 4: Balcony FOH Master (Klik untuk Cue PVW Hijau / Klik saat PVW aktif atau Shift+4 untuk Cut ke PGM Merah)">
+                <button class="silicone-btn" data-cam="4" title="CAM 4: Kanan Stage ➔ Sorot 7 Pemain Musik / Band (Klik untuk Cue PVW Hijau / Shift+4 untuk Cut ke PGM Merah)">
                   <span class="btn-num">4</span>
-                  <span class="btn-sub">FOH MASTER</span>
+                  <span class="btn-sub">MUSIK 7P</span>
                   <span class="tally-indicator-pill"></span>
                 </button>
               </div>
@@ -413,9 +418,10 @@
         <span>IP26 SCENARIO PRESETS:</span>
       </div>
       <div class="preset-btn-group">
-        <button class="preset-pill" data-preset="worship">Praise & Worship (C1 Wide / C2 Close)</button>
-        <button class="preset-pill" data-preset="sermon">Khotbah / Sermon (C2 WL + PIP FOH)</button>
-        <button class="preset-pill" data-preset="congregation">Doa & Berkat Jemaat (C3 Roaming)</button>
+        <button class="preset-pill" data-preset="worship">Praise & Worship (C1 Tengah / C2 Mobile)</button>
+        <button class="preset-pill" data-preset="band">Band & 7 Musisi (C4 Kanan Stage)</button>
+        <button class="preset-pill" data-preset="congregation">Jemaat UNNES (C3 Kiri Stage)</button>
+        <button class="preset-pill" data-preset="sermon">Sermon / Firman (C2 Mobile + PIP Jemaat)</button>
         <button class="preset-pill" data-preset="reset" style="border-color:#ef4444; color:#f87171;">Reset Console</button>
       </div>
     </section>
@@ -442,6 +448,106 @@
     </section>
 
   </main>
+
+  <!-- 3D Auditorium UNNES Stage & Camera Layout Modal -->
+  <div id="venue-3d-modal" class="venue-3d-modal" role="dialog" aria-modal="true" aria-label="3D Auditorium UNNES Stage Model" style="display:none;">
+    <div class="venue-3d-backdrop" id="venue-3d-backdrop"></div>
+    <div class="venue-3d-dialog">
+      <div class="venue-3d-header">
+        <div class="venue-3d-title-group">
+          <span class="venue-3d-icon">🏛️</span>
+          <div>
+            <h3 class="venue-3d-title">AUDITORIUM PROF. WURYANTO UNNES — 3D VENUE & CAMERA RIG</h3>
+            <span class="venue-3d-subtitle">Tata Letak Panggung (2 WL, 3 Singer, 7 Musisi) & Rantai 4 Kamera Cinetreak V1</span>
+          </div>
+        </div>
+        <div class="venue-3d-actions">
+          <button class="venue-3d-cam-btn active" data-orbit-cam="top">Top View</button>
+          <button class="venue-3d-cam-btn" data-orbit-cam="foh">FOH Center</button>
+          <button class="venue-3d-cam-btn" data-orbit-cam="stage">Stage Left</button>
+          <button class="venue-3d-cam-btn" data-orbit-cam="band">Band Right</button>
+          <button class="venue-3d-close" id="btn-close-venue-3d" aria-label="Tutup Modal">✕</button>
+        </div>
+      </div>
+      <div class="venue-3d-body">
+        <div class="venue-3d-canvas-wrap">
+          <canvas id="canvas-venue-3d" width="960" height="540"></canvas>
+          <div class="venue-3d-overlay-hint">
+            <span>🖱️ Drag mouse untuk Orbit 360° • Scroll untuk Zoom In/Out • Klik Kamera untuk Punch CUE / ON-AIR</span>
+          </div>
+        </div>
+        <div class="venue-3d-sidebar">
+          <h4 class="sidebar-heading">TATA LETAK PANGGUNG & PERSONIL</h4>
+          <div class="stage-personnel-list">
+            <div class="personnel-card card-wl">
+              <div class="personnel-badge">DEPAN PANGGUNG</div>
+              <div class="personnel-title">🎤 2 Worship Leaders (WL)</div>
+              <div class="personnel-desc">Berada di center depan panggung, memimpin jemaat dengan handheld wireless mic.</div>
+            </div>
+            <div class="personnel-card card-singers">
+              <div class="personnel-badge">TENGAH PANGGUNG</div>
+              <div class="personnel-title">🎶 3 Backing Singers</div>
+              <div class="personnel-desc">Berada di belakang 2 WL dengan mic stand vertikal, vokal harmoni sopran, alto, tenor.</div>
+            </div>
+            <div class="personnel-card card-band">
+              <div class="personnel-badge">KANAN PANGGUNG (STAGE RIGHT)</div>
+              <div class="personnel-title">🎸 7 Pemain Musik (Full Band)</div>
+              <div class="personnel-desc">
+                1. Drummer (Akrilik Shield)<br>
+                2. Bassist (Ampeg Stack)<br>
+                3. Lead Electric Guitar<br>
+                4. Acoustic Rhythm Guitar<br>
+                5. Keyboard 1 (Grand Piano)<br>
+                6. Keyboard 2 (Synth/Pad)<br>
+                7. Saxophone / Percussion
+              </div>
+            </div>
+            <div class="personnel-card card-jemaat">
+              <div class="personnel-badge">HALL AUDITORIUM</div>
+              <div class="personnel-title">👥 Jemaat Auditorium UNNES</div>
+              <div class="personnel-desc">Tribun bertingkat & balkon berkapasitas ribuan jemaat menghadap panggung utama.</div>
+            </div>
+          </div>
+
+          <h4 class="sidebar-heading mt-3">STATUS 4 KAMERA BROADCAST</h4>
+          <div class="cam-status-list">
+            <div class="cam-status-item is-pgm" id="diag-cam-1">
+              <div class="cam-dot-tally tally-pgm" id="dot-tally-1"></div>
+              <div class="cam-info">
+                <strong>CAM 1 — Tengah FOH</strong>
+                <span>Sorot Panggung Depan (Wide Stage)</span>
+              </div>
+              <span class="cam-mode-tag" id="tag-cam-1">PGM</span>
+            </div>
+            <div class="cam-status-item is-pvw" id="diag-cam-2">
+              <div class="cam-dot-tally tally-pvw" id="dot-tally-2"></div>
+              <div class="cam-info">
+                <strong>CAM 2 — Stage Mobile</strong>
+                <span>Sorot 2 WL & 3 Singer (Wireless Gimbal)</span>
+              </div>
+              <span class="cam-mode-tag" id="tag-cam-2">PVW</span>
+            </div>
+            <div class="cam-status-item" id="diag-cam-3">
+              <div class="cam-dot-tally tally-idle" id="dot-tally-3"></div>
+              <div class="cam-info">
+                <strong>CAM 3 — Kiri Stage</strong>
+                <span>Sorot Jemaat Auditorium UNNES</span>
+              </div>
+              <span class="cam-mode-tag" id="tag-cam-3">STANDBY</span>
+            </div>
+            <div class="cam-status-item" id="diag-cam-4">
+              <div class="cam-dot-tally tally-idle" id="dot-tally-4"></div>
+              <div class="cam-info">
+                <strong>CAM 4 — Kanan Stage</strong>
+                <span>Sorot 7 Pemain Musik / Band</span>
+              </div>
+              <span class="cam-mode-tag" id="tag-cam-4">STANDBY</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 
   <script src="switcher/switcher.js"></script>
 </body>

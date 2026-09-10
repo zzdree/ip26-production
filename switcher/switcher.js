@@ -35,10 +35,10 @@
     menuIndex: 0,
     timecode: { h: 1, m: 24, s: 50, f: 0 },
     camConfigs: {
-      1: { name: 'CAM 1', desc: 'Sony A6000 Wired (Stage Center Wide)', resolution: '1080p60' },
-      2: { name: 'CAM 2', desc: 'Sony ZV-E10 Wireless Pyro S (Worship Leader)', resolution: '1080p60' },
-      3: { name: 'CAM 3', desc: 'Sony A6000 Wireless Pyro H (Congregation)', resolution: '1080p60' },
-      4: { name: 'CAM 4', desc: 'Sony A6000 Wired (Balcony FOH Master)', resolution: '1080p60' }
+      1: { name: 'CAM 1', desc: 'Sony A6000 Wired (Tengah FOH ➔ Stage Depan)', resolution: '1080p60' },
+      2: { name: 'CAM 2', desc: 'Sony ZV-E10 Wireless Pyro S (Stage Mobile ➔ 2 WL & 3 Singer)', resolution: '1080p60' },
+      3: { name: 'CAM 3', desc: 'Sony A6000 Wireless Pyro H (Kiri Stage ➔ Jemaat Auditorium UNNES)', resolution: '1080p60' },
+      4: { name: 'CAM 4', desc: 'Sony A6000 Wired (Kanan Stage ➔ 7 Pemain Musik / Band)', resolution: '1080p60' }
     }
   };
 
@@ -133,297 +133,702 @@
   const offCtxA = offscreen.srcA.getContext('2d');
   const offCtxB = offscreen.srcB.getContext('2d');
 
-  // --- PROCEDURAL REAL-TIME VIDEO ENGINES ---
-  function drawStageBackground(ctx, w, h, t, energy) {
-    // LED Wall Glow
-    const grad = ctx.createLinearGradient(0, 0, 0, h);
-    grad.addColorStop(0, '#050711');
-    grad.addColorStop(0.6, '#0f172a');
-    grad.addColorStop(1, '#020617');
-    ctx.fillStyle = grad;
-    ctx.fillRect(0, 0, w, h);
+  // --- 3D PERSPECTIVE PROJECTION ENGINE FOR AUDITORIUM UNNES ---
+  // Coordinate System: X: Lateral (-left / +right), Y: Vertical (0=hall floor, 1.0=stage floor), Z: Depth (0=stage lip, +10=back wall, -14=FOH)
+  function project3D(p, cam, w, h) {
+    const dx = p[0] - cam.x;
+    const dy = p[1] - cam.y;
+    const dz = p[2] - cam.z;
 
-    // Large Center LED Wall Displaying Dynamic Worship Visuals
-    const ledW = w * 0.7;
-    const ledH = h * 0.48;
-    const ledX = (w - ledW) / 2;
-    const ledY = h * 0.12;
+    const cosY = Math.cos(cam.yaw);
+    const sinY = Math.sin(cam.yaw);
+    const x1 = dx * cosY - dz * sinY;
+    const z1 = dx * sinY + dz * cosY;
 
-    const ledGrad = ctx.createLinearGradient(
-      ledX + Math.sin(t * 0.5) * 50,
-      ledY,
-      ledX + ledW,
-      ledY + ledH
-    );
-    ledGrad.addColorStop(0, '#1e1b4b');
-    ledGrad.addColorStop(0.5, '#4338ca');
-    ledGrad.addColorStop(1, '#065f46');
-    ctx.fillStyle = ledGrad;
-    ctx.fillRect(ledX, ledY, ledW, ledH);
+    const cosP = Math.cos(cam.pitch);
+    const sinP = Math.sin(cam.pitch);
+    const y2 = dy * cosP - z1 * sinP;
+    const z2 = dy * sinP + z1 * cosP;
 
-    // LED Content: Particles & Subtle Waves
-    ctx.fillStyle = 'rgba(255, 255, 255, 0.15)';
-    for (let i = 0; i < 6; i++) {
-      const px = ledX + ((i * 50 + t * 40) % ledW);
-      const py = ledY + (Math.sin(t + i) * 0.5 + 0.5) * ledH;
-      ctx.beginPath();
-      ctx.arc(px, py, 2 + Math.sin(t * 2 + i) * 1.5, 0, Math.PI * 2);
-      ctx.fill();
-    }
+    if (z2 <= 0.12) return null; // Behind near-clipping plane
 
-    // Moving stage lights (beamer spots)
-    const beamCount = 4;
-    for (let b = 0; b < beamCount; b++) {
-      const originX = w * (0.2 + b * 0.2);
-      const sweep = Math.sin(t * 1.2 + b * 1.3) * (w * 0.25);
-      const targetX = originX + sweep;
-      
-      const beamGrad = ctx.createRadialGradient(originX, 0, 10, targetX, h * 0.75, 90);
-      const col = b % 2 === 0 ? 'rgba(0, 210, 255, ' : 'rgba(245, 158, 11, ';
-      beamGrad.addColorStop(0, col + '0.35)');
-      beamGrad.addColorStop(1, col + '0)');
-
-      ctx.fillStyle = beamGrad;
-      ctx.beginPath();
-      ctx.moveTo(originX - 15, 0);
-      ctx.lineTo(originX + 15, 0);
-      ctx.lineTo(targetX + 60, h * 0.85);
-      ctx.lineTo(targetX - 60, h * 0.85);
-      ctx.closePath();
-      ctx.fill();
-    }
+    const fov = cam.fov || 460;
+    const scale = fov / z2;
+    return {
+      sx: (w * 0.5) + x1 * scale,
+      sy: (h * 0.5) - y2 * scale,
+      depth: z2,
+      scale: scale
+    };
   }
 
-  // CAM 1: Wide Stage Master View
-  function drawCam1(ctx, w, h, t) {
-    drawStageBackground(ctx, w, h, t, 1.0);
-
-    // Stage platform
-    ctx.fillStyle = '#090d16';
+  function drawPoly3D(ctx, cam, w, h, pts, fill, stroke, lineWidth = 1) {
+    const projs = [];
+    for (let i = 0; i < pts.length; i++) {
+      const pr = project3D(pts[i], cam, w, h);
+      if (!pr) return null;
+      projs.push(pr);
+    }
     ctx.beginPath();
-    ctx.moveTo(0, h * 0.65);
-    ctx.lineTo(w, h * 0.65);
-    ctx.lineTo(w, h);
-    ctx.lineTo(0, h);
+    ctx.moveTo(projs[0].sx, projs[0].sy);
+    for (let i = 1; i < projs.length; i++) {
+      ctx.lineTo(projs[i].sx, projs[i].sy);
+    }
     ctx.closePath();
-    ctx.fill();
-
-    // Stage Front Lip Edge Glow
-    ctx.strokeStyle = 'rgba(0, 210, 255, 0.4)';
-    ctx.lineWidth = 2;
-    ctx.beginPath();
-    ctx.moveTo(0, h * 0.65);
-    ctx.lineTo(w, h * 0.65);
-    ctx.stroke();
-
-    // Silhouettes of Band & Singers
-    // Worship Leader Center
-    const wlX = w * 0.5;
-    const wlY = h * 0.65;
-    ctx.fillStyle = '#04060a';
-    ctx.beginPath();
-    ctx.arc(wlX, wlY - 32, 10, 0, Math.PI * 2); // Head
-    ctx.fill();
-    ctx.fillRect(wlX - 9, wlY - 22, 18, 26);    // Body
-    // Mic stand
-    ctx.strokeStyle = '#222';
-    ctx.lineWidth = 2;
-    ctx.beginPath();
-    ctx.moveTo(wlX + 10, wlY - 26);
-    ctx.lineTo(wlX + 8, wlY + 2);
-    ctx.stroke();
-
-    // Backing Singers
-    for (let s of [-60, -35, 35, 60]) {
-      const sx = w * 0.5 + s;
-      const sy = h * 0.66;
-      ctx.beginPath();
-      ctx.arc(sx, sy - 28, 8, 0, Math.PI * 2);
+    if (fill) {
+      ctx.fillStyle = fill;
       ctx.fill();
-      ctx.fillRect(sx - 7, sy - 20, 14, 24);
     }
-
-    // Drummer cage / Keyboardist
-    ctx.fillRect(w * 0.15, h * 0.60, 36, 26);
-    ctx.fillRect(w * 0.80, h * 0.61, 30, 24);
+    if (stroke) {
+      ctx.strokeStyle = stroke;
+      ctx.lineWidth = lineWidth;
+      ctx.stroke();
+    }
+    return projs;
   }
 
-  // CAM 2: Worship Leader Close-Up
-  function drawCam2(ctx, w, h, t) {
-    // Subtle handheld camera float
-    const floatX = Math.sin(t * 0.8) * 4;
-    const floatY = Math.cos(t * 0.9) * 3;
+  function drawBox3D(ctx, cam, w, h, pos, size, fillTop, fillFront, fillSide, stroke) {
+    const x = pos[0], y = pos[1], z = pos[2];
+    const sx = size[0] * 0.5, sy = size[1], sz = size[2] * 0.5;
 
-    // Atmospheric warm concert backlight
-    const bgGrad = ctx.createRadialGradient(
-      w * 0.5 + floatX, h * 0.35 + floatY, 20,
-      w * 0.5, h * 0.5, w * 0.6
-    );
-    bgGrad.addColorStop(0, '#4338ca');
-    bgGrad.addColorStop(0.4, '#1e1b4b');
-    bgGrad.addColorStop(1, '#090b14');
-    ctx.fillStyle = bgGrad;
-    ctx.fillRect(0, 0, w, h);
+    // Top face (y + sy)
+    drawPoly3D(ctx, cam, w, h, [
+      [x - sx, y + sy, z - sz],
+      [x + sx, y + sy, z - sz],
+      [x + sx, y + sy, z + sz],
+      [x - sx, y + sy, z + sz]
+    ], fillTop, stroke);
 
-    // Warm Golden Rim Light from stage backlights
-    const rimX = w * 0.65 + Math.sin(t * 1.5) * 30;
-    const rimGrad = ctx.createRadialGradient(rimX, h * 0.25, 10, rimX, h * 0.25, 180);
-    rimGrad.addColorStop(0, 'rgba(251, 191, 36, 0.45)');
-    rimGrad.addColorStop(1, 'rgba(251, 191, 36, 0)');
-    ctx.fillStyle = rimGrad;
-    ctx.fillRect(0, 0, w, h);
+    // Front face
+    drawPoly3D(ctx, cam, w, h, [
+      [x - sx, y, z - sz],
+      [x + sx, y, z - sz],
+      [x + sx, y + sy, z - sz],
+      [x - sx, y + sy, z - sz]
+    ], fillFront, stroke);
 
-    // Detailed Worship Leader Silhouette
+    // Side face
+    drawPoly3D(ctx, cam, w, h, [
+      [x + sx, y, z - sz],
+      [x + sx, y, z + sz],
+      [x + sx, y + sy, z + sz],
+      [x + sx, y + sy, z - sz]
+    ], fillSide, stroke);
+  }
+
+  function draw3DBeam(ctx, cam, w, h, origin, target, color, radius = 0.55) {
+    const o = project3D(origin, cam, w, h);
+    const t = project3D(target, cam, w, h);
+    if (!o || !t) return;
+
+    const r = Math.max(8, radius * t.scale);
+    const grad = ctx.createRadialGradient(t.sx, t.sy, 2, t.sx, t.sy, r * 2.2);
+    grad.addColorStop(0, color.replace(')', ', 0.38)').replace('rgb', 'rgba'));
+    grad.addColorStop(1, 'rgba(0,0,0,0)');
+
     ctx.save();
-    ctx.translate(floatX, floatY);
-
-    const cx = w * 0.5;
-    const cy = h * 0.55;
-
-    // Golden halo outline
-    ctx.strokeStyle = 'rgba(251, 191, 36, 0.7)';
-    ctx.lineWidth = 3;
-
-    // Head
-    ctx.fillStyle = '#07090e';
     ctx.beginPath();
-    ctx.arc(cx, cy - 65, 28, 0, Math.PI * 2);
+    ctx.moveTo(o.sx - 2, o.sy);
+    ctx.lineTo(o.sx + 2, o.sy);
+    ctx.lineTo(t.sx + r, t.sy);
+    ctx.lineTo(t.sx - r, t.sy);
+    ctx.closePath();
+    ctx.fillStyle = grad;
     ctx.fill();
-    ctx.stroke();
-
-    // Shoulders and Torso
-    ctx.beginPath();
-    ctx.ellipse(cx, cy + 40, 75, 100, 0, 0, Math.PI * 2);
-    ctx.fill();
-    ctx.stroke();
-
-    // Wireless Handheld Mic
-    const micX = cx - 18 + Math.sin(t * 2) * 2;
-    const micY = cy - 50 + Math.cos(t * 2) * 2;
-    ctx.fillStyle = '#1e2330';
-    ctx.fillRect(micX, micY, 10, 32);
-    ctx.fillStyle = '#9ca3af';
-    ctx.beginPath();
-    ctx.arc(micX + 5, micY, 8, 0, Math.PI * 2);
-    ctx.fill();
-
     ctx.restore();
   }
 
-  // CAM 3: Congregation & Roaming Perspective
-  function drawCam3(ctx, w, h, t) {
-    // Auditorium Dark Atmosphere with warm wash
-    const grad = ctx.createLinearGradient(0, 0, 0, h);
-    grad.addColorStop(0, '#090d1a');
-    grad.addColorStop(0.5, '#12182b');
-    grad.addColorStop(1, '#020408');
-    ctx.fillStyle = grad;
-    ctx.fillRect(0, 0, w, h);
-
-    // Stage light spill from far front
-    const beam = ctx.createLinearGradient(0, 0, w, h * 0.4);
-    beam.addColorStop(0, 'rgba(0, 210, 255, 0.25)');
-    beam.addColorStop(1, 'rgba(0, 0, 0, 0)');
-    ctx.fillStyle = beam;
-    ctx.fillRect(0, 0, w, h * 0.6);
-
-    // Congregation Silhouettes in foreground raising hands
-    const panOffset = Math.sin(t * 0.4) * 20;
-
-    ctx.fillStyle = '#05070d';
-    const handPositions = [
-      { x: w * 0.15 + panOffset, h: 60, arm: -0.2 },
-      { x: w * 0.32 + panOffset, h: 90, arm: 0.1 },
-      { x: w * 0.50 + panOffset, h: 80, arm: -0.15 },
-      { x: w * 0.68 + panOffset, h: 100, arm: 0.25 },
-      { x: w * 0.85 + panOffset, h: 75, arm: -0.1 }
-    ];
-
-    // People heads in lower rows
-    for (let p of handPositions) {
-      const sway = Math.sin(t * 1.5 + p.x) * 6;
-      ctx.beginPath();
-      ctx.arc(p.x + sway, h - 35, 18, 0, Math.PI * 2);
-      ctx.fill();
-
-      // Raised hand arm
-      ctx.save();
-      ctx.translate(p.x + sway, h - 35);
-      ctx.rotate(p.arm + Math.sin(t * 1.2 + p.x) * 0.08);
-      ctx.fillRect(-6, -p.h, 12, p.h);
-      // Hand
-      ctx.beginPath();
-      ctx.arc(0, -p.h, 10, 0, Math.PI * 2);
-      ctx.fill();
-      ctx.restore();
-    }
-  }
-
-  // CAM 4: Balcony / FOH Master Shot
-  function drawCam4(ctx, w, h, t) {
-    // Grand Auditorium High Angle
+  // Common Auditorium UNNES 3D Environment (Stage, Proscenium, LED Wall, Trusses, 2 WL, 3 Singer, 7 Musisi, Jemaat)
+  function renderAuditoriumUNNES3D(ctx, cam, w, h, t, opts = {}) {
+    // 1. Auditorium Background Gradient & Hall Ambiance
     const bg = ctx.createLinearGradient(0, 0, 0, h);
-    bg.addColorStop(0, '#05060b');
-    bg.addColorStop(0.4, '#0c111f');
+    bg.addColorStop(0, '#04060d');
+    bg.addColorStop(0.5, '#0a0e1c');
     bg.addColorStop(1, '#020306');
     ctx.fillStyle = bg;
     ctx.fillRect(0, 0, w, h);
 
-    // Stage in the deep center distance
-    const stW = w * 0.4;
-    const stH = h * 0.22;
-    const stX = (w - stW) / 2;
-    const stY = h * 0.18;
+    // 2. Auditorium Hall Floor (Y = 0)
+    drawPoly3D(ctx, cam, w, h, [
+      [-14, 0, -22],
+      [14, 0, -22],
+      [14, 0, 0],
+      [-14, 0, 0]
+    ], '#070a14', '#111827', 1);
 
-    const stGlow = ctx.createRadialGradient(
-      w * 0.5, stY + stH * 0.5, 10,
-      w * 0.5, stY + stH * 0.5, stW * 0.8
-    );
-    stGlow.addColorStop(0, '#4f46e5');
-    stGlow.addColorStop(0.6, '#0284c7');
-    stGlow.addColorStop(1, 'rgba(0,0,0,0)');
-    ctx.fillStyle = stGlow;
-    ctx.fillRect(stX - 20, stY - 10, stW + 40, stH + 30);
+    // 3. Auditorium Seating Rows & Jemaat Silhouettes
+    if (!opts.skipAudience) {
+      for (let r = 0; r < 6; r++) {
+        const rowZ = -3.0 - r * 2.6;
+        const rowY = 0.0 + r * 0.28; // Tiered raked seating
+        // Row bench
+        drawPoly3D(ctx, cam, w, h, [
+          [-11, rowY, rowZ],
+          [11, rowY, rowZ],
+          [11, rowY + 0.35, rowZ - 0.4],
+          [-11, rowY + 0.35, rowZ - 0.4]
+        ], '#1e1b2e', '#0f172a', 1);
 
-    // Stage surface lit up
-    ctx.fillStyle = '#1e1b4b';
-    ctx.fillRect(stX, stY + stH * 0.3, stW, stH * 0.7);
+        // Jemaat heads & worship arms
+        for (let col = -9; col <= 9; col += 1.8) {
+          const personPos = [col + (r % 2) * 0.5, rowY + 0.35, rowZ - 0.2];
+          const pr = project3D(personPos, cam, w, h);
+          if (pr) {
+            const headR = Math.max(2, 0.18 * pr.scale);
+            ctx.fillStyle = '#05070d';
+            ctx.beginPath();
+            ctx.arc(pr.sx, pr.sy - headR * 1.5, headR, 0, Math.PI * 2);
+            ctx.fill();
 
-    // Stage lights shooting upward towards ceiling truss
-    for (let i = 0; i < 5; i++) {
-      const lx = stX + (stW / 4) * i;
-      const angle = (i - 2) * 0.15 + Math.sin(t + i) * 0.1;
-      ctx.save();
-      ctx.translate(lx, stY + stH * 0.3);
-      ctx.rotate(angle);
-      const lg = ctx.createLinearGradient(0, 0, 0, -h * 0.4);
-      lg.addColorStop(0, 'rgba(0, 210, 255, 0.4)');
-      lg.addColorStop(1, 'rgba(0, 210, 255, 0)');
-      ctx.fillStyle = lg;
-      ctx.fillRect(-8, -h * 0.4, 16, h * 0.4);
-      ctx.restore();
+            // Raised hands in worship for some congregation members
+            if ((Math.abs(col * 3 + r) % 3) === 0) {
+              const armL = headR * 2.8;
+              const sway = Math.sin(t * 1.4 + col) * 4;
+              ctx.strokeStyle = '#05070d';
+              ctx.lineWidth = Math.max(1, headR * 0.35);
+              ctx.beginPath();
+              ctx.moveTo(pr.sx - headR * 0.8, pr.sy);
+              ctx.lineTo(pr.sx - headR * 1.6 + sway, pr.sy - armL);
+              ctx.moveTo(pr.sx + headR * 0.8, pr.sy);
+              ctx.lineTo(pr.sx + headR * 1.6 + sway, pr.sy - armL);
+              ctx.stroke();
+            }
+          }
+        }
+      }
     }
 
-    // Seating rows receding in perspective
-    ctx.strokeStyle = '#121827';
-    ctx.lineWidth = 1.5;
-    for (let r = 0; r < 8; r++) {
-      const y = h * (0.45 + r * 0.06);
+    // 4. Elevated Stage Structure (Height Y = 1.0, Width X: -9.5 to +9.5, Depth Z: 0 to 10.5)
+    // Stage Front Fascia (Y: 0 to 1.0)
+    drawPoly3D(ctx, cam, w, h, [
+      [-9.5, 0, 0],
+      [9.5, 0, 0],
+      [9.5, 1.0, 0],
+      [-9.5, 1.0, 0]
+    ], '#050811', '#1f293d', 1);
+
+    // Stage Front Lip Glowing Safety LED Strip
+    const lipL = project3D([-9.5, 1.0, 0], cam, w, h);
+    const lipR = project3D([9.5, 1.0, 0], cam, w, h);
+    if (lipL && lipR) {
+      ctx.strokeStyle = 'rgba(0, 210, 255, 0.65)';
+      ctx.lineWidth = Math.max(1.5, 0.04 * lipL.scale);
       ctx.beginPath();
-      ctx.arc(w * 0.5, y + 200, 200 + r * 30, Math.PI * 1.25, Math.PI * 1.75);
+      ctx.moveTo(lipL.sx, lipL.sy);
+      ctx.lineTo(lipR.sx, lipR.sy);
       ctx.stroke();
     }
 
-    // FOH Desk silhouette in bottom center
-    ctx.fillStyle = '#06080d';
-    ctx.fillRect(w * 0.35, h * 0.82, w * 0.3, h * 0.18);
-    // Monitor screen glows at FOH
+    // Main Stage Floor Surface (Glossy concert dark finish with reflections)
+    drawPoly3D(ctx, cam, w, h, [
+      [-9.5, 1.0, 0],
+      [9.5, 1.0, 0],
+      [9.5, 1.0, 10.5],
+      [-9.5, 1.0, 10.5]
+    ], '#0a0e18', '#1e293b', 1);
+
+    // 5. Proscenium Arch & Acoustic Side Panels of Auditorium UNNES
+    // Left Proscenium Wall
+    drawPoly3D(ctx, cam, w, h, [
+      [-9.5, 0, 0],
+      [-9.5, 1.0, 10.5],
+      [-9.5, 7.5, 10.5],
+      [-9.5, 7.0, 0]
+    ], '#0c101d', '#1e293b', 1);
+
+    // Right Proscenium Wall
+    drawPoly3D(ctx, cam, w, h, [
+      [9.5, 0, 0],
+      [9.5, 1.0, 10.5],
+      [9.5, 7.5, 10.5],
+      [9.5, 7.0, 0]
+    ], '#0c101d', '#1e293b', 1);
+
+    // 6. Giant Center LED Wall (10m x 5m at Z = 10.2, X: -5.0 to +5.0, Y: 1.2 to 6.2)
+    const ledTL = project3D([-5.0, 6.2, 10.2], cam, w, h);
+    const ledTR = project3D([5.0, 6.2, 10.2], cam, w, h);
+    const ledBR = project3D([5.0, 1.2, 10.2], cam, w, h);
+    const ledBL = project3D([-5.0, 1.2, 10.2], cam, w, h);
+
+    if (ledTL && ledTR && ledBR && ledBL) {
+      // Dynamic LED Motion Graphics
+      ctx.save();
+      ctx.beginPath();
+      ctx.moveTo(ledTL.sx, ledTL.sy);
+      ctx.lineTo(ledTR.sx, ledTR.sy);
+      ctx.lineTo(ledBR.sx, ledBR.sy);
+      ctx.lineTo(ledBL.sx, ledBL.sy);
+      ctx.closePath();
+      ctx.clip();
+
+      // Cosmic Praise & Worship Visual Background
+      const ledGrad = ctx.createLinearGradient(
+        ledTL.sx + Math.sin(t * 0.4) * 60, ledTL.sy,
+        ledBR.sx, ledBR.sy
+      );
+      ledGrad.addColorStop(0, '#1e1b4b');
+      ledGrad.addColorStop(0.4, '#312e81');
+      ledGrad.addColorStop(0.7, '#4338ca');
+      ledGrad.addColorStop(1, '#065f46');
+      ctx.fillStyle = ledGrad;
+      ctx.fill();
+
+      // Flowing dynamic particles & ambient worship cross/rays
+      ctx.fillStyle = 'rgba(255, 255, 255, 0.22)';
+      for (let p = 0; p < 8; p++) {
+        const px = ledBL.sx + ((p * 45 + t * 50) % (ledTR.sx - ledTL.sx || 100));
+        const py = ledTL.sy + (Math.sin(t * 1.2 + p) * 0.35 + 0.5) * (ledBR.sy - ledTR.sy);
+        ctx.beginPath();
+        ctx.arc(px, py, 2.5 + Math.sin(t * 2 + p) * 1.5, 0, Math.PI * 2);
+        ctx.fill();
+      }
+
+      // Elegant Center Title / Lyrics on LED Wall
+      const centerLEDX = (ledTL.sx + ledTR.sx) * 0.5;
+      const centerLEDY = (ledTL.sy + ledBL.sy) * 0.5;
+      ctx.fillStyle = 'rgba(255, 255, 255, 0.7)';
+      ctx.font = `700 ${Math.max(8, Math.round(0.4 * ledTL.scale))}px Inter, sans-serif`;
+      ctx.textAlign = 'center';
+      ctx.fillText('AUDITORIUM UNNES • PRAISE & WORSHIP', centerLEDX, centerLEDY - 4);
+      ctx.restore();
+
+      // LED Wall Bezel Frame
+      ctx.strokeStyle = '#38bdf8';
+      ctx.lineWidth = Math.max(1, 0.02 * ledTL.scale);
+      ctx.beginPath();
+      ctx.moveTo(ledTL.sx, ledTL.sy);
+      ctx.lineTo(ledTR.sx, ledTR.sy);
+      ctx.lineTo(ledBR.sx, ledBR.sy);
+      ctx.lineTo(ledBL.sx, ledBL.sy);
+      ctx.closePath();
+      ctx.stroke();
+    }
+
+    // 7. Side LED Screens (IMAG Left & Right)
+    // Left IMAG: X: -8.5 to -5.8, Y: 1.8 to 5.6, Z: 9.6
+    drawPoly3D(ctx, cam, w, h, [
+      [-8.5, 5.6, 9.6],
+      [-5.8, 5.6, 9.6],
+      [-5.8, 1.8, 9.6],
+      [-8.5, 1.8, 9.6]
+    ], '#1e1b4b', '#0284c7', 1);
+
+    // Right IMAG: X: 5.8 to 8.5, Y: 1.8 to 5.6, Z: 9.6
+    drawPoly3D(ctx, cam, w, h, [
+      [5.8, 5.6, 9.6],
+      [8.5, 5.6, 9.6],
+      [8.5, 1.8, 9.6],
+      [5.8, 1.8, 9.6]
+    ], '#1e1b4b', '#0284c7', 1);
+
+    // 8. Overhead Aluminum Lighting Trusses & Moving Beams
+    // Front Truss: Z = 2.2, Y = 7.0
+    const tr1L = project3D([-9.5, 7.0, 2.2], cam, w, h);
+    const tr1R = project3D([9.5, 7.0, 2.2], cam, w, h);
+    if (tr1L && tr1R) {
+      ctx.strokeStyle = '#475569';
+      ctx.lineWidth = Math.max(2, 0.05 * tr1L.scale);
+      ctx.beginPath();
+      ctx.moveTo(tr1L.sx, tr1L.sy);
+      ctx.lineTo(tr1R.sx, tr1R.sy);
+      ctx.stroke();
+    }
+
+    // 6 Sweeping Intelligent Beam Lights
+    const beamSpots = [-6.5, -3.5, -1.0, 1.0, 3.5, 6.5];
+    for (let b = 0; b < beamSpots.length; b++) {
+      const bx = beamSpots[b];
+      const origin = [bx, 7.0, 2.2];
+      const sweepX = bx + Math.sin(t * 1.5 + b * 1.1) * 3.2;
+      const sweepZ = 2.5 + Math.cos(t * 1.2 + b * 0.9) * 2.0;
+      const target = [sweepX, 1.0, sweepZ];
+      const col = b % 2 === 0 ? 'rgb(0, 210, 255)' : 'rgb(245, 158, 11)';
+      draw3DBeam(ctx, cam, w, h, origin, target, col, 0.7);
+    }
+
+    // 9. Stage Monitor Wedges (Floor in front of 2 WLs)
+    drawBox3D(ctx, cam, w, h, [-0.9, 1.0, 0.9], [0.5, 0.28, 0.4], '#111827', '#030712', '#0f172a', '#374151');
+    drawBox3D(ctx, cam, w, h, [0.9, 1.0, 0.9], [0.5, 0.28, 0.4], '#111827', '#030712', '#0f172a', '#374151');
+
+    // 10. STAGE PERSONNEL & 7 BAND MUSICIANS
+    // A. 2 WL (Worship Leaders) at Front Center (X = -0.9 and +0.9, Z = 2.0)
+    // WL 1 (Left Leader, holding wireless mic, right arm raised)
+    drawPerson3D(ctx, cam, w, h, [-0.9, 1.0, 2.0], {
+      height: 1.72,
+      clothesColor: '#1e293b',
+      skinColor: '#d97706',
+      posture: 'wl1',
+      label: opts.showLabels ? 'WL 1' : null,
+      t: t
+    });
+
+    // WL 2 (Right Leader, holding wireless mic)
+    drawPerson3D(ctx, cam, w, h, [0.9, 1.0, 2.0], {
+      height: 1.68,
+      clothesColor: '#334155',
+      skinColor: '#d97706',
+      posture: 'wl2',
+      label: opts.showLabels ? 'WL 2' : null,
+      t: t
+    });
+
+    // B. 3 Singers Behind the 2 WLs (X = -2.0, 0.0, +2.0, Z = 4.2)
+    // Singer 1 (Sopran)
+    drawPerson3D(ctx, cam, w, h, [-2.0, 1.0, 4.2], {
+      height: 1.65,
+      clothesColor: '#475569',
+      skinColor: '#f59e0b',
+      posture: 'singer',
+      label: opts.showLabels ? 'SINGER 1' : null,
+      t: t
+    });
+
+    // Singer 2 (Alto)
+    drawPerson3D(ctx, cam, w, h, [0.0, 1.0, 4.2], {
+      height: 1.70,
+      clothesColor: '#475569',
+      skinColor: '#f59e0b',
+      posture: 'singer',
+      label: opts.showLabels ? 'SINGER 2' : null,
+      t: t
+    });
+
+    // Singer 3 (Tenor)
+    drawPerson3D(ctx, cam, w, h, [2.0, 1.0, 4.2], {
+      height: 1.72,
+      clothesColor: '#475569',
+      skinColor: '#f59e0b',
+      posture: 'singer',
+      label: opts.showLabels ? 'SINGER 3' : null,
+      t: t
+    });
+
+    // C. 7 Pemain Musik (Stage Right: X = +3.5 to +8.5)
+    // 1. Drummer on elevated riser with Acrylic Drum Shield
+    // Drum Riser Box at X = +7.0, Y = 1.0 to 1.3, Z = 6.8
+    drawBox3D(ctx, cam, w, h, [7.0, 1.0, 6.8], [2.2, 0.3, 2.0], '#1e293b', '#0f172a', '#111827', '#38bdf8');
+    
+    // Drum Kit (Bass drum, snare, cymbals)
+    const drumPr = project3D([7.0, 1.45, 6.8], cam, w, h);
+    if (drumPr) {
+      const sc = drumPr.scale;
+      // Kick drum
+      ctx.fillStyle = '#0f172a';
+      ctx.beginPath();
+      ctx.arc(drumPr.sx, drumPr.sy + 0.15 * sc, 0.35 * sc, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.strokeStyle = '#64748b';
+      ctx.stroke();
+
+      // Golden Cymbals
+      ctx.fillStyle = '#f59e0b';
+      ctx.beginPath();
+      ctx.ellipse(drumPr.sx - 0.45 * sc, drumPr.sy - 0.2 * sc, 0.25 * sc, 0.08 * sc, -0.2, 0, Math.PI * 2);
+      ctx.ellipse(drumPr.sx + 0.45 * sc, drumPr.sy - 0.25 * sc, 0.28 * sc, 0.09 * sc, 0.15, 0, Math.PI * 2);
+      ctx.fill();
+    }
+
+    // Drummer Figure
+    drawPerson3D(ctx, cam, w, h, [7.0, 1.3, 7.1], {
+      height: 1.4,
+      clothesColor: '#1e293b',
+      skinColor: '#d97706',
+      posture: 'drummer',
+      label: opts.showLabels ? 'DRUMMER' : null,
+      t: t
+    });
+
+    // Acrylic Drum Shield (Transparent glass panels around drum kit)
+    drawPoly3D(ctx, cam, w, h, [
+      [5.8, 1.3, 5.8],
+      [8.2, 1.3, 5.8],
+      [8.2, 2.8, 5.8],
+      [5.8, 2.8, 5.8]
+    ], 'rgba(56, 189, 248, 0.16)', 'rgba(56, 189, 248, 0.75)', 1.5);
+
+    // 2. Bassist & Ampeg Bass Stack
+    drawBox3D(ctx, cam, w, h, [4.8, 1.0, 7.0], [0.75, 1.2, 0.5], '#0f172a', '#020617', '#111827', '#475569');
+    drawPerson3D(ctx, cam, w, h, [4.8, 1.0, 6.2], {
+      height: 1.74,
+      clothesColor: '#0f172a',
+      skinColor: '#d97706',
+      posture: 'bassist',
+      label: opts.showLabels ? 'BASSIST' : null,
+      t: t
+    });
+
+    // 3. Lead Electric Guitarist & Marshall Amp Stack
+    drawBox3D(ctx, cam, w, h, [3.8, 1.0, 4.4], [0.7, 0.9, 0.45], '#1e1b4b', '#0f172a', '#111827', '#f59e0b');
+    drawPerson3D(ctx, cam, w, h, [3.8, 1.0, 3.6], {
+      height: 1.75,
+      clothesColor: '#1e293b',
+      skinColor: '#d97706',
+      posture: 'guitar',
+      label: opts.showLabels ? 'LEAD GUITAR' : null,
+      t: t
+    });
+
+    // 4. Acoustic Guitarist
+    drawPerson3D(ctx, cam, w, h, [5.2, 1.0, 3.4], {
+      height: 1.70,
+      clothesColor: '#334155',
+      skinColor: '#d97706',
+      posture: 'acoustic',
+      label: opts.showLabels ? 'ACOUSTIC' : null,
+      t: t
+    });
+
+    // 5. Keyboardist 1 (Grand Piano)
+    drawBox3D(ctx, cam, w, h, [6.8, 1.0, 4.5], [1.3, 0.75, 0.55], '#020617', '#0f172a', '#1e293b', '#64748b');
+    drawPerson3D(ctx, cam, w, h, [6.8, 1.0, 4.8], {
+      height: 1.68,
+      clothesColor: '#1e293b',
+      skinColor: '#d97706',
+      posture: 'keyboard',
+      label: opts.showLabels ? 'KEYS 1' : null,
+      t: t
+    });
+
+    // 6. Keyboardist 2 (Synth / Pad)
+    drawBox3D(ctx, cam, w, h, [7.9, 1.0, 4.5], [1.1, 0.85, 0.5], '#0f172a', '#1e1b4b', '#312e81', '#a855f7');
+    drawPerson3D(ctx, cam, w, h, [7.9, 1.0, 4.8], {
+      height: 1.70,
+      clothesColor: '#334155',
+      skinColor: '#d97706',
+      posture: 'keyboard',
+      label: opts.showLabels ? 'KEYS 2 (SYNTH)' : null,
+      t: t
+    });
+
+    // 7. Saxophone Soloist (Front-Right of Stage)
+    drawPerson3D(ctx, cam, w, h, [3.4, 1.0, 2.2], {
+      height: 1.76,
+      clothesColor: '#090d16',
+      skinColor: '#d97706',
+      posture: 'sax',
+      label: opts.showLabels ? 'SAXOPHONE' : null,
+      t: t
+    });
+  }
+
+  // 3D Person & Instrument Figure Renderer
+  function drawPerson3D(ctx, cam, w, h, pos, opts = {}) {
+    const x = pos[0], y = pos[1], z = pos[2];
+    const ht = opts.height || 1.7;
+    const t = opts.t || 0;
+
+    const basePr = project3D([x, y, z], cam, w, h);
+    const headPr = project3D([x, y + ht, z], cam, w, h);
+    if (!basePr || !headPr) return;
+
+    const scale = headPr.scale;
+    const pxHeight = Math.abs(basePr.sy - headPr.sy);
+    const headR = Math.max(3, 0.12 * scale);
+    const torsoW = Math.max(6, 0.24 * scale);
+
+    // Head
+    ctx.fillStyle = opts.skinColor || '#f59e0b';
+    ctx.beginPath();
+    ctx.arc(headPr.sx, headPr.sy + headR, headR, 0, Math.PI * 2);
+    ctx.fill();
+
+    // Body / Torso
+    ctx.fillStyle = opts.clothesColor || '#1e293b';
+    const shoulderY = headPr.sy + headR * 2.2;
+    ctx.beginPath();
+    ctx.roundRect(headPr.sx - torsoW * 0.5, shoulderY, torsoW, pxHeight * 0.48, 2);
+    ctx.fill();
+
+    // Legs
+    const hipY = shoulderY + pxHeight * 0.48;
+    const legH = basePr.sy - hipY;
+    ctx.fillStyle = '#0f172a';
+    ctx.fillRect(headPr.sx - torsoW * 0.42, hipY, torsoW * 0.35, legH);
+    ctx.fillRect(headPr.sx + torsoW * 0.07, hipY, torsoW * 0.35, legH);
+
+    // Instrument / Mic specifics based on posture
+    if (opts.posture === 'wl1' || opts.posture === 'wl2') {
+      // Wireless Mic in Hand
+      const micX = headPr.sx + torsoW * 0.3;
+      const micY = headPr.sy + headR * 1.8;
+      ctx.fillStyle = '#64748b';
+      ctx.fillRect(micX, micY, 3, 10);
+      ctx.fillStyle = '#94a3b8';
+      ctx.beginPath();
+      ctx.arc(micX + 1.5, micY, 3, 0, Math.PI * 2);
+      ctx.fill();
+
+      // Raised arm in praise (WL 1)
+      if (opts.posture === 'wl1') {
+        const armWave = Math.sin(t * 1.5) * 4;
+        ctx.strokeStyle = opts.clothesColor || '#1e293b';
+        ctx.lineWidth = Math.max(2, 0.06 * scale);
+        ctx.beginPath();
+        ctx.moveTo(headPr.sx - torsoW * 0.45, shoulderY + 4);
+        ctx.lineTo(headPr.sx - torsoW * 0.9 + armWave, headPr.sy - headR * 0.8);
+        ctx.stroke();
+      }
+    } else if (opts.posture === 'singer') {
+      // Straight Mic Stand
+      ctx.strokeStyle = '#475569';
+      ctx.lineWidth = 1.5;
+      ctx.beginPath();
+      ctx.moveTo(headPr.sx + 6, headPr.sy + headR * 1.5);
+      ctx.lineTo(headPr.sx + 6, basePr.sy);
+      ctx.stroke();
+      // Round Base
+      ctx.beginPath();
+      ctx.ellipse(headPr.sx + 6, basePr.sy, 6, 2, 0, 0, Math.PI * 2);
+      ctx.stroke();
+    } else if (opts.posture === 'guitar' || opts.posture === 'acoustic') {
+      // Guitar Body & Neck
+      const gX = headPr.sx - 2;
+      const gY = shoulderY + pxHeight * 0.25;
+      ctx.fillStyle = opts.posture === 'guitar' ? '#ef4444' : '#b45309';
+      ctx.beginPath();
+      ctx.ellipse(gX, gY, torsoW * 0.55, torsoW * 0.32, -0.4, 0, Math.PI * 2);
+      ctx.fill();
+      // Guitar Neck
+      ctx.strokeStyle = '#cbd5e1';
+      ctx.lineWidth = 2;
+      ctx.beginPath();
+      ctx.moveTo(gX, gY);
+      ctx.lineTo(gX - torsoW * 0.8, gY - torsoW * 0.6);
+      ctx.stroke();
+    } else if (opts.posture === 'bassist') {
+      // Long Bass Neck
+      const bX = headPr.sx - 2;
+      const bY = shoulderY + pxHeight * 0.28;
+      ctx.fillStyle = '#0284c7';
+      ctx.beginPath();
+      ctx.ellipse(bX, bY, torsoW * 0.5, torsoW * 0.28, -0.5, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.strokeStyle = '#94a3b8';
+      ctx.lineWidth = 2.5;
+      ctx.beginPath();
+      ctx.moveTo(bX, bY);
+      ctx.lineTo(bX - torsoW * 1.0, bY - torsoW * 0.8);
+      ctx.stroke();
+    } else if (opts.posture === 'sax') {
+      // Golden Saxophone
+      const sX = headPr.sx + 4;
+      const sY = headPr.sy + headR * 1.6;
+      ctx.strokeStyle = '#eab308';
+      ctx.lineWidth = 2.5;
+      ctx.beginPath();
+      ctx.moveTo(sX, sY);
+      ctx.lineTo(sX + 8, sY + 12);
+      ctx.lineTo(sX + 14, sY + 10);
+      ctx.stroke();
+      // Sax Bell
+      ctx.fillStyle = '#facc15';
+      ctx.beginPath();
+      ctx.arc(sX + 14, sY + 10, 4, 0, Math.PI * 2);
+      ctx.fill();
+    }
+
+    // Optional 3D Tag
+    if (opts.label) {
+      ctx.fillStyle = 'rgba(15, 23, 42, 0.85)';
+      ctx.fillRect(headPr.sx - 24, headPr.sy - headR * 3 - 6, 48, 12);
+      ctx.fillStyle = '#38bdf8';
+      ctx.font = 'bold 8px monospace';
+      ctx.textAlign = 'center';
+      ctx.fillText(opts.label, headPr.sx, headPr.sy - headR * 3 + 3);
+    }
+  }
+
+  // --- 4 AUDITORIUM UNNES CAMERA PERSPECTIVES ---
+  // CAM 1: Tengah FOH ➔ Sorot Stage Depan (Wide Stage Master Shot)
+  function drawCam1(ctx, w, h, t) {
+    const cam = {
+      x: 0,
+      y: 1.9,
+      z: -12.5,
+      yaw: 0,
+      pitch: -0.04,
+      fov: 460
+    };
+    renderAuditoriumUNNES3D(ctx, cam, w, h, t);
+
+    // Foreground FOH Console Lip Silhouette & Status Glow
+    ctx.fillStyle = '#03050a';
+    ctx.fillRect(w * 0.3, h * 0.86, w * 0.4, h * 0.14);
     ctx.fillStyle = '#00d2ff';
-    ctx.fillRect(w * 0.42, h * 0.86, 20, 12);
+    ctx.fillRect(w * 0.38, h * 0.90, 16, 8);
     ctx.fillStyle = '#10b981';
-    ctx.fillRect(w * 0.48, h * 0.85, 24, 14);
-    ctx.fillStyle = '#f59e0b';
-    ctx.fillRect(w * 0.55, h * 0.86, 18, 12);
+    ctx.fillRect(w * 0.44, h * 0.89, 22, 10);
+    ctx.fillStyle = '#ff3344';
+    ctx.fillRect(w * 0.52, h * 0.90, 18, 8);
+  }
+
+  // CAM 2: Stage Mobile ➔ Sorot 2 WL & 3 Singer (Gimbal Wireless Pyro S)
+  function drawCam2(ctx, w, h, t) {
+    // Dynamic roving camera on stage floating with gimbal
+    const mobX = -1.4 + Math.sin(t * 0.7) * 0.9;
+    const mobY = 1.55 + Math.sin(t * 1.2) * 0.03;
+    const mobZ = 0.6 + Math.cos(t * 0.5) * 0.4;
+    const mobYaw = 0.22 + Math.sin(t * 0.5) * 0.08;
+
+    const cam = {
+      x: mobX,
+      y: mobY,
+      z: mobZ,
+      yaw: mobYaw,
+      pitch: 0.04,
+      fov: 590 // Telephoto portrait compression
+    };
+
+    renderAuditoriumUNNES3D(ctx, cam, w, h, t, { skipAudience: true });
+
+    // Golden Concert Rim Light & Bokeh Glare
+    const rimGrad = ctx.createRadialGradient(w * 0.55, h * 0.25, 10, w * 0.55, h * 0.25, w * 0.45);
+    rimGrad.addColorStop(0, 'rgba(251, 191, 36, 0.28)');
+    rimGrad.addColorStop(1, 'rgba(0,0,0,0)');
+    ctx.fillStyle = rimGrad;
+    ctx.fillRect(0, 0, w, h);
+  }
+
+  // CAM 3: Kiri Stage ➔ Sorot Jemaat Auditorium UNNES (Wireless Pyro H)
+  function drawCam3(ctx, w, h, t) {
+    // Stage Left Camera rotated ~150° looking out across the vast congregation hall
+    const cam = {
+      x: -7.5,
+      y: 1.8,
+      z: 2.2,
+      yaw: 2.62, // Angled back into audience
+      pitch: 0.08, // Looking slightly downward across seating
+      fov: 430
+    };
+    renderAuditoriumUNNES3D(ctx, cam, w, h, t);
+
+    // Warm stage side-fill wash spill on left edge
+    const sideWash = ctx.createLinearGradient(0, 0, w * 0.35, h);
+    sideWash.addColorStop(0, 'rgba(0, 210, 255, 0.25)');
+    sideWash.addColorStop(1, 'rgba(0, 0, 0, 0)');
+    ctx.fillStyle = sideWash;
+    ctx.fillRect(0, 0, w * 0.4, h);
+  }
+
+  // CAM 4: Kanan Stage ➔ Sorot 7 Pemain Musik / Band (Wired A6000)
+  function drawCam4(ctx, w, h, t) {
+    // Stage Right Camera angled directly into the band setup (drums, bass, guitars, keys, sax)
+    const cam = {
+      x: 3.0,
+      y: 1.7,
+      z: 1.5,
+      yaw: -0.74, // Angled into Stage Right band area
+      pitch: -0.02,
+      fov: 490
+    };
+    renderAuditoriumUNNES3D(ctx, cam, w, h, t, { skipAudience: true });
+
+    // Spotlights highlighting instruments
+    const bandSpot = ctx.createRadialGradient(w * 0.65, h * 0.4, 20, w * 0.65, h * 0.4, w * 0.6);
+    bandSpot.addColorStop(0, 'rgba(245, 158, 11, 0.22)');
+    bandSpot.addColorStop(1, 'rgba(0,0,0,0)');
+    ctx.fillStyle = bandSpot;
+    ctx.fillRect(0, 0, w, h);
   }
 
   // Draw Camera by Index
@@ -843,6 +1248,9 @@
       if (state.isTransitioning) autoBtn.classList.add('trans-active');
       else autoBtn.classList.remove('trans-active');
     }
+
+    // Sync 3D Venue Modal Tally Diagnostics if open
+    updateVenue3DSidebar();
   }
 
   // --- TRANSITION CONTROLLERS ---
@@ -1140,16 +1548,24 @@
           state.pvw = 2;
           state.transEffect = 'MIX';
           state.transRate = 1.0;
-        } else if (preset === 'sermon') {
-          state.pgm = 2;
-          state.pvw = 4;
+          state.pip = false;
+        } else if (preset === 'band') {
+          state.pgm = 4;
+          state.pvw = 2;
           state.transEffect = 'MIX';
-          state.pip = true;
-          state.pipSrc = 4;
+          state.transRate = 1.0;
+          state.pip = false;
         } else if (preset === 'congregation') {
           state.pgm = 3;
           state.pvw = 1;
           state.transEffect = 'WIPE_H';
+          state.pip = false;
+        } else if (preset === 'sermon') {
+          state.pgm = 2;
+          state.pvw = 3;
+          state.transEffect = 'MIX';
+          state.pip = true;
+          state.pipSrc = 3;
         } else if (preset === 'reset') {
           state.pgm = 1;
           state.pvw = 2;
@@ -1177,10 +1593,10 @@
     const menuOsdList = [
       'HDMI 2 (AUX): MULTIVIEW DISPLAY',
       'OUTPUT 1: 1080P60 PGM LIVE',
-      'IN 1: 1080P60 (A6000 WIRED)',
-      'IN 2: 1080P60 (ZV-E10 PYRO S)',
-      'IN 3: 1080P60 (A6000 PYRO H)',
-      'IN 4: 1080P60 (A6000 FOH)',
+      'IN 1: 1080P60 (FOH CENTER STAGE)',
+      'IN 2: 1080P60 (MOBILE 2WL + 3SNG)',
+      'IN 3: 1080P60 (STAGE L JEMAAT)',
+      'IN 4: 1080P60 (STAGE R 7 MUSISI)',
       'UVC STREAM: READY (USB-C)',
       'AUDIO: AFV ENABLED (ANALOG IN)'
     ];
@@ -1295,12 +1711,437 @@
     updateResolutionReadout();
   }
 
+  // --- 3D AUDITORIUM UNNES VENUE & CAMERA INSPECTOR MODAL ---
+  const venue3DState = {
+    isOpen: false,
+    yaw: 0.35,
+    pitch: 0.48,
+    radius: 23,
+    target: [0, 1.5, 3.5],
+    targetYaw: 0.35,
+    targetPitch: 0.48,
+    targetRadius: 23,
+    isDragging: false,
+    dragStartX: 0,
+    dragStartY: 0,
+    startYaw: 0,
+    startPitch: 0,
+    hasMoved: false,
+    hoveredCam: null,
+    projectedCams: {}
+  };
+
+  function updateVenue3DSidebar() {
+    for (let i = 1; i <= 4; i++) {
+      const item = document.getElementById(`diag-cam-${i}`);
+      const dot = document.getElementById(`dot-tally-${i}`);
+      const tag = document.getElementById(`tag-cam-${i}`);
+      if (!item || !dot || !tag) continue;
+
+      item.classList.remove('is-pgm', 'is-pvw');
+      dot.classList.remove('tally-pgm', 'tally-pvw', 'tally-idle');
+
+      if (i === state.pgm) {
+        item.classList.add('is-pgm');
+        dot.classList.add('tally-pgm');
+        tag.textContent = 'PGM';
+      } else if (i === state.pvw) {
+        item.classList.add('is-pvw');
+        dot.classList.add('tally-pvw');
+        tag.textContent = 'PVW';
+      } else {
+        dot.classList.add('tally-idle');
+        tag.textContent = 'STANDBY';
+      }
+    }
+  }
+
+  function initVenue3D() {
+    const modal = document.getElementById('venue-3d-modal');
+    const backdrop = document.getElementById('venue-3d-backdrop');
+    const closeBtn = document.getElementById('btn-close-venue-3d');
+    const openBtn = document.getElementById('btn-venue-3d');
+    const headerOpenBtn = document.getElementById('header-btn-venue-3d');
+    const canvas = document.getElementById('canvas-venue-3d');
+    if (!canvas || !modal) return;
+
+    const ctx = canvas.getContext('2d');
+
+    function openModal() {
+      playClickSound('click');
+      modal.style.display = 'flex';
+      venue3DState.isOpen = true;
+      updateVenue3DSidebar();
+    }
+
+    function closeModal() {
+      playClickSound('click');
+      modal.style.display = 'none';
+      venue3DState.isOpen = false;
+    }
+
+    if (openBtn) openBtn.addEventListener('click', openModal);
+    if (headerOpenBtn) headerOpenBtn.addEventListener('click', openModal);
+    if (closeBtn) closeBtn.addEventListener('click', closeModal);
+    if (backdrop) backdrop.addEventListener('click', closeModal);
+
+    // Close on Escape key
+    window.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && venue3DState.isOpen) {
+        closeModal();
+      }
+    });
+
+    // Orbit Camera View Preset Buttons
+    const orbitPresets = {
+      top: { yaw: 0.0, pitch: 1.48, radius: 25 },
+      foh: { yaw: 0.0, pitch: 0.22, radius: 22 },
+      stage: { yaw: -1.25, pitch: 0.38, radius: 15 },
+      band: { yaw: 1.18, pitch: 0.35, radius: 14 }
+    };
+
+    const presetButtons = document.querySelectorAll('.venue-3d-cam-btn[data-orbit-cam]');
+    presetButtons.forEach((btn) => {
+      btn.addEventListener('click', () => {
+        playClickSound('click');
+        presetButtons.forEach((b) => b.classList.remove('active'));
+        btn.classList.add('active');
+        const p = orbitPresets[btn.dataset.orbitCam];
+        if (p) {
+          venue3DState.targetYaw = p.yaw;
+          venue3DState.targetPitch = p.pitch;
+          venue3DState.targetRadius = p.radius;
+        }
+      });
+    });
+
+    // Mouse Dragging Orbit
+    canvas.addEventListener('mousedown', (e) => {
+      venue3DState.isDragging = true;
+      venue3DState.hasMoved = false;
+      venue3DState.dragStartX = e.clientX;
+      venue3DState.dragStartY = e.clientY;
+      venue3DState.startYaw = venue3DState.targetYaw;
+      venue3DState.startPitch = venue3DState.targetPitch;
+      canvas.style.cursor = 'grabbing';
+    });
+
+    window.addEventListener('mousemove', (e) => {
+      const rect = canvas.getBoundingClientRect();
+      const mouseX = (e.clientX - rect.left) * (canvas.width / rect.width);
+      const mouseY = (e.clientY - rect.top) * (canvas.height / rect.height);
+
+      if (venue3DState.isDragging) {
+        const dx = e.clientX - venue3DState.dragStartX;
+        const dy = e.clientY - venue3DState.dragStartY;
+        if (Math.abs(dx) > 3 || Math.abs(dy) > 3) {
+          venue3DState.hasMoved = true;
+        }
+        venue3DState.targetYaw = venue3DState.startYaw + dx * 0.007;
+        venue3DState.targetPitch = Math.max(0.08, Math.min(1.52, venue3DState.startPitch + dy * 0.006));
+      } else {
+        // Hover detection on 4 cameras in 3D
+        let foundCam = null;
+        for (let id = 1; id <= 4; id++) {
+          const pt = venue3DState.projectedCams[id];
+          if (pt) {
+            const dist = Math.hypot(mouseX - pt.sx, mouseY - pt.sy);
+            if (dist <= 26) {
+              foundCam = id;
+              break;
+            }
+          }
+        }
+        venue3DState.hoveredCam = foundCam;
+        canvas.style.cursor = foundCam ? 'pointer' : 'grab';
+      }
+    });
+
+    window.addEventListener('mouseup', () => {
+      if (venue3DState.isDragging) {
+        venue3DState.isDragging = false;
+        canvas.style.cursor = venue3DState.hoveredCam ? 'pointer' : 'grab';
+      }
+    });
+
+    // Zoom on Mouse Wheel
+    canvas.addEventListener('wheel', (e) => {
+      e.preventDefault();
+      const zoomDelta = e.deltaY * 0.02;
+      venue3DState.targetRadius = Math.max(8, Math.min(42, venue3DState.targetRadius + zoomDelta));
+    });
+
+    // Click on Camera to Punch CUE or CUT
+    canvas.addEventListener('click', () => {
+      if (!venue3DState.hasMoved && venue3DState.hoveredCam) {
+        const cam = venue3DState.hoveredCam;
+        if (cam === state.pvw) {
+          triggerCut();
+        } else if (cam !== state.pgm) {
+          selectPVW(cam);
+        }
+        updateVenue3DSidebar();
+      }
+    });
+
+    // Main 3D Venue Renderer Frame
+    function renderVenue3DFrame(t) {
+      if (!venue3DState.isOpen) return;
+
+      const w = canvas.width;
+      const h = canvas.height;
+
+      // Smooth camera orbit damping
+      venue3DState.yaw += (venue3DState.targetYaw - venue3DState.yaw) * 0.12;
+      venue3DState.pitch += (venue3DState.targetPitch - venue3DState.pitch) * 0.12;
+      venue3DState.radius += (venue3DState.targetRadius - venue3DState.radius) * 0.12;
+
+      // Spherical camera coordinate calculation
+      const cx = venue3DState.target[0] + venue3DState.radius * Math.cos(venue3DState.pitch) * Math.sin(venue3DState.yaw);
+      const cy = venue3DState.target[1] + venue3DState.radius * Math.sin(venue3DState.pitch);
+      const cz = venue3DState.target[2] - venue3DState.radius * Math.cos(venue3DState.pitch) * Math.cos(venue3D.yaw);
+
+      const cam = {
+        x: cx,
+        y: cy,
+        z: cz,
+        yaw: venue3DState.yaw,
+        pitch: venue3DState.pitch,
+        fov: 560
+      };
+
+      // 1. Render Venue Environment, Stage, LED Wall, 2 WL, 3 Singer, 7 Musisi, Jemaat
+      renderAuditoriumUNNES3D(ctx, cam, w, h, t, { showLabels: true });
+
+      // 2. Render Technical Ground Grid Lines
+      ctx.strokeStyle = 'rgba(30, 41, 59, 0.4)';
+      ctx.lineWidth = 1;
+      for (let gz = -20; gz <= 10; gz += 4) {
+        const p1 = project3D([-12, 0, gz], cam, w, h);
+        const p2 = project3D([12, 0, gz], cam, w, h);
+        if (p1 && p2) {
+          ctx.beginPath();
+          ctx.moveTo(p1.sx, p1.sy);
+          ctx.lineTo(p2.sx, p2.sy);
+          ctx.stroke();
+        }
+      }
+      for (let gx = -12; gx <= 12; gx += 4) {
+        const p1 = project3D([gx, 0, -20], cam, w, h);
+        const p2 = project3D([gx, 0, 10], cam, w, h);
+        if (p1 && p2) {
+          ctx.beginPath();
+          ctx.moveTo(p1.sx, p1.sy);
+          ctx.lineTo(p2.sx, p2.sy);
+          ctx.stroke();
+        }
+      }
+
+      // 3. Render 4 Camera Positions & Vision Cones (Frustums)
+      const mobX = -1.4 + Math.sin(t * 0.7) * 0.9;
+      const mobY = 1.55 + Math.sin(t * 1.2) * 0.03;
+      const mobZ = 0.6 + Math.cos(t * 0.5) * 0.4;
+
+      const venueCams = [
+        {
+          id: 1,
+          name: 'CAM 1',
+          sub: 'TENGAH FOH',
+          desc: 'Sorot Stage Depan',
+          pos: [0, 1.9, -12.5],
+          target: [0, 2.0, 3.5],
+          dist: 14.5,
+          fovW: 5.2,
+          fovH: 3.0
+        },
+        {
+          id: 2,
+          name: 'CAM 2',
+          sub: 'STAGE MOBILE',
+          desc: 'Sorot 2 WL & 3 Singer',
+          pos: [mobX, mobY, mobZ],
+          target: [0, 1.9, 2.5],
+          dist: 4.8,
+          fovW: 1.8,
+          fovH: 1.2
+        },
+        {
+          id: 3,
+          name: 'CAM 3',
+          sub: 'KIRI STAGE',
+          desc: 'Sorot Jemaat UNNES',
+          pos: [-7.5, 1.8, 2.2],
+          target: [0, 0.8, -8.0],
+          dist: 11.5,
+          fovW: 5.8,
+          fovH: 3.2
+        },
+        {
+          id: 4,
+          name: 'CAM 4',
+          sub: 'KANAN STAGE',
+          desc: 'Sorot 7 Pemain Musik',
+          pos: [3.0, 1.7, 1.5],
+          target: [6.0, 1.8, 5.0],
+          dist: 6.2,
+          fovW: 2.8,
+          fovH: 1.8
+        }
+      ];
+
+      for (let c = 0; c < venueCams.length; c++) {
+        const vCam = venueCams[c];
+        const isPgm = vCam.id === state.pgm;
+        const isPvw = vCam.id === state.pvw;
+        const isHovered = venue3DState.hoveredCam === vCam.id;
+
+        // Vector math to construct camera view cone in 3D
+        const px = vCam.pos[0], py = vCam.pos[1], pz = vCam.pos[2];
+        const tx = vCam.target[0], ty = vCam.target[1], tz = vCam.target[2];
+        const dx = tx - px, dy = ty - py, dz = tz - pz;
+        const len = Math.hypot(dx, dy, dz) || 1;
+        const nx = dx / len, ny = dy / len, nz = dz / len;
+
+        // Perpendicular horizontal vector
+        const rx = -nz, ry = 0, rz = nx;
+        const rLen = Math.hypot(rx, rz) || 1;
+        const rnx = rx / rLen, rnz = rz / rLen;
+
+        // Up vector perpendicular to direction & right
+        const ux = -ny * rnz, uy = nx * rnz - nz * rnx, uz = ny * rnx;
+
+        const d = vCam.dist;
+        const hw = vCam.fovW * 0.5;
+        const hh = vCam.fovH * 0.5;
+
+        // 4 cone end-points
+        const pTL = [px + nx * d - rnx * hw + ux * hh, py + ny * d + uy * hh, pz + nz * d - rnz * hw + uz * hh];
+        const pTR = [px + nx * d + rnx * hw + ux * hh, py + ny * d + uy * hh, pz + nz * d + rnz * hw + uz * hh];
+        const pBR = [px + nx * d + rnx * hw - ux * hh, py + ny * d - uy * hh, pz + nz * d + rnz * hw - uz * hh];
+        const pBL = [px + nx * d - rnx * hw - ux * hh, py + ny * d - uy * hh, pz + nz * d - rnz * hw - uz * hh];
+
+        // Style based on tally state
+        let coneColor = 'rgba(56, 189, 248, 0.08)';
+        let coneStroke = 'rgba(56, 189, 248, 0.4)';
+        let tallyText = 'STANDBY';
+
+        if (isPgm) {
+          coneColor = 'rgba(239, 68, 68, 0.22)';
+          coneStroke = '#ef4444';
+          tallyText = 'PGM ON-AIR';
+        } else if (isPvw) {
+          coneColor = 'rgba(16, 185, 129, 0.22)';
+          coneStroke = '#10b981';
+          tallyText = 'PVW CUED';
+        }
+
+        // Draw Translucent Frustum Pyramid
+        drawPoly3D(ctx, cam, w, h, [vCam.pos, pTL, pTR], coneColor, coneStroke, 1);
+        drawPoly3D(ctx, cam, w, h, [vCam.pos, pTR, pBR], coneColor, coneStroke, 1);
+        drawPoly3D(ctx, cam, w, h, [vCam.pos, pBR, pBL], coneColor, coneStroke, 1);
+        drawPoly3D(ctx, cam, w, h, [vCam.pos, pBL, pTL], coneColor, coneStroke, 1);
+        drawPoly3D(ctx, cam, w, h, [pTL, pTR, pBR, pBL], coneColor, coneStroke, 1.5);
+
+        // Active Animated Pulse Ring traveling down the cone
+        if (isPgm || isPvw) {
+          const pulseProgress = (t * 0.9) % 1.0;
+          const pd = d * pulseProgress;
+          const pw = hw * pulseProgress;
+          const ph = hh * pulseProgress;
+          const qTL = [px + nx * pd - rnx * pw + ux * ph, py + ny * pd + uy * ph, pz + nz * pd - rnz * pw + uz * ph];
+          const qTR = [px + nx * pd + rnx * pw + ux * ph, py + ny * pd + uy * ph, pz + nz * pd + rnz * pw + uz * ph];
+          const qBR = [px + nx * pd + rnx * pw - ux * ph, py + ny * pd - uy * ph, pz + nz * pd + rnz * pw - uz * ph];
+          const qBL = [px + nx * pd - rnx * pw - ux * ph, py + ny * pd - uy * ph, pz + nz * pd - rnz * pw - uz * ph];
+          drawPoly3D(ctx, cam, w, h, [qTL, qTR, qBR, qBL], null, coneStroke, 2);
+        }
+
+        // Tripod Stand (Floor Y = 0 to camera height)
+        const tripFeet = [
+          [px - 0.35, 0, pz - 0.3],
+          [px + 0.35, 0, pz - 0.3],
+          [px, 0, pz + 0.4]
+        ];
+        const camPr = project3D(vCam.pos, cam, w, h);
+        if (camPr) {
+          venue3DState.projectedCams[vCam.id] = { sx: camPr.sx, sy: camPr.sy };
+
+          ctx.strokeStyle = '#475569';
+          ctx.lineWidth = 1.5;
+          for (let f = 0; f < tripFeet.length; f++) {
+            const footPr = project3D(tripFeet[f], cam, w, h);
+            if (footPr) {
+              ctx.beginPath();
+              ctx.moveTo(footPr.sx, footPr.sy);
+              ctx.lineTo(camPr.sx, camPr.sy);
+              ctx.stroke();
+            }
+          }
+
+          // Camera Body & Lens Renders
+          const cR = Math.max(5, 0.22 * camPr.scale);
+          ctx.fillStyle = isPgm ? '#ef4444' : isPvw ? '#10b981' : '#0ea5e9';
+          ctx.beginPath();
+          ctx.arc(camPr.sx, camPr.sy, cR, 0, Math.PI * 2);
+          ctx.fill();
+          ctx.strokeStyle = '#ffffff';
+          ctx.lineWidth = isHovered ? 3 : 1.5;
+          ctx.stroke();
+
+          // Extra pulsating aura if hovered
+          if (isHovered) {
+            ctx.strokeStyle = 'rgba(255, 255, 255, 0.8)';
+            ctx.lineWidth = 2;
+            ctx.beginPath();
+            ctx.arc(camPr.sx, camPr.sy, cR + 6, 0, Math.PI * 2);
+            ctx.stroke();
+          }
+
+          // 3D Billboard Tally Badge Pill
+          const badgeY = camPr.sy - cR - 18;
+          ctx.save();
+          ctx.font = 'bold 9px monospace';
+          const textLabel = `${vCam.name}: ${vCam.sub} • [${tallyText}]`;
+          const textW = ctx.measureText(textLabel).width + 14;
+          
+          ctx.fillStyle = 'rgba(15, 23, 42, 0.9)';
+          ctx.beginPath();
+          ctx.roundRect(camPr.sx - textW * 0.5, badgeY - 7, textW, 16, 4);
+          ctx.fill();
+          ctx.strokeStyle = coneStroke;
+          ctx.lineWidth = 1;
+          ctx.stroke();
+
+          // Dot
+          ctx.fillStyle = isPgm ? '#ef4444' : isPvw ? '#10b981' : '#64748b';
+          ctx.beginPath();
+          ctx.arc(camPr.sx - textW * 0.5 + 7, badgeY + 1, 3.5, 0, Math.PI * 2);
+          ctx.fill();
+
+          ctx.fillStyle = '#ffffff';
+          ctx.textAlign = 'left';
+          ctx.fillText(textLabel, camPr.sx - textW * 0.5 + 14, badgeY + 4);
+          ctx.restore();
+        }
+      }
+    }
+
+    // Attach to master RAF loop
+    function loop(t) {
+      if (venue3DState.isOpen) {
+        renderVenue3DFrame(t * 0.001);
+      }
+      requestAnimationFrame(loop);
+    }
+    requestAnimationFrame(loop);
+  }
+
   // --- INITIALIZE ON DOM READY ---
   window.addEventListener('DOMContentLoaded', () => {
     setupEventListeners();
     initTBar();
+    initVenue3D();
     updateUIButtons();
     requestAnimationFrame(animate);
-    console.log('[Cinetreak Cinelive V1 Simulator Initialized]');
+    console.log('[Cinetreak Cinelive V1 Simulator & 3D UNNES Venue Initialized]');
   });
 })();
