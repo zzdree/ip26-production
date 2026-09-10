@@ -583,30 +583,37 @@
       contexts.aux.clearRect(0, 0, aw, ah);
 
       if (state.aux === 'MV') {
-        // Multi-view mode on AUX monitor: Top 4 cams + Bottom PVW/PGM
-        const topH = Math.floor(ah * 0.45);
+        // Multi-view mode on AUX monitor: Top PVW/PGM + Bottom 4 cams (CineLive V1 layout)
+        const topH = Math.floor(ah * 0.60);
         const btmH = ah - topH;
+        const halfW = Math.floor(aw / 2);
         const colW = Math.floor(aw / 4);
 
-        // Top 4 cameras
+        // Top PVW (left half)
+        contexts.aux.save();
+        contexts.aux.translate(0, 0);
+        drawCam(state.pvw, contexts.aux, halfW, topH, t);
+        contexts.aux.strokeStyle = '#10b981';
+        contexts.aux.lineWidth = 1;
+        contexts.aux.strokeRect(0, 0, halfW, topH);
+        contexts.aux.restore();
+
+        // Top PGM (right half)
+        contexts.aux.save();
+        contexts.aux.translate(halfW, 0);
+        drawProgramOutput(contexts.aux, halfW, topH, t);
+        contexts.aux.strokeStyle = '#ff3344';
+        contexts.aux.lineWidth = 1;
+        contexts.aux.strokeRect(0, 0, halfW, topH);
+        contexts.aux.restore();
+
+        // Bottom 4 cameras
         for (let i = 1; i <= 4; i++) {
           contexts.aux.save();
-          contexts.aux.translate((i - 1) * colW, 0);
-          drawCam(i, contexts.aux, colW, topH, t);
+          contexts.aux.translate((i - 1) * colW, topH);
+          drawCam(i, contexts.aux, colW, btmH, t);
           contexts.aux.restore();
         }
-
-        // Bottom PVW (left half)
-        contexts.aux.save();
-        contexts.aux.translate(0, topH);
-        drawCam(state.pvw, contexts.aux, Math.floor(aw / 2), btmH, t);
-        contexts.aux.restore();
-
-        // Bottom PGM (right half)
-        contexts.aux.save();
-        contexts.aux.translate(Math.floor(aw / 2), topH);
-        drawProgramOutput(contexts.aux, Math.floor(aw / 2), btmH, t);
-        contexts.aux.restore();
       } else if (state.aux === 'PGM') {
         drawProgramOutput(contexts.aux, aw, ah, t);
       } else if (state.aux === 'PVW') {

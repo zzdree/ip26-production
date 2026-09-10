@@ -150,9 +150,25 @@
           </div>
         </div>
 
-        <!-- 6-Split Multiview Canvas Grid -->
+        <!-- 6-Split Multiview Canvas Grid (Cinetreak Cinelive V1: PVW & PGM Top, CAM 1-4 Bottom) -->
         <div class="mv-container">
           
+          <!-- LARGE PREVIEW (PVW) -->
+          <div class="mv-cell cell-pvw tally-pvw" id="cell-pvw">
+            <canvas id="canvas-pvw" width="640" height="360"></canvas>
+            <div class="mv-tally-tag" style="background:#10b981; color:#000;">PREVIEW (PVW)</div>
+            <div class="mv-info-tag" id="label-pvw-cam" style="font-weight:700; color:#34d399; font-size:11px;">CAM 2</div>
+            <div class="mv-hud-right" style="color:#10b981;">NEXT BUS</div>
+          </div>
+
+          <!-- LARGE PROGRAM (PGM) -->
+          <div class="mv-cell cell-pgm tally-pgm" id="cell-pgm">
+            <canvas id="canvas-pgm" width="640" height="360"></canvas>
+            <div class="mv-tally-tag" style="background:#ff3344; color:#fff;">PROGRAM (PGM) • ON AIR</div>
+            <div class="mv-info-tag" id="label-pgm-cam" style="font-weight:700; color:#ff8592; font-size:11px;">CAM 1</div>
+            <div class="mv-hud-right" style="color:#ff3344;">UVC OUT LIVE</div>
+          </div>
+
           <!-- CAM 1 -->
           <div class="mv-cell tally-pgm" id="cell-cam1">
             <canvas id="canvas-cam1" width="320" height="180"></canvas>
@@ -183,22 +199,6 @@
             <div class="mv-tally-tag" id="tally-cam4">CAM 4</div>
             <div class="mv-info-tag">BALCONY FOH (A6000 WIRED)</div>
             <div class="mv-hud-right">1080p60</div>
-          </div>
-
-          <!-- LARGE PREVIEW (PVW) -->
-          <div class="mv-cell cell-pvw tally-pvw" id="cell-pvw">
-            <canvas id="canvas-pvw" width="640" height="360"></canvas>
-            <div class="mv-tally-tag" style="background:#10b981; color:#000;">PREVIEW (PVW)</div>
-            <div class="mv-info-tag" id="label-pvw-cam" style="font-weight:700; color:#34d399; font-size:11px;">CAM 2</div>
-            <div class="mv-hud-right" style="color:#10b981;">NEXT BUS</div>
-          </div>
-
-          <!-- LARGE PROGRAM (PGM) -->
-          <div class="mv-cell cell-pgm tally-pgm" id="cell-pgm">
-            <canvas id="canvas-pgm" width="640" height="360"></canvas>
-            <div class="mv-tally-tag" style="background:#ff3344; color:#fff;">PROGRAM (PGM) • ON AIR</div>
-            <div class="mv-info-tag" id="label-pgm-cam" style="font-weight:700; color:#ff8592; font-size:11px;">CAM 1</div>
-            <div class="mv-hud-right" style="color:#ff3344;">UVC OUT LIVE</div>
           </div>
 
         </div>
