@@ -1,8 +1,8 @@
 {
   "_meta": {
-    "exported_at": "2026-09-12T01:42:41.061Z",
+    "exported_at": "2026-09-12T14:27:12.770Z",
     "total_items": 245,
-    "total_loaded": 1,
+    "total_loaded": 3,
     "total_packed": 0,
     "generator": "GitHub Actions Auto-Backup Workflow"
   },
@@ -899,13 +899,13 @@
       "item_id": "andreas_40_power-cable-2pin",
       "vendor": "Andreas",
       "item_name": "Power Cable 2PIN",
-      "loaded": false,
-      "loaded_by": "",
-      "loaded_at": null,
+      "loaded": true,
+      "loaded_by": "Crew",
+      "loaded_at": "2026-09-12T12:17:54.938+00:00",
       "packed": false,
       "packed_by": "",
       "packed_at": null,
-      "updated_at": "2026-09-10T19:39:42.341+00:00"
+      "updated_at": "2026-09-12T12:17:54.938+00:00"
     },
     {
       "item_id": "andreas_40_terminal-cable-xch",
@@ -1559,13 +1559,13 @@
       "item_id": "gia_9_hdmi-to-hdmi-cable-15m",
       "vendor": "GIA",
       "item_name": "HDMI to HDMI Cable 1,5M",
-      "loaded": false,
-      "loaded_by": "",
-      "loaded_at": null,
+      "loaded": true,
+      "loaded_by": "Crew",
+      "loaded_at": "2026-09-12T12:17:57.602+00:00",
       "packed": false,
       "packed_by": "",
       "packed_at": null,
-      "updated_at": "2026-09-10T19:39:42.341+00:00"
+      "updated_at": "2026-09-12T12:17:57.602+00:00"
     },
     {
       "item_id": "gkj_0_stand-lighting-small",
@@ -2417,7 +2417,7 @@
       "packed": false,
       "packed_by": "",
       "packed_at": null,
-      "updated_at": "2026-09-10T19:39:42.341+00:00"
+      "updated_at": "2026-09-12T12:17:41.899+00:00"
     },
     {
       "item_id": "owl_15_hdmi-to-micro-hdmi-cable-30cm",
@@ -2441,7 +2441,7 @@
       "packed": false,
       "packed_by": "",
       "packed_at": null,
-      "updated_at": "2026-09-10T19:39:42.341+00:00"
+      "updated_at": "2026-09-12T12:17:44.903+00:00"
     },
     {
       "item_id": "owl_16_hdmi-capture",
@@ -2477,7 +2477,7 @@
       "packed": false,
       "packed_by": "",
       "packed_at": null,
-      "updated_at": "2026-09-10T19:39:42.341+00:00"
+      "updated_at": "2026-09-12T12:17:46.599+00:00"
     },
     {
       "item_id": "owl_2_sony-zv-e10",
