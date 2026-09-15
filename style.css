@@ -370,10 +370,10 @@ code {
 }
 
 .nav-link.active {
-  color: var(--text-primary);
-  background-color: var(--bg-surface-elevated);
-  border: 1px solid var(--border-subtle);
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+  color: var(--accent-cyan);
+  background-color: var(--accent-cyan-subtle);
+  border: 1px solid rgba(0, 210, 255, 0.35);
+  box-shadow: 0 0 12px rgba(0, 210, 255, 0.15);
 }
 
 .nav-actions {
@@ -1185,6 +1185,9 @@ code {
 }
 
 @media (max-width: 960px) {
+  .desktop-nav {
+    display: none !important;
+  }
   .subsystems-grid {
     grid-template-columns: 1fr;
   }
