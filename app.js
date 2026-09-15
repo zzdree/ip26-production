@@ -989,69 +989,9 @@ document.addEventListener('DOMContentLoaded', () => {
   window.addEventListener('scroll', onScroll, { passive: true });
   updateScrollMetrics();
 
-  // =========================================================================
-  // 5.5. MOBILE NAVIGATION DRAWER CONTROLLER
-  // =========================================================================
-  const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
-  const dockMenuBtn = document.getElementById('dock-menu-btn');
-  const mobileNavDrawer = document.getElementById('mobile-nav-drawer');
-  const mobileDrawerBackdrop = document.getElementById('mobile-drawer-backdrop');
-  const drawerCloseBtn = document.getElementById('drawer-close-btn');
-  const drawerThemeToggle = document.getElementById('drawer-theme-toggle');
-  const drawerBatchBtn = document.getElementById('drawer-batch-btn');
-  const drawerNavLinks = document.querySelectorAll('.drawer-nav-link');
-
-  function openMobileDrawer() {
-    if (mobileNavDrawer && mobileDrawerBackdrop) {
-      mobileNavDrawer.classList.add('active');
-      mobileDrawerBackdrop.classList.add('active');
-      mobileNavDrawer.setAttribute('aria-hidden', 'false');
-      mobileDrawerBackdrop.setAttribute('aria-hidden', 'false');
-      if (mobileMenuToggle) mobileMenuToggle.setAttribute('aria-expanded', 'true');
-      document.body.style.overflow = 'hidden';
-    }
-  }
-
-  function closeMobileDrawer() {
-    if (mobileNavDrawer && mobileDrawerBackdrop) {
-      mobileNavDrawer.classList.remove('active');
-      mobileDrawerBackdrop.classList.remove('active');
-      mobileNavDrawer.setAttribute('aria-hidden', 'true');
-      mobileDrawerBackdrop.setAttribute('aria-hidden', 'true');
-      if (mobileMenuToggle) mobileMenuToggle.setAttribute('aria-expanded', 'false');
-      document.body.style.overflow = '';
-    }
-  }
-
-  if (mobileMenuToggle) mobileMenuToggle.addEventListener('click', openMobileDrawer);
-  if (dockMenuBtn) dockMenuBtn.addEventListener('click', openMobileDrawer);
-  if (drawerCloseBtn) drawerCloseBtn.addEventListener('click', closeMobileDrawer);
-  if (mobileDrawerBackdrop) mobileDrawerBackdrop.addEventListener('click', closeMobileDrawer);
-
-  drawerNavLinks.forEach((link) => {
-    link.addEventListener('click', () => {
-      closeMobileDrawer();
-    });
-  });
-
-
-  if (drawerBatchBtn) {
-    drawerBatchBtn.addEventListener('click', () => {
-      closeMobileDrawer();
-      if (typeof openBatchModal === 'function') {
-        openBatchModal(true);
-      }
-    });
-  }
-
-  // Keyboard Navigation & Escape key accessibility for Modals & Mobile Drawer
+  // Keyboard Navigation & Escape key accessibility for Modals
   document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape') {
-      if (mobileNavDrawer && mobileNavDrawer.classList.contains('active')) {
-        closeMobileDrawer();
-        if (mobileMenuToggle) mobileMenuToggle.focus();
-        return;
-      }
       if (cloudConfigModal && cloudConfigModal.style.display === 'flex') {
         cloudConfigModal.style.display = 'none';
         if (btnOpenCloudConfig) btnOpenCloudConfig.focus();
