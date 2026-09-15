@@ -53,9 +53,22 @@ body.presenter-body {
   display: flex;
   align-items: center;
   gap: 8px;
+  flex: 1;
+  justify-content: center;
+  position: static;
+  margin: 0 var(--space-4);
 }
 
-.clear-btn {
+.clear-btn,
+.clear-bar .clear-btn {
+  position: static;
+  top: auto;
+  right: auto;
+  bottom: auto;
+  left: auto;
+  transform: none;
+  width: auto;
+  height: auto;
   background: var(--bg-surface-elevated, #262626);
   border: 1px solid var(--border-subtle, #333333);
   color: var(--text-secondary, #d4d4d8);
@@ -69,30 +82,36 @@ body.presenter-body {
   align-items: center;
   gap: 6px;
   transition: all var(--transition-fast, 0.15s ease);
+  flex-shrink: 0;
 }
 
-.clear-btn:hover {
+.clear-btn:hover,
+.clear-bar .clear-btn:hover {
   background: var(--bg-surface-hover, #2f2f2f);
   color: #fff;
   border-color: var(--border-strong, #484848);
 }
 
-.clear-btn.active {
+.clear-btn.active,
+.clear-bar .clear-btn.active {
   background: #991b1b;
   border-color: #ef4444;
   color: #fff;
   box-shadow: 0 0 12px rgba(239, 68, 68, 0.4);
 }
 
-.clear-btn.btn-blackout {
+.clear-btn.btn-blackout,
+.clear-bar .clear-btn.btn-blackout {
   border-color: #71717a;
   color: #f87171;
 }
 
-.clear-btn.btn-blackout.active {
+.clear-btn.btn-blackout.active,
+.clear-bar .clear-btn.btn-blackout.active {
   background: #dc2626;
   color: #fff;
   border-color: #ef4444;
+  box-shadow: 0 0 14px rgba(220, 38, 38, 0.5);
 }
 
 /* Header Links */

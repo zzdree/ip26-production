@@ -128,6 +128,11 @@
 
     dom.songList.innerHTML = '';
 
+    if (filtered.length === 0) {
+      dom.songList.innerHTML = '<div style="padding: 24px 12px; text-align: center; color: var(--text-muted, #71717a); font-size: 0.8rem; font-family: var(--font-sans);">Tidak ada lagu yang cocok dengan pencarian</div>';
+      return;
+    }
+
     filtered.forEach((song) => {
       const realIdx = state.songs.indexOf(song);
       const item = document.createElement('div');
@@ -347,6 +352,9 @@
     if (dom.confCurrent && dom.confNext) {
       if (!state.destStage) {
         dom.confCurrent.innerHTML = '<span style="color:#ef4444; font-family:var(--font-mono); font-size:12px; font-weight:800;">[ STAGE DISPLAY DISABLED ]</span>';
+        dom.confNext.textContent = '---';
+      } else if (state.blackout) {
+        dom.confCurrent.innerHTML = '<span style="color:#ef4444; font-family:var(--font-mono); font-size:13px; font-weight:800; letter-spacing:0.04em;">[ EMERGENCY BLACKOUT ACTIVE ]</span>';
         dom.confNext.textContent = '---';
       } else {
         if (lines.length > 0) {
@@ -666,8 +674,16 @@
 
     // Keyboard Shortcuts
     window.addEventListener('keydown', (e) => {
-      // Don't trigger if search input is focused
-      if (document.activeElement === dom.searchInput) return;
+      // Don't trigger if user is typing or interacting with an input/select
+      if (
+        document.activeElement &&
+        (document.activeElement === dom.searchInput ||
+          document.activeElement.tagName === 'INPUT' ||
+          document.activeElement.tagName === 'SELECT' ||
+          document.activeElement.tagName === 'TEXTAREA')
+      ) {
+        return;
+      }
 
       // Alt + 1/2/3 to switch output screen preview
       if (e.altKey) {

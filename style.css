@@ -1549,7 +1549,8 @@ code {
   box-shadow: 0 0 0 3px var(--accent-cyan-subtle);
 }
 
-.clear-btn {
+.search-box-wrap .clear-btn,
+.search-wrapper .clear-btn {
   position: absolute;
   right: 14px;
   top: 50%;
@@ -1567,7 +1568,8 @@ code {
   font-size: 0.8rem;
 }
 
-.clear-btn.visible {
+.search-box-wrap .clear-btn.visible,
+.search-wrapper .clear-btn.visible {
   display: flex;
 }
 
