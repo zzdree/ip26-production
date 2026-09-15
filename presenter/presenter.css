@@ -114,39 +114,6 @@ body.presenter-body {
   box-shadow: 0 0 14px rgba(220, 38, 38, 0.5);
 }
 
-/* Header Links */
-.header-actions {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-
-.header-link {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  padding: 5px 12px;
-  border-radius: 6px;
-  font-size: 12px;
-  font-weight: 600;
-  text-decoration: none;
-  color: #a1a1aa;
-  background: #202023;
-  border: 1px solid #333338;
-  transition: all 0.15s ease;
-}
-
-.header-link:hover {
-  color: #fff;
-  border-color: #52525b;
-  background: #27272a;
-}
-
-.header-link.active-link {
-  color: #f4f4f5;
-  border-color: #71717a;
-  background: #27272a;
-}
 
 /* Main 3-Column Layout */
 .presenter-main {
@@ -731,48 +698,6 @@ body.presenter-body {
 .screen-tab-btn.active .dot-stage { background: #10b981; box-shadow: 0 0 6px #10b981; }
 .screen-tab-btn.active .dot-stream { background: #f59e0b; box-shadow: 0 0 6px #f59e0b; }
 
-/* Quick Destination Playout Toggles */
-.screen-enable-toggles {
-  display: flex;
-  align-items: center;
-  gap: 4px;
-}
-
-.dest-toggle-btn {
-  background: #202023;
-  border: 1px solid #2e2e32;
-  color: #9ca3af;
-  font-family: var(--font-mono);
-  font-size: 9px;
-  font-weight: 700;
-  padding: 3px 7px;
-  border-radius: 4px;
-  cursor: pointer;
-  display: inline-flex;
-  align-items: center;
-  gap: 4px;
-  transition: all 0.15s ease;
-}
-
-.dest-toggle-btn:hover {
-  border-color: #3f3f46;
-}
-
-.dest-toggle-btn.active {
-  background: rgba(16, 185, 129, 0.12);
-  border-color: rgba(16, 185, 129, 0.5);
-  color: #f1f5f9;
-}
-
-.dest-toggle-btn.active .dest-state {
-  color: #10b981;
-  font-weight: 800;
-}
-
-.dest-toggle-btn:not(.active) .dest-state {
-  color: #ef4444;
-  font-weight: 800;
-}
 
 /* Unified Viewport Monitor */
 .unified-viewport {
@@ -834,21 +759,9 @@ body.presenter-body {
   text-align: center;
 }
 
-/* Dark Grey Stage Backgrounds */
-.screen-bg-nebula {
-  background: #141416;
-}
-
-.screen-bg-flare {
-  background: #18181a;
-}
-
+/* Screen Background */
 .screen-bg-dark {
   background: #0d0d0e;
-}
-
-.screen-bg-light {
-  background: #1c1c20;
 }
 
 .live-lyrics-text {
@@ -1056,35 +969,6 @@ body.presenter-body {
   color: #cbd5e1;
 }
 
-.monitor-dest-pills {
-  display: flex;
-  align-items: center;
-  gap: 4px;
-}
-
-.feed-pill {
-  font-family: var(--font-mono);
-  font-size: 9px;
-  font-weight: 700;
-  color: #9ca3af;
-  background: #1e1e22;
-  border: 1px solid #2e2e32;
-  padding: 2px 6px;
-  border-radius: 3px;
-  cursor: pointer;
-  transition: all 0.15s ease;
-}
-
-.feed-pill:hover {
-  color: #f4f4f5;
-  border-color: #3f3f46;
-}
-
-.feed-pill.active {
-  color: #f4f4f5;
-  border-color: #52525b;
-  background: #27272a;
-}
 
 /* Customizer Settings Group */
 .customizer-section {

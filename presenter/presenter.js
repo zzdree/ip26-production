@@ -22,12 +22,7 @@
     clearAll: false,
     blackout: false,
     activeScreen: 'audience', // 'audience' | 'stage' | 'stream'
-    destAudience: true,
-    destStage: true,
-    destStream: true,
-    theme: 'screen-bg-dark',
     textCase: 'uppercase',
-    align: 'center',
     searchQuery: '',
     ytPlayer: null
   };
@@ -46,9 +41,6 @@
     btnBlackout: document.getElementById('btn-blackout'),
     // Unified Pro7 Monitor & Previews
     monitorActiveLabel: document.getElementById('monitor-active-label'),
-    toggleAudience: document.getElementById('toggle-dest-audience'),
-    toggleStage: document.getElementById('toggle-dest-stage'),
-    toggleStream: document.getElementById('toggle-dest-stream'),
     ledScreen: document.getElementById('led-preview-screen'),
     ledText: document.getElementById('led-lyrics-text'),
     ltOverlay: document.getElementById('lt-overlay-box'),
@@ -64,7 +56,6 @@
     ytTitle: document.getElementById('yt-song-title'),
     ytExternalLink: document.getElementById('yt-external-link'),
     // Settings
-    selectTheme: document.getElementById('select-bg-theme'),
     selectCase: document.getElementById('select-text-case'),
     btnPopout: document.getElementById('btn-popout-screen')
   };
@@ -75,23 +66,19 @@
       state.songs = window.IP26_SONGS;
       renderApp();
     } else {
-      // Fallback: try fetching scripts/songs_data.json or data/songs.js
-      fetch('../scripts/songs_data.json')
+      // Fallback: try fetching scripts/songs_data.json
+      fetch('scripts/songs_data.json')
         .then((res) => res.json())
         .then((data) => {
           state.songs = data;
           renderApp();
         })
         .catch(() => {
-          // If relative path fails, try root
-          fetch('data/songs.js')
-            .then((r) => r.text())
-            .then((t) => {
-              eval(t);
-              if (window.IP26_SONGS) {
-                state.songs = window.IP26_SONGS;
-                renderApp();
-              }
+          fetch('../scripts/songs_data.json')
+            .then((res) => res.json())
+            .then((data) => {
+              state.songs = data;
+              renderApp();
             })
             .catch((e) => console.error('Error loading songs:', e));
         });
@@ -306,10 +293,7 @@
 
     // 1. Auditorium LED Preview
     if (dom.ledScreen && dom.ledText) {
-      if (!state.destAudience) {
-        dom.ledScreen.style.background = '#000000';
-        dom.ledText.innerHTML = '<span style="color:#ef4444; font-family:var(--font-mono); font-size:11px; font-weight:800;">[ AUDIENCE SCREEN DISABLED ]</span>';
-      } else if (state.blackout) {
+      if (state.blackout) {
         dom.ledScreen.style.background = '#000000';
         dom.ledText.innerHTML = '';
       } else {
@@ -328,7 +312,7 @@
 
     // 2. Stream Lower-Third Preview
     if (dom.ltOverlay && dom.ltLine1 && dom.ltLine2) {
-      if (!state.destStream || state.blackout || state.clearAll || lines.length === 0) {
+      if (state.blackout || state.clearAll || lines.length === 0) {
         dom.ltOverlay.style.display = 'none';
       } else {
         dom.ltOverlay.style.display = 'flex';
@@ -346,10 +330,7 @@
     }
 
     if (dom.confCurrent && dom.confNext) {
-      if (!state.destStage) {
-        dom.confCurrent.innerHTML = '<span style="color:#ef4444; font-family:var(--font-mono); font-size:12px; font-weight:800;">[ STAGE DISPLAY DISABLED ]</span>';
-        dom.confNext.textContent = '---';
-      } else if (state.blackout) {
+      if (state.blackout) {
         dom.confCurrent.innerHTML = '<span style="color:#ef4444; font-family:var(--font-mono); font-size:13px; font-weight:800; letter-spacing:0.04em;">[ EMERGENCY BLACKOUT ACTIVE ]</span>';
         dom.confNext.textContent = '---';
       } else {
@@ -377,8 +358,6 @@
         lines: lines,
         nextLines: nextSlide ? nextSlide.lines : [],
         blackout: state.blackout,
-        clearBg: state.clearBg,
-        theme: state.theme,
         textCase: state.textCase
       });
     }
@@ -500,7 +479,7 @@
                 b.style.background = '#000';
                 t.innerHTML = '';
               } else {
-                b.style.background = data.clearBg ? '#000' : '#111113';
+                b.style.background = '#000';
                 t.innerHTML = data.lines.map(l => '<div>' + l + '</div>').join('');
               }
             };
@@ -529,11 +508,6 @@
       view.classList.toggle('active', isCurrent);
     });
 
-    // Update footer feed pills
-    document.querySelectorAll('.feed-pill[data-switch]').forEach((pill) => {
-      pill.classList.toggle('active', pill.dataset.switch === screenName);
-    });
-
     // Update active screen label
     if (dom.monitorActiveLabel) {
       if (screenName === 'audience') {
@@ -544,33 +518,6 @@
         dom.monitorActiveLabel.textContent = 'VIEWING: STREAM LOWER-THIRD (OBS)';
       }
     }
-  }
-
-  // --- DESTINATION TOGGLES ---
-  function toggleDestination(dest) {
-    if (dest === 'audience') {
-      state.destAudience = !state.destAudience;
-      if (dom.toggleAudience) {
-        dom.toggleAudience.classList.toggle('active', state.destAudience);
-        const st = dom.toggleAudience.querySelector('.dest-state');
-        if (st) st.textContent = state.destAudience ? 'ON' : 'OFF';
-      }
-    } else if (dest === 'stage') {
-      state.destStage = !state.destStage;
-      if (dom.toggleStage) {
-        dom.toggleStage.classList.toggle('active', state.destStage);
-        const st = dom.toggleStage.querySelector('.dest-state');
-        if (st) st.textContent = state.destStage ? 'ON' : 'OFF';
-      }
-    } else if (dest === 'stream') {
-      state.destStream = !state.destStream;
-      if (dom.toggleStream) {
-        dom.toggleStream.classList.toggle('active', state.destStream);
-        const st = dom.toggleStream.querySelector('.dest-state');
-        if (st) st.textContent = state.destStream ? 'ON' : 'OFF';
-      }
-    }
-    updateLiveOutput();
   }
 
   // --- STAGE DISPLAY CLOCK ---
@@ -596,24 +543,6 @@
       });
     });
 
-    // Destination Output Enable/Disable Toggles
-    if (dom.toggleAudience) {
-      dom.toggleAudience.addEventListener('click', () => toggleDestination('audience'));
-    }
-    if (dom.toggleStage) {
-      dom.toggleStage.addEventListener('click', () => toggleDestination('stage'));
-    }
-    if (dom.toggleStream) {
-      dom.toggleStream.addEventListener('click', () => toggleDestination('stream'));
-    }
-
-    // Monitor Footer Quick Feed Pills
-    document.querySelectorAll('.feed-pill[data-switch]').forEach((pill) => {
-      pill.addEventListener('click', () => {
-        setScreen(pill.dataset.switch);
-      });
-    });
-
     // Prev / Next Buttons
     if (dom.btnPrev) dom.btnPrev.addEventListener('click', prevSlide);
     if (dom.btnNext) dom.btnNext.addEventListener('click', nextSlide);
@@ -631,13 +560,6 @@
     }
 
     // Settings
-    if (dom.selectTheme) {
-      dom.selectTheme.addEventListener('change', (e) => {
-        state.theme = e.target.value;
-        updateLiveOutput();
-      });
-    }
-
     if (dom.selectCase) {
       dom.selectCase.addEventListener('change', (e) => {
         state.textCase = e.target.value;
@@ -737,16 +659,6 @@
     drawerNavLinks.forEach((link) => {
       link.addEventListener('click', closeMobileDrawer);
     });
-
-    // Realtime Viewport Resolution Telemetry for Desktop Lockout Screen
-    function updateResolutionReadout() {
-      const resEl = document.getElementById('current-screen-res');
-      if (resEl) {
-        resEl.textContent = `${window.innerWidth} × ${window.innerHeight} px`;
-      }
-    }
-    window.addEventListener('resize', updateResolutionReadout);
-    updateResolutionReadout();
   }
 
   // --- BOOTSTRAP ---
