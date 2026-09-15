@@ -79,19 +79,7 @@
 
       <!-- Navigation Links -->
       <nav class="nav-actions" aria-label="Navigasi Utama">
-        <a href="../index.html" class="nav-cta-btn" title="Home">
-          <span class="btn-icon">🏠</span> Home
-        </a>
-        <a href="../inventory.html" class="nav-cta-btn" title="Inventory">
-          <span class="btn-icon">📦</span> Inventory
-        </a>
-        <a href="../switcher.html" class="nav-cta-btn" title="Switcher">
-          <span class="btn-icon">🎛️</span> Switcher
-        </a>
-        <a href="index.html" class="nav-cta-btn active" title="Presenter">
-          <span class="btn-icon">🎶</span> Presenter
-        </a>
-        <button id="mobile-menu-toggle" class="mobile-menu-toggle-btn" aria-label="Buka Menu Navigasi" aria-expanded="false" aria-controls="mobile-nav-drawer">
+        <button id="mobile-menu-toggle" class="mobile-menu-toggle-btn" aria-label="Buka Menu Navigasi" aria-expanded="false" aria-controls="mobile-nav-drawer" title="Menu Navigasi">
           <span class="hamburger-bar"></span>
           <span class="hamburger-bar"></span>
           <span class="hamburger-bar"></span>
@@ -273,6 +261,63 @@
     </section>
 
   </main>
+
+  <!-- Mobile Navigation Drawer & Backdrop (Strict 4 Menus) -->
+  <div id="mobile-drawer-backdrop" class="mobile-drawer-backdrop" aria-hidden="true"></div>
+  <aside id="mobile-nav-drawer" class="mobile-nav-drawer" aria-label="Menu Navigasi Mobile" aria-hidden="true">
+    <div class="drawer-header">
+      <div class="drawer-brand">
+        <span class="brand-badge">IP26</span>
+        <div class="drawer-brand-text">
+          <span class="drawer-title">PROPRESENTER SIMULATOR</span>
+          <span class="drawer-sub">MENU NAVIGASI</span>
+        </div>
+      </div>
+      <button id="drawer-close-btn" class="drawer-close-btn" aria-label="Tutup Menu Navigasi">&times;</button>
+    </div>
+
+    <div class="drawer-content">
+      <div class="drawer-section-label">MENU UTAMA</div>
+      <ul class="drawer-nav-list">
+        <li>
+          <a href="../index.html" class="drawer-nav-link">
+            <span class="drawer-link-icon">🏠</span>
+            <div class="drawer-link-text">
+              <strong>Home</strong>
+              <small>Portal Utama Master Pipeline</small>
+            </div>
+          </a>
+        </li>
+        <li>
+          <a href="../inventory.html" class="drawer-nav-link">
+            <span class="drawer-link-icon">📦</span>
+            <div class="drawer-link-text">
+              <strong>Inventory</strong>
+              <small>Checklist Lapangan Realtime</small>
+            </div>
+          </a>
+        </li>
+        <li>
+          <a href="../switcher.html" class="drawer-nav-link">
+            <span class="drawer-link-icon">🎛️</span>
+            <div class="drawer-link-text">
+              <strong>Switcher</strong>
+              <small>Simulator Switcher Cinelive V1</small>
+            </div>
+          </a>
+        </li>
+        <li>
+          <a href="index.html" class="drawer-nav-link active">
+            <span class="drawer-link-icon">🎶</span>
+            <div class="drawer-link-text">
+              <strong>Presenter</strong>
+              <small>Simulator ProPresenter Live Lyrics</small>
+            </div>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </aside>
 
   <!-- Load Static Songs Data -->
   <script src="../data/songs.js"></script>

@@ -394,34 +394,7 @@ code {
 }
 
 .nav-actions .nav-cta-btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  background: #1e1e22;
-  border: 1px solid #333338;
-  color: #f4f4f5;
-  font-family: var(--font-body);
-  font-weight: 600;
-  font-size: 0.82rem;
-  padding: 6px 13px;
-  border-radius: 6px;
-  text-decoration: none;
-  transition: all 0.15s ease;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25);
-}
-
-.nav-actions .nav-cta-btn:hover {
-  background: #27272c;
-  border-color: #52525b;
-  color: #ffffff;
-  transform: translateY(-1px);
-}
-
-.nav-actions .nav-cta-btn.active {
-  background: rgba(0, 210, 255, 0.14);
-  border-color: var(--accent-cyan);
-  color: var(--accent-cyan);
-  box-shadow: 0 0 12px rgba(0, 210, 255, 0.3);
+  display: none !important;
 }
 
 .desktop-header.header-fluid .nav-container {
@@ -1751,9 +1724,9 @@ code {
    14. MOBILE NAVIGATION DRAWER & BOTTOM DOCK
    -------------------------------------------------------------------------- */
 .mobile-menu-toggle-btn {
-  display: none;
-  width: 38px;
-  height: 38px;
+  display: inline-flex;
+  width: 40px;
+  height: 40px;
   border-radius: var(--radius-md);
   background: var(--bg-surface-elevated);
   border: 1px solid var(--border-subtle);
@@ -1772,6 +1745,8 @@ code {
 .mobile-menu-toggle-btn:active {
   border-color: var(--accent-cyan);
   background: var(--bg-surface-hover);
+  box-shadow: 0 0 12px rgba(0, 210, 255, 0.25);
+  transform: translateY(-1px);
 }
 
 .hamburger-bar {
