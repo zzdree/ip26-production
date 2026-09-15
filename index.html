@@ -548,17 +548,8 @@ flowchart TB
               <div class="mermaid-container subsystem-diagram">
                 <pre class="mermaid">
 flowchart LR
-    subgraph CAM_2["CAM 2 (Mobile Wireless) — Kiel"]
-        C2["Sony ZV-E10 (Kiel)<br/>+ Lens 18-105MM (OWL)"] -->|Micro HDMI 30CM OWL| TX2["Hollyland Pyro S TX"]
-        TX2 -.->|Wireless 5GHz| RX2["Hollyland Pyro S RX"]
-        RX2 -->|HDMI 1.5M UKK| SW_IN2["Ch 2 Switcher"]
-    end
-
-    subgraph CAM_3["CAM 3 (Mobile Wireless) — Ferdy"]
-        C3["Sony A6000 (OWL)<br/>+ Lens 18-105MM (OWL)"] -->|Micro HDMI 30CM OWL| TX3["Hollyland Pyro H TX"]
-        TX3 -.->|Wireless 5GHz| RX3["Hollyland Pyro H RX"]
-        RX3 -->|HDMI 1.5M UKK| SW_IN3["Ch 3 Switcher"]
-    end
+    C2["CAM 2: Sony ZV-E10 (Kiel)"] -->|Micro HDMI| TX2["Pyro S TX"] -.->|Wireless 5GHz| RX2["Pyro S RX"] -->|HDMI 1.5M| SW2["Ch 2 Switcher"]
+    C3["CAM 3: Sony A6000 (Ferdy)"] -->|Micro HDMI| TX3["Pyro H TX"] -.->|Wireless 5GHz| RX3["Pyro H RX"] -->|HDMI 1.5M| SW3["Ch 3 Switcher"]
                 </pre>
               </div>
               <div class="subsystem-details-grid">
@@ -598,17 +589,8 @@ flowchart LR
               <div class="mermaid-container subsystem-diagram">
                 <pre class="mermaid">
 flowchart LR
-    subgraph CAM_1["CAM 1 (Steady Wired) — Alex"]
-        C1["Sony A6000 (OWL)<br/>+ Lens 18-105MM (OWL)"] -->|Micro Conv OWL| CAB1_A["HDMI 15M UKK"]
-        CAB1_A --> SPL_GKJ["HDMI Splitter 4CH GKJ<br/><i>(Active Repeater/Booster)</i>"]
-        SPL_GKJ --> CAB1_B["HDMI 10M GKJ"]
-        CAB1_B --> SW_IN1["Ch 1 Switcher"]
-    end
-
-    subgraph CAM_4["CAM 4 (Steady Wired) — Nia"]
-        C4["Sony A6000 (Jordan)<br/>+ Lens 16-50MM Kit (Jordan)"] -->|Micro Conv OWL| CAB4["HDMI Cable 10M UKK"]
-        CAB4 --> SW_IN4["Ch 4 Switcher"]
-    end
+    C1["CAM 1: Sony A6000 (Alex)"] -->|Micro Conv + HDMI 15M UKK| SPL["Active Splitter GKJ<br/><i>(Signal Booster)</i>"] -->|HDMI 10M GKJ| SW1["Ch 1 Switcher"]
+    C4["CAM 4: Sony A6000 (Nia)"] -->|Micro Conv + HDMI 10M UKK| SW4["Ch 4 Switcher"]
                 </pre>
               </div>
               <div class="subsystem-details-grid">
