@@ -99,34 +99,20 @@
         </div>
       </a>
 
-      <nav class="desktop-nav" aria-label="Navigasi Utama">
-        <ul class="nav-links">
-          <li><a href="#structure" class="nav-link"><span>👥</span> PIC</a></li>
-          <li><a href="#flowcharts" class="nav-link"><span>🗺️</span> Alur</a></li>
-          <li><a href="#subsystems" class="nav-link"><span>⚡</span> Sistem</a></li>
-          <li><a href="#cameras" class="nav-link"><span>🎥</span> Kamera</a></li>
-          <li><a href="#workstations" class="nav-link"><span>💻</span> Device</a></li>
-          <li><a href="#inventory" class="nav-link"><span>📦</span> Logistik</a></li>
-          <li><a href="#rundown" class="nav-link"><span>📋</span> Rundown</a></li>
-        </ul>
-      </nav>
-
-      <div class="nav-actions">
-        <a href="switcher.html" class="nav-cta-btn" aria-label="Buka Simulator Switcher Cinelive V1">
-          <span class="btn-icon">🎛️</span> Switcher
+      <nav class="nav-actions" aria-label="Navigasi Utama">
+        <a href="index.html" class="nav-cta-btn active" title="Home">
+          <span class="btn-icon">🏠</span> Home
         </a>
-        <a href="presenter.html" class="nav-cta-btn" aria-label="Buka Simulator ProPresenter">
-          <span class="btn-icon">🎶</span> Presenter
-        </a>
-        <a href="inventory.html" class="nav-cta-btn" aria-label="Buka Mode Inventaris Lapangan">
+        <a href="inventory.html" class="nav-cta-btn" title="Inventory">
           <span class="btn-icon">📦</span> Inventory
         </a>
-        <button id="mobile-menu-toggle" class="mobile-menu-toggle-btn" aria-label="Buka Menu Navigasi Lengkap" aria-expanded="false" aria-controls="mobile-nav-drawer">
-          <span class="hamburger-bar"></span>
-          <span class="hamburger-bar"></span>
-          <span class="hamburger-bar"></span>
-        </button>
-      </div>
+        <a href="switcher.html" class="nav-cta-btn" title="Switcher">
+          <span class="btn-icon">🎛️</span> Switcher
+        </a>
+        <a href="presenter.html" class="nav-cta-btn" title="Presenter">
+          <span class="btn-icon">🎶</span> Presenter
+        </a>
+      </nav>
     </div>
   </header>
 
@@ -187,7 +173,7 @@
 
         <div class="hero-cta-group">
           <a href="#flowcharts" class="btn btn-primary">🗺️ Buka Diagram Sinyal Master</a>
-          <a href="switcher.html" class="btn btn-secondary" style="border-color: #00d2ff; color: #00d2ff;">🎛️ Simulator Switcher V1</a>
+          <a href="switcher.html" class="btn btn-secondary" style="border-color: #00d2ff; color: #00d2ff;">🎛️ Simulator Switcher</a>
           <a href="presenter.html" class="btn btn-secondary" style="border-color: #a855f7; color: #c084fc;">🎶 Simulator ProPresenter</a>
           <a href="#cameras" class="btn btn-secondary">📹 Rantai Kamera & PIC</a>
           <a href="#inventory" class="btn btn-secondary">📋 Cek List Peminjaman</a>
@@ -2079,26 +2065,22 @@ All Rights Reserved.
   <!-- ========================================================================= -->
   <nav class="mobile-bottom-dock" aria-label="Mobile Navigation">
     <div class="dock-container">
-      <a href="#hero" class="dock-item active" data-nav="hero">
+      <a href="index.html" class="dock-item active">
         <span class="dock-icon">🏠</span>
         <span class="dock-label">Home</span>
       </a>
-      <a href="#structure" class="dock-item" data-nav="structure">
-        <span class="dock-icon">👥</span>
-        <span class="dock-label">PIC</span>
-      </a>
-      <a href="#flowcharts" class="dock-item" data-nav="flowcharts">
-        <span class="dock-icon">🗺️</span>
-        <span class="dock-label">Alur</span>
-      </a>
-      <a href="#inventory" class="dock-item" data-nav="inventory">
+      <a href="inventory.html" class="dock-item">
         <span class="dock-icon">📦</span>
-        <span class="dock-label">Logistik</span>
+        <span class="dock-label">Inventory</span>
       </a>
-      <button id="dock-menu-btn" class="dock-item dock-btn" aria-label="Buka Seluruh Menu Navigasi" aria-haspopup="true">
-        <span class="dock-icon">☰</span>
-        <span class="dock-label">Menu</span>
-      </button>
+      <a href="switcher.html" class="dock-item">
+        <span class="dock-icon">🎛️</span>
+        <span class="dock-label">Switcher</span>
+      </a>
+      <a href="presenter.html" class="dock-item">
+        <span class="dock-icon">🎶</span>
+        <span class="dock-label">Presenter</span>
+      </a>
     </div>
   </nav>
 
