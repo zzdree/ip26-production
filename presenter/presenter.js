@@ -6,14 +6,6 @@
 (function () {
   'use strict';
 
-  // --- BROADCAST CHANNEL FOR REAL-TIME EXTERNAL PROJECTOR SYNC ---
-  let broadcastChannel = null;
-  try {
-    broadcastChannel = new BroadcastChannel('ip26_presenter_feed');
-  } catch (e) {
-    // Unsupported in older browsers, fallback gracefully
-  }
-
   // --- APP STATE ---
   const state = {
     songs: [],
@@ -22,7 +14,6 @@
     clearAll: false,
     blackout: false,
     activeScreen: 'audience', // 'audience' | 'stage' | 'stream'
-    textCase: 'uppercase',
     searchQuery: '',
     ytPlayer: null
   };
@@ -53,11 +44,7 @@
     stageSectionTag: document.getElementById('stage-section-tag'),
     // YouTube
     ytIframe: document.getElementById('yt-iframe-player'),
-    ytTitle: document.getElementById('yt-song-title'),
-    ytExternalLink: document.getElementById('yt-external-link'),
-    // Settings
-    selectCase: document.getElementById('select-text-case'),
-    btnPopout: document.getElementById('btn-popout-screen')
+    ytTitle: document.getElementById('yt-song-title')
   };
 
   // --- INITIALIZE DATA ---
@@ -161,16 +148,13 @@
     if (dom.deckTitle) dom.deckTitle.textContent = song.title;
     if (dom.deckStats) dom.deckStats.textContent = `${song.totalSlides} slides • Track #${songIdx + 1}`;
 
-    // Update YouTube Iframe & Link
+    // Update YouTube Iframe
     if (song.youtubeId) {
       if (dom.ytIframe) {
         dom.ytIframe.src = `https://www.youtube.com/embed/${song.youtubeId}?enablejsapi=1&rel=0`;
       }
       if (dom.ytTitle) {
         dom.ytTitle.textContent = song.title;
-      }
-      if (dom.ytExternalLink) {
-        dom.ytExternalLink.href = `https://www.youtube.com/watch?v=${song.youtubeId}`;
       }
     }
 
@@ -350,26 +334,12 @@
       }
     }
 
-    // Broadcast state for popout projector
-    if (broadcastChannel) {
-      broadcastChannel.postMessage({
-        type: 'SLIDE_CHANGE',
-        songTitle: song.title,
-        lines: lines,
-        nextLines: nextSlide ? nextSlide.lines : [],
-        blackout: state.blackout,
-        textCase: state.textCase
-      });
-    }
   }
 
   // --- TEXT FORMATTER ---
   function formatLyricText(text) {
     if (!text) return '';
-    if (state.textCase === 'uppercase') {
-      return escapeHtml(text.toUpperCase());
-    }
-    return escapeHtml(text);
+    return escapeHtml(text.toUpperCase());
   }
 
   function escapeHtml(str) {
@@ -424,71 +394,6 @@
       dom.btnBlackout.classList.toggle('active', state.blackout);
     }
     updateLiveOutput();
-  }
-
-  // --- POPOUT AUDIENCE SCREEN ---
-  function openPopoutScreen() {
-    const w = 1280;
-    const h = 720;
-    const left = (screen.width - w) / 2;
-    const top = (screen.height - h) / 2;
-
-    const win = window.open(
-      '',
-      'IP26_Projector_Output',
-      `width=${w},height=${h},top=${top},left=${left},toolbar=no,location=no,status=no,menubar=no`
-    );
-
-    if (win) {
-      win.document.write(`
-        <!DOCTYPE html>
-        <html>
-        <head>
-          <title>IP26 Live Projector Feed</title>
-          <style>
-            * { margin:0; padding:0; box-sizing:border-box; }
-            body {
-              background:#000;
-              color:#fff;
-              font-family:'Plus Jakarta Sans', sans-serif;
-              display:flex;
-              align-items:center;
-              justify-content:center;
-              height:100vh;
-              overflow:hidden;
-              text-align:center;
-            }
-            .lyrics-wrap {
-              max-width:88vw;
-              font-size:5.5vh;
-              font-weight:700;
-              line-height:1.4;
-              text-shadow:0 4px 12px rgba(0,0,0,0.9);
-            }
-          </style>
-        </head>
-        <body id="b">
-          <div class="lyrics-wrap" id="t"></div>
-          <script>
-            const ch = new BroadcastChannel('ip26_presenter_feed');
-            ch.onmessage = (e) => {
-              const data = e.data;
-              const b = document.getElementById('b');
-              const t = document.getElementById('t');
-              if (data.blackout) {
-                b.style.background = '#000';
-                t.innerHTML = '';
-              } else {
-                b.style.background = '#000';
-                t.innerHTML = data.lines.map(l => '<div>' + l + '</div>').join('');
-              }
-            };
-          <\/script>
-        </body>
-        </html>
-      `);
-      win.document.close();
-    }
   }
 
   // --- SCREEN SELECTOR (PROPRESENTER 7 TABS) ---
@@ -558,19 +463,6 @@
         renderSongList();
       });
     }
-
-    // Settings
-    if (dom.selectCase) {
-      dom.selectCase.addEventListener('change', (e) => {
-        state.textCase = e.target.value;
-        const song = state.songs[state.currentSongIdx];
-        if (song) renderDeck(song);
-        updateLiveOutput();
-      });
-    }
-
-    // Popout
-    if (dom.btnPopout) dom.btnPopout.addEventListener('click', openPopoutScreen);
 
     // Keyboard Shortcuts
     window.addEventListener('keydown', (e) => {

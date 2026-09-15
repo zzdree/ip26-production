@@ -308,28 +308,6 @@ body.presenter-body {
   font-family: var(--font-mono);
 }
 
-.yt-controls-group {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-}
-
-.yt-mini-btn {
-  background: #202023;
-  border: 1px solid #333338;
-  color: #a1a1aa;
-  font-size: 10px;
-  padding: 2px 6px;
-  border-radius: 4px;
-  cursor: pointer;
-  text-decoration: none;
-}
-
-.yt-mini-btn:hover {
-  background: #2a2a2e;
-  color: var(--pp-accent);
-  border-color: var(--pp-accent);
-}
 
 .yt-frame-wrapper {
   position: relative;
@@ -970,69 +948,7 @@ body.presenter-body {
 }
 
 
-/* Customizer Settings Group */
-.customizer-section {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  background: #141416;
-  border: 1px solid #2e2e32;
-  border-radius: 8px;
-  padding: 12px;
-}
 
-.setting-row {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  font-size: 12px;
-}
-
-.setting-row label {
-  color: var(--pp-text-muted);
-}
-
-.setting-select {
-  background: #202023;
-  border: 1px solid #333338;
-  color: #f4f4f5;
-  border-radius: 4px;
-  padding: 4px 8px;
-  font-size: 11px;
-  outline: none;
-  transition: border-color 0.15s ease, box-shadow 0.15s ease;
-}
-
-.setting-select:focus {
-  border-color: var(--accent-cyan);
-  box-shadow: 0 0 0 2px rgba(0, 210, 255, 0.2);
-}
-
-.popout-btn {
-  background: #27272a;
-  border: 1px solid #3f3f46;
-  color: #f4f4f5;
-  font-family: var(--font-heading);
-  font-size: 13px;
-  font-weight: 700;
-  padding: 10px;
-  border-radius: 6px;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  transition: all 0.15s ease;
-  box-shadow: none;
-}
-
-.popout-btn:hover {
-  background: #2c2c32;
-  border-color: var(--accent-cyan);
-  color: var(--accent-cyan);
-  box-shadow: 0 0 12px rgba(0, 210, 255, 0.2);
-  transform: translateY(-1px);
-}
 
 /* ==========================================================================
    DESKTOP ONLY LOCKOUT SCREEN (< 1024px or portrait)
