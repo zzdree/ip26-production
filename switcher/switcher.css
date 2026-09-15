@@ -74,9 +74,10 @@ body.switcher-body {
 }
 
 .nav-btn.active {
-  color: #fff;
-  background: #27272a;
-  border-color: #52525b;
+  background: rgba(0, 210, 255, 0.14);
+  border-color: var(--accent-cyan);
+  color: var(--accent-cyan);
+  box-shadow: 0 0 12px rgba(0, 210, 255, 0.3);
 }
 
 .nav-btn.btn-presenter {
@@ -190,6 +191,12 @@ body.switcher-body {
   border: 1px solid #333338;
   border-radius: 5px;
   padding: 3px 8px;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.aux-route-selector-wrap:focus-within {
+  border-color: var(--accent-cyan);
+  box-shadow: 0 0 0 2px rgba(0, 210, 255, 0.2);
 }
 
 .aux-route-label {
@@ -1504,10 +1511,18 @@ body.multiview-fullscreen .mv-container {
   transition: all 0.15s ease;
 }
 
-.venue-3d-cam-btn:hover, .venue-3d-cam-btn.active {
-  background: #38383e;
-  border-color: #71717a;
+.venue-3d-cam-btn:hover {
+  background: #303035;
+  border-color: #52525b;
   color: #fff;
+  transform: translateY(-1px);
+}
+
+.venue-3d-cam-btn.active {
+  background: rgba(0, 210, 255, 0.14);
+  border-color: var(--accent-cyan);
+  color: var(--accent-cyan);
+  box-shadow: 0 0 10px rgba(0, 210, 255, 0.3);
 }
 
 .venue-3d-close {
