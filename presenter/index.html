@@ -20,42 +20,23 @@
   <!-- Background Technical Grid (Home Harmonized) -->
   <div class="hero-bg-grid" style="position:fixed; z-index:0; pointer-events:none;"></div>
 
-  <!-- Desktop Workstation Only Lockout Screen -->
-  <div id="desktop-lock-screen" class="desktop-lock-screen" role="alertdialog" aria-modal="true" aria-label="Workstation Screen Required">
+  <!-- Desktop Workstation Only Lockout Screen - Simple Warning -->
+  <div id="desktop-lock-screen" class="desktop-lock-screen" role="alertdialog" aria-modal="true" aria-label="Akses Komputer Diperlukan">
     <div class="lockout-card">
       <div class="lockout-badge">
         <span class="lockout-pulse-dot"></span>
-        <span>WORKSTATION ACCESS ONLY</span>
+        <span>KHUSUS KOMPUTER / DESKTOP</span>
       </div>
-      <div class="lockout-icon">🎶</div>
-      <h2 class="lockout-title">PROPRESENTER LIVE LYRICS SIMULATOR</h2>
+      <div class="lockout-icon">💻</div>
+      <h2 class="lockout-title">Hanya Dapat Dibuka di Laptop / PC</h2>
       <p class="lockout-desc">
-        Simulator ProPresenter 7 dirancang khusus untuk layar desktop workstation (minimal <strong>1024px landscape</strong>) guna mengoperasikan antarmuka 3-kolom studio siaran: lirik ibadah, YouTube backing track player, deck slide matrix 1-2 baris, LED preview, dan lower third broadcast output secara simultan.
+        Simulator <strong>ProPresenter Live Lyrics</strong> memerlukan layar komputer atau laptop untuk kontrol lirik ibadah, backing track, dan layar panggung.
       </p>
 
-      <div class="lockout-telemetry">
-        <div class="telemetry-row">
-          <span class="telemetry-lbl">Resolusi Layar Terdeteksi:</span>
-          <span class="telemetry-val" id="current-screen-res">Checking...</span>
-        </div>
-        <div class="telemetry-row">
-          <span class="telemetry-lbl">Standar Operator Multimedia:</span>
-          <span class="telemetry-val">≥ 1024 × 768 px (Landscape)</span>
-        </div>
-        <div class="telemetry-row">
-          <span class="telemetry-lbl">Status Kompatibilitas:</span>
-          <span class="telemetry-warn">Incompatible Mobile / Portrait Screen</span>
-        </div>
-      </div>
-
       <div class="lockout-actions">
-        <a href="../inventory.html" class="lockout-btn lockout-btn-primary">
-          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg>
-          Buka Inventaris Lapangan (Mobile-Friendly)
-        </a>
-        <a href="../index.html" class="lockout-btn lockout-btn-secondary">
+        <a href="../index.html" class="lockout-btn lockout-btn-primary">
           <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
-          Kembali ke Master Portal
+          Kembali ke Portal Utama
         </a>
       </div>
     </div>

@@ -36,6 +36,9 @@
       #desktop-lock-screen {
         display: flex !important;
       }
+      .main-content, .desktop-header, .desktop-footer {
+        display: none !important;
+      }
     }
 
     .satset-page-header {
@@ -87,42 +90,24 @@
   <!-- Background Technical Grid (Home Harmonized) -->
   <div class="hero-bg-grid" style="position:fixed; z-index:0; pointer-events:none;"></div>
 
-  <!-- Desktop Screen Blocker (>768px) with Home Harmonized Design -->
-  <div id="desktop-lock-screen" class="desktop-lock-screen" role="alertdialog" aria-modal="true" aria-label="Mobile Screen Required">
+  <!-- Desktop Screen Blocker (>768px) - Simple Warning -->
+  <div id="desktop-lock-screen" class="desktop-lock-screen" role="alertdialog" aria-modal="true" aria-label="Akses Smartphone Diperlukan">
     <div class="lockout-card">
       <div class="lockout-badge lockout-badge-amber">
         <span class="lockout-pulse-dot pulse-amber"></span>
-        <span>MOBILE WORKFLOW ONLY</span>
+        <span>KHUSUS SMARTPHONE</span>
       </div>
-      <div class="lockout-icon">📦</div>
-      <h2 class="lockout-title">INVENTARIS LAPANGAN REALTIME</h2>
+      <div class="lockout-icon">📱</div>
+      <h2 class="lockout-title">Hanya Dapat Dibuka di HP / Smartphone</h2>
       <p class="lockout-desc">
-        Halaman <strong>Inventaris Lapangan</strong> dirancang khusus dengan antarmuka taktis smartphone untuk kru di lapangan saat Hari H. Silakan buka tautan ini melalui browser ponsel Anda atau kembali ke portal utama.
+        Halaman <strong>Inventaris Lapangan</strong> hanya dapat diakses melalui smartphone untuk operasional kru di lapangan.
       </p>
-
-      <div class="lockout-telemetry">
-        <div class="telemetry-row">
-          <span class="telemetry-lbl">Resolusi Layar Terdeteksi:</span>
-          <span class="telemetry-val" id="current-screen-res">Desktop Viewport</span>
-        </div>
-        <div class="telemetry-row">
-          <span class="telemetry-lbl">Standar Kru Lapangan:</span>
-          <span class="telemetry-val">Smartphone (≤ 768px)</span>
-        </div>
-        <div class="telemetry-row">
-          <span class="telemetry-lbl">Status Sinkronisasi:</span>
-          <span class="telemetry-warn">Cloud Realtime Active</span>
-        </div>
-      </div>
 
       <div class="lockout-actions">
         <a href="../index.html" class="lockout-btn lockout-btn-primary">
           <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
-          Buka Master Portal Utama
+          Kembali ke Portal Utama
         </a>
-        <button type="button" id="btn-bypass-desktop-lock" class="lockout-btn lockout-btn-secondary">
-          Tetap Buka di Desktop (Mode FOH) →
-        </button>
       </div>
     </div>
   </div>
