@@ -519,20 +519,33 @@ flowchart TB
           <p class="section-subtitle">Rincian perkabelan, konverter, transmitter, dan spesifikasi sinyal per divisi.</p>
         </div>
 
-        <!-- Subsystem Accordion / Cards -->
+        <!-- Subsystem Quick Jump Navigation Pills -->
+        <nav class="subsystem-nav-pills" aria-label="Navigasi Cepat 6 Sub-Sistem">
+          <a href="#subsystem-1" class="subsystem-nav-pill"><span>01</span> Wireless Cam</a>
+          <a href="#subsystem-2" class="subsystem-nav-pill"><span>02</span> Wired Cam</a>
+          <a href="#subsystem-3" class="subsystem-nav-pill"><span>03</span> Video & LED</a>
+          <a href="#subsystem-4" class="subsystem-nav-pill"><span>04</span> Audio & Streaming</a>
+          <a href="#subsystem-5" class="subsystem-nav-pill"><span>05</span> Time Keeper</a>
+          <a href="#subsystem-6" class="subsystem-nav-pill"><span>06</span> Distribusi Daya</a>
+        </nav>
+
+        <!-- Subsystem Deep-Dive Cards Stack -->
         <div class="subsystems-grid">
           
           <!-- Subsystem 1: Wireless Cameras -->
-          <div class="subsystem-card">
+          <div class="subsystem-card" id="subsystem-1">
             <div class="subsystem-header">
-              <span class="subsystem-num">01</span>
-              <div>
-                <h3 class="subsystem-title">Sub-Sistem Kamera Wireless (CAM 2 & CAM 3)</h3>
-                <span class="subsystem-sub">Sony ZV-E10 (Kiel) & Sony A6000 (OWL) ➔ Hollyland Pyro S & H ➔ Ch 2 & 3</span>
+              <div class="subsystem-header-left">
+                <span class="subsystem-num">01</span>
+                <div>
+                  <h3 class="subsystem-title">Sub-Sistem Kamera Wireless (CAM 2 & CAM 3)</h3>
+                  <span class="subsystem-sub">Sony ZV-E10 (Kiel) & Sony A6000 (OWL) ➔ Hollyland Pyro S & H ➔ Ch 2 & 3</span>
+                </div>
               </div>
+              <span class="subsystem-badge">WIRELESS 5GHz</span>
             </div>
             <div class="subsystem-body">
-              <div class="mermaid-container">
+              <div class="mermaid-container subsystem-diagram">
                 <pre class="mermaid">
 flowchart LR
     subgraph CAM_2["CAM 2 (Mobile Wireless) — Kiel"]
@@ -548,33 +561,41 @@ flowchart LR
     end
                 </pre>
               </div>
-              <div class="tech-route-box">
-                <div class="route-item">
-                  <span class="route-tag">CAM 2 (Kiel)</span>
-                  <code>Sony ZV-E10 (Kiel) + Lensa 18-105MM (OWL) + Battery X2 (Kiel) + Micro HDMI 30CM OWL ➔ Hollyland Pyro S TX ➔ [Wireless 5GHz] ➔ Pyro S RX (Stand UKK) + HDMI 1.5M UKK ➔ Ch 2 Switcher</code>
+              <div class="subsystem-details-grid">
+                <div class="tech-route-box">
+                  <div class="route-item">
+                    <span class="route-tag">CAM 2 (Kiel)</span>
+                    <code>Sony ZV-E10 (Kiel) + Lensa 18-105MM (OWL) + Battery X2 (Kiel) + Micro HDMI 30CM OWL ➔ Hollyland Pyro S TX ➔ [Wireless 5GHz] ➔ Pyro S RX (Stand UKK) + HDMI 1.5M UKK ➔ Ch 2 Switcher</code>
+                  </div>
+                  <div class="route-item">
+                    <span class="route-tag">CAM 3 (Ferdy)</span>
+                    <code>Sony A6000 (OWL) + Lensa 18-105MM (OWL) + Tripod Big (GIA) + Micro HDMI 30CM OWL ➔ Hollyland Pyro H TX ➔ [Wireless 5GHz] ➔ Pyro H RX (Stand UKK) + HDMI 1.5M UKK ➔ Ch 3 Switcher</code>
+                  </div>
                 </div>
-                <div class="route-item">
-                  <span class="route-tag">CAM 3 (Ferdy)</span>
-                  <code>Sony A6000 (OWL) + Lensa 18-105MM (OWL) + Tripod Big (GIA) + Micro HDMI 30CM OWL ➔ Hollyland Pyro H TX ➔ [Wireless 5GHz] ➔ Pyro H RX (Stand UKK) + HDMI 1.5M UKK ➔ Ch 3 Switcher</code>
+                <div class="subsystem-desc-card">
+                  <div class="desc-header">💡 Analisis & Penjelasan Operasional</div>
+                  <p class="subsystem-desc">
+                    Mengombinasikan 2 kamera nirkabel berlatensi rendah untuk mobilitas dinamis jemaat dan panggung. Receiver Hollyland diletakkan pada Stand Lighting Small UKK di depan FOH agar bebas halangan (<em>line-of-sight</em>) langsung ke panggung tanpa gangguan interferensi WiFi audiens.
+                  </p>
                 </div>
               </div>
-              <p class="subsystem-desc">
-                <strong>Penjelasan:</strong> Mengombinasikan 2 kamera nirkabel berlatensi rendah untuk mobilitas dinamis jemaat dan panggung. Receiver Hollyland diletakkan pada Stand Lighting Small UKK agar bebas halangan (*line-of-sight*).
-              </p>
             </div>
           </div>
 
           <!-- Subsystem 2: Wired Cameras -->
-          <div class="subsystem-card">
+          <div class="subsystem-card" id="subsystem-2">
             <div class="subsystem-header">
-              <span class="subsystem-num">02</span>
-              <div>
-                <h3 class="subsystem-title">Sub-Sistem Kamera Kabel / Wired (CAM 1 & CAM 4)</h3>
-                <span class="subsystem-sub">Sony A6000 (OWL & Jordan) ➔ Active Repeater GKJ & Cable UKK ➔ Ch 1 & 4</span>
+              <div class="subsystem-header-left">
+                <span class="subsystem-num">02</span>
+                <div>
+                  <h3 class="subsystem-title">Sub-Sistem Kamera Kabel / Wired (CAM 1 & CAM 4)</h3>
+                  <span class="subsystem-sub">Sony A6000 (OWL & Jordan) ➔ Active Repeater GKJ & Cable UKK ➔ Ch 1 & 4</span>
+                </div>
               </div>
+              <span class="subsystem-badge">WIRED HDMI</span>
             </div>
             <div class="subsystem-body">
-              <div class="mermaid-container">
+              <div class="mermaid-container subsystem-diagram">
                 <pre class="mermaid">
 flowchart LR
     subgraph CAM_1["CAM 1 (Steady Wired) — Alex"]
@@ -590,37 +611,45 @@ flowchart LR
     end
                 </pre>
               </div>
-              <div class="tech-route-box">
-                <div class="route-item">
-                  <span class="route-tag">CAM 1 (Alex)</span>
-                  <code>Sony A6000 (OWL) + Lensa 18-105MM (OWL) + Micro HDMI Conv (OWL) + HDMI 15M UKK ➔ HDMI Splitter 4CH GKJ (Active Booster) ➔ HDMI 10M GKJ ➔ Ch 1 Switcher</code>
+              <div class="subsystem-details-grid">
+                <div class="tech-route-box">
+                  <div class="route-item">
+                    <span class="route-tag">CAM 1 (Alex)</span>
+                    <code>Sony A6000 (OWL) + Lensa 18-105MM (OWL) + Micro HDMI Conv (OWL) + HDMI 15M UKK ➔ HDMI Splitter 4CH GKJ (Active Booster) ➔ HDMI 10M GKJ ➔ Ch 1 Switcher</code>
+                  </div>
+                  <div class="route-item">
+                    <span class="route-tag">CAM 4 (Nia)</span>
+                    <code>Sony A6000 (Jordan) + Lensa 16-50MM Kit (Jordan) + Micro HDMI Conv (OWL) + HDMI 10M UKK ➔ Ch 4 Switcher</code>
+                  </div>
+                  <div class="route-item">
+                    <span class="route-tag">Cadangan Darurat</span>
+                    <code>2x HDMI to Micro HDMI Converter Panitia disiagakan di toolbox FOH</code>
+                  </div>
                 </div>
-                <div class="route-item">
-                  <span class="route-tag">CAM 4 (Nia)</span>
-                  <code>Sony A6000 (Jordan) + Lensa 16-50MM Kit (Jordan) + Micro HDMI Conv (OWL) + HDMI 10M UKK ➔ Ch 4 Switcher</code>
-                </div>
-                <div class="route-item">
-                  <span class="route-tag">Backup</span>
-                  <code>2x HDMI to Micro HDMI Converter Panitia disiagakan di kotak perkakas</code>
+                <div class="subsystem-desc-card">
+                  <div class="desc-header">💡 Analisis & Penjelasan Operasional</div>
+                  <p class="subsystem-desc">
+                    Menggunakan 2 unit Sony A6000 stabil bertripod. Jalur CAM 1 Alex yang berjarak total 25 meter diperkuat menggunakan HDMI Splitter 4CH GKJ bertenaga adaptor aktif sebagai <em>signal booster</em> sehingga transmisi Full HD 1080p60 stabil tanpa distorsi warna ataupun <em>blackout flickering</em>.
+                  </p>
                 </div>
               </div>
-              <p class="subsystem-desc">
-                <strong>Penjelasan:</strong> Menggunakan 2 unit Sony A6000 stabil bertripod. Jalur CAM 1 Alex yang berjarak 25 meter diperkuat menggunakan HDMI Splitter 4CH GKJ sebagai active repeater berdaya adaptor agar sinyal Full HD tetap jernih tanpa degradasi warna atau flickering.
-              </p>
             </div>
           </div>
 
           <!-- Subsystem 3: Video & LED -->
-          <div class="subsystem-card">
+          <div class="subsystem-card" id="subsystem-3">
             <div class="subsystem-header">
-              <span class="subsystem-num">03</span>
-              <div>
-                <h3 class="subsystem-title">Sub-Sistem Distribusi Video & Pemetaan LED</h3>
-                <span class="subsystem-sub">ProPresenter 1 (Nico) & 2 (Wilfred) ➔ Resolume Arena (Bayu) ➔ Novastar UNNES</span>
+              <div class="subsystem-header-left">
+                <span class="subsystem-num">03</span>
+                <div>
+                  <h3 class="subsystem-title">Sub-Sistem Distribusi Video & Pemetaan LED</h3>
+                  <span class="subsystem-sub">ProPresenter 1 (Nico) & 2 (Wilfred) ➔ Resolume Arena (Bayu) ➔ Novastar UNNES</span>
+                </div>
               </div>
+              <span class="subsystem-badge">RESOLUME & NOVASTAR</span>
             </div>
             <div class="subsystem-body">
-              <div class="mermaid-container">
+              <div class="mermaid-container subsystem-diagram">
                 <pre class="mermaid">
 flowchart LR
     SW_OUT["Switcher Cinetreak V1 (OWL)"] -->|USB A to C Data Andreas| P1_LAP["Laptop ProPresenter 1 (Nico)<br/><i>Operator: Rania</i>"]
@@ -638,33 +667,41 @@ flowchart LR
     RES_OUT -->|HDMI 15M GKJ + Capture GKJ| PC_UN["PC UNNES"] --> NOV2["Novastar 2"] --> LED_MID["LED Center Main Stage"]
                 </pre>
               </div>
-              <div class="tech-route-box">
-                <div class="route-item">
-                  <span class="route-tag">Layar Samping & Belakang</span>
-                  <code>ProPresenter 1 (Nico) ➔ HDMI 1.5M GIA ➔ Splitter 4CH UKK ➔ HDMI 1.5M Andreas + Capture ABON ➔ OBS Studio (Andreas) ➔ HDMI 20M UNNES ➔ Novastar 1 ➔ LED Left, Right & Back</code>
+              <div class="subsystem-details-grid">
+                <div class="tech-route-box">
+                  <div class="route-item">
+                    <span class="route-tag">Layar Samping & Belakang</span>
+                    <code>ProPresenter 1 (Nico) ➔ HDMI 1.5M GIA ➔ Splitter 4CH UKK ➔ HDMI 1.5M Andreas + Capture ABON ➔ OBS Studio (Andreas) ➔ HDMI 20M UNNES ➔ Novastar 1 ➔ LED Left, Right & Back</code>
+                  </div>
+                  <div class="route-item">
+                    <span class="route-tag">Layar Tengah (Main Stage)</span>
+                    <code>ProPresenter 2 (Wilfred) + Splitter PGM ➔ 2x Capture (OWL & ABON) ➔ Resolume Arena (Bayu - Andreas) ➔ HDMI 15M GKJ + Capture GKJ di PC UNNES ➔ Novastar 2 ➔ LED Center</code>
+                  </div>
                 </div>
-                <div class="route-item">
-                  <span class="route-tag">Layar Tengah (Main Stage)</span>
-                  <code>ProPresenter 2 (Wilfred) + Splitter PGM ➔ 2x Capture (OWL & ABON) ➔ Resolume Arena (Bayu - Andreas) ➔ HDMI 15M GKJ + Capture GKJ di PC UNNES ➔ Novastar 2 ➔ LED Center</code>
+                <div class="subsystem-desc-card">
+                  <div class="desc-header">💡 Analisis & Penjelasan Operasional</div>
+                  <p class="subsystem-desc">
+                    Laptop Resolume Arena (Bayu) bertindak sebagai <em>master video compositor</em> untuk memadukan lirik lagu dari ProPresenter 2 (Wilfred) dengan motion graphic dinamis dan feed live kamera. Layar sayap dan belakang diproses via Laptop OBS Studio melalui kabel panjang 20M UNNES ke Novastar 1 secara mandiri.
+                  </p>
                 </div>
               </div>
-              <p class="subsystem-desc">
-                <strong>Penjelasan:</strong> Laptop Resolume Arena (Bayu) dioperasikan Andreas bertindak sebagai compositor panggung tengah untuk menggabungkan lirik lagu dari ProPresenter 2 (Wilfred) dengan motion loop background dan feed kamera. Layar sayap dan belakang diproses via Laptop OBS Studio (Andreas) melalui kabel panjang 20M UNNES ke Novastar 1.
-              </p>
             </div>
           </div>
 
           <!-- Subsystem 4: Audio & Streaming -->
-          <div class="subsystem-card">
+          <div class="subsystem-card" id="subsystem-4">
             <div class="subsystem-header">
-              <span class="subsystem-num">04</span>
-              <div>
-                <h3 class="subsystem-title">Sub-Sistem Audio FOH, Sub-Mixing & Streaming</h3>
-                <span class="subsystem-sub">Yamaha QL5 UNNES ➔ XLR 30M Jordan ➔ NewBaxs CT80S GIA ➔ OBS Studio</span>
+              <div class="subsystem-header-left">
+                <span class="subsystem-num">04</span>
+                <div>
+                  <h3 class="subsystem-title">Sub-Sistem Audio FOH, Sub-Mixing & Streaming</h3>
+                  <span class="subsystem-sub">Yamaha QL5 UNNES ➔ XLR 30M Jordan ➔ NewBaxs CT80S GIA ➔ OBS Studio</span>
+                </div>
               </div>
+              <span class="subsystem-badge">FOH & BROADCAST AUDIO</span>
             </div>
             <div class="subsystem-body">
-              <div class="mermaid-container">
+              <div class="mermaid-container subsystem-diagram">
                 <pre class="mermaid">
 flowchart LR
     STAGE_SRC["Stage Mics & Band Instruments"] --> QL5_MAIN["Yamaha QL5 (Auditorium UNNES)"]
@@ -681,66 +718,82 @@ flowchart LR
     OBS_IN --> STREAM_OUT["🚀 YouTube Live Stream"]
                 </pre>
               </div>
-              <div class="tech-route-box">
-                <div class="route-item">
-                  <span class="route-tag">FOH Master Console</span>
-                  <code>Stage Mics & Musik + Audio Playback ProPresenter 1 (USB-C DAC Hanason/Oraimo + Kabel Audio 20M UNNES) ➔ Yamaha QL5 UNNES (Jordan / Yosua)</code>
+              <div class="subsystem-details-grid">
+                <div class="tech-route-box">
+                  <div class="route-item">
+                    <span class="route-tag">FOH Master Console</span>
+                    <code>Stage Mics & Musik + Audio Playback ProPresenter 1 (USB-C DAC Hanason/Oraimo + Kabel Audio 20M UNNES) ➔ Yamaha QL5 UNNES (Jordan / Yosua)</code>
+                  </div>
+                  <div class="route-item">
+                    <span class="route-tag">Streaming Audio Submix</span>
+                    <code>Yamaha QL5 Out ➔ XLR Female to Male 30M Jordan ➔ Mixer NewBaxs CT80S GIA (Andreas) ➔ USB A to USB C Data Cable GIA ➔ Laptop OBS Studio</code>
+                  </div>
+                  <div class="route-item">
+                    <span class="route-tag">Virtual Mixing Remotes</span>
+                    <code>Yamaha QL5 ➔ [WiFi UNNES-ID] ➔ VM1 (MacBook Jordan), VM2 (iPad Filia + Monitor Evan), VM3 (iPad Jennifer), VM4 (iPad Alex)</code>
+                  </div>
                 </div>
-                <div class="route-item">
-                  <span class="route-tag">Streaming Audio Submix</span>
-                  <code>Yamaha QL5 Out ➔ XLR Female to Male 30M Jordan ➔ Mixer NewBaxs CT80S GIA (Andreas) ➔ USB A to USB C Data Cable GIA ➔ Laptop OBS Studio</code>
-                </div>
-                <div class="route-item">
-                  <span class="route-tag">Virtual Mixing Remotes</span>
-                  <code>Yamaha QL5 ➔ [WiFi UNNES-ID] ➔ VM1 (MacBook Jordan), VM2 (iPad Filia + Monitor Evan - Jordan), VM3 (iPad Jennifer - Jordan), VM4 (iPad Alex - Yosua)</code>
+                <div class="subsystem-desc-card">
+                  <div class="desc-header">💡 Analisis & Penjelasan Operasional</div>
+                  <p class="subsystem-desc">
+                    Audio streaming dipisahkan secara fisik via submix Mixer NewBaxs CT80S agar dinamika akustik ruangan auditorium tidak merusak balance siaran YouTube. Tim sound engineer mengontrol mixer utama Yamaha QL5 secara mobile menggunakan 4 workstation iPad/MacBook terhubung ke jaringan internal WiFi.
+                  </p>
                 </div>
               </div>
-              <p class="subsystem-desc">
-                <strong>Penjelasan:</strong> Audio streaming dipisahkan secara fisik via submix Mixer NewBaxs CT80S agar dinamika akustik aula tidak merusak siaran YouTube. Sound engineer mengontrol FOH secara mobile menggunakan 4 workstation tablet/laptop terhubung ke WiFi UNNES-ID.
-              </p>
             </div>
           </div>
 
           <!-- Subsystem 5: Time Keeper (ProPresenter 3 + TV) -->
-          <div class="subsystem-card">
+          <div class="subsystem-card" id="subsystem-5">
             <div class="subsystem-header">
-              <span class="subsystem-num">05</span>
-              <div>
-                <h3 class="subsystem-title">Sub-Sistem Time Keeper Panggung</h3>
-                <span class="subsystem-sub">Laptop ProPresenter 3 (Acara) ➔ HDMI 1.5M GIA ➔ Television (PlayStation)</span>
+              <div class="subsystem-header-left">
+                <span class="subsystem-num">05</span>
+                <div>
+                  <h3 class="subsystem-title">Sub-Sistem Time Keeper Panggung</h3>
+                  <span class="subsystem-sub">Laptop ProPresenter 3 (Acara) ➔ HDMI 1.5M GIA ➔ Television (PlayStation)</span>
+                </div>
               </div>
+              <span class="subsystem-badge">STAGE COUNTDOWN</span>
             </div>
             <div class="subsystem-body">
-              <div class="mermaid-container">
+              <div class="mermaid-container subsystem-diagram">
                 <pre class="mermaid">
 flowchart LR
     PWR_UKK["Terminal Cable XCH (UKK)"] --> P3["Laptop ProPresenter 3 (Acara)"]
-    P3 -->|HDMI to HDMI Cable 1.5M (GIA)| TV["Television (PlayStation)"]
+    P3 -->|HDMI 1.5M GIA| TV["Television — Stage Timer Display"]
                 </pre>
               </div>
-              <div class="tech-route-box">
-                <div class="route-item">
-                  <span class="route-tag">Jalur Time Keeper</span>
-                  <code>Terminal Cable XCH UKK ➔ Laptop ProPresenter 3 (Acara) ➔ HDMI to HDMI Cable 1.5M GIA ➔ Television (PlayStation)</code>
+              <div class="subsystem-details-grid">
+                <div class="tech-route-box">
+                  <div class="route-item">
+                    <span class="route-tag">Jalur Time Keeper</span>
+                    <code>Terminal Cable XCH UKK ➔ Laptop ProPresenter 3 (Acara) ➔ HDMI to HDMI Cable 1.5M GIA ➔ Television (PlayStation)</code>
+                  </div>
+                </div>
+                <div class="subsystem-desc-card">
+                  <div class="desc-header">💡 Analisis & Penjelasan Operasional</div>
+                  <p class="subsystem-desc">
+                    Sistem pengatur waktu (time keeper) panggung terisolasi mandiri dari broadcast dan visual engine utama. Didedikasikan khusus untuk display waktu / countdown bagi pengkhotbah, MC, dan Worship Leader di bibir panggung Auditorium UNNES agar durasi ibadah terpantau presisi.
+                  </p>
                 </div>
               </div>
-              <p class="subsystem-desc">
-                <strong>Penjelasan:</strong> Sistem pengatur waktu (time keeper) panggung terpisah secara independen dari broadcast dan visual engine utama. Didedikasikan khusus untuk display waktu / countdown bagi pengkhotbah, MC, dan Worship Leader di atas panggung Auditorium UNNES.
-              </p>
             </div>
           </div>
 
           <!-- Subsystem 6: Electrical -->
-          <div class="subsystem-card">
+          <div class="subsystem-card" id="subsystem-6">
             <div class="subsystem-header">
-              <span class="subsystem-num">06</span>
-              <div>
-                <h3 class="subsystem-title">Sub-Sistem Distribusi Daya & Grounding</h3>
-                <span class="subsystem-sub">Isolasi 3 Jalur Terminal Mandiri (Andreas, UKK, Panitia)</span>
+              <div class="subsystem-header-left">
+                <span class="subsystem-num">06</span>
+                <div>
+                  <h3 class="subsystem-title">Sub-Sistem Distribusi Daya & Grounding</h3>
+                  <span class="subsystem-sub">Isolasi 3 Jalur Terminal Mandiri (Andreas, UKK, Panitia)</span>
+                </div>
               </div>
+              <span class="subsystem-badge">POWER ISOLATION</span>
             </div>
             <div class="subsystem-body">
-              <div class="mermaid-container">
+              <div class="mermaid-container subsystem-diagram">
                 <pre class="mermaid">
 flowchart LR
     SOURCE["⚡ Daya Auditorium UNNES"] --> MAIN_PANEL["Panel Distribusi Listrik"]
@@ -754,23 +807,28 @@ flowchart LR
     T3 --> D3["NewBaxs CT80S, Laptop ProPresenter 1 & 2, Station Charger"]
                 </pre>
               </div>
-              <div class="tech-route-box">
-                <div class="route-item">
-                  <span class="route-tag">Jalur 1: Andreas (Broadcast & IT)</span>
-                  <code>Terminal Cable XCH Andreas ➔ Laptop OBS Studio, Fan Desk, Light Desk, Fan Cooler, Charger Baterai</code>
+              <div class="subsystem-details-grid">
+                <div class="tech-route-box">
+                  <div class="route-item">
+                    <span class="route-tag">Jalur 1: Andreas (Broadcast & IT)</span>
+                    <code>Terminal Cable XCH Andreas ➔ Laptop OBS Studio, Fan Desk, Light Desk, Fan Cooler, Charger Baterai</code>
+                  </div>
+                  <div class="route-item">
+                    <span class="route-tag">Jalur 2: UKK (Visual, Switcher & FX)</span>
+                    <code>Terminal Cable XCH UKK ➔ Cinetreak V1, Monitor Armageddon, Splitter 4CH UKK, Smoke Fogger 900W</code>
+                  </div>
+                  <div class="route-item">
+                    <span class="route-tag">Jalur 3: Panitia (Audio & FOH)</span>
+                    <code>Terminal Cable XCH Panitia ➔ NewBaxs CT80S, Laptop ProPresenter 1 & 2, Station Charging Kamera</code>
+                  </div>
                 </div>
-                <div class="route-item">
-                  <span class="route-tag">Jalur 2: UKK (Visual, Switcher & FX)</span>
-                  <code>Terminal Cable XCH UKK ➔ Cinetreak V1, Monitor Armageddon, Splitter 4CH UKK, Smoke Fogger 900W</code>
-                </div>
-                <div class="route-item">
-                  <span class="route-tag">Jalur 3: Panitia (Audio & FOH)</span>
-                  <code>Terminal Cable XCH Panitia ➔ NewBaxs CT80S, Laptop ProPresenter 1 & 2, Station Charging Kamera</code>
+                <div class="subsystem-desc-card">
+                  <div class="desc-header">💡 Analisis & Penjelasan Operasional</div>
+                  <p class="subsystem-desc">
+                    Pemisahan beban daya menjadi 3 terminal mandiri mencegah terjadinya <em>ground loop hum</em> pada sinyal audio analog dan melindungi workstation laptop serta switcher video dari kejutan lonjakan arus saat elemen pemanas mesin smoke fogger 900W menyala.
+                  </p>
                 </div>
               </div>
-              <p class="subsystem-desc">
-                <strong>Penjelasan:</strong> Pemisahan beban daya menjadi 3 terminal mandiri mencegah terjadinya *ground loop hum* pada sinyal audio analog dan melindungi laptop serta switcher dari kejutan lonjakan arus mesin pemanas smoke fogger.
-              </p>
             </div>
           </div>
 
