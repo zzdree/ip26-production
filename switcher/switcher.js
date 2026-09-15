@@ -10,7 +10,6 @@
   const state = {
     pgm: 1,
     pvw: 2,
-    aux: 'MV',          // 'MV' (Multiview Monitor), '1', '2', '3', '4', 'PVW', 'PGM'
     prevPgm: 1,
     transEffect: 'MIX', // 'MIX', 'WIPE_H', 'WIPE_V', 'DIP'
     transRate: 1.0,     // 0.5, 1.0, 1.5, 2.0
@@ -32,7 +31,6 @@
     afvMode: true,
     liveStreaming: true,
     recording: true,
-    menuIndex: 0,
     timecode: { h: 1, m: 24, s: 50, f: 0 },
     camConfigs: {
       1: { name: 'CAM 1', desc: 'Sony A6000 Wired (Tengah FOH ➔ Stage Depan)', resolution: '1080p60' },
@@ -110,8 +108,7 @@
     3: document.getElementById('canvas-cam3'),
     4: document.getElementById('canvas-cam4'),
     pvw: document.getElementById('canvas-pvw'),
-    pgm: document.getElementById('canvas-pgm'),
-    aux: document.getElementById('canvas-aux')
+    pgm: document.getElementById('canvas-pgm')
   };
 
   const contexts = {};
@@ -981,55 +978,6 @@
       drawProgramOutput(contexts.pgm, canvases.pgm.width, canvases.pgm.height, t);
     }
 
-    // Draw AUX Output Monitor (HDMI 2 / External Monitor)
-    if (canvases.aux && contexts.aux) {
-      const aw = canvases.aux.width;
-      const ah = canvases.aux.height;
-      contexts.aux.clearRect(0, 0, aw, ah);
-
-      if (state.aux === 'MV') {
-        // Multi-view mode on AUX monitor: Top PVW/PGM + Bottom 4 cams (CineLive V1 layout)
-        const topH = Math.floor(ah * 0.60);
-        const btmH = ah - topH;
-        const halfW = Math.floor(aw / 2);
-        const colW = Math.floor(aw / 4);
-
-        // Top PVW (left half)
-        contexts.aux.save();
-        contexts.aux.translate(0, 0);
-        drawCam(state.pvw, contexts.aux, halfW, topH, t);
-        contexts.aux.strokeStyle = '#10b981';
-        contexts.aux.lineWidth = 1;
-        contexts.aux.strokeRect(0, 0, halfW, topH);
-        contexts.aux.restore();
-
-        // Top PGM (right half)
-        contexts.aux.save();
-        contexts.aux.translate(halfW, 0);
-        drawProgramOutput(contexts.aux, halfW, topH, t);
-        contexts.aux.strokeStyle = '#ff3344';
-        contexts.aux.lineWidth = 1;
-        contexts.aux.strokeRect(0, 0, halfW, topH);
-        contexts.aux.restore();
-
-        // Bottom 4 cameras
-        for (let i = 1; i <= 4; i++) {
-          contexts.aux.save();
-          contexts.aux.translate((i - 1) * colW, topH);
-          drawCam(i, contexts.aux, colW, btmH, t);
-          contexts.aux.restore();
-        }
-      } else if (state.aux === 'PGM') {
-        drawProgramOutput(contexts.aux, aw, ah, t);
-      } else if (state.aux === 'PVW') {
-        drawCam(state.pvw, contexts.aux, aw, ah, t);
-      } else {
-        const camNum = parseInt(state.aux, 10);
-        if (camNum >= 1 && camNum <= 4) {
-          drawCam(camNum, contexts.aux, aw, ah, t);
-        }
-      }
-    }
 
     // Animate Audio VU meters
     animateAudioMeters(t);
@@ -1161,39 +1109,6 @@
       else btn.classList.remove('active-pvw');
     });
 
-    // AUX Bus Buttons
-    document.querySelectorAll('.silicone-btn[data-aux]').forEach((btn) => {
-      const src = btn.dataset.aux;
-      if (src === state.aux) {
-        btn.classList.add('active-aux');
-      } else {
-        btn.classList.remove('active-aux');
-      }
-    });
-
-    // AUX Readout Label & Dropdown on Monitor Top Bar
-    const auxLabel = document.getElementById('label-aux-src');
-    const auxDest = document.getElementById('label-aux-dest');
-    const selectAuxRoute = document.getElementById('select-aux-route');
-    if (selectAuxRoute) {
-      selectAuxRoute.value = state.aux;
-    }
-    if (auxLabel) {
-      if (state.aux === 'MV') {
-        auxLabel.textContent = 'MULTIVIEW (MV)';
-        if (auxDest) auxDest.textContent = 'HDMI 2 / MONITOR MEJA';
-      } else if (state.aux === 'PGM') {
-        auxLabel.textContent = `PGM (C${state.pgm})`;
-        if (auxDest) auxDest.textContent = 'HDMI 2 / AUX PROGRAM';
-      } else if (state.aux === 'PVW') {
-        auxLabel.textContent = `PVW (C${state.pvw})`;
-        if (auxDest) auxDest.textContent = 'HDMI 2 / AUX PREVIEW';
-      } else {
-        auxLabel.textContent = `CAM ${state.aux}`;
-        if (auxDest) auxDest.textContent = `HDMI 2 / ISO CAM ${state.aux}`;
-      }
-    }
-
     // Multiview Screen Tallies
     for (let i = 1; i <= 4; i++) {
       const cell = document.getElementById(`cell-cam${i}`);
@@ -1252,9 +1167,6 @@
       if (state.isTransitioning) autoBtn.classList.add('trans-active');
       else autoBtn.classList.remove('trans-active');
     }
-
-    // Sync 3D Venue Modal Tally Diagnostics if open
-    updateVenue3DSidebar();
   }
 
   // --- TRANSITION CONTROLLERS ---
@@ -1309,12 +1221,6 @@
     state.prevPgm = cam;
     state.pgm = cam;
     state.isTransitioning = false;
-    updateUIButtons();
-  }
-
-  function selectAUX(source) {
-    playClickSound('click');
-    state.aux = String(source);
     updateUIButtons();
   }
 
@@ -1526,14 +1432,6 @@
       });
     }
 
-    // Audio SFX checkbox
-    const sfxCheckbox = document.getElementById('audio-sfx-toggle');
-    if (sfxCheckbox) {
-      sfxCheckbox.addEventListener('change', (e) => {
-        state.soundEnabled = e.target.checked;
-      });
-    }
-
     // Multiview Fullscreen Toggle
     const mvFullscreenBtn = document.getElementById('btn-mv-fullscreen');
     if (mvFullscreenBtn) {
@@ -1584,50 +1482,6 @@
       });
     });
 
-    // AUX Bus Routing: Dropdown & Buttons
-    const selectAuxRoute = document.getElementById('select-aux-route');
-    if (selectAuxRoute) {
-      selectAuxRoute.addEventListener('change', (e) => {
-        selectAUX(e.target.value);
-      });
-    }
-
-    document.querySelectorAll('.silicone-btn[data-aux]').forEach((btn) => {
-      btn.addEventListener('click', () => {
-        selectAUX(btn.dataset.aux);
-      });
-    });
-
-    // Cinetreak Rotary Encoder Menu Dial & OSD
-    const rotaryDial = document.getElementById('rotary-dial');
-    const menuStatusText = document.getElementById('menu-status-text');
-    const menuOsdList = [
-      'HDMI 2 (AUX): MULTIVIEW DISPLAY',
-      'OUTPUT 1: 1080P60 PGM LIVE',
-      'IN 1: 1080P60 (FOH CENTER STAGE)',
-      'IN 2: 1080P60 (MOBILE 2WL + 3SNG)',
-      'IN 3: 1080P60 (STAGE L JEMAAT)',
-      'IN 4: 1080P60 (STAGE R 7 MUSISI)',
-      'UVC STREAM: READY (USB-C)',
-      'AUDIO: AFV ENABLED (ANALOG IN)'
-    ];
-    if (rotaryDial) {
-      let dialAngle = 0;
-      rotaryDial.addEventListener('wheel', (e) => {
-        e.preventDefault();
-        playClickSound('click');
-        dialAngle += e.deltaY > 0 ? 30 : -30;
-        rotaryDial.style.transform = `rotate(${dialAngle}deg)`;
-        state.menuIndex = (state.menuIndex + (e.deltaY > 0 ? 1 : menuOsdList.length - 1)) % menuOsdList.length;
-        if (menuStatusText) menuStatusText.textContent = menuOsdList[state.menuIndex];
-      });
-      rotaryDial.addEventListener('click', () => {
-        playClickSound('click');
-        state.menuIndex = (state.menuIndex + 1) % menuOsdList.length;
-        if (menuStatusText) menuStatusText.textContent = menuOsdList[state.menuIndex];
-      });
-    }
-
     // Hardware LIVE & REC buttons
     const btnLive = document.getElementById('btn-live-toggle');
     if (btnLive) {
@@ -1653,27 +1507,6 @@
       if (['INPUT', 'TEXTAREA'].includes(document.activeElement.tagName)) return;
 
       const key = e.key;
-
-      // AUX Bus Routing Shortcuts with Alt
-      if (e.altKey) {
-        if (key.toLowerCase() === 'm') {
-          e.preventDefault();
-          selectAUX('MV');
-          return;
-        } else if (key >= '1' && key <= '4') {
-          e.preventDefault();
-          selectAUX(key);
-          return;
-        } else if (key.toLowerCase() === 'p') {
-          e.preventDefault();
-          selectAUX('PVW');
-          return;
-        } else if (key.toLowerCase() === 'g') {
-          e.preventDefault();
-          selectAUX('PGM');
-          return;
-        }
-      }
 
       if (key >= '1' && key <= '4') {
         const cam = parseInt(key, 10);
@@ -1754,448 +1587,14 @@
       }
     });
 
-    // Realtime Viewport Resolution Telemetry for Desktop Lockout Screen
-    function updateResolutionReadout() {
-      const resEl = document.getElementById('current-screen-res');
-      if (resEl) {
-        resEl.textContent = `${window.innerWidth} × ${window.innerHeight} px`;
-      }
-    }
-    window.addEventListener('resize', updateResolutionReadout);
-    updateResolutionReadout();
-  }
-
-  // --- 3D AUDITORIUM UNNES VENUE & CAMERA INSPECTOR MODAL ---
-  const venue3DState = {
-    isOpen: false,
-    yaw: 0.35,
-    pitch: 0.48,
-    radius: 23,
-    target: [0, 1.5, 3.5],
-    targetYaw: 0.35,
-    targetPitch: 0.48,
-    targetRadius: 23,
-    isDragging: false,
-    dragStartX: 0,
-    dragStartY: 0,
-    startYaw: 0,
-    startPitch: 0,
-    hasMoved: false,
-    hoveredCam: null,
-    projectedCams: {}
-  };
-
-  function updateVenue3DSidebar() {
-    for (let i = 1; i <= 4; i++) {
-      const item = document.getElementById(`diag-cam-${i}`);
-      const dot = document.getElementById(`dot-tally-${i}`);
-      const tag = document.getElementById(`tag-cam-${i}`);
-      if (!item || !dot || !tag) continue;
-
-      item.classList.remove('is-pgm', 'is-pvw');
-      dot.classList.remove('tally-pgm', 'tally-pvw', 'tally-idle');
-
-      if (i === state.pgm) {
-        item.classList.add('is-pgm');
-        dot.classList.add('tally-pgm');
-        tag.textContent = 'PGM';
-      } else if (i === state.pvw) {
-        item.classList.add('is-pvw');
-        dot.classList.add('tally-pvw');
-        tag.textContent = 'PVW';
-      } else {
-        dot.classList.add('tally-idle');
-        tag.textContent = 'STANDBY';
-      }
-    }
-  }
-
-  function initVenue3D() {
-    const modal = document.getElementById('venue-3d-modal');
-    const backdrop = document.getElementById('venue-3d-backdrop');
-    const closeBtn = document.getElementById('btn-close-venue-3d');
-    const openBtn = document.getElementById('btn-venue-3d');
-    const headerOpenBtn = document.getElementById('header-btn-venue-3d');
-    const canvas = document.getElementById('canvas-venue-3d');
-    if (!canvas || !modal) return;
-
-    const ctx = canvas.getContext('2d');
-
-    function openModal() {
-      playClickSound('click');
-      modal.style.display = 'flex';
-      venue3DState.isOpen = true;
-      updateVenue3DSidebar();
-    }
-
-    function closeModal() {
-      playClickSound('click');
-      modal.style.display = 'none';
-      venue3DState.isOpen = false;
-    }
-
-    if (openBtn) openBtn.addEventListener('click', openModal);
-    if (headerOpenBtn) headerOpenBtn.addEventListener('click', openModal);
-    if (closeBtn) closeBtn.addEventListener('click', closeModal);
-    if (backdrop) backdrop.addEventListener('click', closeModal);
-
-    // Close on Escape key
-    window.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape' && venue3DState.isOpen) {
-        closeModal();
-      }
-    });
-
-    // Orbit Camera View Preset Buttons
-    const orbitPresets = {
-      top: { yaw: 0.0, pitch: 1.48, radius: 25 },
-      foh: { yaw: 0.0, pitch: 0.22, radius: 22 },
-      stage: { yaw: -1.25, pitch: 0.38, radius: 15 },
-      band: { yaw: 1.18, pitch: 0.35, radius: 14 }
-    };
-
-    const presetButtons = document.querySelectorAll('.venue-3d-cam-btn[data-orbit-cam]');
-    presetButtons.forEach((btn) => {
-      btn.addEventListener('click', () => {
-        playClickSound('click');
-        presetButtons.forEach((b) => b.classList.remove('active'));
-        btn.classList.add('active');
-        const p = orbitPresets[btn.dataset.orbitCam];
-        if (p) {
-          venue3DState.targetYaw = p.yaw;
-          venue3DState.targetPitch = p.pitch;
-          venue3DState.targetRadius = p.radius;
-        }
-      });
-    });
-
-    // Mouse Dragging Orbit
-    canvas.addEventListener('mousedown', (e) => {
-      venue3DState.isDragging = true;
-      venue3DState.hasMoved = false;
-      venue3DState.dragStartX = e.clientX;
-      venue3DState.dragStartY = e.clientY;
-      venue3DState.startYaw = venue3DState.targetYaw;
-      venue3DState.startPitch = venue3DState.targetPitch;
-      canvas.style.cursor = 'grabbing';
-    });
-
-    window.addEventListener('mousemove', (e) => {
-      const rect = canvas.getBoundingClientRect();
-      const mouseX = (e.clientX - rect.left) * (canvas.width / rect.width);
-      const mouseY = (e.clientY - rect.top) * (canvas.height / rect.height);
-
-      if (venue3DState.isDragging) {
-        const dx = e.clientX - venue3DState.dragStartX;
-        const dy = e.clientY - venue3DState.dragStartY;
-        if (Math.abs(dx) > 3 || Math.abs(dy) > 3) {
-          venue3DState.hasMoved = true;
-        }
-        venue3DState.targetYaw = venue3DState.startYaw + dx * 0.007;
-        venue3DState.targetPitch = Math.max(0.08, Math.min(1.52, venue3DState.startPitch + dy * 0.006));
-      } else {
-        // Hover detection on 4 cameras in 3D
-        let foundCam = null;
-        for (let id = 1; id <= 4; id++) {
-          const pt = venue3DState.projectedCams[id];
-          if (pt) {
-            const dist = Math.hypot(mouseX - pt.sx, mouseY - pt.sy);
-            if (dist <= 26) {
-              foundCam = id;
-              break;
-            }
-          }
-        }
-        venue3DState.hoveredCam = foundCam;
-        canvas.style.cursor = foundCam ? 'pointer' : 'grab';
-      }
-    });
-
-    window.addEventListener('mouseup', () => {
-      if (venue3DState.isDragging) {
-        venue3DState.isDragging = false;
-        canvas.style.cursor = venue3DState.hoveredCam ? 'pointer' : 'grab';
-      }
-    });
-
-    // Zoom on Mouse Wheel
-    canvas.addEventListener('wheel', (e) => {
-      e.preventDefault();
-      const zoomDelta = e.deltaY * 0.02;
-      venue3DState.targetRadius = Math.max(8, Math.min(42, venue3DState.targetRadius + zoomDelta));
-    });
-
-    // Click on Camera to Punch CUE or CUT
-    canvas.addEventListener('click', () => {
-      if (!venue3DState.hasMoved && venue3DState.hoveredCam) {
-        const cam = venue3DState.hoveredCam;
-        if (cam === state.pvw) {
-          triggerCut();
-        } else if (cam !== state.pgm) {
-          selectPVW(cam);
-        }
-        updateVenue3DSidebar();
-      }
-    });
-
-    // Main 3D Venue Renderer Frame
-    function renderVenue3DFrame(t) {
-      if (!venue3DState.isOpen) return;
-
-      const w = canvas.width;
-      const h = canvas.height;
-
-      // Smooth camera orbit damping
-      venue3DState.yaw += (venue3DState.targetYaw - venue3DState.yaw) * 0.12;
-      venue3DState.pitch += (venue3DState.targetPitch - venue3DState.pitch) * 0.12;
-      venue3DState.radius += (venue3DState.targetRadius - venue3DState.radius) * 0.12;
-
-      // Spherical camera coordinate calculation
-      const cx = venue3DState.target[0] + venue3DState.radius * Math.cos(venue3DState.pitch) * Math.sin(venue3DState.yaw);
-      const cy = venue3DState.target[1] + venue3DState.radius * Math.sin(venue3DState.pitch);
-      const cz = venue3DState.target[2] - venue3DState.radius * Math.cos(venue3DState.pitch) * Math.cos(venue3D.yaw);
-
-      const cam = {
-        x: cx,
-        y: cy,
-        z: cz,
-        yaw: venue3DState.yaw,
-        pitch: venue3DState.pitch,
-        fov: 560
-      };
-
-      // 1. Render Venue Environment, Stage, LED Wall, 2 WL, 3 Singer, 7 Musisi, Jemaat
-      renderAuditoriumUNNES3D(ctx, cam, w, h, t, { showLabels: true });
-
-      // 2. Render Technical Ground Grid Lines
-      ctx.strokeStyle = 'rgba(30, 41, 59, 0.4)';
-      ctx.lineWidth = 1;
-      for (let gz = -20; gz <= 10; gz += 4) {
-        const p1 = project3D([-12, 0, gz], cam, w, h);
-        const p2 = project3D([12, 0, gz], cam, w, h);
-        if (p1 && p2) {
-          ctx.beginPath();
-          ctx.moveTo(p1.sx, p1.sy);
-          ctx.lineTo(p2.sx, p2.sy);
-          ctx.stroke();
-        }
-      }
-      for (let gx = -12; gx <= 12; gx += 4) {
-        const p1 = project3D([gx, 0, -20], cam, w, h);
-        const p2 = project3D([gx, 0, 10], cam, w, h);
-        if (p1 && p2) {
-          ctx.beginPath();
-          ctx.moveTo(p1.sx, p1.sy);
-          ctx.lineTo(p2.sx, p2.sy);
-          ctx.stroke();
-        }
-      }
-
-      // 3. Render 4 Camera Positions & Vision Cones (Frustums)
-      const mobX = -1.4 + Math.sin(t * 0.7) * 0.9;
-      const mobY = 1.55 + Math.sin(t * 1.2) * 0.03;
-      const mobZ = 0.6 + Math.cos(t * 0.5) * 0.4;
-
-      const venueCams = [
-        {
-          id: 1,
-          name: 'CAM 1',
-          sub: 'TENGAH FOH',
-          desc: 'Sorot Stage Depan',
-          pos: [0, 1.9, -12.5],
-          target: [0, 2.0, 3.5],
-          dist: 14.5,
-          fovW: 5.2,
-          fovH: 3.0
-        },
-        {
-          id: 2,
-          name: 'CAM 2',
-          sub: 'STAGE MOBILE',
-          desc: 'Sorot 2 WL & 3 Singer',
-          pos: [mobX, mobY, mobZ],
-          target: [0, 1.9, 2.5],
-          dist: 4.8,
-          fovW: 1.8,
-          fovH: 1.2
-        },
-        {
-          id: 3,
-          name: 'CAM 3',
-          sub: 'KIRI STAGE',
-          desc: 'Sorot Jemaat UNNES',
-          pos: [-7.5, 1.8, 2.2],
-          target: [0, 0.8, -8.0],
-          dist: 11.5,
-          fovW: 5.8,
-          fovH: 3.2
-        },
-        {
-          id: 4,
-          name: 'CAM 4',
-          sub: 'KANAN STAGE',
-          desc: 'Sorot 7 Pemain Musik',
-          pos: [3.0, 1.7, 1.5],
-          target: [6.0, 1.8, 5.0],
-          dist: 6.2,
-          fovW: 2.8,
-          fovH: 1.8
-        }
-      ];
-
-      for (let c = 0; c < venueCams.length; c++) {
-        const vCam = venueCams[c];
-        const isPgm = vCam.id === state.pgm;
-        const isPvw = vCam.id === state.pvw;
-        const isHovered = venue3DState.hoveredCam === vCam.id;
-
-        // Vector math to construct camera view cone in 3D
-        const px = vCam.pos[0], py = vCam.pos[1], pz = vCam.pos[2];
-        const tx = vCam.target[0], ty = vCam.target[1], tz = vCam.target[2];
-        const dx = tx - px, dy = ty - py, dz = tz - pz;
-        const len = Math.hypot(dx, dy, dz) || 1;
-        const nx = dx / len, ny = dy / len, nz = dz / len;
-
-        // Perpendicular horizontal vector
-        const rx = -nz, ry = 0, rz = nx;
-        const rLen = Math.hypot(rx, rz) || 1;
-        const rnx = rx / rLen, rnz = rz / rLen;
-
-        // Up vector perpendicular to direction & right
-        const ux = -ny * rnz, uy = nx * rnz - nz * rnx, uz = ny * rnx;
-
-        const d = vCam.dist;
-        const hw = vCam.fovW * 0.5;
-        const hh = vCam.fovH * 0.5;
-
-        // 4 cone end-points
-        const pTL = [px + nx * d - rnx * hw + ux * hh, py + ny * d + uy * hh, pz + nz * d - rnz * hw + uz * hh];
-        const pTR = [px + nx * d + rnx * hw + ux * hh, py + ny * d + uy * hh, pz + nz * d + rnz * hw + uz * hh];
-        const pBR = [px + nx * d + rnx * hw - ux * hh, py + ny * d - uy * hh, pz + nz * d + rnz * hw - uz * hh];
-        const pBL = [px + nx * d - rnx * hw - ux * hh, py + ny * d - uy * hh, pz + nz * d - rnz * hw - uz * hh];
-
-        // Style based on tally state
-        let coneColor = 'rgba(56, 189, 248, 0.08)';
-        let coneStroke = 'rgba(56, 189, 248, 0.4)';
-        let tallyText = 'STANDBY';
-
-        if (isPgm) {
-          coneColor = 'rgba(239, 68, 68, 0.22)';
-          coneStroke = '#ef4444';
-          tallyText = 'PGM ON-AIR';
-        } else if (isPvw) {
-          coneColor = 'rgba(16, 185, 129, 0.22)';
-          coneStroke = '#10b981';
-          tallyText = 'PVW CUED';
-        }
-
-        // Draw Translucent Frustum Pyramid
-        drawPoly3D(ctx, cam, w, h, [vCam.pos, pTL, pTR], coneColor, coneStroke, 1);
-        drawPoly3D(ctx, cam, w, h, [vCam.pos, pTR, pBR], coneColor, coneStroke, 1);
-        drawPoly3D(ctx, cam, w, h, [vCam.pos, pBR, pBL], coneColor, coneStroke, 1);
-        drawPoly3D(ctx, cam, w, h, [vCam.pos, pBL, pTL], coneColor, coneStroke, 1);
-        drawPoly3D(ctx, cam, w, h, [pTL, pTR, pBR, pBL], coneColor, coneStroke, 1.5);
-
-        // Active Animated Pulse Ring traveling down the cone
-        if (isPgm || isPvw) {
-          const pulseProgress = (t * 0.9) % 1.0;
-          const pd = d * pulseProgress;
-          const pw = hw * pulseProgress;
-          const ph = hh * pulseProgress;
-          const qTL = [px + nx * pd - rnx * pw + ux * ph, py + ny * pd + uy * ph, pz + nz * pd - rnz * pw + uz * ph];
-          const qTR = [px + nx * pd + rnx * pw + ux * ph, py + ny * pd + uy * ph, pz + nz * pd + rnz * pw + uz * ph];
-          const qBR = [px + nx * pd + rnx * pw - ux * ph, py + ny * pd - uy * ph, pz + nz * pd + rnz * pw - uz * ph];
-          const qBL = [px + nx * pd - rnx * pw - ux * ph, py + ny * pd - uy * ph, pz + nz * pd - rnz * pw - uz * ph];
-          drawPoly3D(ctx, cam, w, h, [qTL, qTR, qBR, qBL], null, coneStroke, 2);
-        }
-
-        // Tripod Stand (Floor Y = 0 to camera height)
-        const tripFeet = [
-          [px - 0.35, 0, pz - 0.3],
-          [px + 0.35, 0, pz - 0.3],
-          [px, 0, pz + 0.4]
-        ];
-        const camPr = project3D(vCam.pos, cam, w, h);
-        if (camPr) {
-          venue3DState.projectedCams[vCam.id] = { sx: camPr.sx, sy: camPr.sy };
-
-          ctx.strokeStyle = '#475569';
-          ctx.lineWidth = 1.5;
-          for (let f = 0; f < tripFeet.length; f++) {
-            const footPr = project3D(tripFeet[f], cam, w, h);
-            if (footPr) {
-              ctx.beginPath();
-              ctx.moveTo(footPr.sx, footPr.sy);
-              ctx.lineTo(camPr.sx, camPr.sy);
-              ctx.stroke();
-            }
-          }
-
-          // Camera Body & Lens Renders
-          const cR = Math.max(5, 0.22 * camPr.scale);
-          ctx.fillStyle = isPgm ? '#ef4444' : isPvw ? '#10b981' : '#0ea5e9';
-          ctx.beginPath();
-          ctx.arc(camPr.sx, camPr.sy, cR, 0, Math.PI * 2);
-          ctx.fill();
-          ctx.strokeStyle = '#ffffff';
-          ctx.lineWidth = isHovered ? 3 : 1.5;
-          ctx.stroke();
-
-          // Extra pulsating aura if hovered
-          if (isHovered) {
-            ctx.strokeStyle = 'rgba(255, 255, 255, 0.8)';
-            ctx.lineWidth = 2;
-            ctx.beginPath();
-            ctx.arc(camPr.sx, camPr.sy, cR + 6, 0, Math.PI * 2);
-            ctx.stroke();
-          }
-
-          // 3D Billboard Tally Badge Pill
-          const badgeY = camPr.sy - cR - 18;
-          ctx.save();
-          ctx.font = 'bold 9px monospace';
-          const textLabel = `${vCam.name}: ${vCam.sub} • [${tallyText}]`;
-          const textW = ctx.measureText(textLabel).width + 14;
-          
-          ctx.fillStyle = 'rgba(15, 23, 42, 0.9)';
-          ctx.beginPath();
-          ctx.roundRect(camPr.sx - textW * 0.5, badgeY - 7, textW, 16, 4);
-          ctx.fill();
-          ctx.strokeStyle = coneStroke;
-          ctx.lineWidth = 1;
-          ctx.stroke();
-
-          // Dot
-          ctx.fillStyle = isPgm ? '#ef4444' : isPvw ? '#10b981' : '#64748b';
-          ctx.beginPath();
-          ctx.arc(camPr.sx - textW * 0.5 + 7, badgeY + 1, 3.5, 0, Math.PI * 2);
-          ctx.fill();
-
-          ctx.fillStyle = '#ffffff';
-          ctx.textAlign = 'left';
-          ctx.fillText(textLabel, camPr.sx - textW * 0.5 + 14, badgeY + 4);
-          ctx.restore();
-        }
-      }
-    }
-
-    // Attach to master RAF loop
-    function loop(t) {
-      if (venue3DState.isOpen) {
-        renderVenue3DFrame(t * 0.001);
-      }
-      requestAnimationFrame(loop);
-    }
-    requestAnimationFrame(loop);
   }
 
   // --- INITIALIZE ON DOM READY ---
   window.addEventListener('DOMContentLoaded', () => {
     setupEventListeners();
     initTBar();
-    initVenue3D();
     updateUIButtons();
     requestAnimationFrame(animate);
-    console.log('[Cinetreak Cinelive V1 Simulator & 3D UNNES Venue Initialized]');
+    console.log('[Cinetreak Cinelive V1 Simulator Initialized]');
   });
 })();
