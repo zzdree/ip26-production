@@ -417,6 +417,18 @@ code {
   transform: translateY(-1px);
 }
 
+.nav-actions .nav-cta-btn.active {
+  background: rgba(0, 210, 255, 0.14);
+  border-color: var(--accent-cyan);
+  color: var(--accent-cyan);
+  box-shadow: 0 0 12px rgba(0, 210, 255, 0.3);
+}
+
+.desktop-header.header-fluid .nav-container {
+  max-width: 100%;
+  padding: 0 var(--space-6);
+}
+
 .nav-cta-btn .btn-icon {
   font-size: 0.95rem;
   line-height: 1;
@@ -3485,4 +3497,178 @@ body.satset-page .vendor-title {
 .data-table.inv-table-satset .inv-checkbox-btn.checked .check-svg {
   transform: scale(1);
 }
+
+/* ==========================================================================
+   UNIFIED WORKSTATION / MOBILE LOCKOUT SCREEN (Home Harmonized)
+   ========================================================================== */
+.desktop-lock-screen {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 9999999;
+  background: rgba(18, 18, 18, 0.95);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-6);
+  text-align: center;
+}
+
+.lockout-card {
+  max-width: 480px;
+  width: 100%;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius-xl);
+  padding: var(--space-8) var(--space-6);
+  box-shadow: var(--shadow-lg), 0 0 35px rgba(0, 210, 255, 0.08);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-3);
+  position: relative;
+  z-index: 10;
+}
+
+.lockout-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--accent-cyan-subtle);
+  color: var(--accent-cyan);
+  border: 1px solid rgba(0, 210, 255, 0.3);
+  padding: 4px 12px;
+  border-radius: var(--radius-full);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+}
+
+.lockout-badge.lockout-badge-amber {
+  background: var(--accent-amber-subtle);
+  color: var(--accent-amber);
+  border-color: rgba(245, 158, 11, 0.3);
+}
+
+.lockout-pulse-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--accent-cyan);
+  box-shadow: 0 0 8px var(--accent-cyan);
+  animation: pulse-ring-green 2s infinite;
+}
+
+.lockout-pulse-dot.pulse-amber {
+  background: var(--accent-amber);
+  box-shadow: 0 0 8px var(--accent-amber);
+}
+
+.lockout-icon {
+  font-size: 2.8rem;
+  line-height: 1;
+  margin: 4px 0;
+}
+
+.lockout-title {
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: var(--text-primary);
+  letter-spacing: -0.01em;
+}
+
+.lockout-desc {
+  font-family: var(--font-body);
+  font-size: 0.88rem;
+  color: var(--text-secondary);
+  line-height: 1.55;
+  margin-bottom: var(--space-2);
+}
+
+.lockout-telemetry {
+  width: 100%;
+  background: var(--bg-primary);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  padding: var(--space-3) var(--space-4);
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: var(--space-2);
+  text-align: left;
+}
+
+.telemetry-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+}
+
+.telemetry-lbl {
+  color: var(--text-muted);
+}
+
+.telemetry-val {
+  color: var(--text-primary);
+  font-weight: 600;
+}
+
+.telemetry-warn {
+  color: var(--accent-amber);
+  font-weight: 700;
+}
+
+.lockout-actions {
+  display: flex;
+  gap: var(--space-3);
+  width: 100%;
+  flex-direction: column;
+}
+
+.lockout-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 10px 18px;
+  border-radius: var(--radius-md);
+  font-family: var(--font-body);
+  font-size: 0.88rem;
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.lockout-btn-primary {
+  background: linear-gradient(135deg, var(--accent-cyan), var(--accent-blue));
+  color: #000;
+  font-weight: 700;
+  border: none;
+  box-shadow: 0 4px 14px rgba(0, 210, 255, 0.3);
+}
+
+.lockout-btn-primary:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 18px rgba(0, 210, 255, 0.4);
+  color: #000;
+}
+
+.lockout-btn-secondary {
+  background: var(--bg-surface-elevated);
+  color: var(--text-primary);
+  border: 1px solid var(--border-subtle);
+}
+
+.lockout-btn-secondary:hover {
+  background: var(--bg-surface-hover);
+  border-color: var(--border-strong);
+  color: var(--text-primary);
+}
+
 

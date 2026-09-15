@@ -16,7 +16,7 @@
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700;800&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Outfit:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet" />
   
   <!-- Main Stylesheet -->
   <link rel="stylesheet" href="../style.css" />
@@ -25,72 +25,35 @@
   <script defer src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.39.8/dist/umd/supabase.min.js"></script>
 
   <style>
-    /* Desktop Rejection Lock Screen - Simple, Pure Black & Error Alert */
-    #desktop-lock-screen {
-      display: flex;
-      position: fixed;
-      inset: 0;
-      z-index: 99999;
-      background: #000000;
-      align-items: center;
-      justify-content: center;
-      padding: 24px;
-      text-align: center;
-    }
-
-    .desktop-error-box {
-      max-width: 440px;
-      width: 100%;
-      background: #0d0e12;
-      border: 1px solid #ef4444;
-      border-radius: 16px;
-      padding: 32px 24px;
-      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.8), 0 0 24px rgba(239, 68, 68, 0.15);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 12px;
-    }
-
-    .desktop-error-icon {
-      font-size: 2.8rem;
-      line-height: 1;
-      margin-bottom: 4px;
-    }
-
-    .desktop-error-title {
-      font-size: 1.3rem;
-      font-weight: 800;
-      color: #f87171;
-      letter-spacing: -0.01em;
-    }
-
-    .desktop-error-desc {
-      font-size: 0.9rem;
-      color: #a1a1aa;
-      line-height: 1.5;
-      margin-bottom: 8px;
-    }
-
+    /* Desktop Lock Screen Media Query for Mobile-Only Flow */
     @media (max-width: 768px) {
       #desktop-lock-screen {
         display: none !important;
       }
     }
 
+    @media (min-width: 769px) {
+      #desktop-lock-screen {
+        display: flex !important;
+      }
+    }
+
     .satset-page-header {
-      padding: 8px 0 4px 0;
+      padding: 12px 0 6px 0;
+      position: relative;
+      z-index: 1;
     }
 
     .satset-hero-card {
       background: var(--bg-surface);
       border: 1px solid var(--border-subtle);
       border-radius: var(--radius-lg);
-      padding: 12px 10px;
+      padding: 16px 14px;
       margin-bottom: 12px;
       display: flex;
       flex-direction: column;
       gap: 6px;
+      box-shadow: var(--shadow-sm);
     }
 
     .satset-title-row {
@@ -101,83 +64,118 @@
     }
 
     .satset-title {
+      font-family: var(--font-display);
       font-size: 1.25rem;
       font-weight: 800;
       letter-spacing: -0.02em;
       color: var(--text-primary);
       display: flex;
       align-items: center;
-      gap: 6px;
+      gap: 8px;
     }
 
     .satset-subtitle {
+      font-family: var(--font-body);
       font-size: 0.85rem;
       color: var(--text-secondary);
-      line-height: 1.4;
+      line-height: 1.45;
     }
   </style>
 </head>
 <body class="inventory-page satset-page">
 
-  <!-- Desktop Error Blocker (>768px) -->
-  <div id="desktop-lock-screen">
-    <div class="desktop-error-box">
-      <div class="desktop-error-icon">🚫</div>
-      <h2 class="desktop-error-title">Akses Smartphone (Mode Lapangan)</h2>
-      <p class="desktop-error-desc">
-        Halaman <strong>Inventaris Lapangan</strong> dirancang khusus untuk operasional centang checklist barang di smartphone kru saat Hari H. Silakan buka tautan ini melalui browser HP Anda atau kembali ke portal utama.
+  <!-- Background Technical Grid (Home Harmonized) -->
+  <div class="hero-bg-grid" style="position:fixed; z-index:0; pointer-events:none;"></div>
+
+  <!-- Desktop Screen Blocker (>768px) with Home Harmonized Design -->
+  <div id="desktop-lock-screen" class="desktop-lock-screen" role="alertdialog" aria-modal="true" aria-label="Mobile Screen Required">
+    <div class="lockout-card">
+      <div class="lockout-badge lockout-badge-amber">
+        <span class="lockout-pulse-dot pulse-amber"></span>
+        <span>MOBILE WORKFLOW ONLY</span>
+      </div>
+      <div class="lockout-icon">📦</div>
+      <h2 class="lockout-title">INVENTARIS LAPANGAN REALTIME</h2>
+      <p class="lockout-desc">
+        Halaman <strong>Inventaris Lapangan</strong> dirancang khusus dengan antarmuka taktis smartphone untuk kru di lapangan saat Hari H. Silakan buka tautan ini melalui browser ponsel Anda atau kembali ke portal utama.
       </p>
-      <div style="display: flex; gap: 10px; margin-top: 8px; flex-wrap: wrap; justify-content: center;">
-        <a href="../index.html" class="btn btn-primary">
-          ← Buka Master Portal Utama
+
+      <div class="lockout-telemetry">
+        <div class="telemetry-row">
+          <span class="telemetry-lbl">Resolusi Layar Terdeteksi:</span>
+          <span class="telemetry-val" id="current-screen-res">Desktop Viewport</span>
+        </div>
+        <div class="telemetry-row">
+          <span class="telemetry-lbl">Standar Kru Lapangan:</span>
+          <span class="telemetry-val">Smartphone (≤ 768px)</span>
+        </div>
+        <div class="telemetry-row">
+          <span class="telemetry-lbl">Status Sinkronisasi:</span>
+          <span class="telemetry-warn">Cloud Realtime Active</span>
+        </div>
+      </div>
+
+      <div class="lockout-actions">
+        <a href="../index.html" class="lockout-btn lockout-btn-primary">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
+          Buka Master Portal Utama
         </a>
-        <button type="button" id="btn-bypass-desktop-lock" class="btn" style="background: rgba(255, 255, 255, 0.08); border: 1px solid rgba(255, 255, 255, 0.15); color: #cbd5e1; cursor: pointer; border-radius: 8px; padding: 8px 14px; font-size: 0.85rem; font-weight: 600;">
+        <button type="button" id="btn-bypass-desktop-lock" class="lockout-btn lockout-btn-secondary">
           Tetap Buka di Desktop (Mode FOH) →
         </button>
       </div>
     </div>
   </div>
 
-  <!-- Header Navigation -->
-  <header class="desktop-header">
+  <!-- Header Navigation (Home Harmonized) -->
+  <header class="desktop-header" id="desktop-header" role="banner" style="position:relative; z-index:100;">
+    <div id="scroll-progress-bar" class="scroll-progress-bar" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"></div>
     <div class="nav-container">
-      <div class="brand-logo">
-        <span class="brand-badge">IP26</span>
-        <div class="brand-text">
-          <span class="brand-title">IP26 LIVE PRODUCTION</span>
-          <span class="brand-sub">📦 INVENTARIS LAPANGAN REALTIME</span>
+      <a href="../index.html" class="brand-logo" aria-label="Kembali ke Portal Master">
+        <div class="brand-badge-wrap">
+          <span class="brand-badge">IP26</span>
+          <span class="brand-live-dot" title="Live Inventory Sync"></span>
         </div>
-      </div>
+        <div class="brand-text">
+          <span class="brand-title">INVENTARIS LAPANGAN</span>
+          <span class="brand-sub">TACTICAL REALTIME CHECKLIST</span>
+        </div>
+      </a>
       
       <div class="nav-actions">
-        <a href="../switcher.html" class="btn btn-sm btn-outline" style="border-color:#00d2ff; color:#00d2ff;" title="Buka Simulator Switcher Cinelive V1">
-          🎛️ Switcher V1
+        <a href="../index.html" class="nav-cta-btn" title="Master Command Portal">
+          <span class="btn-icon">🌐</span> Portal
         </a>
-        <a href="../presenter.html" class="btn btn-sm btn-outline" style="border-color:#a855f7; color:#c084fc;" title="Buka Simulator ProPresenter">
-          🎶 ProPresenter
+        <a href="../switcher.html" class="nav-cta-btn" title="Simulator Switcher Cinelive V1">
+          <span class="btn-icon">🎛️</span> Switcher V1
         </a>
-        <a href="../index.html" class="btn btn-sm btn-outline" title="Kembali ke Portal Master">
-          🌐 Portal Utama
+        <a href="../presenter.html" class="nav-cta-btn" title="Simulator ProPresenter Live Lyrics">
+          <span class="btn-icon">🎶</span> Presenter
+        </a>
+        <a href="index.html" class="nav-cta-btn active" title="Mode Inventaris Lapangan">
+          <span class="btn-icon">📦</span> Inventory
         </a>
       </div>
     </div>
   </header>
 
   <!-- Main Content Wrapper -->
-  <main class="main-content">
+  <main class="main-content" style="position:relative; z-index:1;">
     <div class="container">
       
       <!-- Inventory Header Card -->
       <div class="satset-page-header">
         <div class="satset-hero-card">
           <div class="satset-title-row">
-            <h1 class="satset-title">📦 INVENTARIS LAPANGAN</h1>
+            <h1 class="satset-title">
+              <span class="text-gradient">📦 INVENTARIS LAPANGAN</span>
+            </h1>
             <span class="presence-badge">
               <span class="status-pulse-dot connected"></span> Kru Lapangan
             </span>
           </div>
           <p class="satset-subtitle">
-            Inventaris logistik 18 vendor peminjaman (150 item) Hari H. Tersinkronisasi cloud realtime multi-perangkat.
+            Inventaris logistik 19 sumber peminjaman (158 item) Hari H. Tersinkronisasi cloud realtime multi-perangkat.
           </p>
         </div>
       </div>

@@ -4,14 +4,14 @@
    ========================================================================== */
 
 :root {
-  --sw-bg: #121212;
-  --sw-surface: #18181a;
-  --sw-panel: #202023;
-  --sw-panel-border: #2e2e32;
-  --sw-metal-bevel: #38383c;
-  --sw-text: #f4f4f5;
-  --sw-text-muted: #9ca3af;
-  --sw-accent: #e4e4e7;
+  --sw-bg: var(--bg-primary, #121212);
+  --sw-surface: var(--bg-surface, #1f1f1f);
+  --sw-panel: var(--bg-surface-elevated, #262626);
+  --sw-panel-border: var(--border-subtle, #333333);
+  --sw-metal-bevel: var(--border-strong, #484848);
+  --sw-text: var(--text-primary, #f4f4f5);
+  --sw-text-muted: var(--text-secondary, #9ca3af);
+  --sw-accent: var(--accent-cyan, #00d2ff);
   --sw-pgm-red: #ef4444;
   --sw-pgm-glow: rgba(239, 68, 68, 0.5);
   --sw-pvw-green: #10b981;
@@ -19,9 +19,9 @@
   --sw-amber: #f59e0b;
   --sw-amber-glow: rgba(245, 158, 11, 0.5);
   --sw-blue: #71717a;
-  --font-mono: 'JetBrains Mono', monospace;
-  --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
-  --font-heading: 'Outfit', sans-serif;
+  --font-mono: var(--font-mono, 'JetBrains Mono', monospace);
+  --font-sans: var(--font-body, 'Plus Jakarta Sans', sans-serif);
+  --font-heading: var(--font-display, 'Outfit', sans-serif);
 }
 
 * {
@@ -41,56 +41,9 @@ body.switcher-body {
   user-select: none;
 }
 
-/* Header Navigation Bar */
+/* Header styling inherited from .desktop-header.header-fluid in style.css */
 .switcher-header {
-  background: #18181a;
-  border-bottom: 1px solid var(--sw-panel-border);
-  padding: 10px 24px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  position: sticky;
-  top: 0;
-  z-index: 100;
-}
-
-.brand-section {
-  display: flex;
-  align-items: center;
-  gap: 14px;
-}
-
-.brand-badge {
-  background: #27272a;
-  border: 1px solid #3f3f46;
-  color: #fff;
-  font-family: var(--font-mono);
-  font-weight: 700;
-  font-size: 13px;
-  padding: 4px 10px;
-  border-radius: 6px;
-  letter-spacing: 0.5px;
-}
-
-.brand-title {
-  font-family: var(--font-heading);
-  font-size: 18px;
-  font-weight: 700;
-  letter-spacing: -0.3px;
-  color: #fff;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-
-.brand-title span {
-  color: #a1a1aa;
-  font-size: 12px;
-  font-weight: 600;
-  background: #222225;
-  padding: 2px 8px;
-  border-radius: 4px;
-  border: 1px solid #333338;
+  border-bottom: 1px solid var(--border-subtle);
 }
 
 .nav-links {
@@ -1780,7 +1733,7 @@ body.multiview-fullscreen .mv-container {
   .desktop-lock-screen {
     display: flex !important;
   }
-  .switcher-container, .switcher-header, .venue-3d-modal {
+  .switcher-container, .switcher-header, .desktop-header, .venue-3d-modal {
     display: none !important;
   }
 }
