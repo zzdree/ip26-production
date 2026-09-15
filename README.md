@@ -35,7 +35,7 @@
 | 🌐 **Master Command Portal** | [https://zzdree.github.io/ip26-production/](https://zzdree.github.io/ip26-production/) | [`index.html`](./index.html) | Portal komando lengkap: arsitektur sistem, 8 diagram sinyal, tabel 158 logistik, device matrix, & rundown. |
 | 📦 **Inventaris Lapangan (Mobile)** | [https://zzdree.github.io/ip26-production/inventory.html](https://zzdree.github.io/ip26-production/inventory.html) | [`inventory.html`](./inventory.html) & [`inventory/`](./inventory/index.html) | Mode taktis smartphone kru hari H: checklist inventaris alat & logistik 19 vendor, centang cepat pemasangan (*Loading-In*) & pengemasan (*Packing-Out*). |
 | 🎛️ **Switcher Cinelive V1 (Desktop)** | [https://zzdree.github.io/ip26-production/switcher/](https://zzdree.github.io/ip26-production/switcher/) atau [switcher.html](https://zzdree.github.io/ip26-production/switcher.html) | [`switcher.html`](./switcher.html) & [`switcher/`](./switcher/index.html) | Simulator hardware Cinetreak Cinelive V1 (*Desktop Only*): 1 baris tombol fisik CAM 1-4 dual tally (Merah=PGM, Hijau=PVW cue/cut), kalibrasi VU meter audio broadcast (-12dB nominal / AFV / Mute), LCD 5.5", HDMI 2 AUX Monitor (MV 6-split / ISO / PGM / PVW), T-Bar 10-LED ladder meter, rotary menu encoder OSD, CUT/AUTO, PIP, FTB. |
-| 🎶 **ProPresenter Simulator (Desktop)** | [https://zzdree.github.io/ip26-production/presenter/](https://zzdree.github.io/ip26-production/presenter/) atau [presenter.html](https://zzdree.github.io/ip26-production/presenter.html) | [`presenter.html`](./presenter.html) & [`presenter/`](./presenter/index.html) | Simulator ProPresenter 7 (*Desktop Only*): unified output preview monitor dengan screen selector tabs (`[Audience LED]`, `[Stage Display]`, `[Stream L3]`), 3-column workstation, 14 lagu dari `Assets/Lyrics/Statics`, pemutar YouTube backing track sinkron, dan slides 1-2 baris. |
+| 🎶 **ProPresenter Simulator (Desktop)** | [https://zzdree.github.io/ip26-production/presenter/](https://zzdree.github.io/ip26-production/presenter/) atau [presenter.html](https://zzdree.github.io/ip26-production/presenter.html) | [`presenter.html`](./presenter.html) & [`presenter/`](./presenter/index.html) | Simulator ProPresenter 7 (*Desktop Only*): unified output preview monitor dengan screen selector tabs (`[Audience LED]`, `[Stage Display]`, `[Stream L3]`), 3-column workstation, 15 lagu dari `Assets/Lyrics/Statics`, pemutar YouTube backing track sinkron, dan slides 1-2 baris. |
 
 | Atribut | Keterangan |
 | :--- | :--- |
@@ -747,24 +747,25 @@ Simulator live projection & broadcast lower-third terintegrasi untuk melatih ope
 
 - **Live URL:** [https://zzdree.github.io/ip26-production/presenter/](https://zzdree.github.io/ip26-production/presenter/) atau [https://zzdree.github.io/ip26-production/presenter.html](https://zzdree.github.io/ip26-production/presenter.html)
 - **File Lokal:** [`presenter.html`](./presenter.html) & [`presenter/index.html`](./presenter/index.html)
-- **Sumber Data Lirik:** Diparse langsung dari direktori master `X:\IP26\Assets\Lyrics\Statics` (14 lagu ibadah lengkap).
+- **Sumber Data Lirik:** Diparse langsung dari direktori master `X:\IP26\Assets\Lyrics\Statics` (15 lagu ibadah lengkap sesuai urutan liturgi `docs/ip26_pro3.txt`).
 - **Format Tampilan Slide:** Sesuai standar ProPresenter 7, setiap slide menampilkan **1–2 baris lirik** dengan tipografi broadcast kontras tinggi untuk menjaga keterbacaan jemaat dan penonton live stream.
 - **YouTube Backing Track Terintegrasi:** Setiap lagu dalam songlist dilengkapi embedded YouTube player resmi/rekaman asli lagu terkait untuk latihan tempo dan sinkronisasi pergantian slide oleh operator.
-- **Daftar 14 Lagu Terintegrasi:**
-  1. *Ajaib Kau Tuhan* - JPCC Worship (`u4OuBnoEpcc`)
-  2. *Aku Diberkati* - Sound Of Praise (`8HDwaUuxb18`)
-  3. *Bri Syukur* - Viona Paays (`WE0QMkO-bSw`)
-  4. *Dengar Dia Panggil Nama Saya* - Yehuda Singers (`9C3DqiW9aA0`)
-  5. *Di Badai Topan Dunia* - KJ 440 (`o5_tW24XDW8`)
-  6. *I Have Decided To Follow Jesus* - Amy Grant (`BjQ3YYBGAqI`)
-  7. *Ku Berbahagia* - KJ 392 (`1afPkMjn6Js`)
-  8. *Kumenang* - Symphony Worship (`ceBDhQV_fT4`)
-  9. *Kumenang Menang* - Hosana Singers (`8yr_XGBFb30`)
-  10. *KumilikMu* - JPCC Worship Youth (`D81OXqGb40s`)
-  11. *Mengikut Yesus Keputusanku* - KPRI 103 (`7PGGUUr2nFQ`)
-  12. *Nyalakan ApiMu* - GMS Live (`FsIT-wdq4bA`)
-  13. *Oceans (Where Feet May Fail)* - Hillsong UNITED (`1m_sWJQm2fs`)
-  14. *Setinggi-tingginya Langit* - Talenta Singers (`8t_UCR64cKM`)
+- **Daftar 15 Lagu Terintegrasi (Urutan Liturgi `docs/ip26_pro3.txt`):**
+  1. *Oceans (Where Feet May Fail)* - Hillsong UNITED (`dy9nwe9_xzw` - Official Lyric Video)
+  2. *KumilikMu* - JPCC Worship Youth (`D81OXqGb40s` - Official Lyric Video)
+  3. *I Have Decided To Follow Jesus* - Amy Grant (`BjQ3YYBGAqI` - Lyric Video)
+  4. *Mengikut Yesus Keputusanku* - KPRI 103 (`7PGGUUr2nFQ` - IGNITE GKI / GKI Maulana Yusuf Live Recording)
+  5. *Kuberikan Hatiku* - Franky Sihombing (`moa6TFfk88I` - Official Maranatha - Franky Sihombing feat. Nikita)
+  6. *Bri Syukur* - Viona Paays (`i62hbfjA08c` - Lagu Pantekosta Lama / Desri Seu & Melkisedik Sapay)
+  7. *Aku Diberkati* - Yehuda Singers (`8grYqjvI-BM` - Official Maranatha - 30 Cha Cha Rohani Vol. 3)
+  8. *Dengar Dia Panggil Nama Saya* - Yehuda Singers (`6f5iFr8Zz2U` - Official Maranatha - Nonstop Hits Pujian Abadi Vol. 2)
+  9. *Ajaib Kau Tuhan* - JPCC Worship (`u4OuBnoEpcc` - Official Music Video Insight Unlimited)
+  10. *Di Badai Topan Dunia* - KJ 440 (`o5_tW24XDW8` - Official GKI Gading Serpong Live Recording)
+  11. *Setinggi-tingginya Langit* - Talenta Singers (`Kr0zBAXqVW8` - GKDI Kids Kingdom Standalone Track)
+  12. *Ku Berbahagia* - KJ 392 (`7l9Kvq0C91g` - Galilee Worship Live Recording)
+  13. *Nyalakan ApiMu* - GMS Live (`FsIT-wdq4bA` - Official Music Video Media Rajawali Indonesia)
+  14. *Kumenang* - Symphony Worship (`ceBDhQV_fT4` - Official Music Video Symphony Worship Family)
+  15. *Kumenang Menang* - Hosana Singers (`8yr_XGBFb30` - Official Maranatha - 50 NS Penyembahan)
 - **Tiga Output Monitor Sekaligus:**
   1. **Auditorium LED Screen (1920x1080):** Output layar tengah auditorium dengan pilihan motion theme background (Midnight Nebula, Golden Flare, Pure Dark, Holy Light).
   2. **YouTube Stream Lower-Third (OBS Alpha):** Baris ganda transparan dengan drop shadow tebal (baris 1 warna kuning, baris 2 warna putih).
