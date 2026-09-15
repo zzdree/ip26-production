@@ -1937,6 +1937,16 @@ code {
   background: rgba(0, 210, 255, 0.06);
 }
 
+.drawer-nav-link.active {
+  background: rgba(0, 210, 255, 0.14);
+  border-color: var(--accent-cyan);
+  box-shadow: 0 0 12px rgba(0, 210, 255, 0.25);
+}
+
+.drawer-nav-link.active strong {
+  color: var(--accent-cyan);
+}
+
 .drawer-link-icon {
   font-size: 1.25rem;
   line-height: 1;
@@ -2833,32 +2843,13 @@ tr.remote-updated {
     letter-spacing: 0.03em;
   }
 
-  .desktop-header .desktop-nav {
-    display: none;
-  }
-
-  .desktop-header .nav-actions {
-    display: flex;
-    align-items: center;
-    gap: 4px;
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
-  }
-
+  .desktop-header .desktop-nav,
   .desktop-header .nav-actions .nav-cta-btn {
-    display: inline-flex !important;
-    padding: 5px 8px;
-    font-size: 0.74rem;
-    gap: 4px;
-    white-space: nowrap;
-  }
-
-  .desktop-header .nav-actions .nav-cta-btn .btn-icon {
-    font-size: 0.8rem;
+    display: none !important;
   }
 
   .mobile-menu-toggle-btn {
-    display: none !important;
+    display: inline-flex !important;
   }
 
   .theme-toggle-btn {
