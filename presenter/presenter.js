@@ -20,8 +20,6 @@
     currentSongIdx: 0,
     currentSlideIdx: 0,
     clearAll: false,
-    clearText: false,
-    clearBg: false,
     blackout: false,
     activeScreen: 'audience', // 'audience' | 'stage' | 'stream'
     destAudience: true,
@@ -45,8 +43,6 @@
     btnPrev: document.getElementById('btn-prev-slide'),
     btnNext: document.getElementById('btn-next-slide'),
     btnClearAll: document.getElementById('btn-clear-all'),
-    btnClearText: document.getElementById('btn-clear-text'),
-    btnClearBg: document.getElementById('btn-clear-bg'),
     btnBlackout: document.getElementById('btn-blackout'),
     // Unified Pro7 Monitor & Previews
     monitorActiveLabel: document.getElementById('monitor-active-label'),
@@ -305,7 +301,7 @@
     const nextSlide = song.slides[state.currentSlideIdx + 1];
 
     // Determine lines to display
-    const isHidden = state.clearAll || state.clearText || state.blackout;
+    const isHidden = state.clearAll || state.blackout;
     const lines = isHidden || !currentSlide ? [] : currentSlide.lines;
 
     // 1. Auditorium LED Preview
@@ -317,7 +313,7 @@
         dom.ledScreen.style.background = '#000000';
         dom.ledText.innerHTML = '';
       } else {
-        dom.ledScreen.className = `preview-screen-box ${state.clearBg ? 'screen-bg-dark' : state.theme}`;
+        dom.ledScreen.className = 'preview-screen-box screen-bg-dark';
         dom.ledScreen.style.background = '';
 
         if (lines.length === 0) {
@@ -332,7 +328,7 @@
 
     // 2. Stream Lower-Third Preview
     if (dom.ltOverlay && dom.ltLine1 && dom.ltLine2) {
-      if (!state.destStream || state.blackout || state.clearAll || state.clearText || lines.length === 0) {
+      if (!state.destStream || state.blackout || state.clearAll || lines.length === 0) {
         dom.ltOverlay.style.display = 'none';
       } else {
         dom.ltOverlay.style.display = 'flex';
@@ -439,22 +435,6 @@
     state.clearAll = !state.clearAll;
     if (dom.btnClearAll) {
       dom.btnClearAll.classList.toggle('active', state.clearAll);
-    }
-    updateLiveOutput();
-  }
-
-  function toggleClearText() {
-    state.clearText = !state.clearText;
-    if (dom.btnClearText) {
-      dom.btnClearText.classList.toggle('active', state.clearText);
-    }
-    updateLiveOutput();
-  }
-
-  function toggleClearBg() {
-    state.clearBg = !state.clearBg;
-    if (dom.btnClearBg) {
-      dom.btnClearBg.classList.toggle('active', state.clearBg);
     }
     updateLiveOutput();
   }
@@ -638,10 +618,8 @@
     if (dom.btnPrev) dom.btnPrev.addEventListener('click', prevSlide);
     if (dom.btnNext) dom.btnNext.addEventListener('click', nextSlide);
 
-    // Clear Bar
+    // Clear Bar (Clear All & Blackout Only)
     if (dom.btnClearAll) dom.btnClearAll.addEventListener('click', toggleClearAll);
-    if (dom.btnClearText) dom.btnClearText.addEventListener('click', toggleClearText);
-    if (dom.btnClearBg) dom.btnClearBg.addEventListener('click', toggleClearBg);
     if (dom.btnBlackout) dom.btnBlackout.addEventListener('click', toggleBlackout);
 
     // Search Input
@@ -718,12 +696,6 @@
       } else if (e.key === 'Escape' || e.key === 'F1') {
         e.preventDefault();
         toggleClearAll();
-      } else if (e.key === 'F2' || e.key.toLowerCase() === 't') {
-        e.preventDefault();
-        toggleClearText();
-      } else if (e.key === 'F3' || e.key.toLowerCase() === 'b') {
-        e.preventDefault();
-        toggleClearBg();
       } else if (e.key === 'F5' || e.key.toLowerCase() === 'o') {
         e.preventDefault();
         toggleBlackout();
