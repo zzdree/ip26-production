@@ -51,7 +51,7 @@ x WIRING/ROUTING dengan keterangan barang siapa dan PIC nya
 x Centang Hijau artinya FIXED
 
 - CAM 5 (PHOTO + MOBILE) - Sony A6400 (OWL) + Sony 50MM (OWL) + Battery X2 (OWL) + Memory Card 32GB (OWL) - (Nico) ✅
-- CAM 6 (VIDEO + MOBILE) - Sony ZV-E10 (OWL) + Lens 35MM (ABON) + Battery X2 (OWL) + Memory Card 32GB (OWL) - (Joel) ✅
+- CAM 6 (VIDEO + MOBILE) - Sony ZV-E10 (OWL) + Lens 35MM (ABON) + Battery X2 (OWL) + Memory Card 32GB (OWL) + DJI Ronin RS3 Pro - (Joel) ✅
 - CAM 7 (STORY + MOBILE) - iPhone 15 (Jennifer) - (Jennifer) ✅
 
 *Documentation Camera System - PIC*
@@ -74,7 +74,7 @@ x Centang Hijau artinya FIXED
 - HDMI Cable 10M (GKJ) [CAM 1] + HDMI Cable 1,5M (UKK) [CAM 2] + HDMI Cable 1,5M (UKK) [CAM 3] + HDMI Cable 10M (UKK) [CAM 4] + Cinetreak Cinelive V1 (OWL) + Power Adaptor MIX (OWL)
 
 ! Switcher + Monitor ✅
-- Terminal Cable XCH (UKK) + Cinetreak Cinelive V1 (OWL) + Power Adaptor MIX (OWL) + HDMI to HDMI Cable 1,5M (GIA) + Monitor Armageddon (Jordan) + Power Adaptor MON (Jordan)
+- Terminal Cable XCH (UKK) + Cinetreak Cinelive V1 (OWL) + Power Adaptor MIX (OWL) + HDMI to HDMI Cable 1,5M (GIA) + Monitor (Jordan) + Power Adaptor MON (Jordan)
 
 ! Switcher + PRO1 ✅
 - Terminal Cable XCH (UKK) + Cinetreak Cinelive V1 (OWL) + Power Adaptor MIX (OWL) + USB A to USB C Data Cable (Andreas) + Laptop (Pro Presenter 1) + Power Adaptor LTP (Pro Presenter 1)
@@ -85,10 +85,10 @@ x Centang Hijau artinya FIXED
 ! Splitter + OBS ✅
 - HDMI Splitter 4CH (UKK) + Power Adaptor SPL (UKK) + HDMI Cable 1,5M (Andreas) + HDMI Capture (ABON) + Laptop (OBS Studio) + Power Adaptor LTP (OBS Studio)
 
-! OBS + LED Left Right Back ✅
+! OBS + LED Wing ✅
 - Laptop (OBS Studio) + Power Adaptor LTP (OBS Studio) + HDMI Cable 20M (UNNES) + Novastar Video Processor (UNNES) + LED Left Right Back (UNNES)
 
-! Switcher + RES ✅
+! Splitter + RES ✅
 - HDMI Splitter 4CH (UKK) + Power Adaptor SPL (UKK) + HDMI Cable 1,5M (Andreas) + HDMI Capture (ABON) + Laptop (Resolume Arena) + Power Adaptor LTP (Resolume Arena)
 
 ! RES + LED Center ✅
@@ -103,9 +103,6 @@ x Centang Hijau artinya FIXED
 ! OBS + ADD ✅
 - Laptop (OBS Studio) + Power Adaptor LTP (OBS Studio) + Fan Cooler (Andreas) + USB A to USB C Charge Cable (Andreas) + USB A to USB C Female Converter (Andreas) + Power Adaptor USB A (Andreas)
 
-! SMOKE ✅
-- Terminal Cable XCH (UKK) + Smoke Fogger 900W Pack (Liquid SMO + Remote SMO + XLR Cable SMO + Power Cable SMO) (Jordan)
-
 *Engine System - Audio*
 
 ! Mixer 1 + XLR Cable + Mixer 2 + OBS ✅
@@ -114,14 +111,23 @@ x Centang Hijau artinya FIXED
 ! PRO1 + DAC + Mixer 1 ✅
 - Laptop (Pro Presenter 1) + Power Adaptor LTP (Pro Presenter 1) + USB C DAC Hanason AB17X/USB C DAC Oraimo OAA310 (Andreas) + Audio Cable 20M (UNNES) + Mixer Yamaha QL5 (UNNES)
 
-! Mixer 1 + VM1 + Monitor ✅
-- Mixer Yamaha QL5 (UNNES) + WiFi (UNNES-ID) + MacBook (Virtual Mixer 1) + Power Adaptor MAC (Virtual Mixer 1) + iPad (Filia/Alex)
-
-! Mixer 1 + VM2 ✅
-- Mixer Yamaha QL5 (UNNES) + WiFi (UNNES-ID) + iPad (Virtual Mixer 2)
+! Mixer 1 + VM1 + VM2 + Monitor ✅
+- Mixer Yamaha QL5 (UNNES) + WiFi (UNNES-ID) + MacBook (Virtual Mixer 1) + Power Adaptor MAC (Virtual Mixer 1) + iPad (Virtual Mixer 2) + Monitor (Evan) + Power Adaptor MON (Evan)
 
 ! Mixer 1 + VM3 ✅
 - Mixer Yamaha QL5 (UNNES) + WiFi (UNNES-ID) + iPad (Virtual Mixer 3)
+
+! Mixer 1 + VM4 ✅
+- Mixer Yamaha QL5 (UNNES) + WiFi (UNNES-ID) + iPad (Virtual Mixer 4)
+
+- *Note System - Time Keeper*
+
+x Terpisah system dengan BROADCAST SYSTEM dan ENGINE SYSTEM
+x WIRING/ROUTING dengan keterangan barang siapa aja tanpa PIC
+x Centang Hijau artinya FIXED
+
+! PRO3 + TV ✅
+- Terminal Cable XCH (UKK) + Laptop (Pro Presenter 3) + Power Adaptor LTP (Pro Presenter 3) + HDMI to HDMI Cable 1,5M (GIA) + Television (PlayStation) + Power Adaptor TV (PlayStation)
 
 *Media System Device*
 
@@ -131,13 +137,14 @@ x Centang Hijau artinya FIXED
 
 - Mixer 1 - Yamaha QL5 (UNNES) ✅
 - Mixer 2 - NewBaxs CT80S (GIA) ✅
-- Virtual Mixer 1 + Monitor - MacBook + Power Adaptor MAC (Jordan) + iPad (Filia/Alex) ✅
-- Virtual Mixer 2 - iPad (Jennifer) ✅
-- Virtual Mixer 3 - iPad (Bapak Arif) ✅
+- Virtual Mixer 1 + Virtual Mixer 2 + Monitor - MacBook + Power Adaptor MAC (Jordan) + iPad (Filia) + Monitor (Evan) + Power Adaptor MON (Evan) ✅
+- Virtual Mixer 3 - iPad (Jennifer) ✅
+- Virtual Mixer 4 - iPad (Alex) ✅
 - Resolume Arena - Laptop (Bayu) + Power Adaptor LTP (Bayu) ✅
 - Pro Presenter 1 - Laptop (Nico) + Power Adaptor LTP (Nico) ✅
 - Pro Presenter 2 - Laptop (Wilfred) + Power Adaptor LTP (Wilfred) ✅
-- Switcher + Monitor - Cinetreak Cinelive V1 (OWL) + Power Adaptor MIX (OWL) + Monitor Armageddon (Jordan) + Power Adaptor MON (Jordan) ✅
+- Pro Presenter 3 - Laptop (Acara) + Power Adaptor LTP (Acara) ✅
+- Switcher + Monitor - Cinetreak Cinelive V1 (OWL) + Power Adaptor MIX (OWL) + Monitor (Jordan) + Power Adaptor MON (Jordan) ✅
 - OBS Studio - Laptop (Andreas) + Power Adaptor LTP (Andreas) ✅
 
 *Media System Device - PIC*
@@ -147,11 +154,12 @@ x Centang Hijau artinya FIXED
 
 - Mixer 1 (Jordan/Yosua) ✅
 - Mixer 2 (Andreas) ✅
-- Virtual Mixer 1 + Monitor (Jordan) ✅
-- Virtual Mixer 2 (Yosua) ✅
+- Virtual Mixer 1 + 2 + Monitor (Jordan) ✅
 - Virtual Mixer 3 (Jordan) ✅
+- Virtual Mixer 4 (Yosua) ✅
 - Resolume Arena (Andreas) ✅
 - Pro Presenter 1 (Rania) ✅
 - Pro Presenter 2 (Filia) ✅
+- Pro Presenter 3 (Acara) ✅
 - Switcher + Monitor (Wilfred) ✅
 - OBS Studio (Andreas) ✅

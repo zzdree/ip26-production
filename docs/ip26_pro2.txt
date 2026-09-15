@@ -27,6 +27,7 @@ x Kategori peminjaman berdasarkan dari siapa saja dan apa saja
 
 *Peminjaman dari ABON*
 - Lens 35MM (1 Unit) ✅
+- DJI Ronin RS3 Pro ✅
 - HDMI Capture (2 Unit) ✅
 
 *Peminjaman dari Andreas*
@@ -88,13 +89,16 @@ x Kategori peminjaman berdasarkan dari siapa saja dan apa saja
 - Mixer NewBaxs CT80S (1 Unit) ✅
 - Power Adaptor MIX (1 Pack) ✅
 - Soundcard TaffStudio (1 Unit) ☑️
-- TRS 3.5 Male to TRS 3.5 Female 3M (5 Unit) ☑️
+- Converter 3.5 Female to 6.5 TRS Male (4 Unit) ☑️
+- Converter 3.5 Female to 6.5 TS Male (2 Unit) ☑️
+- Cable 3.5 Male to 3.5 Male 30CM (3 Unit) ☑️
+- Cable 3.5 Male to 3.5 Female 3M (5 Unit) ☑️
 - XLR Female to Male Cable 3M (2 Unit) ☑️
 - USB A to USB C Data Cable (1 Unit) ✅
 - Tripod Camera Big (1 Unit) ✅
 - HDMI Splitter 2CH (1 Unit) ☑️
 - Power Adaptor SPL (1 Pack) ☑️
-- HDMI to HDMI Cable 1,5M (3 Unit) ⚠️ 2/3
+- HDMI to HDMI Cable 1,5M (3 Unit) ✅
 
 *Peminjaman dari GKJ Ngaliyan*
 - Stand Lighting Small (1 Unit) ☑️
@@ -113,7 +117,7 @@ x Kategori peminjaman berdasarkan dari siapa saja dan apa saja
 - HDMI to Mini HDMI Cable 2,5M (1 Unit) ☑️
 - HDMI Cable 15M (1 Unit) ✅
 - HDMI Cable 10M (1 Unit) ✅
-- HDMI Cable 1,5M (3 Unit) ⚠️ 2/3
+- HDMI Cable 1,5M (2 Unit) ✅
 - HDMI Splitter 4CH (1 Unit) ✅
 - Power Adaptor SPL (1 Pack) ✅
 - VGA to VGA Cable 1,5M (1 Unit) ☑️
@@ -134,13 +138,8 @@ x Kategori peminjaman berdasarkan dari siapa saja dan apa saja
 - XLR Cable 30M (1 Unit) ✅
 - HDMI Capture (1 Unit) ☑️
 - USB A to USB B Cable (1 Unit) ☑️
-- Monitor Armageddon (1 Unit) ✅
+- Monitor (1 Unit) ✅
 - Power Adaptor MON (1 Pack) ✅
-- Smoke Fogger 900W (1 Unit) ✅
-- Liquid SMO (1 Pack) ✅
-- Remote SMO (1 Unit) ✅
-- XLR Cable SMO (1 Unit) ✅
-- Power Cable SMO (1 Pack) ✅
 
 *Peminjaman dari Kiel*
 - Sony ZV-E10 (1 Unit) ✅
@@ -176,9 +175,6 @@ x Kategori peminjaman berdasarkan dari siapa saja dan apa saja
 *Peminjaman dari Alex*
 - TAB iPad (1 Unit) ✅
 
-*Peminjaman dari Bapak Arif*
-- TAB iPad (1 Unit) ✅
-
 *Peminjaman dari Bayu*
 - Laptop (1 Unit) ✅
 - Power Adaptor LTP (1 Pack) ✅
@@ -186,6 +182,14 @@ x Kategori peminjaman berdasarkan dari siapa saja dan apa saja
 *Peminjaman dari Wilfred*
 - Laptop (1 Unit) ✅
 - Power Adaptor LTP (1 Pack) ✅
+
+*Peminjaman dari Evan*
+- Monitor (1 Unit) ✅
+- Power Adaptor MON (1 Pack) ✅
+
+*Peminjaman dari PlayStation*
+- Television (1 Unit) ✅
+- Power Adaptor TV (1 Pack) ✅
 
 *Peminjaman dari Panitia*
 - HDMI to Micro HDMI Converter (2 Unit) ✅

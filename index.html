@@ -354,9 +354,9 @@ flowchart TD
                 <strong>Cinetreak V1</strong>
                 <small>PGM & USB to P1</small>
               </div>
-              <div class="node-box" data-tooltip="Jordan | Monitor Armageddon via HDMI 1.5M GIA">
+              <div class="node-box" data-tooltip="Jordan | Monitor via HDMI 1.5M GIA">
                 <span class="node-badge">MONITOR</span>
-                <strong>Armageddon</strong>
+                <strong>Monitor Jordan</strong>
                 <small>Multiview Switcher</small>
               </div>
               <div class="node-box" data-tooltip="UKK | Splitter 4CH Distribusi Sinyal P1">
@@ -390,7 +390,7 @@ flowchart TD
                 <strong>Resolume Arena</strong>
                 <small>Laptop Bayu (Andreas)</small>
               </div>
-              <div class="node-box" data-tooltip="Jordan / Yosua | Yamaha QL5 + 3x Virtual Mixers">
+              <div class="node-box" data-tooltip="Jordan / Yosua | Yamaha QL5 + 4x Virtual Mixers">
                 <span class="node-badge">AUDIO FOH</span>
                 <strong>Yamaha QL5</strong>
                 <small>Submix CT80S GIA</small>
@@ -404,7 +404,7 @@ flowchart TD
           </div>
 
           <div class="flow-stage">
-            <div class="flow-stage-title">🖥️ 4. AUDITORIUM LED, STREAM & FX</div>
+            <div class="flow-stage-title">🖥️ 4. AUDITORIUM LED, STREAM & TIME KEEPER</div>
             <div class="flow-nodes">
               <div class="node-box node-success" data-tooltip="Resolume ➔ HDMI 15M GKJ ➔ PC UNNES ➔ Novastar 2">
                 <span class="node-badge">OUTPUT</span>
@@ -413,7 +413,7 @@ flowchart TD
               </div>
               <div class="node-box node-success" data-tooltip="Laptop OBS Studio ➔ HDMI 20M UNNES ➔ Novastar 1">
                 <span class="node-badge">OUTPUT</span>
-                <strong>LED L/R & Back</strong>
+                <strong>LED Wing (L/R/B)</strong>
                 <small>Novastar 1 UNNES</small>
               </div>
               <div class="node-box node-accent" data-tooltip="Laptop Andreas + CT80S GIA Audio Submix">
@@ -421,10 +421,10 @@ flowchart TD
                 <strong>OBS Live Stream</strong>
                 <small>YouTube Broadcast</small>
               </div>
-              <div class="node-box" data-tooltip="Smoke Fogger 900W Pack Jordan (Liquid, Remote, XLR SMO)">
-                <span class="node-badge">EFFECT</span>
-                <strong>Smoke Fogger</strong>
-                <small>Stage FX Jordan</small>
+              <div class="node-box" data-tooltip="ProPresenter 3 Laptop Acara ➔ HDMI 1.5M GIA ➔ TV Stage PlayStation">
+                <span class="node-badge">TIME KEEPER</span>
+                <strong>Stage Display TV</strong>
+                <small>PRO 3 (Acara)</small>
               </div>
             </div>
           </div>
@@ -448,7 +448,7 @@ flowchart TB
         RX2["Pyro S RX (UKK Stand)"]
         RX3["Pyro H RX (UKK Stand)"]
         SW["Master Switcher<br/><b>Cinetreak Cinelive V1 (OWL)</b><br/>(Wilfred)"]
-        MON_SW["Monitor Armageddon (Jordan)<br/><i>Switcher Multiview</i>"]
+        MON_SW["Monitor (Jordan)<br/><i>Switcher Multiview</i>"]
     end
 
     %% SECTION: PRESENTATION, DISTRIBUTION & LED PROCESSING
@@ -457,11 +457,11 @@ flowchart TB
         SPL["HDMI Splitter 4CH (UKK)<br/>(Distribusi Sinyal P1)"]
         P2["Laptop ProPresenter 2 (Wilfred)<br/>(Filia)<br/><i>Lyrics / Center Layers</i>"]
         RES["Laptop Resolume Arena (Bayu)<br/>(Andreas)<br/><i>Center Screen Visual Engine</i>"]
-        OBS["Live Streaming Workstation<br/><b>Laptop OBS Studio (Andreas)</b><br/><i>Left/Right/Back & Stream</i>"]
+        OBS["Live Streaming Workstation<br/><b>Laptop OBS Studio (Andreas)</b><br/><i>LED Wing & Stream</i>"]
         PC_UN["PC UNNES<br/>(Passthrough & Scale)"]
         NOVA1["Novastar Processor 1<br/>(UNNES)"]
         NOVA2["Novastar Processor 2<br/>(UNNES)"]
-        LED_LR["🖥️ LED Left, Right & Back<br/>(Auditorium UNNES)"]
+        LED_LR["🖥️ LED Wing (Left, Right & Back)<br/>(Auditorium UNNES)"]
         LED_CTR["🖥️ LED Center Main Stage<br/>(Auditorium UNNES)"]
     end
 
@@ -469,16 +469,18 @@ flowchart TB
     subgraph S_AUD["🔊 4. AUDIO ROUTING & VIRTUAL MIXING"]
         STAGE_MIC["Stage Mics, Instruments & Vocal"]
         QL5["Master Digital Audio Mixer<br/><b>Yamaha QL5 UNNES</b><br/>(Jordan / Yosua)"]
-        VM1["MacBook Virtual Mixer 1 (Jordan)<br/>+ iPad (Filia/Alex)"]
-        VM2["iPad Virtual Mixer 2 (Jennifer)<br/>(Yosua)"]
-        VM3["iPad Virtual Mixer 3 (Bapak Arif)<br/>(Jordan)"]
+        VM1["MacBook Virtual Mixer 1 (Jordan)"]
+        VM2["iPad Virtual Mixer 2 (Filia) + Monitor (Evan)<br/>(Jordan)"]
+        VM3["iPad Virtual Mixer 3 (Jennifer)<br/>(Jordan)"]
+        VM4["iPad Virtual Mixer 4 (Alex)<br/>(Yosua)"]
         DAC["USB-C DAC Hanason/Oraimo (Andreas)<br/><i>Audio Playback ProPresenter 1</i>"]
         CT80S["Sub-Mix Audio Mixer<br/><b>NewBaxs CT80S GIA</b><br/>(Andreas)"]
     end
 
-    %% SECTION: SPECIAL EFFECTS
-    subgraph S_FX["💨 5. STAGE EFFECTS"]
-        SMOKE["Smoke Fogger 900W Pack (Jordan)<br/>Liquid + Remote + XLR SMO"]
+    %% SECTION: TIME KEEPER
+    subgraph S_TK["⏱️ 5. TIME KEEPER SYSTEM"]
+        P3["Laptop ProPresenter 3 (Acara)<br/>(Acara)"]
+        TV["Television (PlayStation)<br/><i>Stage Time Display</i>"]
     end
 
     %% SIGNAL CONNECTIONS - CAMERAS TO SWITCHER
@@ -497,6 +499,9 @@ flowchart TB
     SPL -->|HDMI 1.5M Andreas + Capture ABON| RES
     P2 -->|HDMI to HDMI 1.5M Andreas + Capture OWL| RES
 
+    %% TIME KEEPER ROUTING
+    P3 -->|HDMI to HDMI 1.5M GIA| TV
+
     %% LED OUTPUT ROUTING
     OBS -->|HDMI 20M UNNES| NOVA1 --> LED_LR
     RES -->|HDMI 15M GKJ + Capture GKJ| PC_UN --> NOVA2 --> LED_CTR
@@ -507,6 +512,7 @@ flowchart TB
     QL5 -.->|WiFi UNNES-ID| VM1
     QL5 -.->|WiFi UNNES-ID| VM2
     QL5 -.->|WiFi UNNES-ID| VM3
+    QL5 -.->|WiFi UNNES-ID| VM4
     QL5 -->|XLR 30M Jordan| CT80S
     CT80S -->|USB A to USB C GIA| OBS
           </pre>
@@ -684,9 +690,10 @@ flowchart LR
     STAGE_SRC["Stage Mics & Band Instruments"] --> QL5_MAIN["Yamaha QL5 (Auditorium UNNES)"]
     P1_AUDIO["Laptop ProPresenter 1 (Nico)"] -->|USB-C DAC + Audio 20M UNNES| QL5_MAIN
     
-    QL5_MAIN -.->|WiFi UNNES-ID| VM1["MacBook (Jordan) + iPad (Filia/Alex)"]
-    QL5_MAIN -.->|WiFi UNNES-ID| VM2["iPad (Jennifer)"]
-    QL5_MAIN -.->|WiFi UNNES-ID| VM3["iPad (Bapak Arif)"]
+    QL5_MAIN -.->|WiFi UNNES-ID| VM1["MacBook (Jordan)"]
+    QL5_MAIN -.->|WiFi UNNES-ID| VM2["iPad (Filia) + Monitor (Evan)"]
+    QL5_MAIN -.->|WiFi UNNES-ID| VM3["iPad (Jennifer)"]
+    QL5_MAIN -.->|WiFi UNNES-ID| VM4["iPad (Alex)"]
     
     QL5_MAIN -->|XLR Female to Male 30M Jordan| CT80S_IN["Mixer NewBaxs CT80S (GIA)"]
     CT80S_IN -->|USB A to USB C Data Cable GIA| OBS_IN["Laptop OBS Studio (Andreas)"]
@@ -705,43 +712,40 @@ flowchart LR
                 </div>
                 <div class="route-item">
                   <span class="route-tag">Virtual Mixing Remotes</span>
-                  <code>Yamaha QL5 ➔ [WiFi UNNES-ID] ➔ VM1 (MacBook Jordan + iPad Filia/Alex), VM2 (iPad Jennifer - Yosua), VM3 (iPad Bapak Arif - Jordan)</code>
+                  <code>Yamaha QL5 ➔ [WiFi UNNES-ID] ➔ VM1 (MacBook Jordan), VM2 (iPad Filia + Monitor Evan - Jordan), VM3 (iPad Jennifer - Jordan), VM4 (iPad Alex - Yosua)</code>
                 </div>
               </div>
               <p class="subsystem-desc">
-                <strong>Penjelasan:</strong> Audio streaming dipisahkan secara fisik via submix Mixer NewBaxs CT80S agar dinamika akustik aula tidak merusak siaran YouTube. Sound engineer mengontrol FOH secara mobile menggunakan 3 tablet/laptop terhubung ke WiFi UNNES-ID.
+                <strong>Penjelasan:</strong> Audio streaming dipisahkan secara fisik via submix Mixer NewBaxs CT80S agar dinamika akustik aula tidak merusak siaran YouTube. Sound engineer mengontrol FOH secara mobile menggunakan 4 workstation tablet/laptop terhubung ke WiFi UNNES-ID.
               </p>
             </div>
           </div>
 
-          <!-- Subsystem 5: Stage Effects (Smoke Fogger) -->
+          <!-- Subsystem 5: Time Keeper (ProPresenter 3 + TV) -->
           <div class="subsystem-card">
             <div class="subsystem-header">
               <span class="subsystem-num">05</span>
               <div>
-                <h3 class="subsystem-title">Sub-Sistem Efek Panggung (Smoke Fogger)</h3>
-                <span class="subsystem-sub">Smoke Fogger 900W Pack (Jordan) Terhubung Jalur Terminal UKK</span>
+                <h3 class="subsystem-title">Sub-Sistem Time Keeper Panggung</h3>
+                <span class="subsystem-sub">Laptop ProPresenter 3 (Acara) ➔ HDMI 1.5M GIA ➔ Television (PlayStation)</span>
               </div>
             </div>
             <div class="subsystem-body">
               <div class="mermaid-container">
                 <pre class="mermaid">
 flowchart LR
-    PWR_UKK["Terminal Cable XCH (UKK)"] --> SF["Smoke Fogger 900W (Jordan)"]
-    SF --- LIQ["Liquid SMO (Jordan)"]
-    SF --- REM["Remote SMO (Jordan)"]
-    SF --- XLR_S["XLR Cable SMO (Jordan)"]
-    SF --- PWR_S["Power Cable SMO (Jordan)"]
+    PWR_UKK["Terminal Cable XCH (UKK)"] --> P3["Laptop ProPresenter 3 (Acara)"]
+    P3 -->|HDMI to HDMI Cable 1.5M (GIA)| TV["Television (PlayStation)"]
                 </pre>
               </div>
               <div class="tech-route-box">
                 <div class="route-item">
-                  <span class="route-tag">Jalur Smoke Fogger</span>
-                  <code>Terminal Cable XCH UKK ➔ Smoke Fogger 900W (Liquid SMO + Remote SMO + XLR Cable SMO + Power Cable SMO) Jordan</code>
+                  <span class="route-tag">Jalur Time Keeper</span>
+                  <code>Terminal Cable XCH UKK ➔ Laptop ProPresenter 3 (Acara) ➔ HDMI to HDMI Cable 1.5M GIA ➔ Television (PlayStation)</code>
                 </div>
               </div>
               <p class="subsystem-desc">
-                <strong>Penjelasan:</strong> Mesin asap panggung berdaya 900W disuplai dari terminal daya UKK dan dikendalikan melalui remote kabel XLR untuk menciptakan atmosfer teatrikal pada momen pembuka dan sesi pujian penyembahan.
+                <strong>Penjelasan:</strong> Sistem pengatur waktu (time keeper) panggung terpisah secara independen dari broadcast dan visual engine utama. Didedikasikan khusus untuk display waktu / countdown bagi pengkhotbah, MC, dan Worship Leader di atas panggung Auditorium UNNES.
               </p>
             </div>
           </div>
@@ -904,6 +908,7 @@ flowchart LR
             <h4 class="cam-name">Sony ZV-E10 (OWL)</h4>
             <div class="cam-specs-list">
               <div class="cam-spec-row"><span>Lensa</span> <strong>Lens 35MM (ABON)</strong></div>
+              <div class="cam-spec-row"><span>Stabilizer</span> <strong>DJI Ronin RS3 Pro (ABON)</strong></div>
               <div class="cam-spec-row"><span>Baterai</span> <strong>Battery X2 (OWL)</strong></div>
               <div class="cam-spec-row"><span>Memory</span> <strong>SD Card 32GB (OWL)</strong></div>
               <div class="cam-spec-row"><span>Operasional</span> <strong>Video Dokumentasi & Aftermovie</strong></div>
@@ -964,21 +969,21 @@ flowchart LR
                 <td><span class="badge badge-emerald">✅ Terverifikasi</span></td>
               </tr>
               <tr>
-                <td><strong>💻 Virtual Mixer 1 + Monitor</strong></td>
-                <td>MacBook (Jordan) + Power Adaptor (Jordan) + iPad (Filia/Alex)</td>
+                <td><strong>💻 Virtual Mixer 1 + 2 + Monitor</strong></td>
+                <td>MacBook (Jordan) + iPad (Filia) + Monitor (Evan)</td>
                 <td><span class="user-tag">Jordan</span></td>
-                <td><span class="badge badge-emerald">✅ Terverifikasi</span></td>
-              </tr>
-              <tr>
-                <td><strong>📱 Virtual Mixer 2</strong></td>
-                <td>iPad (Jennifer)</td>
-                <td><span class="user-tag">Yosua</span></td>
                 <td><span class="badge badge-emerald">✅ Terverifikasi</span></td>
               </tr>
               <tr>
                 <td><strong>📱 Virtual Mixer 3</strong></td>
-                <td>iPad (Bapak Arif)</td>
+                <td>iPad (Jennifer)</td>
                 <td><span class="user-tag">Jordan</span></td>
+                <td><span class="badge badge-emerald">✅ Terverifikasi</span></td>
+              </tr>
+              <tr>
+                <td><strong>📱 Virtual Mixer 4</strong></td>
+                <td>iPad (Alex)</td>
+                <td><span class="user-tag">Yosua</span></td>
                 <td><span class="badge badge-emerald">✅ Terverifikasi</span></td>
               </tr>
               <tr>
@@ -1000,13 +1005,19 @@ flowchart LR
                 <td><span class="badge badge-emerald">✅ Terverifikasi</span></td>
               </tr>
               <tr>
+                <td><strong>⏱️ ProPresenter 3 (Time Keeper Stage)</strong></td>
+                <td>Laptop (Acara) + Television (PlayStation)</td>
+                <td><span class="user-tag">Acara</span></td>
+                <td><span class="badge badge-emerald">✅ Terverifikasi</span></td>
+              </tr>
+              <tr>
                 <td><strong>📺 Switcher + Multiview Monitor</strong></td>
-                <td>Cinetreak Cinelive V1 (OWL) + Monitor Armageddon (Jordan)</td>
+                <td>Cinetreak Cinelive V1 (OWL) + Monitor (Jordan)</td>
                 <td><span class="user-tag">Wilfred</span></td>
                 <td><span class="badge badge-emerald">✅ Terverifikasi</span></td>
               </tr>
               <tr>
-                <td><strong>📡 OBS Studio (Stream & Side/Back LED)</strong></td>
+                <td><strong>📡 OBS Studio (Stream & LED Wing)</strong></td>
                 <td>Laptop (Andreas) + Power Adaptor LTP (Andreas)</td>
                 <td><span class="user-tag">Andreas</span></td>
                 <td><span class="badge badge-emerald">✅ Terverifikasi</span></td>
@@ -1043,7 +1054,7 @@ flowchart LR
           </div>
 
           <div class="filter-pills-scroll" id="vendor-filter-group">
-            <button class="filter-pill active" data-filter="all">Semua (18)</button>
+            <button class="filter-pill active" data-filter="all">Semua (19)</button>
             <button class="filter-pill" data-filter="OWL">OWL</button>
             <button class="filter-pill" data-filter="ABON">ABON</button>
             <button class="filter-pill" data-filter="Andreas">Andreas</button>
@@ -1058,9 +1069,10 @@ flowchart LR
             <button class="filter-pill" data-filter="Jennifer">Jennifer</button>
             <button class="filter-pill" data-filter="Filia">Filia</button>
             <button class="filter-pill" data-filter="Alex">Alex</button>
-            <button class="filter-pill" data-filter="Bapak Arif">Bapak Arif</button>
             <button class="filter-pill" data-filter="Bayu">Bayu</button>
             <button class="filter-pill" data-filter="Wilfred">Wilfred</button>
+            <button class="filter-pill" data-filter="Evan">Evan</button>
+            <button class="filter-pill" data-filter="PlayStation">PlayStation</button>
             <button class="filter-pill" data-filter="Panitia">Panitia</button>
           </div>
 
@@ -1185,6 +1197,7 @@ flowchart LR
                 </thead>
                 <tbody>
                   <tr data-name="Lens 35MM"><td>Lens 35MM</td><td>1 Unit</td><td><span class="badge badge-emerald">✅</span></td><td>CAM 6 Video Dokumentasi</td></tr>
+                  <tr data-name="DJI Ronin RS3 Pro"><td>DJI Ronin RS3 Pro</td><td>1 Unit</td><td><span class="badge badge-emerald">✅</span></td><td>Gimbal Stabilizer CAM 6 Video Dokumentasi</td></tr>
                   <tr data-name="HDMI Capture"><td>HDMI Capture</td><td>2 Unit</td><td><span class="badge badge-emerald">✅</span></td><td>1x Splitter ➔ OBS, 1x Splitter ➔ Resolume</td></tr>
                 </tbody>
               </table>
@@ -1270,13 +1283,16 @@ flowchart LR
                   <tr data-name="Mixer NewBaxs CT80S"><td>Mixer NewBaxs CT80S</td><td>1 Unit</td><td><span class="badge badge-emerald">✅</span></td><td>Mixer 2 (Sub-Mix Audio Streaming ke OBS)</td></tr>
                   <tr data-name="Power Adaptor MIX"><td>Power Adaptor MIX</td><td>1 Pack</td><td><span class="badge badge-emerald">✅</span></td><td>Power Adaptor Mixer NewBaxs CT80S</td></tr>
                   <tr data-name="Soundcard TaffStudio"><td>Soundcard TaffStudio</td><td>1 Unit</td><td><span class="badge badge-slate">☑️</span></td><td>Cadangan soundcard audio</td></tr>
-                  <tr data-name="TRS 3.5 Male to TRS 3.5 Female 3M"><td>TRS 3.5 Male to TRS 3.5 Female 3M</td><td>5 Unit</td><td><span class="badge badge-slate">☑️</span></td><td>Cadangan kabel audio aux</td></tr>
+                  <tr data-name="Converter 3.5 Female to 6.5 TRS Male"><td>Converter 3.5 Female to 6.5 TRS Male</td><td>4 Unit</td><td><span class="badge badge-slate">☑️</span></td><td>Converter audio jack</td></tr>
+                  <tr data-name="Converter 3.5 Female to 6.5 TS Male"><td>Converter 3.5 Female to 6.5 TS Male</td><td>2 Unit</td><td><span class="badge badge-slate">☑️</span></td><td>Converter audio jack mono</td></tr>
+                  <tr data-name="Cable 3.5 Male to 3.5 Male 30CM"><td>Cable 3.5 Male to 3.5 Male 30CM</td><td>3 Unit</td><td><span class="badge badge-slate">☑️</span></td><td>Kabel aux patch pendek</td></tr>
+                  <tr data-name="Cable 3.5 Male to 3.5 Female 3M"><td>Cable 3.5 Male to 3.5 Female 3M</td><td>5 Unit</td><td><span class="badge badge-slate">☑️</span></td><td>Kabel perpanjangan aux 3.5mm</td></tr>
                   <tr data-name="XLR Female to Male Cable 3M"><td>XLR Female to Male Cable 3M</td><td>2 Unit</td><td><span class="badge badge-slate">☑️</span></td><td>Cadangan kabel audio balance</td></tr>
                   <tr data-name="USB A to USB C Data Cable"><td>USB A to USB C Data Cable</td><td>1 Unit</td><td><span class="badge badge-emerald">✅</span></td><td>Mixer NewBaxs CT80S ➔ Laptop OBS Studio</td></tr>
                   <tr data-name="Tripod Camera Big"><td>Tripod Camera Big</td><td>1 Unit</td><td><span class="badge badge-emerald">✅</span></td><td>Tripod CAM 3 Broadcast</td></tr>
                   <tr data-name="HDMI Splitter 2CH"><td>HDMI Splitter 2CH</td><td>1 Unit</td><td><span class="badge badge-slate">☑️</span></td><td>Cadangan Video Splitter 2 Channel</td></tr>
                   <tr data-name="Power Adaptor SPL"><td>Power Adaptor SPL</td><td>1 Pack</td><td><span class="badge badge-slate">☑️</span></td><td>Power Adaptor Splitter GIA</td></tr>
-                  <tr data-name="HDMI to HDMI Cable 1,5M"><td>HDMI to HDMI Cable 1,5M</td><td>3 Unit</td><td><span class="badge badge-amber">⚠️ 2/3</span></td><td>1x Switcher ➔ Monitor Armageddon, 1x Pro1 ➔ Splitter, 1x standby</td></tr>
+                  <tr data-name="HDMI to HDMI Cable 1,5M"><td>HDMI to HDMI Cable 1,5M</td><td>3 Unit</td><td><span class="badge badge-emerald">✅</span></td><td>1x Switcher ➔ Monitor, 1x Pro1 ➔ Splitter, 1x Pro3 ➔ TV Stage</td></tr>
                 </tbody>
               </table>
             </div>
@@ -1319,7 +1335,7 @@ flowchart LR
                   <tr data-name="HDMI to Mini HDMI Cable 2,5M"><td>HDMI to Mini HDMI Cable 2,5M</td><td>1 Unit</td><td><span class="badge badge-slate">☑️</span></td><td>Cadangan kabel video</td></tr>
                   <tr data-name="HDMI Cable 15M"><td>HDMI Cable 15M</td><td>1 Unit</td><td><span class="badge badge-emerald">✅</span></td><td>CAM 1 Wired ➔ Splitter GKJ</td></tr>
                   <tr data-name="HDMI Cable 10M"><td>HDMI Cable 10M</td><td>1 Unit</td><td><span class="badge badge-emerald">✅</span></td><td>CAM 4 Wired ➔ Switcher Cinetreak</td></tr>
-                  <tr data-name="HDMI Cable 1,5M"><td>HDMI Cable 1,5M</td><td>3 Unit</td><td><span class="badge badge-amber">⚠️ 2/3</span></td><td>1x Pyro S RX ➔ Switcher, 1x Pyro H RX ➔ Switcher, 1x standby</td></tr>
+                  <tr data-name="HDMI Cable 1,5M"><td>HDMI Cable 1,5M</td><td>2 Unit</td><td><span class="badge badge-emerald">✅</span></td><td>1x Pyro S RX ➔ Switcher, 1x Pyro H RX ➔ Switcher</td></tr>
                   <tr data-name="HDMI Splitter 4CH"><td>HDMI Splitter 4CH</td><td>1 Unit</td><td><span class="badge badge-emerald">✅</span></td><td>Splitter Utama Distribusi ProPresenter 1 ➔ OBS & RES</td></tr>
                   <tr data-name="Power Adaptor SPL"><td>Power Adaptor SPL</td><td>1 Pack</td><td><span class="badge badge-emerald">✅</span></td><td>Power Adaptor Splitter UKK</td></tr>
                   <tr data-name="VGA to VGA Cable 1,5M"><td>VGA to VGA Cable 1,5M</td><td>1 Unit</td><td><span class="badge badge-slate">☑️</span></td><td>Cadangan kabel monitor</td></tr>
@@ -1352,13 +1368,8 @@ flowchart LR
                   <tr data-name="XLR Cable 30M"><td>XLR Cable 30M</td><td>1 Unit</td><td><span class="badge badge-emerald">✅</span></td><td>Output Yamaha QL5 ➔ Input Mixer NewBaxs CT80S</td></tr>
                   <tr data-name="HDMI Capture"><td>HDMI Capture</td><td>1 Unit</td><td><span class="badge badge-slate">☑️</span></td><td>Cadangan video capture</td></tr>
                   <tr data-name="USB A to USB B Cable"><td>USB A to USB B Cable</td><td>1 Unit</td><td><span class="badge badge-slate">☑️</span></td><td>Cadangan koneksi perangkat</td></tr>
-                  <tr data-name="Monitor Armageddon"><td>Monitor Armageddon</td><td>1 Unit</td><td><span class="badge badge-emerald">✅</span></td><td>Monitor Multiview Switcher Cinetreak</td></tr>
-                  <tr data-name="Power Adaptor MON"><td>Power Adaptor MON</td><td>1 Pack</td><td><span class="badge badge-emerald">✅</span></td><td>Power Adaptor Monitor Armageddon</td></tr>
-                  <tr data-name="Smoke Fogger 900W"><td>Smoke Fogger 900W</td><td>1 Unit</td><td><span class="badge badge-emerald">✅</span></td><td>Mesin asap panggung (Stage Effects)</td></tr>
-                  <tr data-name="Liquid SMO"><td>Liquid SMO</td><td>1 Pack</td><td><span class="badge badge-emerald">✅</span></td><td>Cairan asap smoke machine</td></tr>
-                  <tr data-name="Remote SMO"><td>Remote SMO</td><td>1 Unit</td><td><span class="badge badge-emerald">✅</span></td><td>Remote pemicu mesin asap</td></tr>
-                  <tr data-name="XLR Cable SMO"><td>XLR Cable SMO</td><td>1 Unit</td><td><span class="badge badge-emerald">✅</span></td><td>Kabel kontrol XLR mesin asap</td></tr>
-                  <tr data-name="Power Cable SMO"><td>Power Cable SMO</td><td>1 Pack</td><td><span class="badge badge-emerald">✅</span></td><td>Kabel power mesin asap</td></tr>
+                  <tr data-name="Monitor"><td>Monitor</td><td>1 Unit</td><td><span class="badge badge-emerald">✅</span></td><td>Monitor Multiview Switcher Cinetreak</td></tr>
+                  <tr data-name="Power Adaptor MON"><td>Power Adaptor MON</td><td>1 Pack</td><td><span class="badge badge-emerald">✅</span></td><td>Power Adaptor Monitor Multiview</td></tr>
                 </tbody>
               </table>
             </div>
@@ -1446,7 +1457,7 @@ flowchart LR
                 </thead>
                 <tbody>
                   <tr data-name="HP iPhone 15"><td>HP iPhone 15</td><td>1 Unit</td><td><span class="badge badge-emerald">✅</span></td><td>CAM 7 Dokumentasi Live Story / Reels / Sosmed</td></tr>
-                  <tr data-name="TAB iPad"><td>TAB iPad</td><td>1 Unit</td><td><span class="badge badge-emerald">✅</span></td><td>iPad Virtual Mixer 2 (Operator: Yosua)</td></tr>
+                  <tr data-name="TAB iPad"><td>TAB iPad</td><td>1 Unit</td><td><span class="badge badge-emerald">✅</span></td><td>iPad Virtual Mixer 3 (Operator: Jordan)</td></tr>
                 </tbody>
               </table>
             </div>
@@ -1461,7 +1472,7 @@ flowchart LR
                   <tr><th>Nama Barang</th><th>Jumlah</th><th>Status</th><th>Keterangan Penggunaan</th></tr>
                 </thead>
                 <tbody>
-                  <tr data-name="TAB iPad"><td>TAB iPad</td><td>1 Unit</td><td><span class="badge badge-emerald">✅</span></td><td>iPad Monitor Virtual Mixer 1 (FOH Audio)</td></tr>
+                  <tr data-name="TAB iPad"><td>TAB iPad</td><td>1 Unit</td><td><span class="badge badge-emerald">✅</span></td><td>iPad Virtual Mixer 2 (Operator: Jordan)</td></tr>
                 </tbody>
               </table>
             </div>
@@ -1476,30 +1487,15 @@ flowchart LR
                   <tr><th>Nama Barang</th><th>Jumlah</th><th>Status</th><th>Keterangan Penggunaan</th></tr>
                 </thead>
                 <tbody>
-                  <tr data-name="TAB iPad"><td>TAB iPad</td><td>1 Unit</td><td><span class="badge badge-emerald">✅</span></td><td>iPad Monitor Virtual Mixer 1 / Cadangan</td></tr>
+                  <tr data-name="TAB iPad"><td>TAB iPad</td><td>1 Unit</td><td><span class="badge badge-emerald">✅</span></td><td>iPad Virtual Mixer 4 (Operator: Yosua)</td></tr>
                 </tbody>
               </table>
             </div>
           </div>
 
-          <!-- 15. Bapak Arif -->
-          <div class="vendor-block" data-vendor="Bapak Arif">
-            <h3 class="vendor-title"><span class="vendor-dot"></span> 15. Peminjaman dari Bapak Arif</h3>
-            <div class="table-responsive">
-              <table class="data-table inv-table">
-                <thead>
-                  <tr><th>Nama Barang</th><th>Jumlah</th><th>Status</th><th>Keterangan Penggunaan</th></tr>
-                </thead>
-                <tbody>
-                  <tr data-name="TAB iPad"><td>TAB iPad</td><td>1 Unit</td><td><span class="badge badge-emerald">✅</span></td><td>iPad Virtual Mixer 3 (Operator: Jordan)</td></tr>
-                </tbody>
-              </table>
-            </div>
-          </div>
-
-          <!-- 16. Bayu -->
+          <!-- 15. Bayu -->
           <div class="vendor-block" data-vendor="Bayu">
-            <h3 class="vendor-title"><span class="vendor-dot"></span> 16. Peminjaman dari Bayu</h3>
+            <h3 class="vendor-title"><span class="vendor-dot"></span> 15. Peminjaman dari Bayu</h3>
             <div class="table-responsive">
               <table class="data-table inv-table">
                 <thead>
@@ -1513,9 +1509,9 @@ flowchart LR
             </div>
           </div>
 
-          <!-- 17. Wilfred -->
+          <!-- 16. Wilfred -->
           <div class="vendor-block" data-vendor="Wilfred">
-            <h3 class="vendor-title"><span class="vendor-dot"></span> 17. Peminjaman dari Wilfred</h3>
+            <h3 class="vendor-title"><span class="vendor-dot"></span> 16. Peminjaman dari Wilfred</h3>
             <div class="table-responsive">
               <table class="data-table inv-table">
                 <thead>
@@ -1529,9 +1525,41 @@ flowchart LR
             </div>
           </div>
 
-          <!-- 18. Panitia -->
+          <!-- 17. Evan -->
+          <div class="vendor-block" data-vendor="Evan">
+            <h3 class="vendor-title"><span class="vendor-dot"></span> 17. Peminjaman dari Evan</h3>
+            <div class="table-responsive">
+              <table class="data-table inv-table">
+                <thead>
+                  <tr><th>Nama Barang</th><th>Jumlah</th><th>Status</th><th>Keterangan Penggunaan</th></tr>
+                </thead>
+                <tbody>
+                  <tr data-name="Monitor"><td>Monitor</td><td>1 Unit</td><td><span class="badge badge-emerald">✅</span></td><td>Monitor FOH Virtual Mixer 2 (Evan)</td></tr>
+                  <tr data-name="Power Adaptor MON"><td>Power Adaptor MON</td><td>1 Pack</td><td><span class="badge badge-emerald">✅</span></td><td>Power Adaptor Monitor FOH Evan</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- 18. PlayStation -->
+          <div class="vendor-block" data-vendor="PlayStation">
+            <h3 class="vendor-title"><span class="vendor-dot"></span> 18. Peminjaman dari PlayStation</h3>
+            <div class="table-responsive">
+              <table class="data-table inv-table">
+                <thead>
+                  <tr><th>Nama Barang</th><th>Jumlah</th><th>Status</th><th>Keterangan Penggunaan</th></tr>
+                </thead>
+                <tbody>
+                  <tr data-name="Television"><td>Television</td><td>1 Unit</td><td><span class="badge badge-emerald">✅</span></td><td>TV Stage Display Time Keeper (ProPresenter 3)</td></tr>
+                  <tr data-name="Power Adaptor TV"><td>Power Adaptor TV</td><td>1 Pack</td><td><span class="badge badge-emerald">✅</span></td><td>Power Adaptor TV Time Keeper Stage</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- 19. Panitia -->
           <div class="vendor-block" data-vendor="Panitia">
-            <h3 class="vendor-title"><span class="vendor-dot"></span> 18. Peminjaman dari Panitia</h3>
+            <h3 class="vendor-title"><span class="vendor-dot"></span> 19. Peminjaman dari Panitia</h3>
             <div class="table-responsive">
               <table class="data-table inv-table">
                 <thead>

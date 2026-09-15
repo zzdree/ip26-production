@@ -39,6 +39,7 @@ document.addEventListener('DOMContentLoaded', () => {
       title: "2. Peminjaman dari ABON",
       items: [
         { name: "Lens 35MM", qty: "1 Unit", status: "✅", usage: "CAM 6 Video Dokumentasi" },
+        { name: "DJI Ronin RS3 Pro", qty: "1 Unit", status: "✅", usage: "Gimbal Stabilizer CAM 6 Video Dokumentasi" },
         { name: "HDMI Capture", qty: "2 Unit", status: "✅", usage: "1x Splitter ➔ OBS, 1x Splitter ➔ Resolume" }
       ]
     },
@@ -108,13 +109,16 @@ document.addEventListener('DOMContentLoaded', () => {
         { name: "Mixer NewBaxs CT80S", qty: "1 Unit", status: "✅", usage: "Mixer 2 (Sub-Mix Audio Streaming ke OBS)" },
         { name: "Power Adaptor MIX", qty: "1 Pack", status: "✅", usage: "Power Adaptor Mixer NewBaxs CT80S" },
         { name: "Soundcard TaffStudio", qty: "1 Unit", status: "☑️", usage: "Cadangan soundcard audio" },
-        { name: "TRS 3.5 Male to TRS 3.5 Female 3M", qty: "5 Unit", status: "☑️", usage: "Cadangan kabel audio aux" },
+        { name: "Converter 3.5 Female to 6.5 TRS Male", qty: "4 Unit", status: "☑️", usage: "Converter audio jack" },
+        { name: "Converter 3.5 Female to 6.5 TS Male", qty: "2 Unit", status: "☑️", usage: "Converter audio jack mono" },
+        { name: "Cable 3.5 Male to 3.5 Male 30CM", qty: "3 Unit", status: "☑️", usage: "Kabel aux patch pendek" },
+        { name: "Cable 3.5 Male to 3.5 Female 3M", qty: "5 Unit", status: "☑️", usage: "Kabel perpanjangan aux 3.5mm" },
         { name: "XLR Female to Male Cable 3M", qty: "2 Unit", status: "☑️", usage: "Cadangan kabel audio balance" },
         { name: "USB A to USB C Data Cable", qty: "1 Unit", status: "✅", usage: "Mixer NewBaxs CT80S ➔ Laptop OBS Studio" },
         { name: "Tripod Camera Big", qty: "1 Unit", status: "✅", usage: "Tripod CAM 3 Broadcast" },
         { name: "HDMI Splitter 2CH", qty: "1 Unit", status: "☑️", usage: "Cadangan Video Splitter 2 Channel" },
         { name: "Power Adaptor SPL", qty: "1 Pack", status: "☑️", usage: "Power Adaptor Splitter GIA" },
-        { name: "HDMI to HDMI Cable 1,5M", qty: "3 Unit", status: "⚠️ 2/3", usage: "1x Switcher ➔ Monitor Armageddon, 1x Pro1 ➔ Splitter, 1x standby" }
+        { name: "HDMI to HDMI Cable 1,5M", qty: "3 Unit", status: "✅", usage: "1x Switcher ➔ Monitor, 1x Pro1 ➔ Splitter, 1x Pro3 ➔ TV Stage" }
       ]
     },
     {
@@ -141,7 +145,7 @@ document.addEventListener('DOMContentLoaded', () => {
         { name: "HDMI to Mini HDMI Cable 2,5M", qty: "1 Unit", status: "☑️", usage: "Cadangan kabel video" },
         { name: "HDMI Cable 15M", qty: "1 Unit", status: "✅", usage: "CAM 1 Wired ➔ Splitter GKJ" },
         { name: "HDMI Cable 10M", qty: "1 Unit", status: "✅", usage: "CAM 4 Wired ➔ Switcher Cinetreak" },
-        { name: "HDMI Cable 1,5M", qty: "3 Unit", status: "⚠️ 2/3", usage: "1x Pyro S RX ➔ Switcher, 1x Pyro H RX ➔ Switcher, 1x standby" },
+        { name: "HDMI Cable 1,5M", qty: "2 Unit", status: "✅", usage: "1x Pyro S RX ➔ Switcher, 1x Pyro H RX ➔ Switcher" },
         { name: "HDMI Splitter 4CH", qty: "1 Unit", status: "✅", usage: "Splitter Utama Distribusi ProPresenter 1 ➔ OBS & RES" },
         { name: "Power Adaptor SPL", qty: "1 Pack", status: "✅", usage: "Power Adaptor Splitter UKK" },
         { name: "VGA to VGA Cable 1,5M", qty: "1 Unit", status: "☑️", usage: "Cadangan kabel monitor" },
@@ -166,13 +170,8 @@ document.addEventListener('DOMContentLoaded', () => {
         { name: "XLR Cable 30M", qty: "1 Unit", status: "✅", usage: "Output Yamaha QL5 ➔ Input Mixer NewBaxs CT80S" },
         { name: "HDMI Capture", qty: "1 Unit", status: "☑️", usage: "Cadangan video capture" },
         { name: "USB A to USB B Cable", qty: "1 Unit", status: "☑️", usage: "Cadangan koneksi perangkat" },
-        { name: "Monitor Armageddon", qty: "1 Unit", status: "✅", usage: "Monitor Multiview Switcher Cinetreak" },
-        { name: "Power Adaptor MON", qty: "1 Pack", status: "✅", usage: "Power Adaptor Monitor Armageddon" },
-        { name: "Smoke Fogger 900W", qty: "1 Unit", status: "✅", usage: "Mesin asap panggung (Stage Effects)" },
-        { name: "Liquid SMO", qty: "1 Pack", status: "✅", usage: "Cairan asap smoke machine" },
-        { name: "Remote SMO", qty: "1 Unit", status: "✅", usage: "Remote pemicu mesin asap" },
-        { name: "XLR Cable SMO", qty: "1 Unit", status: "✅", usage: "Kabel kontrol XLR mesin asap" },
-        { name: "Power Cable SMO", qty: "1 Pack", status: "✅", usage: "Kabel power mesin asap" }
+        { name: "Monitor", qty: "1 Unit", status: "✅", usage: "Monitor Multiview Switcher Cinetreak" },
+        { name: "Power Adaptor MON", qty: "1 Pack", status: "✅", usage: "Power Adaptor Monitor Multiview" }
       ]
     },
     {
@@ -220,33 +219,26 @@ document.addEventListener('DOMContentLoaded', () => {
       title: "12. Peminjaman dari Jennifer",
       items: [
         { name: "HP Iphone 15", qty: "1 Unit", status: "✅", usage: "CAM 7 Dokumentasi Live Story / Reels / Sosmed" },
-        { name: "TAB iPad", qty: "1 Unit", status: "✅", usage: "iPad Virtual Mixer 2 (Operator: Yosua)" }
+        { name: "TAB iPad", qty: "1 Unit", status: "✅", usage: "iPad Virtual Mixer 3 (Operator: Jordan)" }
       ]
     },
     {
       vendor: "Filia",
       title: "13. Peminjaman dari Filia",
       items: [
-        { name: "TAB iPad", qty: "1 Unit", status: "✅", usage: "iPad Monitor Virtual Mixer 1 (FOH Audio)" }
+        { name: "TAB iPad", qty: "1 Unit", status: "✅", usage: "iPad Virtual Mixer 2 (Operator: Jordan)" }
       ]
     },
     {
       vendor: "Alex",
       title: "14. Peminjaman dari Alex",
       items: [
-        { name: "TAB iPad", qty: "1 Unit", status: "✅", usage: "iPad Monitor Virtual Mixer 1 / Cadangan" }
-      ]
-    },
-    {
-      vendor: "Bapak Arif",
-      title: "15. Peminjaman dari Bapak Arif",
-      items: [
-        { name: "TAB iPad", qty: "1 Unit", status: "✅", usage: "iPad Virtual Mixer 3 (Operator: Jordan)" }
+        { name: "TAB iPad", qty: "1 Unit", status: "✅", usage: "iPad Virtual Mixer 4 (Operator: Yosua)" }
       ]
     },
     {
       vendor: "Bayu",
-      title: "16. Peminjaman dari Bayu",
+      title: "15. Peminjaman dari Bayu",
       items: [
         { name: "Laptop", qty: "1 Unit", status: "✅", usage: "Workstation Resolume Arena (Operator: Andreas)" },
         { name: "Power Adaptor LTP", qty: "1 Unit", status: "✅", usage: "Power Adaptor Laptop Resolume Arena" }
@@ -254,15 +246,31 @@ document.addEventListener('DOMContentLoaded', () => {
     },
     {
       vendor: "Wilfred",
-      title: "17. Peminjaman dari Wilfred",
+      title: "16. Peminjaman dari Wilfred",
       items: [
         { name: "Laptop", qty: "1 Unit", status: "✅", usage: "Workstation ProPresenter 2 (Operator: Filia)" },
         { name: "Power Adaptor LTP", qty: "1 Unit", status: "✅", usage: "Power Adaptor Laptop ProPresenter 2" }
       ]
     },
     {
+      vendor: "Evan",
+      title: "17. Peminjaman dari Evan",
+      items: [
+        { name: "Monitor", qty: "1 Unit", status: "✅", usage: "Monitor FOH Virtual Mixer 2 (Evan)" },
+        { name: "Power Adaptor MON", qty: "1 Pack", status: "✅", usage: "Power Adaptor Monitor FOH Evan" }
+      ]
+    },
+    {
+      vendor: "PlayStation",
+      title: "18. Peminjaman dari PlayStation",
+      items: [
+        { name: "Television", qty: "1 Unit", status: "✅", usage: "TV Stage Display Time Keeper (ProPresenter 3)" },
+        { name: "Power Adaptor TV", qty: "1 Pack", status: "✅", usage: "Power Adaptor TV Time Keeper Stage" }
+      ]
+    },
+    {
       vendor: "Panitia",
-      title: "18. Peminjaman dari Panitia",
+      title: "19. Peminjaman dari Panitia",
       items: [
         { name: "HDMI to Micro HDMI Converter", qty: "2 Unit", status: "✅", usage: "Cadangan terverifikasi port kamera" },
         { name: "Terminal Cable XCH", qty: "X Unit", status: "✅", usage: "Distribusi listrik jalur utama Panitia" }
@@ -270,16 +278,16 @@ document.addEventListener('DOMContentLoaded', () => {
     },
     {
       vendor: "UNNES",
-      title: "19. Fasilitas Gedung Auditorium UNNES",
+      title: "20. Fasilitas Gedung Auditorium UNNES",
       items: [
         { name: "Mixer Yamaha QL5", qty: "1 Unit", status: "✅", usage: "Master Digital Console Audio FOH" },
-        { name: "WiFi UNNES-ID", qty: "1 System", status: "✅", usage: "Jaringan kontrol nirkabel Virtual Mixer 1, 2, & 3" },
+        { name: "WiFi UNNES-ID", qty: "1 System", status: "✅", usage: "Jaringan kontrol nirkabel Virtual Mixer 1, 2, 3, & 4" },
         { name: "Audio Cable 20M", qty: "1 Line", status: "✅", usage: "Jalur audio ProPresenter 1 ➔ Mixer Yamaha QL5" },
         { name: "HDMI Cable 20M", qty: "1 Line", status: "✅", usage: "Laptop OBS Studio ➔ Novastar Processor 1" },
-        { name: "Novastar Video Processor 1 & 2", qty: "2 Unit", status: "✅", usage: "Processor resolusi LED Kiri/Kanan/Belakang & Tengah" },
+        { name: "Novastar Video Processor 1 & 2", qty: "2 Unit", status: "✅", usage: "Processor resolusi LED Wing & Center" },
         { name: "PC UNNES", qty: "1 Unit", status: "✅", usage: "PC passthrough display input Resolume ➔ Novastar 2" },
         { name: "LED Center Screen", qty: "1 Display", status: "✅", usage: "Layar LED panggung utama tengah" },
-        { name: "LED Left, Right, & Back Screens", qty: "3 Displays", status: "✅", usage: "Layar LED panggung sayap kiri, kanan, dan belakang" }
+        { name: "LED Left, Right, & Back Screens", qty: "3 Displays", status: "✅", usage: "Layar LED panggung sayap (Wing) kiri, kanan, dan belakang" }
       ]
     }
   ];
